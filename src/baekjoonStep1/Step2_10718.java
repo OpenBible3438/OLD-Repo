@@ -6,5 +6,4 @@ public class Step2_10718 {
 		System.out.println("강한친구 대한육군");
 		System.out.print("강한친구 대한육군");
 	}
-
 }
