@@ -4,17 +4,15 @@ import java.util.Scanner;
 public class Step11_2588 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Scanner sc2 = new Scanner(System.in);
 		int num1 = sc.nextInt();
-		String str2 = sc2.nextLine();
-		int num3 = Integer.parseInt(str2);
-		int num2[]= new int[3];
-		for(int i=0; i<str2.length(); i++) {
-			num2[i]=str2.charAt(i) - '0';
-		}
-		for(int i=2; i>0; i--) {
-			System.out.println(num1*num2[i]);
-		}
-		System.out.println(num1*num3);
+		int num2 = sc.nextInt();
+		int num3, num4, num5, num6; //문제에서 3,4,5,6 위치에 들어가는 변수
+		num6 = num1 * num2;
+		num3 = num1*(num2%10);
+		num2 = num2/10;
+		num4 = num1*(num2%10);
+		num2 = num2/10;
+		num5 = num1 * num2;
+		System.out.printf("%d\n%d\n%d\n%d\n", num3, num4, num5, num6);
 	}
 }
