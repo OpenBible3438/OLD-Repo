@@ -11,8 +11,8 @@ public class Step2_Q2562 {
 			arr[i] = sc.nextInt();
 		}
 		int max = arr[0];
-		int maxIndex = 0;
-		for(int j=1; j<arr.length; j++) {
+		int maxIndex=1;
+		for(int j=0; j<arr.length; j++) {
 			if(arr[j] > max) {
 				max = arr[j];
 				maxIndex = j+1;
