@@ -19,20 +19,6 @@
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
     
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
@@ -55,19 +41,34 @@
 <div class="col-sm-8 text-left"> 
 <%	if("info".equals(center) || center == null) { %>
     	<%@ include file="./info/info.jsp" %>
+    	
 <%  } else if("gym".equals(center)) { %>
     	<%@ include file="./gym/gymInfo.jsp" %>
-    	<script type="text/javascript"> 
-	$("#gym").classList.toggle("active");
-	var dropdownContent = $("#gym").nextElementSibling;
-	$("#gym").style.display = "block";
-</script>    
+    	
+<%  } else if("chart".equals(center)) { %>
+    	<%@ include file="./gym/gymChart.jsp" %>
+    	
+<%  } else if("review".equals(center)) { %>
+    	<%@ include file="./gym/gymReviewList.jsp" %>
+    	
+<%  } else if("content".equals(center)) { %>
+    	<%@ include file="./gym/gymContentList.jsp" %>
+    	
+<%  } else if("notice".equals(center)) { %>
+    	<%@ include file="./gym/gymNoticeList.jsp" %>
+    	
 <%  } else if("tch".equals(center)) { %>
     	<%@ include file="./teacher/tchInfo.jsp" %>
+    	
 <%  } else if("mem".equals(center)) { %>
     	<%@ include file="./member/memInfo.jsp" %>
+    	
+<%  } else if("ibd".equals(center)) { %>
+    	<%@ include file="./member/memInbodyList.jsp" %>
+    	
 <%  } else if("cls".equals(center)) { %>
     	<%@ include file="./class/classInfo.jsp" %>
+    	
 <%	} %>
 </div>
     
