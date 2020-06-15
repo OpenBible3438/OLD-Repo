@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%
 	String center = request.getParameter("center");
+	String pick = null;
+	
+	 
 %>
 <!DOCTYPE html>
 <html>
@@ -10,6 +13,31 @@
   <title>메인페이지</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%@ include file="./../common/bootStrap4UI.jsp" %>
+  <script type="text/javascript">
+  	function picks(center) {
+  		var pick = null;
+  		switch(center) {
+			case "info":    { pick = "./info/info.jsp?mode=info"; } break;
+			case "gym":     { pick = "./gym/gymInfo.jsp"; } break;
+			case "chart":   { pick = "./gym/gymChart.jsp"; } break;
+			case "review":  { pick = "./gym/gymReviewList.jsp"; } break;
+			case "content": { pick = "./gym/gymContentList.jsp"; } break;
+			case "notice":  { pick = "./gym/gymNoticeList.jsp"; } break;
+			case "tch":     { pick = "./teacher/tchInfo.jsp"; } break;
+			case "mem":     { pick = "./member/memInfo.jsp"; } break;
+			case "ibd":     { pick = "./member/memInbodyList.jsp"; } break;
+			case "cls":     { pick = "./class/classInfo.jsp"; } break;
+			default :       { pick = "./info/info.jsp"; } break;
+		}
+  		$.ajax({
+  			url:pick
+  			,success: function(data) {
+  				$('#center').html(data);
+  			}
+  		});
+  	}
+  	picks('info');
+  </script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */  
     .navbar {
@@ -29,52 +57,25 @@
     }
   </style>
 </head>
-<body>
+<body data-spy="scroll" >
 <!-- ========================= TOP 자리 ========================= -->
    <%@ include file="./mainTop.jsp" %>
 <!-- ========================= CENTER 시작  =========================  -->
 <div class="container-fluid text-center">    
-  <div class="row content">
+  	<div class="row content">
+  	
 <!-- ========================= 왼쪽 자리 ========================= -->
     <%@ include file="./mainWest.jsp" %>
-<!-- ========================= 센터 자리 ========================= -->
-<div class="col-sm-8 text-left"> 
-<%	if("info".equals(center) || center == null) { %>
-    	<%@ include file="./info/info.jsp" %>
-    	
-<%  } else if("gym".equals(center)) { %>
-    	<%@ include file="./gym/gymInfo.jsp" %>
-    	
-<%  } else if("chart".equals(center)) { %>
-    	<%@ include file="./gym/gymChart.jsp" %>
-    	
-<%  } else if("review".equals(center)) { %>
-    	<%@ include file="./gym/gymReviewList.jsp" %>
-    	
-<%  } else if("content".equals(center)) { %>
-    	<%@ include file="./gym/gymContentList.jsp" %>
-    	
-<%  } else if("notice".equals(center)) { %>
-    	<%@ include file="./gym/gymNoticeList.jsp" %>
-    	
-<%  } else if("tch".equals(center)) { %>
-    	<%@ include file="./teacher/tchInfo.jsp" %>
-    	
-<%  } else if("mem".equals(center)) { %>
-    	<%@ include file="./member/memInfo.jsp" %>
-    	
-<%  } else if("ibd".equals(center)) { %>
-    	<%@ include file="./member/memInbodyList.jsp" %>
-    	
-<%  } else if("cls".equals(center)) { %>
-    	<%@ include file="./class/classInfo.jsp" %>
-    	
-<%	} %>
-</div>
     
+<!-- ========================= 센터 자리 ========================= -->
+		<div id="center" class="col-sm-8 text-left"> 
+		
+		
+		
+		</div>
 <!-- ========================= 오른쪽 자리 ========================= -->
-    <%@ include file="./mainEast.jsp" %>
-  </div>
+   		<%@ include file="./mainEast.jsp" %>
+  	</div>
 </div>
 <!-- ========================= CENTER 끝  =========================  -->
 <!-- ========================= Footer자리 ========================= -->
