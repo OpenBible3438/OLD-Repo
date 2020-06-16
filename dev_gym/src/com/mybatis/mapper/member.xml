@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orm.mybatis.mapper.memberMapper">
+<!-- ======================= Member ======================= -->
+	<select id="getMemDetail" parameterType="map" resultType="map">
+		SELECT 1 FROM dual
+	</select>
+	<select id="getMemInbody" parameterType="map" resultType="map">
+		SELECT 1 FROM dual
+	</select>
+	<select id="getMemList" parameterType="map" resultType="map">
+		SELECT 1 FROM dual
+	</select>
+	
+	<insert id="memInbodyIns" parameterType="map">
+		INSERT into member values('1', '1', '1')
+	</insert>
+	<insert id="memIns" parameterType="map">
+		INSERT into member values('1', '1', '1')
+	</insert>
+	
+	<update id="memInbodyUpd" parameterType="map">
+		UPDATE member set mem_name='1' WHERE mem_id='1'
+	</update>
+	<update id="memUpd" parameterType="map">
+		UPDATE member set mem_name='1' WHERE mem_id='1'
+	</update>
+	
+	<delete id="memInbodyDel" parameterType="map">
+		DELETE member where mem_id = '5'
+	</delete>
+	<delete id="memDel" parameterType="map">
+		DELETE member where mem_id = '5'
+	</delete>
+	
+</mapper>

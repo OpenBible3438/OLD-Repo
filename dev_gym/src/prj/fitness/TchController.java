@@ -17,33 +17,41 @@ public class TchController implements Controller {
 	String work = null;
 	String reqName = null;
 	int result = 0;
+	
 	public TchController(Map<String, Object> pMap) {
 		logger.info("TchController 생성자 호출");
 		this.pMap = pMap;
 		tLogic = new TchLogic();
-		reqName = pMap.get("reqName").toString();
 		work = pMap.get("work").toString();
+		reqName = pMap.get("reqName").toString();
+		logger.info("work : " + work + ", reqName : " + reqName);
 	}
 	
 	
 	@Override
 	public String process(String cud, HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
+		logger.info("TchController - String 타입 process 호출");
 		String path = null;
 		switch(reqName) {
-			case "ins":{
-				result = tLogic.tchIns(pMap);
-			}break;
-			case "upd":{
-				result = tLogic.tchUpd(pMap);
-			}break;
-			case "del":{
-				result = tLogic.tchDel(pMap);
-			}break;
+			case("jsonTchList"):{
+				switch(cud) {
+					case "ins":{
+						result = tLogic.tchIns(pMap);
+					}break;
+					case "upd":{
+						result = tLogic.tchUpd(pMap);
+					}break;
+					case "del":{
+						result = tLogic.tchDel(pMap);
+					}break;
+				}
+			}
 		}
 		
 		path = "redirect:" + work + ":" + reqName + ":" + result;
-
+		logger.info("path : " + path);
+		
 		return path;
 	}
 
@@ -51,25 +59,28 @@ public class TchController implements Controller {
 	@Override
 	public ModelAndView process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		ModelAndView mav = new ModelAndView(req, res);
+		logger.info("TchController - mav 타입 process 호출");
 		Object selResult = null;
 		switch(reqName){
-			case "tchClass":{
+			case "jsonTchClass":{
 				selResult = tLogic.getTchClassList(pMap);
 			}break;
-			case "tchList":{
+			case "jsonTchList":{
 				selResult = tLogic.getTchList(pMap);
 			}break;
-			case "tchProfile":{
+			case "jsonTchProfile":{
 				selResult = tLogic.getTchProfile(pMap);
 			}break;
 		}
 		if(selResult != null) {
+			logger.info("selResult != null");
 			mav.addObject("selResult", selResult);
+			mav.setViewName(work+"/"+reqName);
 		}
 		else {
+			logger.info("selResult == null");
 			logger.info("TchController - selResult가 Null입니다.");
 		}
-		
 		
 		return mav;
 	}

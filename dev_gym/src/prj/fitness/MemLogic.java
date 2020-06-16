@@ -3,7 +3,10 @@ package prj.fitness;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
+
+import com.util.MyBatisBuilderMgr;
 
 public class MemLogic {
 
@@ -11,14 +14,19 @@ public class MemLogic {
 	MemDao mDao = null;
 	int result = 0;
 	
+	MyBatisBuilderMgr mbMgr = null;
+	SqlSession sqlSession = null;
+	
 	public MemLogic() {
 		logger.info("MemLogic 생성자 호출");
-		this.mDao = new MemDao();
+		mbMgr = MyBatisBuilderMgr.getInstance();
+		sqlSession = mbMgr.openSession();
+		this.mDao = new MemDao(sqlSession);
 	}
 	
-	public Map<String, Object> getMemDetail(Map<String, Object> pMap){
+	public List<Map<String, Object>> getMemDetail(Map<String, Object> pMap){//여유가 되면 Map으로 바꾸자
 		logger.info("MemLogic - getMemDetail() 호출");
-		Map<String, Object> memDetail = null;
+		List<Map<String, Object>> memDetail = null;
 		memDetail = mDao.getMemDetail(pMap);
 		return memDetail;
 	}
@@ -27,6 +35,7 @@ public class MemLogic {
 		logger.info("MemLogic - getMemInbody() 호출");
 		List<Map<String, Object>> memInbodyList = null;
 		memInbodyList = mDao.getMemList(pMap);
+		
 		return memInbodyList;
 	}
 	
@@ -36,41 +45,62 @@ public class MemLogic {
 		memList = mDao.getMemList(pMap);
 		return memList;
 	}
+	
 	///////////////////////////////////////////////////////////////
+	
 	public int memIns(Map<String, Object> pMap) {
 		logger.info("MemLogic - memIns() 호출");
-		mDao.memIns(pMap);
+		result = mDao.memIns(pMap);
+		setCommit(result);
 		return result;
 	}
 	
 	public int memUpd(Map<String, Object> pMap) {
 		logger.info("MemLogic - memUpd() 호출");
-		mDao.memUpd(pMap);
+		result = mDao.memUpd(pMap);
+		setCommit(result);
 		return result;
 	}
 	
 	public int memDel(Map<String, Object> pMap) {
 		logger.info("MemLogic - memDel() 호출");
-		mDao.memDel(pMap);
+		result = mDao.memDel(pMap);
+		setCommit(result);
 		return result;
 	}
 	
 	public int memInbodyIns(Map<String, Object> pMap) {
-		logger.info("MemLogic - memIns() 호출");
-		mDao.memInbodyIns(pMap);
+		logger.info("MemLogic - memInbodyIns() 호출");
+		result = mDao.memInbodyIns(pMap);
+		setCommit(result);
 		return result;
 	}
 	
 	public int memInbodyUpd(Map<String, Object> pMap) {
-		logger.info("MemLogic - memUpd() 호출");
-		mDao.memInbodyUpd(pMap);
+		logger.info("MemLogic - memInbodyUpd() 호출");
+		result = mDao.memInbodyUpd(pMap);
+		setCommit(result);
 		return result;
 	}
 	
 	public int memInbodyDel(Map<String, Object> pMap) {
-		logger.info("MemLogic - memDel() 호출");
-		mDao.memInbodyDel(pMap);
+		logger.info("MemLogic - memInbodyDel() 호출");
+		result = mDao.memInbodyDel(pMap);
+		setCommit(result);
 		return result;
+	}
+	
+	
+	public void setCommit(int result) {
+		logger.info("setCommit() 호출"); 
+		if(result>0) {
+			logger.info("sqlSession.commit() - result : " + result);
+			sqlSession.commit();
+		}
+		else {
+			logger.info("sqlSession.rollback() - result : " + result);
+			sqlSession.rollback();
+		}
 	}
 	
 	

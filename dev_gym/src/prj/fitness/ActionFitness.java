@@ -45,16 +45,16 @@ public class ActionFitness extends HttpServlet {
 		cLogic.setCommands(pMap);
 		
 		controller = ControllerMapper.getController(pMap);
-		
+		Object processResult = null;
 		if(pMap.containsKey("cud")) {
 			String cud = pMap.get("cud").toString();
-			controller.process(cud, req, res);
+			processResult = controller.process(cud, req, res);//cud가 map에 들어있어서 사실 파라미터에 cud를 넘겨줄 필요가 없다...
 		}
 		else {
-			controller.process(req, res);
+			processResult = controller.process(req, res);
 		}
 		
-		
+		cLogic.moveMapper(processResult);
 		
 		
 	}
