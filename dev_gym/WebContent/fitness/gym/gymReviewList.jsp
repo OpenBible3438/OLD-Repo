@@ -8,7 +8,7 @@
 <%@include file="../../common/bootStrap4UI.jsp" %>
 </head>
 <body>
-<h3>매장관리 | 매장후기보기</h3>
+<h4><b>매장관리 | 매장후기보기</b></h4>
 <br>
 <!--==================== 예시부분 ====================-->
 <div id="div_review">
@@ -19,6 +19,7 @@
 	</div>
 	<div id="div_review_content">
 		<div class="media border p-3">
+			<!-- 사진 들어가는 부분 -->
 			<!-- <img src="bible.jpg" style="width:80px;">
 			<img src="bible.jpg" style="width:80px;"> -->
 			<div class="media-body">

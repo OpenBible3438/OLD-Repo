@@ -19,13 +19,14 @@
 </script> -->
 </head>
 <body>
-<h3>매장관리 | 컨텐츠 	
+<h4><b>매장관리 | 컨텐츠</b>
 	<button onClick="contentIns()" type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#contentInsModal">등록</button>
-</h3>
+</h4>
+<!-- 컨텐츠 -->
 <div id="div_content">
 	<!-- navbar 부분 -->
 	<div id="div_content_nav">
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="width:100%">
 			<a class="navbar-brand">컨텐츠번호seq+매장이름 들어가는 곳</a>
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -43,10 +44,11 @@
 		<div class="container-fluid bg-grey">
 			<div class="row">
 				<div class="col-sm-4">
+					<!-- 사진 들어가는 부분 -->
 					<!-- <img src="bible.jpg" width="200px"> -->
 				</div>
 				<div class="col-sm-8">
-					<p style="font-size:22px;">컨텐츠 내용 들어가는 부분 #가산동 #시설최고 #주차장무료</p>
+					<p style="font-size:20px;"><b>컨텐츠 내용 들어가는 부분 #가산동 #시설최고 #주차장무료</b></p>
 					<p>
 						<button type="button" class="btn btn-primary">좋아요<span class="badge">7</span></button>
 						<i style="font-size:20px; float:right;">2020-06-12</i>
