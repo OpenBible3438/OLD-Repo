@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-수업페이지
+
 </body>
 </html>

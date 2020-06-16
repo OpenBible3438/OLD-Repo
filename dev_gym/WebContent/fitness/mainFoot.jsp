@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+</style>
 <footer class="container-fluid text-center">
   <p>여기에서 mainWest.jsp를 include 
 	location.href="./main.jsp?center=info";

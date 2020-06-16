@@ -9,7 +9,7 @@ public class ControllerMapper {
 		String work = pMap.get("work").toString();
 		String reqName = pMap.get("reqName").toString();
 		switch(work) {
-			case "gym": case "class":{
+			case "main": case "gym": case "class":{
 				controller = new GymController(pMap);
 			}break;
 			case "member":{

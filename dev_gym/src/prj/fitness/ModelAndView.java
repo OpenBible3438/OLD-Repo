@@ -16,7 +16,8 @@ public class ModelAndView {
 	
 	public void setViewName(String viewName) {
 		//this.viewName = viewName;
-		this.viewName = req.getContextPath()+"/WEB-INF/fitness/"+viewName+".jsp";
+//		this.viewName = req.getContextPath()+"/WEB-INF/fitness/"+viewName+".jsp";
+		this.viewName = "/WEB-INF/fitness/"+viewName+".jsp";
 	}
 	public String getViewName() {
 		return viewName;

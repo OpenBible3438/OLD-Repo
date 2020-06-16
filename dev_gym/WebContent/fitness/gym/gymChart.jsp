@@ -18,5 +18,8 @@
   - 일별 방문자 수, 요일별, 주별, 월별, 연별, ...
   - 강사별 매출
   - 시간대별 방문자 통계
+  <script type="text/javascript">
+  	
+  </script>
 </body>
 </html>
