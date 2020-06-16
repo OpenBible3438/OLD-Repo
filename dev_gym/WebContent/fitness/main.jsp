@@ -62,7 +62,7 @@
     }
   </style>
 </head>
-<body data-spy="scroll" >
+<body >
 <!-- ========================= TOP 자리 ========================= -->
    <%@ include file="./mainTop.jsp" %>
 <!-- ========================= CENTER 시작  =========================  -->
@@ -73,11 +73,13 @@
     	<%@ include file="./mainWest.jsp" %>
     
 <!-- ========================= 센터 자리 ========================= -->
+	<div data-spy="scroll" data-target="#center">
 		<div id="center" class="col-sm-8 text-left" > 
 		
 		
 		
 		</div>
+	</div>
 <!-- ========================= 오른쪽 자리 ========================= -->
    		<%@ include file="./mainEast.jsp" %>
   	</div>
