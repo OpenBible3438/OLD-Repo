@@ -36,7 +36,7 @@
   		$.ajax({
   			url:pick
   			,success: function(data) {
-  				$('#center').html(data);
+  				$('#center_in').html(data);
   			}
   		});
   	}
@@ -73,13 +73,11 @@
     	<%@ include file="./mainWest.jsp" %>
     
 <!-- ========================= 센터 자리 ========================= -->
-	<div data-spy="scroll" data-target="#center">
 		<div id="center" class="col-sm-8 text-left" > 
-		
-		
-		
+			<div id="center_in">
+			
+			</div>
 		</div>
-	</div>
 <!-- ========================= 오른쪽 자리 ========================= -->
    		<%@ include file="./mainEast.jsp" %>
   	</div>
