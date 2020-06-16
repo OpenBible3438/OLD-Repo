@@ -3,8 +3,11 @@
 <%
 	String center = request.getParameter("center");
 	String pick = null;
-	
-	 
+	if(center != null) {
+		pick = center;
+	} else {
+		pick = "info";
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -18,6 +21,7 @@
   		var pick = null;
   		switch(center) {
 			case "info":    { pick = "./info/info.jsp?mode=info"; } break;
+			case "join":    { pick = "./join.jsp"; } break;
 			case "gym":     { pick = "./gym/gymInfo.jsp"; } break;
 			case "chart":   { pick = "./gym/gymChart.jsp"; } break;
 			case "review":  { pick = "./gym/gymReviewList.jsp"; } break;
@@ -36,7 +40,7 @@
   			}
   		});
   	}
-  	picks('info');
+  	picks("<%=pick%>");
   </script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */  
@@ -44,16 +48,17 @@
       margin-bottom: 0;
       border-radius: 0;
     }
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
+    /* 왼쪽, 가운데, 위 높이 조정 */
+    .row.content {height: 650px}
     
     /* On small screens, set height to 'auto' for sidenav and grid */
+    /* 작은 화면에서 사이드 나비와 그리드의 높이를 '자동'으로 설정  */
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
         padding: 15px;
       }
-      .row.content {height:auto;} 
+      .row.content {height:auto;}
     }
   </style>
 </head>
@@ -65,10 +70,10 @@
   	<div class="row content">
   	
 <!-- ========================= 왼쪽 자리 ========================= -->
-    <%@ include file="./mainWest.jsp" %>
+    	<%@ include file="./mainWest.jsp" %>
     
 <!-- ========================= 센터 자리 ========================= -->
-		<div id="center" class="col-sm-8 text-left"> 
+		<div id="center" class="col-sm-8 text-left" > 
 		
 		
 		

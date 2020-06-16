@@ -18,6 +18,7 @@
 <script type="text/javascript">
 	function join() {
 		alert("회원가입");
+		location.href="./main.jsp?center=join"
 	}
 	function login() {
 		alert("로그인");
