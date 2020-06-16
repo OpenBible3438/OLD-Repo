@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@include file="../../../common/bootStrap4UI.jsp" %>
+<%@include file="../../common/bootStrap4UI.jsp" %>
 <script type="text/javascript">
 	function 강사조회(){
 		alert("강사조회클릭!");

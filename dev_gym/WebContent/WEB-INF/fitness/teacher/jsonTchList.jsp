@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-테스트 페이지
-테스트 URL
-main : main.jsp?center=info
+
 </body>
 </html>
