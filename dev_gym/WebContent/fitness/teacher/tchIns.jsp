@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+등록페이지
 </body>
 </html>
