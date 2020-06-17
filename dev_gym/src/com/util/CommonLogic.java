@@ -22,7 +22,6 @@ public class CommonLogic {
 	public CommonLogic(HttpServletRequest req, HttpServletResponse res) {
 		this.req = req;
 		this.res = res;
-		
 	}
 
 
@@ -51,6 +50,13 @@ public class CommonLogic {
 			pMap.put("work", commands[1]);
 			pMap.put("reqName", commands[2]);
 		}
+		///////세션으로 매장번호 받아와서 pMap에 넣기//////////
+		logger.info("**************************");
+//		logger.info(req.getAttribute("gym_no"));
+//		req.getSession().getAttribute("gym_no");
+		String gym_no = req.getSession().getAttribute("gym_no").toString();
+		logger.info("gym_no : " + gym_no);
+		pMap.put("gym_no", gym_no);
 	}
 	
 	

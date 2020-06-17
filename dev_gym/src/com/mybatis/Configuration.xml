@@ -2,7 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="com/dao/db.properties">
-		<property name="username" value="scott"/>
+		<property name="username" value="gym"/>
  		<property name="password" value="tiger"/>
 	</properties>
 	<environments default="development">
@@ -12,7 +12,7 @@
 				<property name="driver"
 					value="oracle.jdbc.driver.OracleDriver" />
 				<property name="url"
-					value="jdbc:oracle:thin:@localhost:1521:orcl11" />
+					value="jdbc:oracle:thin:@192.168.0.191:1521:orcl11" />
 				<property name="username" value="${username}" />
 				<property name="password" value="${password}" />
 			</dataSource>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="orm.mybatis.mapper.gymMapper">
+<mapper namespace="com.mybatis.mapper.gymMapper">
 <!-- ======================= GYM ======================= -->
 	<select id="getClassList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
@@ -12,7 +12,18 @@
 		SELECT 1 FROM dual
 	</select>
 	<select id="getNoticeList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		SELECT not_seq, not_title, not_cont, gym_no FROM notice
+		<where>
+			<if test="gym_no!=null and gym_no.length>0">
+				AND gym_no = #{gym_no}
+			</if>
+			<if test="not_title!=null and not_title.length>0">
+				AND not_title = #{not_title}
+			</if>
+			<if test="not_cont!=null and not_cont.length>0">
+				AND not_cont = #{not_cont}
+			</if>
+		</where>
 	</select>
 	<select id="getChartList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
