@@ -3,7 +3,7 @@
 <!-- --> 
 <div class="jumbotron text-center" style="padding-top:0; padding-bottom: 0;
                                           margin-bottom:0; height: 120px;">
-  <img alt="" src="../images/logo.png" style="width:230px; height:120px; padding:0; margin:0;"/>
+  <img alt="" src="../../images/logo.png" style="width:230px; height:120px; padding:0; margin:0;"/>
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -23,7 +23,7 @@
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown">가이드</a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="javascript:picks('info')">소개</a> 
-					<a class="dropdown-item" href="javascript:picks('')">성걱</a> 
+					<a class="dropdown-item" href="javascript:picks('')">성격</a> 
 					<a class="dropdown-item" href="javascript:picks('')">기능</a> 
 					<a class="dropdown-item" href="javascript:picks('join')">회원가입</a> 
 				</div>
