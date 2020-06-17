@@ -1,29 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원가입</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../../css/bootstrap-grid.min.css">
-<link rel="stylesheet" href="../../css/bootstrap-reboot.min.css">
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script> 
-<script src="../../js/bootstrap.bundle.min.js"></script> 
-</head>
-<body>
- -->
-<!-- start of container -->
-<script type="text/javascript">
-	function id_confirm() {
-		alert("중복검사 클릭");
-	}
-	function addrSearch() {
-		alert("주소검색 클릭 ");
-	}
-</script>
 <style>
 	#joinDiv .row, #joinDiv .col{
 		padding-left: 1px;
@@ -34,10 +10,16 @@
 		padding-right: 1px;	
 	}
 </style>
-<div style="padding: 20px;">
-	<h3><b>가이드</b> / 회원가입</h3>
-	<hr>
-	<div style="padding-left: 40px; padding-top: 20px">
+<div class="modal fade" id="m_join">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+<!-- <div style="padding: 20px;"> -->
+	<div class="modal-header">
+    	<h4 class="modal-title">매장 회원가입</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body" style="padding-left: 40px; padding-top: 20px">
 		<form role="form" id="gym_join">
 		<div class="form-group row">
 			<label for="gym_id" class="col-sm-2 col-form-label ">아이디</label>
@@ -58,7 +40,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="gym_pw_2" class="col-sm-2 col-form-label">비밀번호 확인</label>
+			<label for="gym_pw_2" class="col-sm-2 col-form-label">재 입력</label>
 			<div class="col-sm-5">
 				<input type="password" class="form-control"
 					   id="gym_pw_2" placeholder="비밀번호 확인">
@@ -156,16 +138,16 @@
 		</div>
 	</form>
 <!-- end of container -->
-		<div class="container">
-			<button type="button" class="btn btn-primary" onclick="classINS()">저장</button>
-		</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" onclick="classINS()">가입</button>
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	</div>
 	</div><!-- 왼쪽 패딩 -->
-</div> <!-- 전체 패딩  -->
-<!-- 
-</body>
-</html>
+<!-- </div> 전체 패딩  -->
 
- -->
+		</div><!-- end of modal-content -->
+	</div><!-- end of modal-dialog modal-lg -->
+</div><!-- end of modal m_join-->
 
 
 

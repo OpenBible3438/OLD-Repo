@@ -80,8 +80,8 @@
 	<div class="modal-dialog" style="width:auto;display:table">
 		<div class="modal-content">
 			<!-- Modal Header 부분 -->
-			<div class="modal-header">
-				<h5 class="modal-title">자세히 보기</h5>
+			<div class="modal-header bg-primary text-white">
+				<h4 class="modal-title">자세히 보기</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			
@@ -92,7 +92,7 @@
 			
 			<!-- Modal Footer 부분 -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				<!-- <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button> -->
 				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>			
 			</div>
 		</div>
@@ -104,19 +104,19 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- Modal Header 부분 -->
-			<div class="modal-header">
-				<h5 class="modal-title">인바디 보기</h5>
+			<div class="modal-header bg-primary text-white">
+				<h4 class="modal-title">인바디 보기</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			
 			<!-- Modal Body 부분 -->
 			<div class="modal-body">
-				Inbody Detail
+				<%@include file="./memInbodyIns.jsp" %>
 			</div>
 			
 			<!-- Modal Footer 부분 -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				<!-- <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button> -->
 				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>			
 			</div>
 		</div>

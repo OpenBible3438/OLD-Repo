@@ -4,13 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원정보 자세히 보기</title>
+<title></title>
 </head>
 <body>
-    <h2>자세히 보기</h2>
+    <!-- <h2>자세히 보기</h2> -->
     <table border="2" width=350 bordercolor="black" cellspacing="3"
         bordercolor="black">
-        <!-- <form action="userInfoTable.jsp" method="get"> -->
             <tr>
                 <td>회원번호 :</td>
                 <td><input type="text" name="memNo"></td>
