@@ -20,8 +20,11 @@
     <!-- 부트스트랩 테이블 -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
 
-
+<!-- ******************************************************* -->
 <% session.setAttribute("gym_no", 1); %>
+<!-- 
+*****************************************************
+*************로그인 처리 할 때는 세션 만드는 코드 없애야 함 -->
 <script type="text/javascript">
 	function noticeList(){
 		alert("강사조회클릭!");
