@@ -98,7 +98,7 @@
 		</div>
 	</div>
 </div>
-<div class="jumbotron text" style="padding-top:0; padding-bottom: 0; margin-bottom:0; height: 280px;">
+<div class="jumbotron text" style="padding-top:0; padding-bottom: 0; margin-bottom:0; height: auto; min-height: 250px;">
 <div class="row" style="padding-top:50px;">
     <div class="col-sm-1"></div>
     <div class="col-sm-7">
