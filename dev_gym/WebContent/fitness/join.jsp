@@ -34,9 +34,10 @@
 		padding-right: 1px;	
 	}
 </style>
-<div id="joinDiv"style="padding:20px; width:650px;">
-	<h3>매장 등록하기</h3>
-	<div style="padding-left: 20px; padding-top: 40px">
+<div style="padding: 20px;">
+	<h3><b>가이드</b> / 회원가입</h3>
+	<hr>
+	<div style="padding-left: 40px; padding-top: 20px">
 		<form role="form" id="gym_join">
 		<div class="form-group row">
 			<label for="gym_id" class="col-sm-2 col-form-label ">아이디</label>
