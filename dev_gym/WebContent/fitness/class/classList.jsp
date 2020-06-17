@@ -21,7 +21,7 @@
  			$("#f_ins").attr("method","get");
  			$("#f_ins").attr("action","classList.jsp");
  			$("#f_ins").submit();
- 			$("#c_ins").modal('hide');
+ 			$("#c_upd").modal('hide');
 		}
 		function classDetail(){
  			alert("디테일 닫기 완료");
@@ -32,6 +32,7 @@
 		}
 		function classMemINS(){
  			alert("수강생을 등록합니다.");
+ 			$("#c_memIns").modal('hide');
 		}
 		function classMemDEL(){
  			alert("수강생을 삭제합니다.");

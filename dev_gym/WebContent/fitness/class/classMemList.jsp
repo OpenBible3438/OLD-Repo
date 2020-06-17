@@ -13,6 +13,9 @@
 		function classMemDEL(){
 			
 		}
+		function classMemSearch(){
+			alert("수강생을 조회합니다.");
+		}
 	</script>
 
 </head>
@@ -84,7 +87,7 @@
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">수강생 보기 [수업명]</h4>
+					<h4 class="modal-title" id="myModalLabel">수강생 등록</h4>
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
 					</button>
@@ -92,32 +95,47 @@
 
 				<div class="modal-body" style="padding-left: 40px; padding-top: 20px">
 					<!--=========================================================================================== form 시작  -->
-					<form role="form" id="m_ins">
+					<form role="form" id="m_search">
 						<div class="form-group">
 							<label for="m_name"><b>회원 이름</b></label> 
 							<input type="text" class="form-control input-sm" id="m_name" name="m_name" placeholder="회원 이름을 입력하세요.">
 						</div>
-
 						<div class="form-group">
 							<label for="m_number"><b>회원 번호</b></label> 
 							<input type="text" class="form-control input-sm" id="m_number" name="m_number" placeholder="회원 번호를 입력하세요.">
 						</div>						
-						<div class="form-group">
-							<label for="m_birth"><b>생년월일</b></label> 
-							<input type="date" class="form-control input-sm" id="m_birth" name="m_birth" placeholder="연도-월-일">
-						</div>
-						<button type="button" class="btn btn-primary btn-xs" onclick="classMemINS()">회원 찾기</button> 
+						<button type="button" class="btn btn-primary btn-xs" onclick="classMemSearch()">회원 찾기</button> 
 					</form>
 					<!--=========================================================================================== form 끝  -->
+				
 					<hr> 
+				
 					<!--=========================================================================================== 찾은 회원 정보 시작  -->
-					<div>
-					</div>
+					<form role="form" id="m_ins">
+						<img src="c_member.jpg" class="rounded mx-auto d-block" width="150" heigth="150">
+						
+						<div class="form-group">
+							<label for="m_nickName"><b>닉네임</b></label> 
+							<input type="text" class="form-control input-sm" id="m_nickName" name="m_nickName"">
+						</div>
+						<div class="form-group">
+							<label for="m_birth"><b>생년월일</b></label> 
+							<input type="date" class="form-control input-sm" id="m_birth" name="m_birth"">
+						</div>
+						<div class="form-group">
+							<label for="m_tell"><b>전화번호</b></label> 
+							<input type="tell" class="form-control input-sm" id="m_tell" name="m_tell"">
+						</div>
+						<div class="form-group">
+							<label for="m_add"><b>주소</b></label> 
+							<input type="text" class="form-control input-sm" id="m_add" name="m_add"">
+						</div>
+					</form>
+						
 					<!--=========================================================================================== 찾은 회원 정보 끝  -->
 				</div>
-
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" onclick="classMemINS()">저장</button>
+					<button type="button" class="btn btn-primary" onclick="classMemINS()">등록</button>
 				</div>
 			</div>
 			<!-- 모달 콘텐츠 -->
