@@ -1,7 +1,6 @@
 package prj.fitness;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,137 +12,149 @@ import org.apache.log4j.Logger;
 public class GymController implements Controller {
 
 	Logger logger = Logger.getLogger(GymController.class);
-	GymLogic gLogic = null;
 	Map<String, Object> pMap = null;
-	String reqName = null;
+	GymLogic gLogic = null;
 	String work = null;
+	String reqName = null;
 	int result = 0;
 	
 	public GymController(Map<String, Object> pMap) {
 		logger.info("GymController 생성자 호출");
 		this.pMap = pMap;
 		gLogic = new GymLogic();
-		reqName = pMap.get("reqName").toString();
 		work = pMap.get("work").toString();
+		reqName = pMap.get("reqName").toString();
+		logger.info("work : " + work + ", reqName : " + reqName);
 	}
 	
 	
 	@Override
 	public String process(String cud, HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
+		logger.info("GymController - String 타입 process 호출");
 		String path = null;
 		switch(reqName) {
-		case "classList":{
-			switch(cud) {
-				case "ins":{
-					result = gLogic.classIns(pMap);
-				}break;
+			case "jsonClassList":{
+				switch(cud) {
+					case "ins":{
+						result = gLogic.classIns(pMap);
+					}break;
+					case "upd":{
+						result = gLogic.classUpd(pMap);
+					}break;
+					case "del":{
+						result = gLogic.classDel(pMap);
+					}break;
+				}
+			}break;
+			case "jsonClassMemList":{
+				switch(cud) {
+					case "ins":{
+						result = gLogic.classMemIns(pMap);
+					}break;
+					case "upd":{
+						result = gLogic.classMemUpd(pMap);
+					}break;
+					case "del":{
+						result = gLogic.classMemDel(pMap);
+					}break;
+				}
+			}break;
+			case "jsonGymInfoList":{
+				switch(cud) {
 				case "upd":{
-					result = gLogic.classUpd(pMap);
+					result = gLogic.gymInfoUpd(pMap);
 				}break;
-				case "del":{
-					result = gLogic.classDel(pMap);
-				}break;
-			}
-		}break;
-		
-		case "classMemList":{
-			switch(cud) {
-			case "ins":{
-				result = gLogic.classMemIns(pMap);
+				}
 			}break;
-			case "upd":{
-				result = gLogic.classMemUpd(pMap);
+			case "jsonGymChartList":{///////////chart는 좀 다르게 처리해야 하지 않을까...!!
+				switch(cud) {
+					case "ins":{
+						result = gLogic.chartIns(pMap);
+					}break;
+					case "upd":{
+						result = gLogic.chartUpd(pMap);
+					}break;
+					case "del":{
+						result = gLogic.chartDel(pMap);
+					}break;
+				}
 			}break;
-			case "del":{
-				result = gLogic.classMemDel(pMap);
+			case "jsonGymContentList":{
+				switch(cud) {
+					case "ins":{
+						result = gLogic.contentIns(pMap);
+					}break;
+					case "upd":{
+						result = gLogic.contentUpd(pMap);
+					}break;
+					case "del":{
+						result = gLogic.contentDel(pMap);
+					}break;
+				}
 			}break;
-			}
-		}break;
-		
-		case "gymChart":{
-			switch(cud) {
-			case "ins":{
-				result = gLogic.classMemIns(pMap);
+			case "jsonGymNoticeList":{
+				switch(cud) {
+					case "ins":{
+						result = gLogic.gymNoticeIns(pMap);
+					}break;
+					case "upd":{
+						result = gLogic.gymNoticeUpd(pMap);
+					}break;
+					case "del":{
+						result = gLogic.gymNoticeDel(pMap);
+					}break;
+				}
 			}break;
-			case "upd":{
-				result = gLogic.classMemUpd(pMap);
-			}break;
-			case "del":{
-				result = gLogic.classMemDel(pMap);
-			}break;
-			}
-		}break;
-		
-		case "gymContent":{
-			switch(cud) {
-			case "ins":{
-				result = gLogic.contentIns(pMap);
-			}break;
-			case "upd":{
-				result = gLogic.contentUpd(pMap);
-			}break;
-			case "del":{
-				result = gLogic.contentDel(pMap);
-			}break;
-			}
-		}break;
-		
-		case "gymNotice":{
-			switch(cud) {
-			case "ins":{
-				result = gLogic.gymInfoUpd(pMap);
-			}break;
-			case "upd":{
-				result = gLogic.gymNoticeIns(pMap);
-			}break;
-			case "del":{
-				result = gLogic.gymNoticeUpd(pMap);
-			}break;
-			}
-		}break;
-	}
+		}/////end of switch
 	
 	path = "redirect:" + work + ":" + reqName + ":" + result;
-
+	logger.info("path : " + path);
+	
 	return path;
 	}
 
 	@Override
 	public ModelAndView process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		logger.info("GymController - mav 타입 process 호출");
 		ModelAndView mav = new ModelAndView(req, res);
-		String reqName = pMap.get("reqName").toString();
 		Object selResult = null;
 		switch(reqName){
-			case "classDetail":{
-				selResult = gLogic.getClassDetail(pMap);
-			}break;
-			case "classList":{
-				selResult = gLogic.getClassList(pMap);
-			}break;
-			case "classMemList":{
+			case "login":{
+				selResult = gLogic.getLogin(pMap);
+			}
+			case "jsonClassMemList":{
 				selResult = gLogic.getClassMemList(pMap);
 			}break;
-			case "gymChart":{
-				selResult = gLogic.getGymChart(pMap);
+			case "jsonClassDetail":{
+				selResult = gLogic.getClassDetail(pMap);
 			}break;
-			case "gymContent":{
-				selResult = gLogic.getGymContent(pMap);
+			case "jsonClassList":{
+				selResult = gLogic.getClassList(pMap);
 			}break;
-			case "gymMain":{
-				selResult = gLogic.getGymMain(pMap);
+			case "jsonGymNoticeList":{
+				selResult = gLogic.getNoticeList(pMap);
 			}break;
-			case "gymNotice":{
-				selResult = gLogic.getGymNotice(pMap);
+			case "jsonGymChartList":{
+				selResult = gLogic.getChartList(pMap);
 			}break;
-			case "gymReview":{
-				selResult = gLogic.getGymReview(pMap);
+			case "jsonGymContentList":{
+				selResult = gLogic.getContentList(pMap);
+			}break;
+			case "jsonGymInfoList":{
+				selResult = gLogic.getInfoList(pMap);
+			}break;
+			case "jsonGymReviewList":{
+				selResult = gLogic.getReviewList(pMap);
 			}break;
 		}
 		if(selResult != null) {
+			logger.info("selResult != null");
 			mav.addObject("selResult", selResult);
+			mav.setViewName(work+"/"+reqName);
 		}
 		else {
+			logger.info("selResult == null");
 			logger.info("GymController - selResult가 Null입니다.");
 		}
 		

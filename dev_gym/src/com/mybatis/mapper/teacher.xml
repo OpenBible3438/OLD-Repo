@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orm.mybatis.mapper.teacherMapper">
+<!-- ======================= Teacher ======================= -->
+	<select id="getTchClassList" parameterType="map" resultType="map">
+		SELECT 1 FROM dual
+	</select>
+	<select id="getTchProfile" parameterType="map" resultType="map">
+		SELECT 1 FROM dual
+	</select>
+	<select id="getTchList" parameterType="map" resultType="map">
+		SELECT 1 FROM dual
+	</select>
+	
+	<insert id="tchIns" parameterType="map">
+		INSERT into member values('1', '1', '1')
+	</insert>
+
+	<update id="tchUpd" parameterType="map">
+		UPDATE member set mem_name='1' WHERE mem_id='1'
+	</update>
+	
+	<delete id="tchDel" parameterType="map">
+		DELETE member where mem_id = '5'
+	</delete>
+
+</mapper>

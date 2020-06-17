@@ -6,7 +6,7 @@
   <title>Bootstrap 4 Website Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%@ include file="../common/bootStrap4UI.jsp" %>
+  <%@ include file="../../common/bootStrap4UI.jsp" %>
   <style>
   .fakeimg {
     height: 200px;

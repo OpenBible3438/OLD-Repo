@@ -22,7 +22,6 @@
 						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
 					</button>
 				</div>
-
 				<div class="modal-body">
 					<!--=========================================================================================== form 시작  -->
 					<form role="form" id="f_ins">
