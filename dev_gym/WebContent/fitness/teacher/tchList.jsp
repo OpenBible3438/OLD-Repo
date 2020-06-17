@@ -6,11 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@include file="/common/bootStrap4UI.jsp" %>
-<script type="text/javascript">
-	function 강사조회(){
-		alert("강사조회클릭!");
-	}
-</script>
 <style>
 .b1{ 
 	border-radius: 50px;
@@ -91,7 +86,6 @@
 			<div class="modal-body">
 				강사를 삭제하시겠습니까?
 			</div>
-			
 			<!-- Modal Footer 부분 -->
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary">삭제</button>
@@ -100,7 +94,8 @@
 		</div>
 	</div>
 </div>
-</div>
+
+</div> <!-- div 정렬 (센터) 닫는 부분 -->
 <!-- 삭제 모달 부분 -->
 
 
