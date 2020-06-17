@@ -20,6 +20,7 @@
 </head>
 <body>
 <h4><b>매장관리 | 컨텐츠</b>
+<br>
 	<button onClick="contentIns()" type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#contentInsModal">등록</button>
 </h4>
 <!-- 컨텐츠 -->
