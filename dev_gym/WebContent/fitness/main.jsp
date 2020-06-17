@@ -1,14 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String center = request.getParameter("center");
-	String pick = null;
-	if(center != null) {
-		pick = center;
-	} else {
-		pick = "info";
-	}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +31,6 @@
   			}
   		});
   	}
-  	picks("<%=pick%>");
   </script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */  
@@ -49,7 +39,7 @@
       border-radius: 0;
     }
     /* 왼쪽, 가운데, 위 높이 조정 */
-    .row.content {height: 650px}
+    .row.content {height: auto;}
     
     /* On small screens, set height to 'auto' for sidenav and grid */
     /* 작은 화면에서 사이드 나비와 그리드의 높이를 '자동'으로 설정  */
@@ -73,13 +63,10 @@
     	<%@ include file="./mainWest.jsp" %>
     
 <!-- ========================= 센터 자리 ========================= -->
-	<div data-spy="scroll" data-target="#center">
 		<div id="center" class="col-sm-8 text-left" > 
-		
-		
+			<!-- 이쫏  -->
 		
 		</div>
-	</div>
 <!-- ========================= 오른쪽 자리 ========================= -->
    		<%@ include file="./mainEast.jsp" %>
   	</div>

@@ -36,9 +36,9 @@
 <!-- 검색부분 -->
 <div class="btn-group" id="button_group" style="width:100%">
 	<button type="button" class="b1 btn-primary m-1" onClick="강사조회()">전체조회</button>
-	<button type="button" class="b1 btn-primary m-1" onClick="등록()">등록</button>
+	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#ins">등록</button>
 	<button type="button" class="b1 btn-primary m-1" onClick="수정()">수정</button>
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myModal">삭제</button>
+	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#del">삭제</button>
 	<button type="button" class="b1 btn-primary m-1" onClick="프로필보기()">프로필보기</button>
 	<button type="button" class="b1 btn-primary m-1" onClick="맡은수업보기()">맡은 수업 보기</button>
 </div>
@@ -73,12 +73,53 @@
 	</tbody>
 </table>
 <!-- 테이블 부분 -->
-<div class="modal" id="myModal">
+<!-- ===== 강사등록 modal =====  -->
+<div class="modal" id="ins">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- Modal Header 부분 -->
+			<div class="modal-header alert-primary">
+				<h5 class="modal-title">강사관리(등록)</h5>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			
+			<!-- Modal Body 부분 -->
+			
+			
+			
+			
+		<form role="form" id="tc_ins"/>
+			<div class="modal-body">
+		<div class="form-group row">
+			<label for="gym_id" class="col-sm-2 col-form-label ">아이디</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" required
+					   id="gym_id" >
+			</div>
+			<div class="col-sm-3">
+				<button onclick="id_confirm()" 
+				        class="btn btn-primary mb-1">중복확인</button>
+			</div>
+				
+			</div>
+			<!-- Modal Footer 부분 -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">등록</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>			
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<!-- ===== 강사등록 modal end =====  -->
+
+<!-- =====삭제 modal=====  -->
+<div class="modal" id="del">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<!-- Modal Header 부분 -->
 			<div class="modal-header">
-				<h5 class="modal-title">삭제</h5>
+				<h5 class="modal-title">강사관리(삭제)</h5>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			
@@ -88,16 +129,14 @@
 			</div>
 			<!-- Modal Footer 부분 -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">삭제</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>			
+				<button type="button" class="btn btn-primary" data-dismiss="modal">예</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">아니요</button>			
 			</div>
 		</div>
 	</div>
 </div>
+<!-- =====삭제 modal end=====  -->
 
 </div> <!-- div 정렬 (센터) 닫는 부분 -->
-<!-- 삭제 모달 부분 -->
-
-
 </body>
 </html>
