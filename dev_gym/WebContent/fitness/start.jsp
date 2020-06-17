@@ -24,14 +24,17 @@
 	}
 	function login() {
 		alert("로그인");
-		var id = $('#ids').val();
-		var pw = $('#pwd').val();
-		alert("ids : "+id+", pwd : "+ pw);
-		/*
-		$('#f_login').attr('method','get');
-		$('#f_login').attr('action','./login.jsp');
-		$('#f_login').submit();
-		*/
+		var gym_id = $('#gym_id').val();
+		var gym_pw = $('#gym_pw').val();
+		//alert("gym_id : "+gym_id+", gym_pw : "+ gym_pw);
+		$.ajax({
+			method:'get'
+			,data: 'gym_id='+gym_id+'&gym_pw='+gym_pw
+			,url: './gym/jsonLogin.gym'
+			,success: function(data) {
+				alert("data : "+data.trim());
+			}
+		});
 	}
 	function id_confirm() {
 		alert("중복검사 클릭");
@@ -83,41 +86,6 @@
 		</a>
 	</div>
 </div>
-<!-- 
-	<div class="container">
-		<br>
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			
-			Indicators
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-			</ol>
-			Wrapper for slides
-			<div class="carousel-inner" role="listbox">
-
-				<div class="item active">
-					<img src="./../images/fitness.jpg" alt="Fitness" style="width:1200px; height:400px"/>
-					<div class="carousel-caption">
-						<h3>Chania</h3>
-						<p>The atmosphere in Chania has a touch of Florence and
-							Venice.</p>
-					</div>
-				</div>
-			</div>
-			Left and right controls
-			<a class="left carousel-control" href="#myCarousel" role="button"
-				data-slide="prev"> <span
-				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#myCarousel" role="button"
-				data-slide="next"> <span
-				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
-		</div>
-	</div>
-</div> -->
 <!-- ===================== 로그인 부분 ===================== -->
 <div class="jumbotron text" style="padding-top:0; padding-bottom: 0; margin-bottom:0; height: auto; min-height:350px">
 	<div class="row" style="padding-top:50px;">
@@ -126,20 +94,18 @@
 	    	<h1>대충 환영한다는 문구</h1>
 	    </div>
 	    <div class="col-sm-4">
-			<form id="f_login" class="form" >
-				<div class="form-group row">
-					<label for="gym_id" class="col-sm-4 col-form-label ">아이디</label>
-					<div class="col-sm-8">
-						<input type="text" id="gym_id" class="form-control">
-					</div>
+			<div class="form-group row">
+				<label for="gym_id" class="col-sm-4 col-form-label ">아이디</label>
+				<div class="col-sm-8">
+					<input type="text" id="gym_id" class="form-control">
 				</div>
-				<div class="form-group row">
-					<label for="gym_pw" class="col-sm-4 col-form-label">비밀번호</label>
-					<div class="col-sm-8">
-						<input type="password" id="gym_pw" class="form-control">
-					</div>
+			</div>
+			<div class="form-group row">
+				<label for="gym_pw" class="col-sm-4 col-form-label">비밀번호</label>
+				<div class="col-sm-8">
+					<input type="password" id="gym_pw" class="form-control">
 				</div>
-			</form>
+			</div>
 			<div class="row" style="padding-top:5px">
 				<div class="col-sm-6">
 					<button type="button" class="btn btn-secondary"
@@ -153,6 +119,7 @@
 		</div>
   	</div>
 </div>
+
 <!-- ===================== 회원가입 모달 부분  ===================== -->
 	<%@ include file="./join.jsp" %>
 </body>

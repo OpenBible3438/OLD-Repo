@@ -120,12 +120,12 @@ public class GymController implements Controller {
 		ModelAndView mav = new ModelAndView(req, res);
 		Object selResult = null;
 		switch(reqName){
-			case "login":{
+			case "jsonLogin":{
 				selResult = gLogic.getLogin(pMap);
-			}
+			} break;
 			case "jsonClassMemList":{
 				selResult = gLogic.getClassMemList(pMap);
-			}break;
+			} break;
 			case "jsonClassDetail":{
 				selResult = gLogic.getClassDetail(pMap);
 			}break;

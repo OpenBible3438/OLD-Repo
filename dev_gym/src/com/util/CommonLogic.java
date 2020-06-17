@@ -36,6 +36,7 @@ public class CommonLogic {
 		//	dev_fitness/fitness/gym/gymMain.gym?cud=sel&mode=gym
 		String contextPath = req.getContextPath();
 		String requestURI = req.getRequestURI();
+		logger.info("requestURI : "+requestURI);
 		int end = requestURI.lastIndexOf(".");
 		String command = requestURI.substring(contextPath.length()+1, end);
 		commands = command.split("/");
@@ -43,11 +44,11 @@ public class CommonLogic {
 		for(String str : commands) {
 			logger.info("str : " + str);
 		}
-		if(commands.length == 2) {
+		/*if(commands.length == 2) {
 			pMap.put("work", "main");
 			pMap.put("reqName", commands[1]);//login이 들어감
-		}
-		else if(commands.length == 3) {
+		}*/
+		if(commands.length == 3) {
 			pMap.put("work", commands[1]);
 			pMap.put("reqName", commands[2]);
 		}
@@ -68,8 +69,8 @@ public class CommonLogic {
 			pageMove[1] = mav.getViewName();
 		}
 		logger.info("pageMove[0]= "+pageMove[0]+", pageMove[1]= "+pageMove[1]);
-		if(pageMove != null);
-		moveAction();
+		if(pageMove != null)
+			moveAction();
 	}
 	
 	public void moveAction() {
