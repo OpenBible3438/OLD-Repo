@@ -33,7 +33,7 @@
 	</div>
 <!-- 검색부분 -->
 
-<div id="button">
+<div id="button" style="width:100%">
 	<button type="button" class="btn btn-primary" onClick="강사조회()">전체조회</button>
 	<button type="button" class="btn btn-primary">등록</button>
 	<button type="button" class="btn btn-primary">수정</button>
