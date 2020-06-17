@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	function join() {
 		alert("회원가입");
-		location.href="./main.jsp?center=join"
+		//모달 처리 ...
 	}
 	function login() {
 		alert("로그인");
@@ -54,7 +54,7 @@
 			<div class="carousel-inner" role="listbox">
 
 				<div class="item active">
-					<img src="./../images/fitness.jpg" alt="Fitness" style="width:600px; height:400px"/>
+					<img src="./../images/fitness.jpg" alt="Fitness" style="width:1200px; height:400px"/>
 					<div class="carousel-caption">
 						<h3>Chania</h3>
 						<p>The atmosphere in Chania has a touch of Florence and
@@ -62,7 +62,7 @@
 					</div>
 				</div>
 				<div class="item">
-					<img src="./../images/prj.PNG" alt="Project" style="width:600px; height:400px"/>
+					<img src="./../images/prj.PNG" alt="Project" style="width:1200px; height:400px"/>
 					<div class="carousel-caption">
 						<h3>Chania</h3>
 						<p>The atmosphere in Chania has a touch of Florence and
@@ -70,14 +70,14 @@
 					</div>
 				</div>
 				<div class="item">
-					<img src="./../images/flower.jpg" alt="Flower" style="width:600px; height:400px"/>
+					<img src="./../images/flower.jpg" alt="Flower" style="width:1200px; height:400px"/>
 					<div class="carousel-caption">
 						<h3>Flowers</h3>
 						<p>Beautiful flowers in Kolymbari, Crete.</p>
 					</div>
 				</div>
 				<div class="item">
-					<img src="./../images/sofa_cat.jpg" alt="Cat" style="width:600px; height:400px"/>
+					<img src="./../images/sofa_cat.jpg" alt="Cat" style="width:1200px; height:400px"/>
 					<div class="carousel-caption">
 						<h3>Flowers</h3>
 						<p>Beautiful flowers in Kolymbari, Crete.</p>
