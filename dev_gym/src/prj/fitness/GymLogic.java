@@ -24,10 +24,10 @@ public class GymLogic {
 		this.gDao = new GymDao(sqlSession);
 	}
 //////////////////////////////////////////////////////////
-	
-	public String getLogin(Map<String, Object> pMap) {//로그인
+	//로그인
+	public List<Map<String, Object>> getLogin(Map<String, Object> pMap) {
 		logger.info("GymLogic - getLogin() 호출");
-		String loginResult = null;
+		List<Map<String, Object>> loginResult = null;
 		loginResult = gDao.getLogin(pMap);
 		return loginResult;
 	}
@@ -217,10 +217,12 @@ public class GymLogic {
 		if(result>0) {
 			logger.info("sqlSession.commit() - result : " + result);
 			sqlSession.commit();
+			mbMgr.clossSession(sqlSession);
 		}
 		else {
 			logger.info("sqlSession.rollback() - result : " + result);
 			sqlSession.rollback();
+			mbMgr.clossSession(sqlSession);
 		}
 	}
 

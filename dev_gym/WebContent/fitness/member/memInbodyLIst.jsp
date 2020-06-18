@@ -6,11 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@include file="../../common/bootStrap4UI.jsp" %>
-<!-- <script>
-	function test() {
+<!--  <script>
+	/* function test() {
 		alert("클릭");
-	}
-</script> -->
+	} */
+	
+</script>  -->
+
 <style>
 .b1{ 
 	border-radius: 50px;
@@ -42,9 +44,9 @@
 <!-- 검색부분 -->
 <div class="btn-group" id="button_group" style="width:100%">
 	<button type="button" class="b1 btn-primary m-1" onClick="전체조회()">전체조회</button>
-	<!--<button type="button" class="b1 btn-primary m-1" onClick="자세히보기()">자세히보기</button>   -->
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myDetail" >자세히보기</button>
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myInbody" >인바디 보기</button>
+	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myInbodyIns" >인바디 등록</button>
+	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myInbodyUpd" >인바디 수정</button>
+	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myInbodyDel" >인바디 삭제</button>
 </div>
 <br>
 <!-- 테이블 부분 -->
@@ -52,71 +54,91 @@
 	<thead>
 		<tr align="center">
 			<th>번호</th>
+			<th>사진</th>
 			<th>회원번호</th>
-			<th>아이디</th>
 			<th>이름</th>
-			<th>닉네임</th>
-			<th>전화번호</th>
-			<th>최근 인바디</th>
-			<th>최초 등록일</th>
+			<th>인바디 목록</th>
+			<th>등록일</th>
 		</tr>
 	</thead>
 	<thead>
 		<tr align="center">
 			<th>1</th>
+			<th>사진</th>
 			<th>001</th>
-			<th>test</th>
 			<th>강감찬</th>
-			<th>감찬</th>
-			<th>010-0000-0000</th>
-			<th>최근 인바디</th>
-			<th>2020.06-17</th>
+			<th>인바디 목록</th>
+			<th>2020.06.17</th>
 		</tr>
 	</thead>
 </table>
 <!-- 테이블 부분 -->
-<!-- ======================= 자세히 보기 모달창 =================================-->
-<div class="modal" id="myDetail">
-	<div class="modal-dialog" style="width:auto;display:table">
+<!-- ======================= 인바디 등록 모달창 =================================-->
+<div class="modal" id="myInbodyIns">
+	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- Modal Header 부분 -->
-			<div class="modal-header bg-primary text-white">
-				<h4 class="modal-title">자세히 보기</h4>
+			<div class="modal-header">
+				<h5 class="modal-title">자세히 보기</h5>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			
 			<!-- Modal Body 부분 -->
 			<div class="modal-body">
-				<%@include file="./memDetail.jsp" %>
+				1건이 등록되었습니다.
 			</div>
 			
 			<!-- Modal Footer 부분 -->
 			<div class="modal-footer">
-				<!-- <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button> -->
+				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>			
 			</div>
 		</div>
 	</div>
 </div>
 </div>
-<!-- =======================인바디 보기 모달창 =================================-->
-<div class="modal" id="myInbody">
+<!-- =======================인바디 수정 모달창 =================================-->
+<div class="modal" id="myInbodyUpd">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- Modal Header 부분 -->
-			<div class="modal-header bg-primary text-white">
-				<h4 class="modal-title">인바디 보기</h4>
+			<div class="modal-header">
+				<h5 class="modal-title">인바디 보기</h5>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			
 			<!-- Modal Body 부분 -->
 			<div class="modal-body">
-				<%@include file="./memInbodyIns.jsp" %>
+				1건이 수정되었습니다.
 			</div>
 			
 			<!-- Modal Footer 부분 -->
 			<div class="modal-footer">
-				<!-- <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button> -->
+				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>			
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<!-- =======================인바디 삭제 모달창 =================================-->
+<div class="modal" id="myInbodyDel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- Modal Header 부분 -->
+			<div class="modal-header">
+				<h5 class="modal-title">인바디 보기</h5>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			
+			<!-- Modal Body 부분 -->
+			<div class="modal-body">
+				1건이 삭제되었습니다.
+			</div>
+			
+			<!-- Modal Footer 부분 -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>			
 			</div>
 		</div>

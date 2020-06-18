@@ -1,15 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-	#joinDiv .row, #joinDiv .col{
-		padding-left: 1px;
-		padding-right: 1px;
-	}
-	#joinDiv input, #joinDiv label {
-		padding-left: 1px;
-		padding-right: 1px;	
-	}
-</style>
 <div class="modal fade" id="m_join">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -23,7 +13,7 @@
 		<form role="form" id="gym_join">
 		<div class="form-group row">
 			<label for="gym_id" class="col-sm-2 col-form-label ">아이디</label>
-			<div class="col-sm-4">
+			<div class="col-sm-5">
 				<input type="text" class="form-control" required
 					   id="gym_id" >
 			</div>
@@ -86,7 +76,7 @@
 		</div>
 		<div class="form-group row">
 			<label for="gym_addr_dtl" class="col-sm-2 col-form-label">매장상세주소</label>
-			<div class="col-sm-4">
+			<div class="col-sm-5">
 				<input type="text" class="form-control"
 					   id="gym_addr_dtl" >
 			</div>
@@ -106,13 +96,12 @@
 		<div class="form-group row">
 			<label for="gym_profimg" class="col-sm-2 col-form-label">이미지</label>
 			<div class="col-sm-5">
-				<input type="file" class="custom-file-input" id="gym_profimg"/>
-				<label style="padding-left: 10px"class="custom-file-label" for="gym_profimg">매장 프로필 사진</label>
+				<input type="file" class="form-control-file border" id="gym_profimg" name="gym_profimg">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="gym_info" class="col-sm-2 col-form-label">매장소개</label>
-			<div class="col-sm-5">
+			<div class="col-sm-8">
 				<textarea class="form-control" id="gym_info"
 					      placeholder="매장을 소개해 주세요">
 				</textarea>
