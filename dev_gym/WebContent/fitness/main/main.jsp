@@ -18,7 +18,7 @@
 <meta charset="utf-8">
 <title>메인페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	<%@ include file="../../common/bootStrap4UI.jsp" %>
+	<%@ include file="../../common/bootStrap4UI_.jsp" %>
 <!-- =============== main style =============== -->
 <style>
 	/* Remove the navbar's default margin-bottom and rounded borders */

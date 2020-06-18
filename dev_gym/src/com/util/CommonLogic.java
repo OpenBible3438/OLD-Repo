@@ -54,7 +54,8 @@ public class CommonLogic {
 		logger.info("**************************");
 //		logger.info(req.getAttribute("gym_no"));
 //		req.getSession().getAttribute("gym_no");
-		String gym_no = req.getSession().getAttribute("gym_no").toString();
+//		String gym_no = req.getSession().getAttribute("gym_no").toString();
+		String gym_no = "1";
 		logger.info("gym_no : " + gym_no);
 		pMap.put("gym_no", gym_no);
 	}
