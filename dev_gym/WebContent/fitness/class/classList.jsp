@@ -9,10 +9,43 @@
 <%@include file="classCommon.jsp"%>
 
 	<script type="text/javascript">
+		function classSEL(){
+ 			alert("수업보기 완료");
+			$.ajax({
+				 url:'jsonClassList.jsp'
+				 //성공하면 data에 json 데이터가 담긴다.
+				,success:function(data){
+					//.trim() ==> 공백제거
+					
+					var doc = JSON.stringify(data); 	// 가져온 data를 문자열로 doc에 담았다.
+					var doc2 = JSON.parse(doc);   		//doc2에 doc의 값이 배열처럼 담긴다. doc2의 길이는 가져온 데이터의 행의 갯수와 같다.	
+					
+					var imsi = "";
+					for(var i=0;i<doc2.length;i++){
+						//html 함수 안에 집어 넣을 변수
+						imsi += "<tr>";
+						imsi += "<td>"+doc2[i].C_NUM+"</td>";
+						imsi += "<td>"+doc2[i].C_NUMBER+"</td>";
+						imsi += "<td>"+doc2[i].C_NAME+"</td>";
+						imsi += "<td>"+doc2[i].C_TNAME+"</td>";
+						imsi += "<td>"+doc2[i].C_SPORTS+"</td>";
+						imsi += "<td>"+doc2[i].C_TIMES+"</td>";
+						imsi += "<td>"+doc2[i].C_TOTALDAYS+"</td>";
+						imsi += "<td>"+doc2[i].C_STARTDATE+"</td>";
+						imsi += "<td>"+doc2[i].C_ENDDATE+"</td>";
+						imsi += "<td>"+doc2[i].C_PRICE+"</td>";
+						imsi += "<td>"+doc2[i].C_PROCESS+"</td>";
+						imsi += "</tr>";
+					}
+					$("#tb_cListTest").html(imsi);
+				}
+			});		
+
+		}
 		function classINS(){
  			alert("수업등록 저장 완료");
  			$("#f_ins").attr("method","get");
- 			$("#f_ins").attr("action","classList.jsp");
+ 			$("#f_ins").attr("action","jsonClassList.jsp?=classList"+classList);
  			$("#f_ins").submit();
  			$("#c_ins").modal('hide');
 		}
@@ -52,22 +85,19 @@
 				<!-- 내용 틀 입니다. -->
 				<!--======================================================================================= 버튼 시작-->
 				<div class="btn-group">
-					<div class="btn-group">
-						<button type="button" class="btn btn-primary dropdown-toggle"
-							data-toggle="dropdown">진행상황</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">진행</a> <a class="dropdown-item"
-								href="#">대기</a> <a class="dropdown-item" href="#">종료</a>
-						</div>
+					<button type="button" class="btn btn-primary dropdown-toggle"
+						data-toggle="dropdown">진행상황</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">진행</a> <a class="dropdown-item"
+							href="#">대기</a> <a class="dropdown-item" href="#">종료</a>
 					</div>
-					<button type="button" class="btn btn-primary">전체조회</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_ins">수업등록</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_upd">수업수정</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_detail">자세히보기</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_memList">수강생보기</button>
-					<button type="button" class="btn btn-primary" onclick="c_btnDel()">삭제</button>
 				</div>
-				</button>
+				<button type="button" class="btn btn-primary" onclick="classSEL()">전체조회</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_ins">수업등록</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_upd">수업수정</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_detail">자세히보기</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_memList">수강생보기</button>
+				<button type="button" class="btn btn-primary" onclick="c_btnDel()">삭제</button>
 				<!--======================================================================================= 버튼 끝-->
 		
 				<div>
@@ -91,20 +121,8 @@
 							<th data-field="c_process">진행 상황</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>1111</td>
-							<td>핫요가 오후7시반</td>
-							<td>장영실</td>
-							<td>요가</td>
-							<td>20</td>
-							<td>90</td>
-							<td>2020-06-17</td>
-							<td>2020-09-16</td>
-							<td>200000</td>
-							<td>진행</td>
-						</tr>
+					<tbody id="tb_cListTest">
+						
 					</tbody>
 				</table>
 				<!--======================================================================================= 테이블 끝-->
