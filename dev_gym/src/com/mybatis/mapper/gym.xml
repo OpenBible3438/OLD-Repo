@@ -37,6 +37,13 @@
 	<select id="getReviewList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
+	<select id="getLogin" parameterType="map" resultType="map">
+		SELECT gym_no, gym_name
+		  FROM gym
+		 WHERE rownum = 1
+		   AND gym_id = #{gym_id}
+		   AND gym_pw = #{gym_pw}
+	</select>
 	
 	<insert id="classIns" parameterType="map">
 		INSERT into member values('1', '1', '1')
