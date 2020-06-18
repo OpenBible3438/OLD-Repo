@@ -1,5 +1,6 @@
 package prj.fitness;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,11 @@ public class GymDao {
 	public List<Map<String, Object>> getLogin(Map<String, Object> pMap) {//로그인
 		logger.info("GymDao - getLogin() 호출");
 		List<Map<String, Object>> loginResult = null;
-		loginResult = sqlSession.selectList("getLogin",pMap);
+		//loginResult = sqlSession.selectList("getLogin",pMap);
+		sqlSession.selectOne("getProcLogin",pMap);
+		loginResult = (List<Map<String, Object>>)pMap.get("key");
+		logger.info(" - loginResult : "+loginResult.size()+"row");
+		
 		return loginResult;
 	}
 	
@@ -219,6 +224,5 @@ public class GymDao {
 		return result;
 	}
 	
-
 	
 }
