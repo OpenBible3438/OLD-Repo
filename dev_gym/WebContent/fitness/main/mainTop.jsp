@@ -34,7 +34,7 @@
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="javascript:picks('gym')">매장정보</a> 
 					<a class="dropdown-item" href="javascript:picks('chart')">차트</a> 
-					<a class="dropdown-item" href="javascript:picks('content')">컨테츠관리</a> 
+					<a class="dropdown-item" href="javascript:picks('content')">컨텐츠관리</a> 
 					<a class="dropdown-item" href="javascript:picks('review')">매장후기</a> 
 					<a class="dropdown-item" href="javascript:picks('notice')">공지사항</a> 
 				</div>

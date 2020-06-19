@@ -28,6 +28,7 @@ public class ActionFitness extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.info("doPost() 호출");
+		req.setCharacterEncoding("utf-8");
 		doService(req, res);
 	}
 	
