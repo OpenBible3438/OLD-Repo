@@ -18,6 +18,18 @@
 		SELECT not_seq, not_title, not_cont, gym_no
 		  FROM notice
 		 ORDER BY gym_no
+		SELECT not_seq, not_title, not_cont, gym_no FROM notice
+		<where>
+			<if test="gym_no!=null and gym_no.length>0">
+				AND gym_no = #{gym_no}
+			</if>
+			<if test="not_title!=null and not_title.length>0">
+				AND not_title = #{not_title}
+			</if>
+			<if test="not_cont!=null and not_cont.length>0">
+				AND not_cont = #{not_cont}
+			</if>
+		</where>
 	</select>
 	<select id="getChartList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
@@ -47,54 +59,54 @@
 	</select>
 	
 	<insert id="classIns" parameterType="map">
-		INSERT into member values('1', '1', '1')
+		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="classMemIns" parameterType="map">
-		INSERT into member values('1', '1', '1')
+		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="gymNoticeIns" parameterType="map">
-		INSERT into member values('1', '1', '1')
+		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="chartIns" parameterType="map">
-		INSERT into member values('1', '1', '1')
+		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="contentIns" parameterType="map">
-		INSERT into member values('1', '1', '1')
+		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	
 	<update id="classUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
+		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="classMemUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
+		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="gymNoticeUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
+		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="chartUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
+		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="contentUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
+		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="gymInfoUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
+		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	
 	<delete id="classDel" parameterType="map">
-		DELETE member where mem_id = '5'
+		DELETE insert_test where mem_id = '5'
 	</delete>
 	<delete id="classMemDel" parameterType="map">
-		DELETE member where mem_id = '5'
+		DELETE insert_test where mem_id = '5'
 	</delete>
 	<delete id="gymNoticeDel" parameterType="map">
-		DELETE member where mem_id = '5'
+		DELETE insert_test where mem_id = '5'
 	</delete>
 	<delete id="chartDel" parameterType="map">
-		DELETE member where mem_id = '5'
+		DELETE insert_test where mem_id = '5'
 	</delete>
 	<delete id="contentDel" parameterType="map">
-		DELETE member where mem_id = '5'
+		DELETE insert_test where mem_id = '5'
 	</delete>
 	
 </mapper>
