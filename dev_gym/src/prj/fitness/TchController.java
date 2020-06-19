@@ -33,23 +33,35 @@ public class TchController implements Controller {
 			throws IOException, ServletException {
 		logger.info("TchController - String 타입 process 호출");
 		String path = null;
-		switch(reqName) {
-			case("jsonTchList"):{
-				switch(cud) {
-					case "ins":{
+		
+		switch(cud) {
+			case "ins":{
+				switch(reqName) {
+					case("jsonTchList"):{
 						result = tLogic.tchIns(pMap);
 					}break;
-					case "upd":{
-						result = tLogic.tchUpd(pMap);
-					}break;
-					case "del":{
-						result = tLogic.tchDel(pMap);
+				}
+				path = "redirect:../insertResult:"+result;
+			}break;
+			case "upd":{
+				switch(reqName) {
+					case("jsonTchList"):{
+						result = tLogic.tchIns(pMap);
 					}break;
 				}
-			}
+				result = tLogic.tchUpd(pMap);
+				path = "redirect:../updateResult:"+result;
+			}break;
+			case "del":{
+				switch(reqName) {
+					case("jsonTchList"):{
+						result = tLogic.tchIns(pMap);
+					}break;
+				}
+				result = tLogic.tchDel(pMap);
+				path = "redirect:../deleteResult:"+result;
+			}break;
 		}
-		
-		path = "redirect:" + work + ":" + reqName + ":" + result;
 		logger.info("path : " + path);
 		
 		return path;

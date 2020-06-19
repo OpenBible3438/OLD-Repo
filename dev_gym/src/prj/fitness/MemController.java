@@ -32,34 +32,43 @@ public class MemController implements Controller {
 			throws IOException, ServletException {
 		logger.info("MemController - String 타입 process 호출");
 		String path = null;
-		switch(reqName) {
-			case "jsonMemInbody":{
-				switch(cud) {
-					case "ins":{
-						result = mLogic.memInbodyIns(pMap);
-					}break;
-					case "upd":{
-						result = mLogic.memInbodyUpd(pMap);
-					}break;
-					case "del":{
-						result = mLogic.memInbodyDel(pMap);
-					}break;
-				}
-			}break;
-			case "jsonMemList":{
-				switch(cud) {
-					case "ins":{
+		switch(cud) {
+			case "ins":{
+				switch(reqName) {
+					case "jsonMemInbody":{
 						result = mLogic.memIns(pMap);
 					}break;
-					case "upd":{
+					case "jsonMemList":{
+						result = mLogic.memIns(pMap);
+					}break;
+				}
+				path = "redirect:../insertResult" + ":" + result;
+			}break;
+			case "upd":{
+				switch(reqName) {
+					case "jsonMemInbody":{
 						result = mLogic.memUpd(pMap);
 					}break;
-					case "del":{
+					case "jsonMemList":{
+						result = mLogic.memUpd(pMap);
+					}break;
+				}
+				path = "redirect:../updateResult:"+result;
+			}break;
+			case "del":{
+				switch(reqName) {
+					case "jsonMemInbody":{
+						result = mLogic.memDel(pMap);
+					}break;
+					case "jsonMemList":{
 						result = mLogic.memDel(pMap);
 					}break;
 				}
+				path = "redirect:../deleteResult:"+result;
 			}break;
 		}
+		
+		
 		
 		path = "redirect:" + work + ":" + reqName + ":" + result;
 		logger.info("path : " + path);
