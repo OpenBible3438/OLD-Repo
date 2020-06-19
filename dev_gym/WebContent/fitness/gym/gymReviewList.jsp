@@ -7,9 +7,9 @@
 <title>gymReviewList.jsp</title>
 <%@include file="../../common/bootStrap4UI.jsp" %>
 <style type="text/css">
-	.star-rating{width:148px;}
+	.star-rating{width:160px;}
 	.star-rating, .star-rating span{
-		display:inline-block; height:27px; overflow:hidden; background:url(../../images/star.png)no-repeat;}
+		display:inline-block; height:28px; overflow:hidden; background:url(../../images/star.png)no-repeat;}
 	.star-rating span{ background-position:left bottom; line-height:0; vertical-align:top;}
 </style>
 </head>
@@ -34,7 +34,7 @@
 				<p>
 				<button type="button" class="btn btn-primary">좋아요<span class="badge badge-light">7</span></button>
 				<span class="star-rating">
-					<span style="width:70%"></span>
+					<span style="width:50%"></span>
 				</span>			
 				<i style="font-size:20px; float:right;">2020-06-11</i>
 				</p>

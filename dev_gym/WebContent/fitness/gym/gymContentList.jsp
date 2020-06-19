@@ -6,22 +6,22 @@
 <meta charset="UTF-8">
 <title>GymContent.jsp</title>
 <%@include file="../../common/bootStrap4UI.jsp" %>
-<!-- <script type="text/javascript">
-	function contentIns(){
-		alert('등록버튼 클릭!');
-	}
-	function contentUpd(){
-		alert('수정버튼 클릭!');
+<%@include file="gymContentIns.jsp" %>
+<%@include file="gymContentUpd.jsp" %>
+<script type="text/javascript">
+	function btnIns(){
+		alert('등록버튼클릭');		
 	}
 	function contentDel(){
-		//alert('삭제버튼 클릭!');
+		//alert('삭제하기');
+		location.href='../jsonGymContentList?cud=del';
 	}
-</script> -->
+</script>
 </head>
 <body>
 <h4><b>매장관리 | 컨텐츠</b>
 <br>
-	<button onClick="contentIns()" type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#contentInsModal">등록</button>
+	<button onClick="btnIns()" type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#contentInsModal">등록</button>
 </h4>
 <!-- 컨텐츠 -->
 <div id="div_content">
@@ -31,10 +31,10 @@
 			<a class="navbar-brand">컨텐츠번호seq+매장이름 들어가는 곳</a>
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" onClick="contentUpd()" data-toggle="modal" data-target="#contentUpdModal">수정</a>
+					<a class="nav-link" onClick="btnUpd()" data-toggle="modal" data-target="#contentUpdModal">수정</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" onClick="contentDel()" data-toggle="modal" data-target="#contentDelModal">삭제</a>
+					<a class="nav-link" onClick="btnDel()" data-toggle="modal" data-target="#contentDelModal">삭제</a>
 				</li>
 			</ul>
 		</nav>
@@ -78,71 +78,13 @@
          
 	        <!-- Modal footer -->
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-danger" data-dismiss="modal">삭제하기</button>
+	        	<button type="button" class="btn btn-danger" data-dismiss="modal" onClick="contentDel()">삭제하기</button>
 	        	<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
 	        </div>
 		</div>
 	</div>
 </div>
 <!-- 삭제 Modal -->
-
-<!-- 등록 Modal -->
-<div class="modal" id="contentInsModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-	        <!-- Modal Header -->
-	        <div class="modal-header">
-	         	<h4 class="modal-title">컨텐츠 등록</h4>
-	         	<button type="button" class="close" data-dismiss="modal">&times;</button>
-	        </div> 
-	        
-	        <!-- Modal body -->
-	        <div class="modal-body">
-	        	<img src="bible.jpg" class="mx-auto d-block" style="width:50%">
-	        	<button type="button" class="btn btn-outline-primary">사진선택하기</button> 
-	        	<div class="form-group">
-  					<label for="comment">컨텐츠 내용:</label>
-  					<textarea class="form-control" rows="5" id="comment"></textarea>
-				</div>
-	        </div>
-         
-	        <!-- Modal footer -->
-	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-primary" data-dismiss="modal">등록하기</button>
-	        	<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-	        </div>
-		</div>
-	</div>
-</div>
-
-<!-- 수정 Modal -->
-<div class="modal" id="contentUpdModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-	        <!-- Modal Header -->
-	        <div class="modal-header">
-	         	<h4 class="modal-title">컨텐츠 수정</h4>
-	         	<button type="button" class="close" data-dismiss="modal">&times;</button>
-	        </div> 
-	        
-	        <!-- Modal body -->
-	        <div class="modal-body">
-	        	<img src="bible.jpg" class="mx-auto d-block" style="width:50%">
-	        	<button type="button" class="btn btn-outline-primary">사진선택하기</button> 
-	        	<div class="form-group">
-  					<label for="comment">컨텐츠 내용:</label>
-  					<textarea class="form-control" rows="5" id="comment"></textarea>
-				</div>
-	        </div>
-         
-	        <!-- Modal footer -->
-	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-primary" data-dismiss="modal">수정하기</button>
-	        	<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
-	        </div>
-		</div>
-	</div>
-</div>
 
 </body>
 </html>
