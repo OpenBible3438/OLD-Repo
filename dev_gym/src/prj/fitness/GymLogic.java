@@ -31,6 +31,13 @@ public class GymLogic {
 		loginResult = gDao.getLogin(pMap);
 		return loginResult;
 	}
+	//매장 아이디 중복확인
+	public int getIdConfirm(Map<String, Object> pMap) {
+		logger.info("GymLogic - getIdConfirm() 호출");
+		int idResult = 0;
+		idResult = gDao.getIdConfirm(pMap);
+		return idResult;
+	}
 	
 	public List<Map<String, Object>> getClassMemList(Map<String, Object> pMap) {//수강생 조회
 		logger.info("GymLogic - getClassMemList() 호출");
@@ -225,5 +232,6 @@ public class GymLogic {
 			mbMgr.clossSession(sqlSession);
 		}
 	}
+
 
 }

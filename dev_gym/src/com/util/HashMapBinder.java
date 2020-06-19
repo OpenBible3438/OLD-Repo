@@ -74,9 +74,12 @@ public class HashMapBinder {
 		pMap.clear();
 		Enumeration<String> en = req.getParameterNames();
 		//enumeration에 값이 들어있는지 체크해 줌.
+		int i =0;
 		while(en.hasMoreElements()) {
 			String key = en.nextElement();//name, address, pet
-			pMap.put(key,HangulConversion.toUTF(req.getParameter(key)));
+			//pMap.put(key,HangulConversion.toUTF(req.getParameter(key)));
+			pMap.put(key,req.getParameter(key));
+			logger.info((++i)+". "+key+": "+pMap.get(key));
 		}
 	}
 }

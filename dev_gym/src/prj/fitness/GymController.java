@@ -123,6 +123,9 @@ public class GymController implements Controller {
 			case "jsonLogin":{
 				selResult = gLogic.getLogin(pMap);
 			} break;
+			case "jsonIdConfirm":{
+				selResult = gLogic.getIdConfirm(pMap);
+			} break;
 			case "jsonClassMemList":{
 				selResult = gLogic.getClassMemList(pMap);
 			} break;

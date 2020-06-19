@@ -19,7 +19,7 @@ public class GymDao {
 		this.sqlSession = sqlSession;
 	}
 	///////////////////////////////////////////////////////////////////////////
-	
+	//매장 로그인
 	public List<Map<String, Object>> getLogin(Map<String, Object> pMap) {//로그인
 		logger.info("GymDao - getLogin() 호출");
 		List<Map<String, Object>> loginResult = null;
@@ -29,6 +29,13 @@ public class GymDao {
 		logger.info(" - loginResult : "+loginResult.size()+"row");
 		
 		return loginResult;
+	}
+	//매장 아이디 중복확인
+	public int getIdConfirm(Map<String, Object> pMap) {
+		logger.info("GymDao - getIdConfirm() 호출");
+		int idResult = 0;
+		idResult = sqlSession.selectOne("getIdConfirm",pMap);
+		return idResult;
 	}
 	
 	public List<Map<String, Object>> getClassMemList(Map<String, Object> pMap) {
@@ -223,6 +230,8 @@ public class GymDao {
 		
 		return result;
 	}
+
+
 	
 	
 }
