@@ -51,9 +51,7 @@ public class MyBatisBuilderMgr {
 		//Commit과 Rollback을 처리하는 애
 //		SqlSession sqlSes = null;
 		try {
-			if(this.sqlSes == null) {
-				this.sqlSes = sqlMapper.openSession();
-			}
+			this.sqlSes = sqlMapper.openSession();
 //			sqlSes = sqlMapper.openSession();
 		} catch (Exception e) {
 			System.out.println("예외가 발생했음. 정상적으로 처리가 안됨. ");

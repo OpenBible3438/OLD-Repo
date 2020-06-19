@@ -76,7 +76,7 @@ public class HashMapBinder {
 		//enumeration에 값이 들어있는지 체크해 줌.
 		while(en.hasMoreElements()) {
 			String key = en.nextElement();//name, address, pet
-			pMap.put(key,HangulConversion.toUTF(req.getParameter(key)));
+			pMap.put(key,req.getParameter(key));
 		}
 	}
 }

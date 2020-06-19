@@ -14,7 +14,7 @@
 	
 	<!-- DB [Pooling] 연동 처리 -->
 	<!-- jdbc:apache:commons:dbcp:jdbcPool -->
-	<servlet>
+<!-- 	<servlet>
 		<servlet-name>DBCPInit</servlet-name>
 		<servlet-class>jsp.ch17.DBCPInitVer2</servlet-class>
 		
@@ -39,7 +39,7 @@
 			<param-value>jdbcPool</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet>
+	</servlet> -->
 	
 	<!-- 서버가 기동이 된후 계속 유지가 되어야한다. 로그 or DB연동 -->
 	<context-param>
