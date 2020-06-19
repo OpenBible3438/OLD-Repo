@@ -7,7 +7,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@ include file="../../common/bootStrap4UI.jsp" %>
-<link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 <script type="text/javascript">
 	function test() {
@@ -24,7 +23,8 @@
 	});
 </script>
 <button type="button" class="btn btn-primary" onclick="test()">전체 조회</button>
-<table id="testTable" data-toggle="table" 
+<table id="testTable" 
+       data-toggle="table" 
        class="display table table-bordered" >
     <thead>
         <tr><!-- not_seq, not_title, not_cont, gym_no -->
