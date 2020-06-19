@@ -10,12 +10,12 @@
 <%@include file="classCommon.jsp"%>
 
 	<script type="text/javascript">
-		function classMemDEL(){
-			
-		}
-		function classMemSearch(){
-			alert("수강생을 조회합니다.");
-		}
+// 		function classMemDEL(){
+// 			alert("수강생을 조회합니다.");
+// 		}
+// 		function classMemSearch(){
+// 			alert("수강생을 조회합니다.");
+// 		}
 	</script>
 
 </head>

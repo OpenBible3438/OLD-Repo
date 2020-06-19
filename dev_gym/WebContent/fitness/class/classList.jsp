@@ -9,67 +9,85 @@
 <%@include file="classCommon.jsp"%>
 
 	<script type="text/javascript">
-		function classSEL(){
- 			alert("수업보기 완료");
-			$.ajax({
-				 url:'jsonClassList.jsp'
-				 //성공하면 data에 json 데이터가 담긴다.
-				,success:function(data){
-					//.trim() ==> 공백제거
-					
-					var doc = JSON.stringify(data); 	// 가져온 data를 문자열로 doc에 담았다.
-					var doc2 = JSON.parse(doc);   		//doc2에 doc의 값이 배열처럼 담긴다. doc2의 길이는 가져온 데이터의 행의 갯수와 같다.	
-					
-					var imsi = "";
-					for(var i=0;i<doc2.length;i++){
-						//html 함수 안에 집어 넣을 변수
-						imsi += "<tr>";
-						imsi += "<td>"+doc2[i].C_NUM+"</td>";
-						imsi += "<td>"+doc2[i].C_NUMBER+"</td>";
-						imsi += "<td>"+doc2[i].C_NAME+"</td>";
-						imsi += "<td>"+doc2[i].C_TNAME+"</td>";
-						imsi += "<td>"+doc2[i].C_SPORTS+"</td>";
-						imsi += "<td>"+doc2[i].C_TIMES+"</td>";
-						imsi += "<td>"+doc2[i].C_TOTALDAYS+"</td>";
-						imsi += "<td>"+doc2[i].C_STARTDATE+"</td>";
-						imsi += "<td>"+doc2[i].C_ENDDATE+"</td>";
-						imsi += "<td>"+doc2[i].C_PRICE+"</td>";
-						imsi += "<td>"+doc2[i].C_PROCESS+"</td>";
-						imsi += "</tr>";
-					}
-					$("#tb_cListTest").html(imsi);
-				}
-			});		
-
-		}
-		function classINS(){
- 			alert("수업등록 저장 완료");
- 			$("#f_ins").attr("method","get");
- 			$("#f_ins").attr("action","jsonClassList.jsp?=classList"+classList);
- 			$("#f_ins").submit();
- 			$("#c_ins").modal('hide');
-		}
-		function classUPD(){
- 			alert("수업수정 저장 완료");
- 			$("#f_ins").attr("method","get");
- 			$("#f_ins").attr("action","classList.jsp");
- 			$("#f_ins").submit();
- 			$("#c_upd").modal('hide');
-		}
-		function classDetail(){
- 			alert("디테일 닫기 완료");
- 			$("#c_detail").modal('hide');
-		}
-		function c_btnDel(){
- 			alert("수업을 삭제합니다.");
-		}
-		function classMemINS(){
- 			alert("수강생을 등록합니다.");
- 			$("#c_memIns").modal('hide');
-		}
-		function classMemDEL(){
- 			alert("수강생을 삭제합니다.");
-		}
+	function progresWork() {
+		alert("진행 중인 수업을 조회합니다.");
+	}
+	function progresWait() {
+		alert("대기 중인 수업을 조회합니다.");
+	}
+	function progresDone() {
+		alert("종료된 수업을 조회합니다.");
+	}
+	function classSEL() {
+		alert("전체 수업을 조회합니다.");
+		$('#tb_cList').bootstrapTable('refreshOptions', {
+	        url: '../class/jsonClassList.gym'
+	  	});
+	}
+// 	function classSEL(){
+// 			alert("수업보기 완료");
+// 		$.ajax({
+// 			 url:'jsonClassList.jsp'
+// 			 //성공하면 data에 json 데이터가 담긴다.
+// 			,success:function(data){
+// 				//.trim() ==> 공백제거
+				
+// 				var doc = JSON.stringify(data); 	// 가져온 data를 문자열로 doc에 담았다.
+// 				var doc2 = JSON.parse(doc);   		//doc2에 doc의 값이 배열처럼 담긴다. doc2의 길이는 가져온 데이터의 행의 갯수와 같다.	
+				
+// 				var imsi = "";
+// 				for(var i=0;i<doc2.length;i++){
+// 					//html 함수 안에 집어 넣을 변수
+// 					imsi += "<tr>";
+// 					imsi += "<td>"+doc2[i].C_NUM+"</td>";
+// 					imsi += "<td>"+doc2[i].C_NUMBER+"</td>";
+// 					imsi += "<td>"+doc2[i].C_NAME+"</td>";
+// 					imsi += "<td>"+doc2[i].C_TNAME+"</td>";
+// 					imsi += "<td>"+doc2[i].C_SPORTS+"</td>";
+// 					imsi += "<td>"+doc2[i].C_TIMES+"</td>";
+// 					imsi += "<td>"+doc2[i].C_TOTALDAYS+"</td>";
+// 					imsi += "<td>"+doc2[i].C_STARTDATE+"</td>";
+// 					imsi += "<td>"+doc2[i].C_ENDDATE+"</td>";
+// 					imsi += "<td>"+doc2[i].C_PRICE+"</td>";
+// 					imsi += "<td>"+doc2[i].C_PROCESS+"</td>";
+// 					imsi += "</tr>";
+// 				}
+// 				$("#tb_cListTest").html(imsi);
+// 			}
+// 		});		
+// 	}
+	function classINS(){
+			alert("수업등록 저장 완료");
+			$("#f_ins").attr("method","get");
+			$("#f_ins").attr("action","jsonClassList.jsp?=classList"+classList);
+			$("#f_ins").submit();
+			$("#c_ins").modal('hide');
+	}
+	function classUPD(){
+			alert("수업수정 저장 완료");
+			$("#f_ins").attr("method","get");
+			$("#f_ins").attr("action","classList.jsp");
+			$("#f_ins").submit();
+			$("#c_upd").modal('hide');
+	}
+	function classDetail(){
+			alert("자세히보기 닫기 완료");
+			$("#c_detail").modal('hide');
+	}
+	function c_btnDel(){
+			alert("선택한 수업을 삭제합니다.");
+	}
+	//------------------------------------------ 수강생 등록 모달 안 버튼 이벤트
+	function classMemSearch(){
+		alert("수강생을 조회합니다.");
+	}
+	function classMemINS(){
+			alert("수강생을 등록합니다.");
+			$("#c_memIns").modal('hide');
+	}
+	function classMemDEL(){
+			alert("수강생을 삭제합니다.");
+	}
 	</script>
 
 </head>
@@ -88,8 +106,9 @@
 					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">진행상황</button>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">진행</a> <a class="dropdown-item"
-							href="#">대기</a> <a class="dropdown-item" href="#">종료</a>
+						<a class="dropdown-item" href="#" onClick="progresWork()">진행</a> 
+						<a class="dropdown-item" href="#" onClick="progresWait()">대기</a> 
+						<a class="dropdown-item" href="#" onClick="progresDone()">종료</a>
 					</div>
 				</div>
 				<button type="button" class="btn btn-primary" onclick="classSEL()">전체조회</button>
