@@ -48,7 +48,7 @@
 	function noticeINS(){
 		alert("등록");
 		$("#m_ins").hide();
-		$("#f_ins").attr('action', "../gym/jsonGymNoticeList.gym")
+		$("#f_ins").attr('action', "./jsonGymNoticeList.gym")
 		$("#f_ins").submit();
 	}
 	

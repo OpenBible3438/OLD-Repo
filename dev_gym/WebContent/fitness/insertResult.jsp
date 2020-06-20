@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	var result = <%=result%>;
 	var data = "";
-	if(result == "1"){
+	if(result == "1"){///////////////////////////////수정
 		alert("등록 되었습니다.");
 		data = "?mode=refresh";
 	}

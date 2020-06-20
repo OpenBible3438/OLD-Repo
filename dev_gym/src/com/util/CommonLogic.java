@@ -62,7 +62,6 @@ public class CommonLogic {
 		logger.info("pMap : " + pMap);
 	}
 	
-	
 	public void moveMapper(Object processResult) {
 		logger.info("moveMapper() 호출");
 		if(processResult instanceof String) {

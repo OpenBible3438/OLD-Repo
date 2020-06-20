@@ -9,40 +9,16 @@
 	<%@ include file="../../common/bootStrap4UI.jsp" %>
 <body>
 <div style="padding: 20px;">
-   <h3><b>매장관리</b> / 공지사항</h3>   <!-- 제목 틀 입니다. -->
+   <h3><b>매장관리</b> / 매장 정보 조회</h3>   <!-- 제목 틀 입니다. -->
    <hr>
     <!--=========================== 내용 시작 ===========================-->
-	<div style="padding-left: 40px; padding-top: 20px">
-<br>
-</div>
-		<form role="form" id="gym_join">
-		<div class="form-group row">
-			<label for="gym_id" class="col-sm-2 col-form-label ">아이디</label>
-			<div class="col-sm-5">
-				<input type="text" class="form-control" required
-					   id="gym_id" >
-			</div>
-			<div class="col-sm-3">
-				<button onclick="id_confirm()" 
-				        class="btn btn-primary mb-1">중복확인</button>
-			</div>
+	<div style="padding-left: 40px; padding-top: 10px"></div>
+		<div class="form-group row ">
+			<label for="gym_id" class="col-sm-2">아이디</label>
+			<label id="gym_id" class="col-sm-5">디비아이디</label>
 		</div>
 		<div class="form-group row">
-			<label for="gym_pw" class="col-sm-2 col-form-label">비밀번호</label>
-			<div class="col-sm-5">
-				<input type="password" class="form-control"
-					   id="gym_pw" placeholder="8자리 이상 입력하세요" required>
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="gym_pw_2" class="col-sm-2 col-form-label">재 입력</label>
-			<div class="col-sm-5">
-				<input type="password" class="form-control"
-					   id="gym_pw_2" placeholder="비밀번호 확인">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="gym_username" class="col-sm-2 col-form-label">이름 </label>
+			<label for="gym_username" class="col-sm-2">이름 </label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control"
 					   id="gym_username" >
@@ -133,6 +109,5 @@
 				</div>
 			</div>
 		</div>
-	</form>
 </body>
 </html>
