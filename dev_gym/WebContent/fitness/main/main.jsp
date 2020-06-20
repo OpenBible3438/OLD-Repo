@@ -47,6 +47,7 @@
 <!-- =============== main javascript =============== -->
 <script type="text/javascript">
   	function picks(center) {
+  		//alert("center : "+center);
   		$.ajax({
   			method: "get"
 			,data: "center="+center 
@@ -57,6 +58,7 @@
 					url: pickURL
 					,success: function(pickPage) {
 						alert(pickPage);
+						//alert("pickPage : "+pickPage);
 						$('#center').html(pickPage);
 					}
 				});

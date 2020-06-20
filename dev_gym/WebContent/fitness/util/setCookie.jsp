@@ -23,7 +23,7 @@
 	centerPick.setPath("/dev_gym/fitness");
 	centerPick.setMaxAge(-1);
 	response.addCookie(centerPick);
-	
+	//String path= centerPick.getPath();
 	out.print(pick);	
 	
 	/* 
