@@ -62,7 +62,6 @@ public class CommonLogic {
 		logger.info("pMap : " + pMap);
 	}
 	
-	
 	public void moveMapper(Object processResult) {
 		logger.info("moveMapper() 호출");
 		if(processResult instanceof String) {
@@ -84,18 +83,15 @@ public class CommonLogic {
 	
 	public void moveAction() {
 		logger.info("moveAction() 호출");
+		String path = "";
 		try {
 			if(pageMove[0].equals("redirect")) {
 				logger.info("redirect");
 				logger.info("pageMove.length : " + pageMove.length);
-				if(pageMove.length==4) {////////////필요 없는 코드일 듯
-					logger.info("pageMove.length==4 // 이동할 페이지 : " + pageMove[1]+"/"+pageMove[2]+"?result="+pageMove[3] );
-					res.sendRedirect(pageMove[2]+".gym?result="+pageMove[3]);
-				}
-				else if(pageMove.length==3) {
-					logger.info("pageMove.length==3 // 이동할 페이지 : " + pageMove[1]+".jsp?result="+pageMove[2] );
-					res.sendRedirect(pageMove[1]+".jsp?result="+pageMove[2] );
-					
+				if(pageMove.length==4) {
+					path = pageMove[1]+".jsp?result="+pageMove[2] +"&autoSel=" + pageMove[3];
+					logger.info("pageMove.length==4 // 이동할 페이지 : " + path );
+					res.sendRedirect(path);
 				}
 				else {
 					logger.info("**************pageMove를 확인해주세요**************");

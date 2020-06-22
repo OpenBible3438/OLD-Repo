@@ -70,13 +70,19 @@ public class HashMapBinder {
 		}
 	}
 	public void binder(Map<String,Object> pMap) {
+		logger.info("binder 호출");
 		//기존에 들어 있던 값이 있다면 모두 비운다.
 		pMap.clear();
 		Enumeration<String> en = req.getParameterNames();
 		//enumeration에 값이 들어있는지 체크해 줌.
+		int i =0;
 		while(en.hasMoreElements()) {
 			String key = en.nextElement();//name, address, pet
+			logger.info("key : " + key);
 			pMap.put(key,req.getParameter(key));
+			//pMap.put(key,HangulConversion.toUTF(req.getParameter(key)));
+			pMap.put(key,req.getParameter(key));
+			logger.info((++i)+". "+key+": "+pMap.get(key));
 		}
 	}
 }
