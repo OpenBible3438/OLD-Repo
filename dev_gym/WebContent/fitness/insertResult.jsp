@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    	String result = request.getParameter("result");
+    	int result = Integer.parseInt(request.getParameter("result").toString());
+    	String autoSel = request.getParameter("autoSel").toString();
     %>
 <!DOCTYPE html>
 <html>
@@ -12,10 +13,13 @@
 <body>
 <script type="text/javascript">
 	var result = <%=result%>;
+	var autoSel = <%=autoSel%>;
 	var data = "";
-	if(result == "1"){///////////////////////////////수정
-		alert("등록 되었습니다.");
+	if(autoSel == "false"){
 		data = "?mode=refresh";
+	}
+	if(result > 0){
+		alert("등록 완료하였습니다.");
 	}
 	else{
 		alert("등록 실패하였습니다.");

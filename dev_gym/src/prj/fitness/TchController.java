@@ -17,6 +17,7 @@ public class TchController implements Controller {
 	String work = null;
 	String reqName = null;
 	int result = 0;
+	String autoSel = "false";
 	
 	public TchController(Map<String, Object> pMap) {
 		logger.info("TchController 생성자 호출");
@@ -41,7 +42,7 @@ public class TchController implements Controller {
 						result = tLogic.tchIns(pMap);
 					}break;
 				}
-				path = "redirect:../insertResult:"+result;
+				path = "redirect:../insertResult:"+result + ":"+ autoSel;
 			}break;
 			case "upd":{
 				switch(reqName) {
@@ -50,7 +51,7 @@ public class TchController implements Controller {
 					}break;
 				}
 				result = tLogic.tchUpd(pMap);
-				path = "redirect:../updateResult:"+result;
+				path = "redirect:../updateResult:"+result + ":"+ autoSel;
 			}break;
 			case "del":{
 				switch(reqName) {
@@ -59,7 +60,7 @@ public class TchController implements Controller {
 					}break;
 				}
 				result = tLogic.tchDel(pMap);
-				path = "redirect:../deleteResult:"+result;
+				path = "redirect:../deleteResult:"+result + ":"+ autoSel;
 			}break;
 		}
 		logger.info("path : " + path);

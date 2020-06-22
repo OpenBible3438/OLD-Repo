@@ -57,7 +57,6 @@
 				$.ajax({
 					url: pickURL
 					,success: function(pickPage) {
-						alert(pickPage);
 						//alert("pickPage : "+pickPage);
 						$('#center').html(pickPage);
 					}

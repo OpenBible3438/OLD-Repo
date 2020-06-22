@@ -21,7 +21,7 @@
  			$("#f_ins").attr("method","get");
  			$("#f_ins").attr("action","classList.jsp");
  			$("#f_ins").submit();
- 			$("#c_ins").modal('hide');
+ 		//	$("#c_ins").modal('hide');
 		}
 		function classDetail(){
  			alert("디테일 닫기 완료");
