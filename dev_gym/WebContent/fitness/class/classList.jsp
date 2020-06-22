@@ -59,20 +59,23 @@
 	function classINS(){
 			alert("수업등록 저장 완료");
 			$("#f_ins").attr("method","get");
-			$("#f_ins").attr("action","jsonClassList.jsp?=classList"+classList);
+			$("#f_ins").attr("action","classList.jsp");
 			$("#f_ins").submit();
 			$("#c_ins").modal('hide');
+			location.href="classList.jsp";
 	}
 	function classUPD(){
 			alert("수업수정 저장 완료");
-			$("#f_ins").attr("method","get");
-			$("#f_ins").attr("action","classList.jsp");
-			$("#f_ins").submit();
+			$("#f_upd").attr("method","get");
+			$("#f_upd").attr("action","classList.jsp");
+			$("#f_upd").submit();
 			$("#c_upd").modal('hide');
+			location.href="classList.jsp";
 	}
 	function classDetail(){
 			alert("자세히보기 닫기 완료");
 			$("#c_detail").modal('hide');
+			location.href="classList.jsp";
 	}
 	function c_btnDel(){
 			alert("선택한 수업을 삭제합니다.");
@@ -80,10 +83,12 @@
 	//------------------------------------------ 수강생 등록 모달 안 버튼 이벤트
 	function classMemSearch(){
 		alert("수강생을 조회합니다.");
+		
 	}
 	function classMemINS(){
 			alert("수강생을 등록합니다.");
 			$("#c_memIns").modal('hide');
+			$("#c_detail").modal('open');
 	}
 	function classMemDEL(){
 			alert("수강생을 삭제합니다.");
@@ -111,7 +116,7 @@
 						<a class="dropdown-item" href="#" onClick="progresDone()">종료</a>
 					</div>
 				</div>
-				<button type="button" class="btn btn-primary" onclick="classSEL()">전체조회</button>
+				<button type="button" class="btn btn-primary" onClick="classSEL()">전체조회</button>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_ins">수업등록</button>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_upd">수업수정</button>
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_detail">자세히보기</button>
@@ -127,17 +132,17 @@
 				<table class="table table-hover" id="tb_cList" name="tb_cList">
 					<thead>
 						<tr>
-							<th data-field="c_num">#</th>
-							<th data-field="c_number">수업 번호</th>
-							<th data-field="c_name">수업명</th>
-							<th data-field="c_tName">강사명</th>
-							<th data-field="c_sports">종목</th>
-							<th data-field="c_times">수업 횟수</th>
-							<th data-field="c_totalDays">수업 일수</th>
-							<th data-field="c_startDate">시작일</th>
-							<th data-field="c_endDate">종료일</th>
-							<th data-field="c_price">가격</th>
-							<th data-field="c_process">진행 상황</th>
+							<th data-field="NO">#</th>
+							<th data-field="CLS_NO">수업 번호</th>
+							<th data-field="CLS_NAME">수업명</th>
+							<th data-field="TCH_NAME">강사명</th>
+							<th data-field="CLS_KIND">종목</th>
+							<th data-field="CLS_CNT">수업 횟수</th>
+							<th data-field="CLS_DAYS">수업 일수</th>
+							<th data-field="CLS_S_DATE">시작일</th>
+							<th data-field="CLS_E_DATE">종료일</th>
+							<th data-field="CLS_PRICE">가격</th>
+							<th data-field="CLS_STATE">진행 상황</th>
 						</tr>
 					</thead>
 					<tbody id="tb_cListTest">

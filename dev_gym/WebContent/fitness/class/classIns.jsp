@@ -13,7 +13,7 @@
 <body>
 	<!--============================================================================================================== 수업등록 Modal 시작 -->
 	<div class="modal fade" id="c_ins" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		aria-labelledby="myLargeModalLabel" aria-hidden="false">
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -25,6 +25,7 @@
 				<div class="modal-body">
 					<!--=========================================================================================== form 시작  -->
 					<form role="form" id="f_ins">
+						<input type="hidden" name="cud" value="ins">
 						<div class="form-group">
 							<label for="c_name"><b>수업명</b></label> 
 							<input type="text" class="form-control input-sm" id="c_name" name="c_name" placeholder="수업명을 입력하세요">
