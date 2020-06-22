@@ -29,7 +29,7 @@
 <!-- 수정 모달 include -->
 <%@include file="gymNoticeUpd.jsp"%>
 <script type="text/javascript">
-
+	var updNot_no = 0; //선택한 공지사항을 저장 
 	function noticeList(){
 		$('#tb_nList').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.
 	           url: '../gym/jsonGymNoticeList.gym'
@@ -37,18 +37,18 @@
 			
 	}
 	function noticeDel(){
-		location.href = "../gym/jsonGymNoticeList.gym?cud=del";
+		location.href = "jsonGymNoticeList.gym?cud=del";
 	}
 	function noticeUpd(){
 		alert("등록");
 		//$("#m_upd").hide();
-		$("#f_upd").attr('action', "../gym/jsonGymNoticeList.gym")
+		$("#f_upd").attr('action', 'jsonGymNoticeList.gym')
 		$("#f_upd").submit();
 	}
 	function noticeINS(){
 		alert("등록");
 		$("#m_ins").hide();
-		$("#f_ins").attr('action', "../gym/jsonGymNoticeList.gym")
+		$("#f_ins").attr('action', "jsonGymNoticeList.gym")
 		$("#f_ins").submit();
 	}
 	
@@ -99,6 +99,8 @@
 		<table id="tb_nList" class="table table-bordered"
 		 data-toggle="table"
 		 data-url = "../gym/jsonGymNoticeList.gym"
+  		 data-click-to-select="true"
+ 		 data-pagination="true"
 		>
 			<thead>
 				<tr>
@@ -124,7 +126,6 @@
 				<h5 class="modal-title">공지사항 삭제</h5>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
-			
 			<!-- Modal Body 부분 -->
 			<div class="modal-body">
 				공지사항을 삭제하시겠습니까?
@@ -142,10 +143,11 @@
 
 <script>
  $(function() {
-    $('#tb_nList').on('check.bs.table', function (row, $element) {
+    $('#tb_nList').on('click-row.bs.table', function (row, element, field) {
       //table.bootstrapTable('resetView')
-      alert("row : " + row + ", element : " + $element);
-      
+      alert("row : " + row + ", element : " + element.NOT_TITLE + ", field : " + field);
+      updNot_no = element.NOT_SEQ;
+     // alert("선택한 공지사항 : "+ updNot_no);
     });
 }) 
 </script>

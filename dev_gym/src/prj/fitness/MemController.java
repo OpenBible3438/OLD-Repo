@@ -17,6 +17,8 @@ public class MemController implements Controller {
 	String work = null;
 	String reqName = null; 
 	int result = 0;
+	String autoSel = "false";
+	
 	public MemController(Map<String, Object> pMap) {
 		logger.info("MemController 생성자 호출");
 		this.pMap = pMap;
@@ -42,7 +44,7 @@ public class MemController implements Controller {
 						result = mLogic.memIns(pMap);
 					}break;
 				}
-				path = "redirect:../insertResult" + ":" + result;
+				path = "redirect:../insertResult" + ":" + result + ":"+ autoSel;
 			}break;
 			case "upd":{
 				switch(reqName) {
@@ -53,7 +55,7 @@ public class MemController implements Controller {
 						result = mLogic.memUpd(pMap);
 					}break;
 				}
-				path = "redirect:../updateResult:"+result;
+				path = "redirect:../updateResult:"+result + ":"+ autoSel;
 			}break;
 			case "del":{
 				switch(reqName) {
@@ -64,7 +66,7 @@ public class MemController implements Controller {
 						result = mLogic.memDel(pMap);
 					}break;
 				}
-				path = "redirect:../deleteResult:"+result;
+				path = "redirect:../deleteResult:"+result + ":"+ autoSel;
 			}break;
 		}
 		

@@ -70,6 +70,7 @@ public class HashMapBinder {
 		}
 	}
 	public void binder(Map<String,Object> pMap) {
+		logger.info("binder 호출");
 		//기존에 들어 있던 값이 있다면 모두 비운다.
 		pMap.clear();
 		Enumeration<String> en = req.getParameterNames();
@@ -77,6 +78,7 @@ public class HashMapBinder {
 		int i =0;
 		while(en.hasMoreElements()) {
 			String key = en.nextElement();//name, address, pet
+			logger.info("key : " + key);
 			pMap.put(key,req.getParameter(key));
 			//pMap.put(key,HangulConversion.toUTF(req.getParameter(key)));
 			pMap.put(key,req.getParameter(key));
