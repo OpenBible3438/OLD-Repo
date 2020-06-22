@@ -6,20 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@include file="../../common/bootStrap4UI.jsp" %>
-<script type="text/javascript">
-	function readInputFile(input){
-		if(input.files && input.files[0]){
-			var reader = new FileReader();
-			reader.onload = function(e){
-				$("#preview").html("<img src="+e.target.result+">");
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-	$(".input_img").on('change', function(){
-		readInputFile(this);
-	})
-</script>
 </head>
 <body>
 <!-- 등록 Modal -->
@@ -34,7 +20,7 @@
 	        
 	        <!-- Modal body -->
 	        <div class="modal-body">
-	       		<img id="preview" name="input_img" src="">
+	       		<img id="contentPreview" class="col-sm-7" name="input_img" src="#" style="min-width:200px; min-height:100px">
 	        	<input type="file" id="contentInputImg" class="form-control-file border" accept=".gif, .jpg, .png">
 	        	<div class="form-group">
   					<label for="comment">컨텐츠 내용:</label>
@@ -50,5 +36,24 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	//파일 첨부시 이미지 로드 하기 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+            	//img태그 아이디
+            	alert("파일첨부1 : "+e.target.result);
+                $('#contentPreview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+	//파일첨부 input태그 아이디
+    $("#contentInputImg").change(function() {
+        readURL(this);
+    });
+</script>
 </body>
 </html>

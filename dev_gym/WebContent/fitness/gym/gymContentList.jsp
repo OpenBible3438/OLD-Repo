@@ -19,10 +19,13 @@
 </script>
 </head>
 <body>
-<h4><b>매장관리 | 컨텐츠</b>
+<div style="padding: 20px;">
+
+<h3><b>매장관리</b> / 컨텐츠
 <br>
 	<button onClick="btnIns()" type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#contentInsModal">등록</button>
-</h4>
+</h3>
+<div style="padding-left: 40px; padding-top: 20px">
 <!-- 컨텐츠 -->
 <div id="div_content">
 	<!-- navbar 부분 -->
@@ -85,6 +88,7 @@
 	</div>
 </div>
 <!-- 삭제 Modal -->
-
+</div>
+</div>
 </body>
 </html>
