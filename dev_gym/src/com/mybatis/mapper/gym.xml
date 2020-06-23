@@ -32,13 +32,17 @@
 		SELECT 1 FROM dual
 	</select>
 	<select id="getContentList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		<!-- ==========편성경여기========== -->
+		SELECT gym_cont_seq, gym_cont_img, gym_contents, gym_cont_like, gym_no 
+		  FROM GYM_CONTENTS
 	</select>
 	<select id="getInfoList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
 	<select id="getReviewList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		<!-- ==========편성경여기========== -->
+		SELECT rev_seq, rev_cont, rev_date, rev_time, rev_star, rev_up, rev_down
+		  FROM REVIEW_TEST
 	</select>
 	<!-- 매장 로그인  -->
 	<select id="getLogin" parameterType="map" resultType="map">

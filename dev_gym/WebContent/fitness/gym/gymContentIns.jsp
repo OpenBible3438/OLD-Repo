@@ -38,6 +38,9 @@
 </div>
 
 <script type="text/javascript">
+	function contentIns(){
+		alert('등록하기!');
+	}
 	//파일 첨부시 이미지 로드 하기 
     function readURL(input) {
         if (input.files && input.files[0]) {

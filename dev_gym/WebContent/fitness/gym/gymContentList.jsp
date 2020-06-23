@@ -10,7 +10,7 @@
 <%@include file="gymContentUpd.jsp" %>
 <script type="text/javascript">
 	function btnIns(){
-		alert('등록버튼클릭');		
+		//alert('등록버튼클릭');		
 	}
 	function contentDel(){
 		//alert('삭제하기');
@@ -55,7 +55,7 @@
 					<p style="font-size:20px;"><b>컨텐츠 내용 들어가는 부분 #가산동 #시설최고 #주차장무료</b></p>
 					<p>
 						<button type="button" class="btn btn-primary">좋아요<span class="badge">7</span></button>
-						<i style="font-size:20px; float:right;">2020-06-12</i>
+						<i style="font-size:20px; float:right;"><b>2020-06-12</b></i>
 					</p>
 				</div>
 			</div>
