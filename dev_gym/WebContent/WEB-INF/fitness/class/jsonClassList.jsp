@@ -6,8 +6,8 @@
 	List<Map<String, Object>> classList = (List<Map<String, Object>>)request.getAttribute("selResult");
 	if(classList != null && classList.size() > 0){
 		Gson g = new Gson();
-		String notices = g.toJson(classList);
-		out.print(classList);
+		String classes = g.toJson(classList);
+		out.print(classes);
 	}
 	else{
 		out.print("null입니다.");

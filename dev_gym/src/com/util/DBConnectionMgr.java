@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class DBConnectionMgr {
 	Connection con = null;
 	public static final String _DRIVER = "oracle.jdbc.driver.OracleDriver";
-	public static final String _URL = "jdbc:oracle:thin:@192.168.0.191:1521:orcl11";
+	public static final String _URL = "jdbc:oracle:thin:@127.0.0.1:1521:orcl11";
 	public static String _USER = "gym";
 	public static String _PW = "tiger";
 	//static - 클래스 급. 공유(정적변수)->인스턴스화 필요없음

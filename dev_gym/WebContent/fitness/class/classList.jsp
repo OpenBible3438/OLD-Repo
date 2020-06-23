@@ -7,15 +7,26 @@
 <title>Insert title here</title>
 <!-- 클래스 공통코드 -->
 <%@include file="classCommon.jsp"%>
+<link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 
 	<script type="text/javascript">
-	function progresWork() {
+	var updCLS_NO;
+	var progress;
+	
+	function progressWork() {
 		alert("진행 중인 수업을 조회합니다.");
 	}
-	function progresWait() {
+	function progressWait() {
 		alert("대기 중인 수업을 조회합니다.");
+		progress = $("#p_wait").html();
+		alert(progress);
+// 		$table.bootstrapTable('getData', {
+// 			url: '../class/jsonClassList.gym?progress='+'wait'
+//		});
+		
 	}
-	function progresDone() {
+	function progressDone() {
 		alert("종료된 수업을 조회합니다.");
 	}
 	function classSEL() {
@@ -24,38 +35,7 @@
 	        url: '../class/jsonClassList.gym'
 	  	});
 	}
-// 	function classSEL(){
-// 			alert("수업보기 완료");
-// 		$.ajax({
-// 			 url:'jsonClassList.jsp'
-// 			 //성공하면 data에 json 데이터가 담긴다.
-// 			,success:function(data){
-// 				//.trim() ==> 공백제거
-				
-// 				var doc = JSON.stringify(data); 	// 가져온 data를 문자열로 doc에 담았다.
-// 				var doc2 = JSON.parse(doc);   		//doc2에 doc의 값이 배열처럼 담긴다. doc2의 길이는 가져온 데이터의 행의 갯수와 같다.	
-				
-// 				var imsi = "";
-// 				for(var i=0;i<doc2.length;i++){
-// 					//html 함수 안에 집어 넣을 변수
-// 					imsi += "<tr>";
-// 					imsi += "<td>"+doc2[i].C_NUM+"</td>";
-// 					imsi += "<td>"+doc2[i].C_NUMBER+"</td>";
-// 					imsi += "<td>"+doc2[i].C_NAME+"</td>";
-// 					imsi += "<td>"+doc2[i].C_TNAME+"</td>";
-// 					imsi += "<td>"+doc2[i].C_SPORTS+"</td>";
-// 					imsi += "<td>"+doc2[i].C_TIMES+"</td>";
-// 					imsi += "<td>"+doc2[i].C_TOTALDAYS+"</td>";
-// 					imsi += "<td>"+doc2[i].C_STARTDATE+"</td>";
-// 					imsi += "<td>"+doc2[i].C_ENDDATE+"</td>";
-// 					imsi += "<td>"+doc2[i].C_PRICE+"</td>";
-// 					imsi += "<td>"+doc2[i].C_PROCESS+"</td>";
-// 					imsi += "</tr>";
-// 				}
-// 				$("#tb_cListTest").html(imsi);
-// 			}
-// 		});		
-// 	}
+
 	function classINS(){
 			alert("수업등록 저장 완료");
 			$("#f_ins").attr("method","get");
@@ -80,7 +60,8 @@
 	function c_btnDel(){
 			alert("선택한 수업을 삭제합니다.");
 	}
-	//------------------------------------------ 수강생 등록 모달 안 버튼 이벤트
+
+	//------------------------------------------ 수강생 등록 모달 안 버튼 이벤트 시작
 	function classMemSearch(){
 		alert("수강생을 조회합니다.");
 		
@@ -93,6 +74,8 @@
 	function classMemDEL(){
 			alert("수강생을 삭제합니다.");
 	}
+	//------------------------------------------ 수강생 등록 모달 안 버튼 이벤트 끝
+
 	</script>
 
 </head>
@@ -107,47 +90,51 @@
 			<div style="padding-left: 40px; padding-top: 20px">
 				<!-- 내용 틀 입니다. -->
 				<!--======================================================================================= 버튼 시작-->
-				<div class="btn-group">
+				<div id="button">
+					<button type="button" class="btn btn-primary" onClick="classSEL()">전체조회</button>
 					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">진행상황</button>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#" onClick="progresWork()">진행</a> 
-						<a class="dropdown-item" href="#" onClick="progresWait()">대기</a> 
-						<a class="dropdown-item" href="#" onClick="progresDone()">종료</a>
+					<div class="dropdown-menu" id="p_menu">
+						<a class="dropdown-item" id="p_work" href="'../class/jsonClassList.gym?progress='+'p_work'" onClick="progressWork()">진행</a> 
+						<a class="dropdown-item" id="p_wait" href="'../class/jsonClassList.gym?progress='+'p_wait'" onClick="progressWait()">대기</a> 
+						<a class="dropdown-item" id="p_done" href="'../class/jsonClassList.gym?progress='+'p_done'" onClick="progressDone()">종료</a>
 					</div>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_ins">수업등록</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_upd">수업수정</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_info">자세히보기</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_memList">수강생보기</button>
+					<button type="button" class="btn btn-primary" onclick="c_btnDel()">삭제</button>
 				</div>
-				<button type="button" class="btn btn-primary" onClick="classSEL()">전체조회</button>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_ins">수업등록</button>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_upd">수업수정</button>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_detail">자세히보기</button>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_memList">수강생보기</button>
-				<button type="button" class="btn btn-primary" onclick="c_btnDel()">삭제</button>
-				<!--======================================================================================= 버튼 끝-->
 		
 				<div>
+				<!--======================================================================================= 버튼 끝-->
 					<p></p>
 				</div>
 		
 				<!--======================================================================================= 테이블 시작-->
-				<table class="table table-hover" id="tb_cList" name="tb_cList">
+				<table class="table table-hover" id="tb_cList"
+				 data-toggle="table"
+				 data-url = "../class/jsonClassList.gym"
+		  		 data-click-to-select="true"
+		 		 data-pagination="true"				
+				>
 					<thead>
 						<tr>
-							<th data-field="NO">#</th>
-							<th data-field="CLS_NO">수업 번호</th>
+							<th data-checkbox=true>체크</th>
+							<th data-field="ROWNUM">#</th>
+							<th data-field="CLS_NO">수업번호</th>
 							<th data-field="CLS_NAME">수업명</th>
 							<th data-field="TCH_NAME">강사명</th>
 							<th data-field="CLS_KIND">종목</th>
-							<th data-field="CLS_CNT">수업 횟수</th>
-							<th data-field="CLS_DAYS">수업 일수</th>
+							<th data-field="CLS_CNT">수업횟수</th>
+							<th data-field="CLS_DAYS">수업일수</th>
 							<th data-field="CLS_S_DATE">시작일</th>
 							<th data-field="CLS_E_DATE">종료일</th>
 							<th data-field="CLS_PRICE">가격</th>
-							<th data-field="CLS_STATE">진행 상황</th>
+							<th data-field="CLS_STATE">진행상황</th>
 						</tr>
 					</thead>
-					<tbody id="tb_cListTest">
-						
-					</tbody>
+					
 				</table>
 				<!--======================================================================================= 테이블 끝-->
 			</div>
@@ -163,6 +150,8 @@
 			</div>
 			
 		</div>
+
+	<!--============================================================================== 체크 로우  -->
 
 </body>
 </html>

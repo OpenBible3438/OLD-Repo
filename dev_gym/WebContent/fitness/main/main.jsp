@@ -47,7 +47,7 @@
 <!-- =============== main javascript =============== -->
 <script type="text/javascript">
   	function picks(center) {
-  		alert("center : "+center);
+  		//alert("center : "+center);
   		$.ajax({
   			method: "get"
 			,data: "center="+center 

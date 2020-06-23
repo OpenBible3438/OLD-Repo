@@ -19,7 +19,7 @@ public class GymDao {
 		this.sqlSession = sqlSession;
 	}
 	///////////////////////////////////////////////////////////////////////////
-	
+	//매장 로그인
 	public List<Map<String, Object>> getLogin(Map<String, Object> pMap) {//로그인
 		logger.info("GymDao - getLogin() 호출");
 		List<Map<String, Object>> loginResult = null;
@@ -29,6 +29,13 @@ public class GymDao {
 		logger.info(" - loginResult : "+loginResult.size()+"row");
 		
 		return loginResult;
+	}
+	//매장 아이디 중복확인
+	public int getIdConfirm(Map<String, Object> pMap) {
+		logger.info("GymDao - getIdConfirm() 호출");
+		int idResult = 0;
+		idResult = sqlSession.selectOne("getIdConfirm",pMap);
+		return idResult;
 	}
 	
 	public List<Map<String, Object>> getClassMemList(Map<String, Object> pMap) {
@@ -100,21 +107,21 @@ public class GymDao {
 	
 	public int classIns(Map<String, Object> pMap) {
 		logger.info("GymDao - classIns() 호출");
-		result = sqlSession.insert("classIns");
+		result = sqlSession.insert("classIns", pMap);
 		logger.info("result : " + result);
 		return result;
 	}
 	
 	public int classUpd(Map<String, Object> pMap) {
 		logger.info("GymDao - classUpd() 호출");
-		result = sqlSession.update("classUpd");
+		result = sqlSession.update("classUpd", pMap);
 		logger.info("result : " + result);
 		return result;
 	}
 	
 	public int classDel(Map<String, Object> pMap) {
 		logger.info("GymDao - classDel() 호출");
-		result = sqlSession.delete("classDel");
+		result = sqlSession.delete("classDel", pMap);
 		logger.info("result : " + result);
 		
 		return result;
@@ -122,7 +129,7 @@ public class GymDao {
 	
 	public int classMemIns(Map<String, Object> pMap) {
 		logger.info("GymDao - classMemIns() 호출");
-		result = sqlSession.insert("classMemIns");
+		result = sqlSession.insert("classMemIns", pMap);
 		logger.info("result : " + result);
 
 		return result;
@@ -130,7 +137,7 @@ public class GymDao {
 	
 	public int classMemUpd(Map<String, Object> pMap) {
 		logger.info("GymDao - classMemUpd() 호출");
-		result = sqlSession.update("classMemUpd");
+		result = sqlSession.update("classMemUpd", pMap);
 		logger.info("result : " + result);
 
 		return result;
@@ -138,7 +145,7 @@ public class GymDao {
 	
 	public int classMemDel(Map<String, Object> pMap) {
 		logger.info("GymDao - classMemDel() 호출");
-		result = sqlSession.delete("classMemDel");
+		result = sqlSession.delete("classMemDel", pMap);
 		logger.info("result : " + result);
 		
 		return result;
@@ -146,7 +153,7 @@ public class GymDao {
 	
 	public int chartIns(Map<String, Object> pMap) {
 		logger.info("GymDao - chartIns() 호출");
-		result = sqlSession.insert("chartIns");
+		result = sqlSession.insert("chartIns", pMap);
 		logger.info("result : " + result);
 		
 		return result;
@@ -154,7 +161,7 @@ public class GymDao {
 	
 	public int chartUpd(Map<String, Object> pMap) {
 		logger.info("GymDao - chartUpd() 호출");
-		result = sqlSession.update("chartUpd");
+		result = sqlSession.update("chartUpd", pMap);
 		logger.info("result : " + result);
 		
 		return result;
@@ -162,7 +169,7 @@ public class GymDao {
 	
 	public int chartDel(Map<String, Object> pMap) {
 		logger.info("GymDao - contentDel() 호출");
-		result = sqlSession.delete("chartDel");
+		result = sqlSession.delete("chartDel", pMap);
 		logger.info("result : " + result);
 		
 		return result;
@@ -170,7 +177,7 @@ public class GymDao {
 	
 	public int contentIns(Map<String, Object> pMap) {
 		logger.info("GymDao - contentIns() 호출");
-		result = sqlSession.insert("contentIns");
+		result = sqlSession.insert("contentIns", pMap);
 		logger.info("result : " + result);
 
 		return result;
@@ -178,7 +185,7 @@ public class GymDao {
 	
 	public int contentUpd(Map<String, Object> pMap) {
 		logger.info("GymDao - contentUpd() 호출");
-		result = sqlSession.update("contentUpd");
+		result = sqlSession.update("contentUpd", pMap);
 		logger.info("result : " + result);
 
 		return result;
@@ -186,7 +193,7 @@ public class GymDao {
 	
 	public int contentDel(Map<String, Object> pMap) {
 		logger.info("GymDao - contentDel() 호출");
-		result = sqlSession.delete("contentDel");
+		result = sqlSession.delete("contentDel", pMap);
 		logger.info("result : " + result);
 
 		return result;
@@ -194,7 +201,7 @@ public class GymDao {
 	
 	public int gymInfoUpd(Map<String, Object> pMap) {
 		logger.info("GymDao - gymInfoUpd() 호출");
-		result = sqlSession.update("gymInfoUpd");
+		result = sqlSession.update("gymInfoUpd", pMap);
 		logger.info("result : " + result);
 
 		return result;
@@ -202,7 +209,7 @@ public class GymDao {
 	
 	public int gymNoticeIns(Map<String, Object> pMap) {
 		logger.info("GymDao - gymNoticeIns() 호출");
-		result = sqlSession.insert("gymNoticeIns");
+		result = sqlSession.insert("gymNoticeIns", pMap);
 		logger.info("result : " + result);
 
 		return result;
@@ -210,7 +217,7 @@ public class GymDao {
 	
 	public int gymNoticeUpd(Map<String, Object> pMap) {
 		logger.info("GymDao - gymNoticeUpd() 호출");
-		result = sqlSession.update("gymNoticeUpd");
+		result = sqlSession.update("gymNoticeUpd", pMap);
 		logger.info("result : " + result);
 
 		return result;
@@ -218,11 +225,13 @@ public class GymDao {
 	
 	public int gymNoticeDel(Map<String, Object> pMap) {
 		logger.info("GymDao - gymNoticeDel() 호출");
-		result = sqlSession.delete("gymNoticeDel");
+		result = sqlSession.delete("gymNoticeDel", pMap);
 		logger.info("result : " + result);
 		
 		return result;
 	}
+
+
 	
 	
 }
