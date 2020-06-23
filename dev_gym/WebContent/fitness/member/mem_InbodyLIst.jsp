@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <%@include file="../../common/bootStrap4UI.jsp" %>
 <!--  <script>
 	/* function test() {
@@ -20,8 +16,6 @@
 }
 
 </style>
-</head>
-<body>
 <div class="container">
 <h4><b><br>회원관리 | 전체 회원 관리</b></h4>
 <br>
@@ -148,5 +142,3 @@
 <!-- 삭제 모달 부분 -->
 
 
-</body>
-</html>

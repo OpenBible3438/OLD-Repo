@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title></title>
-</head>
+
 	<%@ include file="../../common/bootStrap4UI.jsp" %>
-<body>
 <!-- <div style="padding: 20px;">
    <h3><b>회원관리</b> / 인바디 수정</h3>   제목 틀 입니다. -->
    <hr>
@@ -60,5 +54,3 @@
 			</div>
 		</div>
 	</form>
-</body>
-</html>
