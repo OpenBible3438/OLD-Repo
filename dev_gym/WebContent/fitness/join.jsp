@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div class="modal fade" id="m_join">
+<div class="modal fade" id="m_join" >
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 	<div class="modal-header">
@@ -9,14 +9,14 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body" style="padding-left: 40px; padding-top: 20px">
-		<form role="form" id="gym_join">
+		<form role="form" id="gym_join" method="post" enctype="multipart/form-data">
 		<div class="form-group row">
 			<label for="gym_id" class="col-sm-2 col-form-label ">아이디</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" 
-					   id="j_gym_id" >
-				<input type="hidden" class="form-control" 
-					   id="j_gym_id_ok" name="j_gym_id">
+				<input type="hidden" class="form-control" name="cud" value="join">
+				<input type="hidden" class="form-control" name="gym_sido">
+				<input type="hidden" class="form-control" id="j_gym_id_ok" name="j_gym_id">
+				<input type="text" class="form-control" id="j_gym_id">
 			</div>
 			<div class="col-sm-3">
 				<a type="button" id="confirm" href="javascript:id_confirm()"
@@ -117,20 +117,20 @@
 		</div>
 		<div class="form-group row">
 			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="gum_parking" name="gum_parking"> 
-				<label class="form-check-label" for="gum_parking">주차장</label>
+				<input class="form-check-input" type="checkbox" id="gym_parking" name="gym_parking"> 
+				<label class="form-check-label" for="gym_parking">주차장</label>
 			</div>
 			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="gum_wash" name="gum_wash"> 
-				<label class="form-check-label" for="gum_wash">샤워실</label>
+				<input class="form-check-input" type="checkbox" id="gym_wash" name="gym_wash"> 
+				<label class="form-check-label" for="gym_wash">샤워실</label>
 			</div>
 			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="gum_uniform" name="gum_uniform"> 
-				<label class="form-check-label" for="gum_uniform">유니폼</label>
+				<input class="form-check-input" type="checkbox" id="gym_uniform" name="gym_uniform"> 
+				<label class="form-check-label" for="gym_uniform">유니폼</label>
 			</div>
 			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="gum_locker" name="gum_locker"> 
-				<label class="form-check-label" for="gum_locker">락커룸</label>
+				<input class="form-check-input" type="checkbox" id="gym_locker" name="gym_locker"> 
+				<label class="form-check-label" for="gym_locker">락커룸</label>
 			</div>
 		</div>
 		<div class="modal-footer">

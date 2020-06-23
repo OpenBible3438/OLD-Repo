@@ -25,7 +25,7 @@ public class GymDao {
 		List<Map<String, Object>> loginResult = null;
 		//loginResult = sqlSession.selectList("getLogin",pMap);
 		sqlSession.selectOne("getProcLogin",pMap);
-		loginResult = (List<Map<String, Object>>)pMap.get("key");
+		loginResult = (List<Map<String, Object>>)pMap.get("gymLogin");
 		logger.info(" - loginResult : "+loginResult.size()+"row");
 		
 		return loginResult;
@@ -228,6 +228,18 @@ public class GymDao {
 		result = sqlSession.delete("gymNoticeDel", pMap);
 		logger.info("result : " + result);
 		
+		return result;
+	}
+	public int gymJoin(Map<String, Object> pMap) {
+		logger.info("GymDao - gymJoin() 호출");
+		result = sqlSession.insert("gymJoin", pMap);
+		logger.info("result : " + result);
+		return result;
+	}
+	public int gymJoinImg(Map<String, Object> pMap) {
+		logger.info("GymDao - gymJoinImg() 호출");
+		result = sqlSession.insert("gymJoinImg", pMap);
+		logger.info("result : " + result);
 		return result;
 	}
 

@@ -1,15 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String center = null;
+<%	// 메뉴 바 쿠키 받아오기
+	String center = "";
 	Cookie cs[] = request.getCookies();
 	if(cs != null && cs.length>0) {
-		for(int i=0; i<cs.length; i++) {
-			if("center".equals(cs[i].getName())) {
-				center = cs[i].getValue();
+		for(Cookie ck: cs) {
+			if("center".equals(ck.getName())) {
+				center = ck.getValue();
 				break;
 			}
 		}
+	}
+%>
+<%	// 로그인 세션 받아오기
+	HttpSession ses = request.getSession();
+	String gym_no = null;
+	String gym_name = null;
+	if(ses.getAttribute("gym_no") != null) {
+		gym_no = (String)ses.getAttribute("gym_no");
+		gym_name = (String)ses.getAttribute("gym_name");
 	}
 %>
 <!DOCTYPE html>
@@ -53,14 +62,7 @@
 			,data: "center="+center 
 			,url: "../util/setCookie.jsp"
 			,success: function(data) {
-				var pickURL = data.trim();
-				$.ajax({
-					url: pickURL
-					,success: function(pickPage) {
-						//alert("pickPage : "+pickPage);
-						$('#center').html(pickPage);
-					}
-				});
+				location.reload();
 			}
   		}); 
   	}
@@ -70,22 +72,53 @@
 <script type="text/javascript">
 	//DOM구성이 완료되면...
 	$(document).ready(function() {
-		picks('<%=center%>'); 
+		//alert("center : <%=center%>"); 
+		//alert("gym_no : <%=gym_no%>");
+		//alert("gym_name : <%=gym_name%>");
 	});
 </script>
 <!-- ========================= TOP 자리 ========================= -->
-   <%@ include file="./mainTop.jsp" %>
+   <%@ include file="./mainTop.jsp" %> 
 <!-- ========================= CENTER 시작  =========================  -->
 <div class="container-fluid text-center" >    
   	<div class="row content">
-  	
 <!-- ========================= 왼쪽 자리 ========================= -->
     	<%@ include file="./mainWest.jsp" %>
-    
 <!-- ========================= 센터 자리 ========================= -->
 		<div id="center" class="col-sm-8 text-left"> 
 			<!-- 이쫏  -->
-		
+<% // 쿠키를 받아서 center부분을 정한다.
+		switch(center) {
+			case "attr"   : { %> <%@ include file="../info/attr.jsp" %>  <% 
+					} break;
+			case "func"   : { %> <%@ include file="../info/func.jsp" %>  <% 
+			       } break;
+			case "api"   : { %> <%@ include file="../info/api.jsp" %> <% 
+					} break;
+			case "gym"    : { %> <%@ include file="../gym/gymInfo.jsp" %>  <%
+					} break;
+			case "chart"  : { %> <%@ include file="../gym/gymChart.jsp" %> <%
+					} break;
+			case "review" : { %> <%@ include file="../gym/gymReviewList.jsp" %> <%
+					} break;
+			case "content": { %> <%@ include file="../gym/gymContentList.jsp" %> <%
+					} break;
+			case "notice" : { %> <%@ include file="../gym/gymNoticeList.jsp" %> <%
+					} break;
+			case "tch"    : { %> <%@ include file="../teacher/tchInfo.jsp" %>  <%
+					} break;
+			case "mem"    : { %> <%@ include file="../member/memInfo.jsp" %> <%
+					} break;
+			case "ibd"    : { %> <%@ include file="../member/memInbodyLIst.jsp" %> <%
+					} break;
+			case "cls"    : { %> <%@ include file="../class/classInfo.jsp" %> <%
+					} break;
+			default       : { %> <%@ include file="../info/attr.jsp" %> <%
+			        } break;
+				
+		}
+
+%>
 		</div>
 <!-- ========================= 오른쪽 자리 ========================= -->
    		<%@ include file="./mainEast.jsp" %>
