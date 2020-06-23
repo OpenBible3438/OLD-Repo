@@ -8,6 +8,24 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="text/javascript">
+	var gym_id = "";
+	var gym_username= "";
+	var gym_usertell = "";
+	var gym_name = "";
+	var gym_tel = "";
+	var gym_addr = "";
+	var gym_addr_dtl = "";
+	var gym_zipcode = "";
+	var gym_number = "";
+	var gym_profimg = "";
+	var gym_info = "";
+	var gym_parking = "";
+	var gym_wash = "";
+	var gym_uniform = "";
+	var gym_locker = "";
+	var gym_like = "";
+	
+	
 	function infoUPD(){
 		$.ajax({
 			url : "../gym/gymInfoUpd.jsp"
@@ -56,7 +74,7 @@
 <body>
 	<div id = "d_info" class="px-3 py-3 m-3">
 		<div class="form-group row">
-		   <h3><b>매장관리</b> / 매장 정보 조회</h3>  <!-- 제목 틀 입니다. -->
+		   <h3 class="w-25"><b>매장관리</b> / 매장 정보 조회</h3>  <!-- 제목 틀 입니다. -->
 		   <div class="w-50"></div>
 		   <button type="button" class="btn btn-primary" onClick="infoUPD()">수정</button>
 	   	</div>
@@ -134,5 +152,17 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			url : "../gym/jsonGymInfo.gym"
+		  , success : function(result){
+			  var data = JSON.stringify(result);
+			  var infoList = JSON.parse(data);
+			  
+		  }
+		});
+	});
+</script>
 </body>
 </html>
