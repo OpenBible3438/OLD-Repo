@@ -109,7 +109,7 @@
 					} break;
 			case "mem"    : { %> <%@ include file="../member/memInfo.jsp" %> <%
 					} break;
-			case "ibd"    : { %> <%@ include file="../member/memInbodyLIst.jsp" %> <%
+			case "ibd"    : { %> <%@ include file="../member/memInbodyIns.jsp" %> <%
 					} break;
 			case "cls"    : { %> <%@ include file="../class/classInfo.jsp" %> <%
 					} break;
