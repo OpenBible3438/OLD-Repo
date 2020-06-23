@@ -54,7 +54,7 @@
 	</select>
 	<!-- 매장 로그인  프로시저 -->
 	<select id="getProcLogin"  parameterType="map" statementType="CALLABLE">
-		{ call proc_gym_login(#{gym_id},#{gym_pw},#{key
+		{ call proc_gym_login(#{gym_id},#{gym_pw},#{gymLogin
 						                           ,jdbcType=CURSOR
 						                           ,mode=OUT
 						                           ,javaType=java.sql.ResultSet
@@ -70,6 +70,25 @@
 	  	  FROM dual
 	</select>
 	
+	<!-- 매장 회원가입 인서트 -->
+	<insert id="gymJoin" parameterType="map">
+		INSERT INTO gym (gym_no 
+		                ,gym_id ,gym_pw ,gym_username ,gym_usertell
+                        ,gym_name ,gym_tel     ,gym_addr   ,gym_addr_dtl ,gym_zipcode
+                        ,gyn_number ,gym_info    ,gym_lat    ,gym_lng      
+                        ,gym_parking ,gym_wash   ,gym_uniform ,gym_locker ,gym_like )
+                  VALUES(8
+                        ,'hjho12' ,'123' ,'허준' ,'010-8888-7888' 
+                        ,'여기내짐'   ,'02-888-8888' ,'서울 시 금천구 독산동' ,'허준빌딩' ,08454
+                        ,'1515-485' ,'매장소개입니다.' ,34.1515115 ,127.5486446
+                        ,0  ,0  ,0  ,0  ,0 )
+		
+	</insert>
+	<!-- 매장 회원가입 프로필사진 인서트 -->
+	<insert id="gymJoinImg" parameterType="map">
+		INSERT INTO gym_profimg(fileno, filename, filesize, filedata, gym_no)
+                         VALUES(1, #{filename},#{filesize},#{filedata, jdbcType=LONGVARBINARY} ,8)
+	</insert>
 	<insert id="classIns" parameterType="map">
 		INSERT into insert_test values('1', '1', '1')
 	</insert>

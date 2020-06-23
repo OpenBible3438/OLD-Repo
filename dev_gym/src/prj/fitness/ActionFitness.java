@@ -37,8 +37,13 @@ public class ActionFitness extends HttpServlet {
 		logger.info("doService() 호출");
 		Map<String, Object> pMap = new HashMap<String, Object>(); 
 		//pMap을 세팅 binder
-		//new HashMapBinder(req).multiBind(pMap);
-		new HashMapBinder(req).binder(pMap);
+		String contentType = req.getContentType();
+		logger.info("contentType : "+contentType);
+		if("multipart/form-data".equals(contentType)) {
+			new HashMapBinder(req).multiBind(pMap);
+		} else {
+			new HashMapBinder(req).binder(pMap);
+		}
 
 		Controller controller = null;
 		
