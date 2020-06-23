@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title></title>
+
 <style>
 img.img{
 	position:webkit-stick;
@@ -14,8 +10,7 @@ img.img{
 	height: auto;
 }
 </style>
-</head>
-<body>
+
     <!-- <h2>인바디 등록</h2> -->
     <table border="2" width=auto bordercolor="black" cellspacing="3"
         bordercolor="black">
@@ -47,5 +42,3 @@ img.img{
                     <input type="reset" value="취소"></td>
             </tr>
     </table>
-</body>
-</html>
