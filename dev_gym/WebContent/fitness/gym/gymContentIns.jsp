@@ -13,12 +13,15 @@
 	        
 	        <!-- Modal body -->
 	        <div class="modal-body">
+			<form id="f_ins">
+			<input type="hidden" name="cud" value="ins">
 	       		<img id="contentPreview" class="col-sm-7" name="input_img" src="#" style="min-width:200px; min-height:100px">
 	        	<input type="file" id="contentInputImg" class="form-control-file border" accept=".gif, .jpg, .png">
 	        	<div class="form-group">
-  					<label for="comment">컨텐츠 내용:</label>
-  					<textarea class="form-control" rows="5" id="comment"></textarea>
+  					<label for="cont_contents">컨텐츠 내용:</label>
+  					<textarea class="form-control" rows="5" id="cont_contents" name="cont_contents"></textarea>
 				</div>
+			</form>
 	        </div>
          
 	        <!-- Modal footer -->
@@ -32,7 +35,7 @@
 
 <script type="text/javascript">
 	function contentIns(){
-		alert('등록하기!');
+		$("#cud").val($(this).data())
 	}
 	//파일 첨부시 이미지 로드 하기 
     function readURL(input) {
