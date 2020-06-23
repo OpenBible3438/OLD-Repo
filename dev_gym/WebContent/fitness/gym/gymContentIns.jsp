@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<%@include file="../../common/bootStrap4UI.jsp" %>
-</head>
 <body>
 <!-- 등록 Modal -->
 <div class="modal" id="contentInsModal">
@@ -47,7 +40,7 @@
             var reader = new FileReader();
             reader.onload = function(e) {
             	//img태그 아이디
-            	alert("파일첨부1 : "+e.target.result);
+            	//alert("파일첨부1 : "+e.target.result);
                 $('#contentPreview').attr('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
@@ -58,5 +51,3 @@
         readURL(this);
     });
 </script>
-</body>
-</html>

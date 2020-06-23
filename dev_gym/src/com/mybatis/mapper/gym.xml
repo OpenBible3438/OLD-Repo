@@ -37,8 +37,8 @@
 	</select>
 	<select id="getContentList" parameterType="map" resultType="map">
 		<!-- ==========편성경여기========== -->
-		SELECT gym_cont_seq, gym_cont_img, gym_contents, gym_cont_like, gym_no 
-		  FROM GYM_CONTENTS
+		SELECT gym_cont_seq, gym_no, gym_contents, gym_cont_like 
+		  FROM CONTENT_TEST
 	</select>
 	<select id="getInfoList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
@@ -106,7 +106,8 @@
 		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="contentIns" parameterType="map">
-		INSERT into insert_test values('1', '1', '1')
+		<!-- ==========편성경여기========== -->
+		INSERT into CONTENT_TEST values('1', '1', '1')
 	</insert>
 	
 	<update id="classUpd" parameterType="map">
@@ -122,6 +123,7 @@
 		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="contentUpd" parameterType="map">
+		<!-- ==========편성경여기========== -->
 		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="gymInfoUpd" parameterType="map">
@@ -141,6 +143,7 @@
 		DELETE insert_test where mem_id = '5'
 	</delete>
 	<delete id="contentDel" parameterType="map">
+		<!-- ==========편성경여기========== -->
 		DELETE insert_test where mem_id = '5'
 	</delete>
 	
