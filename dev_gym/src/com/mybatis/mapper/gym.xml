@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="orm.mybatis.mapper.gymMapper">
+<mapper namespace="com.mybatis.mapper.gymMapper">
 
 	<resultMap id="gymLogin" type="map"/>
 <!-- ======================= GYM ======================= -->
@@ -41,7 +41,11 @@
 		  FROM CONTENT_TEST
 	</select>
 	<select id="getInfoList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		SELECT gym_id, gym_username, gym_usertell, gym_name, gym_tel, gym_addr, gym_addr_dtl
+		     , gym_zipcode, gym_number, gym_info
+		     , gym_parking, gym_wash, gym_uniform, gym_locker, gym_like
+		  FROM gym
+		 WHERE gym_no = #{gym_no} 
 	</select>
 	<select id="getReviewList" parameterType="map" resultType="map">
 		<!-- ==========편성경여기========== -->
@@ -100,7 +104,7 @@
 		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="gymNoticeIns" parameterType="map">
-		INSERT into insert_test values('1', '1', '1')
+		INSERT into notice (not_seq, not_title, not_cont, gym_no) values(seq_notice.nextval, #{not_title}, #{not_cont}, '1')
 	</insert>
 	<insert id="chartIns" parameterType="map">
 		INSERT into insert_test values('1', '1', '1')
@@ -117,7 +121,8 @@
 		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="gymNoticeUpd" parameterType="map">
-		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
+		UPDATE notice set not_title = #{not_title}, not_cont = #{not_cont}
+		 WHERE not_seq = #{not_seq}
 	</update>
 	<update id="chartUpd" parameterType="map">
 		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
@@ -127,7 +132,13 @@
 		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="gymInfoUpd" parameterType="map">
-		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
+		UPDATE gym set gym_pw = #{gym_pw}, gym_username = #{gym_username}
+			 , gym_usertell = #{gym_usertell}, gym_tel = #{gym_tel}
+			 , gym_addr = #{gym_addr}, gym_addr_dtl = #{gym_addr_dtl}
+			 , gym_number = #{gym_number}, gym_info = #{gym_info}
+			 , gym_parking = #{gym_parking}, gym_wash = #{gym_wash}
+			 , gym_locker = #{gym_locker}, gym_uniform = #{gym_uniform}
+		 WHERE gym_no=#{gym_no}
 	</update>
 	
 	<delete id="classDel" parameterType="map">

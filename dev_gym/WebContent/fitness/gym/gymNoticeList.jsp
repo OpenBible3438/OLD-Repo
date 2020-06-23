@@ -5,12 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- <%@include file="../../common/bootStrap4UI.jsp" %> --%>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script> 
-<link rel="stylesheet" href="../../css/bootstrap.min.css">
-<link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
-<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 <%
 	String mode = request.getParameter("mode");
 	if(mode!=null && mode.equals("refresh")){
@@ -19,37 +13,68 @@
 		<%
 	}
 %>
-<!-- ******************************************************* -->
-<% session.setAttribute("gym_no", 1); %>
-<!-- 
-*****************************************************
-*************로그인 처리 할 때는 세션 만드는 코드 없애야 함 -->
-<!-- 등록 모달 include -->
-<%@include file="gymNoticeIns.jsp"%>
-<!-- 수정 모달 include -->
-<%@include file="gymNoticeUpd.jsp"%>
+<%-- <%
+	String gym_no = null;
+	if(session.getAttribute("gym_no") != null){
+		gym_no = session.getAttribute("gym_no").toString();
+	}
+	else {
+		gym_no = "1";
+	}
+%> --%>
+<!-- 등록,수정 모달 include -->
+<%@include file="gymNoticeIns_Upd.jsp"%>
 <script type="text/javascript">
-	var updNot_no = 0; //선택한 공지사항을 저장 
+	var updNot_seq = 0; //선택한 공지사항을 저장 
+	var updNot_title = "";
+	var updNot_cont = "";
+	
 	function noticeList(){
 		$('#tb_nList').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.
 	           url: '../gym/jsonGymNoticeList.gym'
 	        });
 	}
 
+	function startIns(){
+		$("#m_title").text("공지사항 등록");
+		$("#cud").val("ins");
+		$("#not_title").text("");
+		$("#not_cont").text("");
+		$("#m_ins_upd").modal({
+			show : true
+		  , keyboard : true
+		  , focus : true
+		})
+	}
+	function startUpd(){
+		$("#m_title").text("공지사항 수정");
+		$("#not_seq").val(updNot_seq);
+		$("#cud").val("upd");
+		$("#not_title").text(updNot_title);
+		$("#not_cont").text(updNot_cont);
+		$("#m_ins_upd").modal({
+			show : true
+		  , keyboard : true
+		  , focus : true
+		})
+	}
+
 	function noticeDel(){
 		location.href = "jsonGymNoticeList.gym?cud=del";
 	}
-	function noticeUpd(){
+	/* function noticeUpd(){
 		alert("등록");
 		//$("#m_upd").hide();
 		$("#f_upd").attr('action', 'jsonGymNoticeList.gym')
 		$("#f_upd").submit();
-	}
-	function noticeINS(){
-		alert("등록");
-		$("#m_ins").hide();
-		$("#f_ins").attr('action', "jsonGymNoticeList.gym")
-		$("#f_ins").submit();
+	} */
+	function noticeSave(){
+		alert("저장");
+		$("#m_ins_upd").modal({
+			show : false
+		});
+		$("#f_ins_upd").attr('action', "jsonGymNoticeList.gym")
+		$("#f_ins_upd").submit();
 	}
 	
 </script>
@@ -89,8 +114,8 @@
 		<!--=========================== 버튼부분 시작 =========================== -->
 		<div id="button">
 			<button type="button" class="btn btn-primary" onClick="noticeList()">전체조회</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_ins">등록</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_upd">수정</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" onClick="startIns()">등록</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" onClick="startUpd()">수정</button>
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_del">삭제</button>
 		</div>
 		<!--=========================== 버튼부분 끝 =========================== -->
@@ -142,14 +167,18 @@
 <!-- =====삭제 modal end=====  -->
 
 <script>
- $(function() {
-    $('#tb_nList').on('click-row.bs.table', function (row, element, field) {
+    $('#tb_nList').on('check.bs.table', function (row, element) {
       //table.bootstrapTable('resetView')
-      alert("row : " + row + ", element : " + element.NOT_TITLE + ", field : " + field);
-      updNot_no = element.NOT_SEQ;
-     // alert("선택한 공지사항 : "+ updNot_no);
-    });
-}) 
+      alert("row : " + row + ", element : " + element.NOT_SEQ);
+      updNot_seq = element.NOT_SEQ;
+      updNot_title = element.NOT_TITLE;
+  	  updNot_cont = element.NOT_CONT;
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#gym_no").val("1");
+	});
 </script>
 </body>
 </html>

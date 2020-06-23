@@ -15,6 +15,7 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
+
 	<div class="collapse navbar-collapse" id="collapsibleNavbar"
 		 style="align-items: center;">
 		<ul class="navbar-nav">
