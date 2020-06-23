@@ -37,10 +37,10 @@ public class MemController implements Controller {
 		switch(cud) {
 			case "ins":{
 				switch(reqName) {
-					case "jsonMemInbody":{
-						result = mLogic.memIns(pMap);
+					case "memInbodyIns":{
+						result = mLogic.memInbodyIns(pMap);
 					}break;
-					case "jsonMemList":{
+					case "memIns":{
 						result = mLogic.memIns(pMap);
 					}break;
 				}
@@ -48,10 +48,10 @@ public class MemController implements Controller {
 			}break;
 			case "upd":{
 				switch(reqName) {
-					case "jsonMemInbody":{
-						result = mLogic.memUpd(pMap);
+					case "memInbodyUpd":{
+						result = mLogic.memInbodyUpd(pMap);
 					}break;
-					case "jsonMemList":{
+					case "memUpd":{
 						result = mLogic.memUpd(pMap);
 					}break;
 				}
@@ -59,10 +59,10 @@ public class MemController implements Controller {
 			}break;
 			case "del":{
 				switch(reqName) {
-					case "jsonMemInbody":{
-						result = mLogic.memDel(pMap);
+					case "memInbodyDel":{
+						result = mLogic.memInbodyDel(pMap);
 					}break;
-					case "jsonMemList":{
+					case "memDel":{
 						result = mLogic.memDel(pMap);
 					}break;
 				}

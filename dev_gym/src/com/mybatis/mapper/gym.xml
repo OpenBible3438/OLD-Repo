@@ -122,7 +122,13 @@
 		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="gymInfoUpd" parameterType="map">
-		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
+		UPDATE gym set gym_pw = #{gym_pw}, gym_username = #{gym_username}
+			 , gym_usertell = #{gym_usertell}, gym_tel = #{gym_tel}
+			 , gym_addr = #{gym_addr}, gym_addr_dtl = #{gym_addr_dtl}
+			 , gym_number = #{gym_number}, gym_info = #{gym_info}
+			 , gym_parking = #{gym_parking}, gym_wash = #{gym_wash}
+			 , gym_locker = #{gym_locker}, gym_uniform = #{gym_uniform}
+		 WHERE gym_no=#{gym_no}
 	</update>
 	
 	<delete id="classDel" parameterType="map">
