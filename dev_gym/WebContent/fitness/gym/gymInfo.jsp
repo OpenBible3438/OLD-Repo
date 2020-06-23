@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!--     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>매장정보조회</title>
+ -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="text/javascript">
@@ -51,9 +53,6 @@
 	    }).open();
 	}
 </script>
-</head>
-	<%@ include file="../../common/bootStrap4UI.jsp" %>
-<body>
 	<div id = "d_info" class="px-3 py-3 m-3">
 		<div class="form-group row">
 		   <h3><b>매장관리</b> / 매장 정보 조회</h3>  <!-- 제목 틀 입니다. -->
@@ -134,5 +133,3 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>

@@ -8,7 +8,7 @@
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
-	<a class="navbar-brand" href="./main.jsp?center=info">HOME</a>
+	<a class="navbar-brand" href="javascript:picks('home')">HOME</a>
 
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#collapsibleNavbar">
@@ -20,12 +20,11 @@
 		<ul class="navbar-nav">
 		<!-- 가이드 부분 -->
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown">가이드</a>
+				<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">가이드</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="javascript:picks('info')">소개</a> 
-					<a class="dropdown-item" href="javascript:picks('')">성격</a> 
-					<a class="dropdown-item" href="javascript:picks('')">기능</a> 
-					<a class="dropdown-item" href="javascript:picks('join')">회원가입</a> 
+					<a class="dropdown-item" href="javascript:picks('attr')">성격</a> 
+					<a class="dropdown-item" href="javascript:picks('func')">기능</a> 
+					<a class="dropdown-item" href="javascript:picks('api')">활용API</a> 
 				</div>
 			</li>
 		<!-- 매장관리 부분 -->
