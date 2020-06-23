@@ -105,7 +105,7 @@
 					} break;
 			case "notice" : { %> <%@ include file="../gym/gymNoticeList.jsp" %> <%
 					} break;
-			case "tch"    : { %> <%@ include file="../teacher/tchInfo.jsp" %>  <%
+			case "tch"    : { %> <%@ include file="../teacher/tchList.jsp" %>  <%
 					} break;
 			case "mem"    : { %> <%@ include file="../member/memInfo.jsp" %> <%
 					} break;
