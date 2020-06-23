@@ -46,7 +46,7 @@ public class TchDao {
 	
 	public int tchIns(Map<String, Object> pMap) {
 		logger.info("TchDao - tchIns 호출");
-		result = sqlSession.insert("tchIns");
+		result = sqlSession.insert("tchIns", pMap);
 		
 		return result;
 	}

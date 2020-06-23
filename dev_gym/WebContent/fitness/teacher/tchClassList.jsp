@@ -3,28 +3,33 @@
 
 			<!-- Modal Body 부분 -->
 			<div class="info_body">
-	<table class="table table-bordered">
+<table class="table table-bordered" data-toggle="table"
+									data-url="../teacher/jsonTchClass.gym"
+									data-click-to-select="true"
+									data-pagination="true">
 		<thead>
 		<tr align="center">
-			<th>종목</th>
-			<th>수업번호</th>
-			<th>수업명</th>
-			<th>구분</th>
-			<th>횟수</th>
-			<th>일수</th>
-			<th>진행상황</th>
+			<th data-field="CLS_INFO">종목</th>
+			<th data-field="CLS_NO">수업번호</th>
+			<th data-field="CLS_NAME">수업명</th>
+			<th data-field="CLS_KIND">구분</th>
+			<th data-field="CLS_CNT">횟수</th>
+			<th data-field="CLS_DAYS">일수</th>
+			<th data-field="CLS_STATE">진행상황</th>
 		</tr>
-	</thead>
+</thead>
+<!--  
 	<tbody>
 	<tr align="center">
-		<td data-field="CLS_INFO"></td>
-		<td data-field="CLS_NO"></td>
-		<td data-field="CLS_NAME"></td>
-		<td data-field="CLS_KIND"></td>
-		<td data-field="CLS_CNT"></td>
-		<td data-field="CLS_DAYS"></td>
-		<td data-field="CLS_STATE"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
 		</tr>
 	</tbody>
+	-->
 	</table>
 </div>
