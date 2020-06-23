@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title></title>
-</head>
-<body>
+
+
+
     <!-- <h2>자세히 보기</h2> -->
     <table border="2" width=350 bordercolor="black" cellspacing="3"
         bordercolor="black">
@@ -59,5 +55,3 @@
                 <td align="center" colspan=2><input type="submit" value="입력">
                     <input type="reset" value="취소"></td>
     </table>
-</body>
-</html>

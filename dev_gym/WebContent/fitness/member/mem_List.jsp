@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <%@include file="../../common/bootStrap4UI.jsp" %>
 <!-- <script>
 	function test() {
@@ -18,12 +14,12 @@
 }
 
 </style>
-</head>
-<body>
+
 <div class="container">
 <h4><b><br>회원관리 | 전체 회원 관리</b></h4>
 <br>
 <!-- 검색부분 -->
+<form>
 	<div class="input-group mb-3">
 		<div class="input-group-prepend">
 	    	<span class="input-group-text">🔍</span>
@@ -87,7 +83,7 @@
 			
 			<!-- Modal Body 부분 -->
 			<div class="modal-body">
-				<%@include file="./memDetail.jsp" %>
+				<%@include file="./mem_Detail.jsp" %>
 			</div>
 			
 			<!-- Modal Footer 부분 -->
@@ -97,7 +93,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 <!-- =======================인바디 보기 모달창 =================================-->
 <div class="modal" id="myInbody">
@@ -111,7 +106,7 @@
 			
 			<!-- Modal Body 부분 -->
 			<div class="modal-body">
-				<%@include file="./memInbodyIns.jsp" %>
+				<%@include file="./mem_InbodyIns.jsp" %>
 			</div>
 			
 			<!-- Modal Footer 부분 -->
@@ -123,8 +118,7 @@
 	</div>
 </div>
 </div>
+</form>
 <!-- 삭제 모달 부분 -->
 
 
-</body>
-</html>
