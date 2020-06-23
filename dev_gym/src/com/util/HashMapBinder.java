@@ -1,6 +1,8 @@
 package com.util;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Map;
 
@@ -24,17 +26,22 @@ public class HashMapBinder {
 	//첨부파일의 한글처리
 	String encType = "utf-8";
 	//첨부파일의 크기
-	int maxSize = 5*1024*1024;//5MB
+	int maxSize = 9*1024*1024;//9MB
 	public HashMapBinder() {}
 	
 	public HashMapBinder(HttpServletRequest req) {
 		this.req = req;
-		realFolder = "C:\\workspace_KHL\\workspace_fitness\\project_fitness\\dev_fitness\\WebContent\\pds";
+		//realFolder = "C:\\workspace_KHL\\workspace_fitness\\project_fitness\\dev_fitness\\WebContent\\pds";
+		realFolder = "C:\\Users\\Public\\Pictures";
 	}
 	public void multiBind(Map<String,Object> pMap) {
 		pMap.clear();
 		try {
 			multi = new MultipartRequest(req, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
+		} catch (IOException e) {
+			System.out.println("binder 호출");
+			binder(pMap);
+			return;
 		} catch (Exception e) {
 			System.out.println("-============================");
 			e.printStackTrace();
@@ -54,20 +61,33 @@ public class HashMapBinder {
 				String fname = files.nextElement();
 				logger.info("fname:"+fname);
 				String filename = multi.getFilesystemName(fname);
-				pMap.put("bs_file", filename);
-				if(filename !=null && filename.length()>1) {
-					file = new File(realFolder+"\\"+filename);
+				if(filename !=null && filename.length()>0) {
+					try {
+						//파일 객체 만들기
+						file = new File(realFolder+"\\"+filename);
+						//file = multi.getFile(realFolder+"\\"+filename);
+						logger.info("file : "+file);
+						//파일 이름 만들기
+						pMap.put("filename", filename);
+						logger.info("filename : "+filename);
+						//파일 사이즈 만들기
+						double size = file.length();
+						size = file.length(); //단위가 바이트 단위file:///C:/git/jsp-source-repo/dev_jsp/WebContent/pds/flower.jpg
+						size = size/(1024.0);
+						size = Double.parseDouble(String.format("%.3f", size));//NUMBER(7,3); 0000.000;
+						pMap.put("filesize", size);
+						logger.info("filesize : "+size);
+						//파일 데이터 만들기
+						FileInputStream fis = new FileInputStream(file);
+						pMap.put("filedata", fis);				
+						logger.info("filedata : "+fis);
+						file.delete();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
-				logger.info("file:"+file);
 			}///////////////end of while
 		}//////////////////end of if
-		//위에서 파일객체가 만들어 졌으니까 파일 크기를 계산가능
-		double size = 0;
-		if(file !=null) {
-			size = file.length();//단위가 바이트 단위 
-			size = size/(1024.0);
-			pMap.put("bs_size", size);
-		}
 	}
 	public void binder(Map<String,Object> pMap) {
 		logger.info("binder 호출");

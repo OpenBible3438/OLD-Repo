@@ -219,6 +219,16 @@ public class GymLogic {
 		setCommit(result);
 		return result;
 	}
+	//매장 회원가입
+	public int gymJoin(Map<String, Object> pMap) {
+		logger.info("GymLogic - gymJoin() 호출");
+		result = gDao.gymJoin(pMap);
+		if(result == 1 && pMap.get("filename")!=null) {
+			result = gDao.gymJoinImg(pMap);
+		}
+		setCommit(result);
+		return result;
+	}
 	
 	public void setCommit(int result) {
 		logger.info("setCommit() 호출"); 

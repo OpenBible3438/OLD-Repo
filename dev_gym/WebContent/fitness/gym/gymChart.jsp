@@ -21,5 +21,6 @@
   <script type="text/javascript">
   	
   </script>
+  <img alt="" src="./img/gym"/>
 </body>
 </html>

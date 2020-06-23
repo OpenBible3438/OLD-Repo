@@ -28,27 +28,34 @@
 	            var addrDoc = JSON.parse(result);
 	            $('#gym_addr').val(addrDoc.address);
 	            $('#gym_zipcode').val(addrDoc.zonecode);
+	            $('#gym_sido').val(addrDoc.sido);
 	        }
 	    }).open();
 	}
 	function joinINS() {
 		alert("회원가입에서 등록 클릭");
-		$('#gym_join').attr('method','post');
-		$('#gym_join').attr('action','./joinResult.jsp');
+		$('#gym_join').attr('action','./gym/joinResult.gym');
 		$('#gym_join').submit();
-		
 	}
 	function login() {
 		alert("로그인");
 		var gym_id = $('#gym_id').val();
 		var gym_pw = $('#gym_pw').val();
 		//alert("gym_id : "+gym_id+", gym_pw : "+ gym_pw);
-		$.ajax({
-			method:'get'
+		$.ajax({  //enctype="multipart/form-data",contentType : false,processData : false
+			method:'post'
 			,data: 'gym_id='+gym_id+'&gym_pw='+gym_pw
 			,url: './gym/jsonLogin.gym'
 			,success: function(data) {
-				alert("data : "+data.trim());
+				//alert("data : "+data.trim());
+				var confirm = data.trim().split("/");
+				if("login" == confirm[0]) {
+					alert(confirm[1]);
+					location.href = "./main/main.jsp"
+				} else {
+					alert(confirm[1]);
+				}
+				
 			}
 		});
 	}
@@ -66,7 +73,9 @@
 			return; 
 		}
 		$.ajax({
-			method:'get'
+			method:'post'
+			,enctype: 'multipart/form-data'
+			,contentType : false
 			,data: 'gym_id='+gym_id
 			,url: './gym/jsonIdConfirm.gym'
 			,success: function(data) {
