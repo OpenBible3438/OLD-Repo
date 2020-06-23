@@ -43,21 +43,21 @@ public class GymController implements Controller {
 			}break;
 			case "ins":{
 				switch(reqName) {
-					case "jsonClassList":{
+					case "classIns":{
 						result = gLogic.classIns(pMap);
 					}break;
-					case "jsonClassMemList":{
+					case "classMemIns":{
 						result = gLogic.classMemIns(pMap);
 					}break;
-					case "jsonGymChartList":{
+					case "chartIns":{
 						result = gLogic.chartIns(pMap);
 						autoSel="true";
 					}break;
-					case "jsonGymContentList":{
+					case "contentIns":{
 						result = gLogic.contentIns(pMap);
 						autoSel="true";
 					}break;
-					case "jsonGymNoticeList":{
+					case "gymNoticeIns":{
 						result = gLogic.gymNoticeIns(pMap);
 						autoSel="true";
 					}break;
@@ -66,22 +66,22 @@ public class GymController implements Controller {
 			}break;
 			case "upd":{
 				switch(reqName) {
-					case "jsonClassList":{
+					case "classUpd":{
 						result = gLogic.classUpd(pMap);
 					}break;
-					case "jsonClassMemList":{
+					case "classMemUpd":{
 						result = gLogic.classMemUpd(pMap);
 					}break;
-					case "jsonGymInfoList":{
+					case "gymInfoUpd":{
 						result = gLogic.gymInfoUpd(pMap);
 					}break;
-					case "jsonGymChartList":{
+					case "chartUpd":{
 						result = gLogic.chartUpd(pMap);
 					}break;
-					case "jsonGymContentList":{
+					case "contentUpd":{
 						result = gLogic.contentUpd(pMap);
 					}break;
-					case "jsonGymNoticeList":{
+					case "gymNoticeUpd":{
 						result = gLogic.gymNoticeUpd(pMap);
 					}break;
 				}
@@ -89,19 +89,19 @@ public class GymController implements Controller {
 			}break;
 			case "del":{
 				switch(reqName) {
-					case "jsonClassList":{
+					case "classDel":{
 						result = gLogic.classDel(pMap);
 					}break;
-					case "jsonClassMemList":{
+					case "classMemDel":{
 						result = gLogic.classMemDel(pMap);
 					}break;
-					case "jsonGymChartList":{
+					case "chartDel":{
 						result = gLogic.chartDel(pMap);
 					}break;
-					case "jsonGymContentList":{
+					case "contentDel":{
 						result = gLogic.contentDel(pMap);
 					}break;
-					case "jsonGymNoticeList":{
+					case "gymNoticeDel":{
 						result = gLogic.gymNoticeDel(pMap);
 					}break;
 				}

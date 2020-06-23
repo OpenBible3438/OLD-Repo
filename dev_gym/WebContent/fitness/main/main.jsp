@@ -20,6 +20,9 @@
 		gym_no = (String)ses.getAttribute("gym_no");
 		gym_name = (String)ses.getAttribute("gym_name");
 	}
+	else {
+		gym_no = "1";
+	}
 %>
 <!DOCTYPE html>
 <html>
