@@ -55,6 +55,7 @@ public class ActionFitness extends HttpServlet {
 			String cud = pMap.get("cud").toString();
 			processResult = controller.process(cud, req, res);//cud가 map에 들어있어서 사실 파라미터에 cud를 넘겨줄 필요가 없다...
 		}
+		
 		else {
 			processResult = controller.process(req, res);
 		}

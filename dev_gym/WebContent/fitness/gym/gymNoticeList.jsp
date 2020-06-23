@@ -34,8 +34,8 @@
 		$('#tb_nList').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.
 	           url: '../gym/jsonGymNoticeList.gym'
 	        });
-			
 	}
+
 	function noticeDel(){
 		location.href = "jsonGymNoticeList.gym?cud=del";
 	}

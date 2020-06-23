@@ -5,7 +5,10 @@
 	<resultMap id="gymLogin" type="map"/>
 <!-- ======================= GYM ======================= -->
 	<select id="getClassList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+	SELECT rownum, cls.cls_no, cls.cls_name, cls.cls_kind, cls.cls_cnt, cls.cls_days, cls.cls_s_date, cls.cls_e_date, cls.cls_price, cls.cls_state, tch.tch_name
+	  FROM class  cls, teacher tch 
+	 WHERE cls.tch_no = tch.tch_no
+	
 	</select>
 	<select id="getClassDetail" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
@@ -16,7 +19,6 @@
 	<select id="getNoticeList" parameterType="map" resultType="map">
 		SELECT not_seq, not_title, not_cont, gym_no
 		  FROM notice
-		 ORDER BY gym_no
 		<where>
 			<if test="gym_no!=null and gym_no.length>0">
 				AND gym_no = #{gym_no}
@@ -28,6 +30,7 @@
 				AND not_cont = #{not_cont}
 			</if>
 		</where>
+		 ORDER BY gym_no
 	</select>
 	<select id="getChartList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
