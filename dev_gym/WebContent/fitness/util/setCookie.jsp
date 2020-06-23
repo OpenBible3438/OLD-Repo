@@ -3,9 +3,10 @@
 <%
 	String center = request.getParameter("center");
 	String pick = null;
+	/*
 	//부분 갱신 될 url 매핑
 	switch(center) {
-		case "null"   : /* 쿠키가 없을 때(초기화면) */ 
+		case "null"   : // 쿠키가 없을 때(초기화면)  
 		case "info"   : { pick = "../info/info.jsp?mode=info";  } break;
 		case "gym"    : { pick = "../gym/gymInfo.jsp";          } break;
 		case "chart"  : { pick = "../gym/gymChart.jsp";         } break;
@@ -17,6 +18,7 @@
 		case "ibd"    : { pick = "../member/memInbodyList.jsp"; } break;
 		case "cls"    : { pick = "../class/classInfo.jsp";      } break;
 	}
+	*/
 	//center를 쿠키에 저장
 	//다시 main.jsp로 이동하더라고 쿠키에 저장하면 마지막으로 보고있는 화면을 보여준다.
 	if("home".equals(center)) {

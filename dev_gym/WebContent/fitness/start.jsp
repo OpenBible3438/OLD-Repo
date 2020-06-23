@@ -216,7 +216,6 @@
 	<%@ include file="./join.jsp" %>
 	<%-- <%@ include file="./gymAddr.jsp" %> --%>
 
-
 </body>
 </html>
 			
