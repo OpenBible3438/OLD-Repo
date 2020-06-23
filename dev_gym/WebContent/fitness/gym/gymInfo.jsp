@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!--     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>매장정보조회</title>
+ -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <script type="text/javascript">
+	var gym_no = <%=gym_no%>
 	var gym_id = "";
 	var gym_username= "";
 	var gym_usertell = "";
@@ -69,12 +73,9 @@
 	    }).open();
 	}
 </script>
-</head>
-	<%@ include file="../../common/bootStrap4UI.jsp" %>
-<body>
 	<div id = "d_info" class="px-3 py-3 m-3">
-		<div class="form-group row">
-		   <h3 class="w-25"><b>매장관리</b> / 매장 정보 조회</h3>  <!-- 제목 틀 입니다. -->
+		<div class="form-group row form-inline">
+		   <h3><b>매장관리</b> / 매장 정보 조회</h3>  <!-- 제목 틀 입니다. -->
 		   <div class="w-50"></div>
 		   <button type="button" class="btn btn-primary" onClick="infoUPD()">수정</button>
 	   	</div>
@@ -155,11 +156,13 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$.ajax({
-			url : "../gym/jsonGymInfo.gym"
+			url : "../gym/jsonGymInfoList.gym?gym_no="+gym_no
 		  , success : function(result){
-			  var data = JSON.stringify(result);
+			  var data = JSON.stringify(result.trim());
 			  var infoList = JSON.parse(data);
-			  
+			  $("#gym_id").val(infoList.GYM_ID);
+			  alert(infoList.GYM_ID);
+			  alert(infoList);
 		  }
 		});
 	});

@@ -56,10 +56,10 @@ public class CommonLogic {
 //		logger.info(req.getAttribute("gym_no"));
 //		req.getSession().getAttribute("gym_no");
 //		String gym_no = req.getSession().getAttribute("gym_no").toString();
-		String gym_no = "1";
-		logger.info("gym_no : " + gym_no);
-		pMap.put("gym_no", gym_no);
-		logger.info("pMap : " + pMap);
+//		String gym_no = "1";
+//		logger.info("gym_no : " + gym_no);
+//		pMap.put("gym_no", gym_no);
+//		logger.info("pMap : " + pMap);
 	}
 	
 	public void moveMapper(Object processResult) {

@@ -19,15 +19,15 @@
 		<%
 	}
 %>
-<%
+<%-- <%
 	String gym_no = null;
 	if(session.getAttribute("gym_no") != null){
 		gym_no = session.getAttribute("gym_no").toString();
 	}
 	else {
-		gym_no = "0";
+		gym_no = "1";
 	}
-%>
+%> --%>
 <!-- 등록,수정 모달 include -->
 <%@include file="gymNoticeIns_Upd.jsp"%>
 <script type="text/javascript">
@@ -182,7 +182,7 @@
 </script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#gym_no").val("<%=gym_no%>");
+		$("#gym_no").val("1");
 	});
 </script>
 </body>
