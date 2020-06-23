@@ -16,7 +16,7 @@
 		case "tch"    : { pick = "../teacher/tchInfo.jsp";      } break;
 		case "mem"    : { pick = "../member/memInfo.jsp";       } break;
 		case "ibd"    : { pick = "../member/memInbodyList.jsp"; } break;
-		case "cls"    : { pick = "../class/classInfo.jsp";      } break;
+		case "cls"    : { pick = "../class/classList.jsp";      } break;
 	}
 	*/
 	//center를 쿠키에 저장
