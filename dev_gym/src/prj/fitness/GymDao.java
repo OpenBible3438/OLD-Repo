@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
+import oracle.sql.BLOB;
+
 public class GymDao {
 
 	Logger logger = Logger.getLogger(GymDao.class);
@@ -57,8 +59,14 @@ public class GymDao {
 	public List<Map<String, Object>> getClassList(Map<String, Object> pMap) {
 		logger.info("GymDao - getClassList() 호출");
 		List<Map<String, Object>> classList = null;
-		logger.info("progress:"+pMap.get("progress"));//null, p_wait
 		classList = sqlSession.selectList("getClassList", pMap);
+		logger.info("classList.size() : " + classList.size());
+		return classList;
+	}
+	public List<Map<String, Object>> getTchNo(Map<String, Object> pMap) {
+		logger.info("GymDao - getTchNo() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = sqlSession.selectList("getTchNo", pMap);
 		logger.info("classList.size() : " + classList.size());
 		return classList;
 	}
@@ -102,7 +110,41 @@ public class GymDao {
 		logger.info("reviewList.size() : " + reviewList.size());
 		return reviewList;
 	}
-	
+	//매장 이미지 가져오기 
+	public byte[] gymProfImage(Map<String, Object> pMap) {
+		logger.info("GymDao - getProfImage() 호출");
+		byte[] image = null;
+		BLOB blob = sqlSession.selectOne("gymProfImage", pMap);
+		try {
+			image = blob.getBytes(1, (int)blob.length());
+			logger.info("image " + image.length);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return image;
+	}
+	//매장 콘텐츠 사진 가져오기
+	public List<Map<String, Object>> gymContImage(Map<String, Object> pMap) {
+		logger.info("GymDao - gymContImage() 호출");
+		List<Map<String, Object>> contList = null;
+		contList = sqlSession.selectList("gymContImage", pMap);
+		logger.info("contList.size() : " + contList.size());
+		return contList;
+	}
+	// 이미지 가져오기 
+	public byte[] getImages(Map<String, Object> pMap) {
+		logger.info("GymDao - getImages() 호출");
+		byte[] image = null;
+		BLOB blob = sqlSession.selectOne("getImages", pMap);
+		try {
+			image = blob.getBytes(1, (int)blob.length());
+			logger.info("image " + image.length);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return image;
+	}
+
 	//////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////
 	
@@ -231,12 +273,14 @@ public class GymDao {
 		
 		return result;
 	}
+	// 매장 회원가입 
 	public int gymJoin(Map<String, Object> pMap) {
 		logger.info("GymDao - gymJoin() 호출");
 		result = sqlSession.insert("gymJoin", pMap);
 		logger.info("result : " + result);
 		return result;
 	}
+	//매장 이미지 입력
 	public int gymJoinImg(Map<String, Object> pMap) {
 		logger.info("GymDao - gymJoinImg() 호출");
 		result = sqlSession.insert("gymJoinImg", pMap);
@@ -245,6 +289,4 @@ public class GymDao {
 	}
 
 
-	
-	
 }

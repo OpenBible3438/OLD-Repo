@@ -44,7 +44,7 @@
 		min-height: 600px;
 	}
 	
-	/* On small screens, set height to 'auto' for sidenav and grid */
+
 	/* 작은 화면에서 사이드 나비와 그리드의 높이를 '자동'으로 설정  */
 	@media screen and (max-width: 767px) {
 		.sidenav {
@@ -138,8 +138,7 @@
 			default       : { %> <%@ include file="../info/attr.jsp" %> <%
 			        } break;
 				
-		}  
-
+		}
 %>
 		</div>
 <!-- ========================= 오른쪽 자리 ========================= -->
