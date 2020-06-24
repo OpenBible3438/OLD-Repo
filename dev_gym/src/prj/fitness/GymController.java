@@ -146,6 +146,9 @@ public class GymController implements Controller {
 			case "jsonClassList":{
 				selResult = gLogic.getClassList(pMap);
 			}break;
+			case "jsonTeacherNoList":{
+				selResult = gLogic.getTchNo(pMap);
+			}break;
 			case "jsonGymNoticeList":{
 				selResult = gLogic.getNoticeList(pMap);
 			}break;
@@ -165,6 +168,7 @@ public class GymController implements Controller {
 		if(selResult != null) {
 			logger.info("selResult != null");
 			mav.addObject("selResult", selResult);
+			//너가 selResult를 가지고 어디로 갈거니?
 			mav.setViewName(work+"/"+reqName);
 		}
 		else {

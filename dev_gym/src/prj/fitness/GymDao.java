@@ -63,6 +63,13 @@ public class GymDao {
 		logger.info("classList.size() : " + classList.size());
 		return classList;
 	}
+	public List<Map<String, Object>> getTchNo(Map<String, Object> pMap) {
+		logger.info("GymDao - getTchNo() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = sqlSession.selectList("getTchNo", pMap);
+		logger.info("classList.size() : " + classList.size());
+		return classList;
+	}
 
 	public List<Map<String, Object>> getNoticeList(Map<String, Object> pMap) {
 		logger.info("GymDao - getNoticeList() 호출");

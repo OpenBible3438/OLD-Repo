@@ -62,6 +62,13 @@ public class GymLogic {
 		
 		return classList;
 	}
+	public List<Map<String, Object>> getTchNo(Map<String, Object> pMap) {
+		logger.info("GymLogic - getTchNo() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = gDao.getTchNo(pMap);
+		
+		return classList;
+	}
 	
 	public List<Map<String, Object>> getNoticeList(Map<String, Object> pMap) {
 		logger.info("GymLogic - getNoticeList() 호출");
