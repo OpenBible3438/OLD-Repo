@@ -2,35 +2,66 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.memberMapper">
 <!-- ======================= Member ======================= -->
-	<select id="getMemDetail" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
-	</select>
-	<select id="getMemInbody" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
-	</select>
 	<select id="getMemList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		SELECT rownum rno, mem_no, mem_id, mem_name, mem_nickname, mem_tel, mem_joindate
+		 FROM  member
+		 <where>
+		 <if test="mem_name != null">
+		 		AND mem_no = #{mem_no}
+		 </if>
+		 </where>
+		 ORDER BY mem_no asc
+	</select>
+	<select id="getMemDetail" parameterType="map" resultType="map">
+		SELECT m.mem_no, mem_name, mem_id, mem_nickname, mem_gender, mem_tel
+     	     , mem_addr, mem_addr_dtl, mem_g_weight, pay_no     
+ 	     FROM  member m, pay p
+  		 WHERE m.mem_no = p.mem_no
+	</select>
+	<insert id="memInbodyList" parameterType="map">
+		SELECT rownum rno, mem_profimg, mem_no, mem_name, inbd_seq, mem_joindate
+		 FROM  member
+		 <where>
+		 <if test="mem_name != null">
+		 		AND mem_no = #{mem_no}
+		 </if>
+		 </where>
+	</insert>
+	<select id="getMemInbody" parameterType="map" resultType="map">
+		SELECT mem_no, mem_name, mem_id 
+ 		 FROM  member
 	</select>
 	
 	<insert id="memInbodyIns" parameterType="map">
-		INSERT into member values('1', '1', '1')
+		INSERT INTO member(mem_no,mem_name, mem_id) 
+		             		VALUES(
+		                             #{mem_no}
+		                            ,#{mem_name}
+		                            ,#{mem_id}		                            
+		                          )
 	</insert>
-	<insert id="memIns" parameterType="map">
-		INSERT into member values('1', '1', '1')
-	</insert>
-	
 	<update id="memInbodyUpd" parameterType="map">
 		UPDATE member set mem_name='1' WHERE mem_id='1'
-	</update>
-	<update id="memUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
+		UPDATE member
+		        SET bm_step = bm_step+1
+		  WHERE bm_group=#{bm_group}
+		       AND bm_step > #{bm_step}
 	</update>
 	
 	<delete id="memInbodyDel" parameterType="map">
 		DELETE member where mem_id = '5'
+		DELETE FROM board_master_t WHERE bm_no=#{bm_no}
 	</delete>
+	<!--
+	<update id="memUpd" parameterType="map">
+		UPDATE member set mem_name='1' WHERE mem_id='1'
+	</update>
+	 <insert id="memIns" parameterType="map">
+		INSERT into member values('1', '1', '1')
+	</insert> -->
+	<!-- 
 	<delete id="memDel" parameterType="map">
 		DELETE member where mem_id = '5'
-	</delete>
+	</delete> -->
 	
 </mapper>

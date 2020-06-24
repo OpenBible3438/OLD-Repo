@@ -1,12 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+			<!-- Modal Body 부분 -->
+			<div class="info_body">
+<table class="table table-bordered" data-toggle="table"
+									data-url="../teacher/jsonTchClass.gym"
+									data-click-to-select="true"
+									data-pagination="true">
+		<thead>
+		<tr align="center">
+			<th data-field="CLS_INFO">종목</th>
+			<th data-field="CLS_NO">수업번호</th>
+			<th data-field="CLS_NAME">수업명</th>
+			<th data-field="CLS_KIND">구분</th>
+			<th data-field="CLS_CNT">횟수</th>
+			<th data-field="CLS_DAYS">일수</th>
+			<th data-field="CLS_STATE">진행상황</th>
+		</tr>
+</thead>
+<!--  
+	<tbody>
+	<tr align="center">
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		</tr>
+	</tbody>
+	-->
+	</table>
+</div>
