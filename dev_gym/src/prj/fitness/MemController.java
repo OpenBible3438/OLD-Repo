@@ -17,7 +17,7 @@ public class MemController implements Controller {
 	String work = null;
 	String reqName = null; 
 	int result = 0;
-	String autoSel = "false";
+	String autoSel = "false";//테이블 자동 검색 - true, false:수동
 	
 	public MemController(Map<String, Object> pMap) {
 		logger.info("MemController 생성자 호출");
@@ -40,7 +40,11 @@ public class MemController implements Controller {
 					case "memInbodyIns":{
 						result = mLogic.memInbodyIns(pMap);
 					}break;
-					case "memIns":{
+
+					case "memIns":
+
+					case "jsonMemList":{
+						logger.info("전체 조회 호출 성공:");
 						result = mLogic.memIns(pMap);
 					}break;
 				}
@@ -96,6 +100,7 @@ public class MemController implements Controller {
 		}
 		if(selResult != null) {
 			logger.info("selResult != null");
+			mLogic.getMemList(pMap);
 			mav.addObject("selResult", selResult);
 			mav.setViewName(work+"/"+reqName);
 		}

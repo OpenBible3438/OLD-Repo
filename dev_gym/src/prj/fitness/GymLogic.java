@@ -1,5 +1,7 @@
 package prj.fitness;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -107,8 +109,28 @@ public class GymLogic {
 		
 		return reviewList;
 	}
-	
-	
+	// 매장 프로필 사진 가져오기
+	public byte[] gymProfImage(Map<String, Object> pMap) {
+		logger.info("GymLogic - getProfImage() 호출");
+		byte[] image = null;
+		image = gDao.gymProfImage(pMap);
+		return image;
+	}
+	// 매장 콘텐츠 사진 가져오기
+	public List<Map<String, Object>> gymContImage(Map<String, Object> pMap) {
+		logger.info("GymLogic - gymContImage() 호출");
+		List<Map<String, Object>> contList = null;
+		contList = gDao.gymContImage(pMap);
+		return contList;
+	}
+	// 이미지 가져오기
+	public byte[] getImages(Map<String, Object> pMap) {
+		logger.info("GymLogic - getImages() 호출");
+		byte[] image = null;
+		image = gDao.getImages(pMap);
+		return image;
+	}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -232,11 +254,22 @@ public class GymLogic {
 		result = gDao.gymJoin(pMap);
 		if(result == 1 && pMap.get("filename")!=null) {
 			result = gDao.gymJoinImg(pMap);
+			if(result == 1) {
+				try {
+					((FileInputStream)pMap.get("filedata")).close();
+					if(((File)pMap.get("file")).delete()) {
+						logger.info("파일삭제 성공");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
+		
 		setCommit(result);
 		return result;
 	}
-	
+
 	public void setCommit(int result) {
 		logger.info("setCommit() 호출"); 
 		if(result>0) {
@@ -250,6 +283,8 @@ public class GymLogic {
 			mbMgr.clossSession(sqlSession);
 		}
 	}
+
+
 
 
 }

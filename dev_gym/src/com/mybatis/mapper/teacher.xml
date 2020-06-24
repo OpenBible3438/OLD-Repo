@@ -3,18 +3,24 @@
 <mapper namespace="com.mybatis.mapper.teacherMapper">
 <!-- ======================= Teacher ======================= -->
 	<select id="getTchClassList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		SELECT cls_info,cls_no,cls_name,cls_kind,cls_cnt,cls_days,cls_state
+		FROM class
 	</select>
 	<select id="getTchProfile" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
+	
+	<!-- 전체조회 -->
 	<select id="getTchList" parameterType="map" resultType="map">
-		SELECT tch_no, gym_no, tch_id, tch_pw, tch_name, tch_tel, tch_addr, tch_addr_dtl, tch_zipcode, tch_gender FROM teacher
+		SELECT tch_no,gym_no,tch_id,tch_pw, tch_name,
+                     tch_tel, tch_addr, tch_addr_dtl, tch_zipcode,tch_gender
+		FROM teacher
 	</select>
 	
+	<!-- 강사등록 인서트 -->
 	<insert id="tchIns" parameterType="map">
-		INSERT into member values('1', '1', '1')
-	</insert>
+	INSERT into member values('1', '1', '1')
+	</insert> 
 
 	<update id="tchUpd" parameterType="map">
 		UPDATE member set mem_name='1' WHERE mem_id='1'

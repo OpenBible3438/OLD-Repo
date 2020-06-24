@@ -3,6 +3,13 @@
 <mapper namespace="com.mybatis.mapper.gymMapper">
 
 	<resultMap id="gymLogin" type="map"/>
+	<resultMap id="getImage" type="object">
+		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
+	</resultMap>
+	<resultMap id="getCont" type="map">
+		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
+		<result property="filesize" column="FILESIZE" jdbcType="DOUBLE"/>
+	</resultMap>
 <!-- ======================= GYM ======================= -->
 	<select id="getClassList" parameterType="map" resultType="map">
 	SELECT rownum, cls.cls_no, cls.cls_name, cls.cls_kind, cls.cls_cnt, cls.cls_days, cls.cls_s_date, cls.cls_e_date, cls.cls_price, cls.cls_state, tch.tch_name
@@ -24,20 +31,20 @@
 		SELECT 1 FROM dual
 	</select>
 	<select id="getNoticeList" parameterType="map" resultType="map">
-		SELECT not_seq, not_title, not_cont, gym_no
+		SELECT rownum, notice_no, not_title, not_cont, gym_no
 		  FROM notice
 		<where>
 			<if test="gym_no!=null and gym_no.length>0">
 				AND gym_no = #{gym_no}
 			</if>
 			<if test="not_title!=null and not_title.length>0">
-				AND not_title = #{not_title}
+				AND not_title LIKE '%'||#{not_title}||'%'
 			</if>
 			<if test="not_cont!=null and not_cont.length>0">
-				AND not_cont = #{not_cont}
+				AND not_cont LIKE '%'||#{not_cont}||'%'
 			</if>
 		</where>
-		 ORDER BY gym_no
+		 ORDER BY notice_no DESC
 	</select>
 	<select id="getChartList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
@@ -77,28 +84,55 @@
 	               SELECT count(gym_id)
 	                 FROM gym
 	                WHERE rownum=1
-	                  AND gym_id = #{gym_id}),0) as ok
+	                  AND gym_id = #{gym_id} ),0) as ok
 	  	  FROM dual
 	</select>
+	<!-- 매장 프로필 사진 가져오기  -->
+	<select id="gymProfImage" parameterType="map" resultMap="getImage">
+		SELECT filedata  
+		  FROM images
+		 WHERE type = 'gym'
+		   AND typecode = 5 
+	</select><!-- #{gym_no} -->
+	
+	<!-- 매장 콘텐츠 정보 가져오기  -->
+	<select id="gymContImage" parameterType="map" resultMap="getCont">
+		SELECT filename, filesize, filedata
+		  FROM images
+		 WHERE type = 'gym'
+		   AND typecode = 6 
+	</select><!-- #{gym_no} -->
+	
+	<!-- 이미지 가져오기  -->
+	<select id="getImages" parameterType="map" resultMap="getImage">
+		SELECT filedata
+		  FROM images
+		 WHERE file_seq = #{file_seq}
+	</select><!-- #{file_seq} -->
 	
 	<!-- 매장 회원가입 인서트 -->
 	<insert id="gymJoin" parameterType="map">
 		INSERT INTO gym (gym_no 
 		                ,gym_id ,gym_pw ,gym_username ,gym_usertell
                         ,gym_name ,gym_tel     ,gym_addr   ,gym_addr_dtl ,gym_zipcode
-                        ,gyn_number ,gym_info    ,gym_lat    ,gym_lng      
+                        ,gym_number ,gym_info    ,gym_lat    ,gym_lng      
                         ,gym_parking ,gym_wash   ,gym_uniform ,gym_locker ,gym_like )
-                  VALUES(8
-                        ,'hjho12' ,'123' ,'허준' ,'010-8888-7888' 
-                        ,'여기내짐'   ,'02-888-8888' ,'서울 시 금천구 독산동' ,'허준빌딩' ,08454
-                        ,'1515-485' ,'매장소개입니다.' ,34.1515115 ,127.5486446
-                        ,0  ,0  ,0  ,0  ,0 )
-		
+                  VALUES((SELECT max(gym_no)+1 FROM gym)
+                        ,#{j_gym_id} ,#{j_gym_pw} ,#{gym_username} ,#{gym_usertell} 
+                        ,#{gym_name}   ,#{gym_tel} ,#{gym_addr} ,#{gym_addr_dtl} ,#{gym_zipcode}
+                        ,#{gym_number} ,#{gym_info} ,34.1515115151 ,127.5486446215
+                        ,#{gym_parking}  ,#{gym_wash}  ,#{gym_uniform}  ,#{gym_locker}  ,0 )
 	</insert>
-	<!-- 매장 회원가입 프로필사진 인서트 -->
+	<!-- 매장 회원가입 프로필사진 인서트 --><!-- (SELECT max(file_seq)+1 FROM images) -->
 	<insert id="gymJoinImg" parameterType="map">
-		INSERT INTO gym_profimg(fileno, filename, filesize, filedata, gym_no)
-                         VALUES(1, #{filename},#{filesize},#{filedata, jdbcType=LONGVARBINARY} ,8)
+		INSERT INTO images(file_seq
+		                  ,filename  ,filesize
+		                  ,filedata
+		                  ,type ,typecode)
+                    VALUES((SELECT max(file_seq)+1 FROM images)
+                          ,#{filename}  ,#{filesize}
+                          ,#{filedata   ,jdbcType=LONGVARBINARY} 
+                          ,#{type}      ,6 )
 	</insert>
 	<insert id="classIns" parameterType="map">
 		INSERT INTO class(evt_seq, gym_no, cls_name, tch_no, type_no, cls_kind, cls_s_date, cls_e_date, cls_days, cls_cnt, cls_info, cls_price, cls_grcode, cls_state)
@@ -108,7 +142,7 @@
 		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="gymNoticeIns" parameterType="map">
-		INSERT into notice (not_seq, not_title, not_cont, gym_no) values(seq_notice.nextval, #{not_title}, #{not_cont}, '1')
+		INSERT into notice (notice_no, not_seq, not_title, not_cont, gym_no) values(func_getnoticeno(#{gym_no}), seq_notice.nextval, #{not_title}, #{not_cont}, #{gym_no})
 	</insert>
 	<insert id="chartIns" parameterType="map">
 		INSERT into insert_test values('1', '1', '1')
@@ -150,7 +184,9 @@
 		DELETE insert_test where mem_id = '5'
 	</delete>
 	<delete id="gymNoticeDel" parameterType="map">
-		DELETE insert_test where mem_id = '5'
+		DELETE notice
+		WHERE gym_no = #{gym_no}
+		  AND notice_no = #{notice_no}
 	</delete>
 	<delete id="chartDel" parameterType="map">
 		DELETE insert_test where mem_id = '5'
