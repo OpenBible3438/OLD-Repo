@@ -5,8 +5,14 @@
 	<resultMap id="gymLogin" type="map"/>
 <!-- ======================= GYM ======================= -->
 	<select id="getClassList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+	SELECT rownum, cls.cls_no, cls.cls_name, cls.cls_kind, cls.cls_cnt, cls.cls_days, cls.cls_s_date, cls.cls_e_date, cls.cls_price, cls.cls_state, tch.tch_name
+	  FROM class  cls, teacher tch 
+	 WHERE cls.tch_no = tch.tch_no
+	 <if test="progress!=null and progress.length > 0 ">
+	 	AND cls.cls_state = #{progress}
+	 </if>
 	</select>
+	
 	<select id="getClassDetail" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
@@ -14,7 +20,8 @@
 		SELECT 1 FROM dual
 	</select>
 	<select id="getNoticeList" parameterType="map" resultType="map">
-		SELECT not_seq, not_title, not_cont, gym_no FROM notice
+		SELECT rownum, notice_no, not_title, not_cont, gym_no
+		  FROM notice
 		<where>
 			<if test="gym_no!=null and gym_no.length>0">
 				AND gym_no = #{gym_no}
@@ -26,7 +33,7 @@
 				AND not_cont LIKE '%'||#{not_cont}||'%'
 			</if>
 		</where>
-		 ORDER BY gym_no
+		 ORDER BY notice_no DESC
 	</select>
 	<select id="getChartList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
@@ -90,13 +97,14 @@
                          VALUES(1, #{filename},#{filesize},#{filedata, jdbcType=LONGVARBINARY} ,8)
 	</insert>
 	<insert id="classIns" parameterType="map">
-		INSERT into insert_test values('1', '1', '1')
+		INSERT INTO class(evt_seq, gym_no, cls_name, tch_no, type_no, cls_kind, cls_s_date, cls_e_date, cls_days, cls_cnt, cls_info, cls_price, cls_grcode, cls_state)
+			   VALUES(1,#{ins_gym_no},#{ins_cls_name},#{ins_tch_no},#{ins_type_no},#{ins_cls_kind},#{ins_cls_s_date},#{ins_cls_e_date},#{ins_cls_days},#{ins_cls_cnt},#{ins_cls_info},#{ins_cls_price},#{ins_cls_grcode},#{ins_cls_state})
 	</insert>
 	<insert id="classMemIns" parameterType="map">
 		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="gymNoticeIns" parameterType="map">
-		INSERT into notice (not_seq, not_title, not_cont, gym_no) values(seq_notice.nextval, #{not_title}, #{not_cont}, '1')
+		INSERT into notice (notice_no, not_seq, not_title, not_cont, gym_no) values(func_getnoticeno(#{gym_no}), seq_notice.nextval, #{not_title}, #{not_cont}, #{gym_no})
 	</insert>
 	<insert id="chartIns" parameterType="map">
 		INSERT into insert_test values('1', '1', '1')
@@ -138,7 +146,9 @@
 		DELETE insert_test where mem_id = '5'
 	</delete>
 	<delete id="gymNoticeDel" parameterType="map">
-		DELETE insert_test where mem_id = '5'
+		DELETE notice
+		WHERE gym_no = #{gym_no}
+		  AND notice_no = #{notice_no}
 	</delete>
 	<delete id="chartDel" parameterType="map">
 		DELETE insert_test where mem_id = '5'

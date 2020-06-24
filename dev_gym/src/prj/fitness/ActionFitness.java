@@ -28,7 +28,6 @@ public class ActionFitness extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.info("doPost() 호출");
-		req.setCharacterEncoding("utf-8");
 		doService(req, res);
 	}
 	
@@ -56,6 +55,7 @@ public class ActionFitness extends HttpServlet {
 			String cud = pMap.get("cud").toString();
 			processResult = controller.process(cud, req, res);//cud가 map에 들어있어서 사실 파라미터에 cud를 넘겨줄 필요가 없다...
 		}
+		
 		else {
 			processResult = controller.process(req, res);
 		}

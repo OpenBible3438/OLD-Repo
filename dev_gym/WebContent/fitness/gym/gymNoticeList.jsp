@@ -20,7 +20,7 @@
 <!-- 등록,수정 모달 include -->
 <%@include file="gymNoticeIns_Upd.jsp"%>
 <script type="text/javascript">
-	var choNot_seq = 0; //선택한 공지사항을 저장 
+	var choNotic_no = 0; //선택한 공지사항을 저장 
 	var choNot_title = "";
 	var choNot_cont = "";
 	
@@ -49,10 +49,9 @@
 	}
 	function startUpd(){
 		$("#m_title").text("공지사항 수정");
-		$("#not_seq").val(updNot_seq);
 		$("#cud").val("upd");
-		$("#not_title").text(updNot_title);
-		$("#not_cont").text(updNot_cont);
+		$("#not_title").text(choNot_title);
+		$("#not_cont").text(choNot_cont);
 		$("#m_ins_upd").modal({
 			show : true
 		  , keyboard : true
@@ -60,21 +59,20 @@
 		})
 	}
 	function noticeDel(){
-		location.href = "jsonGymNoticeList.gym?cud=del";
+		location.href = "gymNoticeDel.gym?cud=del&notice_no="+choNotice_no;
 	}
-	/* function noticeUpd(){
-		alert("등록");
-		//$("#m_upd").hide();
-		$("#f_upd").attr('action', 'jsonGymNoticeList.gym')
-		$("#f_upd").submit();
-	} */
 	function noticeSave(){
 		alert("저장");
 		$("#m_ins_upd").modal({
 			show : false
 		});
-		$("#f_ins_upd").attr('action', "jsonGymNoticeList.gym")
-		$("#f_ins_upd").submit();
+		if($("#cud").val()=="ins"){
+			$("#f_ins_upd").attr('action', "../gym/gymNoticeIns.gym")
+		}
+		else if($("#cud").val()=="upd"){
+			$("#f_ins_upd").attr('action', "../gym/gymNoticeUpd.gym")
+		}
+			$("#f_ins_upd").submit();
 	}
 	
 </script>
@@ -83,7 +81,7 @@
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!--=========================== 전체 시작 ===========================-->
-<div style="padding: 20px;">
+<div style="padding: 20px; margin-bottom: 50px">
    <h3><b>매장관리</b> / 공지사항</h3>   <!-- 제목 틀 입니다. -->
    <hr>
     <!--=========================== 내용 시작 ===========================-->
@@ -123,12 +121,13 @@
 		 data-toggle="table"
 		 data-url = "../gym/jsonGymNoticeList.gym"
   		 data-click-to-select="true"
+  		 data-single-select="true"
  		 data-pagination="true"
 		>
 			<thead>
 				<tr>
 					<th data-checkbox=true>체크</th>
-					<th data-field="NOT_SEQ">번호</th>
+					<th data-field="NOTICE_NO">번호</th>
 					<th data-field="NOT_TITLE">제목</th>
 					<th data-field="NOT_CONT">내용</th>
 				</tr>
@@ -167,8 +166,8 @@
 <script>
     $('#tb_nList').on('check.bs.table', function (row, element) {
       //table.bootstrapTable('resetView')
-      alert("row : " + row + ", element : " + element.NOT_SEQ);
-      choNot_seq = element.NOT_SEQ;
+     // alert("row : " + row + ", element : " + element.NOT_SEQ);
+      choNotice_no = element.NOTICE_NO;
       choNot_title = element.NOT_TITLE;
   	  choNot_cont = element.NOT_CONT;
 	});

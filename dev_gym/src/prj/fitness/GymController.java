@@ -16,6 +16,7 @@ public class GymController implements Controller {
 	GymLogic gLogic = null;
 	String work = null;
 	String reqName = null;
+	String progress = null;
 	int result = 0;
 	String autoSel = "false";
 	
@@ -38,7 +39,7 @@ public class GymController implements Controller {
 		switch(cud) {
 			case "join":{
 				result = gLogic.gymJoin(pMap);
-				autoSel="false";			
+				autoSel="false";
 				path = "redirect:../"+reqName+":"+result+":"+autoSel;
 			}break;
 			case "ins":{
@@ -115,6 +116,9 @@ public class GymController implements Controller {
 	@Override
 	public ModelAndView process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		logger.info("GymController - mav 타입 process 호출");
+		//classList 조건 검색
+		String progress = req.getParameter("progress");
+		logger.info("progress : " + progress);
 		ModelAndView mav = new ModelAndView(req, res);
 		Object selResult = null;
 		switch(reqName){

@@ -57,6 +57,7 @@ public class GymDao {
 	public List<Map<String, Object>> getClassList(Map<String, Object> pMap) {
 		logger.info("GymDao - getClassList() 호출");
 		List<Map<String, Object>> classList = null;
+		logger.info("progress:"+pMap.get("progress"));//null, p_wait
 		classList = sqlSession.selectList("getClassList", pMap);
 		logger.info("classList.size() : " + classList.size());
 		return classList;
