@@ -136,7 +136,7 @@
 			 , gym_number = #{gym_number}, gym_info = #{gym_info}
 			 , gym_parking = #{gym_parking}, gym_wash = #{gym_wash}
 			 , gym_locker = #{gym_locker}, gym_uniform = #{gym_uniform}
-		 WHERE gym_no=#{gym_no}
+		 WHERE gym_no = #{gym_no}
 	</update>
 	
 	<delete id="classDel" parameterType="map">

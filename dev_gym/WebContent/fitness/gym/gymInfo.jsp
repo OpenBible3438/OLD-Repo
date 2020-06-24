@@ -39,7 +39,7 @@
 	}
 	function infoUPD_save(){
 		alert("저장");
-		$("#f_infoUpd").attr('action', "jsonGymInfoList.gym")
+		$("#f_infoUpd").attr('action', "gymInfoUpd.gym")
 		$("#f_infoUpd").submit();
 	}
 	function pw_confirm() {
