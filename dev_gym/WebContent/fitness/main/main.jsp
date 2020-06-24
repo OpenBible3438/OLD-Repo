@@ -116,7 +116,7 @@
 			default       : { %> <%@ include file="../info/attr.jsp" %> <%
 			        } break;
 				
-		}
+		}  
 
 %>
 		</div>

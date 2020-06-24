@@ -16,6 +16,7 @@ public class GymController implements Controller {
 	GymLogic gLogic = null;
 	String work = null;
 	String reqName = null;
+	String progress = null;
 	int result = 0;
 	String autoSel = "false";
 	
@@ -43,7 +44,7 @@ public class GymController implements Controller {
 			}break;
 			case "ins":{
 				switch(reqName) {
-					case "jsonClassList":{
+					case "classIns":{
 						result = gLogic.classIns(pMap);
 					}break;
 					case "jsonClassMemList":{
@@ -115,6 +116,9 @@ public class GymController implements Controller {
 	@Override
 	public ModelAndView process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		logger.info("GymController - mav 타입 process 호출");
+		//classList 조건 검색
+		String progress = req.getParameter("progress");
+		logger.info("progress : " + progress);
 		ModelAndView mav = new ModelAndView(req, res);
 		Object selResult = null;
 		switch(reqName){
