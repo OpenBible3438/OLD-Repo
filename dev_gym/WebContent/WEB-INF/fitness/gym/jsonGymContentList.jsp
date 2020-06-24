@@ -23,10 +23,10 @@
 			<a class="navbar-brand"><%=map.get("GYM_CONT_SEQ") %>/<%=map.get("GYM_NO") %></a>
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" onClick="btnUpd()" data-toggle="modal" data-target="#contentUpdModal">수정</a>
+					<a class="nav-link" onClick="btnUpd(<%=map.get("GYM_CONT_SEQ") %>)" data-toggle="modal" data-target="#contentUpdModal">수정</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" onClick="btnDel()" data-toggle="modal" data-target="#contentDelModal">삭제</a>
+					<a class="nav-link" onClick="btnDel(<%=map.get("GYM_CONT_SEQ") %>)" data-toggle="modal" data-target="#contentDelModal">삭제</a>
 				</li>
 			</ul>
 		</nav>
@@ -41,10 +41,14 @@
 					<img src="../../images/contentTestImg.jpg" width="100%">
 				</div>
 				<div class="col-sm-8">
-					<p style="font-size:20px;"><b><%=map.get("GYM_CONTENTS") %></b></p>
+					<p style="font-size:20px;"><b id="getContents"><%=map.get("GYM_CONTENTS") %></b></p>
+					<br>
+					<br>
+					<br>
+					<br>
 					<p>
 						<button type="button" class="btn btn-primary">좋아요<span class="badge"><%=map.get("GYM_CONT_LIKE") %></span></button>
-						<i style="font-size:20px; float:right;"><b>2020-06-12</b></i>
+						<i style="font-size:20px; float:right;"><b><%=map.get("GYM_CONT_DATE") %></b>/<b><%=map.get("GYM_CONT_TIME") %></b></i>
 					</p>
 				</div>
 			</div>

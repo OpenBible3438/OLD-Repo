@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<body>
 <!-- 등록 Modal -->
 <div class="modal" id="contentInsModal">
 	<div class="modal-dialog">
@@ -34,9 +33,7 @@
 </div>
 
 <script type="text/javascript">
-	function contentIns(){
-		$("#cud").val($(this).data())
-	}
+	
 	//파일 첨부시 이미지 로드 하기 
     function readURL(input) {
         if (input.files && input.files[0]) {

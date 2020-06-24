@@ -152,6 +152,10 @@ public class GymController implements Controller {
 			case "jsonGymReviewList":{
 				selResult = gLogic.getReviewList(pMap);
 			}break;
+			case "jsonGymContentList2":{ 
+				//편성경 추가
+				selResult = gLogic.getContentList(pMap);
+			}break;
 		}
 		if(selResult != null) {
 			logger.info("selResult != null");
