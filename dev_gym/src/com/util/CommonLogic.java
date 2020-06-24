@@ -98,7 +98,7 @@ public class CommonLogic {
 				}
 			}
 			else {
-				logger.info("forward");
+				logger.info("forward"+pageMove[1]);
 				RequestDispatcher view = req.getRequestDispatcher(pageMove[1]);
 				view.forward(req, res);
 			}

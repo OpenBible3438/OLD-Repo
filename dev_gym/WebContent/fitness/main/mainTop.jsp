@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
 <!-- --> 
 <div class="jumbotron text-center" style="padding-top:0; padding-bottom: 0;
                                           margin-bottom:0; height: 120px;">
@@ -36,8 +36,8 @@
 					<a class="dropdown-item" href="javascript:picks('content')">컨텐츠관리</a> 
 					<a class="dropdown-item" href="javascript:picks('review')">매장후기</a> 
 					<a class="dropdown-item" href="javascript:picks('notice')">공지사항</a> 
-				</div>
-			</li>
+				</div> 
+			</li>  
 		<!-- 강사관리 부분 -->	
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown">강사관리</a>
