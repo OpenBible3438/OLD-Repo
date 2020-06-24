@@ -39,7 +39,7 @@ public class GymController implements Controller {
 		switch(cud) {
 			case "join":{
 				result = gLogic.gymJoin(pMap);
-				autoSel="false";			
+				autoSel="false";
 				path = "redirect:../"+reqName+":"+result+":"+autoSel;
 			}break;
 			case "ins":{

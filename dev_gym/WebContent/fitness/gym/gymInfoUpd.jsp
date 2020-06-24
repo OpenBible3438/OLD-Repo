@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="gym_username" class="col-sm-2"><b>이름 </b></label>
+				<label for="gym_username" class="col-sm-2"><b>이름</b></label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control"
 						   id="gym_username" name="gym_username">

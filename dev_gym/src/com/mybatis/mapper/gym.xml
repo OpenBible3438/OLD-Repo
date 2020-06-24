@@ -20,20 +20,20 @@
 		SELECT 1 FROM dual
 	</select>
 	<select id="getNoticeList" parameterType="map" resultType="map">
-		SELECT not_seq, not_title, not_cont, gym_no
+		SELECT rownum, notice_no, not_title, not_cont, gym_no
 		  FROM notice
 		<where>
 			<if test="gym_no!=null and gym_no.length>0">
 				AND gym_no = #{gym_no}
 			</if>
 			<if test="not_title!=null and not_title.length>0">
-				AND not_title = #{not_title}
+				AND not_title LIKE '%'||#{not_title}||'%'
 			</if>
 			<if test="not_cont!=null and not_cont.length>0">
-				AND not_cont = #{not_cont}
+				AND not_cont LIKE '%'||#{not_cont}||'%'
 			</if>
 		</where>
-		 ORDER BY gym_no
+		 ORDER BY notice_no DESC
 	</select>
 	<select id="getChartList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
@@ -104,7 +104,7 @@
 		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="gymNoticeIns" parameterType="map">
-		INSERT into notice (not_seq, not_title, not_cont, gym_no) values(seq_notice.nextval, #{not_title}, #{not_cont}, '1')
+		INSERT into notice (notice_no, not_seq, not_title, not_cont, gym_no) values(func_getnoticeno(#{gym_no}), seq_notice.nextval, #{not_title}, #{not_cont}, #{gym_no})
 	</insert>
 	<insert id="chartIns" parameterType="map">
 		INSERT into insert_test values('1', '1', '1')
@@ -146,7 +146,9 @@
 		DELETE insert_test where mem_id = '5'
 	</delete>
 	<delete id="gymNoticeDel" parameterType="map">
-		DELETE insert_test where mem_id = '5'
+		DELETE notice
+		WHERE gym_no = #{gym_no}
+		  AND notice_no = #{notice_no}
 	</delete>
 	<delete id="chartDel" parameterType="map">
 		DELETE insert_test where mem_id = '5'
