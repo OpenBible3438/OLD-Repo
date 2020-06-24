@@ -32,13 +32,15 @@ public class ActionFitness extends HttpServlet {
 	}
 	
 	public void doService(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
 		logger.info("doService() 호출");
 		Map<String, Object> pMap = new HashMap<String, Object>(); 
 		//pMap을 세팅 binder
-		String contentType = req.getContentType();
-		logger.info("contentType : "+contentType);
-		if("multipart/form-data".equals(contentType)) {
+		String contentType[] = null;
+		if(req.getContentType() != null) {
+			contentType = req.getContentType().split(";");
+			logger.info("contentType : "+contentType[0]);
+		}
+		if(contentType!=null && "multipart/form-data".equals(contentType[0])) {
 			new HashMapBinder(req).multiBind(pMap);
 		} else {
 			new HashMapBinder(req).binder(pMap);
@@ -55,7 +57,6 @@ public class ActionFitness extends HttpServlet {
 			String cud = pMap.get("cud").toString();
 			processResult = controller.process(cud, req, res);//cud가 map에 들어있어서 사실 파라미터에 cud를 넘겨줄 필요가 없다...
 		}
-		
 		else {
 			processResult = controller.process(req, res);
 		}
