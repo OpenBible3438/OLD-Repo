@@ -50,7 +50,10 @@
 		SELECT 1 FROM dual
 	</select>
 	<select id="getContentList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		<!-- ==========편성경여기========== -->
+		SELECT gym_cont_seq, gym_no, gym_contents, gym_cont_like, gym_cont_date, gym_cont_time 
+		  FROM GYM_CONTENTS
+	  ORDER BY gym_cont_seq
 	</select>
 	<select id="getInfoList" parameterType="map" resultType="map">
 		SELECT gym_id, gym_username, gym_usertell, gym_name, gym_tel, gym_addr, gym_addr_dtl
@@ -60,7 +63,9 @@
 		 WHERE gym_no = #{gym_no} 
 	</select>
 	<select id="getReviewList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		<!-- ==========편성경여기========== -->
+		SELECT rev_seq, rev_cont, rev_date, rev_time, rev_star, rev_up, rev_down
+		  FROM REVIEW
 	</select>
 	<!-- 매장 로그인  -->
 	<select id="getLogin" parameterType="map" resultType="map">
@@ -148,7 +153,8 @@
 		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="contentIns" parameterType="map">
-		INSERT into insert_test values('1', '1', '1')
+		<!-- ==========편성경여기========== -->
+		INSERT into GYM_CONTENTS (gym_cont_seq,gym_no,gym_contents,gym_cont_like) values('3','1',#{cont_contents},'0')
 	</insert>
 	
 	<update id="classUpd" parameterType="map">
@@ -165,7 +171,9 @@
 		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
 	</update>
 	<update id="contentUpd" parameterType="map">
-		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
+		<!-- ==========편성경여기========== -->
+		UPDATE GYM_CONTENTS set gym_contents = #{contents_upd} 
+		 WHERE gym_cont_seq = #{contUpd_seq}
 	</update>
 	<update id="gymInfoUpd" parameterType="map">
 		UPDATE gym set gym_pw = #{gym_pw}, gym_username = #{gym_username}
@@ -192,7 +200,10 @@
 		DELETE insert_test where mem_id = '5'
 	</delete>
 	<delete id="contentDel" parameterType="map">
-		DELETE insert_test where mem_id = '5'
+		<!-- ==========편성경여기========== -->
+		<!-- #{contDel_seq, jdbcType=INTEGER} -->
+		DELETE GYM_CONTENTS 
+		 WHERE gym_cont_seq = #{contDel_seq}
 	</delete>
 	
 </mapper>
