@@ -1,31 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- 클래스 공통코드 -->
-<%@include file="classCommon.jsp"%>
-<link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
-<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
 
 	<script type="text/javascript">
-	var updCLS_NO;
 	var progress;
 	
 	function progressWork() {
 		alert("진행 중인 수업을 조회합니다.");
 	}
-	function progressWait() {
-		alert("대기 중인 수업을 조회합니다.");
-		progress = $("#p_wait").html();
-		alert(progress);
-// 		$table.bootstrapTable('getData', {
-// 			url: '../class/jsonClassList.gym?progress='+'wait'
-//		});
-		
-	}
+
 	function progressDone() {
 		alert("종료된 수업을 조회합니다.");
 	}
@@ -39,10 +21,10 @@
 	function classINS(){
 			alert("수업등록 저장 완료");
 			$("#f_ins").attr("method","get");
-			$("#f_ins").attr("action","classList.jsp");
+			$("#f_ins").attr("action","../class/classIns.gym");
 			$("#f_ins").submit();
 			$("#c_ins").modal('hide');
-			location.href="classList.jsp";
+			
 	}
 	function classUPD(){
 			alert("수업수정 저장 완료");
@@ -78,8 +60,6 @@
 
 	</script>
 
-</head>
-<body>
 	<div class="container">
 		<div style="padding: 20px;">
 			<h3>
@@ -95,9 +75,9 @@
 					<button type="button" class="btn btn-primary dropdown-toggle"
 						data-toggle="dropdown">진행상황</button>
 					<div class="dropdown-menu" id="p_menu">
-						<a class="dropdown-item" id="p_work" href="'../class/jsonClassList.gym?progress='+'p_work'" onClick="progressWork()">진행</a> 
-						<a class="dropdown-item" id="p_wait" href="'../class/jsonClassList.gym?progress='+'p_wait'" onClick="progressWait()">대기</a> 
-						<a class="dropdown-item" id="p_done" href="'../class/jsonClassList.gym?progress='+'p_done'" onClick="progressDone()">종료</a>
+						<a class="dropdown-item" id="p_work" href="javascript:progressWork()">진행</a> 
+						<a class="dropdown-item" id="p_wait" href="javascript:progressWait()">대기</a> 
+						<a class="dropdown-item" id="p_done" href="javascript:progressDone()">종료</a>
 					</div>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_ins">수업등록</button>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_upd">수업수정</button>
@@ -120,7 +100,7 @@
 				>
 					<thead>
 						<tr>
-							<th data-checkbox=true>체크</th>
+							<th data-checkbox=true>check</th>
 							<th data-field="ROWNUM">#</th>
 							<th data-field="CLS_NO">수업번호</th>
 							<th data-field="CLS_NAME">수업명</th>
@@ -151,7 +131,16 @@
 			
 		</div>
 
-	<!--============================================================================== 체크 로우  -->
+	<!--============================================================================== 클릭 로우  -->
+	<script type="text/javascript">
+	function progressWait() {
+		alert("대기 중인 수업을 조회합니다."); 
+// 		progress = $("#p_wait").html();
+// 		alert(progress);	
 
-</body>
-</html>
+		$('#tb_cList').bootstrapTable('refreshOptions', { 
+	        url: '../class/jsonClassList.gym?progress=대기&timestamp='+new Date().getTime()
+	  	});
+	}
+	</script>
+
