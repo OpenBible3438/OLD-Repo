@@ -114,12 +114,12 @@
 					} break;
 			case "ibd"    : { %> <%@ include file="../member/mem_InbodyLIst.jsp" %> <%
 					} break;
-			case "cls"    : { %> <%@ include file="../class/classInfo.jsp" %> <%
+			case "cls"    : { %> <%@ include file="../class/classList.jsp" %> <%
 					} break;
 			default       : { %> <%@ include file="../info/attr.jsp" %> <%
 			        } break;
 				
-		}
+		}  
 
 %>
 		</div>
