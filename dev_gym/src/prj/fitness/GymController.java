@@ -37,7 +37,7 @@ public class GymController implements Controller {
 		logger.info("cud : " + cud + ", reqName : " + reqName);
 		String path = null;
 		switch(cud) {
-			case "join":{
+			case "join":{ //매장 회원 가입 
 				result = gLogic.gymJoin(pMap);
 				autoSel="false";			
 				path = "redirect:../"+reqName+":"+result+":"+autoSel;
@@ -122,11 +122,20 @@ public class GymController implements Controller {
 		ModelAndView mav = new ModelAndView(req, res);
 		Object selResult = null;
 		switch(reqName){
-			case "jsonLogin":{
+			case "jsonLogin":{     //회원 로그인 
 				selResult = gLogic.getLogin(pMap);
-			} break;
-			case "jsonIdConfirm":{
+			} break; 
+			case "jsonIdConfirm":{ //회원 아이디 중복확인  
 				selResult = gLogic.getIdConfirm(pMap);
+			} break;
+			case "gymProfImage":{ // 이미지 가져오기 
+				selResult = gLogic.gymProfImage(pMap);
+			} break;
+			case "gymContImage":{ // 콘텐트 이미지 가져오기 
+				selResult = gLogic.gymContImage(pMap);
+			} break;
+			case "getImages":{ // 이미지 한장 가져오기 
+				selResult = gLogic.getImages(pMap);
 			} break;
 			case "jsonClassMemList":{
 				selResult = gLogic.getClassMemList(pMap);

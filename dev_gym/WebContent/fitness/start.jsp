@@ -28,14 +28,10 @@
 	            var addrDoc = JSON.parse(result);
 	            $('#gym_addr').val(addrDoc.address);
 	            $('#gym_zipcode').val(addrDoc.zonecode);
+	           	alert("addrDoc.sido : "+addrDoc.sido);
 	            $('#gym_sido').val(addrDoc.sido);
 	        }
 	    }).open();
-	}
-	function joinINS() {
-		alert("회원가입에서 등록 클릭");
-		$('#gym_join').attr('action','./gym/joinResult.gym');
-		$('#gym_join').submit();
 	}
 	function login() {
 		alert("로그인");
@@ -74,8 +70,6 @@
 		}
 		$.ajax({
 			method:'post'
-			,enctype: 'multipart/form-data'
-			,contentType : false
 			,data: 'gym_id='+gym_id
 			,url: './gym/jsonIdConfirm.gym'
 			,success: function(data) {
