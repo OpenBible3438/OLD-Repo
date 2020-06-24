@@ -65,6 +65,12 @@ public class CommonLogic {
 		logger.info("gym_no : " + gym_no);
 		pMap.put("gym_no", gym_no);
 //		logger.info("pMap : " + pMap);
+	      if("gym".equals(pMap.get("work"))) {
+	          if(!(pMap.containsKey("gym_parking"))) pMap.put("gym_parking", "off");
+	          if(!(pMap.containsKey("gym_wash")))    pMap.put("gym_wash", "off");
+	          if(!(pMap.containsKey("gym_uniform"))) pMap.put("gym_uniform", "off");
+	          if(!(pMap.containsKey("gym_locker")))  pMap.put("gym_locker", "off");
+	       }
 	}
 	
 	public void moveMapper(Object processResult) {

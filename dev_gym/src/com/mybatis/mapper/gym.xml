@@ -20,10 +20,10 @@
 				AND gym_no = #{gym_no}
 			</if>
 			<if test="not_title!=null and not_title.length>0">
-				AND not_title = #{not_title}
+				AND not_title LIKE '%'||#{not_title}||'%'
 			</if>
 			<if test="not_cont!=null and not_cont.length>0">
-				AND not_cont = #{not_cont}
+				AND not_cont LIKE '%'||#{not_cont}||'%'
 			</if>
 		</where>
 		 ORDER BY gym_no

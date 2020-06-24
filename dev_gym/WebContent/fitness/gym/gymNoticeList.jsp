@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <%
 	String mode = request.getParameter("mode");
 	if(mode!=null && mode.equals("refresh")){
@@ -25,15 +20,21 @@
 <!-- 등록,수정 모달 include -->
 <%@include file="gymNoticeIns_Upd.jsp"%>
 <script type="text/javascript">
-	var updNot_seq = 0; //선택한 공지사항을 저장 
-	var updNot_title = "";
-	var updNot_cont = "";
+	var choNot_seq = 0; //선택한 공지사항을 저장 
+	var choNot_title = "";
+	var choNot_cont = "";
 	
 	function noticeList(){
 		$('#tb_nList').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.
 	           url: '../gym/jsonGymNoticeList.gym'
 	        });
-			
+	}
+	function notSearch(){
+		var not_title = $("#search_title").val();
+		var not_cont = $("#search_cont").val();
+		$('#tb_nList').bootstrapTable('refreshOptions', {
+	           url: '../gym/jsonGymNoticeList.gym?not_title='+not_title+"&not_cont="+not_cont
+	        });
 	}
 	function startIns(){
 		$("#m_title").text("공지사항 등록");
@@ -77,12 +78,10 @@
 	}
 	
 </script>
-</head>
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<body>
 <!--=========================== 전체 시작 ===========================-->
 <div style="padding: 20px;">
    <h3><b>매장관리</b> / 공지사항</h3>   <!-- 제목 틀 입니다. -->
@@ -96,17 +95,17 @@
 		    	<span class="input-group-text">제목</span>
 		    </div>
 		    <div class="col-xs-4">
-		    	<input type="text" id="search_title" name = "search_title" class="form-control" placeholder="제목으로 검색하세요.">
+		    	<input type="text" id="search_title" name="search_title" class="form-control" placeholder="제목으로 검색하세요.">
 			</div> 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<div class="input-group-prepend">
 		    	<span class="input-group-text">내용</span>
 		    </div>
 		    <div class="col-xs-4">
-		    	<input type="text" class="form-control" placeholder="내용으로 검색하세요.">
+		    	<input type="text" id="search_cont" name="search_cont" class="form-control" placeholder="내용으로 검색하세요.">
 			</div>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-secondary">검색</button>
+			<button type="button" class="btn btn-secondary" onClick="notSearch()">검색</button>
 		</div>
 		<!--=========================== 검색부분 끝 ===========================-->
 		
@@ -169,15 +168,8 @@
     $('#tb_nList').on('check.bs.table', function (row, element) {
       //table.bootstrapTable('resetView')
       alert("row : " + row + ", element : " + element.NOT_SEQ);
-      updNot_seq = element.NOT_SEQ;
-      updNot_title = element.NOT_TITLE;
-  	  updNot_cont = element.NOT_CONT;
+      choNot_seq = element.NOT_SEQ;
+      choNot_title = element.NOT_TITLE;
+  	  choNot_cont = element.NOT_CONT;
 	});
 </script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#gym_no").val("1");
-	});
-</script>
-</body>
-</html>
