@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>매장정보조회</title>
+
 </head>
 <body>
 	<div id="info_upd">
@@ -25,14 +26,14 @@
 				<label for="gym_pw" class="col-sm-2 col-form-label">비밀번호</label>
 				<div class="col-sm-5">
 					<input type="password" class="form-control"
-						   id="j_gym_pw" name="j_gym_pw" placeholder="8자리 이상 입력하세요" >
+						   id="gym_pw" name="gym_pw" placeholder="8자리 이상 입력하세요" >
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="gym_pw_2" class="col-sm-2 col-form-label">재 입력</label>
 				<div class="col-sm-5">
 					<input type="password" class="form-control"
-						   id="j_gym_pw_2" placeholder="비밀번호 확인" onkeyup="pw_confirm()">
+						   id="gym_pw_2" placeholder="비밀번호 확인" onkeyup="pw_confirm()">
 					
 				</div>
 				<div id="pw_icon" class="col-sm-1" style="padding-left: 0px">
@@ -40,7 +41,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="gym_username" class="col-sm-2"><b>이름 </b></label>
+				<label for="gym_username" class="col-sm-2"><b>이름</b></label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control"
 						   id="gym_username" name="gym_username">
@@ -118,19 +119,19 @@
 				<div id="gym_info" class="w-75 px-5 py-3 m-3 container border rounded">
 					<div class="form-group row"><!-- 체크박스 디비 데이터로 설정 -->
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" checked id="gym_parking"> 
+							<input class="form-check-input" type="checkbox"  id="gym_parking" name="gym_parking"> 
 							<label class="form-check-label" for="gym_parking">주차장</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" checked id="gym_wash"> 
+							<input class="form-check-input" type="checkbox"  id="gym_wash" name="gym_wash"> 
 							<label class="form-check-label" for="gym_wash">샤워실</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="gym_uniform"> 
+							<input class="form-check-input" type="checkbox" id="gym_uniform" name="gym_uniform"> 
 							<label class="form-check-label" for="gym_uniform">유니폼</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" checked id="gym_locker"> 
+							<input class="form-check-input" type="checkbox"  id="gym_locker" name="gym_locker"> 
 							<label class="form-check-label" for="gym_locker">락커룸</label>
 						</div>
 					</div>
@@ -157,6 +158,63 @@
 	        readURL(this);
 	    });
 	</script>
-	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			url : "../gym/jsonGymInfoList.gym"
+		  , success : function(result){
+			  var infoList = JSON.parse(result.trim());
+			  
+			  gym_id= infoList[0].GYM_ID;
+			  gym_username= infoList[0].GYM_USERNAME;
+			  gym_usertell = infoList[0].GYM_USERTELL;   
+			  gym_name = infoList[0].GYM_NAME;   
+			  gym_tel = infoList[0].GYM_TEL;   
+			  gym_addr = infoList[0].GYM_ADDR;   
+			  gym_addr_dtl = infoList[0].GYM_ADDR_DTL;   
+			  gym_zipcode = infoList[0].GYM_ZIPCODE;   
+			  gym_number = infoList[0].GYM_NUMBER;   
+			  gym_profimg = infoList[0].GYM_PROFIMG;   
+			  gym_info = infoList[0].GYM_INFO;   
+			  gym_parking = infoList[0].GYM_PARKING;   
+			  gym_wash = infoList[0].GYM_WASH;   
+			  gym_uniform = infoList[0].GYM_UNIFORM;   
+			  gym_locker = infoList[0].GYM_LOCKER;   
+			  gym_like = infoList[0].GYM_LIKE;
+			  
+			  $("#gym_id").text(gym_id);
+			  $("#gym_username").val(gym_username);
+			  $("#gym_usertell").val(gym_usertell);
+			  $("#gym_name").val(gym_name);
+			  $("#gym_tel").val(gym_tel);
+			  $("#gym_addr").val(gym_addr);
+			  $("#gym_addr_dtl").val(gym_addr_dtl);
+			  $("#gym_zipcode").val(gym_zipcode);
+			  $("#gym_number").val(gym_number);
+			  $("#gym_profimg").val(gym_profimg);
+			  $("#gym_info").val(gym_info);
+			  $("#gym_parking").val(gym_parking);
+			  $("#gym_wash").val(gym_wash);
+			  $("#gym_uniform").val(gym_uniform);
+			  $("#gym_locker").val(gym_locker);
+			  $("#gym_like").val(gym_like);
+			  
+			  if(gym_parking=="on"){
+				  $("input:checkbox[id='gym_parking']").prop("checked", true); 
+			  }
+			  if(gym_wash=="on"){
+				  $("input:checkbox[id='gym_wash']").prop("checked", true); 
+			  }
+			  if(gym_uniform=="on"){
+				  $("input:checkbox[id='gym_uniform']").prop("checked", true); 
+			  }
+			  if(gym_locker=="on"){
+				  $("input:checkbox[id='gym_locker']").prop("checked", true); 
+			  }
+			  
+		  }
+		});
+	});
+</script>
 </body>
 </html>

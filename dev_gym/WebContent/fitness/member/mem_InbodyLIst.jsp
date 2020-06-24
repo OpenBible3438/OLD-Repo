@@ -17,7 +17,7 @@
 
 </style>
 <div class="container">
-<h4><b><br>회원관리 | 전체 회원 관리</b></h4>
+<h4><b><br>회원관리 | 인바디 관리</b></h4>
 <br>
 <!-- 검색부분 -->
 	<div class="input-group mb-3">
@@ -40,21 +40,22 @@
 	<button type="button" class="b1 btn-primary m-1" onClick="전체조회()">전체조회</button>
 	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myInbodyIns" >인바디 등록</button>
 	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myInbodyUpd" >인바디 수정</button>
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myInbodyDel" >인바디 삭제</button>
+	<!-- <button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#myInbodyDel" >인바디 삭제</button> -->
 </div>
 <br>
 <!-- 테이블 부분 -->
-<table class="table table-bordered">
+<table id="inbd_member" class="table table-bordered">
 	<thead>
 		<tr align="center">
-			<th>번호</th>
-			<th>사진</th>
-			<th>회원번호</th>
-			<th>이름</th>
-			<th>인바디 목록</th>
-			<th>등록일</th>
+			<th data-field="RNO">번호</th>
+			<th data-field="MEM_PROFIMG">사진</th>
+			<th data-field="MEM_NO">회원번호</th>
+			<th data-field="MEM_NAME">이름</th>
+			<th data-field="INBD_SEQ">인바디 목록</th>
+			<th data-field="MEM_JOINDATE">등록일</th>
 		</tr>
 	</thead>
+	<!-- 
 	<thead>
 		<tr align="center">
 			<th>1</th>
@@ -65,21 +66,22 @@
 			<th>2020.06.17</th>
 		</tr>
 	</thead>
+	 -->
 </table>
 <!-- 테이블 부분 -->
 <!-- ======================= 인바디 등록 모달창 =================================-->
 <div class="modal" id="myInbodyIns">
-	<div class="modal-dialog">
+	<div class="modal-dialog" style="width:auto;display:table">
 		<div class="modal-content">
 			<!-- Modal Header 부분 -->
-			<div class="modal-header">
+			<div class="modal-header  bg-primary text-white">
 				<h5 class="modal-title">자세히 보기</h5>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			
 			<!-- Modal Body 부분 -->
 			<div class="modal-body">
-				1건이 등록되었습니다.
+				<%@include file="./mem_InbodyIns.jsp" %>
 			</div>
 			
 			<!-- Modal Footer 부분 -->
@@ -96,14 +98,14 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- Modal Header 부분 -->
-			<div class="modal-header">
+			<div class="modal-header  bg-primary text-white">
 				<h5 class="modal-title">인바디 보기</h5>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			
 			<!-- Modal Body 부분 -->
 			<div class="modal-body">
-				1건이 수정되었습니다.
+				<%@include file="./memInbodyUpd.jsp" %>
 			</div>
 			
 			<!-- Modal Footer 부분 -->
@@ -115,12 +117,13 @@
 	</div>
 </div>
 </div>
+<!-- 
 <!-- =======================인바디 삭제 모달창 =================================-->
 <div class="modal" id="myInbodyDel">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- Modal Header 부분 -->
-			<div class="modal-header">
+			<div class="modal-header  bg-primary text-white">
 				<h5 class="modal-title">인바디 보기</h5>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
@@ -138,6 +141,7 @@
 		</div>
 	</div>
 </div>
+ -->
 </div>
 <!-- 삭제 모달 부분 -->
 

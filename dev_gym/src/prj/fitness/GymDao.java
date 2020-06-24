@@ -282,7 +282,4 @@ public class GymDao {
 	}
 
 
-
-	
-	
 }

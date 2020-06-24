@@ -20,6 +20,9 @@
 		gym_no = (String)ses.getAttribute("gym_no");
 		gym_name = (String)ses.getAttribute("gym_name");
 	}
+	else {
+		gym_no = "1";
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -55,6 +58,13 @@
 </style>
 <!-- =============== main javascript =============== -->
 <script type="text/javascript">
+//전체 조회 처리 구현 - 박준규\
+<!--
+	function memAllList(){
+		location.href="../member/jsonMemList.gym";
+	
+	}
+	-->
   	function picks(center) {
   		//alert("center : "+center);
   		$.ajax({
@@ -68,14 +78,26 @@
   	}
 </script>
 </head>
-<body >
+<body > 
 <script type="text/javascript">
 	//DOM구성이 완료되면...
 	$(document).ready(function() {
 		//alert("center : <%=center%>"); 
 		//alert("gym_no : <%=gym_no%>");
 		//alert("gym_name : <%=gym_name%>");
-	});
+        $('#tb_member').bootstrapTable('refreshOptions', {
+            url: "../member/jsonMemList.gym"
+            /*     */
+          ,onClickRow : function(row,element,field){
+             var mem_no = row.MEM_NO;
+             //alert("회원번호 : "+mem_no);
+             //location.href= '/member/mem_Detail.jsp?mem_no='+mem_no;
+             //==> board_no를 넘겨주면 해당 게시글을  select!!
+          }
+   
+     });
+		
+	}); 
 </script>
 <!-- ========================= TOP 자리 ========================= -->
    <%@ include file="./mainTop.jsp" %> 
@@ -105,7 +127,7 @@
 					} break;
 			case "notice" : { %> <%@ include file="../gym/gymNoticeList.jsp" %> <%
 					} break;
-			case "tch"    : { %> <%@ include file="../teacher/tchInfo.jsp" %>  <%
+			case "tch"    : { %> <%@ include file="../teacher/tchList.jsp" %>  <%
 					} break;
 			case "mem"    : { %> <%@ include file="../member/mem_List.jsp" %> <%
 					} break;

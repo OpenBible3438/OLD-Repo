@@ -53,13 +53,25 @@ public class CommonLogic {
 		}
 		///////세션으로 매장번호 받아와서 pMap에 넣기//////////
 		logger.info("**************************");
-//		logger.info(req.getAttribute("gym_no"));
-//		req.getSession().getAttribute("gym_no");
-//		String gym_no = req.getSession().getAttribute("gym_no").toString();
-//		String gym_no = "1";
-//		logger.info("gym_no : " + gym_no);
-//		pMap.put("gym_no", gym_no);
+		logger.info(req.getAttribute("gym_no"));
+		req.getSession().getAttribute("gym_no");
+		String gym_no = null;
+		if(req.getSession().getAttribute("gym_no")!=null) {
+			gym_no = req.getSession().getAttribute("gym_no").toString();
+		}
+		else {
+			logger.info("gym_no가 없으므로 1로 설정");
+			gym_no = "1";//세션없으면 1로 두기. 테스트 하기 위한 기본 값이다.
+		}
+		logger.info("gym_no : " + gym_no);
+		pMap.put("gym_no", gym_no);
 //		logger.info("pMap : " + pMap);
+	      if("gym".equals(pMap.get("work"))) {
+	          if(!(pMap.containsKey("gym_parking"))) pMap.put("gym_parking", "off");
+	          if(!(pMap.containsKey("gym_wash")))    pMap.put("gym_wash", "off");
+	          if(!(pMap.containsKey("gym_uniform"))) pMap.put("gym_uniform", "off");
+	          if(!(pMap.containsKey("gym_locker")))  pMap.put("gym_locker", "off");
+	       }
 	}
 	
 	public void moveMapper(Object processResult) {
@@ -98,7 +110,7 @@ public class CommonLogic {
 				}
 			}
 			else {
-				logger.info("forward");
+				logger.info("forward"+pageMove[1]);
 				RequestDispatcher view = req.getRequestDispatcher(pageMove[1]);
 				view.forward(req, res);
 			}
