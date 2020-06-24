@@ -194,7 +194,7 @@ public class GymLogic {
 	public int gymInfoUpd(Map<String, Object> pMap) {
 		logger.info("GymLogic - gymInfoUpd() 호출");
 		result = gDao.gymInfoUpd(pMap);
-		setCommit(result);
+		//setCommit(result);
 		return result;
 	}
 	

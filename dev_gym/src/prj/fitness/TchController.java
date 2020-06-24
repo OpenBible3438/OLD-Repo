@@ -38,7 +38,7 @@ public class TchController implements Controller {
 		switch(cud) {
 			case "ins":{
 				switch(reqName) {
-					case("jsonTchList"):{
+					case("tchIns"):{
 						result = tLogic.tchIns(pMap);
 					}break;
 				}
@@ -46,20 +46,18 @@ public class TchController implements Controller {
 			}break;
 			case "upd":{
 				switch(reqName) {
-					case("jsonTchList"):{
-						result = tLogic.tchIns(pMap);
+					case("tchUpd"):{
+						result = tLogic.tchUpd(pMap);
 					}break;
 				}
-				result = tLogic.tchUpd(pMap);
 				path = "redirect:../updateResult:"+result + ":"+ autoSel;
 			}break;
 			case "del":{
 				switch(reqName) {
-					case("jsonTchList"):{
-						result = tLogic.tchIns(pMap);
+					case("tchDel"):{
+						result = tLogic.tchDel(pMap);
 					}break;
 				}
-				result = tLogic.tchDel(pMap);
 				path = "redirect:../deleteResult:"+result + ":"+ autoSel;
 			}break;
 		}
