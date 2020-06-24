@@ -9,7 +9,7 @@
 		SELECT 1 FROM dual
 	</select>
 	<select id="getTchList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		SELECT tch_no, gym_no, tch_id, tch_pw, tch_name, tch_tel, tch_addr, tch_addr_dtl, tch_zipcode, tch_gender FROM teacher
 	</select>
 	
 	<insert id="tchIns" parameterType="map">

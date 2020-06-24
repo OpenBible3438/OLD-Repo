@@ -13,6 +13,10 @@
 	 </if>
 	</select>
 	
+	<select id="getTchNo" parameterType="map" resultType="map">
+		SELECT tch_no,tch_name FROM teacher
+	</select>
+	
 	<select id="getClassDetail" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
