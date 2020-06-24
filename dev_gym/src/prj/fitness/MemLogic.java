@@ -38,7 +38,11 @@ public class MemLogic {
 		
 		return memInbodyList;
 	}
-	
+	/****************************************************************************************************
+	 * 회원전체 조회 구현
+	 * @param pMap - 파라미터 값 담기
+	 * @return - List<Map> -> Gson -> json포맷
+	 ***************************************************************************************************/
 	public List<Map<String, Object>> getMemList(Map<String, Object> pMap) {
 		logger.info("MemLogic - getMemList() 호출");
 		List<Map<String, Object>> memList = null;

@@ -8,8 +8,11 @@
 	SELECT rownum, cls.cls_no, cls.cls_name, cls.cls_kind, cls.cls_cnt, cls.cls_days, cls.cls_s_date, cls.cls_e_date, cls.cls_price, cls.cls_state, tch.tch_name
 	  FROM class  cls, teacher tch 
 	 WHERE cls.tch_no = tch.tch_no
-	
+	 <if test="progress!=null and progress.length > 0 ">
+	 	AND cls.cls_state = #{progress}
+	 </if>
 	</select>
+	
 	<select id="getClassDetail" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
@@ -98,7 +101,8 @@
                          VALUES(1, #{filename},#{filesize},#{filedata, jdbcType=LONGVARBINARY} ,8)
 	</insert>
 	<insert id="classIns" parameterType="map">
-		INSERT into insert_test values('1', '1', '1')
+		INSERT INTO class(evt_seq, gym_no, cls_name, tch_no, type_no, cls_kind, cls_s_date, cls_e_date, cls_days, cls_cnt, cls_info, cls_price, cls_grcode, cls_state)
+			   VALUES(1,#{ins_gym_no},#{ins_cls_name},#{ins_tch_no},#{ins_type_no},#{ins_cls_kind},#{ins_cls_s_date},#{ins_cls_e_date},#{ins_cls_days},#{ins_cls_cnt},#{ins_cls_info},#{ins_cls_price},#{ins_cls_grcode},#{ins_cls_state})
 	</insert>
 	<insert id="classMemIns" parameterType="map">
 		INSERT into insert_test values('1', '1', '1')

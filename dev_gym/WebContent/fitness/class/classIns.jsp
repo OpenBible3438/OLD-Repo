@@ -26,68 +26,71 @@
 					<!--=========================================================================================== form 시작  -->
 					<form role="form" id="f_ins">
 						<input type="hidden" name="cud" value="ins">
+						<%-- <input type="hidden" name="gym_no" value="<%=gym_no%>"> --%>
 						<div class="form-group">
-							<label for="ins_c_name"><b>수업명</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_c_name" name="ins_c_name" placeholder="수업명을 입력하세요">
+							<label for="ins_cls_name"><b>수업명</b></label> 
+							<input type="text" class="form-control input-sm" id="ins_cls_name" name="ins_cls_name" placeholder="수업명을 입력하세요">
 						</div>
 						<div class="form-group">
-							<label for="ins_c_tNumber"><b>강사 번호</b></label> 
-					        <select class="form-control" id="ins_c_tNumber" name="ins_c_tNumber">
-								<option>1111</option>
-								<option>1112</option>
-								<option>1113</option>
+							<label for="ins_tch_no"><b>강사 번호</b></label> 
+					        <select class="form-control" id="ins_tch_no" name="ins_tch_no">
+								<option value="1">1</option>
+								<option value="2">2</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="ins_c_tName"><b>강사명</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_c_tName" name="ins_c_tName" placeholder="강사 번호를 선택하세요." readonly>
+							<label for="ins_tch_name"><b>강사명</b></label> 
+							<input type="text" class="form-control input-sm" id="ins_tch_name" name="ins_tch_name" placeholder="강사 번호를 선택하세요." readonly>
 						</div>						
 						<div class="form-group">
-							<label for="ins_c_sports"><b>종목</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_c_sports" name="ins_c_sports" placeholder="종목을 입력하세요.">
+							<label for="ins_type_no"><b>종목</b></label> 
+							<select class="form-control" id="ins_type_no" name="ins_type_no">
+								<option value="1">요가</option>
+								<option value="2">헬스</option>
+							</select>	
 						</div>
 						<div class="form-group">
-							<label for="ins_c_type"><b>수업 구분</b></label> 
-					        <select class="form-control" id="c_type">
-								<option>개인 수업</option>
-								<option>단체 수업</option>
+							<label for="ins_cls_kind"><b>수업 구분</b></label> 
+					        <select class="form-control" id="ins_cls_kind" name="ins_cls_kind">
+								<option value="1:1">개인 수업</option>
+								<option value="1:N">단체 수업</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="ins_c_startDate"><b>시작일</b></label> 
-							<input type="date" class="form-control input-sm" id="ins_c_startDate" name="ins_c_startDate" placeholder="연도-월-일">
+							<label for="ins_cls_s_date"><b>시작일</b></label> 
+							<input type="date" class="form-control input-sm" id="ins_cls_s_date" name="ins_cls_s_date" placeholder="연도-월-일">
 						</div>
 						<div class="form-group">
-							<label for="ins_c_endDate"><b>종료일</b></label> 
-							<input type="date" class="form-control input-sm" id="ins_c_endDate" name="ins_c_endDate" placeholder="연도-월-일">
+							<label for="ins_cls_e_date"><b>종료일</b></label> 
+							<input type="date" class="form-control input-sm" id="ins_cls_e_date" name="ins_cls_e_date" placeholder="연도-월-일">
 						</div>
 						<div class="form-group">
-							<label for="ins_c_totalDays"><b>수업 일수</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_c_totalDays" name="ins_c_totalDays" placeholder="시작일과 종료일을 입력하세요.">
+							<label for="ins_cls_days"><b>수업 일수</b></label> 
+							<input type="text" class="form-control input-sm" id="ins_cls_days" name="ins_cls_days" placeholder="시작일과 종료일을 입력하세요.">
 						</div>
 						<div class="form-group">
-							<label for="ins_c_times"><b>수업 횟수</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_c_times" name="ins_c_times" placeholder="단위:수">
+							<label for="ins_cls_cnt"><b>수업 횟수</b></label> 
+							<input type="text" class="form-control input-sm" id="ins_cls_cnt" name="ins_cls_cnt" placeholder="단위:수">
 						</div>
 						<div class="form-group">
-							<label for="ins_c_intro"><b>수업 소개</b></label> 
-							<textarea rows="5" class="form-control" id="ins_c_intro" name="ins_c_intro">
+							<label for="ins_cls_info"><b>수업 소개</b></label> 
+							<textarea rows="5" class="form-control" id="ins_cls_info" name="ins_cls_info">
 							</textarea>
 						</div>
 						<div class="form-group">
-							<label for="ins_c_price"><b>가격</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_c_price" name="ins_c_price" placeholder="단위:원">
+							<label for="ins_cls_price"><b>가격</b></label> 
+							<input type="text" class="form-control input-sm" id="ins_cls_price" name="ins_cls_price" placeholder="단위:원">
 						</div>
 						<div class="form-group">
-							<label for="ins_c_groupCode"><b>그룹코드</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_c_groupCode" name="ins_c_groupCode" placeholder="그룹코드를 입력하세요.">
+							<label for="ins_cls_grcode"><b>그룹코드</b></label> 
+							<input type="text" class="form-control input-sm" id="ins_cls_grcode" name="ins_cls_grcode" placeholder="그룹코드를 입력하세요.">
 						</div>
 						<div class="form-group">
-							<label for="ins_c_process"><b>진행 상황</b></label> 
-					        <select class="form-control" id="ins_c_process" name="ins_c_process">
-								<option>진행</option>
-								<option>대기</option>
-								<option>종료</option>
+							<label for="ins_cls_state"><b>진행 상황</b></label> 
+					        <select class="form-control" id="ins_cls_state" name="ins_cls_state">
+								<option value="진행">진행</option>
+								<option value="대기">대기</option>
+								<option value="종료">종료</option>
 							</select>
 						</div>
 					</form>

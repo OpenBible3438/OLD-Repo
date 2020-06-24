@@ -58,7 +58,6 @@
 		  , focus : true
 		})
 	}
-
 	function noticeDel(){
 		location.href = "jsonGymNoticeList.gym?cud=del";
 	}
