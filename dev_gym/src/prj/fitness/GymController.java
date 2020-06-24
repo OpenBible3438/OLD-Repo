@@ -16,6 +16,7 @@ public class GymController implements Controller {
 	GymLogic gLogic = null;
 	String work = null;
 	String reqName = null;
+	String progress = null;
 	int result = 0;
 	String autoSel = "false";
 	
@@ -38,26 +39,26 @@ public class GymController implements Controller {
 		switch(cud) {
 			case "join":{ //매장 회원 가입 
 				result = gLogic.gymJoin(pMap);
-				autoSel="false";			
+				autoSel="false";
 				path = "redirect:../"+reqName+":"+result+":"+autoSel;
 			}break;
 			case "ins":{
 				switch(reqName) {
-					case "jsonClassList":{
+					case "classIns":{
 						result = gLogic.classIns(pMap);
 					}break;
-					case "jsonClassMemList":{
+					case "classMemIns":{
 						result = gLogic.classMemIns(pMap);
 					}break;
-					case "jsonGymChartList":{
+					case "chartIns":{
 						result = gLogic.chartIns(pMap);
 						autoSel="true";
 					}break;
-					case "jsonGymContentList":{
+					case "contentIns":{
 						result = gLogic.contentIns(pMap);
 						autoSel="true";
 					}break;
-					case "jsonGymNoticeList":{
+					case "gymNoticeIns":{
 						result = gLogic.gymNoticeIns(pMap);
 						autoSel="true";
 					}break;
@@ -66,22 +67,22 @@ public class GymController implements Controller {
 			}break;
 			case "upd":{
 				switch(reqName) {
-					case "jsonClassList":{
+					case "classUpd":{
 						result = gLogic.classUpd(pMap);
 					}break;
-					case "jsonClassMemList":{
+					case "classMemUpd":{
 						result = gLogic.classMemUpd(pMap);
 					}break;
-					case "jsonGymInfoList":{
+					case "gymInfoUpd":{
 						result = gLogic.gymInfoUpd(pMap);
 					}break;
-					case "jsonGymChartList":{
+					case "chartUpd":{
 						result = gLogic.chartUpd(pMap);
 					}break;
-					case "jsonGymContentList":{
+					case "contentUpd":{
 						result = gLogic.contentUpd(pMap);
 					}break;
-					case "jsonGymNoticeList":{
+					case "gymNoticeUpd":{
 						result = gLogic.gymNoticeUpd(pMap);
 					}break;
 				}
@@ -89,19 +90,19 @@ public class GymController implements Controller {
 			}break;
 			case "del":{
 				switch(reqName) {
-					case "jsonClassList":{
+					case "classDel":{
 						result = gLogic.classDel(pMap);
 					}break;
-					case "jsonClassMemList":{
+					case "classMemDel":{
 						result = gLogic.classMemDel(pMap);
 					}break;
-					case "jsonGymChartList":{
+					case "chartDel":{
 						result = gLogic.chartDel(pMap);
 					}break;
-					case "jsonGymContentList":{
+					case "contentDel":{
 						result = gLogic.contentDel(pMap);
 					}break;
-					case "jsonGymNoticeList":{
+					case "gymNoticeDel":{
 						result = gLogic.gymNoticeDel(pMap);
 					}break;
 				}
@@ -115,6 +116,9 @@ public class GymController implements Controller {
 	@Override
 	public ModelAndView process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		logger.info("GymController - mav 타입 process 호출");
+		//classList 조건 검색
+		String progress = req.getParameter("progress");
+		logger.info("progress : " + progress);
 		ModelAndView mav = new ModelAndView(req, res);
 		Object selResult = null;
 		switch(reqName){
