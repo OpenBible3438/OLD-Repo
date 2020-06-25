@@ -58,6 +58,7 @@ public class CommonLogic {
 		String gym_no = null;
 		if(req.getSession().getAttribute("gym_no")!=null) {
 			gym_no = req.getSession().getAttribute("gym_no").toString();
+			logger.info("gym_no : " + gym_no);
 		}
 		else {
 			logger.info("gym_no가 없으므로 1로 설정");
