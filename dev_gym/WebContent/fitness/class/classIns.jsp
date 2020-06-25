@@ -1,16 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<!-- 클래스 공통코드 -->
-<%@include file="classCommon.jsp"%>
-
-</head>
-<body>
 	<!--============================================================================================================== 수업등록 Modal 시작 -->
 	<div class="modal fade" id="c_ins" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="false">
@@ -107,5 +96,3 @@
 	</div>
 	<!-- 모달 전체 윈도우 -->
 	<!--============================================================================================================== 수업등록 Modal 끝 -->
-</body>
-</html>

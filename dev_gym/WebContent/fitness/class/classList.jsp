@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 	<script type="text/javascript">
 	var progress;
 	
@@ -13,11 +12,20 @@
 	}
 	function classSEL() {
 		alert("전체 수업을 조회합니다.");
-		$('#tb_cList').bootstrapTable('refreshOptions', {
-	        url: '../class/jsonClassList.gym'
-	  	});
+		
+// 		$('#tb_cList').bootstrapTable('refreshOptions', {
+// 	        url: '../class/jsonClassList.gym'
+// 	  	});
+		
 	}
-
+	
+	$(document).ready(function() {
+		 $('#tb_cList').bootstrapTable({
+	         click:function(row, $element) {
+	        	 alert(row); 
+	         } 
+	     });  
+	});
 	function classINS(){
 			alert("수업등록 저장 완료");
 			$("#f_ins").attr("method","get");

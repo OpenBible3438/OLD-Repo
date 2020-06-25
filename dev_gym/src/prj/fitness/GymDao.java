@@ -1,5 +1,6 @@
 package prj.fitness;
 
+import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -92,6 +93,7 @@ public class GymDao {
 		logger.info("GymDao - getInfoList() 호출");
 		List<Map<String, Object>> infoList = null;
 		infoList = sqlSession.selectList("getInfoList", pMap);
+
 		logger.info("infoList.size() : " + infoList.size());
 		return infoList;
 	}
@@ -111,6 +113,7 @@ public class GymDao {
 		try {
 			image = blob.getBytes(1, (int)blob.length());
 			logger.info("image " + image.length);
+			logger.info("image " + image);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -124,6 +127,7 @@ public class GymDao {
 		logger.info("contList.size() : " + contList.size());
 		return contList;
 	}
+	
 	// 이미지 가져오기 
 	public byte[] getImages(Map<String, Object> pMap) {
 		logger.info("GymDao - getImages() 호출");

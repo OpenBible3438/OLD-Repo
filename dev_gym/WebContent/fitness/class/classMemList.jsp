@@ -1,25 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<!-- 클래스 공통코드 -->
-<%@include file="classCommon.jsp"%>
-
-	<script type="text/javascript">
-// 		function classMemDEL(){
-// 			alert("수강생을 조회합니다.");
-// 		}
-// 		function classMemSearch(){
-// 			alert("수강생을 조회합니다.");
-// 		}
-	</script>
-
-</head>
-<body>
 	<!--============================================================================================================== 수강생 보기 Modal 시작 -->
 	<div class="modal fade" id="c_memList" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -145,7 +125,3 @@
 	<!-- 모달 전체 윈도우 -->
 	<!--============================================================================================================== 수강생 등록 Modal 끝 -->
 	
-
-
-</body>
-</html>
