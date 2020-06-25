@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <%
 	String mode = request.getParameter("mode");
 	if(mode!=null && mode.equals("refresh")){
@@ -20,22 +25,16 @@
 <!-- 등록,수정 모달 include -->
 <%@include file="gymNoticeIns_Upd.jsp"%>
 <script type="text/javascript">
-	var choNotic_no = 0; //선택한 공지사항을 저장 
-	var choNot_title = "";
-	var choNot_cont = "";
+	var updNot_seq = 0; //선택한 공지사항을 저장 
+	var updNot_title = "";
+	var updNot_cont = "";
 	
 	function noticeList(){
 		$('#tb_nList').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.
 	           url: '../gym/jsonGymNoticeList.gym'
 	        });
 	}
-	function notSearch(){
-		var not_title = $("#search_title").val();
-		var not_cont = $("#search_cont").val();
-		$('#tb_nList').bootstrapTable('refreshOptions', {
-	           url: '../gym/jsonGymNoticeList.gym?not_title='+not_title+"&not_cont="+not_cont
-	        });
-	}
+
 	function startIns(){
 		$("#m_title").text("공지사항 등록");
 		$("#cud").val("ins");
@@ -49,9 +48,10 @@
 	}
 	function startUpd(){
 		$("#m_title").text("공지사항 수정");
+		$("#not_seq").val(updNot_seq);
 		$("#cud").val("upd");
-		$("#not_title").text(choNot_title);
-		$("#not_cont").text(choNot_cont);
+		$("#not_title").text(updNot_title);
+		$("#not_cont").text(updNot_cont);
 		$("#m_ins_upd").modal({
 			show : true
 		  , keyboard : true
@@ -59,29 +59,32 @@
 		})
 	}
 	function noticeDel(){
-		location.href = "gymNoticeDel.gym?cud=del&notice_no="+choNotice_no;
+		location.href = "jsonGymNoticeList.gym?cud=del";
 	}
+	/* function noticeUpd(){
+		alert("등록");
+		//$("#m_upd").hide();
+		$("#f_upd").attr('action', 'jsonGymNoticeList.gym')
+		$("#f_upd").submit();
+	} */
 	function noticeSave(){
 		alert("저장");
 		$("#m_ins_upd").modal({
 			show : false
 		});
-		if($("#cud").val()=="ins"){
-			$("#f_ins_upd").attr('action', "../gym/gymNoticeIns.gym")
-		}
-		else if($("#cud").val()=="upd"){
-			$("#f_ins_upd").attr('action', "../gym/gymNoticeUpd.gym")
-		}
-			$("#f_ins_upd").submit();
+		$("#f_ins_upd").attr('action', "jsonGymNoticeList.gym")
+		$("#f_ins_upd").submit();
 	}
 	
 </script>
+</head>
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<body>
 <!--=========================== 전체 시작 ===========================-->
-<div style="padding: 20px; margin-bottom: 50px">
+<div style="padding: 20px;">
    <h3><b>매장관리</b> / 공지사항</h3>   <!-- 제목 틀 입니다. -->
    <hr>
     <!--=========================== 내용 시작 ===========================-->
@@ -93,17 +96,17 @@
 		    	<span class="input-group-text">제목</span>
 		    </div>
 		    <div class="col-xs-4">
-		    	<input type="text" id="search_title" name="search_title" class="form-control" placeholder="제목으로 검색하세요.">
+		    	<input type="text" id="search_title" name = "search_title" class="form-control" placeholder="제목으로 검색하세요.">
 			</div> 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<div class="input-group-prepend">
 		    	<span class="input-group-text">내용</span>
 		    </div>
 		    <div class="col-xs-4">
-		    	<input type="text" id="search_cont" name="search_cont" class="form-control" placeholder="내용으로 검색하세요.">
+		    	<input type="text" class="form-control" placeholder="내용으로 검색하세요.">
 			</div>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-secondary" onClick="notSearch()">검색</button>
+			<button type="button" class="btn btn-secondary">검색</button>
 		</div>
 		<!--=========================== 검색부분 끝 ===========================-->
 		
@@ -121,13 +124,12 @@
 		 data-toggle="table"
 		 data-url = "../gym/jsonGymNoticeList.gym"
   		 data-click-to-select="true"
-  		 data-single-select="true"
  		 data-pagination="true"
 		>
 			<thead>
 				<tr>
 					<th data-checkbox=true>체크</th>
-					<th data-field="NOTICE_NO">번호</th>
+					<th data-field="NOT_SEQ">번호</th>
 					<th data-field="NOT_TITLE">제목</th>
 					<th data-field="NOT_CONT">내용</th>
 				</tr>
@@ -166,9 +168,16 @@
 <script>
     $('#tb_nList').on('check.bs.table', function (row, element) {
       //table.bootstrapTable('resetView')
-     // alert("row : " + row + ", element : " + element.NOT_SEQ);
-      choNotice_no = element.NOTICE_NO;
-      choNot_title = element.NOT_TITLE;
-  	  choNot_cont = element.NOT_CONT;
+      alert("row : " + row + ", element : " + element.NOT_SEQ);
+      updNot_seq = element.NOT_SEQ;
+      updNot_title = element.NOT_TITLE;
+  	  updNot_cont = element.NOT_CONT;
 	});
 </script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#gym_no").val("1");
+	});
+</script>
+</body>
+</html>

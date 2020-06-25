@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.io.OutputStream"%>
 <%@ page language="java" contentType="image/png; charset=UTF-8"
