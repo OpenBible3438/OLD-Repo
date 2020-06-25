@@ -19,6 +19,8 @@
 				<input type="hidden" class="form-control" name="cud" value="join">
 				<input type="hidden" class="form-control" id="gym_sido" name="gym_sido">
 				<input type="hidden" class="form-control" name="type" value="gym">
+				<input type="hidden" class="form-control" id="gym_lat" name="gym_lat">
+				<input type="hidden" class="form-control" id="gym_lng" name="gym_lng">
 				<input type="hidden" class="form-control" id="j_gym_id_ok" name="j_gym_id">
 				<input type="text" class="form-control isvalid" id="j_gym_id" required>
 			</div>
@@ -138,7 +140,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="submit" class="btn btn-primary" >가입</button><!-- onclick="joinINS()"  -->
+			<button type="submit" class="btn btn-primary" onclick="joinINS()">가입</button><!--   -->
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		</div>
 	</form>

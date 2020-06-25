@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 	<!--============================================================================================================== 수업등록 Modal 시작 -->
 	<div class="modal fade" id="c_ins" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="false">

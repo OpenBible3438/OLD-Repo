@@ -10,8 +10,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1225a581b4fb1a6098c442808c7cef60&libraries=services"></script>
 <style>
 .carousel-inner>.item>img, .carousel-inner>.item>a>img {
 	width: 70%;
@@ -21,6 +22,8 @@
 <script type="text/javascript">
 	var id_check = 1;
 	var pw_check = 1;
+	var geocoder = new daum.maps.services.Geocoder();
+	
 	function addrSearch() {
 	    new daum.Postcode({
 	        oncomplete: function(data) {
@@ -28,10 +31,39 @@
 	            var addrDoc = JSON.parse(result);
 	            $('#gym_addr').val(addrDoc.address);
 	            $('#gym_zipcode').val(addrDoc.zonecode);
-	           	alert("addrDoc.sido : "+addrDoc.sido);
+	           	//alert("addrDoc.sido : "+addrDoc.sido);
 	            $('#gym_sido').val(addrDoc.sido);
+	         	// 주소로 위도, 경도 정보를 검색
+                geocoder.addressSearch(addrDoc.address, function(results, status) {
+                	// 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+                    	var result = results[0]; //첫번째 결과의 값을 활용
+                        // 해당 주소에 대한 좌표를 받음
+                        //alert("위도 :"+result.y);
+                        //alert("경도 :"+result.x);
+                        $('#gym_lat').val(result.y);
+                        $('#gym_lng').val(result.x);
+                        var lat = $('#gym_lat').val();
+                        var lng = $('#gym_lng').val();
+                        //alert("lat :"+lat);
+                        //alert("lng :"+lng);
+                    } else {
+                    	alert("안됨");
+                    }
+                });
 	        }
 	    }).open();
+	}
+	function joinINS() {
+		if(id_check == 0) {
+			if(pw_check == 0) {
+				$('#gym_join').submit();
+			} else {
+				alert("비밀번호를 확인 해주세요 ");
+			}
+		} else {
+			alert("아이디를 중복확인 해주세요 ");
+		}
 	}
 	function login() {
 		alert("로그인");
@@ -88,7 +120,8 @@
 		//alert("비번확인");
 		var gym_pw = $('#j_gym_pw').val();
 		var gym_pw_2 = $('#j_gym_pw_2').val();
-		if( gym_pw.length>8 && gym_pw.length <= gym_pw_2.length) {
+		if( gym_pw.length>7 
+		   && gym_pw.length <= gym_pw_2.length) {
 			if(gym_pw == gym_pw_2) {
 				//alert("확인되었습니다");
 				$('#pw_icon').html('<i class="material-icons" style="font-size:36px;color:green">done</i>');

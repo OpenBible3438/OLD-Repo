@@ -105,8 +105,10 @@
 		SELECT filename, filesize, filedata
 		  FROM images
 		 WHERE type = 'gym'
-		   AND typecode = 6 
-	</select><!-- #{gym_no} -->
+		   <if test="file_seq != null">
+		   AND file_seq = #{file_seq}
+		   </if>
+	</select><!-- #{gym_no} --><!--  AND typecode = 6 -->
 	
 	<!-- 이미지 가져오기  -->
 	<select id="getImages" parameterType="map" resultMap="getImage">
@@ -125,7 +127,7 @@
                   VALUES((SELECT max(gym_no)+1 FROM gym)
                         ,#{j_gym_id} ,#{j_gym_pw} ,#{gym_username} ,#{gym_usertell} 
                         ,#{gym_name}   ,#{gym_tel} ,#{gym_addr} ,#{gym_addr_dtl} ,#{gym_zipcode}
-                        ,#{gym_number} ,#{gym_info} ,34.1515115151 ,127.5486446215
+                        ,#{gym_number} ,#{gym_info} ,#{gym_lat} ,#{gym_lng}
                         ,#{gym_parking}  ,#{gym_wash}  ,#{gym_uniform}  ,#{gym_locker}  ,0 )
 	</insert>
 	<!-- 매장 회원가입 프로필사진 인서트 --><!-- (SELECT max(file_seq)+1 FROM images) -->
