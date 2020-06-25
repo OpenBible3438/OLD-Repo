@@ -20,6 +20,8 @@ public class GymController implements Controller {
 	String progress = null;
 	int result = 0;
 	String autoSel = "false";
+	// jsp페이지가 열릴 때 자동으로 데이터가 select 되는 지를 구분하는 변수
+	// autoSel = true이면 redirect로 원래 페이지로 돌아갈 때 select 처리를 해줄 필요가 없다.
 	
 	public GymController(Map<String, Object> pMap) {
 		logger.info("GymController 생성자 호출");
@@ -45,21 +47,21 @@ public class GymController implements Controller {
 			}break;
 			case "ins":{
 				switch(reqName) {
-					case "classIns":{
+					case "classIns":{ // 수업 등록
 						result = gLogic.classIns(pMap);
 					}break;
-					case "classMemIns":{
+					case "classMemIns":{ // 수강생 등록
 						result = gLogic.classMemIns(pMap);
 					}break;
-					case "chartIns":{
+					case "chartIns":{ // 차트 등록
 						result = gLogic.chartIns(pMap);
 						autoSel="true";
 					}break;
-					case "contentIns":{
+					case "contentIns":{ // 컨텐츠 등록
 						result = gLogic.contentIns(pMap);
 						autoSel="true";
 					}break;
-					case "gymNoticeIns":{
+					case "gymNoticeIns":{ // 공지사항 등록
 						result = gLogic.gymNoticeIns(pMap);
 						autoSel="true";
 					}break;
@@ -68,43 +70,50 @@ public class GymController implements Controller {
 			}break;
 			case "upd":{
 				switch(reqName) {
-					case "classUpd":{
+					case "classUpd":{ // 수업 수정
 						result = gLogic.classUpd(pMap);
 					}break;
-					case "classMemUpd":{
+					case "classMemUpd":{ // 수강생 수정
 						result = gLogic.classMemUpd(pMap);
 					}break;
-					case "gymInfoUpd":{
+					case "gymInfoUpd":{ // 정보 수정
 						result = gLogic.gymInfoUpd(pMap);
+						autoSel = "true";
 					}break;
-					case "chartUpd":{
+					case "chartUpd":{ // 차트 수정
+						autoSel = "true";
 						result = gLogic.chartUpd(pMap);
 					}break;
-					case "contentUpd":{
+					case "contentUpd":{ // 컨텐츠 수정
 						result = gLogic.contentUpd(pMap);
+						autoSel = "true";
 					}break;
-					case "gymNoticeUpd":{
+					case "gymNoticeUpd":{ // 공지사항 수정
 						result = gLogic.gymNoticeUpd(pMap);
+						autoSel = "true";
 					}break;
 				}
 				path = "redirect:../updateResult:"+result + ":"+ autoSel;
 			}break;
 			case "del":{
 				switch(reqName) {
-					case "classDel":{
+					case "classDel":{ // 수업 삭제
 						result = gLogic.classDel(pMap);
 					}break;
-					case "classMemDel":{
+					case "classMemDel":{ // 수강생 삭제
 						result = gLogic.classMemDel(pMap);
 					}break;
-					case "chartDel":{
+					case "chartDel":{ // 차트 삭제
 						result = gLogic.chartDel(pMap);
+						autoSel = "true";
 					}break;
-					case "contentDel":{
+					case "contentDel":{ // 컨텐츠 삭제
 						result = gLogic.contentDel(pMap);
+						autoSel = "true";
 					}break;
-					case "gymNoticeDel":{
+					case "gymNoticeDel":{ // 공지사항 삭제
 						result = gLogic.gymNoticeDel(pMap);
+						autoSel = "true";
 					}break;
 				}
 				path = "redirect:../deleteResult:"+result + ":"+ autoSel;
@@ -138,31 +147,31 @@ public class GymController implements Controller {
 			case "getImages":{ // 이미지 한장 가져오기 
 				selResult = gLogic.getImages(pMap);
 			} break;
-			case "jsonClassMemList":{
+			case "jsonClassMemList":{ // 수강생 조회
 				selResult = gLogic.getClassMemList(pMap);
 			} break;
-			case "jsonClassDetail":{
+			case "jsonClassDetail":{ // 수업 자세히 보기
 				selResult = gLogic.getClassDetail(pMap);
 			}break;
-			case "jsonClassList":{
+			case "jsonClassList":{ // 수업 목록 조회
 				selResult = gLogic.getClassList(pMap);
 			}break;
-			case "jsonTeacherNoList":{
+			case "jsonTeacherNoList":{ ///////????????????????????????????????????????????????
 				selResult = gLogic.getTchNo(pMap);
 			}break;
-			case "jsonGymNoticeList":{
+			case "jsonGymNoticeList":{ // 공지사항 조회
 				selResult = gLogic.getNoticeList(pMap);
 			}break;
-			case "jsonGymChartList":{
+			case "jsonGymChartList":{ // 차트 조회
 				selResult = gLogic.getChartList(pMap);
 			}break;
-			case "jsonGymContentList":{
+			case "jsonGymContentList":{ // 컨텐츠 조회
 				selResult = gLogic.getContentList(pMap);
 			}break;
-			case "jsonGymInfoList":{
+			case "jsonGymInfoList":{ // 매장 정보 조회
 				selResult = gLogic.getInfoList(pMap);
 			}break;
-			case "jsonGymReviewList":{
+			case "jsonGymReviewList":{ // 후기 조회
 				selResult = gLogic.getReviewList(pMap);
 			}break;
 			case "jsonGymContentList2":{ 

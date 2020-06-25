@@ -26,24 +26,15 @@
 <%@include file="gymNoticeIns_Upd.jsp"%>
 <%@include file="gymNoticeDetail.jsp"%>
 <script type="text/javascript">
-<<<<<<< HEAD
-	var updNot_seq = 0; //선택한 공지사항을 저장 
-	var updNot_title = "";
-	var updNot_cont = "";
-=======
 	var choNotice_no = 0; //선택한 공지사항을 저장 
 	var choNot_title = "";
 	var choNot_cont = "";
->>>>>>> refs/heads/hlpc
 	
 	function noticeList(){
 		$('#tb_nList').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.
 	           url: '../gym/jsonGymNoticeList.gym'
 	        });
 	}
-<<<<<<< HEAD
-
-=======
 	function showDetail(){
 		$.ajax({
 			url : "../gym/jsonGymNoticeList.gym?notice_no="+choNotice_no
@@ -69,7 +60,6 @@
 	           url: '../gym/jsonGymNoticeList.gym?not_title='+not_title+"&not_cont="+not_cont
 	        });
 	}
->>>>>>> refs/heads/hlpc
 	function startIns(){
 		$("#m_title").text("공지사항 등록");
 		$("#cud").val("ins");
@@ -85,14 +75,9 @@
 		$("#m_title").text("공지사항 수정");
 		$("#not_seq").val(updNot_seq);
 		$("#cud").val("upd");
-<<<<<<< HEAD
-		$("#not_title").text(updNot_title);
-		$("#not_cont").text(updNot_cont);
-=======
 		$("#not_title").text(choNot_title);
 		$("#notice_no").val(choNotice_no);
 		$("#not_cont").text(choNot_cont);
->>>>>>> refs/heads/hlpc
 		$("#m_ins_upd").modal({
 			show : true
 		  , keyboard : true
@@ -121,7 +106,6 @@
 			$("#f_ins_upd").submit();
 		}
 	}
-	
 </script>
 </head>
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -170,18 +154,15 @@
 		<table id="tb_nList" class="table table-bordered"
 		 data-toggle="table"
 		 data-url = "../gym/jsonGymNoticeList.gym"
+		 data-single-select="true"
   		 data-click-to-select="true"
  		 data-pagination="true"
 		>
 			<thead>
 				<tr>
 					<th data-checkbox=true>체크</th>
-<<<<<<< HEAD
-					<th data-field="NOT_SEQ">번호</th>
-=======
 					<th data-field="NOTICE_NO">번호</th>
 					<th data-field="NOT_DATE">등록일</th>
->>>>>>> refs/heads/hlpc
 					<th data-field="NOT_TITLE">제목</th>
 					<th data-field="NOT_CONT">내용</th>
 				</tr>
@@ -220,16 +201,11 @@
 <script>
     $('#tb_nList').on('check.bs.table', function (row, element) {
       //table.bootstrapTable('resetView')
-      alert("row : " + row + ", element : " + element.NOT_SEQ);
-      updNot_seq = element.NOT_SEQ;
-      updNot_title = element.NOT_TITLE;
-  	  updNot_cont = element.NOT_CONT;
-	});
-</script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#gym_no").val("1");
-	});
+      alert("row : " + row + ", element : " + element.NOTICE_NO);
+      choNotice_no = element.NOTICE_NO;
+      choNot_title = element.NOT_TITLE;
+  	  choNot_cont = element.NOT_CONT;
+		});
 </script>
 </body>
 </html>

@@ -18,6 +18,8 @@ public class MemController implements Controller {
 	String reqName = null; 
 	int result = 0;
 	String autoSel = "false";
+	// jsp페이지가 열릴 때 자동으로 데이터가 select 되는 지를 구분하는 변수
+	// autoSel = true이면 redirect로 원래 페이지로 돌아갈 때 select 처리를 해줄 필요가 없다.
 	
 	public MemController(Map<String, Object> pMap) {
 		logger.info("MemController 생성자 호출");
@@ -37,10 +39,10 @@ public class MemController implements Controller {
 		switch(cud) {
 			case "ins":{
 				switch(reqName) {
-					case "memInbodyIns":{
+					case "memInbodyIns":{ // 인바디 등록
 						result = mLogic.memInbodyIns(pMap);
 					}break;
-					case "memIns":{
+					case "memIns":{ // 회원 등록
 						result = mLogic.memIns(pMap);
 					}break;
 				}
@@ -48,10 +50,10 @@ public class MemController implements Controller {
 			}break;
 			case "upd":{
 				switch(reqName) {
-					case "memInbodyUpd":{
+					case "memInbodyUpd":{ // 인바디 수정
 						result = mLogic.memInbodyUpd(pMap);
 					}break;
-					case "memUpd":{
+					case "memUpd":{ //회원 수정
 						result = mLogic.memUpd(pMap);
 					}break;
 				}
@@ -59,10 +61,10 @@ public class MemController implements Controller {
 			}break;
 			case "del":{
 				switch(reqName) {
-					case "memInbodyDel":{
+					case "memInbodyDel":{ // 인바디 삭제
 						result = mLogic.memInbodyDel(pMap);
 					}break;
-					case "memDel":{
+					case "memDel":{ // 회원 삭제
 						result = mLogic.memDel(pMap);
 					}break;
 				}
@@ -84,13 +86,13 @@ public class MemController implements Controller {
 		ModelAndView mav = new ModelAndView(req, res);
 		Object selResult = null;
 		switch(reqName){
-			case "jsonMemDetail":{
+			case "jsonMemDetail":{ // 회원 자세히 보기
 				selResult = mLogic.getMemDetail(pMap);
 			}break;
-			case "jsonMemInbody":{
+			case "jsonMemInbody":{ // 인바디 목록 조회
 				selResult = mLogic.getMemInbody(pMap);
 			}break;
-			case "jsonMemList":{
+			case "jsonMemList":{ // 회원 조회
 				selResult = mLogic.getMemList(pMap);
 			}break;
 		}

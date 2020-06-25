@@ -28,6 +28,7 @@ public class TchLogic {
 		logger.info("TchLogic - getTchList() 호출");
 		List<Map<String, Object>> tchList = null;
 		tchList = tDao.getTchList(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return tchList;
 	}
@@ -36,6 +37,8 @@ public class TchLogic {
 		logger.info("TchLogic - getTchClassList() 호출");
 		List<Map<String, Object>> tchClassList = null;
 		tchClassList = tDao.getTchClassList(pMap);
+		mbMgr.clossSession(sqlSession);
+		
 		return tchClassList;
 	}
 
@@ -43,6 +46,8 @@ public class TchLogic {
 		logger.info("TchLogic - getTchProfile() 호출");
 		List<Map<String, Object>> tchProfile = null;
 		tchProfile = tDao.getTchProfile(pMap);
+		mbMgr.clossSession(sqlSession);
+		
 		return tchProfile;
 	}
 
