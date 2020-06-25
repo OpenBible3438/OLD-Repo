@@ -40,8 +40,10 @@
 	</select>
 	<select id="getContentList" parameterType="map" resultType="map">
 		<!-- ==========편성경여기========== -->
+		<!-- 로그인한 매장 번호 바꿔주기 -->
 		SELECT gym_cont_seq, gym_no, gym_contents, gym_cont_like, gym_cont_date, gym_cont_time 
 		  FROM GYM_CONTENTS
+		 <!-- WHERE gym_no='1' -->
 	  ORDER BY gym_cont_seq
 	</select>
 	<select id="getInfoList" parameterType="map" resultType="map">
@@ -116,7 +118,8 @@
 	</insert>
 	<insert id="contentIns" parameterType="map">
 		<!-- ==========편성경여기========== -->
-		INSERT into GYM_CONTENTS (gym_cont_seq,gym_no,gym_contents,gym_cont_like) values('3','1',#{cont_contents},'0')
+		INSERT into GYM_CONTENTS (gym_cont_seq, gym_no,gym_contents,gym_cont_like, gym_cont_date, gym_cont_time) 
+		values('6','1',#{cont_contents},'0', to_char(sysdate,'YYYY-MM-DD'), to_char(sysdate, 'HH24:MI:SS'))
 	</insert>
 	
 	<update id="classUpd" parameterType="map">
@@ -161,7 +164,6 @@
 	</delete>
 	<delete id="contentDel" parameterType="map">
 		<!-- ==========편성경여기========== -->
-		<!-- #{contDel_seq, jdbcType=INTEGER} -->
 		DELETE GYM_CONTENTS 
 		 WHERE gym_cont_seq = #{contDel_seq}
 	</delete>

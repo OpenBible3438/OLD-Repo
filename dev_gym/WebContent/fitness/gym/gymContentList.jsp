@@ -52,7 +52,7 @@
 				//var imsi = JSON.stringify(result);
 				var contList = JSON.parse(result.trim());
 				var input = contList[cont_seq-1].GYM_CONTENTS;
-				$("#contents_upd").html(input);
+				$("#contents_upd").text(input);
 				$("#contUpd_seq").val(cont_seq);
 			}
 		});
