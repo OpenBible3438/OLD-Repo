@@ -32,26 +32,28 @@ public class HashMapBinder {
 	public HashMapBinder(HttpServletRequest req) {
 		this.req = req;
 		//realFolder = "C:\\workspace_KHL\\workspace_fitness\\project_fitness\\dev_fitness\\WebContent\\pds";
-		realFolder = "C:\\Users\\Public\\Pictures";
+		realFolder = "C:\\git_gym\\dev_gym\\WebContent\\pds";
+		//realFolder = "./../../../WebContent/pds";
 	}
 	public void multiBind(Map<String,Object> pMap) {
 		pMap.clear();
 		try {
 			multi = new MultipartRequest(req, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
 		} catch (IOException e) {
-			System.out.println("binder 호출");
-			binder(pMap);
-			return;
+			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println("-============================");
 			e.printStackTrace();
 		}
 		logger.info("multi : "+multi);
+		
 		Enumeration<String> en = multi.getParameterNames();
 		//자료구조안에 데이터가 있나요?
+		int i = 0;
 		while(en.hasMoreElements()) {
 			String key = en.nextElement();
 			pMap.put(key, multi.getParameter(key));
+			logger.info((++i)+". "+key+": "+pMap.get(key));
 		}
 		//첨부파일에 대한 정보를 받아오는 코드 추가하기
 		Enumeration<String> files = multi.getFileNames();
@@ -64,9 +66,10 @@ public class HashMapBinder {
 				if(filename !=null && filename.length()>0) {
 					try {
 						//파일 객체 만들기
-						file = new File(realFolder+"\\"+filename);
-						//file = multi.getFile(realFolder+"\\"+filename);
+						//file2 = new File(realFolder+"\\"+filename);
+						file = multi.getFile("gym_profimg");
 						logger.info("file : "+file);
+						//logger.info("file2 : "+file2);
 						//파일 이름 만들기
 						pMap.put("filename", filename);
 						logger.info("filename : "+filename);
@@ -79,15 +82,22 @@ public class HashMapBinder {
 						logger.info("filesize : "+size);
 						//파일 데이터 만들기
 						FileInputStream fis = new FileInputStream(file);
+						pMap.put("file", file);				
 						pMap.put("filedata", fis);				
 						logger.info("filedata : "+fis);
-						file.delete();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			}///////////////end of while
 		}//////////////////end of if
+		//체크박스 널 체크 
+		if("gym".equals(pMap.get("type"))) {
+			if(!(pMap.containsKey("gym_parking"))) pMap.put("gym_parking", "off");
+			if(!(pMap.containsKey("gym_wash")))    pMap.put("gym_wash", "off");
+			if(!(pMap.containsKey("gym_uniform"))) pMap.put("gym_uniform", "off");
+			if(!(pMap.containsKey("gym_locker")))  pMap.put("gym_locker", "off");
+		}
 	}
 	public void binder(Map<String,Object> pMap) {
 		logger.info("binder 호출");
@@ -98,11 +108,16 @@ public class HashMapBinder {
 		int i =0;
 		while(en.hasMoreElements()) {
 			String key = en.nextElement();//name, address, pet
-			logger.info("key : " + key);
-			pMap.put(key,req.getParameter(key));
 			//pMap.put(key,HangulConversion.toUTF(req.getParameter(key)));
 			pMap.put(key,req.getParameter(key));
 			logger.info((++i)+". "+key+": "+pMap.get(key));
 		}
 	}
+	
 }
+
+
+
+
+
+

@@ -18,6 +18,7 @@
 	    <form id="f_infoUpd">
 	    <!--=========================== 내용 시작 ===========================-->
 			<input type="hidden" name="cud" value="upd">
+			<input type="hidden" name="type" value="gym">
 			<div class="form-group row ">
 				<label for="gym_id" class="col-sm-2" width="10px"><b>아이디</b></label>
 				<label id="gym_id" class="col-sm-5">디비아이디</label>
@@ -41,7 +42,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="gym_username" class="col-sm-2"><b>이름 </b></label>
+				<label for="gym_username" class="col-sm-2"><b>이름</b></label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control"
 						   id="gym_username" name="gym_username">

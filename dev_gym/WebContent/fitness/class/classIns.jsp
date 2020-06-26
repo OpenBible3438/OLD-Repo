@@ -1,16 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<!-- 클래스 공통코드 -->
-<%@include file="classCommon.jsp"%>
-
-</head>
-<body>
 	<!--============================================================================================================== 수업등록 Modal 시작 -->
 	<div class="modal fade" id="c_ins" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="false">
@@ -32,16 +21,10 @@
 							<input type="text" class="form-control input-sm" id="ins_cls_name" name="ins_cls_name" placeholder="수업명을 입력하세요">
 						</div>
 						<div class="form-group">
-							<label for="ins_tch_no"><b>강사 번호</b></label> 
-					        <select class="form-control" id="ins_tch_no" name="ins_tch_no">
-								<option value="1">1</option>
-								<option value="2">2</option>
-							</select>
-						</div>
-						<div class="form-group">
 							<label for="ins_tch_name"><b>강사명</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_tch_name" name="ins_tch_name" placeholder="강사 번호를 선택하세요." readonly>
-						</div>						
+					        <select class="form-control" id="ins_tch_name" name="ins_tch_name">
+							</select>
+						</div>					
 						<div class="form-group">
 							<label for="ins_type_no"><b>종목</b></label> 
 							<select class="form-control" id="ins_type_no" name="ins_type_no">
@@ -107,5 +90,3 @@
 	</div>
 	<!-- 모달 전체 윈도우 -->
 	<!--============================================================================================================== 수업등록 Modal 끝 -->
-</body>
-</html>

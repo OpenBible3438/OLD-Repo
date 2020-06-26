@@ -6,17 +6,23 @@
 		<div class="modal-content">
 	<div class="modal-header">
     	<h4 class="modal-title">매장 회원가입</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" >&times;</button>
     </div>
     <div class="modal-body" style="padding-left: 40px; padding-top: 20px">
-		<form role="form" id="gym_join" method="post" enctype="multipart/form-data">
+		<form role="form" id="gym_join" method="post" 
+		      action="./gym/joinResult.gym"
+		      enctype="multipart/form-data"
+		      >
 		<div class="form-group row">
 			<label for="gym_id" class="col-sm-2 col-form-label ">아이디</label>
 			<div class="col-sm-5">
 				<input type="hidden" class="form-control" name="cud" value="join">
-				<input type="hidden" class="form-control" name="gym_sido">
+				<input type="hidden" class="form-control" id="gym_sido" name="gym_sido">
+				<input type="hidden" class="form-control" name="type" value="gym">
+				<input type="hidden" class="form-control" id="gym_lat" name="gym_lat">
+				<input type="hidden" class="form-control" id="gym_lng" name="gym_lng">
 				<input type="hidden" class="form-control" id="j_gym_id_ok" name="j_gym_id">
-				<input type="text" class="form-control" id="j_gym_id">
+				<input type="text" class="form-control isvalid" id="j_gym_id" required>
 			</div>
 			<div class="col-sm-3">
 				<a type="button" id="confirm" href="javascript:id_confirm()"
@@ -24,9 +30,9 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="gym_pw" class="col-sm-2 col-form-label">비밀번호</label>
+			<label for="gym_pw" class="col-sm-2 col-form-label" >비밀번호</label>
 			<div class="col-sm-5">
-				<input type="password" class="form-control"
+				<input type="password" class="form-control" required
 					   id="j_gym_pw" name="j_gym_pw" placeholder="8자리 이상 입력하세요" >
 			</div>
 		</div>
@@ -45,34 +51,34 @@
 			<label for="gym_username" class="col-sm-2 col-form-label">이름 </label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control"
-					   id="gym_username" name="gym_username">
+					   id="gym_username" name="gym_username" required>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="gym_usertell" class="col-sm-2 col-form-label">전화번호 </label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control"
-					   id="gym_usertell" name="gym_usertell">
+				<input type="tel" class="form-control" required
+					   id="gym_usertell" name="gym_usertell" placeholder="000-0000-0000">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="gym_name" class="col-sm-2 col-form-label">매장이름</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control"
+				<input type="text" class="form-control" required
 					   id="gym_name" name="gym_name">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="gym_tel" class="col-sm-2 col-form-label">매장번호</label>
 			<div class="col-sm-5">
-				<input type="tel" class="form-control" id="gym_tel" name="gym_tel">
+				<input type="tel" class="form-control" id="gym_tel" name="gym_tel" required>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="gym_addr" class="col-sm-2 col-form-label">매장주소</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control"
-					   id="gym_addr" name="gym_addr" readonly>
+					   id="gym_addr" name="gym_addr" readonly required>
 			</div>
 			<div class="col-sm-3">
 				<a type="button" href="javascript:addrSearch()" 
@@ -82,7 +88,7 @@
 		<div class="form-group row">
 			<label for="gym_addr_dtl" class="col-sm-2 col-form-label">매장상세주소</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control"
+				<input type="text" class="form-control" required
 					   id="gym_addr_dtl" name="gym_addr_dtl">
 			</div>
 			<div class="col-sm-2" >
@@ -94,8 +100,8 @@
 		<div class="form-group row">
 			<label for="gym_number" class="col-sm-2 col-form-label">사업자번호</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control"
-					   id="gym_number" name="gym_number">
+				<input type="text" class="form-control" required
+					   id="gym_number" name="gym_number" placeholder="000-00000-00">
 			</div>
 		</div>
 		<div class="form-group row">
@@ -111,7 +117,7 @@
 		<div class="form-group row">
 			<label for="gym_info" class="col-sm-2 col-form-label">매장소개</label>
 			<div class="col-sm-8">
-				<textarea class="form-control" id="gym_info" name="gym_info">
+				<textarea class="form-control" id="gym_info" name="gym_info" required>
 				</textarea>
 			</div>
 		</div>
@@ -134,7 +140,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-primary" onclick="joinINS()">가입</button>
+			<button type="submit" class="btn btn-primary" onclick="joinINS()">가입</button><!--   -->
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		</div>
 	</form>
@@ -156,7 +162,7 @@
             var reader = new FileReader();
             reader.onload = function(e) {
             	//img태그 아이디
-            	alert("파일첨부1 : "+e.target.result);
+            	//alert("파일첨부1 : "+e.target.result);
                 $('#gym_profimg_img').attr('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
