@@ -53,21 +53,14 @@
 	<select id="getChartList" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
-	<select id="getContentList" parameterType="map" resultType="map">
+	<select id="getContentList" parameterType="map" statementType="CALLABLE">
 		<!-- ==========편성경여기========== -->
-<<<<<<< HEAD
-		<!-- 로그인한 매장 번호 바꿔주기 -->
-		SELECT gym_cont_seq, gym_no, gym_contents, gym_cont_like, gym_cont_date, gym_cont_time 
-		  FROM GYM_CONTENTS
-		 <!-- WHERE gym_no='1' -->
-	  ORDER BY gym_cont_seq
-=======
-			{ call proc_gym_login(#{gym_no},#{gymCont
-				                           ,jdbcType=CURSOR
-				                           ,mode=OUT
-				                           ,javaType=java.sql.ResultSet
-				                           ,resultMap=gymCont})}
->>>>>>> refs/heads/master
+			{ call proc_GymContList(#{gym_no}, #{gymCont
+				                               ,jdbcType=CURSOR
+				                               ,mode=OUT
+				                               ,javaType=java.sql.ResultSet
+				                               ,resultMap=gymCont}
+				                               )}
 	</select>
 	<select id="getInfoList" parameterType="map" resultType="map">
 		SELECT gym_id, gym_username, gym_usertell, gym_name, gym_tel, gym_addr, gym_addr_dtl
@@ -174,8 +167,15 @@
 	</insert>
 	<insert id="contentIns" parameterType="map">
 		<!-- ==========편성경여기========== -->
-		INSERT into GYM_CONTENTS (gym_cont_seq, gym_no,gym_contents,gym_cont_like, gym_cont_date, gym_cont_time) 
-		values('6','1',#{cont_contents},'0', to_char(sysdate,'YYYY-MM-DD'), to_char(sysdate, 'HH24:MI:SS'))
+		<!-- INSERT into GYM_CONTENTS (gym_cont_seq, gym_no,gym_contents,gym_cont_like, gym_cont_date, gym_cont_time) 
+		values('6','1',#{cont_contents},'0', to_char(sysdate,'YYYY-MM-DD'), to_char(sysdate, 'HH24:MI:SS')) -->
+		{ call proc_GymContIns(#{gym_no},#{gym_contents}, to_char(sysdate,'YYYY-MM-DD'), to_char(sysdate, 'HH24:MI:SS')
+							  ,#{filename}
+							  ,#{filesize}
+							  ,#{filedata,jdbcType=LONGVARBINARY}
+							  ,#{result
+	                            ,jdbcType=VARCHAR
+	                            ,mode=OUT}) }
 	</insert>
 	
 	<update id="classUpd" parameterType="map">
