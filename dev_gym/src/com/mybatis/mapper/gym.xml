@@ -3,6 +3,7 @@
 <mapper namespace="com.mybatis.mapper.gymMapper">
 
 	<resultMap id="gymLogin" type="map"/>
+	<resultMap id="gymCont" type="map"/>
 	<resultMap id="getImage" type="object">
 		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
 	</resultMap>
@@ -54,9 +55,11 @@
 	</select>
 	<select id="getContentList" parameterType="map" resultType="map">
 		<!-- ==========편성경여기========== -->
-		SELECT gym_cont_seq, gym_no, gym_contents, gym_cont_like, gym_cont_date, gym_cont_time 
-		  FROM GYM_CONTENTS
-	  ORDER BY gym_cont_seq
+			{ call proc_gym_login(#{gym_no},#{gymCont
+				                           ,jdbcType=CURSOR
+				                           ,mode=OUT
+				                           ,javaType=java.sql.ResultSet
+				                           ,resultMap=gymCont})}
 	</select>
 	<select id="getInfoList" parameterType="map" resultType="map">
 		SELECT gym_id, gym_username, gym_usertell, gym_name, gym_tel, gym_addr, gym_addr_dtl
@@ -108,9 +111,12 @@
 		SELECT filename, filesize, filedata
 		  FROM images
 		 WHERE type = 'gym'
-		   <if test="file_seq != null">
+		<if test="file_seq != null">
 		   AND file_seq = #{file_seq}
-		   </if>
+		</if>
+		<if test="typecode != null">
+		   AND typecode = #{typecode}
+		</if>
 	</select><!-- #{gym_no} --><!--  AND typecode = 6 -->
 	
 	<!-- 이미지 가져오기  -->
