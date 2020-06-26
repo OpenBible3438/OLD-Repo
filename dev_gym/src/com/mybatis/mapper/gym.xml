@@ -31,11 +31,14 @@
 		SELECT 1 FROM dual
 	</select>
 	<select id="getNoticeList" parameterType="map" resultType="map">
-		SELECT rownum, notice_no, not_title, not_cont, gym_no
+		SELECT rownum, not_date, not_time, notice_no, not_title, not_cont, gym_no
 		  FROM notice
 		<where>
 			<if test="gym_no!=null and gym_no.length>0">
 				AND gym_no = #{gym_no}
+			</if>
+			<if test="notice_no!=null and notice_no.length>0">
+				AND notice_no = #{notice_no}
 			</if>
 			<if test="not_title!=null and not_title.length>0">
 				AND not_title LIKE '%'||#{not_title}||'%'
@@ -105,8 +108,10 @@
 		SELECT filename, filesize, filedata
 		  FROM images
 		 WHERE type = 'gym'
-		   AND typecode = 6 
-	</select><!-- #{gym_no} -->
+		   <if test="file_seq != null">
+		   AND file_seq = #{file_seq}
+		   </if>
+	</select><!-- #{gym_no} --><!--  AND typecode = 6 -->
 	
 	<!-- 이미지 가져오기  -->
 	<select id="getImages" parameterType="map" resultMap="getImage">
@@ -125,7 +130,7 @@
                   VALUES((SELECT max(gym_no)+1 FROM gym)
                         ,#{j_gym_id} ,#{j_gym_pw} ,#{gym_username} ,#{gym_usertell} 
                         ,#{gym_name}   ,#{gym_tel} ,#{gym_addr} ,#{gym_addr_dtl} ,#{gym_zipcode}
-                        ,#{gym_number} ,#{gym_info} ,34.1515115151 ,127.5486446215
+                        ,#{gym_number} ,#{gym_info} ,#{gym_lat} ,#{gym_lng}
                         ,#{gym_parking}  ,#{gym_wash}  ,#{gym_uniform}  ,#{gym_locker}  ,0 )
 	</insert>
 	<!-- 매장 회원가입 프로필사진 인서트 --><!-- (SELECT max(file_seq)+1 FROM images) -->
@@ -147,7 +152,8 @@
 		INSERT into insert_test values('1', '1', '1')
 	</insert>
 	<insert id="gymNoticeIns" parameterType="map">
-		INSERT into notice (notice_no, not_seq, not_title, not_cont, gym_no) values(func_getnoticeno(#{gym_no}), seq_notice.nextval, #{not_title}, #{not_cont}, #{gym_no})
+		INSERT into notice (notice_no, not_seq, not_title, not_cont, gym_no, not_date, not_time)
+		VALUES(func_getnoticeno(#{gym_no}), seq_notice.nextval, #{not_title}, #{not_cont}, #{gym_no}, TO_CHAR(sysdate, 'YYYY-MM-DD'), TO_CHAR(sysdate, 'HH:mm:ss'))
 	</insert>
 	<insert id="chartIns" parameterType="map">
 		INSERT into insert_test values('1', '1', '1')
@@ -165,7 +171,8 @@
 	</update>
 	<update id="gymNoticeUpd" parameterType="map">
 		UPDATE notice set not_title = #{not_title}, not_cont = #{not_cont}
-		 WHERE not_seq = #{not_seq}
+		 WHERE notice_no = #{notice_no}
+		   AND gym_no = #{gym_no}
 	</update>
 	<update id="chartUpd" parameterType="map">
 		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
@@ -182,7 +189,7 @@
 			 , gym_number = #{gym_number}, gym_info = #{gym_info}
 			 , gym_parking = #{gym_parking}, gym_wash = #{gym_wash}
 			 , gym_locker = #{gym_locker}, gym_uniform = #{gym_uniform}
-		 WHERE gym_no=#{gym_no}
+		 WHERE gym_no = #{gym_no}
 	</update>
 	
 	<delete id="classDel" parameterType="map">

@@ -11,22 +11,19 @@
 <script type="text/javascript">
 	$.ajax({
 		method: "post"
-		,data: "type=gym&typecode=6"
+		,data: "file_seq=6"
 		,url: "../gym/gymContImage.gym"
 		,success: function(result) {
 			alert(result);
-			var data = JSON.stringify(result);
-			var jsonDoc = JSON.parse(data);
-			//document.write(result);
-			alert(jsonDoc[0].filedata);
-			for(var i=0; i<jsonDoc.length; i++) {
-				document.write(jsonDoc[0].FILENAME+"<br>");
-				document.write(jsonDoc[0].filesize+"<br>");
-				document.write(jsonDoc[0].filedata+"<br>");
-			}
+// 			var data = JSON.stringify(result);
+// 			var jsonDoc = JSON.parse(data);
+ 			document.write(result.trim());
+			//location.href = result.trim();
+// 			$('#text').html(result.trim());
 		}
 	});
 </script>
-<img id="test"/>
+
+<div id="text"></div>
 </body>
 </html>

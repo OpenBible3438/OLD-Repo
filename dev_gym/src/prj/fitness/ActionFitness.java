@@ -30,7 +30,6 @@ public class ActionFitness extends HttpServlet {
 		logger.info("doPost() 호출");
 		doService(req, res);
 	}
-	
 	public void doService(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.info("doService() 호출");
 		Map<String, Object> pMap = new HashMap<String, Object>(); 

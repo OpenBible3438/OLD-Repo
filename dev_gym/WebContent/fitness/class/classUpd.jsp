@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/heads/hjho
 	<!--============================================================================================================== 수업수정 Modal 시작 -->
 	<div class="modal fade" id="c_upd" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="true">
