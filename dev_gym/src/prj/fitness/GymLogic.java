@@ -254,18 +254,15 @@ public class GymLogic {
 		result = gDao.gymJoin(pMap);
 		if(result == 1 && pMap.get("filename")!=null) {
 			result = gDao.gymJoinImg(pMap);
-//			if(result == 1) {
-//				try {
-//					((FileInputStream)pMap.get("filedata")).close();
-//					if(((File)pMap.get("file")).delete()) {
-//						logger.info("파일삭제 성공");
-//					}
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
+			try {
+				((FileInputStream)pMap.get("filedata")).close();
+				if(((File)pMap.get("file")).delete()) {
+					logger.info("파일삭제 성공");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 		setCommit(result);
 		return result;
 	}
