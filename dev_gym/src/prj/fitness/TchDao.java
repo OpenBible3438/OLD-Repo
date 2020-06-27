@@ -20,7 +20,10 @@ public class TchDao {
 	public List<Map<String, Object>> getTchList(Map<String, Object> pMap) {
 		logger.info("TchDao - getTchList() 호출");
 		List<Map<String, Object>> tchList = null;
-		tchList = sqlSession.selectList("getTchList", pMap);
+		sqlSession.selectList("getProcTchList", pMap);
+		tchList = (List<Map<String, Object>>)pMap.get("gymTchList");
+		logger.info(" - tchList : "+tchList.size()+"row");
+		//logger.info(" - tchList : "+tchList.toString());
 		return tchList;
 	}
 	
@@ -39,7 +42,14 @@ public class TchDao {
 		
 		return tchProfile;
 	}
-
+	public List<Map<String, Object>> tchNoSearch(Map<String, Object> pMap) {
+		logger.info("TchDao - getTchList() 호출");
+		List<Map<String, Object>> tchList = null;
+		sqlSession.selectList("getTchList", pMap);
+		tchList = (List<Map<String, Object>>)pMap.get("gymTchList");
+		logger.info(" - tchList : "+tchList.toString());
+		return tchList;
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -64,5 +74,7 @@ public class TchDao {
 		
 		return result;
 	}
+
+
 	
 }

@@ -31,6 +31,7 @@ public class GymDao {
 		loginResult = (List<Map<String, Object>>)pMap.get("gymLogin");
 		logger.info(" - loginResult : "+loginResult.size()+"row");
 		
+		
 		return loginResult;
 	}
 	//매장 아이디 중복확인

@@ -79,26 +79,6 @@
 </script>
 </head>
 <body > 
-<script type="text/javascript">
-	//DOM구성이 완료되면...
-	$(document).ready(function() {
-		//alert("center : <%=center%>"); 
-		//alert("gym_no : <%=gym_no%>");
-		//alert("gym_name : <%=gym_name%>");
-        $('#tb_member').bootstrapTable('refreshOptions', {
-            url: "../member/jsonMemList.gym"
-            /*     */
-          ,onClickRow : function(row,element,field){
-             var mem_no = row.MEM_NO;
-             //alert("회원번호 : "+mem_no);
-             //location.href= '/member/mem_Detail.jsp?mem_no='+mem_no;
-             //==> board_no를 넘겨주면 해당 게시글을  select!!
-          }
-   
-     });
-		
-	}); 
-</script>
 <!-- ========================= TOP 자리 ========================= -->
    <%@ include file="./mainTop.jsp" %> 
 <!-- ========================= CENTER 시작  =========================  -->
