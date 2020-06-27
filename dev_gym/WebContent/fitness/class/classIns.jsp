@@ -16,6 +16,8 @@
 					<!--=========================================================================================== form 시작  -->
 					<form role="form" id="f_ins">
 						<input type="hidden" name="cud" value="ins">
+						
+						<%-- <input type="hidden" name="ins_gym_no" value="<%=gym_no%>"> --%>
 						<%-- <input type="hidden" name="gym_no" value="<%=gym_no%>"> --%>
 						<div class="form-group">
 							<label for="ins_cls_name"><b>수업명</b></label> 
@@ -24,20 +26,21 @@
 						<div class="form-group">
 							<label for="ins_tch_name"><b>강사명</b></label> 
 					        <select class="form-control" id="ins_tch_name" name="ins_tch_name">
+					        
 							</select>
 						</div>					
 						<div class="form-group">
 							<label for="ins_type_no"><b>종목</b></label> 
 							<select class="form-control" id="ins_type_no" name="ins_type_no">
-								<option value="1">요가</option>
-								<option value="2">헬스</option>
+								
 							</select>	
 						</div>
 						<div class="form-group">
 							<label for="ins_cls_kind"><b>수업 구분</b></label> 
 					        <select class="form-control" id="ins_cls_kind" name="ins_cls_kind">
-								<option value="1:1">개인 수업</option>
-								<option value="1:N">단체 수업</option>
+								<option value="개인 수업">개인 수업</option>
+								<option value="단체 수업">단체 수업</option>
+								<option value="매장 이용">매장 이용</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -49,9 +52,46 @@
 							<input type="date" class="form-control input-sm" id="ins_cls_e_date" name="ins_cls_e_date" placeholder="연도-월-일">
 						</div>
 						<div class="form-group">
-							<label for="ins_cls_days"><b>수업 일수</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_cls_days" name="ins_cls_days" placeholder="시작일과 종료일을 입력하세요.">
+							<label for="ins_cls_sTime"><b>시작 시간</b></label> 
+							<input type="text" class="form-control input-sm" id="ins_cls_sTime" name="ins_cls_sTime" placeholder="입력창을 클릭하세요.">							
+						</div>						
+						<div class="form-group">
+							<label for="ins_cls_eTime"><b>종료 시간</b></label> 
+							<input type="text" class="form-control input-sm" id="ins_cls_eTime" name="ins_cls_eTime" placeholder="입력창을 클릭하세요.">							
+						</div>	
+						<div class="form-group">
+							<label for="ins_cls_day"><b>수업 요일</b></label> 
 						</div>
+						<div class="form-group row" style="padding: 0px 0px 0px 18px;">
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" id="ins_cls_day1" class="custom-control-input">
+								<label class="custom-control-label" for="ins_cls_day1">월&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</div>							
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" id="ins_cls_day2" class="custom-control-input">
+								<label class="custom-control-label" for="ins_cls_day2">화&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</div>							
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" id="ins_cls_day3" class="custom-control-input">
+								<label class="custom-control-label" for="ins_cls_day3">수&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</div>							
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" id="ins_cls_day4" class="custom-control-input">
+								<label class="custom-control-label" for="ins_cls_day4">목&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</div>							
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" id="ins_cls_day5" class="custom-control-input">
+								<label class="custom-control-label" for="ins_cls_day5">금&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</div>							
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" id="ins_cls_day6" class="custom-control-input">
+								<label class="custom-control-label" for="ins_cls_day6">토&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</div>							
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" id="ins_cls_day7" class="custom-control-input">
+								<label class="custom-control-label" for="ins_cls_day7">일</label>
+							</div>							
+						</div>											
 						<div class="form-group">
 							<label for="ins_cls_cnt"><b>수업 횟수</b></label> 
 							<input type="text" class="form-control input-sm" id="ins_cls_cnt" name="ins_cls_cnt" placeholder="단위:수">
