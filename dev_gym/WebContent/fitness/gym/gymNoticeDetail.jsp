@@ -21,9 +21,19 @@
 				<div class="modal-body">
 					<!--============ form 시작  -->
 					<div class="form-group">
-						<label for="not_title"><b>제목</b></label>
+					
+					<div class="row" style="width:100%">
+						<div class="col-10" >
+							<label style="margin-top: 20px"><b>제목</b></label>
+						</div>
+						<div class="col-1">
+						 <a id="kakao-link-btn" href="javascript:sendLink()">
+	  						<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style="width:50px; height:50px;"/>
+						 </a>
+						</div>
+					</div>
 						<div class="px-3 py-3 continer border rounded" id = "not_title_dtl"></div>
-						<label for="not_cont"><b>내용</b></label> 
+						<label for="not_cont_dtl"><b>내용</b></label> 
 						<div class="px-3 py-3 continer border rounded" id = "not_cont_dtl"></div>
 					</div>
 					<div class="form-group form-inline" style="float:right;">

@@ -157,7 +157,6 @@
 		$.ajax({
 			url : "../gym/jsonGymInfoList.gym"
 		  , success : function(result){
-			  alert(result);
 			  var infoList = JSON.parse(result.trim());
 			  
 			  gym_id= infoList[0].GYM_ID;
