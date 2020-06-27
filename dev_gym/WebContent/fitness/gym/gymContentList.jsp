@@ -52,7 +52,7 @@
 				//var imsi = JSON.stringify(result);
 				var contList = JSON.parse(result.trim());
 				var input = contList[cont_seq-1].GYM_CONTENTS;
-				$("#contents_upd").html(input);
+				$("#contents_upd").text(input);
 				$("#contUpd_seq").val(cont_seq);
 			}
 		});
@@ -69,7 +69,6 @@
 	}
 	function contentIns(){
 		//alert("컨텐츠 등록하기 버튼 클릭");
-		$("#f_ins").attr("method", "get");
 		$("#f_ins").attr("action", "../gym/contentIns.gym");
 		$("#f_ins").submit();
 	}
@@ -79,7 +78,31 @@
 			,success:function(result){
 				//alert(result);
 				$("#div_content").html(result)
+				
+				var url = "";
+				var urls = null;
+				$.ajax({
+					method: "post"
+					,data: "typecode=6"
+					,url: "../gym/gymContImage.gym"
+					,success: function(result) {
+						var data = JSON.stringify(result);
+						var jsonDoc = JSON.parse(data);
+						var imgTag = "";
+						for(var i=0; i<jsonDoc.length; i++) {
+							var binaryData = jsonDoc[i].filedata;
+							var blob = new Blob([new Uint8Array(binaryData)],{type:'image/png'});
+							url = URL.createObjectURL(blob);
+							$("#img"+i+"").attr('src',url);
+							//<img src='"+url+"' style='width:250px; height:250px'/>";
+							
+						}
+					}
+				});
 			}
 		});
+		
+		
+		
 	});
 </script>

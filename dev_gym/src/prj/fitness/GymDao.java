@@ -89,11 +89,14 @@ public class GymDao {
 	}
 	
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {
+		
 		logger.info("GymDao - getContentList() 호출");
 		List<Map<String, Object>> contentList = null;
-		contentList = sqlSession.selectList("getContentList", pMap);
+		sqlSession.selectList("getContentList", pMap);
+		contentList = (List<Map<String, Object>>)pMap.get("gymCont");
 		logger.info("contentList.size() : " + contentList.size());
 		return contentList;
+		
 	}
 	
 	public List<Map<String, Object>> getInfoList(Map<String, Object> pMap) {
