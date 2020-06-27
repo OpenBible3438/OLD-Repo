@@ -19,37 +19,22 @@
 			,success: function(result) {
 				var data = JSON.stringify(result);
 				var jsonDoc = JSON.parse(data);
+				
+				//다중 이미지 처리
 				var imgTag = "";
 				for(var i=0; i<jsonDoc.length; i++) {
 					var binaryData = jsonDoc[i].filedata;
 					var blob = new Blob([new Uint8Array(binaryData)],{type:'image/png'});
 					url = URL.createObjectURL(blob);
-					//urls[i] = url;
-					//
-					
-					imgTag += "<div id='div_content_nav'>";
-					imgTag += "<nav class='navbar navbar-expand-sm bg-dark navbar-dark' style='width:100%'><>";
-					imgTag += "<a class='navbar-brand'>"+jsonDoc[i].FILENAME+"/"+jsonDoc[i].filesize+"</a>";
-					imgTag += "<img src='"+url+"' style='width:250px; height:250px'/>";
-					
-					//
+					imgTag += "<img src='"+url+"' style='width:250px; height:250px'/>"
 					if((i+1)%3 == 0) {
 						imgTag += "<br>";
 					}
 				}
-				//$('#test').attr('src',url);
 				$('#text').html(imgTag);
-				//URL.revokeObjectURL(url);
-				//$('#text').text(binaryData.length);
-				//alert(jsonDoc[0].filedata);
-				//alert(url);
-				//location.href = url;
+				//다중 이미지 처리
 			}
 		});
-// 		for(var i=0; i<urls.length; i++) {
-// 			alert("i:"+i);
-// 			URL.revokeObjectURL(urls[i]);
-// 		}
 	}
 </script>
 <img id="test"/>

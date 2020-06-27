@@ -22,6 +22,7 @@
 <script type="text/javascript">
 	var id_check = 1;
 	var pw_check = 1;
+	var img_check = "";
 	var geocoder = new daum.maps.services.Geocoder();
 	
 	function addrSearch() {
@@ -57,7 +58,11 @@
 	function joinINS() {
 		if(id_check == 0) {
 			if(pw_check == 0) {
-				$('#gym_join').submit();
+				if(img_check != "") {
+					$('#gym_join').submit();
+				} else {
+					alert("이미지를 등록 해주세요 ");
+				}
 			} else {
 				alert("비밀번호를 확인 해주세요 ");
 			}

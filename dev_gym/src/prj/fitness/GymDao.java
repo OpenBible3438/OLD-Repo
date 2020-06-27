@@ -297,6 +297,9 @@ public class GymDao {
 	// 매장 회원가입 
 	public int gymJoin(Map<String, Object> pMap) {
 		logger.info("GymDao - gymJoin() 호출");
+		int gym_no = sqlSession.selectOne("getGymNo");
+		pMap.put("gym_no", gym_no);
+		logger.info("gym_no : " + gym_no);
 		result = sqlSession.insert("gymJoin", pMap);
 		logger.info("result : " + result);
 		return result;

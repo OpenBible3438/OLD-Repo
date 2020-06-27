@@ -3,10 +3,13 @@
 <mapper namespace="com.mybatis.mapper.gymMapper">
 
 	<resultMap id="gymLogin" type="map"/>
+	
 	<resultMap id="gymCont" type="map"/>
+	
 	<resultMap id="getImage" type="object">
 		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
 	</resultMap>
+	
 	<resultMap id="getCont" type="map">
 		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
 		<result property="filesize" column="FILESIZE" jdbcType="DOUBLE"/>
@@ -78,12 +81,20 @@
 	</select>
 	<select id="getContentList" parameterType="map" statementType="CALLABLE">
 		<!-- ==========편성경여기========== -->
+<<<<<<< HEAD
 			{ call proc_GymContList(#{gym_no}, #{gymCont
 				                               ,jdbcType=CURSOR
 				                               ,mode=OUT
 				                               ,javaType=java.sql.ResultSet
 				                               ,resultMap=gymCont}
 				                               )}
+=======
+			{ call proc_gym_login(#{gym_no},#{gymCont
+				                             ,jdbcType=CURSOR
+				                             ,mode=OUT
+				                             ,javaType=java.sql.ResultSet
+				                             ,resultMap=gymCont})}
+>>>>>>> refs/heads/hjho
 	</select>
 	<select id="getInfoList" parameterType="map" resultType="map">
 		SELECT gym_id, gym_username, gym_usertell, gym_name, gym_tel, gym_addr, gym_addr_dtl
@@ -122,6 +133,7 @@
 	                  AND gym_id = #{gym_id} ),0) as ok
 	  	  FROM dual
 	</select>
+	
 	<!-- 매장 프로필 사진 가져오기  -->
 	<select id="gymProfImage" parameterType="map" resultMap="getImage">
 		SELECT filedata  
@@ -150,14 +162,20 @@
 		 WHERE file_seq = #{file_seq}
 	</select><!-- #{file_seq} -->
 	
+	<!-- 매장 회원가입시 매장 번호 채번  -->
+	<select id="getGymNo" resultType="int">
+		SELECT max(gym_no)+1 FROM gym
+	</select>
+	
+	<!-- insert ========================================= -->
 	<!-- 매장 회원가입 인서트 -->
 	<insert id="gymJoin" parameterType="map">
 		INSERT INTO gym (gym_no 
-		                ,gym_id ,gym_pw ,gym_username ,gym_usertell
-                        ,gym_name ,gym_tel     ,gym_addr   ,gym_addr_dtl ,gym_zipcode
-                        ,gym_number ,gym_info    ,gym_lat    ,gym_lng      
-                        ,gym_parking ,gym_wash   ,gym_uniform ,gym_locker ,gym_like )
-                  VALUES((SELECT max(gym_no)+1 FROM gym)
+		                ,gym_id      ,gym_pw   ,gym_username ,gym_usertell
+                        ,gym_name    ,gym_tel  ,gym_addr     ,gym_addr_dtl ,gym_zipcode
+                        ,gym_number  ,gym_info ,gym_lat      ,gym_lng      
+                        ,gym_parking ,gym_wash ,gym_uniform  ,gym_locker   ,gym_like )
+                  VALUES(#{gym_no}
                         ,#{j_gym_id} ,#{j_gym_pw} ,#{gym_username} ,#{gym_usertell} 
                         ,#{gym_name}   ,#{gym_tel} ,#{gym_addr} ,#{gym_addr_dtl} ,#{gym_zipcode}
                         ,#{gym_number} ,#{gym_info} ,#{gym_lat} ,#{gym_lng}
@@ -166,13 +184,13 @@
 	<!-- 매장 회원가입 프로필사진 인서트 --><!-- (SELECT max(file_seq)+1 FROM images) -->
 	<insert id="gymJoinImg" parameterType="map">
 		INSERT INTO images(file_seq
-		                  ,filename  ,filesize
+		                  ,filename     ,filesize
 		                  ,filedata
-		                  ,type ,typecode)
+		                  ,type         ,typecode)
                     VALUES((SELECT max(file_seq)+1 FROM images)
                           ,#{filename}  ,#{filesize}
                           ,#{filedata   ,jdbcType=LONGVARBINARY} 
-                          ,#{type}      ,6 )
+                          ,'gym'        ,#{gym_no} )
 	</insert>
 	<insert id="classIns" parameterType="map">	
 		INSERT INTO class(
