@@ -70,11 +70,24 @@ public class GymLogic {
 		
 		return classList;
 	}
-	public List<Map<String, Object>> getTchNo(Map<String, Object> pMap) {
-		logger.info("GymLogic - getTchNo() 호출");
+	public List<Map<String, Object>> getTypeNo(Map<String, Object> pMap) {
+		logger.info("GymLogic - getTypeNo() 호출");
 		List<Map<String, Object>> classList = null;
-		classList = gDao.getTchNo(pMap);
-		mbMgr.clossSession(sqlSession);
+		classList = gDao.getTypeNo(pMap);
+		
+		return classList;
+	}
+	public List<Map<String, Object>> getComboList(Map<String, Object> pMap) {
+		logger.info("GymLogic - getComboList() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = gDao.getComboList(pMap);
+		
+		return classList;
+	}
+	public List<Map<String, Object>> getEventList(Map<String, Object> pMap) {
+		logger.info("GymLogic - getEventList() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = gDao.getEventList(pMap);
 		
 		return classList;
 	}
