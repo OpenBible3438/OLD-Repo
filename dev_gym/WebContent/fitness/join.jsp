@@ -111,7 +111,11 @@
 		<div class="form-group row">
 			<div class="col-sm-2" ></div>
 			<div class="col-sm-5">
-				<input type="file" class="form-control-file border" id="gym_profimg" name="gym_profimg">
+<<<<<<< HEAD
+				<input type="file" class="form-control-file border" id="gym_profimg" name="img" accept=".gif, .jpg, .png">
+=======
+				<input type="file" class="form-control-file border" id="gym_profimg" name="img" required>
+>>>>>>> refs/heads/hjho
 			</div>
 		</div>
 		<div class="form-group row">
@@ -163,13 +167,19 @@
             reader.onload = function(e) {
             	//img태그 아이디
             	//alert("파일첨부1 : "+e.target.result);
-                $('#gym_profimg_img').attr('src', e.target.result);
+            	img_check =  $("#gym_profimg").val();
+    			//alert("img_check : "+img_check);
+    			if(img_check != "") {
+                	$('#gym_profimg_img').attr('src', e.target.result);
+    			}
             }
             reader.readAsDataURL(input.files[0]);
         }
     }
 	//파일첨부 input태그 아이디
     $("#gym_profimg").change(function() {
+    	img_check =  $("#gym_profimg").val();
+    	//alert("img_check : "+img_check);
         readURL(this);
     });
 </script>

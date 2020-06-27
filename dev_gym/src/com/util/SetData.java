@@ -16,7 +16,7 @@ public class SetData {
 	/***********************************************************************
 	 * 
 	 * @param dataList : DB연동(selectList()) 로 받은 결과 / 구글 차트 형식으로 변환할 데이터(List 형식)
-	 * @param std : 
+	 * @param std : 기준이 되는 컬럼
 	 * @return json 형태로 변환 된 String 타입 데이터. out.print(data)하면 됨
 	 */
 	public String dataToJson(List<Map<String, Object>> dataList, String std) {
@@ -67,7 +67,7 @@ public class SetData {
 		Map<String, Object> nowMap = null;
 		
 		for(int i=0; i<dataList.size(); i++) {
-			nowMap = dataList.get(i);
+			nowMap = dataList.get(i);//현재 list에서 뽑아온 맵
 			data_oneRow = new ArrayList<>();
 			oneRow = new HashMap<>();
 			for(int j=0; j<cnt; j++) {

@@ -32,8 +32,8 @@ public class HashMapBinder {
 	public HashMapBinder(HttpServletRequest req) {
 		this.req = req;
 		//realFolder = "C:\\workspace_KHL\\workspace_fitness\\project_fitness\\dev_fitness\\WebContent\\pds";
-		realFolder = "C:\\git_gym\\dev_gym\\WebContent\\pds";
-		//realFolder = "./../../../WebContent/pds";
+		//realFolder = "C:\\git_gym\\dev_gym\\WebContent\\pds";
+		realFolder = "C:\\Users\\Public\\Pictures";
 	}
 	public void multiBind(Map<String,Object> pMap) {
 		pMap.clear();
@@ -67,7 +67,7 @@ public class HashMapBinder {
 					try {
 						//파일 객체 만들기
 						//file2 = new File(realFolder+"\\"+filename);
-						file = multi.getFile("gym_profimg");
+						file = multi.getFile("img");
 						logger.info("file : "+file);
 						//logger.info("file2 : "+file2);
 						//파일 이름 만들기

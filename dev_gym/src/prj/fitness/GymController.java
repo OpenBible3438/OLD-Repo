@@ -156,8 +156,14 @@ public class GymController implements Controller {
 			case "jsonClassList":{ // 수업 목록 조회
 				selResult = gLogic.getClassList(pMap);
 			}break;
-			case "jsonTeacherNoList":{ ///////????????????????????????????????????????????????
-				selResult = gLogic.getTchNo(pMap);
+			case "jsonTypeList":{
+				selResult = gLogic.getTypeNo(pMap);
+			}break;
+			case "jsonComboList":{
+				selResult = gLogic.getComboList(pMap);
+			}break;
+			case "jsonEventList":{
+				selResult = gLogic.getEventList(pMap);
 			}break;
 			case "jsonGymNoticeList":{ // 공지사항 조회
 				selResult = gLogic.getNoticeList(pMap);

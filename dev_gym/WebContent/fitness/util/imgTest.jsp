@@ -8,26 +8,7 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<!-- 
-<script type="text/javascript">
-		$.ajax({
-			method: "get"
-			,url: "../gym/gymProfImage.gym?typecode=5"
-			,success: function(result) {
-				document.write(result);
-			}
-		});
-</script>
- -->
-<!--   -->
- <img alt="" src="../gym/gymProfImage.gym?typecode=5"/>
- <!-- 
- <img alt="" src="../main/getImages.gym?file_seq=0"/>
- <img alt="" src="../main/getImages.gym?file_seq=1"/>
- <img alt="" src="../main/getImages.gym?file_seq=2"/>
- <img alt="" src="../main/getImages.gym?file_seq=3"/>
- <img alt="" src="../main/getImages.gym?file_seq=4"/>
- <img alt="" src="../main/getImages.gym?file_seq=5"/>
- -->
+<!-- 이미지 한장 가져오기  -->
+<img alt="" src="../main/getImages.gym?file_seq=3"/>
 </body>
 </html>

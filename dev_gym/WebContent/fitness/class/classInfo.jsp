@@ -17,68 +17,82 @@
 
 					<form role="form" id="f_info">
 						<div class="form-group">
-							<label for="info_c_name"><b>수업명</b></label> 
-							<input type="text" class="form-control input-sm" id="info_c_name" name="info_c_name" value="상수상수" readonly>
+							<label for="info_cls_name"><b>수업명</b></label> 
+							<input type="text" class="form-control input-sm" id="info_cls_name" name="info_cls_name" readonly>
 						</div>
 						<div class="form-group">
-							<label for="info_c_tNumber"><b>강사 번호</b></label> 
-					        <select class="form-control" id="info_c_tNumber" name="info_c_tNumber" readonly>
-								<option>1111</option>
-								<option>1112</option>
-								<option>1113</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="info_c_tName"><b>강사명</b></label> 
-							<input type="text" class="form-control input-sm" id="info_c_tName" name="info_c_tName" placeholder="강사 번호를 선택하세요." readonly>
+							<label for="info_tch_name"><b>강사명</b></label> 
+							<input type="text" class="form-control input-sm" id="info_tch_name" name="info_tch_name" readonly>
 						</div>						
 						<div class="form-group">
-							<label for="info_c_sports"><b>종목</b></label> 
-							<input type="text" class="form-control input-sm" id="info_c_sports" name="info_c_sports" value="상수상수" readonly>
+							<label for="info_type_no"><b>종목</b></label> 
+							<input type="text" class="form-control input-sm" id="info_type_no" name="info_type_no" readonly>
 						</div>
 						<div class="form-group">
-							<label for="info_c_type"><b>수업 구분</b></label> 
-					        <select class="form-control" id="info_c_type" readonly>
-								<option>개인 수업</option>
-								<option>단체 수업</option>
-							</select>
+							<label for="info_cls_kind"><b>수업 구분</b></label> 
+							<input type="text" class="form-control input-sm" id="info_cls_kind" name="info_cls_kind" readonly>
 						</div>
 						<div class="form-group">
-							<label for="info_c_startDate"><b>시작일</b></label> 
-							<input type="date" class="form-control input-sm" id="info_c_startDate" name="info_c_startDate" value="2020-06-20" readonly>
+							<label for="info_cls_s_date"><b>시작일</b></label> 
+							<input type="date" class="form-control input-sm" id="info_cls_s_date" name="info_cls_s_date" placeholder="연도-월-일" readonly>
 						</div>
 						<div class="form-group">
-							<label for="info_c_endDate"><b>종료일</b></label> 
-							<input type="date" class="form-control input-sm" id="info_c_endDate" name="info_c_endDate" value="2020-06-20" readonly>
+							<label for="info_cls_e_date"><b>종료일</b></label> 
+							<input type="date" class="form-control input-sm" id="info_cls_e_date" name="info_cls_e_date" placeholder="연도-월-일" readonly>
 						</div>
 						<div class="form-group">
-							<label for="info_c_totalDays"><b>수업 일수</b></label> 
-							<input type="text" class="form-control input-sm" id="info_c_totalDays" name="info_c_totalDays" value="상수상수" readonly>
+							<label for="info_cls_sTime"><b>시작 시간</b></label> 
+							<input type="time" class="form-control input-sm" id="info_cls_sTime" name="info_cls_sTime" readonly>							
+						</div>						
+						<div class="form-group">
+							<label for="info_cls_eTime"><b>종료 시간</b></label> 
+							<input type="time" class="form-control input-sm" id="info_cls_eTime" name="info_cls_eTime" readonly>							
+						</div>						
+						<div class="form-group">
+							<label for="info_cls_day"><b>수업 요일</b></label> 
+							<input type="text" class="form-control input-sm" id="info_cls_day" name="info_cls_day" readonly>							
+						</div>						
+						<div class="form-group">
+							<label for="info_cls_cnt"><b>수업 횟수</b></label> 
+							<input type="text" class="form-control input-sm" id="info_cls_cnt" name="info_cls_cnt" readonly>
 						</div>
 						<div class="form-group">
-							<label for="info_c_times"><b>수업 횟수</b></label> 
-							<input type="text" class="form-control input-sm" id="info_c_times" name="info_c_times" value="상수상수" readonly>
-						</div>
-						<div class="form-group">
-							<label for="info_c_intro"><b>수업 소개</b></label> 
-							<textarea rows="5" class="form-control" id="info_c_intro" name="info_c_intro" value="상수상수" readonly>
+							<label for="info_cls_info"><b>수업 소개</b></label> 
+							<textarea rows="5" class="form-control" id="info_cls_info" name="info_cls_info" readonly>
 							</textarea>
 						</div>
 						<div class="form-group">
-							<label for="info_c_price"><b>가격</b></label> 
-							<input type="text" class="form-control input-sm" id="info_c_price" name="info_c_price" value="상수상수" readonly>
+							<label for="info_cls_price"><b>가격</b></label> 
+							<input type="text" class="form-control input-sm" id="info_cls_price" name="info_cls_price" readonly>
 						</div>
 						<div class="form-group">
-							<label for="info_c_groupCode"><b>그룹코드</b></label> 
-							<input type="text" class="form-control input-sm" id="info_c_groupCode" name="info_c_groupCode" value="상수상수" readonly>
-						</div>
-						<div class="form-group">
-							<label for="info_c_process"><b>진행 상황</b></label> 
-					        <select class="form-control" id="info_c_process" name="info_c_process" readonly>
-								<option>진행</option>
-								<option>대기</option>
-								<option>종료</option>
-							</select>
+							<label for="info_cls_state"><b>진행 상황</b></label> 
+							<input type="text" class="form-control input-sm" id="info_cls_state" name="info_cls_state" readonly>							
+						</div>						
+						
+						<!---------------------------------------------------------------------------------- event 영역  -->
+						<div id="f_info_event">
+							<hr>
+							<div class="form-group">
+								<label for="info_cls_evt_name"><b>이벤트 명</b></label> 
+								<input type="text" class="form-control input-sm" id="info_cls_evt_name" name="info_cls_evt_name" readonly>
+							</div>
+							<div class="form-group">
+								<label for="info_cls_evt_sDate"><b>이벤트 시작일</b></label> 
+								<input type="date" class="form-control input-sm" id="info_cls_evt_sDate" name="info_cls_evt_sDate" readonly>
+							</div>
+							<div class="form-group">
+								<label for="info_cls_evt_eDate"><b>이벤트 종료일</b></label> 
+								<input type="date" class="form-control input-sm" id="info_cls_evt_eDate" name="info_cls_evt_eDate" readonly>
+							</div>
+							<div class="form-group">
+								<label for="info_cls_evt_cont"><b>이벤트 내용</b></label> 
+								<input type="text" class="form-control input-sm" id="info_cls_evt_cont" name="info_cls_evt_cont" readonly>
+							</div>
+							<div class="form-group">
+								<label for="info_cls_evt_cond"><b>이벤트 조건</b></label> 
+								<input type="text" class="form-control input-sm" id="info_cls_evt_cond" name="info_cls_evt_cond" readonly>
+							</div>
 						</div>
 					</form>
 				<!--=========================================================================================== form 끝  -->
