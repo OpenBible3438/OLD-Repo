@@ -50,7 +50,15 @@ public class TchLogic {
 		
 		return tchProfile;
 	}
-
+	
+	public List<Map<String, Object>> tchNoSearch(Map<String, Object> pMap) {
+		logger.info("TchLogic - tchNoSearch() 호출");
+		List<Map<String, Object>> selList = null;
+		selList = tDao.tchNoSearch(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return selList;
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,5 +95,7 @@ public class TchLogic {
 			sqlSession.rollback();
 		}
 	}
+
+
 	
 }

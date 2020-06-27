@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.teacherMapper">
+	<resultMap id="gymTchList" type="map">
+		<result property="FILEDATA" column="FILEDATA" jdbcType="BLOB"/>
+	</resultMap>
 <!-- ======================= Teacher ======================= -->
 	<select id="getTchClassList" parameterType="map" resultType="map">
 		SELECT cls_info,cls_no,cls_name,cls_kind,cls_cnt,cls_days,cls_state
 		FROM class
 	</select>
+	
 	<select id="getTchProfile" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
 	
 	<!-- 전체조회 -->
-	<select id="getTchList" parameterType="map" resultType="map">
-		SELECT tch_no,gym_no,tch_id,tch_pw, tch_name,
+	<select id="getTchList" parameterType="map" statementType="CALLABLE">
+		{ call proc_GymTchSearch(#{gym_no},#{tch_no},#{gymTchList
+			                                         ,jdbcType=CURSOR
+			                                         ,mode=OUT
+			                                         ,javaType=java.sql.ResultSet
+			                                         ,resultMap=gymTchList})}
+		
+	</select>
+	<!-- 전체조회 -->
+	<select id="tchNoSearch" parameterType="map" resultType="map">
+		SELECT rownum rno,tch_no,gym_no,tch_id,tch_pw, tch_name,
                      tch_tel, tch_addr, tch_addr_dtl, tch_zipcode,tch_gender
-		FROM teacher
+        FROM teacher
+        WHERE tch_no > 0
+	</select>
+	
+	<!-- 프로시저 전체조회 -->
+	<select id="getProcTchList" parameterType="map" statementType="CALLABLE">
+		{ call proc_GymTchList(#{gym_no},#{gymTchList
+			                           ,jdbcType=CURSOR
+			                           ,mode=OUT
+			                           ,javaType=java.sql.ResultSet
+			                           ,resultMap=gymTchList})}
 	</select>
 	
 	<!-- 강사등록 인서트 -->
 	<insert id="tchIns" parameterType="map">
-	INSERT into member values('1', '1', '1')
+		INSERT into member values('1', '1', '1')
 	</insert> 
 
 	<update id="tchUpd" parameterType="map">

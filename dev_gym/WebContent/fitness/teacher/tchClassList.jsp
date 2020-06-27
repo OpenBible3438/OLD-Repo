@@ -3,10 +3,9 @@
 
 			<!-- Modal Body 부분 -->
 			<div class="info_body">
-<table class="table table-bordered" data-toggle="table"
-									data-url="../teacher/jsonTchClass.gym"
+<table id="infoTable" class="table table-bordered" data-toggle="table"
 									data-click-to-select="true"
-									data-pagination="true">
+									data-pagination="true"><!-- data-url="../teacher/jsonTchClass.gym" -->
 		<thead>
 		<tr align="center">
 			<th data-field="CLS_INFO">종목</th>

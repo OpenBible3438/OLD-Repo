@@ -84,6 +84,9 @@ public class TchController implements Controller {
 			case "jsonTchProfile":{ // 강사 프로필 조회
 				selResult = tLogic.getTchProfile(pMap);
 			}break;
+			case "tchNoSearch":{ // 강사 프로필 조회
+				selResult = tLogic.tchNoSearch(pMap);
+			}break;
 		}
 		if(selResult != null) {
 			logger.info("selResult != null");
