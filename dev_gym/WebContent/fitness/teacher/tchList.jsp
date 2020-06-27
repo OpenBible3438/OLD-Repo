@@ -44,7 +44,7 @@
 					var confirm = datas[0].CONFIRM;
 					if("확인"== confirm) {
 						//모달이 닫히고 등록 페이지에 꽂힌다.
-						
+						alert("강사번호가 존재합니다");
 						
 					} else {
 						alert("강사번호가 존재하지 않습니다. 강사등록을 해주세요");
@@ -57,13 +57,60 @@
 		/* */
 	}
 
-
 //등록버튼 - > 번호찾기 -> 중복확인
+
 	function tch_ins_over() {
 		alert("중복 확인");
-	}
-	
-	
+	  var s_tch_id = $('#tch_id').val();
+	  alert("s_tch_id : "+s_tch_id);
+<!--	  
+		if(s_tch_id.length < 5 
+		 ||s_tch_id.length > 9)  {
+			alert("5자리 이상, 9자 이하의 아이디를 작성해주세요");
+			return;
+		}
+		var result = check(s_tch_id);
+		if(result) { 
+			alert("영어 대,소문자, 숫자만 입력 가능 합니다.");
+			return; 
+		}
+		$.ajax({
+			method:'post'
+			,data: 'tch_id='+tch_id
+			,url: '../teacher/jsontchIDSearch.gym'
+			,success: function(data) {
+				id_check = data.trim();
+				//alert("data : "+id_check);
+				if(id_check == 1) {
+					alert("중복된 아이디 입니다.");
+				} else if(id_check == 0) {
+					$('#j_tch_id_ok').val(s_tch_id);
+					alert("사용가능한 아이디 입니다.");
+				}
+			}
+		});
+		// 48~57 : 0~9 
+		// 65~90 : 영어 대문자
+		// 97~122 : 영어 소문자
+		function check(str) {
+			//alert("str :"+str);
+			var check = 0;
+			for(i=0; i<str.length; i++) {
+				var code = str.charCodeAt(i)
+				//alert("code :"+code);result
+				if( 47<code&&code<58 
+				  ||64<code&&code<91
+				  ||96<code&&code<123) {
+					//영어 대,소분자, 숫자
+					check = 0;
+				} else {
+					//사용불가 문자 
+					check = 1;
+				}
+			}
+			return check;
+-->	
+		}
 //등록버튼 - > 번호찾기 -> 검색
 	function no_search_cancel() {
 		alert("취소 버튼");
@@ -199,11 +246,13 @@ img.img {
 </div>
 <br>
 <!-- 테이블 부분 -->
-<table id="tb_tch" class="table table-bordered" data-toggle="table"
-									data-url="../teacher/jsonTchList.gym"
-									data-click-to-select="true"
-									data-single-select="true"
-									data-pagination="true">
+<table id="tb_tch" 
+       class="table table-bordered" 
+       data-toggle="table"
+	   data-url="../teacher/jsonTchList.gym"
+	   data-click-to-select="true"
+	   data-single-select="true"
+	   data-pagination="true">
 	<thead>
 		<tr align="center">
 			<th data-checkbox=true>체크</th>

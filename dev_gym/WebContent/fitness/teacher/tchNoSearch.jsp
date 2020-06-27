@@ -26,7 +26,7 @@
 			<label for="gym_tcid" class="col-sm-3 col-form-label">아이디</label>
 				<div class="col-sm-4">
 				<input type="text" class="form-control" required 
-					   id="gym_tcid" >
+					   id="gym_tchId" >
 				</div>
 				<div class="col-sm-3">
 				<button onclick="tch_ins_over()" class="btn btn-primary mb-1">중복</button>

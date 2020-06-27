@@ -28,6 +28,7 @@ public class TchLogic {
 		logger.info("TchLogic - getTchList() 호출");
 		List<Map<String, Object>> tchList = null;
 		tchList = tDao.getTchList(pMap);
+		
 		mbMgr.clossSession(sqlSession);
 		
 		return tchList;
@@ -58,6 +59,14 @@ public class TchLogic {
 		mbMgr.clossSession(sqlSession);
 		
 		return selList;
+	}
+	public List<Map<String, Object>> tchIDSearch(Map<String, Object> pMap) {
+		logger.info("TchLogic - tchIDSearch() 호출");
+		List<Map<String, Object>> selID = null;
+		selID = tDao.tchIDSearch(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return selID;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,7 +104,5 @@ public class TchLogic {
 			sqlSession.rollback();
 		}
 	}
-
-
 	
 }
