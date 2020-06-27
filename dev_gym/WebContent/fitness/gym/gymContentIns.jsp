@@ -12,10 +12,10 @@
 	        
 	        <!-- Modal body -->
 	        <div class="modal-body">
-			<form id="f_ins">
+			<form id="f_ins" enctype="multipart/form-data" method="post">
 			<input type="hidden" name="cud" value="ins">
 	       		<img id="contentPreview" class="col-sm-7" name="input_img" src="#" style="min-width:200px; min-height:100px">
-	        	<input type="file" id="contentInputImg" class="form-control-file border" accept=".gif, .jpg, .png">
+	        	<input type="file" id="contentInputImg" name="img" class="form-control-file border" accept=".gif, .jpg, .png">
 	        	<div class="form-group">
   					<label for="cont_contents">컨텐츠 내용:</label>
   					<textarea class="form-control" rows="5" id="cont_contents" name="cont_contents"></textarea>

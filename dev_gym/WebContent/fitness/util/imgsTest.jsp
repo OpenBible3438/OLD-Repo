@@ -27,9 +27,10 @@
 					//urls[i] = url;
 					//
 					
-					imgTag += "<div>"
-					imgTag += "<img src='"+url+"' style='width:250px; height:250px'/>"
-					imgTag += "</div>"
+					imgTag += "<div id='div_content_nav'>";
+					imgTag += "<nav class='navbar navbar-expand-sm bg-dark navbar-dark' style='width:100%'><>";
+					imgTag += "<a class='navbar-brand'>"+jsonDoc[i].FILENAME+"/"+jsonDoc[i].filesize+"</a>";
+					imgTag += "<img src='"+url+"' style='width:250px; height:250px'/>";
 					
 					//
 					if((i+1)%3 == 0) {
