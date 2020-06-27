@@ -14,7 +14,7 @@
 		}
 		Gson g = new Gson();
 		String imsi = g.toJson(tchList);
-		System.out.print(imsi);
+		//System.out.print(imsi);
 		out.print(imsi);
 	} catch(Exception e) {
 		out.print(e.toString());

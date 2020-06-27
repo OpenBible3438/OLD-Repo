@@ -15,16 +15,15 @@
 	</select>
 	
 	<!-- 전체조회 -->
-	<select id="getTchList" parameterType="map" statementType="CALLABLE">
+	<select id="tchNoSearch" parameterType="map" statementType="CALLABLE">
 		{ call proc_GymTchSearch(#{gym_no},#{tch_no},#{gymTchList
-			                                         ,jdbcType=CURSOR
-			                                         ,mode=OUT
-			                                         ,javaType=java.sql.ResultSet
-			                                         ,resultMap=gymTchList})}
-		
+			                              ,jdbcType=CURSOR
+			                              ,mode=OUT
+			                              ,javaType=java.sql.ResultSet
+			                              ,resultMap=gymTchList})}
 	</select>
 	<!-- 전체조회 -->
-	<select id="tchNoSearch" parameterType="map" resultType="map">
+	<select id="getTchList" parameterType="map" resultType="map">
 		SELECT rownum rno,tch_no,gym_no,tch_id,tch_pw, tch_name,
                      tch_tel, tch_addr, tch_addr_dtl, tch_zipcode,tch_gender
         FROM teacher
@@ -34,10 +33,15 @@
 	<!-- 프로시저 전체조회 -->
 	<select id="getProcTchList" parameterType="map" statementType="CALLABLE">
 		{ call proc_GymTchList(#{gym_no},#{gymTchList
-			                           ,jdbcType=CURSOR
-			                           ,mode=OUT
-			                           ,javaType=java.sql.ResultSet
-			                           ,resultMap=gymTchList})}
+			                              ,jdbcType=CURSOR
+			                              ,mode=OUT
+			                              ,javaType=java.sql.ResultSet
+			                              ,resultMap=gymTchList})}
+	</select>
+	<select id="tchIDSearch" parameterType="map" resultType="map"> 
+			SELECT nvl(count(tch_id),0) 
+  				FROM teacher
+ 				WHERE tch_id = #{tch_id}
 	</select>
 	
 	<!-- 강사등록 인서트 -->
