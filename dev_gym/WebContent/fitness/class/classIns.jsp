@@ -52,6 +52,7 @@
 						</div>
 						<div class="form-group">
 							<label for="ins_cls_sTime"><b>시작 시간</b></label> 
+							<a href="javascript:ins_check_sTime()"><font size=2 color=blue> 선택완료 </font></a>
 							<input type="text" class="form-control input-sm" id="ins_cls_sTime" name="ins_cls_sTime" placeholder="입력창을 클릭하세요.">							
 						</div>						
 						<div class="form-group">
@@ -59,47 +60,40 @@
 							<input type="text" class="form-control input-sm" id="ins_cls_eTime" name="ins_cls_eTime" placeholder="입력창을 클릭하세요.">							
 						</div>	
 						
-						<!--  
-						<div class="form-group">
-							<label for="ins_cls_day"><b>수업 요일</b></label> 
-						</div>
 						<div class="form-group row" style="padding: 0px 0px 0px 18px;">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" id="ins_cls_day1" class="custom-control-input" value="월">
-								<label class="custom-control-label" for="ins_cls_day1">월&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<label class="custom-control-label" for="ins_cls_day1">월&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" id="ins_cls_day2" class="custom-control-input" value="화">
-								<label class="custom-control-label" for="ins_cls_day2">화&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<label class="custom-control-label" for="ins_cls_day2">화&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" id="ins_cls_day3" class="custom-control-input" value="수">
-								<label class="custom-control-label" for="ins_cls_day3">수&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<label class="custom-control-label" for="ins_cls_day3">수&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" id="ins_cls_day4" class="custom-control-input" value="목">
-								<label class="custom-control-label" for="ins_cls_day4">목&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<label class="custom-control-label" for="ins_cls_day4">목&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" id="ins_cls_day5" class="custom-control-input" value="금">
-								<label class="custom-control-label" for="ins_cls_day5">금&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<label class="custom-control-label" for="ins_cls_day5">금&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" id="ins_cls_day6" class="custom-control-input" value="토">
-								<label class="custom-control-label" for="ins_cls_day6">토&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<label class="custom-control-label" for="ins_cls_day6">토&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" id="ins_cls_day7" class="custom-control-input" value="일">
-								<label class="custom-control-label" for="ins_cls_day7">일</label>
+								<label class="custom-control-label" for="ins_cls_day7">일&nbsp;&nbsp;&nbsp;</label>
 							</div>
-							-->	
-							
-							
-							
-													
-																	
+							<a href="javascript:ins_checkDay()"><font size=2 color=blue> 선택완료 </font></a>
+						</div>
+																				
 						<div class="form-group">
-							<input type="text" class="form-control input-sm" id="ins_cls_day" name="ins_cls_day" placeholder="요일을 선택하세요.">
+							<input type="text" class="form-control input-sm" id="ins_cls_day" name="ins_cls_day" placeholder="요일을 선택하세요." readonly>
 						</div>
 						<div class="form-group">
 							<label for="ins_cls_cnt"><b>수업 횟수</b></label> 
@@ -136,3 +130,28 @@
 	</div>
 	<!-- 모달 전체 윈도우 -->
 	<!--============================================================================================================== 수업등록 Modal 끝 -->
+	
+	<!--============================================================================================================== 수업등록 안 시작시간 Modal 시작 -->
+	<div class="modal fade" id="c_upd_typeName" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">시작 시간</h4>
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+					</button>
+				</div>	
+				<div class="modal-body">
+					<p>시간을 선택하세요.</p>
+					
+				
+				</div>
+			</div>
+			<!-- 모달 콘텐츠 -->
+		</div>
+		<!-- 모달 다이얼로그 -->
+	</div>
+	<!-- 모달 전체 윈도우 -->	
+	<!--============================================================================================================== 수업등록 안 시작시간 Modal 끝 -->	
+	

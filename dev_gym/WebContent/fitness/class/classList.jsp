@@ -78,7 +78,7 @@
 			<div style="padding-left: 40px; padding-top: 20px">
 				<!-- 내용 틀 입니다. -->
 				<!--======================================================================================= 버튼 시작-->
-				<div id="button">
+				<div id="button" style="width:100%">
 					<button type="button" class="btn btn-primary" onClick="classSEL()">전체조회</button>
 					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">진행상황</button>
 					<div class="dropdown-menu" id="p_menu">
@@ -148,6 +148,7 @@
 	var tb_tch_no;
 	var tb_tch_name;
 	var evt_seq;
+	var checked_val = [];
 	
 	//---------------------------------------------------------------------------------------> (조건 조회)드롭다운 버튼
 	function progressWork() {
@@ -234,7 +235,8 @@
 	
 	//---------------------------------------------------------------------------------------> 수업 등록 버튼 
 	function ins(){
-		alert("ins호출");
+		//alert("ins호출");
+		//alert(check_val);
 		$.ajax({
 			 url:"../class/jsonTeacherNoList.gym"
 			,dataType:"json"
@@ -266,6 +268,26 @@
 			}////////////////success end
 		});//////////////////ajax1 end
 	}////////////////////////ins() end
+	
+	//------------------------------------------ 수강생 등록 모달 안 요일 체크 선택 버튼
+	function ins_checkDay(){
+		var days ="";
+		for(var i=0; i<checked_val.length; i++){
+			if(checked_val[i] != null) {
+				days += checked_val[i];
+				days += " ";
+			}
+		}
+		alert(days);
+		days = days.trim();
+		days = days.replace(/ /gi,"/");
+		$("#ins_cls_day").val(days);
+	}
+	//------------------------------------------ 수강생 등록 모달 안 요일 체크 선택 버튼
+	function ins_check_sTime(){
+		
+	}
+	
 
 	//---------------------------------------------------------------------------------------> 수업 수정 버튼
 	function upd(){
@@ -406,41 +428,65 @@
 	
 // 	});		
 	
-	//--------------------------------------------- 수업 등록에서 체크박스 선택한 값 아래 input박스에 넣기
+	/////////////////////////////////////////////////////////////////////////////////////////////////dom구성이 완료됐을 때
 	$(document).ready(function(){
+		
+		//--------------------------------------------- 수업 등록에서 체크박스 선택한 값 아래 input박스에 넣기
 	    $("#ins_cls_day1").change(function(){
 	        if($("#ins_cls_day1").is(":checked")){
-	        	var value = $(this).val();
-// 	        	var value = $('input:checkbox[id="ins_cls_day1"]').val();
-	        	$("#ins_cls_day").val(value);
-// 	        	$("#ins_type_no").append("<option value="+result[i].TYPE_NO+">"+result[i].TYPE_NAME+"</option>");
-//	        	$("#ins_cls_day").append("<option value=value>월</option>");
-	        	
-	        }else{
-	        	$("#ins_cls_day").val("");
+	        	checked_val[0] = $(this).val();
+	        } else {
+	        	checked_val[0] = null;
 	        }
 	    });//제이쿼리 end
 	    $("#ins_cls_day2").change(function(){
 	        if($("#ins_cls_day2").is(":checked")){
-	        	var value = $(this).val();
-// 	        	var value = $('input:checkbox[id="ins_cls_day1"]').val();
-//	        	$("#ins_cls_day").val(value);
-// 	        	$("#ins_type_no").append("<option value="+result[i].TYPE_NO+">"+result[i].TYPE_NAME+"</option>");
-	        	$("#ins_cls_day").append("<option value=value>화</option>");
-	        	
-	        }else{
-	        	$("#ins_cls_day").val("");
+	        	checked_val[1] = $(this).val();
+	        } else {
+	        	checked_val[1] = null;
 	        }
-	    });//제이쿼리 end	    
+	    });//제이쿼리 end
+	    $("#ins_cls_day3").change(function(){
+	        if($("#ins_cls_day3").is(":checked")){
+	        	checked_val[2] = $(this).val();
+	        } else {
+	        	checked_val[2] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#ins_cls_day4").change(function(){
+	        if($("#ins_cls_day4").is(":checked")){
+	        	checked_val[3] = $(this).val();
+	        } else {
+	        	checked_val[3] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#ins_cls_day5").change(function(){
+	        if($("#ins_cls_day5").is(":checked")){
+	        	checked_val[4] = $(this).val();
+	        } else {
+	        	checked_val[4] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#ins_cls_day6").change(function(){
+	        if($("#ins_cls_day6").is(":checked")){
+	        	checked_val[5] = $(this).val();
+	        } else {
+	        	checked_val[5] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#ins_cls_day7").change(function(){
+	        if($("#ins_cls_day7").is(":checked")){
+	        	checked_val[6] = $(this).val();
+	        } else {
+	        	checked_val[6] = null;
+	        }
+	    });//제이쿼리 end
 	    
-	
-	
 	});//document end
 	
 	
-// 	$("input[name=ins_cls_day1]:checked").each(function() {
-// 		var test = $(this).val(); 
-// 		alert("벨류값확인 : " + test);
-// 	}
+
+
+
 	
 </script>
