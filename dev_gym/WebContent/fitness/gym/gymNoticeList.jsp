@@ -29,7 +29,7 @@
 <style>
 .b1 { 
 /* 	border-radius: 30px; */
-	width: 100%;
+	width: 50%;
 	margin: 5px;
 }
 
@@ -49,31 +49,44 @@
    var selected = 0;
 	
 	function noticeList(){
+		$("#search_title").val("");
+		$("#search_cont").val("");
 		$('#tb_nList').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.
 	           url: '../gym/jsonGymNoticeList.gym'
 	        });
 	}
 	function showDetail(){
-		$.ajax({
-			url : "../gym/jsonGymNoticeList.gym?notice_no="+choNotice_no
-		  , success : function(data){
-			  var dtlList = JSON.parse(JSON.stringify(data));
-			  $("#not_title_dtl").text(dtlList[0].NOT_TITLE);
-			  $("#not_cont_dtl").text(dtlList[0].NOT_CONT);
-			  $("#not_date").text(dtlList[0].NOT_DATE);
-			  $("#not_time").text(dtlList[0].NOT_TIME);
-		  }
-		});
+		if(selected == 0){
+			alert("조회 할 공지사항을 선택하세요.");
+		}
+		else if(selected == 1){
+			$("#m_detail").modal({
+				show : true
+			  , keyboard : true
+			  , focus : true
+			})
+			$.ajax({
+				url : "../gym/jsonGymNoticeList.gym?notice_no="+choNotice_no
+			  , success : function(data){
+				  var dtlList = JSON.parse(JSON.stringify(data));
+				  $("#not_title_dtl").text(dtlList[0].NOT_TITLE);
+				  $("#not_cont_dtl").text(dtlList[0].NOT_CONT);
+				  $("#not_date").text(dtlList[0].NOT_DATE);
+				  $("#not_time").text(dtlList[0].NOT_TIME);
+			  }
+			});
+		}
+		else if(selected > 1){
+			alert("공지사항 조회는 1건씩만 가능합니다.");
+			$('input:checkbox[name=btSelectItem]').prop('checked', false);
+			selected = 0;
+		}
 		
-		$("#m_detail").modal({
-			show : true
-		  , keyboard : true
-		  , focus : true
-		})
 	}
 	function notSearch(){
 		var not_title = $("#search_title").val();
 		var not_cont = $("#search_cont").val();
+		alert("not_title : " + not_title + ", not_cont : " + not_cont);
 		$('#tb_nList').bootstrapTable('refreshOptions', {
 	           url: '../gym/jsonGymNoticeList.gym?not_title='+not_title+"&not_cont="+not_cont
 	        });
@@ -90,7 +103,6 @@
 		})
 	}
 	function startUpd(){
-		alert("selected : " + selected);
 		if(selected == 0){
 			alert("수정할 공지사항을 선택하세요.");
 		}
@@ -108,11 +120,11 @@
 		}
 		else if(selected > 1){
 			alert("공지사항 수정은 1건씩만 가능합니다.");
+			$('input:checkbox[name=btSelectItem]').prop('checked', false);
+			selected = 0;
 		}
-		$('input:checkbox[name=btSelectItem]').prop('checked', false);
 	}
 	function startDel(){
-		alert("startDel 호출  // selected : " + selected)
 		if(selected == 0){
 			alert("삭제할 공지사항을 선택하세요.");
 		}
@@ -123,8 +135,9 @@
 		}
 		else if(selected > 1){
 			alert("공지사항 삭제는 1건씩만 가능합니다.");
+			$('input:checkbox[name=btSelectItem]').prop('checked', false);
+			selected = 0;
 		}
-		$('input:checkbox[name=btSelectItem]').prop('checked', false);
 	}
 	function noticeDel(){
 			location.href = "gymNoticeDel.gym?cud=del&notice_no=" + choNotice_no;
@@ -193,19 +206,19 @@
 	<div style="padding-left: 40px; padding-top: 20px">
 <br>
 		<!--=========================== 검색부분 시작 ===========================-->
-		<div class="input-group" style="width:100%">
+		<div class="input-group" style="width:50%; min-width:450px;">
 	    	<span class="input-group-text">제목</span>
-    		<input type="text" id="search_title" name = "search_title" class="form-control" placeholder="제목으로 검색하세요.">
+    		<input type="text" id="search_title" name = "search_title" class="form-control" placeholder="제목으로 검색">
     		<span class="input-group-text"  style="margin-left:10px;">내용</span>
-    		<input type="text" class="form-control" placeholder="내용으로 검색하세요.">
-			<button type="button" class="btn btn-secondary" style="margin-left:10px;">검색</button>
+    		<input type="text" class="form-control" id="search_cont" name = "search_cont" placeholder="내용으로 검색">
+			<button type="button" class="btn btn-secondary" style="margin-left:10px;" onClick="notSearch()">검색</button>
 		</div>
 		<!--=========================== 검색부분 끝 ===========================-->
-		
+		<br>
 		<!--=========================== 버튼부분 시작 =========================== -->
-		<div id="button" class="btn-group" style="width:100%">
+		<div id="button" class="btn-group" style="width:50%; min-width:500px; margin-bottom:15px">
 			<button type="button" class="b1 btn btn-primary m-1" onClick="noticeList()">전체조회</button>
-			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="showDetail()">자세히보기</button>
+			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="showDetail()">상세조회</button>
 			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="startIns()">등록</button>
 			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="startUpd()">수정</button>
 			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="startDel()">삭제</button>

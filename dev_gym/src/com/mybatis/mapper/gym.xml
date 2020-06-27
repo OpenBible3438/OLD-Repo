@@ -32,7 +32,7 @@
 		SELECT 1 FROM dual
 	</select>
 	<select id="getNoticeList" parameterType="map" resultType="map">
-		SELECT rownum, not_date, not_time, notice_no, not_title, not_cont, gym_no
+		SELECT not_date, not_time, notice_no, not_title, not_cont, gym_no
 		  FROM notice
 		<where>
 			<if test="gym_no!=null and gym_no.length>0">
