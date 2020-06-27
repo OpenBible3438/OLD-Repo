@@ -81,20 +81,12 @@
 	</select>
 	<select id="getContentList" parameterType="map" statementType="CALLABLE">
 		<!-- ==========편성경여기========== -->
-<<<<<<< HEAD
 			{ call proc_GymContList(#{gym_no}, #{gymCont
 				                               ,jdbcType=CURSOR
 				                               ,mode=OUT
 				                               ,javaType=java.sql.ResultSet
 				                               ,resultMap=gymCont}
 				                               )}
-=======
-			{ call proc_gym_login(#{gym_no},#{gymCont
-				                             ,jdbcType=CURSOR
-				                             ,mode=OUT
-				                             ,javaType=java.sql.ResultSet
-				                             ,resultMap=gymCont})}
->>>>>>> refs/heads/hjho
 	</select>
 	<select id="getInfoList" parameterType="map" resultType="map">
 		SELECT gym_id, gym_username, gym_usertell, gym_name, gym_tel, gym_addr, gym_addr_dtl
