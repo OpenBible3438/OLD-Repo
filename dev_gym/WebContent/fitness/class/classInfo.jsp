@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 	<!--============================================================================================================== 자세히 보기 Modal 시작 -->
 	<div class="modal fade" id="c_info" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -65,10 +64,6 @@
 						<div class="form-group">
 							<label for="info_cls_price"><b>가격</b></label> 
 							<input type="text" class="form-control input-sm" id="info_cls_price" name="info_cls_price" readonly>
-						</div>
-						<div class="form-group">
-							<label for="info_cls_grcode"><b>그룹코드</b></label> 
-							<input type="text" class="form-control input-sm" id="info_cls_grcode" name="info_cls_grcode" readonly>
 						</div>
 						<div class="form-group">
 							<label for="info_cls_state"><b>진행 상황</b></label> 

@@ -22,8 +22,7 @@
 					<!--============ form 시작  -->
 					<form role="form" id="f_ins_upd">
 						<input type="hidden" id="cud" name="cud">
-						<input type="hidden" id="not_seq" name="not_seq">
-						<input type="hidden" id="gym_no" name="gym_no">
+						<input type="hidden" id="notice_no" name="notice_no">
 						<div class="form-group">
 							<label for="not_title"><b>제목</b></label> 
 							<!-- <input type="text" class="form-control" id="not_title" name="not_title" placeholder="공지사항 제목"> -->
@@ -36,8 +35,6 @@
 					<button type="button" class="btn btn-primary" onclick="noticeSave()">저장</button>
 					</form>
 					<!--================== form 끝  -->
-				</div>
-				<div class="modal-footer">
 				</div>
 			</div>
 			<!-- 모달 콘텐츠 -->

@@ -1,5 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+	<script type="text/javascript">
+	var progress;
+	
+	function progressWork() {
+		alert("진행 중인 수업을 조회합니다.");
+	}
+
+	function progressDone() {
+		alert("종료된 수업을 조회합니다.");
+	}
+	function classSEL() {
+		alert("전체 수업을 조회합니다.");
+		
+// 		$('#tb_cList').bootstrapTable('refreshOptions', {
+// 	        url: '../class/jsonClassList.gym'
+// 	  	});
+		
+	}
+	
+	$(document).ready(function() {
+		 $('#tb_cList').bootstrapTable({
+	         click:function(row, $element) {
+	        	 alert(row); 
+	         } 
+	     });  
+	});
+	function classINS(){
+			alert("수업등록 저장 완료");
+			$("#f_ins").attr("method","get");
+			$("#f_ins").attr("action","../class/classIns.gym");
+			$("#f_ins").submit();
+			$("#c_ins").modal('hide');
+			
+	}
+	function classUPD(){
+			alert("수업수정 저장 완료");
+			$("#f_upd").attr("method","get");
+			$("#f_upd").attr("action","classList.jsp");
+			$("#f_upd").submit();
+			$("#c_upd").modal('hide');
+			location.href="classList.jsp";
+	}
+	function classDetail(){
+			alert("자세히보기 닫기 완료");
+			$("#c_detail").modal('hide');
+			location.href="classList.jsp";
+	}
+	function c_btnDel(){
+			alert("선택한 수업을 삭제합니다.");
+	}
+
+	//------------------------------------------ 수강생 등록 모달 안 버튼 이벤트 시작
+	function classMemSearch(){
+		alert("수강생을 조회합니다.");
+		
+	}
+	function classMemINS(){
+			alert("수강생을 등록합니다.");
+			$("#c_memIns").modal('hide');
+			$("#c_detail").modal('open');
+	}
+	function classMemDEL(){
+			alert("수강생을 삭제합니다.");
+	}
+	//------------------------------------------ 수강생 등록 모달 안 버튼 이벤트 끝
+
+	</script>
 
 	<div class="container">
 		<div style="padding: 20px;">
@@ -219,7 +286,6 @@
 				$("#upd_cls_cnt").val(result[cls_no].CLS_CNT);
 				$("#upd_cls_info").val(result[cls_no].CLS_INFO);
 				$("#upd_cls_price").val(result[cls_no].CLS_PRICE);
-				$("#upd_cls_grcode").val(result[cls_no].CLS_GRCODE);
 				$("#upd_cls_state").val(result[cls_no].CLS_STATE);
 			}
 		});//////////ajax1 end	
@@ -340,6 +406,41 @@
 	
 // 	});		
 	
+	//--------------------------------------------- 수업 등록에서 체크박스 선택한 값 아래 input박스에 넣기
+	$(document).ready(function(){
+	    $("#ins_cls_day1").change(function(){
+	        if($("#ins_cls_day1").is(":checked")){
+	        	var value = $(this).val();
+// 	        	var value = $('input:checkbox[id="ins_cls_day1"]').val();
+	        	$("#ins_cls_day").val(value);
+// 	        	$("#ins_type_no").append("<option value="+result[i].TYPE_NO+">"+result[i].TYPE_NAME+"</option>");
+//	        	$("#ins_cls_day").append("<option value=value>월</option>");
+	        	
+	        }else{
+	        	$("#ins_cls_day").val("");
+	        }
+	    });//제이쿼리 end
+	    $("#ins_cls_day2").change(function(){
+	        if($("#ins_cls_day2").is(":checked")){
+	        	var value = $(this).val();
+// 	        	var value = $('input:checkbox[id="ins_cls_day1"]').val();
+//	        	$("#ins_cls_day").val(value);
+// 	        	$("#ins_type_no").append("<option value="+result[i].TYPE_NO+">"+result[i].TYPE_NAME+"</option>");
+	        	$("#ins_cls_day").append("<option value=value>화</option>");
+	        	
+	        }else{
+	        	$("#ins_cls_day").val("");
+	        }
+	    });//제이쿼리 end	    
+	    
 	
+	
+	});//document end
+	
+	
+// 	$("input[name=ins_cls_day1]:checked").each(function() {
+// 		var test = $(this).val(); 
+// 		alert("벨류값확인 : " + test);
+// 	}
 	
 </script>

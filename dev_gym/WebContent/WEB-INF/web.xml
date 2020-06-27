@@ -10,6 +10,33 @@
 		<url-pattern>*.gym</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>jsonChart</servlet-name>
+		<servlet-class>hjho.test.JsonTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jsonChart</servlet-name>
+		<url-pattern>*.jsn</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jsonChartMap</servlet-name>
+		<servlet-class>hjho.test.JsonTestMap</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jsonChartMap</servlet-name>
+		<url-pattern>*.jsn2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jsonSetChart</servlet-name>
+		<servlet-class>hjho.test.JsonTest_SetChart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jsonSetChart</servlet-name>
+		<url-pattern>*.jsn3</url-pattern>
+	</servlet-mapping>
+	
 	
 	
 	<!-- DB [Pooling] 연동 처리 -->

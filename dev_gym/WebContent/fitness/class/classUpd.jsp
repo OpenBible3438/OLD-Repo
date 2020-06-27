@@ -75,10 +75,6 @@
 							<input type="text" class="form-control input-sm" id="upd_cls_price" name="upd_cls_price">
 						</div>
 						<div class="form-group">
-							<label for="upd_cls_grcode"><b>그룹코드</b></label> 
-							<input type="text" class="form-control input-sm" id="upd_cls_grcode" name="upd_cls_grcode">
-						</div>
-						<div class="form-group">
 							<label for="upd_cls_state"><b>진행 상황</b></label> 
 					        <select class="form-control" id="upd_cls_state" name="upd_cls_state">
 								<option value="진행">진행</option>

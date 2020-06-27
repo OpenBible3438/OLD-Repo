@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 	<!--============================================================================================================== 수업등록 Modal 시작 -->
 	<div class="modal fade" id="c_ins" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="false">
@@ -59,39 +58,49 @@
 							<label for="ins_cls_eTime"><b>종료 시간</b></label> 
 							<input type="text" class="form-control input-sm" id="ins_cls_eTime" name="ins_cls_eTime" placeholder="입력창을 클릭하세요.">							
 						</div>	
+						
+						<!--  
 						<div class="form-group">
 							<label for="ins_cls_day"><b>수업 요일</b></label> 
 						</div>
 						<div class="form-group row" style="padding: 0px 0px 0px 18px;">
 							<div class="custom-control custom-checkbox">
-								<input type="checkbox" id="ins_cls_day1" class="custom-control-input">
+								<input type="checkbox" id="ins_cls_day1" class="custom-control-input" value="월">
 								<label class="custom-control-label" for="ins_cls_day1">월&nbsp;&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
-								<input type="checkbox" id="ins_cls_day2" class="custom-control-input">
+								<input type="checkbox" id="ins_cls_day2" class="custom-control-input" value="화">
 								<label class="custom-control-label" for="ins_cls_day2">화&nbsp;&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
-								<input type="checkbox" id="ins_cls_day3" class="custom-control-input">
+								<input type="checkbox" id="ins_cls_day3" class="custom-control-input" value="수">
 								<label class="custom-control-label" for="ins_cls_day3">수&nbsp;&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
-								<input type="checkbox" id="ins_cls_day4" class="custom-control-input">
+								<input type="checkbox" id="ins_cls_day4" class="custom-control-input" value="목">
 								<label class="custom-control-label" for="ins_cls_day4">목&nbsp;&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
-								<input type="checkbox" id="ins_cls_day5" class="custom-control-input">
+								<input type="checkbox" id="ins_cls_day5" class="custom-control-input" value="금">
 								<label class="custom-control-label" for="ins_cls_day5">금&nbsp;&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
-								<input type="checkbox" id="ins_cls_day6" class="custom-control-input">
+								<input type="checkbox" id="ins_cls_day6" class="custom-control-input" value="토">
 								<label class="custom-control-label" for="ins_cls_day6">토&nbsp;&nbsp;&nbsp;&nbsp;</label>
 							</div>							
 							<div class="custom-control custom-checkbox">
-								<input type="checkbox" id="ins_cls_day7" class="custom-control-input">
+								<input type="checkbox" id="ins_cls_day7" class="custom-control-input" value="일">
 								<label class="custom-control-label" for="ins_cls_day7">일</label>
-							</div>							
-						</div>											
+							</div>
+							-->	
+							
+							
+							
+													
+																	
+						<div class="form-group">
+							<input type="text" class="form-control input-sm" id="ins_cls_day" name="ins_cls_day" placeholder="요일을 선택하세요.">
+						</div>
 						<div class="form-group">
 							<label for="ins_cls_cnt"><b>수업 횟수</b></label> 
 							<input type="text" class="form-control input-sm" id="ins_cls_cnt" name="ins_cls_cnt" placeholder="단위:수">
@@ -104,10 +113,6 @@
 						<div class="form-group">
 							<label for="ins_cls_price"><b>가격</b></label> 
 							<input type="text" class="form-control input-sm" id="ins_cls_price" name="ins_cls_price" placeholder="단위:원">
-						</div>
-						<div class="form-group">
-							<label for="ins_cls_grcode"><b>그룹코드</b></label> 
-							<input type="text" class="form-control input-sm" id="ins_cls_grcode" name="ins_cls_grcode" placeholder="그룹코드를 입력하세요.">
 						</div>
 						<div class="form-group">
 							<label for="ins_cls_state"><b>진행 상황</b></label> 

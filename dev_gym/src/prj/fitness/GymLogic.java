@@ -31,6 +31,8 @@ public class GymLogic {
 		logger.info("GymLogic - getLogin() 호출");
 		List<Map<String, Object>> loginResult = null;
 		loginResult = gDao.getLogin(pMap);
+		mbMgr.clossSession(sqlSession);
+		
 		return loginResult;
 	}
 	//매장 아이디 중복확인
@@ -38,6 +40,8 @@ public class GymLogic {
 		logger.info("GymLogic - getIdConfirm() 호출");
 		int idResult = 0;
 		idResult = gDao.getIdConfirm(pMap);
+		mbMgr.clossSession(sqlSession);
+		
 		return idResult;
 	}
 	
@@ -45,12 +49,15 @@ public class GymLogic {
 		logger.info("GymLogic - getClassMemList() 호출");
 		List<Map<String, Object>> classMemList = null;
 		classMemList = gDao.getClassMemList(pMap);
+		mbMgr.clossSession(sqlSession);
+		
 		return classMemList;
 	}
 	public List<Map<String, Object>> getClassDetail(Map<String, Object> pMap) {
 		logger.info("GymLogic - getClassDetail() 호출");
 		List<Map<String, Object>> classDetail = null;
 		classDetail = gDao.getClassDetail(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return classDetail;
 	}
@@ -59,6 +66,7 @@ public class GymLogic {
 		logger.info("GymLogic - getClassList() 호출");
 		List<Map<String, Object>> classList = null;
 		classList = gDao.getClassList(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return classList;
 	}
@@ -88,6 +96,7 @@ public class GymLogic {
 		logger.info("GymLogic - getNoticeList() 호출");
 		List<Map<String, Object>> noticeList = null;
 		noticeList = gDao.getNoticeList(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return noticeList;
 	}
@@ -96,6 +105,7 @@ public class GymLogic {
 		logger.info("GymLogic - getChartList() 호출");
 		List<Map<String, Object>> chartList = null;
 		chartList = gDao.getChartList(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return chartList;
 	}
@@ -104,6 +114,7 @@ public class GymLogic {
 		logger.info("GymLogic - getContentList() 호출");
 		List<Map<String, Object>> contentList = null;
 		contentList = gDao.getContentList(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return contentList;
 	}
@@ -112,6 +123,7 @@ public class GymLogic {
 		logger.info("GymLogic - getInfoList() 호출");
 		List<Map<String, Object>> infoList = null;
 		infoList = gDao.getInfoList(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return infoList;
 	}
@@ -237,7 +249,7 @@ public class GymLogic {
 	public int gymInfoUpd(Map<String, Object> pMap) {
 		logger.info("GymLogic - gymInfoUpd() 호출");
 		result = gDao.gymInfoUpd(pMap);
-		//setCommit(result);
+		setCommit(result);
 		return result;
 	}
 	
@@ -268,16 +280,16 @@ public class GymLogic {
 		result = gDao.gymJoin(pMap);
 		if(result == 1 && pMap.get("filename")!=null) {
 			result = gDao.gymJoinImg(pMap);
-			if(result == 1) {
-				try {
-					((FileInputStream)pMap.get("filedata")).close();
-					if(((File)pMap.get("file")).delete()) {
-						logger.info("파일삭제 성공");
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+//			if(result == 1) {
+//				try {
+//					((FileInputStream)pMap.get("filedata")).close();
+//					if(((File)pMap.get("file")).delete()) {
+//						logger.info("파일삭제 성공");
+//					}
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
 		}
 		
 		setCommit(result);
@@ -289,13 +301,12 @@ public class GymLogic {
 		if(result>0) {
 			logger.info("sqlSession.commit() - result : " + result);
 			sqlSession.commit();
-			mbMgr.clossSession(sqlSession);
 		}
 		else {
 			logger.info("sqlSession.rollback() - result : " + result);
 			sqlSession.rollback();
-			mbMgr.clossSession(sqlSession);
 		}
+		mbMgr.clossSession(sqlSession);
 	}
 
 

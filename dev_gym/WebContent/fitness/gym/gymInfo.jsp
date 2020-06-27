@@ -39,7 +39,7 @@
 	}
 	function infoUPD_save(){
 		alert("저장");
-		$("#f_infoUpd").attr('action', "jsonGymInfoList.gym")
+		$("#f_infoUpd").attr('action', "gymInfoUpd.gym")
 		$("#f_infoUpd").submit();
 	}
 	function pw_confirm() {
@@ -157,6 +157,7 @@
 		$.ajax({
 			url : "../gym/jsonGymInfoList.gym"
 		  , success : function(result){
+			  alert(result);
 			  var infoList = JSON.parse(result.trim());
 			  
 			  gym_id= infoList[0].GYM_ID;
