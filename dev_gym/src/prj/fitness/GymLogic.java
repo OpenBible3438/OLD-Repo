@@ -101,10 +101,19 @@ public class GymLogic {
 		return noticeList;
 	}
 
-	public List<Map<String, Object>> getChartList(Map<String, Object> pMap) {////////////chart 다시 생각해보기(한 페이지에 차트를 여러 개 나타낼 거니까)
+	public List<Map<String, Object>> get_c_accum_members(Map<String, Object> pMap) {
 		logger.info("GymLogic - getChartList() 호출");
 		List<Map<String, Object>> chartList = null;
-		chartList = gDao.getChartList(pMap);
+		chartList = gDao.get_c_accum_members(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return chartList;
+	}
+	
+	public List<Map<String, Object>> get_c_ex_time_avg(Map<String, Object> pMap) {
+		logger.info("GymLogic - getChartList() 호출");
+		List<Map<String, Object>> chartList = null;
+		chartList = gDao.get_c_ex_time_avg(pMap);
 		mbMgr.clossSession(sqlSession);
 		
 		return chartList;

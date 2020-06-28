@@ -2,6 +2,7 @@ package prj.fitness;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -10,18 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.util.SetData;
+
 public class GymController implements Controller {
 
 	Logger logger = Logger.getLogger(GymController.class);
 	Map<String, Object> pMap = null;
 	GymLogic gLogic = null;
+	SetData setData = null;
 	String work = null;
 	String reqName = null;
 	String progress = null;
 	int result = 0;
+	List<Map<String, Object>> chartData = null; //차트 조회일 때 사용
+	String data = null; // 차트 조회일 때 사용
 	String autoSel = "false";
 	// jsp페이지가 열릴 때 자동으로 데이터가 select 되는 지를 구분하는 변수
 	// autoSel = true이면 redirect로 원래 페이지로 돌아갈 때 select 처리를 해줄 필요가 없다.
+	
 	
 	public GymController(Map<String, Object> pMap) {
 		logger.info("GymController 생성자 호출");
@@ -30,6 +37,7 @@ public class GymController implements Controller {
 		work = pMap.get("work").toString();
 		reqName = pMap.get("reqName").toString();
 		logger.info("work : " + work + ", reqName : " + reqName);
+		setData = new SetData();
 	}
 	
 	
@@ -52,10 +60,6 @@ public class GymController implements Controller {
 					}break;
 					case "classMemIns":{ // 수강생 등록
 						result = gLogic.classMemIns(pMap);
-					}break;
-					case "chartIns":{ // 차트 등록
-						result = gLogic.chartIns(pMap);
-						autoSel="true";
 					}break;
 					case "contentIns":{ // 컨텐츠 등록
 						result = gLogic.contentIns(pMap);
@@ -80,10 +84,6 @@ public class GymController implements Controller {
 						result = gLogic.gymInfoUpd(pMap);
 						autoSel = "true";
 					}break;
-					case "chartUpd":{ // 차트 수정
-						autoSel = "true";
-						result = gLogic.chartUpd(pMap);
-					}break;
 					case "contentUpd":{ // 컨텐츠 수정
 						result = gLogic.contentUpd(pMap);
 						autoSel = "true";
@@ -102,10 +102,6 @@ public class GymController implements Controller {
 					}break;
 					case "classMemDel":{ // 수강생 삭제
 						result = gLogic.classMemDel(pMap);
-					}break;
-					case "chartDel":{ // 차트 삭제
-						result = gLogic.chartDel(pMap);
-						autoSel = "true";
 					}break;
 					case "contentDel":{ // 컨텐츠 삭제
 						result = gLogic.contentDel(pMap);
@@ -168,8 +164,15 @@ public class GymController implements Controller {
 			case "jsonGymNoticeList":{ // 공지사항 조회
 				selResult = gLogic.getNoticeList(pMap);
 			}break;
-			case "jsonGymChartList":{ // 차트 조회
-				selResult = gLogic.getChartList(pMap);
+			case "chart_accum_members":{ // 누적 회원수 조회
+				chartData = gLogic.get_c_accum_members(pMap);
+				data = setData.dataToJson(chartData, "MM");
+				selResult = data;
+			}break;
+			case "chart_ex_time_avg":{ // 누적 회원수 조회
+				chartData = gLogic.get_c_ex_time_avg(pMap);
+				data = setData.dataToJson(chartData, "RNG");
+				selResult = data;
 			}break;
 			case "jsonGymContentList":{ // 컨텐츠 조회
 				selResult = gLogic.getContentList(pMap);
@@ -188,8 +191,13 @@ public class GymController implements Controller {
 		if(selResult != null) {
 			logger.info("selResult != null");
 			mav.addObject("selResult", selResult);
-			//너가 selResult를 가지고 어디로 갈거니?
-			mav.setViewName(work+"/"+reqName);
+			if(reqName.contains("chart")) {//차트일 경우 도착지 통일함
+				mav.setViewName("gym/chartResult");
+			}
+			else{
+				//너가 selResult를 가지고 어디로 갈거니?
+				mav.setViewName(work+"/"+reqName);
+			}
 		}
 		else {
 			logger.info("selResult == null");
