@@ -75,6 +75,17 @@
 		
 		<div class="form-group row">
 			<div class="col-sm-1"></div>
+			<label for="gym_tctel" class="col-sm-2 col-form-label">성별</label>
+				<div class="col-sm-4">
+				<select class="form-control" id="tch_gender">
+                            <option value="M">남성</option>
+                            <option value="F">여성</option>
+                </select>
+				</div>
+		</div>
+		
+		<div class="form-group row">
+			<div class="col-sm-1"></div>
 			<label for="gym_tczip" class="col-sm-2 col-form-label">주소</label>
 				<div class="col-sm-4">
 				<input type="text" class="form-control" required

@@ -32,8 +32,8 @@ public class HashMapBinder {
 	public HashMapBinder(HttpServletRequest req) {
 		this.req = req;
 		//realFolder = "C:\\workspace_KHL\\workspace_fitness\\project_fitness\\dev_fitness\\WebContent\\pds";
-		realFolder = "C:\\git_gym\\dev_gym\\WebContent\\pds";
-		//realFolder = "./../../../WebContent/pds";
+		//realFolder = "C:\\git_gym\\dev_gym\\WebContent\\pds";
+		realFolder = "C:\\Users\\Public\\Pictures";
 	}
 	public void multiBind(Map<String,Object> pMap) {
 		pMap.clear();

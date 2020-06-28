@@ -31,6 +31,7 @@ public class GymDao {
 		loginResult = (List<Map<String, Object>>)pMap.get("gymLogin");
 		logger.info(" - loginResult : "+loginResult.size()+"row");
 		
+		
 		return loginResult;
 	}
 	//매장 아이디 중복확인
@@ -114,14 +115,11 @@ public class GymDao {
 	}
 	
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {
-		
 		logger.info("GymDao - getContentList() 호출");
 		List<Map<String, Object>> contentList = null;
-		sqlSession.selectList("getContentList", pMap);
-		contentList = (List<Map<String, Object>>)pMap.get("gymCont");
+		contentList = sqlSession.selectList("getContentList", pMap);
 		logger.info("contentList.size() : " + contentList.size());
 		return contentList;
-		
 	}
 	
 	public List<Map<String, Object>> getInfoList(Map<String, Object> pMap) {
@@ -308,6 +306,9 @@ public class GymDao {
 	// 매장 회원가입 
 	public int gymJoin(Map<String, Object> pMap) {
 		logger.info("GymDao - gymJoin() 호출");
+		int gym_no = sqlSession.selectOne("getGymNo");
+		pMap.put("gym_no", gym_no);
+		logger.info("gym_no : " + gym_no);
 		result = sqlSession.insert("gymJoin", pMap);
 		logger.info("result : " + result);
 		return result;
