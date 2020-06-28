@@ -31,6 +31,7 @@ public class GymDao {
 		loginResult = (List<Map<String, Object>>)pMap.get("gymLogin");
 		logger.info(" - loginResult : "+loginResult.size()+"row");
 		
+		
 		return loginResult;
 	}
 	//매장 아이디 중복확인
@@ -41,6 +42,7 @@ public class GymDao {
 		return idResult;
 	}
 	
+	//수강생 조회
 	public List<Map<String, Object>> getClassMemList(Map<String, Object> pMap) {
 		logger.info("GymDao - getClassMemList() 호출");
 		List<Map<String, Object>> classMemList = null;
@@ -49,6 +51,7 @@ public class GymDao {
 		return classMemList;
 	}
 	
+	//수업 자세히보기
 	public List<Map<String, Object>> getClassDetail(Map<String, Object> pMap) {
 		logger.info("GymDao - getClassDetail() 호출");
 		List<Map<String, Object>> classDetail = null;
@@ -57,6 +60,7 @@ public class GymDao {
 		return classDetail;
 	}
 	
+	//수업 목록 조회
 	public List<Map<String, Object>> getClassList(Map<String, Object> pMap) {
 		logger.info("GymDao - getClassList() 호출");
 		List<Map<String, Object>> classList = null;
@@ -64,10 +68,24 @@ public class GymDao {
 		logger.info("classList.size() : " + classList.size());
 		return classList;
 	}
-	public List<Map<String, Object>> getTchNo(Map<String, Object> pMap) {
-		logger.info("GymDao - getTchNo() 호출");
+	public List<Map<String, Object>> getTypeNo(Map<String, Object> pMap) {
+		logger.info("GymDao - getTypeNo() 호출");
 		List<Map<String, Object>> classList = null;
-		classList = sqlSession.selectList("getTchNo", pMap);
+		classList = sqlSession.selectList("getTypeNo", pMap);
+		logger.info("classList.size() : " + classList.size());
+		return classList;
+	}
+	public List<Map<String, Object>> getComboList(Map<String, Object> pMap) {
+		logger.info("GymDao - getComboList() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = sqlSession.selectList("getComboList", pMap);
+		logger.info("classList.size() : " + classList.size());
+		return classList;
+	}
+	public List<Map<String, Object>> getEventList(Map<String, Object> pMap) {
+		logger.info("GymDao - getEventList() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = sqlSession.selectList("getEventList", pMap);
 		logger.info("classList.size() : " + classList.size());
 		return classList;
 	}
@@ -80,23 +98,28 @@ public class GymDao {
 		return noticeList;
 	}
 	
-	public List<Map<String, Object>> getChartList(Map<String, Object> pMap) {////////////chart 다시 생각해보기(한 페이지에 차트를 여러 개 나타낼 거니까)
-		logger.info("GymDao - getChartList() 호출");
-		List<Map<String, Object>> chartList = null;
-		chartList = sqlSession.selectList("getChartList", pMap);
-		logger.info("chartList.size() : " + chartList.size());
-		return chartList;
+	public List<Map<String, Object>> get_c_accum_members(Map<String, Object> pMap) {
+		logger.info("GymDao - get_c_accum_members() 호출");
+		List<Map<String, Object>> accumList = null;
+		accumList = sqlSession.selectList("get_c_accum_members", pMap);
+		logger.info("chartList.size() : " + accumList.size());
+		return accumList;
+	}
+	
+	public List<Map<String, Object>> get_c_ex_time_avg(Map<String, Object> pMap) {
+		logger.info("GymDao - get_c_accum_members() 호출");
+		List<Map<String, Object>> accumList = null;
+		accumList = sqlSession.selectList("get_c_ex_time_avg", pMap);
+		logger.info("chartList.size() : " + accumList.size());
+		return accumList;
 	}
 	
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {
-		
 		logger.info("GymDao - getContentList() 호출");
 		List<Map<String, Object>> contentList = null;
-		sqlSession.selectList("getContentList", pMap);
-		contentList = (List<Map<String, Object>>)pMap.get("gymCont");
+		contentList = sqlSession.selectList("getContentList", pMap);
 		logger.info("contentList.size() : " + contentList.size());
 		return contentList;
-		
 	}
 	
 	public List<Map<String, Object>> getInfoList(Map<String, Object> pMap) {
@@ -283,6 +306,9 @@ public class GymDao {
 	// 매장 회원가입 
 	public int gymJoin(Map<String, Object> pMap) {
 		logger.info("GymDao - gymJoin() 호출");
+		int gym_no = sqlSession.selectOne("getGymNo");
+		pMap.put("gym_no", gym_no);
+		logger.info("gym_no : " + gym_no);
 		result = sqlSession.insert("gymJoin", pMap);
 		logger.info("result : " + result);
 		return result;

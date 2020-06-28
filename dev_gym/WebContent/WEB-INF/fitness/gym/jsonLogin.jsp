@@ -17,12 +17,10 @@
 	} else {
 		String gym_no = pMap.get("GYM_NO").toString();
 		String gym_name = pMap.get("GYM_NAME").toString();
-		
 		HttpSession ses = request.getSession();
 		ses.setAttribute("gym_no",gym_no);
 		ses.setAttribute("gym_name",gym_name);
 		ses.setMaxInactiveInterval(10*60); //10분
-		
 		out.print("login/로그인 성공");
 	}
 %>

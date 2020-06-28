@@ -70,11 +70,24 @@ public class GymLogic {
 		
 		return classList;
 	}
-	public List<Map<String, Object>> getTchNo(Map<String, Object> pMap) {
-		logger.info("GymLogic - getTchNo() 호출");
+	public List<Map<String, Object>> getTypeNo(Map<String, Object> pMap) {
+		logger.info("GymLogic - getTypeNo() 호출");
 		List<Map<String, Object>> classList = null;
-		classList = gDao.getTchNo(pMap);
-		mbMgr.clossSession(sqlSession);
+		classList = gDao.getTypeNo(pMap);
+		
+		return classList;
+	}
+	public List<Map<String, Object>> getComboList(Map<String, Object> pMap) {
+		logger.info("GymLogic - getComboList() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = gDao.getComboList(pMap);
+		
+		return classList;
+	}
+	public List<Map<String, Object>> getEventList(Map<String, Object> pMap) {
+		logger.info("GymLogic - getEventList() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = gDao.getEventList(pMap);
 		
 		return classList;
 	}
@@ -88,10 +101,19 @@ public class GymLogic {
 		return noticeList;
 	}
 
-	public List<Map<String, Object>> getChartList(Map<String, Object> pMap) {////////////chart 다시 생각해보기(한 페이지에 차트를 여러 개 나타낼 거니까)
+	public List<Map<String, Object>> get_c_accum_members(Map<String, Object> pMap) {
 		logger.info("GymLogic - getChartList() 호출");
 		List<Map<String, Object>> chartList = null;
-		chartList = gDao.getChartList(pMap);
+		chartList = gDao.get_c_accum_members(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return chartList;
+	}
+	
+	public List<Map<String, Object>> get_c_ex_time_avg(Map<String, Object> pMap) {
+		logger.info("GymLogic - getChartList() 호출");
+		List<Map<String, Object>> chartList = null;
+		chartList = gDao.get_c_ex_time_avg(pMap);
 		mbMgr.clossSession(sqlSession);
 		
 		return chartList;
@@ -267,18 +289,15 @@ public class GymLogic {
 		result = gDao.gymJoin(pMap);
 		if(result == 1 && pMap.get("filename")!=null) {
 			result = gDao.gymJoinImg(pMap);
-//			if(result == 1) {
-//				try {
-//					((FileInputStream)pMap.get("filedata")).close();
-//					if(((File)pMap.get("file")).delete()) {
-//						logger.info("파일삭제 성공");
-//					}
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
+			try {
+				((FileInputStream)pMap.get("filedata")).close();
+				if(((File)pMap.get("file")).delete()) {
+					logger.info("파일삭제 성공");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 		setCommit(result);
 		return result;
 	}

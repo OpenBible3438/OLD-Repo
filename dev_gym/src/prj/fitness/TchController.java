@@ -51,6 +51,9 @@ public class TchController implements Controller {
 					case("tchUpd"):{ // 강사 수정
 						result = tLogic.tchUpd(pMap);
 					}break;
+					case("tchUpd2"):{ 
+						//result = tLogic.tchUpd2(pMap);
+					}break;
 				}
 				path = "redirect:../updateResult:"+result + ":"+ autoSel;
 			}break;
@@ -83,6 +86,12 @@ public class TchController implements Controller {
 			}break;
 			case "jsonTchProfile":{ // 강사 프로필 조회
 				selResult = tLogic.getTchProfile(pMap);
+			}break;
+			case "tchNoSearch":{ // 강사 프로필 조회 - 번호찾기 - 번호검색
+				selResult = tLogic.tchNoSearch(pMap);
+			}break;
+			case "tchIDSearch":{ // 강사 프로필 조회 - 번호찾기 - 아이디중복확인
+				selResult = tLogic.tchIDSearch(pMap);
 			}break;
 		}
 		if(selResult != null) {
