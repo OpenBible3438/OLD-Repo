@@ -99,7 +99,6 @@
 		
 	}); 
 </script>
->>>>>>> branch 'master' of https://github.com/hjho/prj_gym.git
 <!-- ========================= TOP 자리 ========================= -->
    <%@ include file="./mainTop.jsp" %> 
 <!-- ========================= CENTER 시작  =========================  -->
