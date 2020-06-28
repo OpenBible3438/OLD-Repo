@@ -7,7 +7,7 @@
 <title>주소 - 안드로이드 jsp 연동</title>
 </head>
 <body>
-Daum 주소검색 API
+Daum 주소검색 API 이동합니다.
 <div id="layer" style="display:block;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
 </div>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
