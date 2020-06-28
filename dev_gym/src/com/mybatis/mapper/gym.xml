@@ -3,12 +3,9 @@
 <mapper namespace="com.mybatis.mapper.gymMapper">
 
 	<resultMap id="gymLogin" type="map"/>
-<<<<<<< HEAD
-=======
 	
 	<resultMap id="gymCont" type="map"/>
 	
->>>>>>> branch 'master' of https://github.com/hjho/prj_gym.git
 	<resultMap id="getImage" type="object">
 		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
 	</resultMap>
