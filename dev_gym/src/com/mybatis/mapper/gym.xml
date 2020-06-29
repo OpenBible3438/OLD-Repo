@@ -4,6 +4,10 @@
 
 	<resultMap id="gymLogin" type="map"/>
 	
+	<resultMap id="chart_newmem" type="map"/>
+	
+	<resultMap id="chart_mem_extime" type="map"/>
+	
 	<resultMap id="gymCont" type="map"/>
 	
 	<resultMap id="getImage" type="object">
@@ -89,6 +93,24 @@
 	<!-- 회원 평균 운동시간 -->
 	<select id="get_c_ex_time_avg"  parameterType="map" resultType="map">
 		SELECT cnt, rng FROM ex_time_avg
+	</select>
+	<!-- 시간대별 방문자수 평균 -->
+	<select id="get_cnt_mem_extime" parameterType="map"  statementType="CALLABLE">
+		{ call proc_cnt_mem_extime(#{gym_no}, #{chart_mem_extime
+								                               ,jdbcType=CURSOR
+								                               ,mode=OUT
+								                               ,javaType=java.sql.ResultSet
+								                               ,resultMap=chart_mem_extime}
+								                               )}
+	</select>
+	<!-- 월별 수강생 증가 -->
+	<select id="get_newmem" parameterType="map"  statementType="CALLABLE">
+		{ call proc_get_newmem(#{gym_no}, #{cho_year} #{chart_newmem
+								                               ,jdbcType=CURSOR
+								                               ,mode=OUT
+								                               ,javaType=java.sql.ResultSet
+								                               ,resultMap=chart_newmem}
+								                               )}
 	</select>
 	
 	<select id="getContentList" parameterType="map" statementType="CALLABLE">

@@ -169,9 +169,19 @@ public class GymController implements Controller {
 				data = setData.dataToJson(chartData, "MM");
 				selResult = data;
 			}break;
-			case "chart_ex_time_avg":{ // 누적 회원수 조회
+			case "chart_ex_time_avg":{ // 회원 평균 운동시간 조회
 				chartData = gLogic.get_c_ex_time_avg(pMap);
 				data = setData.dataToJson(chartData, "RNG");
+				selResult = data;
+			}break;
+			case "chart_cnt_mem_extime":{ // 시간대별 방문자수 평균 조회
+				chartData = gLogic.get_cnt_mem_extime(pMap);
+				data = setData.dataToJson(chartData, "TIME");
+				selResult = data;
+			}break;
+			case "chart_get_newmem":{ // 시간대별 방문자수 평균 조회
+				chartData = gLogic.get_newmem(pMap);
+				data = setData.dataToJson(chartData, "DATE_YM");
 				selResult = data;
 			}break;
 			case "jsonGymContentList":{ // 컨텐츠 조회
