@@ -111,9 +111,27 @@ public class GymLogic {
 	}
 	
 	public List<Map<String, Object>> get_c_ex_time_avg(Map<String, Object> pMap) {
-		logger.info("GymLogic - getChartList() 호출");
+		logger.info("GymLogic - get_c_ex_time_avg() 호출");
 		List<Map<String, Object>> chartList = null;
 		chartList = gDao.get_c_ex_time_avg(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return chartList;
+	}
+	
+	public List<Map<String, Object>> get_cnt_mem_extime(Map<String, Object> pMap) {
+		logger.info("GymLogic - get_cnt_mem_extime() 호출");
+		List<Map<String, Object>> chartList = null;
+		chartList = gDao.get_cnt_mem_extime(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return chartList;
+	}
+	
+	public List<Map<String, Object>> get_newmem(Map<String, Object> pMap) {
+		logger.info("GymLogic - get_newmem() 호출");
+		List<Map<String, Object>> chartList = null;
+		chartList = gDao.get_newmem(pMap);
 		mbMgr.clossSession(sqlSession);
 		
 		return chartList;

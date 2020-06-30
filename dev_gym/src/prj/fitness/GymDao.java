@@ -114,6 +114,22 @@ public class GymDao {
 		return accumList;
 	}
 	
+	public List<Map<String, Object>> get_cnt_mem_extime(Map<String, Object> pMap) {
+		logger.info("GymDao - get_cnt_mem_extime() 호출");
+		List<Map<String, Object>> cntList = null;
+		cntList = sqlSession.selectList("get_cnt_mem_extime", pMap);
+		logger.info("cntList.size() : " + cntList.size());
+		return cntList;
+	}
+	
+	public List<Map<String, Object>> get_newmem(Map<String, Object> pMap) {
+		logger.info("GymDao - get_newmem() 호출");
+		List<Map<String, Object>> newMemList = null;
+		newMemList = sqlSession.selectList("get_newmem", pMap);
+		logger.info("newMemList.size() : " + newMemList.size());
+		return newMemList;
+	}
+	
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {
 		logger.info("GymDao - getContentList() 호출");
 		List<Map<String, Object>> contentList = null;
