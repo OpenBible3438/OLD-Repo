@@ -103,9 +103,36 @@
 		                  )
 	</insert>
 
-	<!-- 강사 수정 -->
-	<update id="tchUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
+	<!-- 강사 프로필 번호 채번 -->	
+	<select id="tchProfNo" parameterType="map" resultType="int">
+		SELECT nvl((SELECT tch_info_seq
+		              FROM tch_info
+		             WHERE gym_no = #{gym_no} 
+		               ANd tch_no = #{tch_no}),0)
+ 		  FROM dual
+	</select>
+	
+	<!-- 강사 프로필 등록 -->	
+	<insert id="tchProfIns" parameterType="map">
+		INSERT INTO tch_info(tch_info_seq
+		                    ,gym_no
+		                    ,tch_no
+		                    ,tch_intro
+		                    ,tch_career
+		                    ,tch_like)
+	                  VALUES((SELECT max(TCH_INFO_SEQ)+1 FROM tch_info)
+	                        ,#{gym_no} 
+	                        ,#{tch_no}
+	                        ,#{tch_intro}
+	                        ,#{tch_career}
+	                        ,0)	
+	</insert>
+	<!-- 강사 프로필 수정 -->
+	<update id="tchProfUpd" parameterType="map">
+		UPDATE tch_info 
+		   SET TCH_INTRO = #{tch_intro}
+		      ,TCH_CAREER = #{tch_career}
+		 WHERE TCH_INFO_SEQ = #{tch_info_seq}
 	</update>
 	
 	<!-- 강사 딜리트 -->

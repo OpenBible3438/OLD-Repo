@@ -42,6 +42,7 @@ public class GymDao {
 		return idResult;
 	}
 	
+	//수강생 조회
 	public List<Map<String, Object>> getClassMemList(Map<String, Object> pMap) {
 		logger.info("GymDao - getClassMemList() 호출");
 		List<Map<String, Object>> classMemList = null;
@@ -50,6 +51,7 @@ public class GymDao {
 		return classMemList;
 	}
 	
+	//수업 자세히보기
 	public List<Map<String, Object>> getClassDetail(Map<String, Object> pMap) {
 		logger.info("GymDao - getClassDetail() 호출");
 		List<Map<String, Object>> classDetail = null;
@@ -58,6 +60,7 @@ public class GymDao {
 		return classDetail;
 	}
 	
+	//수업 목록 조회
 	public List<Map<String, Object>> getClassList(Map<String, Object> pMap) {
 		logger.info("GymDao - getClassList() 호출");
 		List<Map<String, Object>> classList = null;
@@ -95,12 +98,36 @@ public class GymDao {
 		return noticeList;
 	}
 	
-	public List<Map<String, Object>> getChartList(Map<String, Object> pMap) {////////////chart 다시 생각해보기(한 페이지에 차트를 여러 개 나타낼 거니까)
-		logger.info("GymDao - getChartList() 호출");
-		List<Map<String, Object>> chartList = null;
-		chartList = sqlSession.selectList("getChartList", pMap);
-		logger.info("chartList.size() : " + chartList.size());
-		return chartList;
+	public List<Map<String, Object>> get_c_accum_members(Map<String, Object> pMap) {
+		logger.info("GymDao - get_c_accum_members() 호출");
+		List<Map<String, Object>> accumList = null;
+		accumList = sqlSession.selectList("get_c_accum_members", pMap);
+		logger.info("chartList.size() : " + accumList.size());
+		return accumList;
+	}
+	
+	public List<Map<String, Object>> get_c_ex_time_avg(Map<String, Object> pMap) {
+		logger.info("GymDao - get_c_accum_members() 호출");
+		List<Map<String, Object>> accumList = null;
+		accumList = sqlSession.selectList("get_c_ex_time_avg", pMap);
+		logger.info("chartList.size() : " + accumList.size());
+		return accumList;
+	}
+	
+	public List<Map<String, Object>> get_cnt_mem_extime(Map<String, Object> pMap) {
+		logger.info("GymDao - get_cnt_mem_extime() 호출");
+		List<Map<String, Object>> cntList = null;
+		cntList = sqlSession.selectList("get_cnt_mem_extime", pMap);
+		logger.info("cntList.size() : " + cntList.size());
+		return cntList;
+	}
+	
+	public List<Map<String, Object>> get_newmem(Map<String, Object> pMap) {
+		logger.info("GymDao - get_newmem() 호출");
+		List<Map<String, Object>> newMemList = null;
+		newMemList = sqlSession.selectList("get_newmem", pMap);
+		logger.info("newMemList.size() : " + newMemList.size());
+		return newMemList;
 	}
 	
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {

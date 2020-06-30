@@ -91,6 +91,7 @@
 	data.put("rows", rows);
 	
 	String result = g.toJson(data);
+	System.out.print(result);
 	out.print(result);
 	}
 	else{

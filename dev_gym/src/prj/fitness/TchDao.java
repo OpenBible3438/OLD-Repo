@@ -60,6 +60,12 @@ public class TchDao {
 		return tchList;
 	}
 	
+	public int tchProfNo(Map<String, Object> pMap) {
+		logger.info("TchDao - tchProfNo() 호출");
+		result = sqlSession.selectOne("tchProfNo", pMap);
+		return result;
+	}
+	
 	public int tchIDSearch(Map<String, Object> pMap) {
 		logger.info("TchDao - tchIDSearch() 호출");
 		result = sqlSession.selectOne("tchIDSearch", pMap);
@@ -84,17 +90,24 @@ public class TchDao {
 		result = sqlSession.insert("tchInsImg", pMap);
 		return result;
 	}
-	
-	public int tchUpd(Map<String, Object> pMap) {
-		logger.info("TchDao - tchUpd 호출");
-		result = sqlSession.update("tchIns");
+	// 강사 프로필 등록 
+	public int tchProfIns(Map<String, Object> pMap) {
+		logger.info("TchDao - tchProfIns 호출");
+		result = sqlSession.update("tchProfIns",pMap);
+		
+		return result;
+	}
+	// 강사 프로필 수정 
+	public int tchProfUpd(Map<String, Object> pMap) {
+		logger.info("TchDao - tchProfUpd 호출");
+		result = sqlSession.update("tchProfUpd",pMap);
 		
 		return result;
 	}
 	
 	public int tchDel(Map<String, Object> pMap) {
 		logger.info("TchDao - tchDel 호출");
-		result = sqlSession.delete("tchDel");
+		result = sqlSession.delete("tchDel",pMap);
 		
 		return result;
 	}

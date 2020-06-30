@@ -17,7 +17,7 @@
 	}
 //프로필보기
 	function profile(){
-		alert("프로필보기");
+		alert("프로필관리 클릭");
 		if(g_element != null) {
 		    $("#prof_tch_id").val(g_element.TCH_ID);
 		    $("#prof_tch_no").val(g_element.TCH_NO);
@@ -32,6 +32,16 @@
 		}
 	}
 	
+//삭제버튼	
+/* 	function tchDel() {
+		alert("삭제버튼");
+	}// 강사가 삭제 되려면... 결제이력 지워야되고, 수업, 강사, 회원의 결제 ㅣㅇ력도 사라져... 회원 출석 */  
+	
+//수정버튼
+ 	function tchUpd() {
+		//alert("수정버튼");
+		$('#tch_pro').submit();
+	}
 //등록버튼 -> 번호찾기		
 	function tch_nosearch() {	
 		//alert("번호찾기");
@@ -252,8 +262,8 @@ img.img {
 	<button type="button" class="b1 btn-primary m-1" onclick="tchList()">전체조회</button>
 	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#ins">등록</button>
 <!-- 	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#upd" onclick="tchUpd()">수정</button> -->
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#del" >삭제</button>
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" onclick="profile()">프로필보기</button>
+	<!-- <button type="button" class="b1 btn-primary m-1" data-toggle="modal" onclick="tchDel()">삭제</button> -->
+	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" onclick="profile()">프로필관리</button>
 	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" onclick="infoOn()">맡은 수업 보기</button> <!-- data-target="#info" -->
 </div>
 <br>
@@ -301,26 +311,7 @@ img.img {
 <!-- ===== 강사수정 modal end ===== -->
 
 <!-- =====삭제 modal=====  -->
-<div class="modal" id="del">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<!-- Modal Header 부분 -->
-			<div class="modal-header">
-				<h5 class="modal-title">강사관리(삭제)</h5>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<!-- Modal Body 부분 -->
-			<div class="modal-body">
-				강사를 삭제하시겠습니까?
-			</div>
-			<!-- Modal Footer 부분 -->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="tch_del()">예</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">아니요</button>			
-			</div>
-		</div>
-	</div>
-</div>
+
 
 <!-- =====삭제 modal end=====  -->
 

@@ -3,6 +3,12 @@
 <mapper namespace="com.mybatis.mapper.gymMapper">
 
 	<resultMap id="gymLogin" type="map"/>
+
+	
+	<resultMap id="chart_newmem" type="map"/>
+	
+	<resultMap id="chart_mem_extime" type="map"/>
+
 	
 	<resultMap id="gymCont" type="map"/>
 	
@@ -76,9 +82,39 @@
 		</where>
 		 ORDER BY notice_no DESC
 	</select>
-	<select id="getChartList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+	<!-- 누적 회원 수 가져오기 -->
+	<select id="get_c_accum_members" parameterType="map" resultType="map">
+		SELECT to_char(to_date(y_m, 'YYYY/MM'), 'MM')||'월' mm, accum_members as "누적회원" FROM accum_mem
+		<if test="yy != null">
+			WHERE y_m LIKE '%'||#{yy}||'%'
+		</if>
+		<if test = "yy == null">
+			WHERE y_m LIKE '%'||2020||'%'
+		</if>
 	</select>
+	<!-- 회원 평균 운동시간 -->
+	<select id="get_c_ex_time_avg"  parameterType="map" resultType="map">
+		SELECT cnt, rng FROM ex_time_avg
+	</select>
+	<!-- 시간대별 방문자수 평균 -->
+	<select id="get_cnt_mem_extime" parameterType="map"  statementType="CALLABLE">
+		{ call proc_cnt_mem_extime(#{gym_no}, #{chart_mem_extime
+								                               ,jdbcType=CURSOR
+								                               ,mode=OUT
+								                               ,javaType=java.sql.ResultSet
+								                               ,resultMap=chart_mem_extime}
+								                               )}
+	</select>
+	<!-- 월별 수강생 증가 -->
+	<select id="get_newmem" parameterType="map"  statementType="CALLABLE">
+		{ call proc_get_newmem(#{gym_no}, #{cho_year} #{chart_newmem
+								                               ,jdbcType=CURSOR
+								                               ,mode=OUT
+								                               ,javaType=java.sql.ResultSet
+								                               ,resultMap=chart_newmem}
+								                               )}
+	</select>
+	
 	<select id="getContentList" parameterType="map" statementType="CALLABLE">
 		<!-- ==========편성경여기========== -->
 			{ call proc_GymContList(#{gym_no}, #{gymCont

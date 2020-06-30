@@ -90,9 +90,15 @@ public class TchLogic {
 		return result;
 	}
 	
-	public int tchUpd(Map<String, Object> pMap) {
+	public int tchProfUpd(Map<String, Object> pMap) {
 		logger.info("TchLogic - tchUpd 호출");
-		result = tDao.tchUpd(pMap);
+		result = tDao.tchProfNo(pMap);
+		if(result > 0) {
+			pMap.put("tch_info_seq", result);
+			result = tDao.tchProfUpd(pMap);
+		} else if(result == 0) {
+			result = tDao.tchProfIns(pMap);
+		}
 		setCommit(result);
 		return result;
 	}
