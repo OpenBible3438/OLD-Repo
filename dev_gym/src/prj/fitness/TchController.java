@@ -48,8 +48,8 @@ public class TchController implements Controller {
 			}break;
 			case "upd":{
 				switch(reqName) {
-					case("tchUpd"):{ // 강사 수정
-						result = tLogic.tchUpd(pMap);
+					case("tchProfUpd"):{ // 강사 프로필 수정
+						result = tLogic.tchProfUpd(pMap);
 					}break;
 					case("tchUpd2"):{ 
 						//result = tLogic.tchUpd2(pMap);

@@ -3,10 +3,12 @@
 <mapper namespace="com.mybatis.mapper.gymMapper">
 
 	<resultMap id="gymLogin" type="map"/>
+
 	
 	<resultMap id="chart_newmem" type="map"/>
 	
 	<resultMap id="chart_mem_extime" type="map"/>
+
 	
 	<resultMap id="chart_tchChart" type="map"/>
 	
