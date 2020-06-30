@@ -94,6 +94,9 @@ public class MemController implements Controller {
          case "jsonMemList":{
             selResult = mLogic.getMemList(pMap);
          }break;
+         case "getInbodyImg":{
+        	 selResult = mLogic.getInbodyImg(pMap);
+         }break;
       }
       if(selResult != null) {
          logger.info("selResult != null");

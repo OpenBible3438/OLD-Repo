@@ -36,14 +36,14 @@
 				<div class="row">
 					<div class="col-sm-1" data-spy="scroll" ></div>
 					<div id="inbody_images">
-					<!-- 
-						<img id="iP" class="col-sm-4" src="#" style="margin:20px; width:200px; height:350px">
-						<img id="iP" class="col-sm-4" src="#" style="margin:40px; width:200px; height:350px">
-					</div>
-					<div>
-						<img id="iP" class="col-sm-4" src="#" style="margin:20px; width:200px; height:350px">
-						<img id="iP" class="col-sm-4" src="#" style="margin:40px; width:200px; height:350px">
-						 -->
+						<!-- 
+							<img id="iP" class="col-sm-4" src="#" style="margin:20px; width:200px; height:350px">
+							<img id="iP" class="col-sm-4" src="#" style="margin:40px; width:200px; height:350px">
+						</div>
+						<div>
+							<img id="iP" class="col-sm-4" src="#" style="margin:20px; width:200px; height:350px">
+							<img id="iP" class="col-sm-4" src="#" style="margin:40px; width:200px; height:350px">
+							 -->
 					</div>
 				</div>
 			</div>

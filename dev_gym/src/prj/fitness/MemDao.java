@@ -42,7 +42,14 @@ public class MemDao {
 		
 		return memList;
 	}
-	
+	// 한 회원에 대한 인바디 인미지 가져오기 
+	public List<Map<String, Object>> getInbodyImg(Map<String, Object> pMap) {
+		List<Map<String, Object>> memList = null;
+		logger.info("MemDao - getMemList() 호출");
+		memList = sqlSession.selectList("getMemList");
+		
+		return memList;
+	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,5 +94,7 @@ public class MemDao {
 		
 		return result;
 	}
+
+
 
 }

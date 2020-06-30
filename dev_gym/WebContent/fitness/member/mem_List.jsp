@@ -82,10 +82,10 @@
         $("#mem_name_d").val(gmem_name);
         $.ajax({
         	method:'post'
-        	,data :
-        	,url : ''
+        	,data : 'mem_no='+gmem_no
+        	,url : '../member/getInbodyImg.gym'
         	,success: function(data) {
-        		
+        		$('#inbody_images').html(data.trim());
         	}
         });
 		$("#myInbody").modal('show');

@@ -40,6 +40,16 @@ public class MemLogic {
 		
 		return memInbodyList;
 	}
+	// 한 회원에 대한 인바디 이미지 불러오기 
+	public List<Map<String, Object>> getInbodyImg(Map<String, Object> pMap) {
+		logger.info("MemLogic - getMemInbody() 호출");
+		List<Map<String, Object>> inbodyList = null;
+
+		inbodyList = mDao.getInbodyImg(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return inbodyList;
+	}
 	/****************************************************************************************************
 	 * 회원전체 조회 구현
 	 * @param pMap - 파라미터 값 담기
@@ -110,6 +120,8 @@ public class MemLogic {
 			sqlSession.rollback();
 		}
 	}
+
+
 	
 	
 }
