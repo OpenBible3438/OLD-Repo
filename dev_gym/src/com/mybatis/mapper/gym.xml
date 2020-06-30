@@ -71,7 +71,7 @@
 		SELECT not_date, not_time, notice_no, not_title, not_cont, gym_no
 		  FROM notice
 		<where>
-			<if test="gym_no!=null and gym_no.length>0">
+			<if test="gym_no!=null and gym_no>0">
 				AND gym_no = #{gym_no}
 			</if>
 			<if test="notice_no!=null and notice_no.length>0">
