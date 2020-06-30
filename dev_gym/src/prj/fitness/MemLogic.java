@@ -35,10 +35,8 @@ public class MemLogic {
 		logger.info("MemLogic - getMemInbody() 호출");
 		List<Map<String, Object>> memInbodyList = null;
 
-		memInbodyList = mDao.getMemList(pMap);
-		mbMgr.clossSession(sqlSession);
-
 		memInbodyList = mDao.getMemInbody(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return memInbodyList;
 	}

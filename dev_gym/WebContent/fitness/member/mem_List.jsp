@@ -77,10 +77,19 @@
      	});
 	});
 	function showInbody(){
-		 $("#mem_no_d").val(gmem_no);
-         $("#mem_id_d").val(gmem_id);
-         $("#mem_name_d").val(gmem_name);
+		$("#mem_no_d").val(gmem_no);
+        $("#mem_id_d").val(gmem_id);
+        $("#mem_name_d").val(gmem_name);
+        $.ajax({
+        	method:'post'
+        	,data :
+        	,url : ''
+        	,success: function(data) {
+        		
+        	}
+        });
 		$("#myInbody").modal('show');
+		
 	}
 	/* 
 	function showMemdetail(){
@@ -145,62 +154,14 @@
 			<th data-field="MEM_JOINDATE">최초 등록일</th>
 		</tr>
 	</thead>
-<!-- 					
-	<tbody>
-			<th>최근 인바디
-				<td><button type="button" class="btn-primary m-1"  data-target="#myInbody" >최근 인바디 보기</button></td>
-			</th>
-	</tbody>
- -->	
 </table>
 <!-- 테이블 부분 -->
 <!-- ======================= 자세히 보기 모달창 =================================-->
-<div class="modal" id="myDetail">
-	<div class="modal-dialog" style="width:auto;display:table">
-		<div class="modal-content">
-			<!-- Modal Header 부분 -->
-			<div class="modal-header">
-				<h4 class="modal-title" id="title">자세히 보기</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			
-			<!-- Modal Body 부분 -->
-			<div class="modal-body">
+
 				<%@include file="./mem_Detail.jsp" %>
-			</div>
-			
-			<!-- Modal Footer 부분 -->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal" >확인</button> 
-				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>			
-			</div>
-		</div>
-	</div>
-</div>
+
 <!-- =======================인바디 보기 모달창 =================================-->
-<div class="modal" id="myInbody">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<!-- Modal Header 부분 -->
-			<div class="modal-header">
-				<h4 class="modal-title">인바디 보기</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			
-			<!-- Modal Body 부분 -->
-			<div class="modal-body">
+
 				<%@include file="./mem_InbodyDetail.jsp" %>
-			</div>
-			
-			<!-- Modal Footer 부분 -->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button> 
-				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>			
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-</form>
-<!-- 자세히 보기 모달 end -->
+
 
