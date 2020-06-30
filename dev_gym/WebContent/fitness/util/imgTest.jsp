@@ -5,11 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<!-- 
- <img alt="" src="../gym/gymProfImage.gym?typecode=5"/>
-  -->
- <img alt="" src="../main/getImages.gym?file_seq=0"/>
+<!-- 이미지 한장 가져오기  -->
+<img alt="" src="../main/getImages.gym?file_seq=3"/>
 </body>
 </html>

@@ -28,9 +28,9 @@ public class ActionFitness extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.info("doPost() 호출");
+		req.setCharacterEncoding("utf-8");
 		doService(req, res);
 	}
-	
 	public void doService(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.info("doService() 호출");
 		Map<String, Object> pMap = new HashMap<String, Object>(); 
@@ -55,7 +55,7 @@ public class ActionFitness extends HttpServlet {
 		Object processResult = null;
 		if(pMap.containsKey("cud")) {
 			String cud = pMap.get("cud").toString();
-			processResult = controller.process(cud, req, res);//cud가 map에 들어있어서 사실 파라미터에 cud를 넘겨줄 필요가 없다...
+			processResult = controller.process(cud, req, res);
 		}
 		else {
 			processResult = controller.process(req, res);

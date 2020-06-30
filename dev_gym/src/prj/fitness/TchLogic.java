@@ -1,5 +1,7 @@
 package prj.fitness;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +31,8 @@ public class TchLogic {
 		List<Map<String, Object>> tchList = null;
 		tchList = tDao.getTchList(pMap);
 		
+		mbMgr.clossSession(sqlSession);
+		
 		return tchList;
 	}
 	
@@ -36,6 +40,8 @@ public class TchLogic {
 		logger.info("TchLogic - getTchClassList() 호출");
 		List<Map<String, Object>> tchClassList = null;
 		tchClassList = tDao.getTchClassList(pMap);
+		mbMgr.clossSession(sqlSession);
+		
 		return tchClassList;
 	}
 
@@ -43,22 +49,56 @@ public class TchLogic {
 		logger.info("TchLogic - getTchProfile() 호출");
 		List<Map<String, Object>> tchProfile = null;
 		tchProfile = tDao.getTchProfile(pMap);
+		mbMgr.clossSession(sqlSession);
+		
 		return tchProfile;
 	}
-
+	
+	public List<Map<String, Object>> tchNoSearch(Map<String, Object> pMap) {
+		logger.info("TchLogic - tchNoSearch() 호출");
+		List<Map<String, Object>> selList = null;
+		selList = tDao.tchNoSearch(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return selList;
+	}
+	public int tchIDSearch(Map<String, Object> pMap) {
+		logger.info("TchLogic - tchIDSearch() 호출");
+		int selID = tDao.tchIDSearch(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return selID;
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 
 	public int tchIns(Map<String, Object> pMap) {
 		logger.info("TchLogic - tchIns 호출");
 		result = tDao.tchIns(pMap);
+		if(result == 1) {
+			result = tDao.tchInsImg(pMap);
+			try {
+				((FileInputStream)pMap.get("filedata")).close();
+				if(((File)pMap.get("file")).delete()) {
+					logger.info("파일삭제 성공");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		setCommit(result);
 		return result;
 	}
 	
-	public int tchUpd(Map<String, Object> pMap) {
+	public int tchProfUpd(Map<String, Object> pMap) {
 		logger.info("TchLogic - tchUpd 호출");
-		result = tDao.tchUpd(pMap);
+		result = tDao.tchProfNo(pMap);
+		if(result > 0) {
+			pMap.put("tch_info_seq", result);
+			result = tDao.tchProfUpd(pMap);
+		} else if(result == 0) {
+			result = tDao.tchProfIns(pMap);
+		}
 		setCommit(result);
 		return result;
 	}

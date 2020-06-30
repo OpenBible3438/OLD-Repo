@@ -20,15 +20,23 @@ public class TchDao {
 	public List<Map<String, Object>> getTchList(Map<String, Object> pMap) {
 		logger.info("TchDao - getTchList() 호출");
 		List<Map<String, Object>> tchList = null;
-		tchList = sqlSession.selectList("getTchList", pMap);
+		//
+		sqlSession.selectList("getProcTchList", pMap);
+		
+		tchList = (List<Map<String, Object>>)pMap.get("gymTchList");
+		
+		logger.info(" - tchList : "+tchList.size()+"row");
+		//logger.info(" - tchList : "+tchList.toString());
 		return tchList;
 	}
 	
 	public List<Map<String, Object>> getTchClassList(Map<String, Object> pMap) {
 		logger.info("TchDao - getTchClassList() 호출");
 		List<Map<String, Object>> tchClassList = null;
-		tchClassList = sqlSession.selectList("getTchClassList", pMap);
-		
+		//tchClassList = sqlSession.selectList("getTchClassList", pMap);
+		sqlSession.selectList("getProcTchClassList", pMap);
+		tchClassList = (List<Map<String, Object>>)pMap.get("gymClsList");
+		//
 		return tchClassList;
 	}
 
@@ -39,30 +47,71 @@ public class TchDao {
 		
 		return tchProfile;
 	}
-
-	////////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////////////
+	public List<Map<String, Object>> tchNoSearch(Map<String, Object> pMap) {
+		logger.info("TchDao - tchNoSearch() 호출");
+		List<Map<String, Object>> tchList = null;
+		tchList = sqlSession.selectList("tchNoConfirm",pMap);
+		if(tchList.get(0).get("CONFIRM")!=null 
+				&& "0".equals(tchList.get(0).get("CONFIRM").toString())) {
+			sqlSession.selectList("tchNoSearch", pMap);
+			tchList = (List<Map<String, Object>>)pMap.get("gymTchList");
+		}
+		logger.info(" - tchList : "+tchList.toString());
+		return tchList;
+	}
 	
-	
-	public int tchIns(Map<String, Object> pMap) {
-		logger.info("TchDao - tchIns 호출");
-		result = sqlSession.insert("tchIns", pMap);
-		
+	public int tchProfNo(Map<String, Object> pMap) {
+		logger.info("TchDao - tchProfNo() 호출");
+		result = sqlSession.selectOne("tchProfNo", pMap);
 		return result;
 	}
 	
-	public int tchUpd(Map<String, Object> pMap) {
-		logger.info("TchDao - tchUpd 호출");
-		result = sqlSession.update("tchIns");
+	public int tchIDSearch(Map<String, Object> pMap) {
+		logger.info("TchDao - tchIDSearch() 호출");
+		result = sqlSession.selectOne("tchIDSearch", pMap);
+		return result;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//강사 회원가입 
+	public int tchIns(Map<String, Object> pMap) {
+		logger.info("TchDao - tchIns 호출");
+		if(pMap.get("tch_no") != null && pMap.get("tch_no").toString().length() == 0) {
+			result = sqlSession.selectOne("getTchNo");
+			pMap.put("tch_no",result);
+		}
+		result = sqlSession.insert("tchIns", pMap);
+		return result;
+	}
+	// 강사 회원가입 이미지 인서트 
+	public int tchInsImg(Map<String, Object> pMap) {
+		logger.info("TchDao - tchInsImg 호출");
+		result = sqlSession.insert("tchInsImg", pMap);
+		return result;
+	}
+	// 강사 프로필 등록 
+	public int tchProfIns(Map<String, Object> pMap) {
+		logger.info("TchDao - tchProfIns 호출");
+		result = sqlSession.update("tchProfIns",pMap);
+		
+		return result;
+	}
+	// 강사 프로필 수정 
+	public int tchProfUpd(Map<String, Object> pMap) {
+		logger.info("TchDao - tchProfUpd 호출");
+		result = sqlSession.update("tchProfUpd",pMap);
 		
 		return result;
 	}
 	
 	public int tchDel(Map<String, Object> pMap) {
 		logger.info("TchDao - tchDel 호출");
-		result = sqlSession.delete("tchDel");
+		result = sqlSession.delete("tchDel",pMap);
 		
 		return result;
 	}
-	
+
+
+
 }

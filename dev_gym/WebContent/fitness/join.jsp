@@ -19,6 +19,8 @@
 				<input type="hidden" class="form-control" name="cud" value="join">
 				<input type="hidden" class="form-control" id="gym_sido" name="gym_sido">
 				<input type="hidden" class="form-control" name="type" value="gym">
+				<input type="hidden" class="form-control" id="gym_lat" name="gym_lat">
+				<input type="hidden" class="form-control" id="gym_lng" name="gym_lng">
 				<input type="hidden" class="form-control" id="j_gym_id_ok" name="j_gym_id">
 				<input type="text" class="form-control isvalid" id="j_gym_id" required>
 			</div>
@@ -109,7 +111,7 @@
 		<div class="form-group row">
 			<div class="col-sm-2" ></div>
 			<div class="col-sm-5">
-				<input type="file" class="form-control-file border" id="gym_profimg" name="gym_profimg">
+				<input type="file" class="form-control-file border" id="gym_profimg" name="img" accept=".gif, .jpg, .png">
 			</div>
 		</div>
 		<div class="form-group row">
@@ -138,7 +140,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="submit" class="btn btn-primary" >가입</button><!-- onclick="joinINS()"  -->
+			<button type="submit" class="btn btn-primary" onclick="joinINS()">가입</button><!--   -->
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		</div>
 	</form>
@@ -161,13 +163,19 @@
             reader.onload = function(e) {
             	//img태그 아이디
             	//alert("파일첨부1 : "+e.target.result);
-                $('#gym_profimg_img').attr('src', e.target.result);
+            	img_check =  $("#gym_profimg").val();
+    			//alert("img_check : "+img_check);
+    			if(img_check != "") {
+                	$('#gym_profimg_img').attr('src', e.target.result);
+    			}
             }
             reader.readAsDataURL(input.files[0]);
         }
     }
 	//파일첨부 input태그 아이디
     $("#gym_profimg").change(function() {
+    	img_check =  $("#gym_profimg").val();
+    	//alert("img_check : "+img_check);
         readURL(this);
     });
 </script>

@@ -1,33 +1,145 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.teacherMapper">
+	<resultMap id="gymTchList" type="map"/>
+	<resultMap id="getProcTchClassList" type="map"/>
 <!-- ======================= Teacher ======================= -->
 	<select id="getTchClassList" parameterType="map" resultType="map">
 		SELECT cls_info,cls_no,cls_name,cls_kind,cls_cnt,cls_days,cls_state
 		FROM class
 	</select>
+	<select id="getProcTchClassList" parameterType="map" statementType="CALLABLE">
+			{ call proc_TchClsList(#{gym_no},#{tch_no},#{gymClsList
+			                                            ,jdbcType=CURSOR
+						                                ,mode=OUT
+						                                ,javaType=java.sql.ResultSet
+						                                ,resultMap=getProcTchClassList})}
+	</select>
+	
 	<select id="getTchProfile" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
 	
 	<!-- 전체조회 -->
-	<select id="getTchList" parameterType="map" resultType="map">
-		SELECT tch_no,gym_no,tch_id,tch_pw, tch_name,
-                     tch_tel, tch_addr, tch_addr_dtl, tch_zipcode,tch_gender
-		FROM teacher
+	<select id="tchNoSearch" parameterType="map" statementType="CALLABLE">
+		{ call proc_GymTchSearch(#{tch_no},#{gymTchList
+			                              ,jdbcType=CURSOR
+			                              ,mode=OUT
+			                              ,javaType=java.sql.ResultSet
+			                              ,resultMap=gymTchList})}
 	</select>
 	
+	<!-- 전체조회 -->
+	<select id="getTchList" parameterType="map" resultType="map">
+		SELECT rownum rno,tch_no,gym_no,tch_id,tch_pw, tch_name,
+                     tch_tel, tch_addr, tch_addr_dtl, tch_zipcode,tch_gender
+        FROM teacher
+        WHERE tch_no > 0
+	</select>
+	
+	<!-- 프로시저 전체조회 -->
+	<select id="getProcTchList" parameterType="map" statementType="CALLABLE">
+		{ call proc_TchList(#{gym_no},#{gymTchList
+			                              ,jdbcType=CURSOR
+			                              ,mode=OUT
+			                              ,javaType=java.sql.ResultSet
+			                              ,resultMap=gymTchList})}
+	</select>
+	<select id="tchIDSearch" parameterType="map" resultType="int"> 
+			SELECT nvl(count(tch_id),0) as "CONFIRM"
+  		      FROM teacher
+ 			 WHERE tch_id = #{tch_id}
+	</select>
+	<!-- 등록된 강사인지 확인하는 쿼리  -->
+	<select id="tchNoConfirm" parameterType="map" resultType="map"> 
+			 SELECT nvl((SELECT '1'
+			               FROM teacher
+			              WHERE tch_no = #{tch_no}
+			                AND gym_no = #{gym_no}), '0') as "CONFIRM" 
+ 			   FROM dual
+	</select>
+	<!-- 강사번호 채번하기  -->
+	<select id="getTchNo" resultType="int">
+		SELECT nvl(max(tch_no)+1,0) as "tch_no" FROM teacher
+	</select>
 	<!-- 강사등록 인서트 -->
 	<insert id="tchIns" parameterType="map">
-	INSERT into member values('1', '1', '1')
+		INSERT INTO teacher(gym_no
+		                   ,tch_no
+		                   ,tch_id
+		                   ,tch_pw
+		                   ,tch_name
+		                   ,tch_tel
+		                   ,tch_addr 
+		                   ,tch_addr_dtl 
+		                   ,tch_zipcode
+		                   ,tch_gender 
+		                   )
+		             VALUES(#{gym_no}
+		                   ,#{tch_no}
+		                   ,#{tch_id}
+		                   ,#{tch_pw}
+		                   ,#{tch_name}
+		                   ,#{tch_tel}
+		                   ,#{tch_addr} 
+		                   ,#{tch_addr_dtl} 
+		                   ,#{tch_zipcode}
+		                   ,#{tch_gender} )
 	</insert> 
+	<!-- 강사등록 이미지  인서트 -->
+	<insert id="tchInsImg" parameterType="map">
+		INSERT INTO images(file_seq
+		                  ,filename
+		                  ,filesize
+		                  ,filedata
+		                  ,type
+		                  ,typecode)
+		            VALUES((SELECT nvl(max(file_seq)+1,0) FROM images)
+		                  ,#{filename}
+		                  ,#{filesize}
+		                  ,#{filedata}
+		                  ,'tch'
+		                  ,(#{tch_no ,jdbcType=NUMERIC}||#{gym_no ,jdbcType=NUMERIC})
+		                  )
+	</insert>
 
-	<update id="tchUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
+	<!-- 강사 프로필 번호 채번 -->	
+	<select id="tchProfNo" parameterType="map" resultType="int">
+		SELECT nvl((SELECT tch_info_seq
+		              FROM tch_info
+		             WHERE gym_no = #{gym_no} 
+		               ANd tch_no = #{tch_no}),0)
+ 		  FROM dual
+	</select>
+	
+	<!-- 강사 프로필 등록 -->	
+	<insert id="tchProfIns" parameterType="map">
+		INSERT INTO tch_info(tch_info_seq
+		                    ,gym_no
+		                    ,tch_no
+		                    ,tch_intro
+		                    ,tch_career
+		                    ,tch_like)
+	                  VALUES((SELECT max(TCH_INFO_SEQ)+1 FROM tch_info)
+	                        ,#{gym_no} 
+	                        ,#{tch_no}
+	                        ,#{tch_intro}
+	                        ,#{tch_career}
+	                        ,0)	
+	</insert>
+	<!-- 강사 프로필 수정 -->
+	<update id="tchProfUpd" parameterType="map">
+		UPDATE tch_info 
+		   SET TCH_INTRO = #{tch_intro}
+		      ,TCH_CAREER = #{tch_career}
+		 WHERE TCH_INFO_SEQ = #{tch_info_seq}
 	</update>
 	
+	<!-- 강사 딜리트 -->
 	<delete id="tchDel" parameterType="map">
-		DELETE member where mem_id = '5'
+		DELETE FROM teacher 
+			  WHERE tch_no = #{tch_no}
+			    AND gym_no = #{gym_no}
 	</delete>
 
 </mapper>

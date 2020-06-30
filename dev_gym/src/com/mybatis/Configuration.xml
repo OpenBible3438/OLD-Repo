@@ -17,6 +17,7 @@
 	<mappers>
 		<!-- xml주석 DML구문 즉 select, insert, update, delete 작성된 xml파일의 물리적인 위치와 파일명을 
 			등록 -->
+		<mapper resource="com/mybatis/mapper/test.xml" />
 		<mapper resource="com/mybatis/mapper/gym.xml" />
 		<mapper resource="com/mybatis/mapper/member.xml" />
 		<mapper resource="com/mybatis/mapper/teacher.xml" />

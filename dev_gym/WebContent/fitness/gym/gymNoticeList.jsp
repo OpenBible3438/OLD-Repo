@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <%
 	String mode = request.getParameter("mode");
 	if(mode!=null && mode.equals("refresh")){
@@ -19,19 +24,69 @@
 %> --%>
 <!-- 등록,수정 모달 include -->
 <%@include file="gymNoticeIns_Upd.jsp"%>
+<%@include file="gymNoticeDetail.jsp"%>
+<script src="../../js/kakao.js"></script>
+<style>
+.b1 { 
+/* 	border-radius: 30px; */
+	width: 50%;
+	margin: 5px;
+}
+
+</style>
+<script>
+        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('1225a581b4fb1a6098c442808c7cef60');
+
+        // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+ </script>
 <script type="text/javascript">
-	var choNotic_no = 0; //선택한 공지사항을 저장 
+	var choNotice_no = 0; //선택한 공지사항을 저장 
 	var choNot_title = "";
 	var choNot_cont = "";
+	   // 선택된 갯수
+   var selected = 0;
 	
 	function noticeList(){
+		$("#search_title").val("");
+		$("#search_cont").val("");
 		$('#tb_nList').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.
 	           url: '../gym/jsonGymNoticeList.gym'
 	        });
 	}
+	function showDetail(){
+		if(selected == 0){
+			alert("조회 할 공지사항을 선택하세요.");
+		}
+		else if(selected == 1){
+			$("#m_detail").modal({
+				show : true
+			  , keyboard : true
+			  , focus : true
+			})
+			$.ajax({
+				url : "../gym/jsonGymNoticeList.gym?notice_no="+choNotice_no
+			  , success : function(data){
+				  var dtlList = JSON.parse(JSON.stringify(data));
+				  $("#not_title_dtl").text(dtlList[0].NOT_TITLE);
+				  $("#not_cont_dtl").text(dtlList[0].NOT_CONT);
+				  $("#not_date").text(dtlList[0].NOT_DATE);
+				  $("#not_time").text(dtlList[0].NOT_TIME);
+			  }
+			});
+		}
+		else if(selected > 1){
+			alert("공지사항 조회는 1건씩만 가능합니다.");
+			$('input:checkbox[name=btSelectItem]').prop('checked', false);
+			selected = 0;
+		}
+		
+	}
 	function notSearch(){
 		var not_title = $("#search_title").val();
 		var not_cont = $("#search_cont").val();
+		alert("not_title : " + not_title + ", not_cont : " + not_cont);
 		$('#tb_nList').bootstrapTable('refreshOptions', {
 	           url: '../gym/jsonGymNoticeList.gym?not_title='+not_title+"&not_cont="+not_cont
 	        });
@@ -43,93 +98,147 @@
 		$("#not_cont").text("");
 		$("#m_ins_upd").modal({
 			show : true
-		  , keyboard : true
+		  , keyboard : false
 		  , focus : true
 		})
 	}
 	function startUpd(){
-		$("#m_title").text("공지사항 수정");
-		$("#cud").val("upd");
-		$("#not_title").text(choNot_title);
-		$("#not_cont").text(choNot_cont);
-		$("#m_ins_upd").modal({
-			show : true
-		  , keyboard : true
-		  , focus : true
-		})
+		if(selected == 0){
+			alert("수정할 공지사항을 선택하세요.");
+		}
+		else if(selected == 1){
+			$("#m_title").text("공지사항 수정");
+			$("#cud").val("upd");
+			$("#not_title").text(choNot_title);
+			$("#notice_no").val(choNotice_no);
+			$("#not_cont").text(choNot_cont);
+			$("#m_ins_upd").modal({
+				show : true
+			  , keyboard : false
+			  , focus : true
+			})
+		}
+		else if(selected > 1){
+			alert("공지사항 수정은 1건씩만 가능합니다.");
+			$('input:checkbox[name=btSelectItem]').prop('checked', false);
+			selected = 0;
+		}
+	}
+	function startDel(){
+		if(selected == 0){
+			alert("삭제할 공지사항을 선택하세요.");
+		}
+		else if(selected == 1){
+			$("#m_del").modal({
+				show : true
+			});
+		}
+		else if(selected > 1){
+			alert("공지사항 삭제는 1건씩만 가능합니다.");
+			$('input:checkbox[name=btSelectItem]').prop('checked', false);
+			selected = 0;
+		}
 	}
 	function noticeDel(){
-		location.href = "gymNoticeDel.gym?cud=del&notice_no="+choNotice_no;
+			location.href = "gymNoticeDel.gym?cud=del&notice_no=" + choNotice_no;
 	}
 	function noticeSave(){
-		alert("저장");
 		$("#m_ins_upd").modal({
 			show : false
 		});
 		if($("#cud").val()=="ins"){
 			$("#f_ins_upd").attr('action', "../gym/gymNoticeIns.gym")
+			$("#f_ins_upd").submit();
 		}
 		else if($("#cud").val()=="upd"){
 			$("#f_ins_upd").attr('action', "../gym/gymNoticeUpd.gym")
-		}
 			$("#f_ins_upd").submit();
+		}
 	}
-	
+	 function sendLink() {
+		    Kakao.Link.sendDefault({
+		      objectType: 'feed',
+		      content: {
+		        title: $("#not_title_dtl").text(),
+		        description: $("#not_cont_dtl").text(),
+		        imageUrl:
+		          'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+		        link: {
+		          mobileWebUrl: 'https://developers.kakao.com',
+		          webUrl: 'https://developers.kakao.com',
+		        },
+		      },
+		      social: {
+		        likeCount: 286,
+		        commentCount: 45,
+		        sharedCount: 845,
+		      },
+		      buttons: [
+		        {
+		          title: '웹으로 보기',
+		          link: {
+		            mobileWebUrl: 'http://192.168.0.191:7777/dev_gym/index.jsp',
+		            webUrl: 'http://192.168.0.191:7777/dev_gym/index.jsp',
+		          },
+		        },
+		        {
+		          title: '앱으로 보기',
+		          link: {
+		            mobileWebUrl: 'https://developers.kakao.com',
+		            webUrl: 'http://192.168.0.191:7777',
+		          },
+		        },
+		      ],
+		    })
+		  }
 </script>
+</head>
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<body>
 <!--=========================== 전체 시작 ===========================-->
-<div style="padding: 20px; margin-bottom: 50px">
+<div style="padding: 20px;">
    <h3><b>매장관리</b> / 공지사항</h3>   <!-- 제목 틀 입니다. -->
    <hr>
     <!--=========================== 내용 시작 ===========================-->
 	<div style="padding-left: 40px; padding-top: 20px">
 <br>
 		<!--=========================== 검색부분 시작 ===========================-->
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-		    	<span class="input-group-text">제목</span>
-		    </div>
-		    <div class="col-xs-4">
-		    	<input type="text" id="search_title" name="search_title" class="form-control" placeholder="제목으로 검색하세요.">
-			</div> 
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="input-group-prepend">
-		    	<span class="input-group-text">내용</span>
-		    </div>
-		    <div class="col-xs-4">
-		    	<input type="text" id="search_cont" name="search_cont" class="form-control" placeholder="내용으로 검색하세요.">
-			</div>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-secondary" onClick="notSearch()">검색</button>
+		<div class="input-group" style="width:50%; min-width:450px;">
+	    	<span class="input-group-text">제목</span>
+    		<input type="text" id="search_title" name = "search_title" class="form-control" placeholder="제목으로 검색">
+    		<span class="input-group-text"  style="margin-left:10px;">내용</span>
+    		<input type="text" class="form-control" id="search_cont" name = "search_cont" placeholder="내용으로 검색">
+			<button type="button" class="btn btn-secondary" style="margin-left:10px;" onClick="notSearch()">검색</button>
 		</div>
 		<!--=========================== 검색부분 끝 ===========================-->
-		
+		<br>
 		<!--=========================== 버튼부분 시작 =========================== -->
-		<div id="button">
-			<button type="button" class="btn btn-primary" onClick="noticeList()">전체조회</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" onClick="startIns()">등록</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" onClick="startUpd()">수정</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_del">삭제</button>
+		<div id="button" class="btn-group" style="width:50%; min-width:500px; margin-bottom:15px">
+			<button type="button" class="b1 btn btn-primary m-1" onClick="noticeList()">전체조회</button>
+			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="showDetail()">상세조회</button>
+			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="startIns()">등록</button>
+			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="startUpd()">수정</button>
+			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="startDel()">삭제</button>
 		</div>
 		<!--=========================== 버튼부분 끝 =========================== -->
 <br>
 			<!--=========================== 테이블 부분 시작 ===========================-->
 		<table id="tb_nList" class="table table-bordered"
 		 data-toggle="table"
-		 data-url = "../gym/jsonGymNoticeList.gym"
+		 data-url= '../gym/jsonGymNoticeList.gym'
   		 data-click-to-select="true"
-  		 data-single-select="true"
  		 data-pagination="true"
 		>
 			<thead>
 				<tr>
 					<th data-checkbox=true>체크</th>
 					<th data-field="NOTICE_NO">번호</th>
-					<th data-field="NOT_TITLE">제목</th>
-					<th data-field="NOT_CONT">내용</th>
+					<th data-field="NOT_DATE">등록일</th>
+					<th data-field="NOT_TITLE" class="w-25">제목</th>
+					<th data-field="NOT_CONT" class="w-50">내용</th>
 				</tr>
 			</thead>
 		</table>
@@ -166,9 +275,16 @@
 <script>
     $('#tb_nList').on('check.bs.table', function (row, element) {
       //table.bootstrapTable('resetView')
-     // alert("row : " + row + ", element : " + element.NOT_SEQ);
       choNotice_no = element.NOTICE_NO;
       choNot_title = element.NOT_TITLE;
   	  choNot_cont = element.NOT_CONT;
-	});
+  	  selected = $("input:checkbox[name=btSelectItem]:checked").length;
+		});
+    
+    $('#tb_nList').on('uncheck.bs.table', function (row, element) {
+	  	  selected = $("input:checkbox[name=btSelectItem]:checked").length;
+		});
+    
 </script>
+</body>
+</html>

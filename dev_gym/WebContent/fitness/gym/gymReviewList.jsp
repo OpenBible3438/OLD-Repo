@@ -1,51 +1,35 @@
+<%@page import="com.google.gson.JsonObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>gymReviewList.jsp</title>
-<%@include file="../../common/bootStrap4UI.jsp" %>
+<%
+	String mode = request.getParameter("mode");
+	if(mode!=null && mode.equals("refresh")){
+		%>
+		reviewList();
+		<%
+	}
+%>
+<!-- 별점 CSS 시작 -->
 <style type="text/css">
 	.star-rating{width:160px;}
 	.star-rating, .star-rating span{
 		display:inline-block; height:28px; overflow:hidden; background:url(../../images/star.png)no-repeat;}
 	.star-rating span{ background-position:left bottom; line-height:0; vertical-align:top;}
 </style>
-</head>
+<!-- 별점 CSS 끝 -->
 <div style="padding: 20px;">
-<body>
 <h3><b>매장관리</b> / 매장후기보기</h3>
 <div style="padding-left: 40px; padding-top: 20px">
-<!--==================== 예시부분 ====================-->
-<div id="div_review">
-	<div id="div_review_nav">
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-			<a class="navbar-brand">사용자ID들어가는 부분</a>
-		</nav>
-	</div>
-	<div id="div_review_content">
-		<div class="media border p-3">
-			<!-- 사진 들어가는 부분 -->
-			<!-- <img src="bible.jpg" style="width:80px;">
-			<img src="bible.jpg" style="width:80px;"> -->
-			<div class="media-body">
-				<h5><b>여기는 후기 제목</b></h5>
-				<p>후기 내용 들어가는 부분. 너무 좋습니다다. 시설 최고 ! ! !</p>
-				<p>
-				<button type="button" class="btn btn-primary">좋아요<span class="badge badge-light">7</span></button>
-				<span class="star-rating">
-					<span style="width:50%"></span>
-				</span>			
-				<i style="font-size:20px; float:right;">2020-06-11</i>
-				</p>
-			</div>
-		</div>
-	</div>
+<div id="div_review"></div>
 </div>
-<br>
-<!--==================== 예시부분 ====================-->
 </div>
-</div> 
-</body>
-</html>
+<script type="text/javascript">
+   $(document).ready(function(){
+      $.ajax({
+         url : "../gym/jsonGymReviewList.gym"
+        , success : function(result){
+           $("#div_review").html(result)     
+        }
+      });
+   });
+</script>

@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 public class MemController implements Controller {
 
+
    Logger logger = Logger.getLogger(MemController.class);
    Map<String, Object> pMap = null;
    MemLogic mLogic = null;
@@ -108,4 +109,5 @@ public class MemController implements Controller {
       return mav;
    }
 
+	
 }
