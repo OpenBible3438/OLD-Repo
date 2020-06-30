@@ -3,10 +3,10 @@
 <%@page import="java.util.*"%>    
 <%@page import="com.google.gson.Gson"%>
 <%
-	List<Map<String, Object>> tchNoList = (List<Map<String, Object>>)request.getAttribute("selResult");
-	if(tchNoList != null && tchNoList.size() > 0){
+	List<Map<String, Object>> comboList = (List<Map<String, Object>>)request.getAttribute("selResult");
+	if(comboList != null && comboList.size() > 0){
 		Gson g = new Gson();
-		String classes = g.toJson(tchNoList);
+		String classes = g.toJson(comboList);
 		out.print(classes);
 	}
 	else{

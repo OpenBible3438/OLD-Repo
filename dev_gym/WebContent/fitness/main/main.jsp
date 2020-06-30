@@ -79,6 +79,14 @@
 </script>
 </head>
 <body > 
+<script type="text/javascript">
+	//DOM구성이 완료되면...
+	$(document).ready(function() {
+		//alert("center : <%=center%>");  
+		//alert("gym_no : <%=gym_no%>");
+		//alert("gym_name : <%=gym_name%>");
+	}); 
+</script>
 <!-- ========================= TOP 자리 ========================= -->
    <%@ include file="./mainTop.jsp" %> 
 <!-- ========================= CENTER 시작  =========================  -->

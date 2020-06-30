@@ -4,10 +4,19 @@
 	<%@ include file="../../common/bootStrap4UI.jsp" %>
 <!-- <div style="padding: 20px;">
    <h3><b>회원관리</b> / 인바디 수정</h3>   제목 틀 입니다. -->
-   <hr>
+
+
+
+
+
+
+
+
     <!--=========================== 내용 시작 ===========================-->
 	<div style="padding-left: 40px; padding-top: 10px"></div>
-		<form role="form" id="gym_join">
+		<form role="form" id="inbody_upd"
+				action="./fitness/updateResult.gym"
+		      	enctype="multipart/form-data">
 		<div class="form-group row">
 			<label for="gym_id" class="col-sm-3 col-form-label ">아이디</label>
 			<div class="col-sm-4">

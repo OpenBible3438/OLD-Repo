@@ -11,103 +11,103 @@ import org.apache.log4j.Logger;
 
 public class MemController implements Controller {
 
-	Logger logger = Logger.getLogger(MemController.class);
-	Map<String, Object> pMap = null;
-	MemLogic mLogic = null;
-	String work = null;
-	String reqName = null; 
-	int result = 0;
-	String autoSel = "false";
-	// jsp페이지가 열릴 때 자동으로 데이터가 select 되는 지를 구분하는 변수
-	// autoSel = true이면 redirect로 원래 페이지로 돌아갈 때 select 처리를 해줄 필요가 없다.
-	
-	public MemController(Map<String, Object> pMap) {
-		logger.info("MemController 생성자 호출");
-		this.pMap = pMap;
-		mLogic = new MemLogic();
-		work = pMap.get("work").toString();
-		reqName = pMap.get("reqName").toString();
-		logger.info("work : " + work + ", reqName : " + reqName);
-	}
-	
-	
-	@Override
-	public String process(String cud, HttpServletRequest req, HttpServletResponse res)
-			throws IOException, ServletException {
-		logger.info("MemController - String 타입 process 호출");
-		String path = null;
-		switch(cud) {
-			case "ins":{
-				switch(reqName) {
-					case "memInbodyIns":{ // 인바디 등록
-						result = mLogic.memInbodyIns(pMap);
-					}break;
-					case "memIns":{ // 회원 등록
-						result = mLogic.memIns(pMap);
-					}break;
-				}
-				path = "redirect:../insertResult" + ":" + result + ":"+ autoSel;
-			}break;
-			case "upd":{
-				switch(reqName) {
-					case "memInbodyUpd":{ // 인바디 수정
-						result = mLogic.memInbodyUpd(pMap);
-					}break;
-					case "memUpd":{ //회원 수정
-						result = mLogic.memUpd(pMap);
-					}break;
-				}
-				path = "redirect:../updateResult:"+result + ":"+ autoSel;
-			}break;
-			case "del":{
-				switch(reqName) {
-					case "memInbodyDel":{ // 인바디 삭제
-						result = mLogic.memInbodyDel(pMap);
-					}break;
-					case "memDel":{ // 회원 삭제
-						result = mLogic.memDel(pMap);
-					}break;
-				}
-				path = "redirect:../deleteResult:"+result + ":"+ autoSel;
-			}break;
-		}
-		
-		
-		
-		path = "redirect:" + work + ":" + reqName + ":" + result;
-		logger.info("path : " + path);
-		
-		return path;
-	}
 
-	@Override
-	public ModelAndView process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		logger.info("MemController - mav 타입 process 호출");
-		ModelAndView mav = new ModelAndView(req, res);
-		Object selResult = null;
-		switch(reqName){
-			case "jsonMemDetail":{ // 회원 자세히 보기
-				selResult = mLogic.getMemDetail(pMap);
-			}break;
-			case "jsonMemInbody":{ // 인바디 목록 조회
-				selResult = mLogic.getMemInbody(pMap);
-			}break;
-			case "jsonMemList":{ // 회원 조회
-				selResult = mLogic.getMemList(pMap);
-			}break;
-		}
-		if(selResult != null) {
-			logger.info("selResult != null");
-			mav.addObject("selResult", selResult);
-			mav.setViewName(work+"/"+reqName);
-		}
-		else {
-			logger.info("selResult == null");
-			logger.info("MemController - selResult가 Null입니다.");
-		}
-		
-		
-		return mav;
-	}
+   Logger logger = Logger.getLogger(MemController.class);
+   Map<String, Object> pMap = null;
+   MemLogic mLogic = null;
+   String work = null;
+   String reqName = null; 
+   int result = 0;
+   String autoSel = "false";
+   
+   public MemController(Map<String, Object> pMap) {
+      logger.info("MemController 생성자 호출");
+      this.pMap = pMap;
+      mLogic = new MemLogic();
+      work = pMap.get("work").toString();
+      reqName = pMap.get("reqName").toString();
+      logger.info("work : " + work + ", reqName : " + reqName);
+   }
+   
+   
+   @Override
+   public String process(String cud, HttpServletRequest req, HttpServletResponse res)
+         throws IOException, ServletException {
+      logger.info("MemController - String 타입 process 호출");
+      String path = null;
+      switch(cud) {
+         case "ins":{
+            switch(reqName) {
+               case "memInbodyIns":{
+                  result = mLogic.memInbodyIns(pMap);
+               }break;
+               case "memIns":{
+                  result = mLogic.memIns(pMap);
+               }break;
+            }
+            path = "redirect:../insertResult" + ":" + result + ":"+ autoSel;
+         }break;
+         case "upd":{
+            switch(reqName) {
+               case "memInbodyUpd":{
+                  result = mLogic.memInbodyUpd(pMap);
+               }break;
+               case "memUpd":{
+                  result = mLogic.memUpd(pMap);
+               }break;
+            }
+            path = "redirect:../updateResult:"+result + ":"+ autoSel;
+         }break;
+         case "del":{
+            switch(reqName) {
+               case "memInbodyDel":{
+                  result = mLogic.memInbodyDel(pMap);
+               }break;
+               case "memDel":{
+                  result = mLogic.memDel(pMap);
+               }break;
+            }
+            path = "redirect:../deleteResult:"+result + ":"+ autoSel;
+         }break;
+      }
+      
+      
+      
+      path = "redirect:" + work + ":" + reqName + ":" + result;
+      logger.info("path : " + path);
+      
+      return path;
+   }
 
+   @Override
+   public ModelAndView process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+      logger.info("MemController - mav 타입 process 호출");
+      ModelAndView mav = new ModelAndView(req, res);
+      Object selResult = null;
+      switch(reqName){
+         case "jsonMemDetail":{
+            selResult = mLogic.getMemDetail(pMap);
+         }break;
+         case "jsonMemInbody":{
+            selResult = mLogic.getMemInbody(pMap);
+         }break;
+         case "jsonMemList":{
+            selResult = mLogic.getMemList(pMap);
+         }break;
+      }
+      if(selResult != null) {
+         logger.info("selResult != null");
+         mav.addObject("selResult", selResult);
+         mav.setViewName(work+"/"+reqName);
+      }
+      else {
+         logger.info("selResult == null");
+         logger.info("MemController - selResult가 Null입니다.");
+      }
+      
+      
+      return mav;
+   }
+
+	
 }

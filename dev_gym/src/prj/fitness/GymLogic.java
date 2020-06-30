@@ -53,6 +53,14 @@ public class GymLogic {
 		
 		return classMemList;
 	}
+	public List<Map<String, Object>> getPayMemList(Map<String, Object> pMap) {//수강생 조회
+		logger.info("GymLogic - getPayMemList() 호출");
+		List<Map<String, Object>> payMemList = null;
+		payMemList = gDao.getPayMemList(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return payMemList;
+	}
 	public List<Map<String, Object>> getClassDetail(Map<String, Object> pMap) {
 		logger.info("GymLogic - getClassDetail() 호출");
 		List<Map<String, Object>> classDetail = null;
@@ -72,24 +80,17 @@ public class GymLogic {
 	}
 	public List<Map<String, Object>> getTypeNo(Map<String, Object> pMap) {
 		logger.info("GymLogic - getTypeNo() 호출");
-		List<Map<String, Object>> classList = null;
-		classList = gDao.getTypeNo(pMap);
+		List<Map<String, Object>> typeNo = null;
+		typeNo = gDao.getTypeNo(pMap);
 		
-		return classList;
+		return typeNo;
 	}
 	public List<Map<String, Object>> getComboList(Map<String, Object> pMap) {
 		logger.info("GymLogic - getComboList() 호출");
-		List<Map<String, Object>> classList = null;
-		classList = gDao.getComboList(pMap);
+		List<Map<String, Object>> comboList = null;
+		comboList = gDao.getComboList(pMap);
 		
-		return classList;
-	}
-	public List<Map<String, Object>> getEventList(Map<String, Object> pMap) {
-		logger.info("GymLogic - getEventList() 호출");
-		List<Map<String, Object>> classList = null;
-		classList = gDao.getEventList(pMap);
-		
-		return classList;
+		return comboList;
 	}
 	
 	public List<Map<String, Object>> getNoticeList(Map<String, Object> pMap) {
@@ -135,6 +136,24 @@ public class GymLogic {
 		mbMgr.clossSession(sqlSession);
 		
 		return chartList;
+	}
+	
+	public List<Map<String, Object>> get_tchChart(Map<String, Object> pMap) {
+		logger.info("GymLogic - get_tchChart() 호출");
+		List<Map<String, Object>> chartList = null;
+		chartList = gDao.get_tchChart(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return chartList;
+	}
+	
+	public List<Map<String, Object>> get_gym_sale(Map<String, Object> pMap) {
+		logger.info("GymLogic - get_gym_sale() 호출");
+		List<Map<String, Object>> gymSaleList = null;
+		gymSaleList = gDao.get_gym_sale(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return gymSaleList;
 	}
 	
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {
