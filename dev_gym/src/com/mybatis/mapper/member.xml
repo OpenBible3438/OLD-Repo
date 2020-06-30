@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.memberMapper">
+	
+	<!-- 인바디 리스트를 가져오는 맵 -->
+	<resultMap type="map" id="getMemInbody"/>
+	
 <!-- ======================= Member ======================= -->
 	<select id="getMemList" parameterType="map" resultType="map">
 		SELECT rownum rno, mem_no, mem_id, mem_name, mem_nickname, mem_tel, mem_joindate
 		 FROM  member
 		 <where>
-		 <if test="mem_name != null">
+		 <if test="mem_no != null">
 		 		AND mem_no = #{mem_no}
 		 </if>
 		 </where>
@@ -14,43 +18,70 @@
 	</select>
 	<select id="getMemDetail" parameterType="map" resultType="map">
 		SELECT m.mem_no, mem_name, mem_id, mem_nickname, mem_gender, mem_tel
-     	     , mem_addr, mem_addr_dtl, mem_g_weight, pay_no     
+     	     , mem_addr, mem_addr_dtl, mem_zipcode, mem_joindate, mem_birth, pay_no      
  	     FROM  member m, pay p
   		 WHERE m.mem_no = p.mem_no
+			 <if test="mem_no != null">
+			 		AND m.mem_no = #{mem_no}
+			 </if>		 
 	</select>
-	<insert id="memInbodyList" parameterType="map">
-		SELECT rownum rno, mem_profimg, mem_no, mem_name, inbd_seq, mem_joindate
-		 FROM  member
-		 <where>
-		 <if test="mem_name != null">
-		 		AND mem_no = #{mem_no}
-		 </if>
-		 </where>
-	</insert>
-	<select id="getMemInbody" parameterType="map" resultType="map">
-		SELECT mem_no, mem_name, mem_id 
- 		 FROM  member
+	<!-- 인바디 케이블 리스트 가져오기  -->
+	<select id="getMemInbody" parameterType="map" statementType="CALLABLE">
+			{ call proc_MemIbdList(#{gym_no}, #{inbodyList
+						                       ,jdbcType=CURSOR
+						                       ,mode=OUT
+						                       ,javaType=java.sql.ResultSet
+						                       ,resultMap=getMemInbody}) }
+	</select>
+	<!-- 인바디 등록할 때 인바디 번호 채번  -->
+	<select id="getInbodySeq" parameterType="map" resultType="int">
+		SELECT nvl(max(inbd_seq)+1,0) as "inbd_seq" 
+ 		 FROM  inbody
 	</select>
 	
+	<!-- 인바디 정보등록 -->
 	<insert id="memInbodyIns" parameterType="map">
-		INSERT INTO member(mem_no,mem_name, mem_id) 
-		             		VALUES(
-		                             #{mem_no}
-		                            ,#{mem_name}
-		                            ,#{mem_id}		                            
-		                          )
+		INSERT INTO inbody(inbd_seq
+                  		  ,gym_no
+                  		  ,mem_no
+                  		  ,ck_date)
+            		VALUES(#{inbd_seq}
+                  		  ,#{gym_no}
+                  		  ,#{mem_no}
+                  		  ,to_char(sysdate,'yyyy-mm-dd'))
+	</insert>
+	
+	<!-- 인바디 사진 등록 -->
+	<insert id="memInbodyImgIns" parameterType="map">
+		INSERT INTO images(file_seq
+                  		  ,filename
+                  		  ,filesize
+                  		  ,filedata
+                  		  ,type
+                  		  ,typecode)
+            		VALUES((SELECT nvl(max(file_seq)+1,0) FROM images)
+                  		 ,#{filename}	
+	                  	 ,#{filesize}
+	                     ,#{filedata}
+	                     ,'ibd'
+	                     ,#{inbd_seq}
+                   		 )
+
 	</insert>
 	<update id="memInbodyUpd" parameterType="map">
 		UPDATE member set mem_name='1' WHERE mem_id='1'
-		UPDATE member
-		        SET bm_step = bm_step+1
-		  WHERE bm_group=#{bm_group}
-		       AND bm_step > #{bm_step}
+	
 	</update>
 	
-	<delete id="memInbodyDel" parameterType="map">
-		DELETE member where mem_id = '5'
-		DELETE FROM board_master_t WHERE bm_no=#{bm_no}
+	<delete id="memInbodyTableDel" parameterType="map">
+		DELETE 
+		  FROM inbody 
+		 WHERE inbd_seq = #{inbd_seq}
+	</delete>
+	<delete id="memInbodyImgDel" parameterType="map">
+		DELETE 
+		  FROM images 
+		 WHERE type = 'ibd' AND typecode = #{inbd_seq}
 	</delete>
 	<!--
 	<update id="memUpd" parameterType="map">
