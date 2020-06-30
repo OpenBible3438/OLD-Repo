@@ -3,13 +3,13 @@
 <%@page import="java.util.*"%>    
 <%@page import="com.google.gson.Gson"%>
 <%
-	List<Map<String, Object>> classMemList = (List<Map<String, Object>>)request.getAttribute("selResult");
-	if(classMemList != null && classMemList.size() > 0){
+	List<Map<String, Object>> payMemList = (List<Map<String, Object>>)request.getAttribute("selResult");
+	if(payMemList != null && payMemList.size() > 0){
 		Gson g = new Gson();
-		String classes = g.toJson(classMemList);
+		String classes = g.toJson(payMemList);
 		out.print(classes);
 	}
 	else{
 		out.print("null입니다.");
 	}
-%>  
+%>    

@@ -158,8 +158,8 @@ public class GymController implements Controller {
 			case "jsonComboList":{
 				selResult = gLogic.getComboList(pMap);
 			}break;
-			case "jsonEventList":{
-				selResult = gLogic.getEventList(pMap);
+			case "jsonPayMemList":{
+				selResult = gLogic.getPayMemList(pMap);
 			}break;
 			case "jsonGymNoticeList":{ // 공지사항 조회
 				selResult = gLogic.getNoticeList(pMap);
@@ -169,9 +169,28 @@ public class GymController implements Controller {
 				data = setData.dataToJson(chartData, "MM");
 				selResult = data;
 			}break;
-			case "chart_ex_time_avg":{ // 누적 회원수 조회
+			case "chart_ex_time_avg":{ // 회원 평균 운동시간 조회
 				chartData = gLogic.get_c_ex_time_avg(pMap);
 				data = setData.dataToJson(chartData, "RNG");
+				selResult = data;
+			}break;
+			case "chart_cnt_mem_extime":{ // 시간대별 방문자수 평균 조회
+				chartData = gLogic.get_cnt_mem_extime(pMap);
+				data = setData.dataToJson(chartData, "TIME");
+				selResult = data;
+			}break;
+			case "chart_get_newmem":{ // 시간대별 방문자수 평균 조회
+				chartData = gLogic.get_newmem(pMap);
+				data = setData.dataToJson(chartData, "DATE_YM");
+				selResult = data;
+			}break;
+			case "tch_salse":{ // 강사별 월별 매출
+				chartData = gLogic.get_tchChart(pMap);
+				selResult = chartData;
+			}break;
+			case "chart_gym_sales":{ // 매장 월별 매출
+				chartData = gLogic.get_gym_sale(pMap);
+				data = setData.dataToJson(chartData, "YM");
 				selResult = data;
 			}break;
 			case "jsonGymContentList":{ // 컨텐츠 조회
@@ -193,6 +212,9 @@ public class GymController implements Controller {
 			mav.addObject("selResult", selResult);
 			if(reqName.contains("chart")) {//차트일 경우 도착지 통일함
 				mav.setViewName("gym/chartResult");
+			}
+			else if(reqName.contains("tch_salse")) {//강사 월별 매출 차트는 형식이 다르므로 따로 지정
+				mav.setViewName("gym/chart_setData_Col_Result");
 			}
 			else{
 				//너가 selResult를 가지고 어디로 갈거니?

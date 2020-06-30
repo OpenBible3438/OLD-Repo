@@ -111,11 +111,7 @@
 		<div class="form-group row">
 			<div class="col-sm-2" ></div>
 			<div class="col-sm-5">
-<<<<<<< HEAD
 				<input type="file" class="form-control-file border" id="gym_profimg" name="img" accept=".gif, .jpg, .png">
-=======
-				<input type="file" class="form-control-file border" id="gym_profimg" name="img" required>
->>>>>>> refs/heads/hjho
 			</div>
 		</div>
 		<div class="form-group row">

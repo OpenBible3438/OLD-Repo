@@ -22,7 +22,10 @@ public class SetData {
 	public String dataToJson(List<Map<String, Object>> dataList, String std) {
 		String data = null;
 		Map<String, Object> data_map = new HashMap<>();//전체 데이터를 담을 map 선언
-		
+		System.out.println("dataList 출력한다아아ㅏ");
+		 System.out.println(dataList);
+		 logger.info("dataList ========================");
+		 logger.info(dataList);
 		//키값들을 배열로 세팅하기
 		Set<String> keys_set = dataList.get(0).keySet();
 		String[] keys = new String[keys_set.size()];
@@ -74,6 +77,7 @@ public class SetData {
 				data_col = new HashMap<String, Object>();
 				data_col.put("v", nowMap.get(keys[j]));
 				logger.info("i : " + i + ", j : " + j + ", nowMap.get(keys[j]) : " + nowMap.get(keys[j]));
+				logger.info("keys["+j+"] : " + keys[j]);
 				if(keys[j].equals(std)) {
 					data_oneRow.add(0, data_col);
 				}
@@ -91,8 +95,73 @@ public class SetData {
 		
 		Gson g = new Gson();
 		data = g.toJson(data_map);
-		
+		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+		System.out.println(data);
 		return data;
+	}
+	
+	
+	public String dataToJson_Col(List<Map<String, Object>> dataList) {
+			logger.info("dataList : " + dataList);
+		   //데이터 만들기 오라클에서 가져온 데이터 
+		   int monthStr[] = {1,2,3,4,5,6,7,8,9,10,11,12};
+		   
+		   List<List<Integer>> listTotal2 = new ArrayList<List<Integer>>();
+		   for(int i=0; i<monthStr.length; i++) {
+		      List<Integer> month = new ArrayList<Integer>();
+		      month.add(0, monthStr[i]);
+		      listTotal2.add(i,month);
+		   }
+		   Map<String, Object> tchMap = new HashMap<>();
+		   for(int i=0; i<dataList.size(); i++) {
+		      Map<String, Object> bufMap = dataList.get(i);
+		      logger.info("bufMap : " + bufMap);
+		      tchMap.put(""+i, bufMap.get("tch_name"));
+		      listTotal2.get(0).add(i+1, Integer.parseInt(bufMap.get("1월").toString()));
+		      listTotal2.get(1).add(i+1, Integer.parseInt(bufMap.get("2월").toString()));
+		      listTotal2.get(2).add(i+1, Integer.parseInt(bufMap.get("3월").toString()));
+		      listTotal2.get(3).add(i+1, Integer.parseInt(bufMap.get("4월").toString()));
+		      listTotal2.get(4).add(i+1, Integer.parseInt(bufMap.get("5월").toString()));
+		      listTotal2.get(5).add(i+1, Integer.parseInt(bufMap.get("6월").toString()));
+		      listTotal2.get(6).add(i+1, Integer.parseInt(bufMap.get("7월").toString()));
+		      listTotal2.get(7).add(i+1, Integer.parseInt(bufMap.get("8월").toString()));
+		      listTotal2.get(8).add(i+1, Integer.parseInt(bufMap.get("9월").toString()));
+		      listTotal2.get(9).add(i+1, Integer.parseInt(bufMap.get("10월").toString()));
+		      listTotal2.get(10).add(i+1, Integer.parseInt(bufMap.get("11월").toString()));
+		      listTotal2.get(11).add(i+1, Integer.parseInt(bufMap.get("12월").toString()));
+		      logger.info("i : " + i + ", listTotal2 : " + listTotal2);
+		   }
+		   System.out.println(listTotal2);
+		   Gson g = new Gson();
+		   String imsi = g.toJson(listTotal2);
+		   System.out.println(listTotal2);
+		   Map<String, Object> changeMap = null;
+		   List<Map<String, Object>> changeList = new ArrayList<Map<String,Object>>();
+		   logger.info(tchMap);
+		   for(int i=0; i<listTotal2.size(); i++) {
+			   changeMap = new HashMap<String, Object>();
+			   changeMap.put("MON", listTotal2.get(i).get(0));
+			   logger.info("=========================================================================================");
+			   for (int j = 0; j < tchMap.size(); j++) {
+				   String key = Integer.toString((j));
+				   logger.info("j : " + j);
+				   logger.info("key : " + key);
+				   if(key.equals(j+"")){
+					   changeMap.put(tchMap.get(key)+"", listTotal2.get(i).get(j));
+					   
+					   logger.info("tchMap.get(key) : " + tchMap.get(key));
+					   logger.info("listTotal2.get(i).get(j) : "+ + listTotal2.get(i).get(j));
+				   }
+			}
+			   changeList.add(changeMap);
+			   logger.info(changeMap);
+			   logger.info("=========================================================================================");
+		   }
+		   System.out.println(changeList);
+		   System.out.println(changeMap);
+		   String data = null;
+		   data = dataToJson(changeList, "MON");
+		   return data;
 	}
 	
 }

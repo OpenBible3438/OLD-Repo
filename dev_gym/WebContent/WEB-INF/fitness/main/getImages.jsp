@@ -1,5 +1,3 @@
-<%@page import="com.util.StringToHex"%>
-<%@page import="java.util.Arrays"%>
 <%@page import="java.io.OutputStream"%>
 <%@ page language="java" contentType="image/png; charset=UTF-8"
     pageEncoding="UTF-8"%>

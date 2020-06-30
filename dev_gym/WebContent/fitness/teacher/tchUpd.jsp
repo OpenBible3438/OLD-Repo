@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
+    
+    
+<!-- ===== 강사수정 modal ===== -->
+<div class="modal" id="upd">
+	<div class="modal-dialog modal-lg" style="width:auto">
+		<div class="modal-content">
+			<!-- Modal Header 부분 -->
+			<div class="modal-header">
+				<h5 class="modal-title_Upd">강사관리(수정)</h5>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
 			<!-- Modal Body 부분 -->
 		<div class="Upd_body">
 			<br>
@@ -23,20 +32,6 @@
 			</div>
 		</div>
 		<br>
-<!-- (테스트중인 파일첨부)	
-		<div class="file">
-			<label for="InputSubject1">파일첨부</label>
-			<input id="fileInput" filestyle="" type="file" data-class-button="btn btn-default" data-class-input="form-control" data-button-text="" data-icon-name="fa fa-upload" class="form-control" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);"> 
-			<div class="bootstrap-filestyle input-file">
-				<input type="text" id="userfile" class="form-control" name="userfile" disabled="">
-				<span class="group-span-filestyle input-file-btn" tabindex="0">
-					<label for="fileInput" class="btn btn-default">
-						<span class="glyphicon fa fa-upload"></span>
-					</label>
-				</span>
-			</div>
-		</div>
- -->	
 		<div class="form-group row">
 			<div class="col-sm-1"></div>
 			<label for="gym_tcnum" class="col-sm-2 col-form-label">강사번호</label>
@@ -109,5 +104,14 @@
 					   placeholder="우편번호">
 			</div>
 		</div>	
+	</div>	
+			<!-- Modal Footer 부분 -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">수정</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>			
+			</div>
+		</div>
 	</div>
+</div>
+
 <!-- ===== 강사등록 modal end =====  -->
