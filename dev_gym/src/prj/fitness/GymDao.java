@@ -1,12 +1,15 @@
 package prj.fitness;
 
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
+
+import com.util.MyBatisBuilderMgr;
 
 import oracle.sql.BLOB;
 
@@ -16,11 +19,14 @@ public class GymDao {
 	
 	int result = 0;
 	SqlSession sqlSession = null;
+	MyBatisBuilderMgr mbMgr = null;
 	
 	public GymDao(SqlSession sqlSession) {
 		logger.info("GymDao 생성자 호출");
 		this.sqlSession = sqlSession;
 	}
+	
+	
 	///////////////////////////////////////////////////////////////////////////
 	//매장 로그인
 	public List<Map<String, Object>> getLogin(Map<String, Object> pMap) {//로그인
@@ -101,33 +107,54 @@ public class GymDao {
 	public List<Map<String, Object>> get_c_accum_members(Map<String, Object> pMap) {
 		logger.info("GymDao - get_c_accum_members() 호출");
 		List<Map<String, Object>> accumList = null;
+		logger.info("&&&&&" + sqlSession);
 		accumList = sqlSession.selectList("get_c_accum_members", pMap);
 		logger.info("chartList.size() : " + accumList.size());
 		return accumList;
 	}
 	
 	public List<Map<String, Object>> get_c_ex_time_avg(Map<String, Object> pMap) {
-		logger.info("GymDao - get_c_accum_members() 호출");
+		logger.info("GymDao - get_c_ex_time_avg() 호출");
 		List<Map<String, Object>> accumList = null;
 		accumList = sqlSession.selectList("get_c_ex_time_avg", pMap);
 		logger.info("chartList.size() : " + accumList.size());
 		return accumList;
 	}
 	
-	public List<Map<String, Object>> get_cnt_mem_extime(Map<String, Object> pMap) {
+	public List<Map<String, Object>> get_cnt_mem_extime(Map<String, Object> pMap) {//회원 운동시간
 		logger.info("GymDao - get_cnt_mem_extime() 호출");
 		List<Map<String, Object>> cntList = null;
-		cntList = sqlSession.selectList("get_cnt_mem_extime", pMap);
+		sqlSession.selectList("get_cnt_mem_extime", pMap);
+		cntList = (List<Map<String, Object>>)pMap.get("rfc_cnt_mem");
 		logger.info("cntList.size() : " + cntList.size());
 		return cntList;
 	}
 	
-	public List<Map<String, Object>> get_newmem(Map<String, Object> pMap) {
+	public List<Map<String, Object>> get_newmem(Map<String, Object> pMap) {//월별 수강생 증가
 		logger.info("GymDao - get_newmem() 호출");
 		List<Map<String, Object>> newMemList = null;
-		newMemList = sqlSession.selectList("get_newmem", pMap);
+		sqlSession.selectList("get_newmem", pMap);
+		newMemList = (List<Map<String, Object>>)pMap.get("chart_newmem");
 		logger.info("newMemList.size() : " + newMemList.size());
 		return newMemList;
+	}
+	
+	public List<Map<String, Object>> get_tchChart(Map<String, Object> pMap) {//강사별 월별 매출
+		logger.info("GymDao - get_tchChart() 호출");
+		List<Map<String, Object>> tchChartList = null;
+		sqlSession.selectList("get_tchChart", pMap);
+		tchChartList = (List<Map<String, Object>>)pMap.get("chart_tchChart");
+		logger.info("tchChartList.size() : " + tchChartList.size());
+		return tchChartList;
+	}
+	
+	public List<Map<String, Object>> get_gym_sale(Map<String, Object> pMap) {//매장 월별 매출
+		logger.info("GymDao - get_gym_sale() 호출");
+		List<Map<String, Object>> gymSaleList = null;
+		sqlSession.selectList("get_gym_sale", pMap);
+		gymSaleList = (List<Map<String, Object>>)pMap.get("chart_gym_sale");
+		logger.info("gymSaleList.size() : " + gymSaleList.size());
+		return gymSaleList;
 	}
 	
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {
@@ -336,6 +363,5 @@ public class GymDao {
 		logger.info("result : " + result);
 		return result;
 	}
-
-
+	
 }

@@ -137,6 +137,24 @@ public class GymLogic {
 		return chartList;
 	}
 	
+	public List<Map<String, Object>> get_tchChart(Map<String, Object> pMap) {
+		logger.info("GymLogic - get_tchChart() 호출");
+		List<Map<String, Object>> chartList = null;
+		chartList = gDao.get_tchChart(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return chartList;
+	}
+	
+	public List<Map<String, Object>> get_gym_sale(Map<String, Object> pMap) {
+		logger.info("GymLogic - get_gym_sale() 호출");
+		List<Map<String, Object>> gymSaleList = null;
+		gymSaleList = gDao.get_gym_sale(pMap);
+		mbMgr.clossSession(sqlSession);
+		
+		return gymSaleList;
+	}
+	
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {
 		logger.info("GymLogic - getContentList() 호출");
 		List<Map<String, Object>> contentList = null;

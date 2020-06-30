@@ -8,6 +8,10 @@
 	
 	<resultMap id="chart_mem_extime" type="map"/>
 	
+	<resultMap id="chart_tchChart" type="map"/>
+	
+	<resultMap id="chart_gym_sale" type="map"/>
+	
 	<resultMap id="gymCont" type="map"/>
 	
 	<resultMap id="getImage" type="object">
@@ -96,20 +100,39 @@
 	</select>
 	<!-- 시간대별 방문자수 평균 -->
 	<select id="get_cnt_mem_extime" parameterType="map"  statementType="CALLABLE">
-		{ call proc_cnt_mem_extime(#{gym_no}, #{chart_mem_extime
+		{ call proc_cnt_mem_extime(#{gym_no, mode=IN, jdbcType=VARCHAR} , #{rfc_cnt_mem
+											                               ,jdbcType=CURSOR
+											                               ,mode=OUT
+											                               ,javaType=java.sql.ResultSet
+											                               ,resultMap=chart_mem_extime}
+											                               )}
+							                               
+	</select>
+	<!-- 강사별 월별 매출 -->
+	<select id="get_tchChart" parameterType="map"  statementType="CALLABLE">
+		{ call proc_tchChart(#{gym_no}, #{cho_year}, #{chart_tchChart
 								                               ,jdbcType=CURSOR
 								                               ,mode=OUT
 								                               ,javaType=java.sql.ResultSet
-								                               ,resultMap=chart_mem_extime}
+								                               ,resultMap=chart_tchChart}
 								                               )}
 	</select>
 	<!-- 월별 수강생 증가 -->
 	<select id="get_newmem" parameterType="map"  statementType="CALLABLE">
-		{ call proc_get_newmem(#{gym_no}, #{cho_year} #{chart_newmem
+		{ call proc_get_newmem(#{gym_no}, #{cho_year}, #{chart_newmem
 								                               ,jdbcType=CURSOR
 								                               ,mode=OUT
 								                               ,javaType=java.sql.ResultSet
 								                               ,resultMap=chart_newmem}
+								                               )}
+	</select>
+	<!-- 매장 매출 -->
+	<select id="get_gym_sale" parameterType="map"  statementType="CALLABLE">
+		{ call proc_gym_sale(#{gym_no}, #{cho_year}, #{chart_gym_sale
+								                               ,jdbcType=CURSOR
+								                               ,mode=OUT
+								                               ,javaType=java.sql.ResultSet
+								                               ,resultMap=chart_gym_sale}
 								                               )}
 	</select>
 	
