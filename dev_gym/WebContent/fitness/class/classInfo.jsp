@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	<!--============================================================================================================== 자세히 보기 Modal 시작 -->
-	<div class="modal fade" id="c_info" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal fade" id="c_info" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -13,64 +12,96 @@
 				</div>
 
 				<!--=========================================================================================== form 시작  -->
-				<div class="modal-body">
+				<div class="modal-body" style="padding-left: 40px; padding-right: 40px; padding-top: 20px">
 
 					<form role="form" id="f_info">
-						<div class="form-group">
-							<label for="info_cls_name"><b>수업명</b></label> 
-							<input type="text" class="form-control input-sm" id="info_cls_name" name="info_cls_name" readonly>
+						<div class="form-group row">
+							<label for="info_cls_name" class="col-sm-3 col-form-label"><b>수업명</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_name" name="info_cls_name" readonly>
+							</div>	
 						</div>
-						<div class="form-group">
-							<label for="info_tch_name"><b>강사명</b></label> 
-							<input type="text" class="form-control input-sm" id="info_tch_name" name="info_tch_name" readonly>
+						<div class="form-group row">
+							<label for="info_tch_name" class="col-sm-3 col-form-label"><b>강사명</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_tch_name" name="info_tch_name" readonly>
+							</div>
 						</div>						
-						<div class="form-group">
-							<label for="info_type_no"><b>종목</b></label> 
-							<input type="text" class="form-control input-sm" id="info_type_no" name="info_type_no" readonly>
+						<div class="form-group row">
+							<label for="info_type_no" class="col-sm-3 col-form-label"><b>종목</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_type_no" name="info_type_no" readonly>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="info_cls_kind"><b>수업 구분</b></label> 
-							<input type="text" class="form-control input-sm" id="info_cls_kind" name="info_cls_kind" readonly>
+						<div class="form-group row">
+							<label for="info_cls_kind" class="col-sm-3 col-form-label"><b>수업 구분</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_kind" name="info_cls_kind" readonly>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="info_cls_s_date"><b>시작일</b></label> 
-							<input type="date" class="form-control input-sm" id="info_cls_s_date" name="info_cls_s_date" placeholder="연도-월-일" readonly>
+						<div class="form-group row">
+							<label for="info_cls_s_date" class="col-sm-3 col-form-label"><b>시작일</b></label> 
+							<div class="col-sm-9"> 
+								<input type="date" class="form-control input-sm" id="info_cls_s_date" name="info_cls_s_date" placeholder="연도-월-일" readonly>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="info_cls_e_date"><b>종료일</b></label> 
-							<input type="date" class="form-control input-sm" id="info_cls_e_date" name="info_cls_e_date" placeholder="연도-월-일" readonly>
+						<div class="form-group row">
+							<label for="info_cls_e_date" class="col-sm-3 col-form-label"><b>종료일</b></label> 
+							<div class="col-sm-9"> 
+								<input type="date" class="form-control input-sm" id="info_cls_e_date" name="info_cls_e_date" placeholder="연도-월-일" readonly>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="info_cls_sTime"><b>시작 시간</b></label> 
-							<input type="time" class="form-control input-sm" id="info_cls_sTime" name="info_cls_sTime" readonly>							
+						<div class="form-group row">
+							<label for="info_cls_sTime" class="col-sm-3 col-form-label"><b>시작 시간</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_sTime" name="info_cls_sTime" readonly>
+							</div>							
 						</div>						
-						<div class="form-group">
-							<label for="info_cls_eTime"><b>종료 시간</b></label> 
-							<input type="time" class="form-control input-sm" id="info_cls_eTime" name="info_cls_eTime" readonly>							
+						<div class="form-group row">
+							<label for="info_cls_eTime" class="col-sm-3 col-form-label"><b>종료 시간</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_eTime" name="info_cls_eTime" readonly>
+							</div>							
 						</div>						
-						<div class="form-group">
-							<label for="info_cls_day"><b>수업 요일</b></label> 
-							<input type="text" class="form-control input-sm" id="info_cls_day" name="info_cls_day" readonly>							
+						<div class="form-group row">
+							<label for="info_cls_day" class="col-sm-3 col-form-label"><b>수업 요일</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_day" name="info_cls_day" readonly>
+							</div>							
 						</div>						
-						<div class="form-group">
-							<label for="info_cls_cnt"><b>수업 횟수</b></label> 
-							<input type="text" class="form-control input-sm" id="info_cls_cnt" name="info_cls_cnt" readonly>
+						<div class="form-group row">
+							<label for="info_cls_cnt" class="col-sm-3 col-form-label"><b>수업 횟수</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_cnt" name="info_cls_cnt" readonly>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="info_cls_info"><b>수업 소개</b></label> 
-							<textarea rows="5" class="form-control" id="info_cls_info" name="info_cls_info" readonly>
-							</textarea>
+						<div class="form-group row">
+							<label for="info_cls_days" class="col-sm-3 col-form-label"><b>수업 일수</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_days" name="info_cls_days" readonly>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="info_cls_price"><b>가격</b></label> 
-							<input type="text" class="form-control input-sm" id="info_cls_price" name="info_cls_price" readonly>
+						<div class="form-group row">
+							<label for="info_cls_info" class="col-sm-3 col-form-label"><b>수업 소개</b></label> 
+							<div class="col-sm-9"> 
+								<textarea rows="5" class="form-control" id="info_cls_info" name="info_cls_info" readonly>
+								</textarea>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="info_cls_state"><b>진행 상황</b></label> 
-							<input type="text" class="form-control input-sm" id="info_cls_state" name="info_cls_state" readonly>							
+						<div class="form-group row">
+							<label for="info_cls_price" class="col-sm-3 col-form-label"><b>가격</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_price" name="info_cls_price" readonly>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="info_cls_state" class="col-sm-3 col-form-label"><b>진행 상황</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_state" name="info_cls_state" readonly>	
+							</div>						
 						</div>						
 						
-						<!---------------------------------------------------------------------------------- event 영역  -->
+						<!---------------------------------------------------------------------------------- event 영역  
 						<div id="f_info_event">
 							<hr>
 							<div class="form-group">
@@ -94,13 +125,13 @@
 								<input type="text" class="form-control input-sm" id="info_cls_evt_cond" name="info_cls_evt_cond" readonly>
 							</div>
 						</div>
+						-->
+						
+						
 					</form>
 				<!--=========================================================================================== form 끝  -->
 				</div>
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" onclick="classDetail()">닫기</button>
-				</div>
 			</div>
 			<!-- 모달 콘텐츠 -->
 		</div>

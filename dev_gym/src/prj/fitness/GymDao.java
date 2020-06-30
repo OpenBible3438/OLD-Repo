@@ -48,6 +48,13 @@ public class GymDao {
 		logger.info("classMemList.size() : " + classMemList.size());
 		return classMemList;
 	}
+	public List<Map<String, Object>> getPayMemList(Map<String, Object> pMap) {
+		logger.info("GymDao - getPayMemList() 호출");
+		List<Map<String, Object>> PayMemList = null;
+		PayMemList = sqlSession.selectList("getPayMemList", pMap);
+		logger.info("getPayMemList.size() : " + PayMemList.size());
+		return PayMemList;
+	}
 	
 	public List<Map<String, Object>> getClassDetail(Map<String, Object> pMap) {
 		logger.info("GymDao - getClassDetail() 호출");
@@ -66,24 +73,17 @@ public class GymDao {
 	}
 	public List<Map<String, Object>> getTypeNo(Map<String, Object> pMap) {
 		logger.info("GymDao - getTypeNo() 호출");
-		List<Map<String, Object>> classList = null;
-		classList = sqlSession.selectList("getTypeNo", pMap);
-		logger.info("classList.size() : " + classList.size());
-		return classList;
+		List<Map<String, Object>> typeNo = null;
+		typeNo = sqlSession.selectList("getTypeNo", pMap);
+		logger.info("classList.size() : " + typeNo.size());
+		return typeNo;
 	}
 	public List<Map<String, Object>> getComboList(Map<String, Object> pMap) {
 		logger.info("GymDao - getComboList() 호출");
-		List<Map<String, Object>> classList = null;
-		classList = sqlSession.selectList("getComboList", pMap);
-		logger.info("classList.size() : " + classList.size());
-		return classList;
-	}
-	public List<Map<String, Object>> getEventList(Map<String, Object> pMap) {
-		logger.info("GymDao - getEventList() 호출");
-		List<Map<String, Object>> classList = null;
-		classList = sqlSession.selectList("getEventList", pMap);
-		logger.info("classList.size() : " + classList.size());
-		return classList;
+		List<Map<String, Object>> comboList = null;
+		comboList = sqlSession.selectList("getComboList", pMap);
+		logger.info("classList.size() : " + comboList.size());
+		return comboList;
 	}
 
 	public List<Map<String, Object>> getNoticeList(Map<String, Object> pMap) {

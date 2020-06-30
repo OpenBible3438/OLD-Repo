@@ -3,10 +3,10 @@
 <mapper namespace="com.mybatis.mapper.memberMapper">
 <!-- ======================= Member ======================= -->
 	<select id="getMemList" parameterType="map" resultType="map">
-		SELECT rownum rno, mem_no, mem_id, mem_name, mem_nickname, mem_tel, mem_joindate
+		SELECT rownum rno, mem_no, mem_id, mem_name, mem_nickname, mem_tel, mem_joindate, mem_gender
 		 FROM  member
 		 <where>
-		 <if test="mem_name != null">
+		 <if test="mem_no != null">
 		 		AND mem_no = #{mem_no}
 		 </if>
 		 </where>
