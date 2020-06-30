@@ -1,5 +1,7 @@
 package prj.fitness;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -60,10 +62,9 @@ public class TchLogic {
 		
 		return selList;
 	}
-	public List<Map<String, Object>> tchIDSearch(Map<String, Object> pMap) {
+	public int tchIDSearch(Map<String, Object> pMap) {
 		logger.info("TchLogic - tchIDSearch() 호출");
-		List<Map<String, Object>> selID = null;
-		selID = tDao.tchIDSearch(pMap);
+		int selID = tDao.tchIDSearch(pMap);
 		mbMgr.clossSession(sqlSession);
 		
 		return selID;
@@ -74,6 +75,17 @@ public class TchLogic {
 	public int tchIns(Map<String, Object> pMap) {
 		logger.info("TchLogic - tchIns 호출");
 		result = tDao.tchIns(pMap);
+		if(result == 1) {
+			result = tDao.tchInsImg(pMap);
+			try {
+				((FileInputStream)pMap.get("filedata")).close();
+				if(((File)pMap.get("file")).delete()) {
+					logger.info("파일삭제 성공");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		setCommit(result);
 		return result;
 	}
