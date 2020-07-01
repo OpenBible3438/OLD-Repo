@@ -102,6 +102,8 @@
 							<button type="button" class="btn btn-primary btn-xs col-sm-3" onclick="ins_eTime()">입력</button>								
 						</div>	
 						
+						
+						
 						<div class="form-group row">
 							<label for="ins_cls_cnt" class="col-sm-3 col-form-label"><b>수업 요일</b></label>
 							<div class="col-sm-6">
