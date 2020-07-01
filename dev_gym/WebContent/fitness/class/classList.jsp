@@ -32,10 +32,10 @@
 						<a class="dropdown-item" id="p_done" href="javascript:progressDone()">종료</a>
 					</div>
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_ins" onclick="ins()">수업등록</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_upd" onclick="upd()">수업수정</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#c_info" onclick="info()">자세히보기</button>
-					<button type="button" class="btn btn-primary" data-toggle="modal" onclick="cls_mem()">수강생보기</button>
-					
+					<button type="button" class="btn btn-primary" onclick="upd()">수업수정</button>
+					<button type="button" class="btn btn-primary" onclick="info()">자세히보기</button>
+					<button type="button" class="btn btn-primary" onclick="cls_mem()">수강생보기</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" onclick="cls_del()">수업삭제</button>
 				</div>
 		
 				<div>
@@ -48,12 +48,15 @@
 				 data-toggle="table"
 				 data-url = "../class/jsonClassList.gym"
 		  		 data-click-to-select="true"
-		 		 data-pagination="true"				
+		 		 data-pagination="true"	
+		 		 data-single-select="true"			
 				>
 					<thead>
 						<tr>
 							<th data-checkbox=true>check</th>
+							<!--  
 							<th data-field="ROWNUM">#</th>
+							-->
 							<th data-field="CLS_NO">수업번호</th>
 							<th data-field="CLS_NAME">수업명</th>
 							<th data-field="TCH_NAME">강사명</th>
@@ -61,17 +64,17 @@
 							<th data-field="TYPE_NAME">종목</th>
 							<th class="d-none" data-field="TYPE_NO">종목번호</th>
 							<th data-field="CLS_KIND">수업구분</th>
-							<!--  
-							class="d-none" 
-							
-							<th data-field="CLS_CNT">수업횟수</th>
-							<th data-field="CLS_DAYS">수업일수</th>
-							-->
+							<th class="d-none" data-field="CLS_CNT">수업횟수</th>
+							<th class="d-none" data-field="CLS_DAYS">수업일수</th>
 							<th data-field="CLS_DAY">요일</th>
 							<th data-field="CLS_S_DATE">시작일</th>
 							<th data-field="CLS_E_DATE">종료일</th>
+							<th class="d-none" data-field="CLS_INFO">수업소개</th>
 							<th data-field="CLS_PRICE">가격</th>
 							<th data-field="CLS_STATE">진행상황</th>
+							<th class="d-none" data-field="CLS_LIKE">좋아요</th>
+							<th class="d-none" data-field="CLS_STIME">시작시간</th>
+							<th class="d-none" data-field="CLS_ETIME">종료시간</th>
 						</tr>
 					</thead>
 					
@@ -107,38 +110,18 @@
 	var tb_tch_name;
 	var tb_pay_no;
 	var evt_seq;
-	var checked_val = [];
+	var ins_checked_val = [];
+	var upd_checked_val = [];
 	var ins_cls_sTime;
 	var ins_cls_eTime;
 	var payTime;
+	var table_cList;
+	var checkRow = 0;	//수업리스트 테이블 
+	var mem_checkRow = 0;	//수강생리스트 테이블
 	
 	
 	
-	//------------------------------------------ 수업 등록 모달 안 저장 버튼
-	function classINS(){
 
-		//alert("수업등록 저장 완료");
-		//var name = $("#ins_cls_name").val()	
-		
-// 		alert($("#ins_cls_name").val());
-// 		alert($("#ins_tch_name").val());
-// 		alert($("#ins_type_no").val());	
-// 		alert($("#ins_cls_kind").val());			
-// 		alert($("#ins_cls_s_date").val());		
-// 		alert($("#ins_cls_e_date").val());		
-// 		alert($("#ins_cls_sTime").val());			
-// 		alert($("#ins_cls_eTime").val());			
-// 		alert($("#ins_cls_day").val());			
-// 		alert($("#ins_cls_cnt").val());			
-// 		alert($("#ins_cls_info").val());			
-// 		alert($("#ins_cls_price").val());			
-// 		alert($("#ins_cls_state").val());		
-		
-		$("#c_ins").modal('hide');
- 		$("#f_ins").attr("method","get");
- 		$("#f_ins").attr("action","../class/classIns.gym");
- 		$("#f_ins").submit();
-	}
 	//------------------------------------------ 수업 수정 모달 안 저장 버튼
 	function classUPD(){
 		//alert("수업수정 저장 완료");
@@ -179,19 +162,19 @@
 		//alert(check_val);
 		
 		//----------------------------------input box 비우기
-		$("#ins_cls_name").val(null);			
-		$("#ins_tch_name").val(null);			
-		$("#ins_type_no").val(null);			
-		$("#ins_cls_kind").val(null);			
-		$("#ins_cls_s_date").val(null);			
-		$("#ins_cls_e_date").val(null);			
-		$("#ins_cls_sTime").val(null);			
-		$("#ins_cls_eTime").val(null);			
-		$("#ins_cls_day").val(null);			
-		$("#ins_cls_cnt").val(null);			
-		$("#ins_cls_info").val(null);			
-		$("#ins_cls_price").val(null);			
-		$("#ins_cls_state").val(null);
+		$("#ins_cls_name").val("");			
+		$("#ins_tch_name").val("");			
+		$("#ins_type_no").val("");			
+		//$("#ins_cls_kind").val("");			
+		$("#ins_cls_s_date").val("");			
+		$("#ins_cls_e_date").val("");			
+		$("#ins_cls_sTime").val("");			
+		$("#ins_cls_eTime").val("");			
+		$("#ins_cls_day").val("");			
+		$("#ins_cls_cnt").val("");			
+		$("#ins_cls_info").val("");			
+		$("#ins_cls_price").val("");			
+		//$("#ins_cls_state").val("");
 
 		//해당화면에 모든 checkbox들의 체크를해제시킨다.
 		$("input[type=checkbox]").prop("checked",false);
@@ -233,9 +216,9 @@
 	//------------------------------------------ 수업 등록 모달 안 요일 선택완료 버튼
 	function ins_checkDay(){
 		var days ="";
-		for(var i=0; i<checked_val.length; i++){
-			if(checked_val[i] != null) {
-				days += checked_val[i];
+		for(var i=0; i<ins_checked_val.length; i++){
+			if(ins_checked_val[i] != null) {
+				days += ins_checked_val[i];
 				days += " ";
 			}
 		}
@@ -244,6 +227,9 @@
 		days = days.replace(/ /gi,"/");
 		$("#ins_cls_day").val(days);
 	}
+
+	
+	
 	//------------------------------------------ 수업 등록 모달 안 시작시간 등록 버튼
 	function ins_sTime(){
 		//alert("시작시간 설정 모달 오픈");
@@ -269,52 +255,91 @@
 		$("#ins_cls_eTime").val(ins_cls_eTime);
 	}
 	
+	//------------------------------------------ 수업 등록 모달 안 저장 버튼
+	function classINS(){
+		//alert("수업등록 저장 완료");
+		var cls_name = $("#ins_cls_name").val()
+		
+// 		alert(
+// 				  $("#ins_cls_name").val()
+// 				+", "+ $("#ins_tch_name").val()
+// 				+", "+ $("#ins_type_no").val()	
+// 				+", "+ $("#ins_cls_kind").val()		
+// 				+", "+ $("#ins_cls_s_date").val()		
+// 				+", "+ $("#ins_cls_e_date").val()		
+// 				+", "+ $("#ins_cls_sTime").val()		
+// 				+", "+ $("#ins_cls_eTime").val()			
+// 				+", "+ $("#ins_cls_day").val()			
+// 				+", "+ $("#ins_cls_cnt").val()			
+// 				+", "+ $("#ins_cls_info").val()		
+// 				+", "+ $("#ins_cls_price").val()		
+// 				+", "+ $("#ins_cls_state").val()
+// 			);
 
+		if(cls_name != ""){
+			$("#c_ins").modal('hide');
+	 		$("#f_ins").attr("method","get");
+	 		$("#f_ins").attr("action","../class/classIns.gym");
+	 		$("#f_ins").submit();
+		}else{
+			alert("수업명을 입력하세요.")
+		}
+	}	
+	
 	//------------------------------------------------------------------------------------------> 수업 수정 버튼
 	function upd(){
-		//----------------------------------input box 비우기
-		$("#upd_cls_name").val(null);			
-		$("#upd_tch_no").val(null);			
-		$("#upd_type_no").val(null);			
-		$("#upd_cls_kind").val(null);			
-		$("#upd_cls_s_date").val(null);			
-		$("#upd_cls_e_date").val(null);			
-		$("#upd_cls_sTime").val(null);			
-		$("#upd_cls_eTime").val(null);			
-		$("#upd_cls_day").val(null);			
-		$("#upd_cls_cnt").val(null);			
-		$("#upd_cls_info").val(null);			
-		$("#upd_cls_price").val(null);			
-		$("#upd_cls_state").val(null);	
-		
-		$.ajax({
-			 url:"../class/jsonClassList.gym"
-			,dataType:"json"
-			,success:function(data){
-					//alert(data);
-				list = JSON.stringify(data);
-				var result = JSON.parse(list);
-				var cls_no = tb_cls_no-1;
-				//alert(result[cls_no].TCH_NO);
-				
-				$("#upd_cls_name").val(result[cls_no].CLS_NAME);
- 				$("#upd_tch_name").val(result[cls_no].TCH_NAME);
- 				$("#upd_tch_no").val(result[cls_no].TCH_NO);
- 				$("#upd_type_name").val(result[cls_no].TYPE_NAME);
- 				$("#upd_type_no").val(result[cls_no].TYPE_NO);
-				$("#upd_cls_kind").val(result[cls_no].CLS_KIND);
-				$("#upd_cls_s_date").val(result[cls_no].CLS_S_DATE);
-				$("#upd_cls_e_date").val(result[cls_no].CLS_E_DATE);
-				$("#upd_cls_days").val(result[cls_no].CLS_DAYS);
-				$("#upd_cls_sTime").val(result[cls_no].CLS_STIME);
-				$("#upd_cls_eTime").val(result[cls_no].CLS_ETIME);
-				$("#upd_cls_day").val(result[cls_no].CLS_DAY);
-				$("#upd_cls_cnt").val(result[cls_no].CLS_CNT);
-				$("#upd_cls_info").val(result[cls_no].CLS_INFO);
-				$("#upd_cls_price").val(result[cls_no].CLS_PRICE);
-				$("#upd_cls_state").val(result[cls_no].CLS_STATE);
-			}
-		});//////////ajax end	
+			//----------------------------------input box 비우기
+			$("#upd_cls_name").val(null);			
+			$("#upd_tch_no").val(null);			
+			$("#upd_type_no").val(null);			
+			$("#upd_cls_kind").val(null);			
+			$("#upd_cls_s_date").val(null);			
+			$("#upd_cls_e_date").val(null);			
+			$("#upd_cls_sTime").val(null);			
+			$("#upd_cls_eTime").val(null);			
+			$("#upd_cls_day").val(null);			
+			$("#upd_cls_cnt").val(null);			
+			$("#upd_cls_info").val(null);			
+			$("#upd_cls_price").val(null);			
+			$("#upd_cls_state").val(null);	
+			
+		if(checkRow != 0){
+			//-----------------------------------시간 객체
+			$("#upd_check_sTime").timepicker({
+				step: 10,            //시간간격 : 5분
+				timeFormat: "H:i:s"  //시간:분 으로표시
+			});	 			
+			$("#upd_check_eTime").timepicker({
+				step: 10,            //시간간격 : 5분
+				timeFormat: "H:i:s"  //시간:분 으로표시
+			});	 		
+			
+	
+			//해당화면에 모든 checkbox들의 체크를해제시킨다.
+			$("input[type=checkbox]").prop("checked",false);
+			
+			//----------------------------------input box 채우기
+			$("#upd_cls_name").val(table_cList.CLS_NAME);
+			$("#upd_tch_name").val(table_cList.TCH_NAME);
+			$("#upd_tch_no").val(table_cList.TCH_NO);
+			$("#upd_type_name").val(table_cList.TYPE_NAME);
+			$("#upd_type_no").val(table_cList.TYPE_NO);
+			$("#upd_cls_kind").val(table_cList.CLS_KIND);
+			$("#upd_cls_s_date").val(table_cList.CLS_S_DATE);
+			$("#upd_cls_e_date").val(table_cList.CLS_E_DATE);
+			$("#upd_cls_days").val(table_cList.CLS_DAYS);
+			$("#upd_cls_sTime").val(table_cList.CLS_STIME);
+			$("#upd_cls_eTime").val(table_cList.CLS_ETIME);
+			$("#upd_cls_day").val(table_cList.CLS_DAY);
+			$("#upd_cls_cnt").val(table_cList.CLS_CNT);
+			$("#upd_cls_info").val(table_cList.CLS_INFO);
+			$("#upd_cls_price").val(table_cList.CLS_PRICE);
+			$("#upd_cls_state").val(table_cList.CLS_STATE);		
+			
+			$("#c_upd").modal('show');
+		}else{
+			alert("수업을 선택하세요.");
+		}
 	}
 	
 	//--------------------------------------------- 수업수정 모달 안 강사수정 버튼
@@ -347,50 +372,89 @@
 		$("#upd_type_no").val(tb_type_no);
 		$("#c_upd_typeName").modal('hide');
 	}
-
+	//------------------------------------------ 수업 수정 모달 안 요일 선택완료 버튼
+	function upd_checkDay(){
+		var days ="";
+		for(var i=0; i<upd_checked_val.length; i++){
+			if(upd_checked_val[i] != null) {
+				days += upd_checked_val[i];
+				days += " ";
+			}
+		}
+		//alert(days);
+		days = days.trim();
+		days = days.replace(/ /gi,"/");
+		$("#upd_cls_day").val(days);
+	}
+	
 	
 	//------------------------------------------------------------------------------------------> 자세히 보기 버튼
 	function info(){
-		
-		$.ajax({
-			 url:"../class/jsonClassList.gym?cls_no="+tb_cls_no
-			,dataType:"json"
-			,success:function(data){
-					//alert(data);
-				list = JSON.stringify(data);
-				var result = JSON.parse(list);
-				//var cls_no = tb_cls_no-1;
-				
-				$("#info_cls_name").val(result[0].CLS_NAME);
-				$("#info_tch_name").val(result[0].TCH_NAME);
-				$("#info_type_no").val(result[0].TYPE_NAME);
-				$("#info_cls_kind").val(result[0].CLS_KIND);
-				$("#info_cls_s_date").val(result[0].CLS_S_DATE);
-				$("#info_cls_e_date").val(result[0].CLS_E_DATE);
-				$("#info_cls_cnt").val(result[0].CLS_CNT);
-				$("#info_cls_days").val(result[0].CLS_DAYS);
-				$("#info_cls_info").val(result[0].CLS_INFO);
-				$("#info_cls_price").val(result[0].CLS_PRICE);
-				$("#info_cls_grcode").val(result[0].CLS_GRCODE);
-				$("#info_cls_state").val(result[0].CLS_STATE);		
-				$("#info_cls_sTime").val(result[0].CLS_STIME);
-				$("#info_cls_eTime").val(result[0].CLS_ETIME);
-				$("#info_cls_day").val(result[0].CLS_DAY);
-
-			}////////success end
-		});//////////ajax end	
+		if(checkRow != 0){
+			$("#info_cls_name").val(table_cList.CLS_NAME);
+			$("#info_tch_name").val(table_cList.TCH_NAME);
+			$("#info_type_no").val(table_cList.TYPE_NAME);
+			$("#info_cls_kind").val(table_cList.CLS_KIND);
+			$("#info_cls_s_date").val(table_cList.CLS_S_DATE);
+			$("#info_cls_e_date").val(table_cList.CLS_E_DATE);
+			$("#info_cls_cnt").val(table_cList.CLS_CNT);
+			$("#info_cls_days").val(table_cList.CLS_DAYS);
+			$("#info_cls_info").val(table_cList.CLS_INFO);
+			$("#info_cls_price").val(table_cList.CLS_PRICE);
+			$("#info_cls_state").val(table_cList.CLS_STATE);		
+			$("#info_cls_sTime").val(table_cList.CLS_STIME);
+			$("#info_cls_eTime").val(table_cList.CLS_ETIME);
+			$("#info_cls_day").val(table_cList.CLS_DAY);
+			
+			$("#c_info").modal('show');
+		}else{
+			alert("수업을 선택하세요.");
+		}	
 	}
+	
+	//------------------------------------------ 수업 수정 모달 안 시작시간 등록 버튼
+	function upd_sTime(){
+		//alert("시작시간 설정 모달 오픈");
+ 		$("#upd_sTime").modal('show');		
+	}
+	//------------------------------------------ 수업 수정 모달 안 시작시간 등록 모달 안 완료 버튼
+	function upd_sTimeCheck(){
+		//alert("시작시간 선택 완료");
+		$("#upd_sTime").modal('hide');
+		var upd_cls_sTime = $("#upd_check_sTime").val();
+		$("#upd_cls_sTime").val(upd_cls_sTime);
+	}
+	//------------------------------------------ 수업 수정 모달 안 종료시간 등록 버튼
+	function upd_eTime(){
+		//alert("종료시간 설정 모달 오픈");		
+ 		$("#upd_eTime").modal('show');		
+	}
+	//------------------------------------------ 수업 수정 모달 안 종료시간 등록 모달 안 완료 버튼
+	function upd_eTimeCheck(){
+		//alert("종료시간 선택 완료");
+		$("#upd_eTime").modal('hide');
+		var upd_cls_eTime = $("#upd_check_eTime").val();
+		$("#upd_cls_eTime").val(upd_cls_eTime);
+	}	
+	
+	
 	//------------------------------------------------------------------------------------------> 수강생 보기 버튼
 	function cls_mem(){
 		//alert("수강생 보기");
-		$('#tb_mList').bootstrapTable('refreshOptions', {	
-	           url: '../class/jsonClassMemList.gym?cls_no='+tb_cls_no
-		});
-		$("#c_memList").modal('show');			
-		$("#c_check_pTime").timepicker({
-			step: 10,            //시간간격 : 5분
-			timeFormat: "H:i:s"  //시간:분 으로표시
-		});
+		
+		if(checkRow != 0){
+			$('#tb_mList').bootstrapTable('refreshOptions', {	
+		           url: '../class/jsonClassMemList.gym?cls_no='+tb_cls_no
+			});
+			$("#c_memList").modal('show');			
+			$("#c_check_pTime").timepicker({
+				step: 10,            //시간간격 : 5분
+				timeFormat: "H:i:s"  //시간:분 으로표시
+			});
+		}else{
+			alert("수업을 선택하세요.");
+		}
+		
 	}
 	//------------------------------------------ 수강생 보기 모달 안 수강생 등록 버튼
 	function classMemINS_open(){
@@ -402,7 +466,6 @@
 		$("#c_mem_tel").val(null);
 		$("#c_mem_gender").val(null);				
 		$("#c_mem_joindate").val(null);				
-
 	}
 	//------------------- 수강생 등록 모달 안 회원 조회 버튼
 	function classMemSearch(){
@@ -439,20 +502,33 @@
 		$("#m_ins").attr("method","get");
 		$("#m_ins").attr("action","../class/classMemIns.gym");
 		$("#m_ins").submit();		
-		
 	}
 	//------------------------------------------ 수강생 보기 모달 안 수강생 삭제 버튼
 	function classMemDEL(){
 		//alert("수강생을 삭제합니다.");
 		//alert("PAY_NO: "+tb_pay_no);
-		location.href="../class/classMemUpd.gym?cud=upd&pay_no="+tb_pay_no;		
+		if(mem_checkRow != 0){
+			location.href="../class/classMemUpd.gym?cud=upd&pay_no="+tb_pay_no;		
+		}else{
+			alert("수강생을 선택하세요.");
+		}
 	}	
 	
+	//------------------------------------------------------------------------------------------> 수강생 삭제 버튼	
+	function cls_del(){
+		if(checkRow != 0){
+			location.href="../class/classDel.gym?cud=del&cls_no="+tb_cls_no;	
+		}else{
+			alert("수업을 선택하세요.");
+		}
+	}	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////선택된 로우에서 값 가져오기
 	
 	//--------------------------------------------- 수업 리스트에서 수업번호 가져오기
 	$('#tb_cList').on('click-row.bs.table', function (row, $element, field) {
+		checkRow = 1;
+		table_cList = $element
 		tb_cls_no = $element.CLS_NO;
 		tb_cls_name = $element.CLS_NAME;
 		$("#m_className").text(tb_cls_name);
@@ -463,6 +539,11 @@
 		//alert("수업명: "+tb_cls_name);
 		//$("#c_info").modal('show');
 	})
+	$('#tb_cList').on('uncheck.bs.table', function (row, $element) {	
+		checkRow = 0;
+		//alert("로우 체크 해제");
+	})
+	
 	//--------------------------------------------- 강사 리스트에서 선택 값 가져오기
 	$('#tb_tList').on('click-row.bs.table', function (row, $element, field) {
 		tb_tch_no = $element.TCH_NO;
@@ -477,8 +558,13 @@
 	})
 	//--------------------------------------------- 수강생 리스트에서 선택 값 가져오기
 	$('#tb_mList').on('click-row.bs.table', function (row, $element, field) {
+		mem_checkRow = 1;
 		tb_pay_no = $element.PAY_NO;
 		//alert("PAY_NO: "+tb_pay_no);
+	})
+	$('#tb_mList').on('uncheck.bs.table', function (row, $element) {	
+		mem_checkRow = 0;
+		//alert("로우 체크 해제");
 	})
 		
 	
@@ -488,51 +574,102 @@
 		//--------------------------------------------- 수업 등록에서 요일 체크박스 선택한 값을 아래 input박스에 넣기
 	    $("#ins_cls_day1").change(function(){
 	        if($("#ins_cls_day1").is(":checked")){
-	        	checked_val[0] = $(this).val();
+	        	ins_checked_val[0] = $(this).val();
 	        } else {
-	        	checked_val[0] = null;
+	        	ins_checked_val[0] = null;
 	        }
 	    });//제이쿼리 end
 	    $("#ins_cls_day2").change(function(){
 	        if($("#ins_cls_day2").is(":checked")){
-	        	checked_val[1] = $(this).val();
+	        	ins_checked_val[1] = $(this).val();
 	        } else {
-	        	checked_val[1] = null;
+	        	ins_checked_val[1] = null;
 	        }
 	    });//제이쿼리 end
 	    $("#ins_cls_day3").change(function(){
 	        if($("#ins_cls_day3").is(":checked")){
-	        	checked_val[2] = $(this).val();
+	        	ins_checked_val[2] = $(this).val();
 	        } else {
-	        	checked_val[2] = null;
+	        	ins_checked_val[2] = null;
 	        }
 	    });//제이쿼리 end
 	    $("#ins_cls_day4").change(function(){
 	        if($("#ins_cls_day4").is(":checked")){
-	        	checked_val[3] = $(this).val();
+	        	ins_checked_val[3] = $(this).val();
 	        } else {
-	        	checked_val[3] = null;
+	        	ins_checked_val[3] = null;
 	        }
 	    });//제이쿼리 end
 	    $("#ins_cls_day5").change(function(){
 	        if($("#ins_cls_day5").is(":checked")){
-	        	checked_val[4] = $(this).val();
+	        	ins_checked_val[4] = $(this).val();
 	        } else {
-	        	checked_val[4] = null;
+	        	ins_checked_val[4] = null;
 	        }
 	    });//제이쿼리 end
 	    $("#ins_cls_day6").change(function(){
 	        if($("#ins_cls_day6").is(":checked")){
-	        	checked_val[5] = $(this).val();
+	        	ins_checked_val[5] = $(this).val();
 	        } else {
-	        	checked_val[5] = null;
+	        	ins_checked_val[5] = null;
 	        }
 	    });//제이쿼리 end
 	    $("#ins_cls_day7").change(function(){
 	        if($("#ins_cls_day7").is(":checked")){
-	        	checked_val[6] = $(this).val();
+	        	ins_checked_val[6] = $(this).val();
 	        } else {
-	        	checked_val[6] = null;
+	        	ins_checked_val[6] = null;
+	        }
+	    });//제이쿼리 end
+	    
+		//--------------------------------------------- 수업 수정에서 요일 체크박스 선택한 값을 아래 input박스에 넣기
+	    $("#upd_cls_day1").change(function(){
+	        if($("#upd_cls_day1").is(":checked")){
+	        	upd_checked_val[0] = $(this).val();
+	        } else {
+	        	upd_checked_val[0] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#upd_cls_day2").change(function(){
+	        if($("#upd_cls_day2").is(":checked")){
+	        	upd_checked_val[1] = $(this).val();
+	        } else {
+	        	upd_checked_val[1] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#upd_cls_day3").change(function(){
+	        if($("#upd_cls_day3").is(":checked")){
+	        	upd_checked_val[2] = $(this).val();
+	        } else {
+	        	upd_checked_val[2] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#upd_cls_day4").change(function(){
+	        if($("#upd_cls_day4").is(":checked")){
+	        	upd_checked_val[3] = $(this).val();
+	        } else {
+	        	upd_checked_val[3] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#upd_cls_day5").change(function(){
+	        if($("#upd_cls_day5").is(":checked")){
+	        	upd_checked_val[4] = $(this).val();
+	        } else {
+	        	upd_checked_val[4] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#upd_cls_day6").change(function(){
+	        if($("#upd_cls_day6").is(":checked")){
+	        	upd_checked_val[5] = $(this).val();
+	        } else {
+	        	upd_checked_val[5] = null;
+	        }
+	    });//제이쿼리 end
+	    $("#upd_cls_day7").change(function(){
+	        if($("#upd_cls_day7").is(":checked")){
+	        	upd_checked_val[6] = $(this).val();
+	        } else {
+	        	upd_checked_val[6] = null;
 	        }
 	    });//제이쿼리 end
 	});//document end

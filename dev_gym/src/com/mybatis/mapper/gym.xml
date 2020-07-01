@@ -26,12 +26,24 @@
 	</resultMap>
 <!-- ======================= GYM ======================= -->
 	<select id="getClassList" parameterType="map" resultType="map">
-		SELECT rownum, cls.cls_no, cls.cls_name, cls.cls_kind, cls.cls_cnt, cls.cls_days, cls.cls_s_date
-					 , cls.cls_e_date, cls.cls_price, cls.cls_state, cls.cls_info
-					 , cls.cls_stime, cls.cls_etime, cls.cls_day
-					 , tch.tch_name , tch.tch_no
-					 , type.type_name, type.type_no
-		  FROM class  cls, teacher tch, type type
+		SELECT rownum, cls.cls_no	
+					 , cls.cls_name
+					 , cls.cls_kind
+					 , cls.cls_cnt
+					 , cls.cls_days
+					 , cls.cls_s_date
+					 , cls.cls_e_date
+					 , cls.cls_info
+					 , cls.cls_price
+					 , cls.cls_state
+					 , cls.cls_stime
+					 , cls.cls_etime
+					 , cls.cls_day
+					 , tch.tch_name 
+					 , tch.tch_no
+					 , type.type_name
+					 , type.type_no
+		  FROM class cls, teacher tch, type type
 		 WHERE cls.tch_no = tch.tch_no
 		   AND cls.type_no = type.type_no
 	<if test="progress!=null and progress.length > 0 ">
@@ -40,7 +52,7 @@
 	<if test="cls_no != null">
 	 	   AND cls.cls_no = #{cls_no}
 	</if>
-		<!-- ORDER BY cls_no ASC -->
+		ORDER BY cls_no DESC
 	</select>
 	<!-- 수업 등록 모달 안 강사 -->
 	<select id="getComboList" parameterType="map" resultType="map">
@@ -368,7 +380,8 @@
 	</update>
 	
 	<delete id="classDel" parameterType="map">
-		DELETE insert_test where mem_id = '5'
+		DELETE FROM class 
+		WHERE cls_no = #{cls_no}
 	</delete>
 	<delete id="classMemDel" parameterType="map">
 		DELETE insert_test where mem_id = '5'
