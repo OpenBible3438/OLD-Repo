@@ -80,16 +80,7 @@
 		$("#mem_no_d").val(gmem_no);
         $("#mem_id_d").val(gmem_id);
         $("#mem_name_d").val(gmem_name);
-        $.ajax({
-        	method:'post'
-        	,data :
-        	,url : ''
-        	,success: function(data) {
-        		
-        	}
-        });
 		$("#myInbody").modal('show');
-		
 	}
 	/* 
 	function showMemdetail(){

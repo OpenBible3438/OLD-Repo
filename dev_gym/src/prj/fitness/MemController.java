@@ -42,9 +42,6 @@ public class MemController implements Controller {
 					case "memInbodyIns":{ // 인바디 등록
 						result = mLogic.memInbodyIns(pMap);
 					}break;
-					case "memIns":{ // 회원 등록
-						result = mLogic.memIns(pMap);
-					}break;
 				}
 				path = "redirect:../insertResult" + ":" + result + ":"+ autoSel;
 			}break;
@@ -52,9 +49,6 @@ public class MemController implements Controller {
 				switch(reqName) {
 					case "memInbodyUpd":{ // 인바디 수정
 						result = mLogic.memInbodyUpd(pMap);
-					}break;
-					case "memUpd":{ //회원 수정
-						result = mLogic.memUpd(pMap);
 					}break;
 				}
 				path = "redirect:../updateResult:"+result + ":"+ autoSel;
@@ -64,19 +58,11 @@ public class MemController implements Controller {
 					case "memInbodyDel":{ // 인바디 삭제
 						result = mLogic.memInbodyDel(pMap);
 					}break;
-					case "memDel":{ // 회원 삭제
-						result = mLogic.memDel(pMap);
-					}break;
 				}
 				path = "redirect:../deleteResult:"+result + ":"+ autoSel;
 			}break;
 		}
-		
-		
-		
-		path = "redirect:" + work + ":" + reqName + ":" + result;
 		logger.info("path : " + path);
-		
 		return path;
 	}
 

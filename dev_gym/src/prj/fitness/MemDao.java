@@ -48,26 +48,6 @@ public class MemDao {
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public int memIns(Map<String, Object> pMap) {
-		logger.info("MemDao - classUpd() 호출");
-		result = sqlSession.insert("memIns");
-		
-		return result;
-	}
-	
-	public int memUpd(Map<String, Object> pMap) {
-		logger.info("MemDao - classUpd() 호출");
-		result = sqlSession.update("memUpd");
-		
-		return result;
-	}
-	
-	public int memDel(Map<String, Object> pMap) {
-		logger.info("MemDao - memDel() 호출");
-		result = sqlSession.delete("memDel");
-		
-		return result;
-	}
 	// 회원 인바디 테이블에 인바디 정보 등록
 	public int memInbodyIns(Map<String, Object> pMap) {
 		logger.info("MemDao - memInbodyIns() 호출");

@@ -54,27 +54,6 @@ public class MemLogic {
 	
 	///////////////////////////////////////////////////////////////
 	
-	public int memIns(Map<String, Object> pMap) {
-		logger.info("MemLogic - memIns() 호출");
-		result = mDao.memIns(pMap);
-		setCommit(result);
-		return result;
-	}
-	
-	public int memUpd(Map<String, Object> pMap) {
-		logger.info("MemLogic - memUpd() 호출");
-		result = mDao.memUpd(pMap);
-		setCommit(result);
-		return result;
-	}
-	
-	public int memDel(Map<String, Object> pMap) {
-		logger.info("MemLogic - memDel() 호출");
-		result = mDao.memDel(pMap);
-		setCommit(result);
-		return result;
-	}
-	
 	public int memInbodyIns(Map<String, Object> pMap) {
 		logger.info("MemLogic - memInbodyIns() 호출");
 		result = mDao.memInbodyIns(pMap);
@@ -104,8 +83,7 @@ public class MemLogic {
 		logger.info("MemLogic - memInbodyDel() 호출");
 		result = mDao.memInbodyDel(pMap);
 		if(result == 1) {		
-			result = mDao.memInbodyDel(pMap);
-			
+			result = mDao.memInbodyImgDel(pMap);
 		}
 		setCommit(result);
 		return result;
