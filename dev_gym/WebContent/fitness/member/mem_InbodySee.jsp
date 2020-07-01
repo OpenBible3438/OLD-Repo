@@ -23,26 +23,6 @@
 						     style="max-width:500px; max-height:800px; min-height:500px"/>
 					</div>
 				</div>
-<!-- <label for="gym_id" class="col-sm-3 col-form-label ">아이디</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" required
-					   id="gym_id" >
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="gym_pw" class="col-sm-3 col-form-label">비밀번호</label>
-			<div class="col-sm-4">
-				<input type="password" class="form-control"
-					   id="gym_pw" placeholder="8자리 이상 입력하세요" required>
-			</div>
-		</div>
-		
-		<div class="form-group row">
-			<label for="gym_username" class="col-sm-3 col-form-label">이름 </label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control"
-					   id="gym_username" >
-			</div> -->
 			</div><!-- padding -->
 			</div><!-- modal body -->
 			<!-- Modal Footer 부분 -->
