@@ -5,16 +5,20 @@
 	<!-- 인바디 리스트를 가져오는 맵 -->
 	<resultMap type="map" id="getMemInbody"/>
 	
+	<resultMap type="map" id="getGymMemList"/>
+	
+	<resultMap id="getImage" type="object">
+		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
+	</resultMap>
 <!-- ======================= Member ======================= -->
-	<select id="getMemList" parameterType="map" resultType="map">
-		SELECT rownum rno, mem_no, mem_id, mem_name, mem_nickname, mem_tel, mem_joindate, mem_gender
-		 FROM  member
-		 <where>
-		 <if test="mem_no != null">
-		 		AND mem_no = #{mem_no}
-		 </if>
-		 </where>
-		 ORDER BY mem_no asc
+<!-- 회원관리에서 전체보기를 눌렀을 때 -->
+	<select id="getMemList" parameterType="map" statementType="CALLABLE">
+		{ call proc_GymMemList(#{gym_no}, #{getMemList
+					                       ,jdbcType=CURSOR
+					                       ,mode=OUT
+					                       ,javaType=java.sql.ResultSet
+					                       ,resultMap=getGymMemList}) 
+					                       }		
 	</select>
 	<select id="getMemDetail" parameterType="map" resultType="map">
 		SELECT m.mem_no, mem_name, mem_id, mem_nickname, mem_gender, mem_tel
@@ -32,6 +36,14 @@
 						                       ,mode=OUT
 						                       ,javaType=java.sql.ResultSet
 						                       ,resultMap=getMemInbody}) }
+	</select>
+	<!-- 한 회원에 대한 이미지 가져오기  -->
+	<select id="getInbodyImg" parameterType="map" statementType="CALLABLE">
+			{ call proc_MemIbdImgs(#{mem_no}, #{getImage
+						                       ,jdbcType=CURSOR
+						                       ,mode=OUT
+						                       ,javaType=java.sql.ResultSet
+						                       ,resultMap=getImage}) }
 	</select>
 	<!-- 인바디 등록할 때 인바디 번호 채번  -->
 	<select id="getInbodySeq" parameterType="map" resultType="int">

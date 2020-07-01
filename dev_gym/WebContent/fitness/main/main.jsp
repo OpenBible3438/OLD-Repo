@@ -58,13 +58,6 @@
 </style>
 <!-- =============== main javascript =============== -->
 <script type="text/javascript">
-//전체 조회 처리 구현 - 박준규\
-<!--
-	function memAllList(){
-		location.href="../member/jsonMemList.gym";
-	
-	}
-	-->
   	function picks(center) {
   		//alert("center : "+center);
   		$.ajax({

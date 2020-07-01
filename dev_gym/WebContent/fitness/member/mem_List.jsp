@@ -1,117 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
- <script>
-	function test() {
-		//alert("클릭");
-	}
-</script>
-
 <style>
 .b1{ 
 	border-radius: 50px;
 	width: 100%;
 }
-  
 </style>
 <script type="text/javascript">
-	var gmem_no=0;
-	//DOM구성이 완료되면...
+	var g_row;
 	function memList() {
 		$('#tb_member').bootstrapTable('refreshOptions', {
         	url: "../member/jsonMemList.gym"
 		});
 	}
+	
+	//DOM구성이 완료되면...
 	$(document).ready(function() {
     	$('#tb_member').bootstrapTable('refreshOptions', {
-        	url: "../member/jsonMemList.gym"
-            /*     
-            */
-            ,onClickRow : function(row,element,field){
-            	gmem_no = row.MEM_NO;
-            	gmem_id = row.MEM_ID;
-            	gmem_name = row.MEM_NAME;
-            	//alert("onClick 성공 :"+gmem_name);
+    		url: "../member/jsonMemList.gym"
+        	,onClickRow : function(row,element,field){
+            	g_row = row;
+            	//alert("onClick 성공 :"+g_row.MEM_NO);
             }
             ,onDblClickRow : function(row,element,field){
-        	 //alert("선택한 로우");
-//             var mem_no = row.MEM_NO;
-	        	gmem_no = row.MEM_NO;
-	           	var mem_name = row.MEM_NAME;
-           		var mem_id = row.MEM_ID;
-             	var mem_nickname = row.MEM_NICKNAME;
-             	var mem_tel = row.MEM_TEL;
-             	var mem_joindate = row.MEM_JOINDATE;
-          	 	$("#myDetail").modal('show');
-	            $("#mem_no").val(gmem_no);
-	            $("#mem_name").val(mem_name);
-	            $("#mem_id").val(mem_id);
-	            $("#mem_nickname").val(mem_nickname);
-	            $("#mem_tel").val(mem_tel);
-	            $("#mem_joindate").val(mem_joindate);
-            
-             //alert("회원번호 : "+mem_no);
-             //location.href= '/member/mem_Detail.jsp?mem_no='+mem_no;
-             //==> board_no를 넘겨주면 해당 게시글을  select!!
-            //alert("g_no"+gmem_no);
-			  	$.ajax({
-					url: "../member/jsonMemDetail.gym?mem_no="+gmem_no
-					,success : function(result){
-						if(mem_name != null){
-							 var infoList = JSON.parse(result.trim());//trim() : 공백제거
-							 //alert("infoList : " + infoList);
-							 mem_gender = infoList[0].MEM_GENDER;   
-							 mem_addr = infoList[0].MEM_ADDR;   
-							 mem_addr_dtl = infoList[0].MEM_ADDR_DTL;   
-							 mem_birth = infoList[0].MEM_BIRTH;   
-							 //alert("mem_addr : " + mem_addr);
-							  $("#mem_gender").val(mem_gender);
-							  $("#mem_addr").val(mem_addr);
-							  $("#mem_addr_dtl").val(mem_addr_dtl);
-							  $("#mem_birth").val(mem_birth);
-							  
-						}
-					}
-				});
+				$('#dtl_mem_no').val(g_row.MEM_NO     );
+				$('#dtl_mem_id').val(g_row.MEM_ID     );
+				$('#dtl_mem_profImg').attr('src', '../main/getImages.gym?file_seq='+g_row.FILE_SEQ);
+				$('#dtl_mem_name').val(g_row.MEM_NAME   );
+				$('#dtl_mem_gender').val(g_row.MEM_GENDER );
+				$('#dtl_mem_birth').val(g_row.MEM_BIRTH  );
+				$('#dtl_mem_tel').val(g_row.MEM_TEL    );
+				$('#dtl_mem_addr').val(g_row.MEM_ADDR   );
+          		$("#myDetail").modal('show');
           	}	
      	});
 	});
+	
+	
 	function showInbody(){
-		$("#mem_no_d").val(gmem_no);
-        $("#mem_id_d").val(gmem_id);
-        $("#mem_name_d").val(gmem_name);
-        $.ajax({
-        	method:'post'
-        	,data : 'mem_no='+gmem_no
-        	,url : '../member/getInbodyImg.gym'
-        	,success: function(data) {
-        		$('#inbody_images').html(data.trim());
-        	}
-        });
-		$("#myInbody").modal('show');
-		
+		//alert("인바디 보기");
+		if(g_row != null) {
+			var p_mem_no = g_row.MEM_NO;
+			$("#mem_no_d").val(p_mem_no);
+	        $("#mem_id_d").val(g_row.MEM_ID);
+	        $("#mem_name_d").val(g_row.MEM_NAME);
+       		$('#mem_inbodyImg_d').attr('src','../member/getInbodyImg.gym?mem_no='+p_mem_no);
+			$("#myInbody").modal('show');
+		}
+		else {
+			alert("회원을 클릭해주세요 ");
+		}
 	}
-	/* 
-	function showMemdetail(){
-		$("#mem_no").val(mem_no);
-        $("#mem_name").val(mem_name);
-        $("#mem_id").val(mem_id);
-        $("#mem_tel").val(mem_tel);
-        $("#mem_nickname").val(mem_nickname);
-        $("#mem_joindate").val(mem_joindate);
-		$("#myDetail").modal({
-			show:true
-		});
-	} 
-	*/
 </script>
 
-<div class="container">
-<h4><b><br>회원관리 | 전체 회원 관리</b></h4>
-<br>
+<div style="padding: 20px;">
+	<h3><b>회원관리</b> / 전체 회원 관리</h3>   <!-- 제목 틀 입니다. -->
+	<hr>
+	<div style="padding-left: 40px; padding-top: 20px"> <!-- 내용 틀 입니다. -->
 <!-- 검색부분 -->
-
-	<div class="input-group mb-3">
+		<div class="input-group mb-3">
 			<div class="input-group-prepend">
 		    	<span class="input-group-text">회원이름</span>
 		    </div>
@@ -129,32 +76,41 @@
 			<button type="button" class="btn btn-secondary" onClick="notSearch()">검색</button>
 		</div>
 <!-- 검색부분 -->
-<div class="btn-group" id="button_group" style="width:50%">
-	<button type="button" class="b1 btn-primary m-1" onClick="memList()">전체조회</button>
-	<!--<button type="button" class="b1 btn-primary m-1" onClick="자세히보기()">자세히보기</button>   -->
-	<!-- <button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="myDetail" >자세히보기</button> -->
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" onClick="showInbody()" >인바디 보기</button>
-</div>
-<br>
+		<div class="btn-group" id="button_group" style="width:50%">
+			<button type="button" class="b1 btn-primary m-1" onClick="memList()">전체조회</button>
+			<!--<button type="button" class="b1 btn-primary m-1" onClick="자세히보기()">자세히보기</button>   -->
+			<!-- <button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="myDetail" >자세히보기</button> -->
+			<button type="button" class="b1 btn-primary m-1" data-toggle="modal" onClick="showInbody()" >인바디 보기</button>
+		</div><br>
 <!-- 테이블 부분 -->
-<table id="tb_member" class="table table-bordered" 
-       data-toggle="table"
-  	   data-click-to-select="true"
-       data-single-select="true"
-       data-pagination="true">
-	<thead>
-		<tr align="center">
-			<th data-checkbox=true>체크</th>
-			<th data-field="RNO">번호</th>
-			<th data-field="MEM_NO">회원번호</th>
-			<th data-field="MEM_ID">아이디</th>
-			<th data-field="MEM_NAME">이름</th>
-			<th data-field="MEM_NICKNAME">닉네임</th>
-			<th data-field="MEM_TEL">전화번호</th>
-			<th data-field="MEM_JOINDATE">최초 등록일</th>
-		</tr>
-	</thead>
-</table>
+		<table id="tb_member" class="table table-bordered" 
+       		   data-toggle="table"
+  	           data-click-to-select="true"
+               data-single-select="true"
+               data-pagination="true">
+			<thead>
+				<tr align="center">
+					<th data-checkbox=true>체크</th>
+					<th data-field="RNO">번호</th>
+					<th class="d-none" data-field="PAY_NO">결제번호</th>
+					<th class="d-none" data-field="CLS_NO">수업번호</th>
+					<th class="d-none" data-field="TCH_NO">강사번호</th>
+					<th class="d-none" data-field="MEM_NO">회원번호</th>
+					<th class="d-none" data-field="FILE_SEQ">회원프로필사진 번호</th>
+					<th data-field="TYPE_NAME">수업타입</th>
+					<th data-field="CLS_NAME">수업이름</th>
+					<th data-field="TCH_NAME">강사이름</th>
+					<th class="d-none" data-field="MEM_ID">회원아이디</th>
+					<th data-field="MEM_NAME">회원이름</th>
+					<th data-field="MEM_GENDER">성별</th>
+					<th class="d-none" data-field="MEM_BIRTH">생년월일</th>
+					<th data-field="MEM_TEL">회원전화번호</th>
+					<th class="d-none" data-field="MEM_ADDR">회원주소</th>
+				</tr>
+			</thead>
+		</table>
+   </div>
+</div>
 <!-- 테이블 부분 -->
 <!-- ======================= 자세히 보기 모달창 =================================-->
 
