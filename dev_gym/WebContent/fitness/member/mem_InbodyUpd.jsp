@@ -5,13 +5,6 @@
 <!-- <div style="padding: 20px;">
    <h3><b>회원관리</b> / 인바디 수정</h3>   제목 틀 입니다. -->
 
-
-
-
-
-
-
-
     <!--=========================== 내용 시작 ===========================-->
 	<div style="padding-left: 40px; padding-top: 10px"></div>
 		<form role="form" id="inbody_upd"
