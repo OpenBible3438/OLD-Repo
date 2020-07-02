@@ -29,7 +29,7 @@ public class MemDao {
 		
 		return memDetail;
 	}
-	
+	// 인바디 전체 조회 
 	public List<Map<String, Object>> getMemInbody(Map<String, Object> pMap){
 		List<Map<String, Object>> memInbodyList = null;
 		logger.info("MemDao - getMemInbody() 호출");
@@ -37,13 +37,31 @@ public class MemDao {
 		memInbodyList = (List<Map<String, Object>>)pMap.get("inbodyList");
 		return memInbodyList;
 	}
-	
+	// 인바디 조건 검색 
+	public List<Map<String, Object>> getMemInbodyOne(Map<String, Object> pMap) {
+		List<Map<String, Object>> memInbodyList = null;
+		logger.info("MemDao - getMemInbodyOne() 호출");
+		sqlSession.selectOne("getMemInbodyOne",pMap);
+		memInbodyList = (List<Map<String, Object>>)pMap.get("ibdOneList");
+		return memInbodyList;
+	}
+
 	// 전체 조회에서 전체 조회를 눌렀을 때
 	public List<Map<String, Object>> getMemList(Map<String, Object> pMap){
 		List<Map<String, Object>> memList = null;
 		logger.info("MemDao - getMemList() 호출");
 		sqlSession.selectOne("getMemList",pMap);
-		memList = (List<Map<String, Object>>)pMap.get("getMemList");
+		memList = (List<Map<String, Object>>)pMap.get("gymMemList");
+		logger.info("memList : "+memList.size()+"row");
+		return memList;
+	}
+	// 회원 조건 검색 
+	public List<Map<String, Object>> getMemListOne(Map<String, Object> pMap) {
+		List<Map<String, Object>> memList = null;
+		logger.info("MemDao - getMemListOne() 호출");
+		sqlSession.selectOne("getMemListOne",pMap);
+		memList = (List<Map<String, Object>>)pMap.get("gymMemOneList");
+		logger.info("memList : "+memList.size()+"row");
 		return memList;
 	}
 	
@@ -53,7 +71,16 @@ public class MemDao {
 		logger.info("MemDao - getInbodyImg() 호출");
 		List<Map<String, Object>> memList = null;
 		sqlSession.selectOne("getInbodyImg",pMap);
-		memList =  (List<Map<String, Object>>)pMap.get("getImage");
+		memList =  (List<Map<String, Object>>)pMap.get("memInbodyMap");
+		return memList;
+	}
+	
+	// 한 회원에 대한 수업 리스트 조회 
+	public List<Map<String, Object>> getOneMemClsList(Map<String, Object> pMap) {
+		logger.info("MemDao - getOneMemClsList() 호출");
+		List<Map<String, Object>> memList = null;
+		sqlSession.selectOne("getOneMemClsList",pMap);
+		memList =  (List<Map<String, Object>>)pMap.get("oneMemClsList");
 		return memList;
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,4 +122,8 @@ public class MemDao {
 		
 		return result;
 	}
+
+
+
+
 }

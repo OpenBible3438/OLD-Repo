@@ -106,7 +106,9 @@
 		</div>
 		<div class="form-group row">
 			<label for="gym_profimg" class="col-sm-2 col-form-label">매장 프로필 사진</label>
-			<img id="gym_profimg_img"src="#" class="col-sm-7" style="min-width:200px; min-height:100px"/>
+			<div class="cropping">
+				<img id="gym_profimg_img"/>
+			</div>
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-2" ></div>
@@ -162,20 +164,13 @@
             var reader = new FileReader();
             reader.onload = function(e) {
             	//img태그 아이디
-            	//alert("파일첨부1 : "+e.target.result);
-            	img_check =  $("#gym_profimg").val();
-    			//alert("img_check : "+img_check);
-    			if(img_check != "") {
-                	$('#gym_profimg_img').attr('src', e.target.result);
-    			}
+               	$('#gym_profimg_img').attr('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
         }
     }
 	//파일첨부 input태그 아이디
     $("#gym_profimg").change(function() {
-    	img_check =  $("#gym_profimg").val();
-    	//alert("img_check : "+img_check);
         readURL(this);
     });
 </script>

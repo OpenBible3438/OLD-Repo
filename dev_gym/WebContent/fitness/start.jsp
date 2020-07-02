@@ -18,6 +18,18 @@
 	width: 70%;
 	margin: auto;
 }
+/* 이미지 자르기  */
+.cropping{
+  	width: 250px;
+  	height: 250px;
+  	overflow: hidden;
+  	margin-left: 20px;
+}
+.cropping img{
+	wihth: 100%;
+	height: 100%;
+  	padding: 0px;
+}
 </style>
 <script type="text/javascript">
 	var id_check = 1;

@@ -16,14 +16,28 @@ public class TchDao {
 		logger.info("TchDao 생성자 호출");
 		this.sqlSession = sqlSession;
 	}
-	
+	// 강사 전체 조회 
 	public List<Map<String, Object>> getTchList(Map<String, Object> pMap) {
 		logger.info("TchDao - getTchList() 호출");
 		List<Map<String, Object>> tchList = null;
 		//
-		sqlSession.selectList("getProcTchList", pMap);
+		sqlSession.selectOne("getProcTchList", pMap);
 		
 		tchList = (List<Map<String, Object>>)pMap.get("gymTchList");
+		
+		logger.info(" - tchList : "+tchList.size()+"row");
+		//logger.info(" - tchList : "+tchList.toString());
+		return tchList;
+	}
+	
+	//강사 조건 검색 
+	public List<Map<String, Object>> getTchListOne(Map<String, Object> pMap) {
+		logger.info("TchDao - getTchListOne() 호출");
+		List<Map<String, Object>> tchList = null;
+		//
+		sqlSession.selectOne("getTchListOne", pMap);
+		
+		tchList = (List<Map<String, Object>>)pMap.get("tchOneList");
 		
 		logger.info(" - tchList : "+tchList.size()+"row");
 		//logger.info(" - tchList : "+tchList.toString());
@@ -59,7 +73,7 @@ public class TchDao {
 		logger.info(" - tchList : "+tchList.toString());
 		return tchList;
 	}
-	
+
 	public int tchProfNo(Map<String, Object> pMap) {
 		logger.info("TchDao - tchProfNo() 호출");
 		result = sqlSession.selectOne("tchProfNo", pMap);
@@ -111,6 +125,8 @@ public class TchDao {
 		
 		return result;
 	}
+
+
 
 
 

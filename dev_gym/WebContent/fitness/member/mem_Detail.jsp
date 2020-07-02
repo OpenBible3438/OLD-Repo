@@ -41,7 +41,9 @@
 				<div class="form-group row">
 					<label for="dtl_mem_profImg" class="col-sm-3 col-form-label">이미지</label>
 						<div class="col-sm-5">
-							<img id="dtl_mem_profImg" style="width:300px; height:200px" class="form-control">
+						<div class="cropping">
+							<img id="dtl_mem_profImg">
+						</div>
 						</div>
 				</div>
 				<div class="form-group row">

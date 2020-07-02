@@ -160,7 +160,12 @@ public class GymDao {
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {
 		logger.info("GymDao - getContentList() 호출");
 		List<Map<String, Object>> contentList = null;
-		contentList = sqlSession.selectList("getContentList", pMap);
+		if(pMap.get("cont_seq") != null) {
+			sqlSession.selectOne("getContentListOne", pMap);
+		} else {
+			sqlSession.selectOne("getContentList", pMap);
+		}
+		contentList = (List<Map<String, Object>>)pMap.get("gymContList");
 		logger.info("contentList.size() : " + contentList.size());
 		return contentList;
 	}
@@ -266,7 +271,7 @@ public class GymDao {
 		
 		return result;
 	}	
-	
+	// 콘텐츠 등록 
 	public int chartIns(Map<String, Object> pMap) {
 		logger.info("GymDao - chartIns() 호출");
 		result = sqlSession.insert("chartIns", pMap);
@@ -274,7 +279,14 @@ public class GymDao {
 		
 		return result;
 	}
-	
+	// 콘텐츠 이미지 등록 
+	public int contentImgIns(Map<String, Object> pMap) {
+		logger.info("GymDao - chartIns() 호출");
+		result = sqlSession.insert("contentImgIns", pMap);
+		logger.info("result : " + result);
+		return result;
+	}
+	// 콘텐츠 수정
 	public int chartUpd(Map<String, Object> pMap) {
 		logger.info("GymDao - chartUpd() 호출");
 		result = sqlSession.update("chartUpd", pMap);
@@ -282,7 +294,7 @@ public class GymDao {
 		
 		return result;
 	}
-	
+	// 콘텐츠 삭제 
 	public int chartDel(Map<String, Object> pMap) {
 		logger.info("GymDao - contentDel() 호출");
 		result = sqlSession.delete("chartDel", pMap);
@@ -293,12 +305,14 @@ public class GymDao {
 	
 	public int contentIns(Map<String, Object> pMap) {
 		logger.info("GymDao - contentIns() 호출");
+		int gym_cont_seq = sqlSession.selectOne("getContentNo");
+		pMap.put("gym_cont_seq", gym_cont_seq);
 		result = sqlSession.insert("contentIns", pMap);
 		logger.info("result : " + result);
 
 		return result;
 	}
-	
+	// 매장 콘텐츠 수정 
 	public int contentUpd(Map<String, Object> pMap) {
 		logger.info("GymDao - contentUpd() 호출");
 		result = sqlSession.update("contentUpd", pMap);
@@ -306,7 +320,16 @@ public class GymDao {
 
 		return result;
 	}
+	// 매장 콘텐츠 이미지 수정 
+	public int contentImgUpd(Map<String, Object> pMap) {
+		logger.info("GymDao - contentImgUpd() 호출");
+		result = sqlSession.update("contentImgUpd", pMap);
+		logger.info("result : " + result);
+
+		return result;
+	}
 	
+	// 매장 콘텐츠 삭제 
 	public int contentDel(Map<String, Object> pMap) {
 		logger.info("GymDao - contentDel() 호출");
 		result = sqlSession.delete("contentDel", pMap);
@@ -314,7 +337,15 @@ public class GymDao {
 
 		return result;
 	}
-	
+	// 매장 콘텐츠 이미지 삭제 
+	public int contentImgDel(Map<String, Object> pMap) {
+		logger.info("GymDao - contentImgDel() 호출");
+		result = sqlSession.delete("contentImgDel", pMap);
+		logger.info("result : " + result);
+
+		return result;
+	}
+	// 매장 정보 수정
 	public int gymInfoUpd(Map<String, Object> pMap) {
 		logger.info("GymDao - gymInfoUpd() 호출");
 		result = sqlSession.update("gymInfoUpd", pMap);
@@ -322,6 +353,15 @@ public class GymDao {
 
 		return result;
 	}
+	// 매장 정보 이미지 수정 
+	public int gymInfoImgUpd(Map<String, Object> pMap) {
+		logger.info("GymDao - gymInfoImgUpd() 호출");
+		result = sqlSession.update("gymInfoImgUpd", pMap);
+		logger.info("result : " + result);
+
+		return result;
+	}
+
 	
 	public int gymNoticeIns(Map<String, Object> pMap) {
 		logger.info("GymDao - gymNoticeIns() 호출");
@@ -363,5 +403,13 @@ public class GymDao {
 		logger.info("result : " + result);
 		return result;
 	}
+
+
+
+
+
+
+
+
 	
 }

@@ -193,15 +193,16 @@ public class GymController implements Controller {
 				data = setData.dataToJson(chartData, "YM");
 				selResult = data;
 			}break;
-			case "jsonGymContentList":{ // 컨텐츠 조회
-				selResult = gLogic.getContentList(pMap);
-			}break;
 			case "jsonGymInfoList":{ // 매장 정보 조회
 				selResult = gLogic.getInfoList(pMap);
 			}break;
 			case "jsonGymReviewList":{ // 후기 조회
 				selResult = gLogic.getReviewList(pMap);
 			}break;
+			case "jsonGymContentList":{ // 컨텐츠 조회
+				selResult = gLogic.getContentList(pMap);
+			}break;
+			/**/
 			case "jsonGymContentList2":{ 
 				//편성경 추가
 				selResult = gLogic.getContentList(pMap);
