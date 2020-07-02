@@ -440,9 +440,6 @@
 		 WHERE typecode = #{gym_no}
 		   AND type = 'gym'
 	</update>
-	
-<<<<<<< HEAD
-=======
 	<delete id="classDel" parameterType="map">
 		DELETE FROM class 
 		WHERE cls_no = #{cls_no}
