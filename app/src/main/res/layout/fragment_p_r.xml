@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 스크롤 뷰 안으로 코드추가 -->
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -20,13 +19,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100sp"
+            android:layout_height="70sp"
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="100sp"
-                android:layout_height="100sp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:src="@drawable/pr_yoga"
+                tools:scaleType="centerCrop" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,41 +36,37 @@
                 <TextView
                     android:paddingBottom="2sp"
                     android:layout_width="match_parent"
-                    android:layout_height="50sp"
+                    android:layout_height="35sp"
                     android:layout_marginLeft="20sp"
                     android:gravity="bottom"
                     android:text="매장명"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="50sp"
+                    android:layout_height="35sp"
                     android:layout_marginLeft="20sp"
                     android:gravity="left"
                     android:text="승현요가원"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <!--구분 라인-->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginTop="20sp"
-            android:background="#000000"/>
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="300sp"
+            android:layout_height="350sp"
             android:layout_marginTop="20sp"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_border" />
+
+            android:src="@drawable/img_pr_test"
+            />
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="225sp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -84,61 +80,63 @@
                     android:layout_height="25sp"
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
+                    app:srcCompat="@drawable/icon_favorite_border" />
 
                 <TextView
                     android:layout_width="25sp"
                     android:layout_height="25sp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="0sp"
-                    android:gravity="center"
+                    android:layout_marginLeft="5sp"
+                    android:gravity="center_vertical"
                     android:text="0"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="60sp"
+                    android:layout_width="50sp"
                     android:layout_height="25sp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20sp"
+                    android:layout_marginLeft="10sp"
                     android:gravity="center_vertical"
                     android:text="등록일: "
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
 
                 <TextView
-                    android:layout_width="120sp"
+                    android:layout_width="75sp"
                     android:layout_height="25sp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="0sp"
                     android:gravity="center_vertical"
                     android:text="2020-07-02"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <!--구분 라인-->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
+                android:layout_height="2px"
                 android:layout_marginTop="0sp"
                 android:layout_marginBottom="0sp"
                 android:background="#000000" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="20sp"
                 android:gravity="top|left"
                 android:inputType="textMultiLine"
-                android:lines="5"
+                android:lines="7"
                 android:maxWidth="5.0dip"
                 android:minWidth="10.0dip"
                 android:scrollHorizontally="false"
                 android:text="텍스트가 들어올 곳입니다.
-                        \n다섯 줄로 제한합니다.
+                        \n일곱 줄로 제한합니다.
                         \n텍스트가 들어올 곳입니다.
-                        \n다섯 줄로 제한합니다.
+                        \n일곱 줄로 제한합니다.
+                        \n텍스트가 들어올 곳입니다.
+                        \n일곱 줄로 제한합니다.
                         \n텍스트가 들어올 곳입니다.
                           "
-                android:textSize="19sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
