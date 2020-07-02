@@ -37,7 +37,7 @@ public class GymProfileActivity extends AppCompatActivity {
         public Fragment getItem(int position) {/* 각 페이지에 표시할 프래그먼트 지정 */
             switch (position){
                 case 0:
-                    return new PRImageFragment();
+                    return new PRFragment();
                 case 1:
                     return new GymggunFragment();
                 case 2:
