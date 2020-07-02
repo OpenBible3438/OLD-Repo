@@ -1,5 +1,7 @@
 package prj.fitness;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,7 @@ public class MemLogic {
 	}
 	
 	public List<Map<String, Object>> getMemDetail(Map<String, Object> pMap){//여유가 되면 Map으로 바꾸자
-		logger.info("MemLogic - getMemDetail() 호출");
+		logger.info("MemLogic - getMemDetail() 호출"+pMap.get("mem_no"));
 		List<Map<String, Object>> memDetail = null;
 		memDetail = mDao.getMemDetail(pMap);
 		return memDetail;
@@ -34,8 +36,7 @@ public class MemLogic {
 	public List<Map<String, Object>> getMemInbody(Map<String, Object> pMap) {
 		logger.info("MemLogic - getMemInbody() 호출");
 		List<Map<String, Object>> memInbodyList = null;
-		memInbodyList = mDao.getMemList(pMap);
-		mbMgr.clossSession(sqlSession);
+		memInbodyList = mDao.getMemInbody(pMap);
 		
 		return memInbodyList;
 	}
@@ -48,37 +49,25 @@ public class MemLogic {
 		logger.info("MemLogic - getMemList() 호출");
 		List<Map<String, Object>> memList = null;
 		memList = mDao.getMemList(pMap);
-		mbMgr.clossSession(sqlSession);
-		
 		return memList;
 	}
 	
 	///////////////////////////////////////////////////////////////
 	
-	public int memIns(Map<String, Object> pMap) {
-		logger.info("MemLogic - memIns() 호출");
-		result = mDao.memIns(pMap);
-		setCommit(result);
-		return result;
-	}
-	
-	public int memUpd(Map<String, Object> pMap) {
-		logger.info("MemLogic - memUpd() 호출");
-		result = mDao.memUpd(pMap);
-		setCommit(result);
-		return result;
-	}
-	
-	public int memDel(Map<String, Object> pMap) {
-		logger.info("MemLogic - memDel() 호출");
-		result = mDao.memDel(pMap);
-		setCommit(result);
-		return result;
-	}
-	
 	public int memInbodyIns(Map<String, Object> pMap) {
 		logger.info("MemLogic - memInbodyIns() 호출");
 		result = mDao.memInbodyIns(pMap);
+		if(result == 1 && pMap.get("filename")!=null) {
+			result = mDao.memInbodyImgIns(pMap);
+			try {
+				((FileInputStream)pMap.get("filedata")).close();
+				if(((File)pMap.get("file")).delete()) {
+					logger.info("파일삭제 성공");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		setCommit(result);
 		return result;
 	}
@@ -93,6 +82,9 @@ public class MemLogic {
 	public int memInbodyDel(Map<String, Object> pMap) {
 		logger.info("MemLogic - memInbodyDel() 호출");
 		result = mDao.memInbodyDel(pMap);
+		if(result == 1) {		
+			result = mDao.memInbodyImgDel(pMap);
+		}
 		setCommit(result);
 		return result;
 	}

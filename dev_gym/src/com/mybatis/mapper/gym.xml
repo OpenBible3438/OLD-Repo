@@ -26,24 +26,33 @@
 	</resultMap>
 <!-- ======================= GYM ======================= -->
 	<select id="getClassList" parameterType="map" resultType="map">
-		SELECT rownum, cls.cls_no, cls.cls_name, cls.cls_kind, cls.cls_cnt, cls.cls_days, cls.cls_s_date
-					 , cls.cls_e_date, cls.cls_price, cls.cls_state, cls.cls_info
-					 , cls.cls_stime, cls.cls_etime, cls.cls_day
-					 , tch.tch_name
+		SELECT rownum, cls.cls_no	
+					 , cls.cls_name
+					 , cls.cls_kind
+					 , cls.cls_cnt
+					 , cls.cls_days
+					 , cls.cls_s_date
+					 , cls.cls_e_date
+					 , cls.cls_info
+					 , cls.cls_price
+					 , cls.cls_state
+					 , cls.cls_stime
+					 , cls.cls_etime
+					 , cls.cls_day
+					 , tch.tch_name 
+					 , tch.tch_no
 					 , type.type_name
-					 , decode(evt.evt_name,'없음','NO','YES') as evt_dName
-					 , evt.evt_seq, evt.evt_name, evt.evt_cont, evt.evt_s_date, evt.evt_e_date, evt.evt_cond
-		  FROM class  cls, teacher tch, type type, event evt
+					 , type.type_no
+		  FROM class cls, teacher tch, type type
 		 WHERE cls.tch_no = tch.tch_no
 		   AND cls.type_no = type.type_no
-		   AND cls.evt_seq = evt.evt_seq
 	<if test="progress!=null and progress.length > 0 ">
 	 	   AND cls.cls_state = #{progress}
 	</if>
 	<if test="cls_no != null">
 	 	   AND cls.cls_no = #{cls_no}
 	</if>
-		<!-- ORDER BY cls_no ASC -->
+		ORDER BY cls_no DESC
 	</select>
 	<!-- 수업 등록 모달 안 강사 -->
 	<select id="getComboList" parameterType="map" resultType="map">
@@ -57,15 +66,26 @@
 		SELECT type_no,type_name FROM type
 	</select>
 	<!-- 자세히 보기 모달 안 event -->
-	<select id="getEventList" parameterType="map" resultType="map">
-		SELECT evt_name, evt_cont, evt_s_date, evt_e_date,evt_cond FROM event
-	</select>
 	
 	<select id="getClassDetail" parameterType="map" resultType="map">
 		SELECT 1 FROM dual
 	</select>
 	<select id="getClassMemList" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
+		SELECT m.mem_id, m.mem_no, m.mem_name, m.mem_nickname, m.mem_gender, m.mem_birth, p.pay_no 
+		  FROM member m, pay p
+		 WHERE m.mem_no = p.mem_no 
+		   AND p.cls_no = #{cls_no}  
+		ORDER BY m.mem_no ASC
+	</select>
+	<select id="getPayMemList" parameterType="map" resultType="map">
+		SELECT rownum rno, mem_no, mem_id, mem_name, mem_nickname, mem_tel, mem_joindate, mem_gender, mem_birth
+		  FROM member
+		 <where>
+		 <if test="mem_no != null">
+		 		AND mem_no = #{mem_no}
+		 </if>
+		 </where>
+		 ORDER BY mem_no asc
 	</select>
 	<select id="getNoticeList" parameterType="map" resultType="map">
 		SELECT not_date, not_time, notice_no, not_title, not_cont, gym_no
@@ -208,6 +228,7 @@
 		SELECT filedata
 		  FROM images
 		 WHERE file_seq = #{file_seq}
+		   AND rownum = 1
 	</select><!-- #{file_seq} -->
 	
 	<!-- 매장 회원가입시 매장 번호 채번  -->
@@ -241,20 +262,55 @@
                           ,'gym'        ,#{gym_no} )
 	</insert>
 	<insert id="classIns" parameterType="map">	
-		INSERT INTO class(
-						  cls_no, gym_no, evt_seq, tch_no, type_no
-						 ,cls_name, cls_kind, cls_s_date, cls_e_date
-						 ,cls_cnt, cls_info, cls_price, cls_state
-						 )
-	              VALUES(
-	              		  func_getclassNo(#{gym_no}),#{gym_no},#{ins_evt_seq},#{ins_tch_no},#{ins_type_no}
-	              		 ,#{ins_cls_name},#{ins_cls_kind},#{ins_cls_s_date},#{ins_cls_e_date}
-	              		 ,#{ins_cls_cnt},#{ins_cls_info},#{ins_cls_price},#{ins_cls_state}
-	              		 )
-	           
+		INSERT INTO class(cls_no
+		                 ,tch_no
+		                 ,gym_no
+		                 ,type_no 
+		                 ,cls_name
+		                 ,cls_kind
+		                 ,cls_cnt
+		                 ,cls_days                
+		                 ,cls_s_date
+		                 ,cls_e_date
+		                 ,cls_info
+		                 ,cls_price
+		                 ,cls_state
+		                 ,cls_like
+		                 ,cls_stime
+		                 ,cls_etime
+		                 ,cls_day)
+		          VALUES ((select max(cls_no)+1 FROM class)
+		                 ,#{ins_tch_no}
+		                 ,#{gym_no}
+		                 ,#{ins_type_no}
+		                 ,#{ins_cls_name}
+		                 ,#{ins_cls_kind}
+		                 ,#{ins_cls_cnt}
+		                 ,func_ESDate(#{ins_cls_e_date},#{ins_cls_s_date})          
+		                 ,#{ins_cls_s_date}
+		                 ,#{ins_cls_e_date}
+		                 ,#{ins_cls_info}
+		                 ,#{ins_cls_price}
+		                 ,#{ins_cls_state}
+		                 ,0
+		                 ,#{ins_cls_sTime}
+		                 ,#{ins_cls_eTime}
+		                 ,#{ins_cls_day})
 	</insert>
 	<insert id="classMemIns" parameterType="map">
-		INSERT into insert_test values('1', '1', '1')
+		INSERT INTO pay(pay_no
+		               ,mem_no
+		               ,cls_no
+		               ,pay_state
+		               ,pay_date
+		               ,pay_time)
+		         VALUES((SELECT max(pay_no)+1 FROM pay)
+		               ,#{c_mem_no}
+		               ,#{cls_no}
+		               ,'매장 결제'
+		               ,to_char(sysdate,'yyyy-mm-dd')
+		               ,to_char(sysdate,'hh24:mi:ss')
+		               )					   
 	</insert>
 	<insert id="gymNoticeIns" parameterType="map">
 		INSERT into notice (notice_no, not_seq, not_title, not_cont, gym_no, not_date, not_time)
@@ -277,15 +333,28 @@
 	</insert>
 	
 	<update id="classUpd" parameterType="map">
-		UPDATE class 
-		   SET evt_seq = #{evt_seq}, tch_no = #{tch_no}, type_no = #{type_no}
-		      ,cls_name = #{cls_name}, cls_kind = #{cls_kind}, cls_s_date = #{cls_s_date}, cls_e_date = #{cls_e_date}
-			  ,cls_cnt = #{cls_cnt}, cls_info = #{cls_info}, cls_price = #{cls_price}, cls_grcode = #{cls_grcode}, cls_state = #{cls_state}
-		 WHERE cls_no = #{cls_no}  
-		   AND gym_no = #{gym_no}
+		  UPDATE class 
+		     SET tch_no = #{upd_tch_no}
+		        ,type_no = #{upd_type_no}
+		        ,cls_name = #{upd_cls_name}
+		        ,cls_kind = #{upd_cls_kind}
+		        ,cls_cnt = #{upd_cls_cnt}
+		        ,cls_days = func_ESDate(#{upd_cls_e_date},#{upd_cls_s_date})
+		        ,cls_s_date = #{upd_cls_s_date}
+		        ,cls_e_date = #{upd_cls_e_date}
+		        ,cls_info = #{upd_cls_info}
+		        ,cls_price = #{upd_cls_price}
+		        ,cls_state = #{upd_cls_state}
+		        ,cls_stime = #{upd_cls_sTime}
+		        ,cls_etime = #{upd_cls_eTime}
+		        ,cls_day = #{upd_cls_day}
+		   WHERE cls_no = #{cls_no}  
+		     AND gym_no = #{gym_no}		   
+		   
 	</update>
+	<!-- 수강생 삭제 버튼이지만 수강생 수정이 일어난다. -->
 	<update id="classMemUpd" parameterType="map">
-		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
+		UPDATE pay SET pay_state='매장 환불' WHERE pay_no = #{pay_no}
 	</update>
 	<update id="gymNoticeUpd" parameterType="map">
 		UPDATE notice set not_title = #{not_title}, not_cont = #{not_cont}
@@ -311,7 +380,8 @@
 	</update>
 	
 	<delete id="classDel" parameterType="map">
-		DELETE insert_test where mem_id = '5'
+		DELETE FROM class 
+		WHERE cls_no = #{cls_no}
 	</delete>
 	<delete id="classMemDel" parameterType="map">
 		DELETE insert_test where mem_id = '5'
