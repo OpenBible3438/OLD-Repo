@@ -93,10 +93,14 @@ public class HashMapBinder {
 		}//////////////////end of if
 		//체크박스 널 체크 
 		if("gym".equals(pMap.get("type"))) {
+			logger.info("체크박스 값 채움");
 			if(!(pMap.containsKey("gym_parking"))) pMap.put("gym_parking", "off");
 			if(!(pMap.containsKey("gym_wash")))    pMap.put("gym_wash", "off");
 			if(!(pMap.containsKey("gym_uniform"))) pMap.put("gym_uniform", "off");
 			if(!(pMap.containsKey("gym_locker")))  pMap.put("gym_locker", "off");
+		}
+		else {
+			logger.info("gym.equalse(type) 아님 " + pMap.get("type"));
 		}
 	}
 	public void binder(Map<String,Object> pMap) {
@@ -111,6 +115,17 @@ public class HashMapBinder {
 			//pMap.put(key,HangulConversion.toUTF(req.getParameter(key)));
 			pMap.put(key,req.getParameter(key));
 			logger.info((++i)+". "+key+": "+pMap.get(key));
+		}
+		logger.info("while문 다음");
+		if("gym".equals(pMap.get("type"))) {
+			logger.info("bind 체크박스 값 채움");
+			if(!(pMap.containsKey("gym_parking"))) pMap.put("gym_parking", "off");
+			if(!(pMap.containsKey("gym_wash")))    pMap.put("gym_wash", "off");
+			if(!(pMap.containsKey("gym_uniform"))) pMap.put("gym_uniform", "off");
+			if(!(pMap.containsKey("gym_locker")))  pMap.put("gym_locker", "off");
+		}
+		else {
+			logger.info("gym.equalse(type) 아님 " + pMap.get("type"));
 		}
 	}
 	

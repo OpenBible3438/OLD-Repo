@@ -109,20 +109,20 @@
 	<!-- 누적 회원 수 가져오기 -->
 	<select id="get_c_accum_members" parameterType="map" resultType="map">
 		SELECT to_char(to_date(y_m, 'YYYY/MM'), 'MM')||'월' mm, accum_members as "누적회원" FROM accum_mem
-		<if test="yy != null">
-			WHERE y_m LIKE '%'||#{yy}||'%'
-		</if>
-		<if test = "yy == null">
-			WHERE y_m LIKE '%'||2020||'%'
+		<if test="cho_year != null">
+			WHERE y_m LIKE '%'||#{cho_year}||'%'
 		</if>
 	</select>
 	<!-- 회원 평균 운동시간 -->
 	<select id="get_c_ex_time_avg"  parameterType="map" resultType="map">
 		SELECT cnt, rng FROM ex_time_avg
+		<if test="cho_year != null">
+			WHERE y_m LIKE '%'||#{cho_year}||'%'
+		</if>
 	</select>
 	<!-- 시간대별 방문자수 평균 -->
 	<select id="get_cnt_mem_extime" parameterType="map"  statementType="CALLABLE">
-		{ call proc_cnt_mem_extime(#{gym_no, mode=IN, jdbcType=VARCHAR} , #{rfc_cnt_mem
+		{ call proc_cnt_mem_extime(#{gym_no}, #{cho_year},  #{rfc_cnt_mem
 											                               ,jdbcType=CURSOR
 											                               ,mode=OUT
 											                               ,javaType=java.sql.ResultSet
@@ -167,6 +167,7 @@
 				                               ,resultMap=gymCont}
 				                               )}
 	</select>
+	<!-- 매장정보 조회 -->
 	<select id="getInfoList" parameterType="map" resultType="map">
 		SELECT gym_id, gym_username, gym_usertell, gym_name, gym_tel, gym_addr, gym_addr_dtl
 		     , gym_zipcode, gym_number, gym_info
@@ -210,7 +211,7 @@
 		SELECT filedata  
 		  FROM images
 		 WHERE type = 'gym'
-		   AND typecode = 5 
+		   AND typecode = 201402
 	</select><!-- #{gym_no} -->
 	
 	<!-- 매장 콘텐츠 정보 가져오기  -->

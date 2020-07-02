@@ -103,7 +103,7 @@ public class GymLogic {
 	}
 
 	public List<Map<String, Object>> get_c_accum_members(Map<String, Object> pMap) {
-		logger.info("GymLogic - getChartList() 호출");
+		logger.info("GymLogic - get_c_accum_members() 호출");
 		List<Map<String, Object>> chartList = null;
 		chartList = gDao.get_c_accum_members(pMap);
 		mbMgr.clossSession(sqlSession);
@@ -142,6 +142,7 @@ public class GymLogic {
 		logger.info("GymLogic - get_tchChart() 호출");
 		List<Map<String, Object>> chartList = null;
 		chartList = gDao.get_tchChart(pMap);
+		
 		mbMgr.clossSession(sqlSession);
 		
 		return chartList;

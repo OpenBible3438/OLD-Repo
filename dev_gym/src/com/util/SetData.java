@@ -22,10 +22,7 @@ public class SetData {
 	public String dataToJson(List<Map<String, Object>> dataList, String std) {
 		String data = null;
 		Map<String, Object> data_map = new HashMap<>();//전체 데이터를 담을 map 선언
-		System.out.println("dataList 출력한다아아ㅏ");
-		 System.out.println(dataList);
-		 logger.info("dataList ========================");
-		 logger.info(dataList);
+		 logger.info("dataList : " + dataList);
 		//키값들을 배열로 세팅하기
 		Set<String> keys_set = dataList.get(0).keySet();
 		String[] keys = new String[keys_set.size()];
@@ -95,11 +92,53 @@ public class SetData {
 		
 		Gson g = new Gson();
 		data = g.toJson(data_map);
-		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-		System.out.println(data);
 		return data;
 	}
 	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	public String switchCol(List<Map<String, Object>> dataList, String std) {
+		logger.info("switchCol() 호출");
+		logger.info("dataList : " + dataList);
+		
+		//키들을 받아서 사용할 순서대로 세팅하기. tch_no, 1월, 2월, ... 순으로
+		Set<String> keyset = dataList.get(0).keySet();
+		String[] keys = new String[keyset.size()];
+		List<String> keyList = new ArrayList<String>();
+		int cnt = 0;
+		for(String key : keyset) {
+			keys[cnt++] = key;
+			logger.info(cnt + ". key = " + key);
+		}
+		List<String> tchList = new ArrayList<String>();
+		for (int i = 0; i < dataList.size(); i++) {
+			tchList.add((String)dataList.get(i).get("tch_name"));
+			logger.info("i : " + i + ", tch_name : " + (String)dataList.get(i).get("tch_name"));
+		}
+		int month = 0;//1~12월을 의미하도록 사용할 변수 선언
+		List<Map<String, Object>> newDataList = new ArrayList<Map<String,Object>>();
+		Map<String, Object> rowMap = null;
+		for(int i=0; i<dataList.size(); i++) {//강사1에 대한 1월부터 12월까지의 정보, 강사 2에 대한 1월부터 ...
+			rowMap = new HashMap<String, Object>();
+			rowMap.put("MONTH", ++month + "월");
+			System.out.println(tchList.size() + "......................");
+			System.out.println(dataList.size() + "===================================");
+			for(int j=0; j<tchList.size(); j++) {
+				System.out.println("tchList.get(i) : " + tchList.get(j));
+				rowMap.put(tchList.get(j), dataList.get(j).get(month + "월"));
+			}
+			newDataList.add(rowMap);
+		}
+		System.out.println("--------------------------------");
+		System.out.println(newDataList);
+		
+		String data = dataToJson(newDataList, "MONTH");
+		System.out.println(data);
+		return data;
+		
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public String dataToJson_Col(List<Map<String, Object>> dataList) {
 			logger.info("dataList : " + dataList);
@@ -163,5 +202,6 @@ public class SetData {
 		   data = dataToJson(changeList, "MON");
 		   return data;
 	}
+	
 	
 }
