@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 햄버거 버튼 클릭하면 나오는 메뉴들 -->
+    <item
+        android:id="@+id/ham_searchGym"
+        android:title="검색하기">
+    </item>
+    <item
+        android:id="@+id/ham_myProfile"
+        android:title="내 프로필">
+    </item>
+    <item
+        android:id="@+id/ham_class"
+        android:title="내 수업">
+    </item>
+</menu>

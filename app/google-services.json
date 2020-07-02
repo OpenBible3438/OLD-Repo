@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "866216632881",
+    "firebase_url": "https://yoginaegym.firebaseio.com",
+    "project_id": "yoginaegym",
+    "storage_bucket": "yoginaegym.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866216632881:android:ac17ba8dd6862e0bbd2b10",
+        "android_client_info": {
+          "package_name": "com.kosmo59.yoginaegym"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866216632881-s4e3nim5081ksgh00895f96oqi2lijt2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kosmo59.yoginaegym",
+            "certificate_hash": "55c40a807a3d2eb32f744d394dd374460433e02e"
+          }
+        },
+        {
+          "client_id": "866216632881-2e3l3tnifik11rnavbmmb9qbh2m2eeht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKrwU5eHiIQzG0LY57G-8lfV-l9niiZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866216632881-2e3l3tnifik11rnavbmmb9qbh2m2eeht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
