@@ -16,7 +16,8 @@
 					<table class="table table-hover" id="tb_mList"
 					 data-toggle="table"
 			  		 data-click-to-select="true"
-			  		 data-pagination="true"					
+			  		 data-pagination="true"
+			  		 data-single-select="true"					
 					>
 						<thead>
 							<tr>

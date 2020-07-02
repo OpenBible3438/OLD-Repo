@@ -27,6 +27,10 @@
 <%@include file="gymNoticeDetail.jsp"%>
 <script src="../../js/kakao.js"></script>
 <style>
+.active {
+  color: red;
+  font-weight: bold;
+}
 .b1 { 
 /* 	border-radius: 30px; */
 	width: 50%;
@@ -278,6 +282,7 @@
       choNotice_no = element.NOTICE_NO;
       choNot_title = element.NOT_TITLE;
   	  choNot_cont = element.NOT_CONT;
+      $(element).addClass('active')
   	  selected = $("input:checkbox[name=btSelectItem]:checked").length;
 		});
     

@@ -54,6 +54,7 @@ public class MyBatisBuilderMgr {
 			this.sqlSes = sqlMapper.openSession();
 //			sqlSes = sqlMapper.openSession();
 		} catch (Exception e) {
+			System.out.println("MyBatisBuiderMgr - openSession");
 			System.out.println("예외가 발생했음. 정상적으로 처리가 안됨. ");
 		}
 		return this.sqlSes; 

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+.active {
+  color: red;
+  font-weight: bold;
+}
+</style>
 <script type="text/javascript">
 <!-- 파일 이미지 로드 하기 -->
 // 전역변수 
@@ -212,6 +218,8 @@
  		$('#tb_tch').on('click-row.bs.table', function (row, $element, field) {
  	         g_element = $element;
  	         //alert(g_element.TCH_NO);
+		      $('.active').removeClass('active')
+		      $($element).addClass('active')
  	    });
 	});/* document ready  끝 */
 	

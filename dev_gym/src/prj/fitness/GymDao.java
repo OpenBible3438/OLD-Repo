@@ -107,9 +107,8 @@ public class GymDao {
 	public List<Map<String, Object>> get_c_accum_members(Map<String, Object> pMap) {
 		logger.info("GymDao - get_c_accum_members() 호출");
 		List<Map<String, Object>> accumList = null;
-		logger.info("&&&&&" + sqlSession);
 		accumList = sqlSession.selectList("get_c_accum_members", pMap);
-		logger.info("chartList.size() : " + accumList.size());
+		logger.info("accumList.size() : " + accumList.size());
 		return accumList;
 	}
 	

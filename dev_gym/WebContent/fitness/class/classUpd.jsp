@@ -78,7 +78,7 @@
 								-->
 								<input type="text" class="form-control input-sm" id="upd_cls_sTime" name="upd_cls_sTime" readonly>
 							</div>
-							<button type="button" class="btn btn-primary btn-xs col-sm-3" onclick="ins_sTime()">시간선택</button>							
+							<button type="button" class="btn btn-primary btn-xs col-sm-3" onclick="upd_sTime()">시간선택</button>							
 						</div>						
 						<div class="form-group row">
 							<label for="upd_cls_eTime" class="col-sm-3 col-form-label"><b>종료 시간&nbsp;&nbsp;</b></label> 
@@ -88,14 +88,59 @@
 								-->
 								<input type="text" class="form-control input-sm" id="upd_cls_eTime" name="upd_cls_eTime" readonly>	
 							</div>
-							<button type="button" class="btn btn-primary btn-xs col-sm-3" onclick="ins_eTime()">시간선택</button>					
-						</div>						
+							<button type="button" class="btn btn-primary btn-xs col-sm-3" onclick="upd_eTime()">시간선택</button>					
+						</div>				
+						
+					
+						
 						<div class="form-group row">
-							<label for="upd_cls_day" class="col-sm-3 col-form-label"><b>수업 요일</b></label> 
-							<div class="col-sm-9">
-								<input type="text" class="form-control input-sm" id="upd_cls_day" name="upd_cls_day">
+							<label for="upd_cls_day" class="col-sm-3 col-form-label"><b>수업 요일</b></label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control input-sm" id="upd_cls_day" name="upd_cls_day" placeholder="요일을 선택하세요." readonly>
 							</div>
-						</div>
+							<button type="button" class="btn btn-primary btn-xs col-sm-3" onclick="upd_checkDay()">선택</button>
+						</div>	
+								
+								
+								
+						<div class="form-group row">					
+							<div class="col-sm-3"></div>		
+							<div class="form-group row col-sm-9" style="padding: 0px 0px 0px 30px;">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" id="upd_cls_day1" class="custom-control-input" value="월">
+									<label class="custom-control-label" for="upd_cls_day1">월&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</div>							
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" id="upd_cls_day2" class="custom-control-input" value="화">
+									<label class="custom-control-label" for="upd_cls_day2">화&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</div>							
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" id="upd_cls_day3" class="custom-control-input" value="수">
+									<label class="custom-control-label" for="upd_cls_day3">수&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</div>							
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" id="upd_cls_day4" class="custom-control-input" value="목">
+									<label class="custom-control-label" for="upd_cls_day4">목&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</div>							
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" id="upd_cls_day5" class="custom-control-input" value="금">
+									<label class="custom-control-label" for="upd_cls_day5">금&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</div>							
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" id="upd_cls_day6" class="custom-control-input" value="토">
+									<label class="custom-control-label" for="upd_cls_day6">토&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</div>							
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" id="upd_cls_day7" class="custom-control-input" value="일">
+									<label class="custom-control-label" for="upd_cls_day7">일&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</div>
+								<!--  
+								<a href="javascript:ins_checkDay()"><font size=2 color=blue> 선택완료 </font></a>
+								-->
+							</div>
+						</div>						
+						
+							
 						<div class="form-group row">
 							<label for="upd_cls_day" class="col-sm-3 col-form-label"><b>수업 횟수</b></label> 
 							<div class="col-sm-9">
@@ -158,7 +203,8 @@
 					<table class="table table-hover" id="tb_tList"
 					 data-toggle="table"
 			  		 data-click-to-select="true"
-			 		 data-pagination="true"				
+			 		 data-pagination="true"	
+			 		 data-single-select="true"			
 					>
 						<thead>
 							<tr>
@@ -208,7 +254,8 @@
 					<table class="table table-hover" id="tb_typeList"
 					 data-toggle="table"
 			  		 data-click-to-select="true"
-			 		 data-pagination="true"				
+			 		 data-pagination="true"	
+			 		 data-single-select="true"			
 					>
 						<thead>
 							<tr>
@@ -235,3 +282,56 @@
 	</div>
 	<!-- 모달 전체 윈도우 -->	
 	<!--============================================================================================================== 수업수정 안 종목검색 Modal 끝 -->
+		<!--============================================================================================================== 수업등록 안 시작시간 Modal 시작 -->
+	<div class="modal fade" id="upd_sTime" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">시작 시간</h4>
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+					</button>
+				</div>	
+				<div class="modal-body">
+					<div>
+						<p>시간을 선택하세요.</p>
+						<input type="text" class="form-control input-sm" id="upd_check_sTime" name="upd_check_sTime" placeholder="입력창을 클릭하세요.">							
+					</div>					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="upd_sTimeCheck()">완료</button>
+				</div>					
+			</div>
+			<!-- 모달 콘텐츠 -->
+		</div>
+		<!-- 모달 다이얼로그 -->
+	</div>
+	<!-- 모달 전체 윈도우 -->	
+	<!--============================================================================================================== 수업등록 안 시작시간 Modal 끝 -->	
+
+	<!--============================================================================================================== 수업등록 안 종료시간 Modal 시작 -->
+	<div class="modal fade" id="upd_eTime" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">종료 시간</h4>
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
+					</button>
+				</div>	
+				<div class="modal-body">
+					<div>
+						<p>시간을 선택하세요.</p>
+						<input type="text" class="form-control input-sm" id="upd_check_eTime" name="upd_check_eTime" placeholder="입력창을 클릭하세요.">							
+					</div>					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="upd_eTimeCheck()">완료</button>
+				</div>					
+			</div>
+			<!-- 모달 콘텐츠 -->
+		</div>
+		<!-- 모달 다이얼로그 -->
+	</div>
+	<!-- 모달 전체 윈도우 -->	
+	<!--============================================================================================================== 수업등록 안 종료시간 Modal 끝 -->	
