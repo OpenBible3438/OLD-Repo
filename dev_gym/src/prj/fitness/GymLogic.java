@@ -156,7 +156,7 @@ public class GymLogic {
 		
 		return gymSaleList;
 	}
-	
+	// 매장 컨테츠 조회
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) {
 		logger.info("GymLogic - getContentList() 호출");
 		List<Map<String, Object>> contentList = null;
@@ -271,24 +271,41 @@ public class GymLogic {
 		setCommit(result);
 		return result;
 	}
-	
+	// 매장 콘텐츠 등록 후 이미지 등록 
 	public int contentIns(Map<String, Object> pMap) {
 		logger.info("GymLogic - contentIns() 호출");
 		result = gDao.contentIns(pMap);
+		if(result == 1) {
+			result = gDao.contentImgIns(pMap);
+			try {
+				((FileInputStream)pMap.get("filedata")).close();
+				if(((File)pMap.get("file")).delete()) {
+					logger.info("파일삭제 성공");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		setCommit(result);
 		return result;
 	}
-	
+	// 매장 콘텐츠 수정 후 이미지 수정 
 	public int contentUpd(Map<String, Object> pMap) {
 		logger.info("GymLogic - contentUpd() 호출");
 		result = gDao.contentUpd(pMap);
+		if(result == 1) {
+			result = gDao.contentImgUpd(pMap);
+		}
 		setCommit(result);
 		return result;
 	}
-	
+	// 매장 콘텐츠 삭제 후 이미지 삭제 
 	public int contentDel(Map<String, Object> pMap) {
 		logger.info("GymLogic - contentDel() 호출");
 		result = gDao.contentDel(pMap);
+		if(result == 1) {
+			result = gDao.contentImgDel(pMap);
+		}
 		setCommit(result);
 		return result;
 	}
@@ -296,6 +313,17 @@ public class GymLogic {
 	public int gymInfoUpd(Map<String, Object> pMap) {
 		logger.info("GymLogic - gymInfoUpd() 호출");
 		result = gDao.gymInfoUpd(pMap);
+		if(result == 1) {
+			result = gDao.gymInfoImgUpd(pMap);
+			try {
+				((FileInputStream)pMap.get("filedata")).close();
+				if(((File)pMap.get("file")).delete()) {
+					logger.info("파일삭제 성공");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		setCommit(result);
 		return result;
 	}

@@ -4,15 +4,14 @@
 <%@include file="gymContentUpd.jsp" %>
 <div style="padding: 20px;">
 <h3><b>매장관리</b> / 컨텐츠
-<br>
-	<button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#contentInsModal">등록</button>
-</h3>
+<button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#contentInsModal">등록</button> </h3>
+<hr>
 <div style="padding-left: 40px; padding-top: 20px">
 <!-- 컨텐츠 -->
 	<!-- jsonGymContentList 로 이동 -->
-	<div id="div_content"></div>
+	<div id="div_content"> </div>
 <!-- 컨텐츠 -->
-
+</div>
 <!-- 삭제버튼 눌렀을 때 모달부분 -->
 <!-- 삭제 Modal -->
 <div class="modal" id="contentDelModal">
@@ -42,16 +41,49 @@
 </div>
 <!-- 삭제 Modal -->
 </div>
-</div>
+
 <script type="text/javascript">
+
+	//파일 첨부시 이미지 로드 하기 
+	function readURLins(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function(e) {
+	        	//img태그 아이디
+            	$('#contentPreviews').attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	//파일첨부 input태그 아이디
+	$("#contentInputImgs").change(function() {
+		//alert("img_check : "+img_check);
+	    readURLins(this);
+	});
+	//파일 첨부시 이미지 로드 하기 
+    function readURLupd(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+            	//img태그 아이디
+            	//alert("파일첨부1 : "+e.target.result);
+                $('#contentUpdPreview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+	//파일첨부 input태그 아이디
+    $("#contentUpdImg").change(function() {
+        readURLupd(this);
+    });
 	function btnUpd(cont_seq){
 		//alert(cont_seq+'번 수정버튼 클릭');
 		$.ajax({
-			 url:"../gym/jsonGymContentList2.gym"
+			 url:"../gym/jsonGymContentList2.gym?cont_seq="+cont_seq
 			,success:function(result){
 				//var imsi = JSON.stringify(result);
 				var contList = JSON.parse(result.trim());
-				var input = contList[cont_seq-1].GYM_CONTENTS;
+				var input = contList[0].GYM_CONTENTS;
 				$("#contents_upd").text(input);
 				$("#contUpd_seq").val(cont_seq);
 			}
@@ -76,14 +108,14 @@
 		$.ajax({
 			 url:"../gym/jsonGymContentList.gym"
 			,success:function(result){
-				//alert(result);
-				$("#div_content").html(result)
-				
+				var datas = result.trim();
+				//alert("data : "+datas);
+				$("#div_content").html(datas)
+				/**/
 				var url = "";
 				var urls = null;
 				$.ajax({
 					method: "post"
-					,data: "typecode=6"
 					,url: "../gym/gymContImage.gym"
 					,success: function(result) {
 						var data = JSON.stringify(result);
@@ -93,16 +125,15 @@
 							var binaryData = jsonDoc[i].filedata;
 							var blob = new Blob([new Uint8Array(binaryData)],{type:'image/png'});
 							url = URL.createObjectURL(blob);
+							//alert("url : "+url);
 							$("#img"+i+"").attr('src',url);
 							//<img src='"+url+"' style='width:250px; height:250px'/>";
 							
 						}
 					}
 				});
+				
 			}
 		});
-		
-		
-		
 	});
 </script>

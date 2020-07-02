@@ -78,8 +78,20 @@ public class MemController implements Controller {
 			case "jsonMemInbody":{ // 인바디 목록 조회
 				selResult = mLogic.getMemInbody(pMap);
 			}break;
+			case "jsonMemInbodyOne":{ // 인바디 조건 검색 조회
+				selResult = mLogic.getMemInbodyOne(pMap);
+			}break;
 			case "jsonMemList":{ // 회원 조회
 				selResult = mLogic.getMemList(pMap);
+			}break;
+			case "jsonMemListOne":{ // 회원 조건검색 
+				selResult = mLogic.getMemListOne(pMap);
+			}break;
+			case "getInbodyImg":{ // 한 회원에 대한 인바디 사진 조회
+				selResult = mLogic.getInbodyImg(pMap);
+			}break;
+			case "jsonOneMemClsList":{ // 한 회원에 대한 등록한 수업 조회
+				selResult = mLogic.getOneMemClsList(pMap);
 			}break;
 		}
 		if(selResult != null) {

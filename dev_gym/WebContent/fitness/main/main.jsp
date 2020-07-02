@@ -55,16 +55,21 @@
 			height: auto;
 		}
 	}
+	/* 이미지 자르기  */
+	.cropping{
+	  	width: 250px;
+	  	height: 250px;
+	  	overflow: hidden;
+	  	margin-left: 20px;
+	}
+	.cropping img{
+		wihth: 100%;
+		height: 100%;
+	  	padding: 0px;
+	}
 </style>
 <!-- =============== main javascript =============== -->
 <script type="text/javascript">
-//전체 조회 처리 구현 - 박준규\
-<!--
-	function memAllList(){
-		location.href="../member/jsonMemList.gym";
-	
-	}
-	-->
   	function picks(center) {
   		//alert("center : "+center);
   		$.ajax({

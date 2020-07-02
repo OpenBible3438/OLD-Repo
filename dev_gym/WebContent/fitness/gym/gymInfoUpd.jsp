@@ -101,7 +101,9 @@
 			<div class="form-group row form-inline ">
 				<label for="gym_profimg" class="col-sm-2"><b>매장 프로필 사진</b></label>
 				<div class="p-1 m-3 continer border rounded">
-					<img id="gym_profimg_img"src="#" style="min-width:200px; min-height:100px"/>
+				<div class="cropping">
+					<img id="gym_profimg_img" src="#" />
+				</div>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -182,6 +184,7 @@
 			  gym_uniform = infoList[0].GYM_UNIFORM;   
 			  gym_locker = infoList[0].GYM_LOCKER;   
 			  gym_like = infoList[0].GYM_LIKE;
+			
 			  
 			  $("#gym_id").text(gym_id);
 			  $("#gym_username").val(gym_username);
@@ -199,6 +202,7 @@
 			  $("#gym_uniform").val(gym_uniform);
 			  $("#gym_locker").val(gym_locker);
 			  $("#gym_like").val(gym_like);
+			 
 			  
 			  if(gym_parking=="on"){
 				  $("input:checkbox[id='gym_parking']").prop("checked", true); 

@@ -25,11 +25,21 @@ public class TchLogic {
 		sqlSession = mbMgr.openSession();
 		this.tDao = new TchDao(sqlSession);
 	}
-	
+	// 강사 전체 조회 
 	public List<Map<String, Object>> getTchList(Map<String, Object> pMap) {
 		logger.info("TchLogic - getTchList() 호출");
 		List<Map<String, Object>> tchList = null;
 		tchList = tDao.getTchList(pMap);
+		
+		mbMgr.clossSession(sqlSession);
+		
+		return tchList;
+	}
+	// 강사 조건 검색 
+	public List<Map<String, Object>> getTchListOne(Map<String, Object> pMap) {
+		logger.info("TchLogic - getTchListOne() 호출");
+		List<Map<String, Object>> tchList = null;
+		tchList = tDao.getTchListOne(pMap);
 		
 		mbMgr.clossSession(sqlSession);
 		
@@ -122,5 +132,7 @@ public class TchLogic {
 			sqlSession.rollback();
 		}
 	}
+
+
 	
 }

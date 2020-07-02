@@ -84,6 +84,9 @@ public class TchController implements Controller {
 			case "jsonTchList":{ // 강사 목록 조회
 				selResult = tLogic.getTchList(pMap);
 			}break;
+			case "jsonTchListOne":{ // 강사 조건 검색 조회 
+				selResult = tLogic.getTchListOne(pMap);
+			}break;
 			case "jsonTchProfile":{ // 강사 프로필 조회
 				selResult = tLogic.getTchProfile(pMap);
 			}break;

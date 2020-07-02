@@ -13,7 +13,7 @@
 			<div class="modal-body">
     <!-- <h2>인바디 보기</h2> -->
 		    	<div class="form-group row">
-					<label for="gym_no" class="col-sm-3 col-form-label ">회원번호</label>
+					<label for="mem_no_d" class="col-sm-3 col-form-label ">회원번호</label>
 					<div class="col-sm-2">
 						<input type="text" style="width:80px;" class="form-control" readonly
 							   id="mem_no_d" >
@@ -34,16 +34,8 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-1" data-spy="scroll" ></div>
 					<div id="inbody_images">
-					<!-- 
-						<img id="iP" class="col-sm-4" src="#" style="margin:20px; width:200px; height:350px">
-						<img id="iP" class="col-sm-4" src="#" style="margin:40px; width:200px; height:350px">
-					</div>
-					<div>
-						<img id="iP" class="col-sm-4" src="#" style="margin:20px; width:200px; height:350px">
-						<img id="iP" class="col-sm-4" src="#" style="margin:40px; width:200px; height:350px">
-						 -->
+						<img id="mem_inbodyImg_d" style="width:400px; height: 600px;">
 					</div>
 				</div>
 			</div>

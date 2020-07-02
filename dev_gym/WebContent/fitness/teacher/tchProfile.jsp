@@ -19,7 +19,9 @@
 		<div border="5" class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
-				<img id="prof_tch_img" style="width:200px; height: 200px">
+				<div class="cropping">
+					<img id="prof_tch_img" >
+				</div>
 			</div>
  			<div class="col-sm-6">
 				<div class="row" style="padding-top: 10px"><!-- col-sm-4 -->
