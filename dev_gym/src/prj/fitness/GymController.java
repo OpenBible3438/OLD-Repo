@@ -184,13 +184,15 @@ public class GymController implements Controller {
 				data = setData.dataToJson(chartData, "DATE_YM");
 				selResult = data;
 			}break;
-			case "tch_salse":{ // 강사별 월별 매출
+			case "chart_tch_salse":{ // 강사별 월별 매출
 				chartData = gLogic.get_tchChart(pMap);
-				selResult = chartData;
+				data = setData.switchCol(chartData, "TCH_NAME");
+				logger.info("*** data : " + data);
+				selResult = data;
 			}break;
 			case "chart_gym_sales":{ // 매장 월별 매출
 				chartData = gLogic.get_gym_sale(pMap);
-				data = setData.dataToJson(chartData, "YM");
+				data = setData.dataToJson(chartData, "MONTH");
 				selResult = data;
 			}break;
 			case "jsonGymContentList":{ // 컨텐츠 조회
@@ -212,9 +214,6 @@ public class GymController implements Controller {
 			mav.addObject("selResult", selResult);
 			if(reqName.contains("chart")) {//차트일 경우 도착지 통일함
 				mav.setViewName("gym/chartResult");
-			}
-			else if(reqName.contains("tch_salse")) {//강사 월별 매출 차트는 형식이 다르므로 따로 지정
-				mav.setViewName("gym/chart_setData_Col_Result");
 			}
 			else{
 				//너가 selResult를 가지고 어디로 갈거니?

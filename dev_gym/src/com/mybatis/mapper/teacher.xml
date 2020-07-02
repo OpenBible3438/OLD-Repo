@@ -76,7 +76,7 @@
 		                   ,tch_gender 
 		                   )
 		             VALUES(#{gym_no}
-		                   ,#{tch_no}
+		                   ,func_get_tch_no(#{tch_gender})
 		                   ,#{tch_id}
 		                   ,#{tch_pw}
 		                   ,#{tch_name}
