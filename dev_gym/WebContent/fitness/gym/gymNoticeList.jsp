@@ -66,7 +66,6 @@
 		else if(selected == 1){
 			$("#m_detail").modal({
 				show : true
-			  , keyboard : true
 			  , focus : true
 			})
 			$.ajax({
@@ -102,7 +101,6 @@
 		$("#not_cont").text("");
 		$("#m_ins_upd").modal({
 			show : true
-		  , keyboard : false
 		  , focus : true
 		})
 	}
@@ -118,7 +116,6 @@
 			$("#not_cont").text(choNot_cont);
 			$("#m_ins_upd").modal({
 				show : true
-			  , keyboard : false
 			  , focus : true
 			})
 		}
