@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".teacher.TchManageActivity"></activity>
+        <activity android:name=".common.ContentActivity"></activity>
+        <activity android:name=".teacher.TchManageActivity" />
         <activity android:name=".teacher.TchMainActivity" />
         <activity android:name=".gym.GymProfileActivity" />
         <activity android:name=".gym.GymSearchActivity" />

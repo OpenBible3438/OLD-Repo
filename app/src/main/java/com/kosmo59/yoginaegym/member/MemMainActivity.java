@@ -1,13 +1,18 @@
 package com.kosmo59.yoginaegym.member;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.ContentActivity;
 import com.kosmo59.yoginaegym.gym.GymSearchActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MemMainActivity extends AppCompatActivity {
 
@@ -50,5 +55,27 @@ public class MemMainActivity extends AppCompatActivity {
                 //내 수업 눌렀을 때
             }
         });
+
+        BottomNavigationView bottom = findViewById(R.id.bottom_nav);
+        bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.bot_nav_home:
+                        break;
+                    case R.id.bot_nav_qr:
+                        break;
+                    case R.id.bot_nav_cont:
+                        Intent intent = new Intent(MemMainActivity.this, ContentActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.bot_nav_msg:
+                        break;
+
+                }
+                return false;
+            }
+        });
+
     }
 }
