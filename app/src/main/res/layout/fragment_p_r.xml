@@ -6,10 +6,141 @@
 
     <!-- 스크롤 뷰 안으로 코드추가 -->
 
-    <LinearLayout
-        android:orientation="vertical"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30sp"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarStyle="outsideInset"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100sp"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:paddingBottom="2sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:layout_marginLeft="20sp"
+                    android:gravity="bottom"
+                    android:text="매장명"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:layout_marginLeft="20sp"
+                    android:gravity="left"
+                    android:text="승현요가원"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--구분 라인-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="20sp"
+            android:background="#000000"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300sp"
+            android:layout_marginTop="20sp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_border" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="225sp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
+
+                <TextView
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0sp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="60sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20sp"
+                    android:gravity="center_vertical"
+                    android:text="등록일: "
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="120sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0sp"
+                    android:gravity="center_vertical"
+                    android:text="2020-07-02"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <!--구분 라인-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="0sp"
+                android:layout_marginBottom="0sp"
+                android:background="#000000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="20sp"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:maxWidth="5.0dip"
+                android:minWidth="10.0dip"
+                android:scrollHorizontally="false"
+                android:text="텍스트가 들어올 곳입니다.
+                        \n다섯 줄로 제한합니다.
+                        \n텍스트가 들어올 곳입니다.
+                        \n다섯 줄로 제한합니다.
+                        \n텍스트가 들어올 곳입니다.
+                          "
+                android:textSize="19sp" />
+
+        </LinearLayout>
 
 
     </LinearLayout>
