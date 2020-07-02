@@ -47,7 +47,6 @@ dependencies {
     //firebase - Cloud Messaging
     implementation 'com.google.firebase:firebase-messaging:20.2.1'
     implementation 'org.jetbrains:annotations-java5:15.0'
-    //원형 이미지
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
 
 }
