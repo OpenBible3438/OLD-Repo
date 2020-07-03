@@ -48,5 +48,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.2.1'
     implementation 'org.jetbrains:annotations-java5:15.0'
 
+    //원형 이미지
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    
+    //리사이클러뷰, 카드뷰
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
 }
