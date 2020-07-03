@@ -9,9 +9,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.kosmo59.yoginaegym.R;
+
 import android.os.Bundle;
 
-public class GymProfileActivity extends AppCompatActivity {
+public class GymProfileActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
