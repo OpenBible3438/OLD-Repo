@@ -17,10 +17,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".common.ContentActivity"></activity>
         <activity android:name=".teacher.TchManageActivity" />
         <activity android:name=".teacher.TchMainActivity" />
-        <activity android:name=".gym.GymProfileActivity" />
+        <activity android:name=".gym.GymProfileActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/kakaoNativeAppkey"
+                    android:host="kakaolink" />
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakaoNativeAppkey" />
         <activity android:name=".gym.GymSearchActivity" />
         <activity android:name=".sample.sample2" />
         <activity android:name=".member.MemProfileActivity" />
