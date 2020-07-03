@@ -2,6 +2,7 @@ package prj.fitness;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -26,14 +27,14 @@ public class MemLogic {
 		this.mDao = new MemDao(sqlSession);
 	}
 	// 회원 자세히 보기 
-	public List<Map<String, Object>> getMemDetail(Map<String, Object> pMap){//여유가 되면 Map으로 바꾸자
+	public List<Map<String, Object>> getMemDetail(Map<String, Object> pMap) throws SQLException {//여유가 되면 Map으로 바꾸자
 		logger.info("MemLogic - getMemDetail() 호출"+pMap.get("mem_no"));
 		List<Map<String, Object>> memDetail = null;
 		memDetail = mDao.getMemDetail(pMap);
 		return memDetail;
 	}
 	// 인바디 전체 조회 
-	public List<Map<String, Object>> getMemInbody(Map<String, Object> pMap) {
+	public List<Map<String, Object>> getMemInbody(Map<String, Object> pMap) throws SQLException {
 		logger.info("MemLogic - getMemInbody() 호출");
 		List<Map<String, Object>> memInbodyList = null;
 		memInbodyList = mDao.getMemInbody(pMap);
@@ -41,7 +42,7 @@ public class MemLogic {
 		return memInbodyList;
 	}
 	// 인바디 조건 검색 
-	public Object getMemInbodyOne(Map<String, Object> pMap) {
+	public Object getMemInbodyOne(Map<String, Object> pMap) throws SQLException {
 		logger.info("MemLogic - getMemInbodyOne() 호출");
 		List<Map<String, Object>> memInbodyList = null;
 		memInbodyList = mDao.getMemInbodyOne(pMap);
@@ -49,7 +50,7 @@ public class MemLogic {
 		return memInbodyList;
 	}
 	// 한 회원에 대한 인바디 이미지 불러오기 
-	public List<Map<String, Object>> getInbodyImg(Map<String, Object> pMap) {
+	public List<Map<String, Object>> getInbodyImg(Map<String, Object> pMap) throws SQLException {
 		logger.info("MemLogic - getMemInbody() 호출");
 		List<Map<String, Object>> inbodyList = null;
 
@@ -59,7 +60,7 @@ public class MemLogic {
 		return inbodyList;
 	}
 	// 한 회원에 대한 등록한 수업 조회 
-	public List<Map<String, Object>> getOneMemClsList(Map<String, Object> pMap) {
+	public List<Map<String, Object>> getOneMemClsList(Map<String, Object> pMap) throws SQLException {
 		logger.info("MemLogic - getMemInbody() 호출");
 		List<Map<String, Object>> classList = null;
 
@@ -73,14 +74,14 @@ public class MemLogic {
 	 * @param pMap - 파라미터 값 담기
 	 * @return - List<Map> -> Gson -> json포맷
 	 ***************************************************************************************************/
-	public List<Map<String, Object>> getMemList(Map<String, Object> pMap) {
+	public List<Map<String, Object>> getMemList(Map<String, Object> pMap) throws SQLException {
 		logger.info("MemLogic - getMemList() 호출");
 		List<Map<String, Object>> memList = null;
 		memList = mDao.getMemList(pMap);
 		return memList;
 	}
 	// 회원 조건 검색 
-	public List<Map<String, Object>> getMemListOne(Map<String, Object> pMap) {
+	public List<Map<String, Object>> getMemListOne(Map<String, Object> pMap) throws SQLException {
 		logger.info("MemLogic - getMemListOne() 호출");
 		List<Map<String, Object>> memList = null;
 		memList = mDao.getMemListOne(pMap);
@@ -89,7 +90,7 @@ public class MemLogic {
 	
 	///////////////////////////////////////////////////////////////
 	
-	public int memInbodyIns(Map<String, Object> pMap) {
+	public int memInbodyIns(Map<String, Object> pMap) throws SQLException {
 		logger.info("MemLogic - memInbodyIns() 호출");
 		result = mDao.memInbodyIns(pMap);
 		if(result == 1 && pMap.get("filename")!=null) {
@@ -107,14 +108,14 @@ public class MemLogic {
 		return result;
 	}
 	
-	public int memInbodyUpd(Map<String, Object> pMap) {
+	public int memInbodyUpd(Map<String, Object> pMap) throws SQLException {
 		logger.info("MemLogic - memInbodyUpd() 호출");
 		result = mDao.memInbodyUpd(pMap);
 		setCommit(result);
 		return result;
 	}
 	
-	public int memInbodyDel(Map<String, Object> pMap) {
+	public int memInbodyDel(Map<String, Object> pMap) throws SQLException {
 		logger.info("MemLogic - memInbodyDel() 호출");
 		result = mDao.memInbodyDel(pMap);
 		if(result == 1) {		

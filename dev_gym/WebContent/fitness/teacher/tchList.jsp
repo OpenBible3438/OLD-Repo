@@ -25,6 +25,7 @@
 	function profile(){
 		alert("프로필관리 클릭");
 		if(g_element != null) {
+			$('#tch_info_seq').val(g_element.TCH_INFO_SEQ);
 		    $("#prof_tch_id").val(g_element.TCH_ID);
 		    $("#prof_tch_no").val(g_element.TCH_NO);
 		    $("#prof_tch_name").val(g_element.TCH_NAME);
@@ -218,8 +219,8 @@
  		$('#tb_tch').on('click-row.bs.table', function (row, $element, field) {
  	         g_element = $element;
  	         //alert(g_element.TCH_NO);
-		      $('.active').removeClass('active')
-		      $($element).addClass('active')
+		     //$('.active').removeClass('active')
+		     //$($element).addClass('active')
  	    });
 	});/* document ready  끝 */
 	
@@ -286,10 +287,11 @@ img.img {
 					<th data-field="TCH_TEL">전화번호</th>
 					<th data-field="TCH_ADDR">주소</th>
 					<th data-field="TCH_GENDER">성별</th>
-					<th class="d-none"  data-field="TCH_INTRO">자기소개</th>
-					<th class="d-none"  data-field="TCH_CAREER">경력사항</th>
-					<th class="d-none"  data-field="TCH_LIKE">좋아요</th>
-					<th class="d-none"  data-field="FILE_SEQ">프로필 사진번호</th>
+					<th class="d-none" data-field="TCH_INFO_SEQ">프로필번호</th>
+					<th class="d-none" data-field="TCH_INTRO">자기소개</th>
+					<th class="d-none" data-field="TCH_CAREER">경력사항</th>
+					<th class="d-none" data-field="TCH_LIKE">좋아요</th>
+					<th class="d-none" data-field="FILE_SEQ">프로필 사진번호</th>
 				</tr>
 			</thead>
 		

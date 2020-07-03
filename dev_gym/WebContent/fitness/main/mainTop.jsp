@@ -3,7 +3,9 @@
 <!-- --> 
 <div class="jumbotron text-center" style="padding-top:0; padding-bottom: 0;
                                           margin-bottom:0; height: 120px;">
-  <img alt="" src="../../images/logo.png" style="width:230px; height:120px; padding:0; margin:0;"/>
+  <a href="javascript:picks('home')">
+  	<img alt="" src="../../images/logo.png" style="width:230px; height:120px; padding:0; margin:0;"/>
+  </a>
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">

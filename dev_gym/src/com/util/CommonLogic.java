@@ -95,9 +95,9 @@ public class CommonLogic {
 			if(pageMove[0].equals("redirect")) {
 				logger.info("redirect");
 				logger.info("pageMove.length : " + pageMove.length);
-				if(pageMove.length==4) {
-					path = pageMove[1]+".jsp?result="+pageMove[2] +"&autoSel=" + pageMove[3];
-					logger.info("pageMove.length==4 // 이동할 페이지 : " + path );
+				if(pageMove.length == 3) {
+					path = pageMove[1]+".jsp?result="+pageMove[2];
+					logger.info("pageMove.length==3 // 이동할 페이지 : " + path );
 					res.sendRedirect(path);
 				}
 				else {

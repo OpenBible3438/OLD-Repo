@@ -45,7 +45,9 @@
 	            $('#gym_addr').val(addrDoc.address);
 	            $('#gym_zipcode').val(addrDoc.zonecode);
 	           	//alert("addrDoc.sido : "+addrDoc.sido);
-	            $('#gym_sido').val(addrDoc.sido);
+	           	var sido = addrDoc.sido;
+	            $('#gym_sido').val(sido.trim());
+	           	//alert("sido.trim() : "+sido.trim());
 	         	// 주소로 위도, 경도 정보를 검색
                 geocoder.addressSearch(addrDoc.address, function(results, status) {
                 	// 정상적으로 검색이 완료됐으면
@@ -70,11 +72,7 @@
 	function joinINS() {
 		if(id_check == 0) {
 			if(pw_check == 0) {
-				if(img_check != "") {
-					$('#gym_join').submit();
-				} else {
-					alert("이미지를 등록 해주세요 ");
-				}
+				$('#gym_join').submit();
 			} else {
 				alert("비밀번호를 확인 해주세요 ");
 			}
@@ -142,10 +140,12 @@
 			if(gym_pw == gym_pw_2) {
 				//alert("확인되었습니다");
 				$('#pw_icon').html('<i class="material-icons" style="font-size:36px;color:green">done</i>');
+				$('#j_gym_pw_ok').val(gym_pw);
 				pw_check = 0;
 			} else {
 				//alert("비밀번호가 다릅니다.");
 				$('#pw_icon').html('<i class="material-icons" style="font-size:36px;color:red">clear</i>');
+				$('#j_gym_pw_ok').val('');
 				pw_check = 1;
 			}
 		} else {

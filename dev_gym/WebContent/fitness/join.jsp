@@ -21,7 +21,8 @@
 				<input type="hidden" class="form-control" name="type" value="gym">
 				<input type="hidden" class="form-control" id="gym_lat" name="gym_lat">
 				<input type="hidden" class="form-control" id="gym_lng" name="gym_lng">
-				<input type="hidden" class="form-control" id="j_gym_id_ok" name="j_gym_id">
+				<input type="hidden" class="form-control" id="j_gym_id_ok" name="j_gym_id" required>
+				<input type="hidden" class="form-control" id="j_gym_pw_ok" name="j_gym_pw" required>
 				<input type="text" class="form-control isvalid" id="j_gym_id" required>
 			</div>
 			<div class="col-sm-3">
@@ -33,7 +34,7 @@
 			<label for="gym_pw" class="col-sm-2 col-form-label" >비밀번호</label>
 			<div class="col-sm-5">
 				<input type="password" class="form-control" required
-					   id="j_gym_pw" name="j_gym_pw" placeholder="8자리 이상 입력하세요" >
+					   id="j_gym_pw" placeholder="8자리 이상 입력하세요" >
 			</div>
 		</div>
 		<div class="form-group row">
@@ -113,7 +114,7 @@
 		<div class="form-group row">
 			<div class="col-sm-2" ></div>
 			<div class="col-sm-5">
-				<input type="file" class="form-control-file border" id="gym_profimg" name="img" accept=".gif, .jpg, .png">
+				<input type="file" class="form-control-file border" id="gym_profimg" name="img" accept=".gif, .jpg, .png" required>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -142,7 +143,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="submit" class="btn btn-primary" onclick="joinINS()">가입</button><!--   -->
+			<button type="button" class="btn btn-primary" onclick="joinINS()">가입</button><!--   -->
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		</div>
 	</form>
