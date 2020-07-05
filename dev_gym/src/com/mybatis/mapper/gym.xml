@@ -2,21 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.gymMapper">
 
-	<resultMap id="gymLogin" type="map"/>
+	<resultMap id="gymLogin" type="map">
+		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
+	</resultMap>
 
-	
 	<resultMap id="chart_newmem" type="map"/>
 	
 	<resultMap id="chart_mem_extime" type="map"/>
-
 	
 	<resultMap id="chart_tchChart" type="map"/>
 	
 	<resultMap id="chart_gym_sale" type="map"/>
 	
-	<resultMap id="gymCont" type="map"/>
+	<resultMap id="gymContMap" type="map">
+		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
+	</resultMap>
 	
-	<resultMap id="getImage" type="object">
+		
+	
+	<resultMap id="getImage" type="Object">
 		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
 	</resultMap>
 	
@@ -26,21 +30,34 @@
 	</resultMap>
 <!-- ======================= GYM ======================= -->
 	<select id="getClassList" parameterType="map" resultType="map">
-		SELECT rownum, cls.cls_no, cls.cls_name, cls.cls_kind, cls.cls_cnt, cls.cls_days, cls.cls_s_date
-					 , cls.cls_e_date, cls.cls_price, cls.cls_state, cls.cls_info
-					 , cls.cls_stime, cls.cls_etime, cls.cls_day
-					 , tch.tch_name , tch.tch_no
-					 , type.type_name, type.type_no
-		  FROM class  cls, teacher tch, type type
+		SELECT rownum, cls.cls_no	
+					 , cls.cls_name
+					 , cls.cls_kind
+					 , cls.cls_cnt
+					 , cls.cls_days
+					 , cls.cls_s_date
+					 , cls.cls_e_date
+					 , cls.cls_info
+					 , cls.cls_price
+					 , cls.cls_state
+					 , cls.cls_stime
+					 , cls.cls_etime
+					 , cls.cls_day
+					 , tch.tch_name 
+					 , tch.tch_no
+					 , type.type_name
+					 , type.type_no
+		  FROM class cls, teacher tch, type type
 		 WHERE cls.tch_no = tch.tch_no
 		   AND cls.type_no = type.type_no
+		   AND tch.gym_no = #{gym_no}
 	<if test="progress!=null and progress.length > 0 ">
 	 	   AND cls.cls_state = #{progress}
 	</if>
 	<if test="cls_no != null">
 	 	   AND cls.cls_no = #{cls_no}
 	</if>
-		<!-- ORDER BY cls_no ASC -->
+		ORDER BY cls_no DESC
 	</select>
 	<!-- 수업 등록 모달 안 강사 -->
 	<select id="getComboList" parameterType="map" resultType="map">
@@ -54,10 +71,6 @@
 		SELECT type_no,type_name FROM type
 	</select>
 	<!-- 자세히 보기 모달 안 event -->
-	
-	<select id="getClassDetail" parameterType="map" resultType="map">
-		SELECT 1 FROM dual
-	</select>
 	<select id="getClassMemList" parameterType="map" resultType="map">
 		SELECT m.mem_id, m.mem_no, m.mem_name, m.mem_nickname, m.mem_gender, m.mem_birth, p.pay_no 
 		  FROM member m, pay p
@@ -78,39 +91,30 @@
 	<select id="getNoticeList" parameterType="map" resultType="map">
 		SELECT not_date, not_time, notice_no, not_title, not_cont, gym_no
 		  FROM notice
-		<where>
-			<if test="gym_no!=null and gym_no.length>0">
-				AND gym_no = #{gym_no}
-			</if>
-			<if test="notice_no!=null and notice_no.length>0">
-				AND notice_no = #{notice_no}
-			</if>
-			<if test="not_title!=null and not_title.length>0">
-				AND not_title LIKE '%'||#{not_title}||'%'
-			</if>
-			<if test="not_cont!=null and not_cont.length>0">
-				AND not_cont LIKE '%'||#{not_cont}||'%'
-			</if>
-		</where>
+		 WHERE gym_no = #{gym_no}
+		<if test="msg != null">
+		   AND ((not_title LIKE '%'||#{msg}||'%')
+  				OR  (substr(not_date,6)  LIKE '%'||#{msg}||'%'))
+		</if>
 		 ORDER BY notice_no DESC
 	</select>
 	<!-- 누적 회원 수 가져오기 -->
 	<select id="get_c_accum_members" parameterType="map" resultType="map">
 		SELECT to_char(to_date(y_m, 'YYYY/MM'), 'MM')||'월' mm, accum_members as "누적회원" FROM accum_mem
-		<if test="yy != null">
-			WHERE y_m LIKE '%'||#{yy}||'%'
-		</if>
-		<if test = "yy == null">
-			WHERE y_m LIKE '%'||2020||'%'
+		<if test="cho_year != null">
+			WHERE y_m LIKE '%'||#{cho_year}||'%'
 		</if>
 	</select>
 	<!-- 회원 평균 운동시간 -->
 	<select id="get_c_ex_time_avg"  parameterType="map" resultType="map">
 		SELECT cnt, rng FROM ex_time_avg
+		<if test="cho_year != null">
+			WHERE y_m LIKE '%'||#{cho_year}||'%'
+		</if>
 	</select>
 	<!-- 시간대별 방문자수 평균 -->
 	<select id="get_cnt_mem_extime" parameterType="map"  statementType="CALLABLE">
-		{ call proc_cnt_mem_extime(#{gym_no, mode=IN, jdbcType=VARCHAR} , #{rfc_cnt_mem
+		{ call proc_cnt_mem_extime(#{gym_no}, #{cho_year},  #{rfc_cnt_mem
 											                               ,jdbcType=CURSOR
 											                               ,mode=OUT
 											                               ,javaType=java.sql.ResultSet
@@ -146,26 +150,60 @@
 								                               )}
 	</select>
 	
+	<!-- 매장 컨텐츠 전체 조회  -->
 	<select id="getContentList" parameterType="map" statementType="CALLABLE">
 		<!-- ==========편성경여기========== -->
-			{ call proc_GymContList(#{gym_no}, #{gymCont
+			{ call proc_GymContList(#{gym_no}, #{gymContList
 				                               ,jdbcType=CURSOR
 				                               ,mode=OUT
 				                               ,javaType=java.sql.ResultSet
-				                               ,resultMap=gymCont}
+				                               ,resultMap=gymContMap}
 				                               )}
 	</select>
+	<!-- 매장콘텐츠 하나 조회 -->
+	<select id="getContentListOne" parameterType="map" statementType="CALLABLE">
+		<!-- ==========편성경여기========== -->
+			{ call proc_GymContListOne(#{gym_no},#{cont_seq}, #{gymContList
+				                               ,jdbcType=CURSOR
+				                               ,mode=OUT
+				                               ,javaType=java.sql.ResultSet
+				                               ,resultMap=gymContMap}
+				                               )}
+	</select>
+	<!-- 매장정보 조회 -->
 	<select id="getInfoList" parameterType="map" resultType="map">
 		SELECT gym_id, gym_username, gym_usertell, gym_name, gym_tel, gym_addr, gym_addr_dtl
 		     , gym_zipcode, gym_number, gym_info
-		     , gym_parking, gym_wash, gym_uniform, gym_locker, gym_like
-		  FROM gym
-		 WHERE gym_no = #{gym_no} 
+		     , gym_parking, gym_wash, gym_uniform, gym_locker, gym_like, i.file_seq
+		  FROM gym g, images i
+		 WHERE rownum = 1 
+		   AND i.type = 'gym'
+		   AND i.typecode = gym_no
+		   AND gym_no = #{gym_no}
 	</select>
 	<select id="getReviewList" parameterType="map" resultType="map">
 		<!-- ==========편성경여기========== -->
-		SELECT rev_seq, rev_cont, rev_date, rev_time, rev_star, rev_up, rev_down
-		  FROM REVIEW
+			SELECT   
+			         r.rev_seq    -- 리뷰 번호 
+			        ,r.rev_kind   -- 리뷰 종류
+			        ,g.gym_name   -- 매장 명
+			        ,t.tch_name   -- 강사 이름
+			        ,c.cls_name   -- 수업 명
+			        ,r.rev_cont   -- 리뷰 내용
+			        ,r.rev_date   -- 리뷰 등록 날짜
+			        ,r.rev_time   -- 리뷰 등록 시간
+			        ,r.rev_star   -- 리뷰 별점
+			        ,r.rev_up     -- 리뷰 공감
+			        ,r.rev_down   -- 리뷰 비공감
+			  FROM review r, pay p, teacher t, class c, gym g
+			 WHERE R.PAY_NO = P.PAY_NO
+			   AND P.CLS_NO = C.CLS_NO
+			   AND C.TCH_NO = T.TCH_NO
+			   AND T.GYM_NO = G.GYM_NO
+			   AND G.GYM_NO = #{gym_no}
+			  <if test="rev_kind != null and rev_kind.length > 0">
+			  	  AND R.REV_KIND = #{rev_kind}
+			  </if>
 	</select>
 	<!-- 매장 로그인  -->
 	<select id="getLogin" parameterType="map" resultType="map">
@@ -183,6 +221,7 @@
 						                           ,javaType=java.sql.ResultSet
 						                           ,resultMap=gymLogin})}
 	</select>
+	
 	<!-- 매장 아이디 중복확인  -->
 	<select id="getIdConfirm" parameterType="map" resultType="int">
 		SELECT nvl((
@@ -192,23 +231,34 @@
 	                  AND gym_id = #{gym_id} ),0) as ok
 	  	  FROM dual
 	</select>
+	<!-- 매장 회원가입시 강사 아이디도 중복확인  -->
+	<select id="getIdConfirm2" parameterType="map" resultType="int">
+		SELECT nvl((
+		            SELECT count(tch_id)
+                      FROM teacher
+                     WHERE rownum=1
+                       AND tch_id = #{gym_id}),0) as ok
+          FROM dual
+	</select>
 	
 	<!-- 매장 프로필 사진 가져오기  -->
 	<select id="gymProfImage" parameterType="map" resultMap="getImage">
 		SELECT filedata  
 		  FROM images
 		 WHERE type = 'gym'
-		   AND typecode = 5 
+		   AND typecode = 201402
 	</select><!-- #{gym_no} -->
 	
 	<!-- 매장 콘텐츠 정보 가져오기  -->
 	<select id="gymContImage" parameterType="map" resultMap="getCont">
-		SELECT filename, filesize, filedata
-		  FROM images
-		 WHERE type = 'gym'
-		   <if test="file_seq != null">
-		   AND file_seq = #{file_seq}
-		   </if>
+		SELECT 
+               i.filedata
+          FROM gym_contents c, gym g, images i
+         WHERE c.gym_no = g.gym_no
+           AND i.type = 'gymCont'
+           AND i.typecode = c.gym_cont_seq
+           AND c.gym_no = #{gym_no}
+         ORDER BY gym_cont_seq
 	</select><!-- #{gym_no} --><!--  AND typecode = 6 -->
 	
 	<!-- 이미지 가져오기  -->
@@ -220,8 +270,12 @@
 	</select><!-- #{file_seq} -->
 	
 	<!-- 매장 회원가입시 매장 번호 채번  -->
-	<select id="getGymNo" resultType="int">
-		SELECT max(gym_no)+1 FROM gym
+	<select id="getGymNo" parameterType="map" resultType="int">
+		SELECT 
+		       to_number( to_char(sysdate,'yy')
+		       ||func_getSidoNum(#{gym_sido})
+		       ||func_getGymRowNo(#{gym_sido}) )
+		  FROM dual
 	</select>
 	
 	<!-- insert ========================================= -->
@@ -238,18 +292,74 @@
                         ,#{gym_number} ,#{gym_info} ,#{gym_lat} ,#{gym_lng}
                         ,#{gym_parking}  ,#{gym_wash}  ,#{gym_uniform}  ,#{gym_locker}  ,0 )
 	</insert>
-	<!-- 매장 회원가입 프로필사진 인서트 --><!-- (SELECT max(file_seq)+1 FROM images) -->
+	<!-- 매장 회원가입 프로필사진 인서트 -->
 	<insert id="gymJoinImg" parameterType="map">
 		INSERT INTO images(file_seq
 		                  ,filename     ,filesize
 		                  ,filedata
 		                  ,type         ,typecode)
-                    VALUES((SELECT max(file_seq)+1 FROM images)
+                    VALUES(seq_images.nextval
                           ,#{filename}  ,#{filesize}
                           ,#{filedata   ,jdbcType=LONGVARBINARY} 
                           ,'gym'        ,#{gym_no} )
 	</insert>
-	<insert id="classIns" parameterType="map">	
+	<!-- 매장 회원 가입 시 디폴트 강사 인서트 -->
+	<insert id="gymJoinTch" parameterType="map">
+		INSERT INTO teacher(gym_no
+		                   ,tch_no
+		                   ,tch_id
+		                   ,tch_pw
+		                   ,tch_name
+		                   ,tch_tel
+		                   ,tch_addr 
+		                   ,tch_addr_dtl 
+		                   ,tch_zipcode
+		                   ,tch_gender 
+		                   )
+		             VALUES(#{gym_no}
+		                   ,9999
+		                   ,#{j_gym_id}
+		                   ,#{j_gym_pw}
+		                   ,#{gym_name}
+		                   ,#{gym_tel}
+		                   ,#{gym_addr} 
+		                   ,#{gym_addr_dtl} 
+		                   ,#{gym_zipcode}
+		                   ,'매장' )
+	</insert> 
+	<!-- 매장 회원 가입 시 디폴트 강사 이미지 인서트 -->
+	<insert id="gymJoinTchImg" parameterType="map">
+		INSERT INTO images(file_seq
+		                  ,filename
+		                  ,filesize
+		                  ,filedata
+		                  ,type
+		                  ,typecode)
+		            VALUES(seq_images.nextval
+		                  ,#{filename}
+		                  ,#{filesize}
+		                  ,#{filedata}
+		                  ,'tch'
+		                  ,(#{gym_no ,jdbcType=NUMERIC}||9999)
+		                  )
+	</insert>
+	<!-- 매장 회원 가입 시 디폴트 강사 프로필 인서트 -->
+	<insert id="gymJoinTchProf" parameterType="map">
+		INSERT INTO tch_info(tch_info_seq
+		                    ,gym_no
+		                    ,tch_no
+		                    ,tch_intro
+		                    ,tch_career
+		                    ,tch_like)
+	                  VALUES(seq_tchprof.nextval
+	                        ,#{gym_no} 
+	                        ,9999
+	                        ,#{gym_name}||' 매장 이용'
+	                        ,'-'
+	                        ,0)	
+	</insert>
+	<!-- 수업 등록  -->
+	<insert id="classIns" parameterType="map">
 		INSERT INTO class(cls_no
 		                 ,tch_no
 		                 ,gym_no
@@ -267,7 +377,7 @@
 		                 ,cls_stime
 		                 ,cls_etime
 		                 ,cls_day)
-		          VALUES ((select max(cls_no)+1 FROM class)
+		          VALUES ((SELECT func_getClsNo(#{ins_type_no}) FROM dual)
 		                 ,#{ins_tch_no}
 		                 ,#{gym_no}
 		                 ,#{ins_type_no}
@@ -292,7 +402,7 @@
 		               ,pay_state
 		               ,pay_date
 		               ,pay_time)
-		         VALUES((SELECT max(pay_no)+1 FROM pay)
+		         VALUES((SELECT func_getPayNo() FROM dual)
 		               ,#{c_mem_no}
 		               ,#{cls_no}
 		               ,'매장 결제'
@@ -300,25 +410,63 @@
 		               ,to_char(sysdate,'hh24:mi:ss')
 		               )					   
 	</insert>
+	<!-- 공지사항 등록  -->
 	<insert id="gymNoticeIns" parameterType="map">
 		INSERT into notice (notice_no, not_seq, not_title, not_cont, gym_no, not_date, not_time)
-		VALUES(func_getnoticeno(#{gym_no}), seq_notice.nextval, #{not_title}, #{not_cont}, #{gym_no}, TO_CHAR(sysdate, 'YYYY-MM-DD'), TO_CHAR(sysdate, 'HH:mm:ss'))
+		VALUES(func_getnoticeno(#{gym_no}), seq_notice.nextval, #{not_title}, #{not_cont}, #{gym_no}
+		, TO_CHAR(sysdate, 'YYYY-MM-DD'), TO_CHAR(sysdate, 'hh24:mi:ss'))
 	</insert>
-	<insert id="chartIns" parameterType="map">
-		INSERT into insert_test values('1', '1', '1')
-	</insert>
+	
+	<!-- 매장 컨텐츠 번호 채번  -->
+	<select id="getContentNo" resultType="int">
+		SELECT seq_gym_content.nextval as "gym_cont_seq" FROM dual
+	</select>
+	<!-- 매장 컨텐츠 등록 -->
 	<insert id="contentIns" parameterType="map">
 		<!-- ==========편성경여기========== -->
-		<!-- INSERT into GYM_CONTENTS (gym_cont_seq, gym_no,gym_contents,gym_cont_like, gym_cont_date, gym_cont_time) 
-		values('6','1',#{cont_contents},'0', to_char(sysdate,'YYYY-MM-DD'), to_char(sysdate, 'HH24:MI:SS')) -->
-		{ call proc_GymContIns(#{gym_no},#{gym_contents}, to_char(sysdate,'YYYY-MM-DD'), to_char(sysdate, 'HH24:MI:SS')
-							  ,#{filename}
-							  ,#{filesize}
-							  ,#{filedata,jdbcType=LONGVARBINARY}
-							  ,#{result
-	                            ,jdbcType=VARCHAR
-	                            ,mode=OUT}) }
+		<!--  -->
+		INSERT into GYM_CONTENTS(gym_cont_seq
+		                        ,gym_no
+		                        ,gym_contents
+		                        ,gym_cont_like
+		                        ,gym_cont_date
+		                        ,gym_cont_time) 
+		                  values(#{gym_cont_seq}
+		                        ,#{gym_no}
+		                        ,#{cont_contents}
+		                        ,0
+		                        ,to_char(sysdate,'YYYY-MM-DD')
+		                        ,to_char(sysdate, 'HH24:MI:SS'))
 	</insert>
+	<insert id="contentImgIns" parameterType="map">
+		<!-- ==========편성경여기========== -->
+			INSERT INTO images(file_seq
+	                          ,filename     ,filesize
+	                          ,filedata
+	                          ,type         ,typecode)
+                        VALUES(seq_images.nextval
+                              ,#{filename}  ,#{filesize}
+                              ,#{filedata   ,jdbcType=LONGVARBINARY} 
+                              ,'gymCont'    ,#{gym_cont_seq} )
+	</insert>
+	
+	<!-- 매장 콘텐츠 수정  -->
+	<update id="contentUpd" parameterType="map">
+		<!-- ==========편성경여기========== -->
+		UPDATE GYM_CONTENTS set gym_contents = #{contents_upd} 
+		 WHERE gym_cont_seq = #{contUpd_seq}
+	</update>
+	
+	<!-- 매장 콘텐츠 이미지 수정  -->
+	<update id="contentImgUpd" parameterType="map">
+		<!-- ==========편성경여기========== -->
+		UPDATE images 
+		   set filedata = #{filedata ,jdbcType=LONGVARBINARY } 
+		      ,filename = #{filename}
+		      ,filesize = #{filesize}
+		 WHERE typecode = #{contUpd_seq}
+		   AND type = 'gymCont'
+	</update>
 	
 	<update id="classUpd" parameterType="map">
 		  UPDATE class 
@@ -349,16 +497,15 @@
 		 WHERE notice_no = #{notice_no}
 		   AND gym_no = #{gym_no}
 	</update>
+	
 	<update id="chartUpd" parameterType="map">
-		UPDATE insert_test set mem_name='1' WHERE mem_id='1'
+		UPDATE in
+		sert_test set mem_name='1' WHERE mem_id='1'
 	</update>
-	<update id="contentUpd" parameterType="map">
-		<!-- ==========편성경여기========== -->
-		UPDATE GYM_CONTENTS set gym_contents = #{contents_upd} 
-		 WHERE gym_cont_seq = #{contUpd_seq}
-	</update>
+	<!-- 매장 수정하기  -->
 	<update id="gymInfoUpd" parameterType="map">
-		UPDATE gym set gym_pw = #{gym_pw}, gym_username = #{gym_username}
+		UPDATE gym 
+		   set gym_pw = #{gym_pw}, gym_username = #{gym_username}
 			 , gym_usertell = #{gym_usertell}, gym_tel = #{gym_tel}
 			 , gym_addr = #{gym_addr}, gym_addr_dtl = #{gym_addr_dtl}
 			 , gym_number = #{gym_number}, gym_info = #{gym_info}
@@ -366,25 +513,37 @@
 			 , gym_locker = #{gym_locker}, gym_uniform = #{gym_uniform}
 		 WHERE gym_no = #{gym_no}
 	</update>
+	<!-- 매장 이미지 수정하기 -->
+	<update id="gymInfoImgUpd" parameterType="map">
+		UPDATE images 
+		   set filedata = #{filedata ,jdbcType=LONGVARBINARY } 
+		      ,filename = #{filename}
+		      ,filesize = #{filesize}
+		 WHERE typecode = #{gym_no}
+		   AND type = 'gym'
+	</update>
 	
 	<delete id="classDel" parameterType="map">
-		DELETE insert_test where mem_id = '5'
+		DELETE FROM class 
+		WHERE cls_no = #{cls_no}
 	</delete>
-	<delete id="classMemDel" parameterType="map">
-		DELETE insert_test where mem_id = '5'
-	</delete>
+	
 	<delete id="gymNoticeDel" parameterType="map">
 		DELETE notice
 		WHERE gym_no = #{gym_no}
 		  AND notice_no = #{notice_no}
 	</delete>
-	<delete id="chartDel" parameterType="map">
-		DELETE insert_test where mem_id = '5'
-	</delete>
+	
 	<delete id="contentDel" parameterType="map">
 		<!-- ==========편성경여기========== -->
 		DELETE GYM_CONTENTS 
 		 WHERE gym_cont_seq = #{contDel_seq}
+	</delete>
+	<delete id="contentImgDel" parameterType="map">
+		<!-- ==========편성경여기========== -->
+		DELETE images 
+		 WHERE typecode = #{contDel_seq}
+		   AND type = 'gymCont'
 	</delete>
 	
 </mapper>

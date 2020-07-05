@@ -21,7 +21,8 @@
 				<input type="hidden" class="form-control" name="type" value="gym">
 				<input type="hidden" class="form-control" id="gym_lat" name="gym_lat">
 				<input type="hidden" class="form-control" id="gym_lng" name="gym_lng">
-				<input type="hidden" class="form-control" id="j_gym_id_ok" name="j_gym_id">
+				<input type="hidden" class="form-control" id="j_gym_id_ok" name="j_gym_id" required>
+				<input type="hidden" class="form-control" id="j_gym_pw_ok" name="j_gym_pw" required>
 				<input type="text" class="form-control isvalid" id="j_gym_id" required>
 			</div>
 			<div class="col-sm-3">
@@ -33,7 +34,7 @@
 			<label for="gym_pw" class="col-sm-2 col-form-label" >비밀번호</label>
 			<div class="col-sm-5">
 				<input type="password" class="form-control" required
-					   id="j_gym_pw" name="j_gym_pw" placeholder="8자리 이상 입력하세요" >
+					   id="j_gym_pw" placeholder="8자리 이상 입력하세요" >
 			</div>
 		</div>
 		<div class="form-group row">
@@ -106,7 +107,9 @@
 		</div>
 		<div class="form-group row">
 			<label for="gym_profimg" class="col-sm-2 col-form-label">매장 프로필 사진</label>
-			<img id="gym_profimg_img"src="#" class="col-sm-7" style="min-width:200px; min-height:100px"/>
+			<div class="cropping">
+				<img id="gym_profimg_img"/>
+			</div>
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-2" ></div>
@@ -117,8 +120,7 @@
 		<div class="form-group row">
 			<label for="gym_info" class="col-sm-2 col-form-label">매장소개</label>
 			<div class="col-sm-8">
-				<textarea class="form-control" id="gym_info" name="gym_info" required>
-				</textarea>
+				<textarea class="form-control" id="gym_info" name="gym_info" required></textarea>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -140,7 +142,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="submit" class="btn btn-primary" onclick="joinINS()">가입</button><!--   -->
+			<button type="button" class="btn btn-primary" onclick="joinINS()">가입</button><!--   -->
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		</div>
 	</form>
@@ -162,20 +164,13 @@
             var reader = new FileReader();
             reader.onload = function(e) {
             	//img태그 아이디
-            	//alert("파일첨부1 : "+e.target.result);
-            	img_check =  $("#gym_profimg").val();
-    			//alert("img_check : "+img_check);
-    			if(img_check != "") {
-                	$('#gym_profimg_img').attr('src', e.target.result);
-    			}
+               	$('#gym_profimg_img').attr('src', e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
         }
     }
 	//파일첨부 input태그 아이디
     $("#gym_profimg").change(function() {
-    	img_check =  $("#gym_profimg").val();
-    	//alert("img_check : "+img_check);
         readURL(this);
     });
 </script>

@@ -29,8 +29,7 @@
 	    	</div>
 			<!-- Modal Footer 부분 -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">확인</button>
-				<button type="button" class="btn btn-danger">닫기</button>			
+				<button type="button" class="btn btn-danger" onclick="$('#InbodyfindNo').modal('hide')">닫기</button>			
 			</div>
 		</div>
 	</div>

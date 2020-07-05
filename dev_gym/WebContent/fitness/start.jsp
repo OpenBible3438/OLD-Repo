@@ -18,6 +18,18 @@
 	width: 70%;
 	margin: auto;
 }
+/* 이미지 자르기  */
+.cropping{
+  	width: 250px;
+  	height: 250px;
+  	overflow: hidden;
+  	margin-left: 20px;
+}
+.cropping img{
+	wihth: 100%;
+	height: 100%;
+  	padding: 0px;
+}
 </style>
 <script type="text/javascript">
 	var id_check = 1;
@@ -33,7 +45,9 @@
 	            $('#gym_addr').val(addrDoc.address);
 	            $('#gym_zipcode').val(addrDoc.zonecode);
 	           	//alert("addrDoc.sido : "+addrDoc.sido);
-	            $('#gym_sido').val(addrDoc.sido);
+	           	var sido = addrDoc.sido;
+	            $('#gym_sido').val(sido.trim());
+	           	//alert("sido.trim() : "+sido.trim());
 	         	// 주소로 위도, 경도 정보를 검색
                 geocoder.addressSearch(addrDoc.address, function(results, status) {
                 	// 정상적으로 검색이 완료됐으면
@@ -58,11 +72,7 @@
 	function joinINS() {
 		if(id_check == 0) {
 			if(pw_check == 0) {
-				if(img_check != "") {
-					$('#gym_join').submit();
-				} else {
-					alert("이미지를 등록 해주세요 ");
-				}
+				$('#gym_join').submit();
 			} else {
 				alert("비밀번호를 확인 해주세요 ");
 			}
@@ -71,22 +81,25 @@
 		}
 	}
 	function login() {
-		alert("로그인");
+		//alert("로그인");
 		var gym_id = $('#gym_id').val();
 		var gym_pw = $('#gym_pw').val();
 		//alert("gym_id : "+gym_id+", gym_pw : "+ gym_pw);
 		$.ajax({  //enctype="multipart/form-data",contentType : false,processData : false
 			method:'post'
 			,data: 'gym_id='+gym_id+'&gym_pw='+gym_pw
+			,dataType: 'json'
 			,url: './gym/jsonLogin.gym'
 			,success: function(data) {
-				//alert("data : "+data.trim());
-				var confirm = data.trim().split("/");
-				if("login" == confirm[0]) {
-					alert(confirm[1]);
-					location.href = "./main/main.jsp"
+				//alert("data : "+data);
+				var result = JSON.stringify(data);
+				var confirm = JSON.parse(result);
+				//var confirm = data.trim().split("/");
+				if("login" == confirm[0].confirm) {
+					alert("로그인 성공");
+					location.href = "./main/main.jsp";
 				} else {
-					alert(confirm[1]);
+					alert(confirm[0].confirm);
 				}
 				
 			}
@@ -130,10 +143,12 @@
 			if(gym_pw == gym_pw_2) {
 				//alert("확인되었습니다");
 				$('#pw_icon').html('<i class="material-icons" style="font-size:36px;color:green">done</i>');
+				$('#j_gym_pw_ok').val(gym_pw);
 				pw_check = 0;
 			} else {
 				//alert("비밀번호가 다릅니다.");
 				$('#pw_icon').html('<i class="material-icons" style="font-size:36px;color:red">clear</i>');
+				$('#j_gym_pw_ok').val('');
 				pw_check = 1;
 			}
 		} else {

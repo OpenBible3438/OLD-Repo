@@ -27,10 +27,9 @@
 <%@include file="gymNoticeDetail.jsp"%>
 <script src="../../js/kakao.js"></script>
 <style>
-.b1 { 
-/* 	border-radius: 30px; */
-	width: 50%;
-	margin: 5px;
+.active {
+  color: red;
+  font-weight: bold;
 }
 
 </style>
@@ -84,12 +83,11 @@
 		
 	}
 	function notSearch(){
-		var not_title = $("#search_title").val();
-		var not_cont = $("#search_cont").val();
-		alert("not_title : " + not_title + ", not_cont : " + not_cont);
+		var searchNot = $("#searchNot").val();
+		//alert("not_title : " + not_title + ", not_cont : " + not_cont);
 		$('#tb_nList').bootstrapTable('refreshOptions', {
-	           url: '../gym/jsonGymNoticeList.gym?not_title='+not_title+"&not_cont="+not_cont
-	        });
+	    	url: '../gym/jsonGymNoticeList.gym?msg='+searchNot
+	    });
 	}
 	function startIns(){
 		$("#m_title").text("공지사항 등록");
@@ -143,16 +141,28 @@
 			location.href = "gymNoticeDel.gym?cud=del&notice_no=" + choNotice_no;
 	}
 	function noticeSave(){
-		$("#m_ins_upd").modal({
-			show : false
-		});
-		if($("#cud").val()=="ins"){
-			$("#f_ins_upd").attr('action', "../gym/gymNoticeIns.gym")
-			$("#f_ins_upd").submit();
-		}
-		else if($("#cud").val()=="upd"){
-			$("#f_ins_upd").attr('action', "../gym/gymNoticeUpd.gym")
-			$("#f_ins_upd").submit();
+		//등록창과 수정창이 같다...
+		//not_title//not_cont
+		var title = $('#not_title').val().trim();
+		var not_cont = $('#not_cont').val().trim();
+		if(title != "") {
+			if(not_cont != "") {
+				$("#m_ins_upd").modal({
+					show : false
+				});
+				if($("#cud").val()=="ins"){
+					$("#f_ins_upd").attr('action', "../gym/gymNoticeIns.gym")
+					$("#f_ins_upd").submit();
+				}
+				else if($("#cud").val()=="upd"){
+					$("#f_ins_upd").attr('action', "../gym/gymNoticeUpd.gym")
+					$("#f_ins_upd").submit();
+				}
+			} else {
+				alert("내용을 입력하세요 ");	
+			}
+		} else {
+			alert("제목을 입력하세요 ");
 		}
 	}
 	 function sendLink() {
@@ -204,34 +214,33 @@
    <hr>
     <!--=========================== 내용 시작 ===========================-->
 	<div style="padding-left: 40px; padding-top: 20px">
-<br>
 		<!--=========================== 검색부분 시작 ===========================-->
-		<div class="input-group" style="width:50%; min-width:450px;">
-	    	<span class="input-group-text">제목</span>
-    		<input type="text" id="search_title" name = "search_title" class="form-control" placeholder="제목으로 검색">
-    		<span class="input-group-text"  style="margin-left:10px;">내용</span>
-    		<input type="text" class="form-control" id="search_cont" name = "search_cont" placeholder="내용으로 검색">
-			<button type="button" class="btn btn-secondary" style="margin-left:10px;" onClick="notSearch()">검색</button>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+		    	<span class="input-group-text">🔍</span>
+		    </div>
+		    <div class="col-xs-4">
+		    	<input id="searchNot" type="text" class="form-control" placeholder="제목  or 날짜 ">
+			</div>&nbsp;
+			<button type="button" class="btn btn-secondary" onClick="notSearch()">검색</button>  
 		</div>
 		<!--=========================== 검색부분 끝 ===========================-->
-		<br>
 		<!--=========================== 버튼부분 시작 =========================== -->
-		<div id="button" class="btn-group" style="width:50%; min-width:500px; margin-bottom:15px">
-			<button type="button" class="b1 btn btn-primary m-1" onClick="noticeList()">전체조회</button>
-			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="showDetail()">상세조회</button>
-			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="startIns()">등록</button>
-			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="startUpd()">수정</button>
-			<button type="button" class="b1 btn btn-primary m-1" data-toggle="modal" onClick="startDel()">삭제</button>
-		</div>
+		<button type="button" class="btn btn-primary" onClick="noticeList()">전체조회</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" onClick="showDetail()">상세조회</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" onClick="startIns()">등록</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" onClick="startUpd()">수정</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" onClick="startDel()">삭제</button>
 		<!--=========================== 버튼부분 끝 =========================== -->
-<br>
+		<p></p>
 			<!--=========================== 테이블 부분 시작 ===========================-->
 		<table id="tb_nList" class="table table-bordered"
-		 data-toggle="table"
-		 data-url= '../gym/jsonGymNoticeList.gym'
-  		 data-click-to-select="true"
- 		 data-pagination="true"
-		>
+				 data-toggle="table"
+				 data-url= '../gym/jsonGymNoticeList.gym'
+		  		 data-click-to-select="true"
+		  		 data-single-select="true"
+		 		 data-pagination="true"
+				>
 			<thead>
 				<tr>
 					<th data-checkbox=true>체크</th>
@@ -278,6 +287,7 @@
       choNotice_no = element.NOTICE_NO;
       choNot_title = element.NOT_TITLE;
   	  choNot_cont = element.NOT_CONT;
+      $(element).addClass('active')
   	  selected = $("input:checkbox[name=btSelectItem]:checked").length;
 		});
     

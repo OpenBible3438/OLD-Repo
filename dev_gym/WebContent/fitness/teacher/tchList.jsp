@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+.active {
+  color: red;
+  font-weight: bold;
+}
+</style>
 <script type="text/javascript">
 <!-- 파일 이미지 로드 하기 -->
 // 전역변수 
@@ -9,7 +15,7 @@
     var g_element = null;
 //전체조회	
 	function tchList() {
-		alert("전체 조회");
+		//alert("전체 조회");
 		$('#tb_tch').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.`
 	    	url: '../teacher/jsonTchList.gym'
     	});
@@ -17,8 +23,9 @@
 	}
 //프로필보기
 	function profile(){
-		alert("프로필관리 클릭");
+		//alert("프로필관리 클릭");
 		if(g_element != null) {
+			$('#tch_info_seq').val(g_element.TCH_INFO_SEQ);
 		    $("#prof_tch_id").val(g_element.TCH_ID);
 		    $("#prof_tch_no").val(g_element.TCH_NO);
 		    $("#prof_tch_name").val(g_element.TCH_NAME);
@@ -205,15 +212,33 @@
 // 		}
 // 	});
 	function tchIns() {
-		$('#tch_insF').submit();
+		var img = $('#img').val();
+		if(img != "") {
+			$('#tch_insF').submit();
+		} else {
+			alert("이미지를 등록 해주세요 ");
+		}
 	}
 
  	$(document).ready(function() {	
  		$('#tb_tch').on('click-row.bs.table', function (row, $element, field) {
  	         g_element = $element;
  	         //alert(g_element.TCH_NO);
+		     //$('.active').removeClass('active')
+		     //$($element).addClass('active')
  	    });
 	});/* document ready  끝 */
+	
+	function tchSearch() {
+		//alert("강사번호 클릭 ");
+		var msg = $('#searchTch').val();
+		//alert("강사검색 : "+msg);
+		/* */
+		$('#tb_tch').bootstrapTable('refreshOptions', {
+        	url: "../teacher/jsonTchListOne.gym?msg="+msg
+		});
+		
+	}
 </script>
 
 <!-- 이미지 스타일 -->
@@ -226,71 +251,57 @@ img.img {
   height: 100%;
 }
 </style>
-
 <!-- 버튼 스타일 -->
- <style>
-.b1{ 
-	border-radius: 50px;
-	width: 100%;
-}
-
-</style>
-<div class="container">
-<h4><b><br>강사관리 | 전체 강사 관리</b></h4>
-<br>
+<div style="padding: 20px;">
+	<h3><b>강사관리</b> / 전체 강사 관리</h3>   <!-- 제목 틀 입니다. -->
+	<hr>
+	<div style="padding-left: 40px; padding-top: 20px"> <!-- 내용 틀 입니다. -->
 		<!--=========================== 검색부분 시작 ===========================-->
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-		    	<span class="input-group-text">이름</span>
+		    	<span class="input-group-text">🔍</span>
 		    </div>
 		    <div class="col-xs-4">
-		    	<input type="text" id="search_title" name = "search_title" class="form-control" placeholder="이름으로 검색하세요">
-			</div> 
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="input-group-prepend">
-		    	<span class="input-group-text">번호</span>
-		    </div>
-		    <div class="col-xs-4">
-		    	<input type="text" class="form-control" placeholder="번호로 검색하세요">
-			</div>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-secondary">검색</button>
+		    	<input id="searchTch" type="text" class="form-control" placeholder="강사번호 or 강사이름 ">
+			</div>&nbsp;
+			<button type="button" class="btn btn-secondary" onClick="tchSearch()">검색</button>  
 		</div>
 		<!--=========================== 검색부분 끝 ===========================-->
-<!-- 검색부분 -->
-<div class="btn-group" id="button_group" style="width:70%">
-	<button type="button" class="b1 btn-primary m-1" onclick="tchList()">전체조회</button>
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#ins">등록</button>
-<!-- 	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#upd" onclick="tchUpd()">수정</button> -->
-	<!-- <button type="button" class="b1 btn-primary m-1" data-toggle="modal" onclick="tchDel()">삭제</button> -->
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" onclick="profile()">프로필관리</button>
-	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" onclick="infoOn()">맡은 수업 보기</button> <!-- data-target="#info" -->
-</div>
-<br>
+		<!-- 검색부분 -->
+		<button type="button" class="btn btn-primary" onclick="tchList()">전체조회</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ins">등록</button>
+	<!-- 	<button type="button" class="b1 btn-primary m-1" data-toggle="modal" data-target="#upd" onclick="tchUpd()">수정</button> -->
+		<!-- <button type="button" class="b1 btn-primary m-1" data-toggle="modal" onclick="tchDel()">삭제</button> -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" onclick="profile()">프로필관리</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" onclick="infoOn()">맡은 수업 보기</button> <!-- data-target="#info" -->
+		<p></p>
 <!-- 테이블 부분 -->
-<table id="tb_tch" 
-       class="table table-bordered" 
-       data-toggle="table"
-	   data-url="../teacher/jsonTchList.gym"
-	   data-click-to-select="true"
-	   data-single-select="true"
-	   data-pagination="true">
-	<thead>
-		<tr align="center">
-			<th data-field="TCH_NO">강사번호</th>
-			<th data-field="TCH_ID">강사아이디</th>
-			<th data-field="TCH_NAME">강사이름</th>
-			<th data-field="TCH_TEL">전화번호</th>
-			<th data-field="TCH_ADDR">주소</th>
-			<th data-field="TCH_GENDER">성별</th>
-			<th class="d-none"  data-field="TCH_INTRO">자기소개</th>
-			<th class="d-none"  data-field="TCH_CAREER">경력사항</th>
-			<th class="d-none"  data-field="TCH_LIKE">좋아요</th>
-			<th class="d-none"  data-field="FILE_SEQ">프로필 사진번호</th>
-		</tr>
-	</thead>
-
-</table>
+		<table id="tb_tch" 
+		       class="table table-bordered" 
+			   data-url="../teacher/jsonTchList.gym"
+			   data-toggle="table"
+  	           data-click-to-select="true"
+               data-single-select="true"
+               data-pagination="true">
+			<thead>
+				<tr align="center">
+					<th data-checkbox=true>체크</th>
+					<th data-field="TCH_NO">강사번호</th>
+					<th data-field="TCH_ID">강사아이디</th>
+					<th data-field="TCH_NAME">강사이름</th>
+					<th data-field="TCH_TEL">전화번호</th>
+					<th data-field="TCH_ADDR">주소</th>
+					<th data-field="TCH_GENDER">성별</th>
+					<th class="d-none" data-field="TCH_INFO_SEQ">프로필번호</th>
+					<th class="d-none" data-field="TCH_INTRO">자기소개</th>
+					<th class="d-none" data-field="TCH_CAREER">경력사항</th>
+					<th class="d-none" data-field="TCH_LIKE">좋아요</th>
+					<th class="d-none" data-field="FILE_SEQ">프로필 사진번호</th>
+				</tr>
+			</thead>
+		
+		</table>
+	</div>
 </div>
 <!-- 테이블 부분 -->
 

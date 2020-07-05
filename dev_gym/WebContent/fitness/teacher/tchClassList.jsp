@@ -12,23 +12,22 @@
 			</div>
 			<!-- Modal Body 부분 -->
 			<div class="info_body">
-<table id="infoTable" class="table table-bordered" data-toggle="table"
-									data-click-to-select="true"
-									data-pagination="true"><!-- data-url="../teacher/jsonTchClass.gym" -->
-		<thead>
-		<tr align="center">
-			<th data-field="TCH_NAME">강사이름</th>
-			<th data-field="CLS_NO">수업번호</th>
-			<th data-field="CLS_NAME">수업명</th>
-			<th data-field="CLS_KIND">종목</th>
-			<th data-field="CLS_INFO">소개</th>
-			<th data-field="CLS_PRICE">가격</th>
-			<th data-field="CLS_LIKE">좋아요 수</th>
-			<th data-field="CLS_STATE">진행상태</th>
-
-		</tr>
-		</thead>
-</table>
+				<table id="infoTable" class="table table-bordered" data-toggle="table"
+													data-click-to-select="true"
+													data-pagination="true"><!-- data-url="../teacher/jsonTchClass.gym" -->
+					<thead>
+						<tr align="center">
+							<th data-field="TCH_NAME">강사이름</th>
+							<th data-field="CLS_NO">수업번호</th>
+							<th data-field="CLS_NAME">수업명</th>
+							<th data-field="CLS_KIND">종목</th>
+							<th data-field="CLS_INFO">소개</th>
+							<th data-field="CLS_PRICE">가격</th>
+							<th data-field="CLS_LIKE">좋아요 수</th>
+							<th data-field="CLS_STATE">진행상태</th>
+						</tr>
+					</thead>
+				</table>
 			</div>
 <!-- Modal Footer 부분 -->
 			<div class="modal-footer">

@@ -9,7 +9,6 @@
  	List<Map<String,Object>> selResult = (List<Map<String,Object>>)request.getAttribute("selResult");         
 %>
 <%
-   List<Map<String, Object>> listVer3 = new ArrayList<Map<String,Object>>();
    //데이터 만들기 오라클에서 가져온 데이터 
    int monthStr[] = {1,2,3,4,5,6,7,8,9,10,11,12};
    

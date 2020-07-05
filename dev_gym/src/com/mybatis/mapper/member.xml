@@ -3,18 +3,47 @@
 <mapper namespace="com.mybatis.mapper.memberMapper">
 	
 	<!-- 인바디 리스트를 가져오는 맵 -->
-	<resultMap type="map" id="getMemInbody"/>
+	<resultMap type="map" id="memInbodyMap"/>
 	
+	<resultMap type="map" id="gymMemOneMap"/>
+	
+	<resultMap type="map" id="ibdOneMap"/>
+	
+	<resultMap type="map" id="gymMemMap"/>
+	
+	<resultMap type="map" id="oneMemClsMap"/>
+	
+	<resultMap id="inbodyImgMap" type="object">
+		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
+	</resultMap>
 <!-- ======================= Member ======================= -->
-	<select id="getMemList" parameterType="map" resultType="map">
-		SELECT rownum rno, mem_no, mem_id, mem_name, mem_nickname, mem_tel, mem_joindate, mem_gender
-		 FROM  member
-		 <where>
-		 <if test="mem_no != null">
-		 		AND mem_no = #{mem_no}
-		 </if>
-		 </where>
-		 ORDER BY mem_no asc
+<!-- 회원관리에서 전체보기를 눌렀을 때 -->
+	<select id="getMemList" parameterType="map" statementType="CALLABLE">
+		{ call proc_GymMemListVer2(#{gym_no}, #{gymMemList
+					                       ,jdbcType=CURSOR
+					                       ,mode=OUT
+					                       ,javaType=java.sql.ResultSet
+					                       ,resultMap=gymMemMap}) 
+					                       }		
+	</select>
+<!-- 회원관리에서 조건검색 눌렀을 때 -->
+	<select id="getMemListOne" parameterType="map" statementType="CALLABLE">
+		{ call proc_GymMemListOne(#{gym_no},#{msg}, #{gymMemOneList
+								                       ,jdbcType=CURSOR
+								                       ,mode=OUT
+								                       ,javaType=java.sql.ResultSet
+								                       ,resultMap=gymMemOneMap}) 
+								                       }		
+	</select>
+	
+	<!-- 한 회원이 등록한 수업 목록 보기  -->
+	<select id="getOneMemClsList" parameterType="map" statementType="CALLABLE">
+		{ call proc_OneMemClsList(#{gym_no},#{mem_no}, #{oneMemClsList
+								                       ,jdbcType=CURSOR
+								                       ,mode=OUT
+								                       ,javaType=java.sql.ResultSet
+								                       ,resultMap=oneMemClsMap}) 
+								                       }		
 	</select>
 	<select id="getMemDetail" parameterType="map" resultType="map">
 		SELECT m.mem_no, mem_name, mem_id, mem_nickname, mem_gender, mem_tel
@@ -25,13 +54,29 @@
 			 		AND m.mem_no = #{mem_no}
 			 </if>		 
 	</select>
-	<!-- 인바디 케이블 리스트 가져오기  -->
+	<!-- 인바디 테이블 리스트 가져오기  -->
 	<select id="getMemInbody" parameterType="map" statementType="CALLABLE">
 			{ call proc_MemIbdList(#{gym_no}, #{inbodyList
 						                       ,jdbcType=CURSOR
 						                       ,mode=OUT
 						                       ,javaType=java.sql.ResultSet
-						                       ,resultMap=getMemInbody}) }
+						                       ,resultMap=memInbodyMap}) }
+	</select>
+	<!-- 인바디 테이블 조건 검색  -->
+	<select id="getMemInbodyOne" parameterType="map" statementType="CALLABLE">
+			{ call proc_MemIbdListOne(#{gym_no},#{msg}, #{ibdOneList
+						                                 ,jdbcType=CURSOR
+						                                 ,mode=OUT
+						                                 ,javaType=java.sql.ResultSet
+						                                 ,resultMap=ibdOneMap}) }
+	</select>
+	<!-- 한 회원에 대한 이미지 가져오기  -->
+	<select id="getInbodyImg" parameterType="map" statementType="CALLABLE">
+			{ call proc_MemIbdImgs(#{mem_no}, #{inbodyImgList
+						                       ,jdbcType=CURSOR
+						                       ,mode=OUT
+						                       ,javaType=java.sql.ResultSet
+						                       ,resultMap=inbodyImgMap}) }
 	</select>
 	<!-- 인바디 등록할 때 인바디 번호 채번  -->
 	<select id="getInbodySeq" parameterType="map" resultType="int">
@@ -59,19 +104,14 @@
                   		  ,filedata
                   		  ,type
                   		  ,typecode)
-            		VALUES((SELECT nvl(max(file_seq)+1,0) FROM images)
+            		VALUES(seq_images.nextval
                   		 ,#{filename}	
 	                  	 ,#{filesize}
 	                     ,#{filedata}
 	                     ,'ibd'
 	                     ,#{inbd_seq}
                    		 )
-
 	</insert>
-	<update id="memInbodyUpd" parameterType="map">
-		UPDATE member set mem_name='1' WHERE mem_id='1'
-	
-	</update>
 	
 	<delete id="memInbodyTableDel" parameterType="map">
 		DELETE 

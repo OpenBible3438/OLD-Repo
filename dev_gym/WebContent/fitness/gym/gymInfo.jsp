@@ -27,6 +27,8 @@
 	var gym_uniform = "";
 	var gym_locker = "";
 	var gym_like = "";
+	var pw_check = 1;
+	var imageOk = 1;
 	
 	
 	function infoUPD(){
@@ -38,15 +40,22 @@
 		});
 	}
 	function infoUPD_save(){
-		alert("저장");
-		$("#f_infoUpd").attr('action', "gymInfoUpd.gym")
-		$("#f_infoUpd").submit();
+		//alert("저장");
+		if(pw_check == 1) {
+			alert("비밀번호를 입력 해주세요 ");
+		} else {
+			if(imageOk == 1) {
+				alert("이미지를 등록 해주세요 ");
+			} else {
+				$("#f_infoUpd").submit();
+			}
+		}
 	}
 	function pw_confirm() {
 		//alert("비번확인");
 		var gym_pw = $('#gym_pw').val();
 		var gym_pw_2 = $('#gym_pw_2').val();
-		if( gym_pw.length>8 && gym_pw.length <= gym_pw_2.length) {
+		if( gym_pw.length>7 && gym_pw.length <= gym_pw_2.length) {
 			if(gym_pw == gym_pw_2) {
 				//alert("확인되었습니다");
 				$('#pw_icon').html('<i class="material-icons" style="font-size:36px;color:green">done</i>');
@@ -72,11 +81,12 @@
 	    }).open();
 	}
 </script>
-	<div id = "d_info" class="px-3 py-3 m-3">
-		<div class="form-group row form-inline">
-		   <h3><b>매장관리</b> / 매장 정보 조회</h3>  <!-- 제목 틀 입니다. -->
-		   <div class="w-50"></div>
-		   <button type="button" class="btn btn-primary" onClick="infoUPD()">수정</button>
+<div style="padding: 20px;" id="d_info">
+		<div class="form-group row form-inline" style="width:100%;">
+		  <div class="w-75" style="min-width:100px;"><h3><b>매장관리</b> / 매장 정보 조회</h3></div>  <!-- 제목 틀 입니다. -->
+			  <div class="w-25">
+				   <button type="button" class="btn btn-primary" onClick="infoUPD()" style="float:right">수정</button>
+			  </div>
 	   	</div>
     <hr>
     <!--=========================== 내용 시작 ===========================-->
@@ -90,43 +100,43 @@
 		</div>
 		<div class="form-group row">
 			<label for="gym_usertell" class="col-sm-2"><b>전화번호</b></label>
-			<label id="gym_usertell" class="col-sm-5">디비전화번호</label>
+			<label id="gym_usertell" class="col-sm-5"></label>
 		</div>
 		<div class="form-group row">
 			<label for="gym_name" class="col-sm-2"><b>매장이름</b></label>
-			<label id="gym_name" class="col-sm-5">디비매장이름</label>
+			<label id="gym_name" class="col-sm-5"></label>
 		</div>
 		<div class="form-group row">
 			<label for="gym_tel" class="col-sm-2"><b>매장번호</b></label>
-			<label id="gym_tel" class="col-sm-5">디비매장번호</label>
+			<label id="gym_tel" class="col-sm-5"></label>
 		</div>
 		<div class="form-group row">
 			<label for="gym_addr" class="col-sm-2"><b>매장주소</b></label>
-			<label id="gym_addr" class="col-sm-5">디비매장주소</label>
+			<label id="gym_addr" class="col-sm-5"></label>
 		</div>
 		<div class="form-group row">
 			<label for="gym_addr_dtl" class="col-sm-2"><b>매장상세주소</b></label>
-			<label id="gym_addr_dtl" class="col-sm-5">디비매장상세주소</label>
+			<label id="gym_addr_dtl" class="col-sm-5"></label>
 		</div>
 		<div class="form-group row">
 			<label for="gym_zipcode" class="col-sm-2"><b>우편번호</b></label>
-			<label id="gym_zipcode" class="col-sm-5">디비우편번호</label>
+			<label id="gym_zipcode" class="col-sm-5"></label>
 		</div>
 		<div class="form-group row">
 			<label for="gym_number" class="col-sm-2"><b>사업자번호</b></label>
-			<label id="gym_number" class="col-sm-5">디비사업자번호</label>
+			<label id="gym_number" class="col-sm-5"></label>
 		</div>
 		<div class="form-group row form-inline ">
 			<label for="gym_profimg" class="col-sm-2"><b>매장 프로필 사진</b></label>
-			<div class="p-1 m-3 continer border rounded">
-				<img id="gym_profimg" alt="디비 사진" src="#">
+			<div class="p-1 m-3 continer border rounded" style="padding: 0">
+				<div class="cropping" style="margin: 0">
+					<img id="gym_profimg" alt="디비 사진" src="#">
+				</div>
 			</div>
 		</div>
 		<div class="form-group row form-inline">
 			<label for="gym_info" class="col-sm-2"><b>매장소개</b></label>
-			<div class="w-75 px-3 py-3 m-3 continer border rounded" id = "gym_info">
-				디비 매장소개애애애ㅐ 매장 소개 매장소개
-			</div>
+			<div class="w-75 px-3 py-3 m-3 continer border rounded" id = "gym_info"></div>
 		</div>
 		<div class="form-group row form-inline">
 			<label for="gym_info" class="col-sm-2"><b>편의시설</b></label>
@@ -175,6 +185,7 @@
 			  gym_uniform = infoList[0].GYM_UNIFORM;   
 			  gym_locker = infoList[0].GYM_LOCKER;   
 			  gym_like = infoList[0].GYM_LIKE;
+			  file_seq = infoList[0].FILE_SEQ;
 			  
 			  $("#gym_id").text(gym_id);
 			  $("#gym_username").text(gym_username);
@@ -192,6 +203,7 @@
 			  $("#gym_uniform").text(gym_uniform);
 			  $("#gym_locker").text(gym_locker);
 			  $("#gym_like").text(gym_like);
+			  $('#gym_profimg').attr('src','../main/getImages.gym?file_seq='+file_seq);
 			  
 			  if(gym_parking=="on"){
 				  $("input:checkbox[id='gym_parking']").prop("checked", true); 
@@ -205,8 +217,24 @@
 			  if(gym_locker=="on"){
 				  $("input:checkbox[id='gym_locker']").prop("checked", true); 
 			  }
+			  /*
+			  $.ajax({
+				 url:"../gym/gymProfImage.gym" 
+	   	  	   , success:function(data){
+			   		var data = JSON.stringify(result);
+					var jsonDoc = JSON.parse(data);
+					var imgTag = "";
+					for(var i=0; i<jsonDoc.length; i++) {
+						var binaryData = jsonDoc[i].filedata;
+						var blob = new Blob([new Uint8Array(binaryData)],{type:'image/png'});
+						url = URL.createObjectURL(blob);
+						$("gym_profimg").attr('src',url);
+						 }
+		   	   		}
+			  });
 			  
-		  }
+			  */
+			  }
 		});
 	});
 </script>

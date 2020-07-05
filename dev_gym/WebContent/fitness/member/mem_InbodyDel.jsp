@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%-- 	<%@ include file="../../common/bootStrap4UI.jsp" %> --%>
-<!-- <div style="padding: 20px;">
-   <h3><b>회원관리</b> / 인바디 수정</h3>   제목 틀 입니다. -->
-
 <div class="modal" id="myInbodyDel">
 	<div class="modal-dialog">
 		<div class="modal-content">
