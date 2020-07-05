@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
-<!-- --> 
+<!--
 <div class="jumbotron text-center" style="padding-top:0; padding-bottom: 0;
                                           margin-bottom:0; height: 120px;">
   <a href="javascript:picks('home')">
   	<img alt="" src="../../images/logo.png" style="width:230px; height:120px; padding:0; margin:0;"/>
   </a>
 </div>
-
+ --> 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
 	<a class="navbar-brand" href="javascript:picks('home')">HOME</a>
@@ -22,6 +22,7 @@
 		 style="align-items: center;">
 		<ul class="navbar-nav">
 		<!-- 가이드 부분 -->
+		<!-- 
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">가이드</a>
 				<div class="dropdown-menu">
@@ -30,6 +31,7 @@
 					<a class="dropdown-item" href="javascript:picks('api')">활용API</a> 
 				</div>
 			</li>
+		 -->
 		<!-- 매장관리 부분 -->
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown">매장관리</a>

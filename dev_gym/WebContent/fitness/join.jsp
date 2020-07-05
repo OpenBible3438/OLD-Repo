@@ -114,14 +114,13 @@
 		<div class="form-group row">
 			<div class="col-sm-2" ></div>
 			<div class="col-sm-5">
-				<input type="file" class="form-control-file border" id="gym_profimg" name="img" accept=".gif, .jpg, .png" required>
+				<input type="file" class="form-control-file border" id="gym_profimg" name="img" accept=".gif, .jpg, .png">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="gym_info" class="col-sm-2 col-form-label">매장소개</label>
 			<div class="col-sm-8">
-				<textarea class="form-control" id="gym_info" name="gym_info" required>
-				</textarea>
+				<textarea class="form-control" id="gym_info" name="gym_info" required></textarea>
 			</div>
 		</div>
 		<div class="form-group row">

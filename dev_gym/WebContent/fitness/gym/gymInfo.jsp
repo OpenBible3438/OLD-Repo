@@ -47,7 +47,6 @@
 			if(imageOk == 1) {
 				alert("이미지를 등록 해주세요 ");
 			} else {
-				$("#f_infoUpd").attr('action', "gymInfoUpd.gym")
 				$("#f_infoUpd").submit();
 			}
 		}

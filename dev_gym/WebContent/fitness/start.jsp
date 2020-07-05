@@ -81,22 +81,25 @@
 		}
 	}
 	function login() {
-		alert("로그인");
+		//alert("로그인");
 		var gym_id = $('#gym_id').val();
 		var gym_pw = $('#gym_pw').val();
 		//alert("gym_id : "+gym_id+", gym_pw : "+ gym_pw);
 		$.ajax({  //enctype="multipart/form-data",contentType : false,processData : false
 			method:'post'
 			,data: 'gym_id='+gym_id+'&gym_pw='+gym_pw
+			,dataType: 'json'
 			,url: './gym/jsonLogin.gym'
 			,success: function(data) {
-				//alert("data : "+data.trim());
-				var confirm = data.trim().split("/");
-				if("login" == confirm[0]) {
-					alert(confirm[1]);
-					location.href = "./main/main.jsp"
+				//alert("data : "+data);
+				var result = JSON.stringify(data);
+				var confirm = JSON.parse(result);
+				//var confirm = data.trim().split("/");
+				if("login" == confirm[0].confirm) {
+					alert("로그인 성공");
+					location.href = "./main/main.jsp";
 				} else {
-					alert(confirm[1]);
+					alert(confirm[0].confirm);
 				}
 				
 			}

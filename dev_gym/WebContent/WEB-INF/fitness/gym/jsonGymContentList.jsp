@@ -14,7 +14,7 @@
 		<!-- navbar 부분 -->
 	<div id="div_content_nav">
 		<nav class="navbar navbar-expand-sm bg-secondary navbar-dark" style="width:100%">
-			<a class="navbar-brand"><%= i+1 %> / <%=map.get("GYM_NAME") %></a>
+			<a class="navbar-brand"><%= map.get("GYM_CONT_SEQ") %> / <%=map.get("GYM_NAME") %></a>
 			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" onClick="btnUpd(<%=map.get("GYM_CONT_SEQ") %>)" data-toggle="modal" data-target="#contentUpdModal">수정</a>

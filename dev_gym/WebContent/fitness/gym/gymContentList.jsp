@@ -28,7 +28,7 @@
 	        <form id="f_del">
 	        <input type="hidden" name="cud" value="del">
 	        <div class="modal-body">
-	        	<input id="contDel_seq" name="contDel_seq" style="width:20px" readonly>번 컨텐츠를 삭제하시겠습니까?
+	        	<input id="contDel_seq" name="contDel_seq" style="width:60px" readonly>번 컨텐츠를 삭제하시겠습니까?
 	        </div>
          	</form>
 	        <!-- Modal footer -->
@@ -101,8 +101,19 @@
 	}
 	function contentIns(){
 		//alert("컨텐츠 등록하기 버튼 클릭");
-		$("#f_ins").attr("action", "../gym/contentIns.gym");
-		$("#f_ins").submit();
+		var contentInputImg = $('#contentInputImgs').val();
+		var cont_content = $('#cont_contents').val().trim();
+		if(contentInputImg != "") {
+			if(cont_content != "") {
+				$("#f_ins").attr("action", "../gym/contentIns.gym");
+				$("#f_ins").submit();
+			} else {
+				alert("내용을 입력해주세요");
+			}
+		}
+		else {
+			alert("이미지를 등록해주세요 ");
+		}
 	}
 	$(document).ready(function(){
 		$.ajax({

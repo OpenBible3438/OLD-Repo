@@ -15,7 +15,7 @@
     var g_element = null;
 //전체조회	
 	function tchList() {
-		alert("전체 조회");
+		//alert("전체 조회");
 		$('#tb_tch').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.`
 	    	url: '../teacher/jsonTchList.gym'
     	});
@@ -23,7 +23,7 @@
 	}
 //프로필보기
 	function profile(){
-		alert("프로필관리 클릭");
+		//alert("프로필관리 클릭");
 		if(g_element != null) {
 			$('#tch_info_seq').val(g_element.TCH_INFO_SEQ);
 		    $("#prof_tch_id").val(g_element.TCH_ID);
@@ -212,7 +212,12 @@
 // 		}
 // 	});
 	function tchIns() {
-		$('#tch_insF').submit();
+		var img = $('#img').val();
+		if(img != "") {
+			$('#tch_insF').submit();
+		} else {
+			alert("이미지를 등록 해주세요 ");
+		}
 	}
 
  	$(document).ready(function() {	
@@ -225,9 +230,9 @@
 	});/* document ready  끝 */
 	
 	function tchSearch() {
-		alert("강사번호 클릭 ");
+		//alert("강사번호 클릭 ");
 		var msg = $('#searchTch').val();
-		alert("강사검색 : "+msg);
+		//alert("강사검색 : "+msg);
 		/* */
 		$('#tb_tch').bootstrapTable('refreshOptions', {
         	url: "../teacher/jsonTchListOne.gym?msg="+msg

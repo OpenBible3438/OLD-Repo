@@ -8,7 +8,10 @@
 		   </div>
 	   	</div>
 	    <hr>
-	    <form id="f_infoUpd">
+	    <form id="f_infoUpd" 
+	          method="post" 
+		      action="../gym/gymInfoUpd.gym"
+	          enctype="multipart/form-data">
 	    <!--=========================== 내용 시작 ===========================-->
 			<input type="hidden" name="cud" value="upd">
 			<input type="hidden" name="type" value="gym">
@@ -102,7 +105,7 @@
 			<div class="form-group row">
 				<div class="col-sm-2" ></div>
 				<div class="col-sm-5">
-					<input type="file" class="form-control-file border" id="gym_profimg" name="gym_profimg">
+					<input type="file" class="form-control-file border" id="gym_profimg" name="img">
 				</div>
 			</div>
 			<div class="form-group row form-inline">
