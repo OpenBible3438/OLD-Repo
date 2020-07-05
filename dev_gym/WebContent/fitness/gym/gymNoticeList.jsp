@@ -238,6 +238,7 @@
 				 data-toggle="table"
 				 data-url= '../gym/jsonGymNoticeList.gym'
 		  		 data-click-to-select="true"
+		  		 data-single-select="true"
 		 		 data-pagination="true"
 				>
 			<thead>

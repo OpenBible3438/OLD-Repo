@@ -402,7 +402,7 @@
 		               ,pay_state
 		               ,pay_date
 		               ,pay_time)
-		         VALUES((SELECT max(pay_no)+1 FROM pay)
+		         VALUES((SELECT func_getPayNo() FROM dual)
 		               ,#{c_mem_no}
 		               ,#{cls_no}
 		               ,'매장 결제'
