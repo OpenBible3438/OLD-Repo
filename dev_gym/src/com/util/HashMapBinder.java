@@ -2,7 +2,9 @@ package com.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.Map;
 
@@ -86,6 +88,7 @@ public class HashMapBinder {
 						pMap.put("filedata", fis);				
 						logger.info("filedata : "+fis);
 					} catch (Exception e) {
+						logger.info("HashMapBinder - multiBind img 에러");
 						e.printStackTrace();
 					}
 				}
@@ -116,7 +119,36 @@ public class HashMapBinder {
 			pMap.put(key,req.getParameter(key));
 			logger.info((++i)+". "+key+": "+pMap.get(key));
 		}
-		logger.info("while문 다음");
+		if(pMap.containsKey("img")) {
+			try {
+				// 파일을 바이트 배열로 받기 
+				byte[] fileByte = pMap.get("img").toString().getBytes();
+				String filename = pMap.get("filename").toString();
+				logger.info("f. filename : "+filename);
+				File file = new File(realFolder+"\\"+filename);
+				// 파일 저장 시작 
+		        FileOutputStream fos = new FileOutputStream(file);
+		        fos.write(fileByte);
+		        fos.close();
+		        // 파일 저장 끝
+		        //파일 사이즈 만들기
+				double size = file.length();
+				size = file.length(); //단위가 바이트 단위file:///C:/git/jsp-source-repo/dev_jsp/WebContent/pds/flower.jpg
+				size = size/(1024.0);
+				size = Double.parseDouble(String.format("%.3f", size));//NUMBER(7,3); 0000.000;
+				pMap.put("filesize", size);
+				logger.info("f. filesize : "+size);
+				//파일 데이터 만들기
+				FileInputStream fis = new FileInputStream(file);
+				pMap.put("file", file);				
+				pMap.put("filedata", fis);				
+				logger.info("f. filedata : "+fis);
+			} catch (Exception e) {
+				logger.info("HashMapBinder - binder img 에러");
+				e.printStackTrace();
+			}
+		}
+		//logger.info("while문 다음");
 		if("gym".equals(pMap.get("type"))) {
 			logger.info("bind 체크박스 값 채움");
 			if(!(pMap.containsKey("gym_parking"))) pMap.put("gym_parking", "off");
