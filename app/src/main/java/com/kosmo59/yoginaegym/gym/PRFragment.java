@@ -22,7 +22,7 @@ public class PRFragment extends Fragment {
     private ImageButton ib_prHeart;
 
     public PRFragment() {
-        // Required empty public constructor
+        // fragment에서 findViewById를 사용하고 싶으면 getView를 사용해야 한다.
         ib_prHeart = getView().findViewById(R.id.ib_prHeart);
     }
 
