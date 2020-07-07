@@ -11,6 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:onClick="clickPRImage"
+            android:id="@+id/ib_prTest"
+            android:src="@drawable/img_pr_test"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
 
     </LinearLayout>
 

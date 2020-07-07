@@ -3,6 +3,7 @@ package com.kosmo59.yoginaegym.common;
 import androidx.appcompat.app.AppCompatActivity;
 import com.kosmo59.yoginaegym.R;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
