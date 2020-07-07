@@ -52,12 +52,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <ImageView
+                            <de.hdodenhof.circleimageview.CircleImageView
                                 android:src="@drawable/profile"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"/>
 
                             <TextView
+                                android:id="@+id/tv_contTitle"
                                 android:text="가산동 여기내짐"
                                 android:textSize="18sp"
                                 android:layout_width="wrap_content"
@@ -97,7 +98,7 @@
                                 android:src="@drawable/cont_heart_empty"
                                 android:onClick="cont_clickHeart"/>
                             <TextView
-                                android:text="0명이 좋아합니다"
+                                android:id="@+id/tv_contLike"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
 

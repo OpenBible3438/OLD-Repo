@@ -6,12 +6,13 @@
 
     <!-- 스크롤 뷰 안으로 코드추가 -->
 
-    <LinearLayout
-        android:orientation="vertical"
+    <GridView
+        android:id="@+id/gv_prImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:verticalSpacing="3dp"
+        android:horizontalSpacing="3dp"
+        android:stretchMode="columnWidth"
+        android:numColumns="3"/>
 
 </ScrollView>
