@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<!-- 그리드뷰는 스크롤 뷰 필요 없음 -->
+<GridView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gv_prImage"
+    android:columnWidth="100dp"
+    android:stretchMode="columnWidth"
+    android:verticalSpacing="10dp"
+    android:horizontalSpacing="10dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:numColumns="3">
 
-    <!-- 스크롤 뷰 안으로 코드추가 -->
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-    </LinearLayout>
-
-</ScrollView>
+</GridView>
