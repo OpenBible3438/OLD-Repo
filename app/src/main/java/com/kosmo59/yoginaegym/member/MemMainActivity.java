@@ -5,13 +5,17 @@ import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.ContentActivity;
 import com.kosmo59.yoginaegym.gym.GymSearchActivity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MemMainActivity extends AppCompatActivity {
@@ -27,6 +31,7 @@ public class MemMainActivity extends AppCompatActivity {
         btn_memInfo = findViewById(R.id.btn_memInfo);
         btn_memTimeTable = findViewById(R.id.btn_memTimeTable);
         btn_memClass = findViewById(R.id.btn_memClass);
+
 
         btn_memGymSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +65,7 @@ public class MemMainActivity extends AppCompatActivity {
         bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.bot_nav_home:
                         break;
                     case R.id.bot_nav_qr:
@@ -76,6 +81,6 @@ public class MemMainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
+
 }

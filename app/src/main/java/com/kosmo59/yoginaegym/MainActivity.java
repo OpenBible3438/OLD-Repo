@@ -1,7 +1,12 @@
 package com.kosmo59.yoginaegym;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -10,6 +15,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.kosmo59.yoginaegym.member.MemLoginActivity;
 import com.kosmo59.yoginaegym.teacher.TchLoginActivity;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
     MainImageAdapter mainImageAdapter;
@@ -45,6 +53,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        /*
+        //카카오 해시키값 받아오는 코드
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.e("MY KEY HASH:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
+        */
 
     }
 

@@ -55,4 +55,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
+    // 카카오링크
+    implementation group: 'com.kakao.sdk', name: 'kakaolink', version: '1.29.0'
+
 }
