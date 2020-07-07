@@ -87,11 +87,11 @@
                         android:adjustViewBounds="true"
                         android:background="#FFFFFF"
                         android:gravity="center"
-                        android:onClick="cont_clickHeart"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/cont_heart_empty" />
 
                     <TextView
+                        android:id="@+id/tv_prHeartNum"
                         android:layout_marginLeft="3sp"
                         android:layout_width="30sp"
                         android:layout_height="wrap_content"
