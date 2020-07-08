@@ -27,7 +27,7 @@
          
 	        <!-- Modal footer -->
 	        <div class="modal-footer">
-	        	<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="contentIns()">등록하기</button>
+	        	<button type="button" class="btn btn-primary" onClick="contentIns()">등록하기</button>
 	        	<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
 	        </div>
 		</div>

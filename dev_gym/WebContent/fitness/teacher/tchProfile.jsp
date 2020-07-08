@@ -18,7 +18,7 @@
 			<br>
 		<div border="5" class="row">
 			<div class="col-sm-1"></div>
-			<div class="col-sm-4">
+			<div class="col-sm-4" style="padding: 0; min-width:250px">
 				<div class="cropping">
 					<img id="prof_tch_img" >
 				</div>
@@ -28,6 +28,7 @@
 					<label for="prof_tch_id" class="col-sm-4 col-form-label">강사아이디</label>
 					<div class="col-sm-7">
 						<input type="hidden" name="cud" value="upd">
+						<input type="hidden" id="tch_info_seq" name="tch_info_seq" >
 						<input type="text" class="form-control" required readonly
 							   id="prof_tch_id">
 					</div>

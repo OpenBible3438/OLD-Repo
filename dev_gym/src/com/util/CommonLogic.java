@@ -58,11 +58,7 @@ public class CommonLogic {
 		int gym_no = 0;
 		if(req.getSession().getAttribute("gym_no")!=null) {
 			gym_no = Integer.parseInt(req.getSession().getAttribute("gym_no").toString());
-			logger.info("gym_no : " + gym_no);
-		}
-		else {
-			logger.info("gym_no가 없으므로 1로 설정");
-			gym_no = 1;//세션없으면 1로 두기. 테스트 하기 위한 기본 값이다.
+			//logger.info("gym_no : " + gym_no);
 		}
 		logger.info("gym_no : " + gym_no);
 		pMap.put("gym_no", gym_no);
@@ -95,9 +91,9 @@ public class CommonLogic {
 			if(pageMove[0].equals("redirect")) {
 				logger.info("redirect");
 				logger.info("pageMove.length : " + pageMove.length);
-				if(pageMove.length==4) {
-					path = pageMove[1]+".jsp?result="+pageMove[2] +"&autoSel=" + pageMove[3];
-					logger.info("pageMove.length==4 // 이동할 페이지 : " + path );
+				if(pageMove.length == 3) {
+					path = pageMove[1]+".jsp?result="+pageMove[2];
+					logger.info("pageMove.length==3 // 이동할 페이지 : " + path );
 					res.sendRedirect(path);
 				}
 				else {

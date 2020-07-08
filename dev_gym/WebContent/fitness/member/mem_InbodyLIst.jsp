@@ -14,7 +14,7 @@
 </script>
 <script type="text/javascript">
 	function mem_noSearch() {
-		alert("회원번호 검색 호출 성공");
+		//alert("회원번호 검색 호출 성공");
 		$("#InbodyfindNo").modal('show');
 	}
 	function memno_search(){
@@ -23,14 +23,14 @@
 		if(mem_no == "") {
 			alert("회원 번호를 입력 해주세요");
 		} else {
-			alert("mem_no: "+mem_no);
+			//alert("mem_no: "+mem_no);
 			$.ajax({
 				method: 'get'
 				,data : 'mem_no='+mem_no
 				,dataType: 'json'
 				,url: '../member/jsonMemList.gym'
 			   	,success : function(result) { // 회원번호, 회원이름
-			   		alert(result);
+			   		//alert(result);
 			   		var data = JSON.stringify(result);
 					var infoList = JSON.parse(data);
 					if(infoList != "") {

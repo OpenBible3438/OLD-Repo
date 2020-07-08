@@ -65,10 +65,11 @@
  			   FROM dual
 	</select>
 	<!-- 강사번호 채번하기  -->
-	<select id="getTchNo" resultType="int">
+	<select id="getTchNo" parameterType="map" resultType="int">
 		SELECT func_tchGenNo(#{tch_gender}) as "tch_no" 
 		  FROM dual
 	</select>
+	
 	<!-- 강사등록 인서트 -->
 	<insert id="tchIns" parameterType="map">
 		INSERT INTO teacher(gym_no
@@ -83,7 +84,7 @@
 		                   ,tch_gender 
 		                   )
 		             VALUES(#{gym_no}
-		                   ,func_get_tch_no(#{tch_gender})
+		                   ,#{tch_no}
 		                   ,#{tch_id}
 		                   ,#{tch_pw}
 		                   ,#{tch_name}
@@ -93,6 +94,7 @@
 		                   ,#{tch_zipcode}
 		                   ,#{tch_gender} )
 	</insert> 
+	
 	<!-- 강사등록 이미지  인서트 -->
 	<insert id="tchInsImg" parameterType="map">
 		INSERT INTO images(file_seq
@@ -110,7 +112,7 @@
 		                  )
 	</insert>
 
-	<!-- 강사 프로필 번호 채번 -->	
+	<!-- 강사 프로필 번호 채번 (안씀)-->	
 	<select id="tchProfNo" parameterType="map" resultType="int">
 		SELECT nvl((SELECT tch_info_seq
 		              FROM tch_info
@@ -127,11 +129,11 @@
 		                    ,tch_intro
 		                    ,tch_career
 		                    ,tch_like)
-	                  VALUES((SELECT max(TCH_INFO_SEQ)+1 FROM tch_info)
+	                  VALUES(seq_tchprof.nextval
 	                        ,#{gym_no} 
 	                        ,#{tch_no}
-	                        ,#{tch_intro}
-	                        ,#{tch_career}
+	                        ,'자기소개'
+	                        ,'경력사항'
 	                        ,0)	
 	</insert>
 	<!-- 강사 프로필 수정 -->

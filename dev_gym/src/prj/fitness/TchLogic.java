@@ -2,6 +2,7 @@ package prj.fitness;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class TchLogic {
 		this.tDao = new TchDao(sqlSession);
 	}
 	// 강사 전체 조회 
-	public List<Map<String, Object>> getTchList(Map<String, Object> pMap) {
+	public List<Map<String, Object>> getTchList(Map<String, Object> pMap) throws SQLException {
 		logger.info("TchLogic - getTchList() 호출");
 		List<Map<String, Object>> tchList = null;
 		tchList = tDao.getTchList(pMap);
@@ -36,7 +37,7 @@ public class TchLogic {
 		return tchList;
 	}
 	// 강사 조건 검색 
-	public List<Map<String, Object>> getTchListOne(Map<String, Object> pMap) {
+	public List<Map<String, Object>> getTchListOne(Map<String, Object> pMap) throws SQLException {
 		logger.info("TchLogic - getTchListOne() 호출");
 		List<Map<String, Object>> tchList = null;
 		tchList = tDao.getTchListOne(pMap);
@@ -46,7 +47,7 @@ public class TchLogic {
 		return tchList;
 	}
 	
-	public List<Map<String, Object>> getTchClassList(Map<String, Object> pMap) {
+	public List<Map<String, Object>> getTchClassList(Map<String, Object> pMap) throws SQLException {
 		logger.info("TchLogic - getTchClassList() 호출");
 		List<Map<String, Object>> tchClassList = null;
 		tchClassList = tDao.getTchClassList(pMap);
@@ -55,7 +56,7 @@ public class TchLogic {
 		return tchClassList;
 	}
 
-	public List<Map<String, Object>> getTchProfile(Map<String, Object> pMap) {//강사 프로필 보기 //여유 되면 map으로 바꾸기
+	public List<Map<String, Object>> getTchProfile(Map<String, Object> pMap) throws SQLException {//강사 프로필 보기 //여유 되면 map으로 바꾸기
 		logger.info("TchLogic - getTchProfile() 호출");
 		List<Map<String, Object>> tchProfile = null;
 		tchProfile = tDao.getTchProfile(pMap);
@@ -64,7 +65,7 @@ public class TchLogic {
 		return tchProfile;
 	}
 	
-	public List<Map<String, Object>> tchNoSearch(Map<String, Object> pMap) {
+	public List<Map<String, Object>> tchNoSearch(Map<String, Object> pMap) throws SQLException {
 		logger.info("TchLogic - tchNoSearch() 호출");
 		List<Map<String, Object>> selList = null;
 		selList = tDao.tchNoSearch(pMap);
@@ -72,7 +73,7 @@ public class TchLogic {
 		
 		return selList;
 	}
-	public int tchIDSearch(Map<String, Object> pMap) {
+	public int tchIDSearch(Map<String, Object> pMap) throws SQLException {
 		logger.info("TchLogic - tchIDSearch() 호출");
 		int selID = tDao.tchIDSearch(pMap);
 		mbMgr.clossSession(sqlSession);
@@ -82,7 +83,7 @@ public class TchLogic {
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 
-	public int tchIns(Map<String, Object> pMap) {
+	public int tchIns(Map<String, Object> pMap) throws SQLException {
 		logger.info("TchLogic - tchIns 호출");
 		result = tDao.tchIns(pMap);
 		if(result == 1) {
@@ -95,25 +96,22 @@ public class TchLogic {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			if(result == 1) {
+				result = tDao.tchProfIns(pMap);
+			}
 		}
 		setCommit(result);
 		return result;
 	}
-	
-	public int tchProfUpd(Map<String, Object> pMap) {
+	// 강사 프로필 수정 
+	public int tchProfUpd(Map<String, Object> pMap) throws SQLException {
 		logger.info("TchLogic - tchUpd 호출");
-		result = tDao.tchProfNo(pMap);
-		if(result > 0) {
-			pMap.put("tch_info_seq", result);
-			result = tDao.tchProfUpd(pMap);
-		} else if(result == 0) {
-			result = tDao.tchProfIns(pMap);
-		}
+		result = tDao.tchProfUpd(pMap);
 		setCommit(result);
 		return result;
 	}
 	
-	public int tchDel(Map<String, Object> pMap) {
+	public int tchDel(Map<String, Object> pMap) throws SQLException {
 		logger.info("TchLogic - tchDel 호출");
 		result = tDao.tchDel(pMap);
 		setCommit(result);
