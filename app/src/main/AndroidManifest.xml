@@ -20,7 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".teacher.TchCalActivity"></activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakaoNativeAppkey">
+        </meta-data>
+
+        <activity android:name=".member.MemclassActivity"></activity>
+        <activity android:name=".teacher.TchCalActivity" />
         <activity android:name=".teacher.TchMyProfileActivity" />
         <activity android:name=".member.MemTimeTableActivity" />
         <activity android:name=".common.ContentActivity" />

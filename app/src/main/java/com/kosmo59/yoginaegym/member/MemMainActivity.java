@@ -60,6 +60,8 @@ public class MemMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //내 수업 눌렀을 때
+                Intent intent = new Intent(MemMainActivity.this, MemclassActivity.class);
+                startActivity(intent);
             }
         });
 
