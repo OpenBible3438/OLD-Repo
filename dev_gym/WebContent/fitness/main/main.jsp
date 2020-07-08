@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%	// 메뉴 바 쿠키 받아오기
@@ -16,12 +18,26 @@
 	HttpSession ses = request.getSession();
 	String gym_no = null;
 	String gym_name = null;
+	
+	//시간 설정
+	Date timeForm = new Date();
+	SimpleDateFormat formatter = new SimpleDateFormat("mm:ss");
+	
+	//SimpleDateFormat sformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	//timeForm.setTime(ses.getCreationTime());
+	//String nnn = sformatter.format(timeForm);  
+	
+	long time = ses.getLastAccessedTime()-ses.getCreationTime();   // 접속한 시간
+	long timeOver = ses.getMaxInactiveInterval()*1000;             // 자동 로그아웃 시간
+	long timeOver2 = (ses.getMaxInactiveInterval()*1000)/2;        // 자동 로그아웃 시간의 절반
+	long timer = timeOver - time;                                  // 남은시간 = 설정시간 - 접속시간 
+	
+	timeForm.setTime(timer);
+	String timerStr = formatter.format(timeForm);
+	
 	if(ses.getAttribute("gym_no") != null) {
 		gym_no = (String)ses.getAttribute("gym_no");
 		gym_name = (String)ses.getAttribute("gym_name");
-	}
-	else {
-		gym_no = "1";
 	}
 %>
 <!DOCTYPE html>
@@ -31,6 +47,10 @@
 <title>메인페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<%@ include file="../../common/bootStrap4UI.jsp" %>
+<%
+	// 로그인이 됐을 때
+	if(gym_name != null) {
+%>
 <!-- =============== main style =============== -->
 <style>
 	/* Remove the navbar's default margin-bottom and rounded borders */
@@ -41,10 +61,9 @@
 	/* 왼쪽, 가운데, 위 높이 조정 */
 	.row.content {
 		height: auto;
-		min-height: 600px;
+		min-height: 750px;
 	}
 	
-
 	/* 작은 화면에서 사이드 나비와 그리드의 높이를 '자동'으로 설정  */
 	@media screen and (max-width: 767px) {
 		.sidenav {
@@ -87,9 +106,25 @@
 <script type="text/javascript">
 	//DOM구성이 완료되면...
 	$(document).ready(function() {
-		//alert("center : <%=center%>");  
-		//alert("gym_no : <%=gym_no%>");
-		//alert("gym_name : <%=gym_name%>");
+		//alert("center : <%= center %>");  
+		//alert("gym_no : <%= gym_no %>");
+		//alert("gym_name : <%= gym_name %>");
+		//alert("time : <%= time %>");
+		//alert("timeOver : <%= timeOver %>");
+		//alert("timer : <%= timer %>");
+		var time = <%= time %>;           // 접속 시간
+		var timer = <%= timer %>;         // 남은 시간
+		var timeOver = <%= timeOver %>;   // 설정 시간 
+		var timeOver2 = <%= timeOver2 %>; // 설정 시간/2  
+		if(time>timeOver2) { // 접속시간 > 설정시간/2 보다 클 때
+			if(timer>0) {    // 남은 시간이 0보다 클 때
+				if(confirm("<%= timerStr %>초 뒤에 자동 로그아웃 됩니다.\n\n5분 연장 하시겠습니까?")) {
+					logout('<%= gym_name %>');	
+				}
+			} else {
+				logout('');
+			}
+		}
 	}); 
 </script>
 <!-- ========================= TOP 자리 ========================= -->
@@ -128,7 +163,7 @@
 					} break;
 			case "cls"    : { %> <%@ include file="../class/classList.jsp" %> <%
 					} break;
-			default       : { %> <%@ include file="../info/attr.jsp" %> <%
+			default       : { %> <%@ include file="../gym/gymChart.jsp" %> <%
 			        } break;
 				
 		}
@@ -143,6 +178,20 @@
 	<%@ include file="./mainFoot.jsp" %>
 </body>
 </html>
+<%
+	} //로그인이 안됐을 때
+	else {
+%>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				alert("로그인 후 이용해주세요");
+				location.href = "../start.jsp";
+			}); 
+		</script>
+<%
+	}
+%>
+
 
 
 

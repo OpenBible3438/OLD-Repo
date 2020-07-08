@@ -15,7 +15,7 @@
     var g_element = null;
 //전체조회	
 	function tchList() {
-		alert("전체 조회");
+		//alert("전체 조회");
 		$('#tb_tch').bootstrapTable('refreshOptions', {	//이 코드가 있어야 테이블 안의 데이터가 갱신된다.`
 	    	url: '../teacher/jsonTchList.gym'
     	});
@@ -23,8 +23,9 @@
 	}
 //프로필보기
 	function profile(){
-		alert("프로필관리 클릭");
+		//alert("프로필관리 클릭");
 		if(g_element != null) {
+			$('#tch_info_seq').val(g_element.TCH_INFO_SEQ);
 		    $("#prof_tch_id").val(g_element.TCH_ID);
 		    $("#prof_tch_no").val(g_element.TCH_NO);
 		    $("#prof_tch_name").val(g_element.TCH_NAME);
@@ -211,22 +212,27 @@
 // 		}
 // 	});
 	function tchIns() {
-		$('#tch_insF').submit();
+		var img = $('#img').val();
+		if(img != "") {
+			$('#tch_insF').submit();
+		} else {
+			alert("이미지를 등록 해주세요 ");
+		}
 	}
 
  	$(document).ready(function() {	
  		$('#tb_tch').on('click-row.bs.table', function (row, $element, field) {
  	         g_element = $element;
  	         //alert(g_element.TCH_NO);
-		      $('.active').removeClass('active')
-		      $($element).addClass('active')
+		     //$('.active').removeClass('active')
+		     //$($element).addClass('active')
  	    });
 	});/* document ready  끝 */
 	
 	function tchSearch() {
-		alert("강사번호 클릭 ");
+		//alert("강사번호 클릭 ");
 		var msg = $('#searchTch').val();
-		alert("강사검색 : "+msg);
+		//alert("강사검색 : "+msg);
 		/* */
 		$('#tb_tch').bootstrapTable('refreshOptions', {
         	url: "../teacher/jsonTchListOne.gym?msg="+msg
@@ -286,10 +292,11 @@ img.img {
 					<th data-field="TCH_TEL">전화번호</th>
 					<th data-field="TCH_ADDR">주소</th>
 					<th data-field="TCH_GENDER">성별</th>
-					<th class="d-none"  data-field="TCH_INTRO">자기소개</th>
-					<th class="d-none"  data-field="TCH_CAREER">경력사항</th>
-					<th class="d-none"  data-field="TCH_LIKE">좋아요</th>
-					<th class="d-none"  data-field="FILE_SEQ">프로필 사진번호</th>
+					<th class="d-none" data-field="TCH_INFO_SEQ">프로필번호</th>
+					<th class="d-none" data-field="TCH_INTRO">자기소개</th>
+					<th class="d-none" data-field="TCH_CAREER">경력사항</th>
+					<th class="d-none" data-field="TCH_LIKE">좋아요</th>
+					<th class="d-none" data-field="FILE_SEQ">프로필 사진번호</th>
 				</tr>
 			</thead>
 		

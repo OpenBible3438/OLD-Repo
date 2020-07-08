@@ -1,14 +1,6 @@
 <%@page import="com.google.gson.JsonObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String mode = request.getParameter("mode");
-	if(mode!=null && mode.equals("refresh")){
-		%>
-		reviewList();
-		<%
-	}
-%>
 <!-- 별점 CSS 시작 -->
 <style type="text/css">
 	.star-rating{width:160px;}
@@ -17,19 +9,59 @@
 	.star-rating span{ background-position:left bottom; line-height:0; vertical-align:top;}
 </style>
 <!-- 별점 CSS 끝 -->
+
 <div style="padding: 20px;">
-<h3><b>매장관리</b> / 매장후기보기</h3>
-<div style="padding-left: 40px; padding-top: 20px">
-<div id="div_review"></div>
-</div>
+	<div class="row">
+		<div class="col-sm-8">
+			<h3><b>매장관리</b> / 전체후기조회</h3>
+		</div>
+		<div class="col-sm-2"></div>
+		<div class="col-sm-2">
+			<button type="button" id="reviewTP" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">후기종류</button>
+			<div class="dropdown-menu" >
+				<a class="dropdown-item" href="javascript:reviewType('')">전체</a>
+				<a class="dropdown-item" href="javascript:reviewType('매장')">매장</a> 
+				<a class="dropdown-item" href="javascript:reviewType('강사')">강사</a>
+				<a class="dropdown-item" href="javascript:reviewType('수업')">수업</a>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div style="padding-left: 40px; padding-top: 20px">
+	<div id="div_review">
+	
+	</div>
+	</div>
 </div>
 <script type="text/javascript">
-   $(document).ready(function(){
-      $.ajax({
-         url : "../gym/jsonGymReviewList.gym"
-        , success : function(result){
-           $("#div_review").html(result)     
-        }
-      });
-   });
+	function reviewType(type) {
+		//alert("type : " + type);
+		var typeUrl = "";
+		var reviewT = type;
+		if(reviewT == "") {
+			typeUrl = "../gym/jsonGymReviewList.gym"
+		} else {
+			typeUrl = "../gym/jsonGymReviewList.gym?rev_kind="+reviewT
+		}
+		$.ajax({
+			url : typeUrl
+			,success : function(result) {
+				$("#div_review").html(result)
+			}
+		});
+	}
+	reviewType("");
+	$(document).ready(function() {
+	});
 </script>
+
+
+
+
+
+
+
+
+
+
+

@@ -66,9 +66,9 @@
 							<th data-field="CLS_KIND">수업구분</th>
 							<th class="d-none" data-field="CLS_CNT">수업횟수</th>
 							<th class="d-none" data-field="CLS_DAYS">수업일수</th>
-							<th data-field="CLS_DAY">요일</th>
-							<th data-field="CLS_S_DATE">시작일</th>
-							<th data-field="CLS_E_DATE">종료일</th>
+							<th class="d-none" data-field="CLS_DAY">요일</th>
+							<th class="d-none" data-field="CLS_S_DATE">시작일</th>
+							<th class="d-none" data-field="CLS_E_DATE">종료일</th>
 							<th class="d-none" data-field="CLS_INFO">수업소개</th>
 							<th data-field="CLS_PRICE">가격</th>
 							<th data-field="CLS_STATE">진행상황</th>

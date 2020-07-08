@@ -27,6 +27,8 @@
 	var gym_uniform = "";
 	var gym_locker = "";
 	var gym_like = "";
+	var pw_check = 1;
+	var imageOk = 1;
 	
 	
 	function infoUPD(){
@@ -38,15 +40,22 @@
 		});
 	}
 	function infoUPD_save(){
-		alert("저장");
-		$("#f_infoUpd").attr('action', "gymInfoUpd.gym")
-		$("#f_infoUpd").submit();
+		//alert("저장");
+		if(pw_check == 1) {
+			alert("비밀번호를 입력 해주세요 ");
+		} else {
+			if(imageOk == 1) {
+				alert("이미지를 등록 해주세요 ");
+			} else {
+				$("#f_infoUpd").submit();
+			}
+		}
 	}
 	function pw_confirm() {
 		//alert("비번확인");
 		var gym_pw = $('#gym_pw').val();
 		var gym_pw_2 = $('#gym_pw_2').val();
-		if( gym_pw.length>8 && gym_pw.length <= gym_pw_2.length) {
+		if( gym_pw.length>7 && gym_pw.length <= gym_pw_2.length) {
 			if(gym_pw == gym_pw_2) {
 				//alert("확인되었습니다");
 				$('#pw_icon').html('<i class="material-icons" style="font-size:36px;color:green">done</i>');
@@ -72,7 +81,7 @@
 	    }).open();
 	}
 </script>
-<div style="padding: 20px;">
+<div style="padding: 20px;" id="d_info">
 		<div class="form-group row form-inline" style="width:100%;">
 		  <div class="w-75" style="min-width:100px;"><h3><b>매장관리</b> / 매장 정보 조회</h3></div>  <!-- 제목 틀 입니다. -->
 			  <div class="w-25">
@@ -119,8 +128,8 @@
 		</div>
 		<div class="form-group row form-inline ">
 			<label for="gym_profimg" class="col-sm-2"><b>매장 프로필 사진</b></label>
-			<div class="p-1 m-3 continer border rounded">
-				<div class="cropping">
+			<div class="p-1 m-3 continer border rounded" style="padding: 0">
+				<div class="cropping" style="margin: 0">
 					<img id="gym_profimg" alt="디비 사진" src="#">
 				</div>
 			</div>
@@ -208,7 +217,7 @@
 			  if(gym_locker=="on"){
 				  $("input:checkbox[id='gym_locker']").prop("checked", true); 
 			  }
-			  
+			  /*
 			  $.ajax({
 				 url:"../gym/gymProfImage.gym" 
 	   	  	   , success:function(data){
@@ -222,8 +231,9 @@
 						$("gym_profimg").attr('src',url);
 						 }
 		   	   		}
-				  });
+			  });
 			  
+			  */
 			  }
 		});
 	});
