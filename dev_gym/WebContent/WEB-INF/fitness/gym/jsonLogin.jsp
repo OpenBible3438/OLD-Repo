@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="oracle.sql.BLOB"%>
 <%@page import="java.util.Map"%>
@@ -20,16 +21,8 @@
 		}
 	// 로그인 성공
 	} else {
-		BLOB blob = (BLOB)pMap.get("filedata");
-		image = blob.getBytes(1, (int)blob.length());
-		pMap.put("filedata", image);
-		//request.setAttribute("profImg", image);
-		
 		String gym_no = pMap.get("GYM_NO").toString();
 		String gym_name = pMap.get("GYM_NAME").toString();
-		pMap.remove("GYM_NO");
-		pMap.remove("GYM_NAME");
-		
 		//매장 정보 세션 저장 
 		HttpSession ses = request.getSession();
 		ses.setAttribute("gym_no",gym_no);

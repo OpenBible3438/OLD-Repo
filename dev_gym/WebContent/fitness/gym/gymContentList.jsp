@@ -120,11 +120,8 @@
 			 url:"../gym/jsonGymContentList.gym"
 			,success:function(result){
 				var datas = result.trim();
-				//alert("data : "+datas);
 				$("#div_content").html(datas)
-				/**/
 				var url = "";
-				var urls = null;
 				$.ajax({
 					method: "post"
 					,url: "../gym/gymContImage.gym"
@@ -138,8 +135,6 @@
 							url = URL.createObjectURL(blob);
 							//alert("url : "+url);
 							$("#img"+i+"").attr('src',url);
-							//<img src='"+url+"' style='width:250px; height:250px'/>";
-							
 						}
 					}
 				});
