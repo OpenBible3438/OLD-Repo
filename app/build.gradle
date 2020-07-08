@@ -58,4 +58,6 @@ dependencies {
     // 카카오링크
     implementation group: 'com.kakao.sdk', name: 'kakaolink', version: '1.29.0'
 
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
