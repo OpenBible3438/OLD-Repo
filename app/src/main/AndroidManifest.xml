@@ -20,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".member.MemTimeTableActivity"></activity>
+        <activity android:name=".teacher.TchCalActivity"></activity>
+        <activity android:name=".teacher.TchMyProfileActivity" />
+        <activity android:name=".member.MemTimeTableActivity" />
         <activity android:name=".common.ContentActivity" />
         <activity android:name=".teacher.TchManageActivity" />
         <activity android:name=".teacher.TchMainActivity" />
