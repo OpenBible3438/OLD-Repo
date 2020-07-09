@@ -53,7 +53,7 @@
                 <!--구분 라인-->
                 <View
                     android:layout_width="310dp"
-                    android:layout_height="1px"
+                    android:layout_height="2px"
                     android:paddingLeft="20dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="0sp"
@@ -151,6 +151,7 @@
                         android:layout_height="match_parent">
 
                         <Button
+                            android:id="@+id/btn_class_detail"
                             android:layout_gravity="center"
                             android:text="자세히\n보기"
                             android:textSize="16sp"
