@@ -20,5 +20,6 @@
 		<mapper resource="com/mybatis/mapper/gym.xml" />
 		<mapper resource="com/mybatis/mapper/member.xml" />
 		<mapper resource="com/mybatis/mapper/teacher.xml" />
+		<mapper resource="com/mybatis/mapper/android.xml" />
 	</mappers>
 </configuration>

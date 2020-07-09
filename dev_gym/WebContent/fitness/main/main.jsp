@@ -23,8 +23,7 @@
 	Date timeForm = new Date();
 	SimpleDateFormat formatter = new SimpleDateFormat("mm:ss");
 	
-	//SimpleDateFormat sformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	//timeForm.setTime(ses.getCreationTime());
+	//SimpleDateFormat sformatter = new SimpleDateFormat("y 
 	//String nnn = sformatter.format(timeForm);  
 	
 	long time = ses.getLastAccessedTime()-ses.getCreationTime();   // 접속한 시간
