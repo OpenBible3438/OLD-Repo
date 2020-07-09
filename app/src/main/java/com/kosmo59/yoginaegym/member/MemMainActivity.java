@@ -75,10 +75,12 @@ public class MemMainActivity extends AppCompatActivity {
                     case R.id.bot_nav_qr:
                         break;
                     case R.id.bot_nav_cont:
-                        Intent intent = new Intent(MemMainActivity.this, ContentActivity.class);
-                        startActivity(intent);
+                        Intent intent_cont = new Intent(MemMainActivity.this, ContentActivity.class);
+                        startActivity(intent_cont);
                         break;
                     case R.id.bot_nav_msg:
+                        Intent intent_msg = new Intent(MemMainActivity.this, MemChatListActivity.class);
+                        startActivity(intent_msg);
                         break;
 
                 }
