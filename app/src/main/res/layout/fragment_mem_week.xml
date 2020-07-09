@@ -1,16 +1,324 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".member.MemWeekFragment">
+    android:background="#EDEDED">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- 스크롤 뷰 안으로 코드추가 -->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="여기는 주별 수업 시간표 출력" />
+        android:orientation="vertical"
+        android:padding="30dp">
 
-</LinearLayout>
+        <!--==================카드뷰 시작=====================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/week_mon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20sp" >
+
+                <TextView
+                    android:layout_width="55sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="월요일"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="40sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:text=
+                            "PT
+                        \nFitness
+                        \nSwimming"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--==================카드뷰 끝=====================-->
+        <!--==================카드뷰 시작=====================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/week_tue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <TextView
+                    android:layout_width="55sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="화요일"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="40sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:text=
+                            "PT
+                        \nFitness
+                        \nSwimming"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--==================카드뷰 끝=====================-->
+        <!--==================카드뷰 시작=====================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/week_wed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <TextView
+                    android:layout_width="55sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="수요일"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="40sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:text=
+                            "PT
+                        \nFitness
+                        \nSwimming"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--==================카드뷰 끝=====================-->
+        <!--==================카드뷰 시작=====================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/week_thu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <TextView
+                    android:layout_width="55sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="목요일"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="40sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:text=
+                            "PT
+                        \nFitness
+                        \nSwimming"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--==================카드뷰 끝=====================-->
+        <!--==================카드뷰 시작=====================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/week_fri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <TextView
+                    android:layout_width="55sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="금요일"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="40sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:text=
+                            "PT
+                        \nFitness
+                        \nSwimming"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--==================카드뷰 끝=====================-->
+        <!--==================카드뷰 시작=====================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/week_sat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <TextView
+                    android:layout_width="55sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="토요일"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="40sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:text=
+                            "PT
+                        \nFitness
+                        \nSwimming"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--==================카드뷰 끝=====================-->
+        <!--==================카드뷰 시작=====================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/week_sun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <TextView
+                    android:layout_width="55sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="일요일"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="40sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:text=
+                            "PT
+                        \nFitness
+                        \nSwimming"
+                        android:textSize="15dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--==================카드뷰 끝=====================-->
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+
