@@ -44,6 +44,8 @@ public class MemLoginActivity extends AppCompatActivity {
                 String send = "android/jsonMemberLogin.gym";
                 String send2 = "{mem_id="+id+"&"+"mem_pw="+pw+"}";
                 //톰캣 서버에서 전송한 문자열을 받을 변수
+                //로그인 주석처리
+                /*
                 String result = null;
                 try {
                     TomcatSend tomcatSend = new TomcatSend();
@@ -60,6 +62,12 @@ public class MemLoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MemLoginActivity.this, "아이디와 비밀번호를 확인해주세요.", Toast.LENGTH_LONG).show();
                 }
+
+                 */
+
+                Toast.makeText(MemLoginActivity.this, id+"님 로그인 성공", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MemLoginActivity.this, MemMainActivity.class);
+                startActivity(intent);
             }
         });
 

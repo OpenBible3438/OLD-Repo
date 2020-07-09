@@ -3,15 +3,12 @@ package com.kosmo59.yoginaegym.gym;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
 import com.kosmo59.yoginaegym.R;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapReverseGeoCoder;
@@ -20,7 +17,6 @@ import net.daum.mf.map.api.MapView;
 public class GymSearchActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener{
 
     private MapView mapView;
-    private MaterialButton btn_moveGymProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +26,7 @@ public class GymSearchActivity extends AppCompatActivity implements MapView.Curr
         //카카오 맵
         mapView = new MapView(GymSearchActivity.this);
         ViewGroup container = findViewById(R.id.map_view);
-        mapView.setCurrentLocationEventListener(this);
+        //mapView.setCurrentLocationEventListener(this);
 
         //중심점 입력한 위도 경도로 변경하기
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.4733325,126.8794411), true);
