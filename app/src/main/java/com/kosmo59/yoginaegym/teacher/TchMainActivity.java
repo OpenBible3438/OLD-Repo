@@ -25,14 +25,16 @@ public class TchMainActivity extends AppCompatActivity {
         btn_moveTchProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(TchMainActivity.this, TchMyProfileActivity.class);
+                startActivity(intent);
             }
         });
         //강사 일정보기 이동
         btn_moveTchCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(TchMainActivity.this, TchCalActivity.class);
+                startActivity(intent);
             }
         });
         //강사 회원관리 이동

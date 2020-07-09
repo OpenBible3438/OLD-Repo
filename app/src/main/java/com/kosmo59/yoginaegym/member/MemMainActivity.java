@@ -52,12 +52,16 @@ public class MemMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //시간표 눌렀을 때
+                Intent intent = new Intent(MemMainActivity.this, MemTimeTableActivity.class);
+                startActivity(intent);
             }
         });
         btn_memClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //내 수업 눌렀을 때
+                Intent intent = new Intent(MemMainActivity.this, MemclassActivity.class);
+                startActivity(intent);
             }
         });
 
