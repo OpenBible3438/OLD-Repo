@@ -25,6 +25,7 @@ public class TchClassFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tch_class, container, false);
         context = container.getContext();
+        /*
         tch_class = view.findViewById(R.id.tch_class);
         tch_class.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +39,8 @@ public class TchClassFragment extends Fragment {
 
             }
         });
+
+         */
         //return inflater.inflate(R.layout.fragment_my_review, container, false);
         return view;
     }
