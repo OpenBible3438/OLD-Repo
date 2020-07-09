@@ -63,4 +63,7 @@ dependencies {
 
     //KaKaoMap 라이브러리
     implementation files('libs/libDaumMapAndroid.jar')
+
+    //ImageView 확대
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
 }

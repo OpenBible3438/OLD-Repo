@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbarStyle="outsideInset">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/reviewInsSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:dropDownWidth="200dp"
+            android:spinnerMode="dropdown">
+        </Spinner>
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+        <Button
+            android:id="@+id/btn_revIns1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:text="등록">
+        </Button>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000"/>
+
+    <EditText
+        android:id="@+id/et_reviewIns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="제목을 입력하세요" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0sp"
+        android:inputType="textMultiLine"
+        android:lines="7"
+        android:maxWidth="5.0dip"
+        android:minWidth="10.0dip"
+        android:scrollHorizontally="true"
+        android:text=
+            "안녕하세요. 저는 OOO입니다.
+                        \n지인의 추천으로 여기내gym을 알게되어
+                        \n같이 다니게 되었는데
+                        \n현재는 센타 분위기와 운동시설이 너무 만족스러워
+                        \n오랜 기간 운동을 하고 있습니다."
+        android:textSize="16sp" />
+
+    <RatingBar
+        android:id="@+id/rb_reviewStar"
+        android:layout_gravity="bottom"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:numStars="5"
+        android:progress="70"
+        android:progressTint="#FF9800"
+        android:stepSize="0.5" />
+
+</LinearLayout>

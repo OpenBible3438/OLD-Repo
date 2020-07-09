@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/layout_sample"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".member.MemChatListActivity">
+
+    <!-- ☆★☆★☆★☆★☆★☆★☆★유일하게 건드려야되는 곳☆★☆★☆★☆★☆★☆★☆★ -->
+    <!-- tools:context=".폴더이름.엑티비티이름" -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:background="#EAEAEA"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_marginBottom="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기 위로 건들면 죽음 ☆★☆★☆★☆★☆★☆★☆★-->
+            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
+
+            <LinearLayout
+                android:padding="30dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- 카드뷰로 강사 리스트 -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/chat_tch1"
+                    android:layout_width="match_parent"
+                    android:layout_height="120sp"
+                    android:layout_marginBottom="10sp"
+                    android:elevation="10dp"
+                    app:cardBackgroundColor="#ffffff">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="20sp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="80sp"
+                            android:layout_height="80sp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/people_sample2" />
+
+                        <LinearLayout
+                            android:layout_marginLeft="20sp"
+                            android:layout_width="45sp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="45sp"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="강사명"
+                                android:textAlignment="textStart"
+                                tools:ignore="RtlCompat"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:layout_width="45sp"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="담    당"
+                                android:textAlignment="textStart"
+                                tools:ignore="RtlCompat"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="45sp"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="소    개"
+                                android:textAlignment="textStart"
+                                tools:ignore="RtlCompat"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="0sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="나헬스"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="개인 PT"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:lines="1"
+                                android:text="건강한 삶"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <!-- 강사 1명 카드뷰 끝 -->
+
+                <!--======================================카드뷰 시작-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/chat_tch2"
+                    android:layout_width="match_parent"
+                    android:layout_height="120sp"
+                    android:layout_marginBottom="10sp"
+                    android:elevation="10dp"
+                    app:cardBackgroundColor="#ffffff">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="20sp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="80sp"
+                            android:layout_height="80sp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/people_sample1_256px" />
+
+                        <LinearLayout
+                            android:layout_marginLeft="20sp"
+                            android:layout_width="45sp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="45sp"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="강사명"
+                                android:textAlignment="textStart"
+                                tools:ignore="RtlCompat"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:layout_width="45sp"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="담    당"
+                                android:textAlignment="textStart"
+                                tools:ignore="RtlCompat"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="45sp"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="소    개"
+                                android:textAlignment="textStart"
+                                tools:ignore="RtlCompat"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="0sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="김요가"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="핫요가"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:lines="1"
+                                android:text="유연한 삶"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <!--======================================카드뷰 시작-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/chat_tch3"
+                    android:layout_width="match_parent"
+                    android:layout_height="120sp"
+                    android:layout_marginBottom="10sp"
+                    android:elevation="10dp"
+                    app:cardBackgroundColor="#ffffff">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="20sp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="80sp"
+                            android:layout_height="80sp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/people_sample3" />
+
+                        <LinearLayout
+                            android:layout_marginLeft="20sp"
+                            android:layout_width="45sp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="45sp"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="강사명"
+                                android:textAlignment="textStart"
+                                tools:ignore="RtlCompat"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:layout_width="45sp"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="담    당"
+                                android:textAlignment="textStart"
+                                tools:ignore="RtlCompat"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="45sp"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="소    개"
+                                android:textAlignment="textStart"
+                                tools:ignore="RtlCompat"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="0sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="박스피닝"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:text="스피닝"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25sp"
+                                android:gravity="center_vertical"
+                                android:lines="1"
+                                android:text="달리는 삶"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+
+            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
+            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기 아래로 건들면 죽음 ☆★☆★☆★☆★☆★☆★☆★-->
+        </ScrollView>
+
+        <include
+            layout="@layout/common_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"/>
+
+        <include
+            layout="@layout/common_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/sample_navigationView"
+        app:headerLayout="@layout/common_hamburger"
+        app:menu="@menu/hamburger_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start">
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>

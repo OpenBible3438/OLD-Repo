@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.kosmo59.yoginaegym.MainActivity;
@@ -39,28 +40,18 @@ public class MyReviewFragment extends Fragment {
         btn_revIns.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(context,"등록 클릭.",Toast.LENGTH_LONG).show();
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                alertDialogBuilder.setMessage("등록하시겠습니까?.");
-                alertDialogBuilder.setPositiveButton("등록", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        Toast.makeText(context,"등록되었습니다.",Toast.LENGTH_LONG).show();
-                    }
-                });
-                alertDialogBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context,"취소되었습니다.",Toast.LENGTH_LONG).show();
-                        //finish();
-                    }
-                });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
+                MyreviewRegDialog myreviewRegDialog = new MyreviewRegDialog(context);
+
+                // 커스텀 다이얼로그를 호출한다.
+                myreviewRegDialog.openMyReviewReg();
+
+
             }
         });
         //return inflater.inflate(R.layout.fragment_my_review, container, false);
         return view;
+
     }
 
 }
