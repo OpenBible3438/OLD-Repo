@@ -18,6 +18,10 @@ public class ControllerMapper {
 			case "teacher":{
 				controller = new TchController(pMap);
 			}break;
+			case "android":{
+				controller = new AndroidController(pMap);
+			}
+			break;
 		}
 		return controller;
 	}
