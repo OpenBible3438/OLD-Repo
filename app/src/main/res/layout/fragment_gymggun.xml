@@ -215,7 +215,7 @@
                     android:layout_width="80sp"
                     android:layout_height="80sp"
                     android:layout_gravity="center"
-                    android:src="@drawable/img_pr_test" />
+                    android:src="@drawable/img_gymggun" />
 
                 <LinearLayout
                     android:layout_marginLeft="20sp"
@@ -270,7 +270,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="25sp"
                         android:gravity="center_vertical"
-                        android:text="명상요가"
+                        android:text="피트니스"
                         android:textSize="16sp" />
 
                     <TextView

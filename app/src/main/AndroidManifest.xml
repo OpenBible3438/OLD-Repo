@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
+        android:name=".common.AppVO"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
@@ -20,13 +21,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".common.Chat"></activity>
+        <activity android:name=".teacher.TchChatListActivity" />
+        <activity android:name=".member.MemChatListActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakaoNativeAppkey">
-        </meta-data>
+            android:value="@string/kakaoNativeAppkey" />
 
-        <activity android:name=".member.MemclassActivity"></activity>
+        <activity android:name=".member.MemclassActivity" />
         <activity android:name=".teacher.TchCalActivity" />
         <activity android:name=".teacher.TchMyProfileActivity" />
         <activity android:name=".member.MemTimeTableActivity" />
