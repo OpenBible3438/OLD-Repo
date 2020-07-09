@@ -16,7 +16,7 @@
 
         <!--===========================카드뷰 시작==========================-->
         <androidx.cardview.widget.CardView
-            android:id="@+id/paylist"
+            android:id="@+id/mem_pay1"
             android:layout_width="match_parent"
             android:layout_height="165dp"
             android:layout_marginBottom="10sp"
@@ -120,6 +120,228 @@
                         android:layout_height="25sp"
                         android:gravity="center_vertical"
                         android:text="2020.07.15"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--===============================카드뷰 끝=================================-->
+        <!--===========================카드뷰 시작==========================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mem_pay2"
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <LinearLayout
+                    android:layout_marginLeft="15sp"
+                    android:layout_width="60sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="매장이름"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="수업이름"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="강사이름"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="결재금액"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="결재일"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="여기내짐"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="PT"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="최강철"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="200000"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="2020.06.12"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--===============================카드뷰 끝=================================-->
+        <!--===========================카드뷰 시작==========================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mem_pay3"
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <LinearLayout
+                    android:layout_marginLeft="15sp"
+                    android:layout_width="60sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="매장이름"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="수업이름"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="강사이름"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="결재금액"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="65sp"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="결재일"
+                        android:textAlignment="textStart"
+                        tools:ignore="RtlCompat"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="여기내짐"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="Yoga"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="이수진"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="160000"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="2020.06.05"
                         android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
