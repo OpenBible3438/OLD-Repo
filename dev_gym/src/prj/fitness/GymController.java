@@ -189,7 +189,7 @@ public class GymController implements Controller {
 				}break;
 				case "chart_accum_members":{ // 누적 회원수 조회
 					chartData = gLogic.get_c_accum_members(pMap);
-					data = setData.dataToJson(chartData, "MM");
+					data = setData.dataToJson(chartData, "MONTH");
 					selResult = data;
 				}break;
 				case "chart_ex_time_avg":{ // 회원 평균 운동시간 조회

@@ -111,23 +111,26 @@ public class GymDao {
 		return noticeList;
 	}
 	
-	public List<Map<String, Object>> get_c_accum_members(Map<String, Object> pMap) throws SQLException {
+	///////////////////////////////////////////////////// 차트 시작 //////////////////////////////////////////////
+	public List<Map<String, Object>> get_c_accum_members(Map<String, Object> pMap) throws SQLException { //월별 누적 회원 수
 		logger.info("GymDao - get_c_accum_members() 호출");
 		List<Map<String, Object>> accumList = null;
-		accumList = sqlSession.selectList("get_c_accum_members", pMap);
+		sqlSession.selectList("get_c_accum_members", pMap);
+		accumList = (List<Map<String, Object>>)pMap.get("rfc_accum_mem");
 		logger.info("accumList.size() : " + accumList.size());
 		return accumList;
 	}
 	
-	public List<Map<String, Object>> get_c_ex_time_avg(Map<String, Object> pMap) throws SQLException {
+	public List<Map<String, Object>> get_c_ex_time_avg(Map<String, Object> pMap) throws SQLException {//평균 운동 시간
 		logger.info("GymDao - get_c_ex_time_avg() 호출");
-		List<Map<String, Object>> accumList = null;
-		accumList = sqlSession.selectList("get_c_ex_time_avg", pMap);
-		logger.info("chartList.size() : " + accumList.size());
-		return accumList;
+		List<Map<String, Object>> exTimeList = null;
+		sqlSession.selectList("get_c_ex_time_avg", pMap);
+		exTimeList = (List<Map<String, Object>>)pMap.get("rfc_ex_time");
+		logger.info("exTimeList.size() : " + exTimeList.size());
+		return exTimeList;
 	}
 	
-	public List<Map<String, Object>> get_cnt_mem_extime(Map<String, Object> pMap) throws SQLException {//회원 운동시간
+	public List<Map<String, Object>> get_cnt_mem_extime(Map<String, Object> pMap) throws SQLException {//시간대별 회원 수
 		logger.info("GymDao - get_cnt_mem_extime() 호출");
 		List<Map<String, Object>> cntList = null;
 		sqlSession.selectList("get_cnt_mem_extime", pMap);
@@ -162,6 +165,7 @@ public class GymDao {
 		logger.info("gymSaleList.size() : " + gymSaleList.size());
 		return gymSaleList;
 	}
+	///////////////////////////////////////////////////// 차트 끝  //////////////////////////////////////////////
 	
 	public List<Map<String, Object>> getContentList(Map<String, Object> pMap) throws SQLException {
 		logger.info("GymDao - getContentList() 호출");
