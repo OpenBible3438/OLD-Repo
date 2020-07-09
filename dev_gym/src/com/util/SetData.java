@@ -103,8 +103,8 @@ public class SetData {
 		
 		//키들을 받아서 사용할 순서대로 세팅하기. tch_no, 1월, 2월, ... 순으로
 		Set<String> keyset = dataList.get(0).keySet();
+		logger.info("dataList.size() : " + dataList.size());
 		String[] keys = new String[keyset.size()];
-		List<String> keyList = new ArrayList<String>();
 		int cnt = 0;
 		for(String key : keyset) {
 			keys[cnt++] = key;
@@ -118,16 +118,23 @@ public class SetData {
 		int month = 0;//1~12월을 의미하도록 사용할 변수 선언
 		List<Map<String, Object>> newDataList = new ArrayList<Map<String,Object>>();
 		Map<String, Object> rowMap = null;
-		for(int i=0; i<dataList.size(); i++) {//강사1에 대한 1월부터 12월까지의 정보, 강사 2에 대한 1월부터 ...
+		try {
+			
+		for(int i=0; i<keyset.size()-1; i++) {//강사1에 대한 1월부터 12월까지의 정보, 강사 2에 대한 1월부터 ...
 			rowMap = new HashMap<String, Object>();
-			rowMap.put("MONTH", ++month + "월");
+			rowMap.put("MONTH", (i+1) + "월");
 			System.out.println(tchList.size() + "......................");
 			System.out.println(dataList.size() + "===================================");
 			for(int j=0; j<tchList.size(); j++) {
 				System.out.println("tchList.get(i) : " + tchList.get(j));
-				rowMap.put(tchList.get(j), dataList.get(j).get(month + "월"));
+				System.out.println("dataList.get(i) : " + dataList.get(j));
+				System.out.println("dataList.get(i).get((j+1)) : " + dataList.get(j).get((i+1)+ "월"));
+				rowMap.put(tchList.get(j), dataList.get(j).get((i+1) + "월")); 
 			}
 			newDataList.add(rowMap);
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		System.out.println("--------------------------------");
 		System.out.println(newDataList);
