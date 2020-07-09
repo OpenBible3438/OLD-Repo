@@ -2,101 +2,70 @@ package com.kosmo59.yoginaegym.gym;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.button.MaterialButton;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.kosmo59.yoginaegym.R;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import net.daum.mf.map.api.MapPOIItem;
-import net.daum.mf.map.api.MapPoint;
-import net.daum.mf.map.api.MapReverseGeoCoder;
-import net.daum.mf.map.api.MapView;
 
-public class GymSearchActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener{
+public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private MapView mapView;
+    private GoogleMap gymSearchMap;
+    private MarkerOptions markerOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gym_search);
 
-        //카카오 맵
-        mapView = new MapView(GymSearchActivity.this);
-        ViewGroup container = findViewById(R.id.map_view);
-        //mapView.setCurrentLocationEventListener(this);
-
-        //중심점 입력한 위도 경도로 변경하기
-        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.4733325,126.8794411), true);
-
-        //마커찍기
-        MapPOIItem marker = new MapPOIItem();
-        marker.setItemName("여기내짐 가산점");
-        marker.setTag(0);
-        marker.setMapPoint(MapPoint.mapPointWithGeoCoord(37.4733325,126.8794411));
-        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
-        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-        mapView.addPOIItem(marker);
-
-        MapPOIItem markerMacNal = new MapPOIItem();
-        markerMacNal.setItemName("여기내짐 가산2호점");
-        markerMacNal.setTag(0);
-        markerMacNal.setMapPoint(MapPoint.mapPointWithGeoCoord(37.4783641,126.8759863));
-        markerMacNal.setMarkerType(MapPOIItem.MarkerType.BluePin);
-        markerMacNal.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-        mapView.addPOIItem(markerMacNal);
-
-        container.addView(mapView);
-
-        //GymProfile 이동
-        /*
-        btn_moveGymProfile = findViewById(R.id.btn_moveGymProfile);
-        btn_moveGymProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GymSearchActivity.this, GymProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-        */
+        //xml의 fragment 연결
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
+        mapFragment.getMapAsync(GymSearchActivity.this);
 
     }
-    //GymProfile 이동 함수
+
+    /* 매장이동 */
     public void moveGymSearchActivity(View view) {
         Intent intent = new Intent(GymSearchActivity.this, GymProfileActivity.class);
         startActivity(intent);
     }
 
     @Override
-    public void onReverseGeoCoderFoundAddress(MapReverseGeoCoder mapReverseGeoCoder, String s) {
+    public void onMapReady(GoogleMap googleMap) {
+        gymSearchMap = googleMap;
 
-    }
+        //월드메르디앙벤처센터2차/@37.478683,126.876454
+        LatLng kosmo = new LatLng(37.478683, 126.876454);
+        markerOptions = new MarkerOptions();
+        markerOptions.position(kosmo);
+        markerOptions.title("여기내짐 가산1호점");
+        markerOptions.snippet("가산동 789");
+        gymSearchMap.addMarker(markerOptions);
 
-    @Override
-    public void onReverseGeoCoderFailedToFindAddress(MapReverseGeoCoder mapReverseGeoCoder) {
+        //대한교역(주)/@37.4778494,126.8779125
+        LatLng sample1 = new LatLng(37.4778494, 126.8779125);
+        markerOptions = new MarkerOptions();
+        markerOptions.position(sample1);
+        markerOptions.title("여기내짐 가산2호점");
+        markerOptions.snippet("가산동 3438");
+        gymSearchMap.addMarker(markerOptions);
 
-    }
+        //승일벤처타워/@37.4799603,126.8787942
+        LatLng sample2 = new LatLng(37.4799603, 126.8787942);
+        markerOptions = new MarkerOptions();
+        markerOptions.position(sample2);
+        markerOptions.title("터짐 가산점");
+        markerOptions.snippet("가산동 12-34");
+        gymSearchMap.addMarker(markerOptions);
 
-    @Override
-    public void onCurrentLocationUpdate(MapView mapView, MapPoint mapPoint, float v) {
-
-    }
-
-    @Override
-    public void onCurrentLocationDeviceHeadingUpdate(MapView mapView, float v) {
-
-    }
-
-    @Override
-    public void onCurrentLocationUpdateFailed(MapView mapView) {
-
-    }
-
-    @Override
-    public void onCurrentLocationUpdateCancelled(MapView mapView) {
-
+        gymSearchMap.moveCamera(CameraUpdateFactory.newLatLng(kosmo)); //처음 보여주는 위치
+        gymSearchMap.animateCamera(CameraUpdateFactory.zoomTo(15)); //숫자가 커질수록 상세하게 보여줌
     }
 
     @Override

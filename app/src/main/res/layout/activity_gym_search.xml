@@ -33,8 +33,20 @@
     </LinearLayout>
 
     <!-- 지도 출력 -->
+    <!-- 카카오 Map
     <RelativeLayout
         android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"/>
+
+        -->
+
+    <!-- 구글 Map -->
+
+    <fragment
+        android:id="@+id/googleMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"/>

@@ -21,13 +21,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".common.Chat"></activity>
-        <activity android:name=".teacher.TchChatListActivity" />
-        <activity android:name=".member.MemChatListActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakaoNativeAppkey" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/googleAppKey"/>
+
+        <activity android:name=".common.Chat"></activity>
+        <activity android:name=".teacher.TchChatListActivity" />
+        <activity android:name=".member.MemChatListActivity" />
+
 
         <activity android:name=".member.MemclassActivity" />
         <activity android:name=".teacher.TchCalActivity" />
