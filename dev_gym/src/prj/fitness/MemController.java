@@ -37,45 +37,45 @@ public class MemController implements Controller {
 		logger.info("MemController - String 타입 process 호출");
 		String path = null;
 			switch(cud) {
-			case "ins":{
-				try {
-					switch(reqName) {
-						case "memInbodyIns":{ // 인바디 등록
-							result = mLogic.memInbodyIns(pMap);
-						}break;
+				case "ins":{
+					try {
+						switch(reqName) {
+							case "memInbodyIns":{ // 인바디 등록
+								result = mLogic.memInbodyIns(pMap);
+							}break;
+						}
+					} catch (Exception e) {
+						logger.info("Exception : "+e.toString());
+						result = 0;
 					}
-				} catch (Exception e) {
-					logger.info("Exception : "+e.toString());
-					result = 0;
-				}
-				path = "redirect:../insertResult" + ":" + result;
-			}break;
-			case "upd":{
-				try {
-					switch(reqName) {
-						case "memInbodyUpd":{ // 인바디 수정
-							result = mLogic.memInbodyUpd(pMap);
-						}break;
+					path = "redirect:../insertResult" + ":" + result;
+				}break;
+				case "upd":{
+					try {
+						switch(reqName) {
+							case "memInbodyUpd":{ // 인바디 수정
+								result = mLogic.memInbodyUpd(pMap);
+							}break;
+						}
+					} catch (Exception e) {
+						logger.info("Exception : "+e.toString());
+						result = 0;
 					}
-				} catch (Exception e) {
-					logger.info("Exception : "+e.toString());
-					result = 0;
-				}
-				path = "redirect:../updateResult:"+result;
-			}break;
-			case "del":{
-				try {
-					switch(reqName) {
-						case "memInbodyDel":{ // 인바디 삭제
-							result = mLogic.memInbodyDel(pMap);
-						}break;
+					path = "redirect:../updateResult:"+result;
+				}break;
+				case "del":{
+					try {
+						switch(reqName) {
+							case "memInbodyDel":{ // 인바디 삭제
+								result = mLogic.memInbodyDel(pMap);
+							}break;
+						}
+					} catch (Exception e) {
+						logger.info("Exception : "+e.toString());
+						result = 0;
 					}
-				} catch (Exception e) {
-					logger.info("Exception : "+e.toString());
-					result = 0;
-				}
-				path = "redirect:../deleteResult:"+result;
-			}break;
+					path = "redirect:../deleteResult:"+result;
+				}break;
 			}
 			
 		logger.info("path : " + path);

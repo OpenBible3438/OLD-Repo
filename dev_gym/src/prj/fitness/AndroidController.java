@@ -32,8 +32,77 @@ public class AndroidController implements Controller{
 			throws IOException, ServletException {
 		logger.info("AndroidController - String 타입 process 호출");
 		String path = null;
-		
-		return "아직 안 했어요";
+			switch(cud) {
+				case "ins":{
+					try {
+						switch(reqName) {
+						// 편성경
+						
+						// 김혜림
+							
+						// 김승현
+							
+						// 박준규
+							
+						// 김현빈
+							
+						// 허준호
+						
+						}
+					} catch (Exception e) {
+						logger.info("Exception : "+e.toString());
+						result = 0;
+					}
+					path = "redirect:../insertResult" + ":" + result;
+				}break;
+				case "upd":{
+					try {
+						switch(reqName) {
+						// 편성경
+						
+						// 김혜림
+							
+						// 김승현
+							
+						// 박준규
+							
+						// 김현빈
+							
+						// 허준호
+
+						}
+					} catch (Exception e) {
+						logger.info("Exception : "+e.toString());
+						result = 0;
+					}
+					path = "redirect:../updateResult:"+result;
+				}break;
+				case "del":{
+					try {
+						switch(reqName) {
+						// 편성경
+						
+						// 김혜림
+							
+						// 김승현
+							
+						// 박준규
+							
+						// 김현빈
+							
+						// 허준호
+
+						}
+					} catch (Exception e) {
+						logger.info("Exception : "+e.toString());
+						result = 0;
+					}
+					path = "redirect:../deleteResult:"+result;
+				}break;
+			}
+			
+		logger.info("path : " + path);
+		return path;
 	}
 
 	@Override
@@ -43,9 +112,20 @@ public class AndroidController implements Controller{
 		Object selResult = null;
 		try {
 			switch(reqName) {
-			case "jsonMemberLogin":{
-				selResult = aLogic.getMemberLogin(pMap);
-			}break;
+			// 편성경
+				case "jsonMemberLogin":{
+					selResult = aLogic.getMemberLogin(pMap);
+				}break;
+			// 김혜림
+				
+			// 김승현
+				
+			// 박준규
+				
+			// 김현빈
+				
+			// 허준호
+				
 			}
 		} catch(Exception e) {
 			logger.info("Exception : "+e.toString());

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.androidMapper">
 
-<!-- ======================= ANDROID ======================= -->
+<!-- ======================= 편성경 ======================= -->
 	<!-- 회원 로그인 -->
 	<select id="getMemberLogin" parameterType="map" resultType="map">
 		SELECT mem_name, mem_nickname
@@ -10,5 +10,19 @@
 		 WHERE mem_id = #{mem_id}
 		   AND mem_pw = #{mem_pw}
 	</select>
+<!-- ======================= 김혜림 ======================= -->
+
+
+<!-- ======================= 김승현 ======================= -->
+
+
+<!-- ======================= 박준규 ======================= -->
+
+
+<!-- ======================= 김현빈 ======================= -->
+
+
+<!-- ======================= 허준호 ======================= -->
+
 	
 </mapper>

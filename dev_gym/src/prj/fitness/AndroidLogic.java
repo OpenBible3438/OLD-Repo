@@ -22,6 +22,7 @@ public class AndroidLogic {
 		this.aDao = new AndroidDao(sqlSession);
 	}
 	
+// 편성경
 	//회원 로그인
 	public Object getMemberLogin(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidLogic - getMemberLogin() 호출 ");
@@ -31,5 +32,15 @@ public class AndroidLogic {
 		
 		return loginResult;
 	}
+// 김혜림
+		
+// 김승현
+		
+// 박준규
+		
+// 김현빈
+		
+// 허준호
+
 
 }
