@@ -1,14 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EDEDED"
     tools:context=".member.MemLogFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="내 일지" />
+        android:orientation="vertical"
+        android:padding="30sp">
+
+    <!--일지 등록-->
+    <!--======================================카드뷰 시작-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dailyRecord_reg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20sp">
+            <TextView
+                android:lines="1"
+                android:text="여기를 눌러 새 일지를 작성하세요."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+        <!--======================================카드뷰 시작-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dailyRecord_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20sp">
+
+                <TextView
+                    android:lines="4"
+                    android:text="본문이 들어올 자리입니다. 네 줄로 제한합니다. 본문이 들어올 자리입니다. 네 줄로 제한합니다.
+                                 \n본문이 들어올 자리입니다. 네 줄로 제한합니다. 본문이 들어올 자리입니다. 네 줄로 제한합니다.
+                                  \n본문이 들어올 자리입니다. 네 줄로 제한합니다. 본문이 들어올 자리입니다. 네 줄로 제한합니다.  "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--구분 라인-->
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#000000" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="공중부양 핫요가"
+                        android:textColor="#009688" />
+                    <TextView
+                        android:paddingTop="2dp"
+                        android:layout_marginLeft="12dp"
+                        android:textSize="10sp"
+                        android:text="운동일"
+                        android:textColor="#009688"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <TextView
+                        android:layout_marginLeft="4dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:text="2020-07-09"
+                        android:textColor="#009688"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:gravity="right|center"
+                        android:textSize="12sp"
+                        android:text="2020-07-09"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!--======================================카드뷰 시작-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dailyRecord_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20sp">
+
+                <TextView
+                    android:lines="4"
+                    android:text="본문이 들어올 자리입니다. 네 줄로 제한합니다. 본문이 들어올 자리입니다. 네 줄로 제한합니다.
+                                 \n본문이 들어올 자리입니다. 네 줄로 제한합니다. 본문이 들어올 자리입니다. 네 줄로 제한합니다.
+                                  \n본문이 들어올 자리입니다. 네 줄로 제한합니다. 본문이 들어올 자리입니다. 네 줄로 제한합니다.  "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <!--구분 라인-->
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#000000" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="공중부양 핫요가"
+                        android:textColor="#009688" />
+                    <TextView
+                        android:paddingTop="2dp"
+                        android:layout_marginLeft="12dp"
+                        android:textSize="10sp"
+                        android:text="운동일"
+                        android:textColor="#009688"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <TextView
+                        android:layout_marginLeft="4dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:text="2020-07-08"
+                        android:textColor="#009688"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:gravity="right|center"
+                        android:textSize="12sp"
+                        android:text="2020-07-08"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
 </ScrollView>
