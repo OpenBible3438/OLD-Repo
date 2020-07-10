@@ -24,6 +24,8 @@ public class MemLogRegDialog {
     private ImageButton icon_date;
     private ImageButton icon_stime;
     private ImageButton icon_etime;
+    private TextView tv_stime;
+    private TextView tv_etime;
     int hour = 0, minute = 0;
 
     public MemLogRegDialog(Context context) {
@@ -45,6 +47,12 @@ public class MemLogRegDialog {
 
         //운동일 찍힐 EditText id찾기
         tv_logRegDate = dlg.findViewById(R.id.tv_logRegDate);
+
+        //시작시간 찍힐 tv_stime id찾기
+        tv_stime = dlg.findViewById(R.id.tv_stime);
+
+        //종료시간 찍힐 tv_stime id찾기
+        tv_etime = dlg.findViewById(R.id.tv_etime);
 
         //운동일 지정
         icon_date = dlg.findViewById(R.id.icon_date);
@@ -68,12 +76,30 @@ public class MemLogRegDialog {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    //TextView에 선택 시간 찍어주기
+                    tv_stime.setText(hourOfDay+":"+minute+":00");
                     }
-                }, hour, minute,true);
+                }, hour, minute, true);
                 timePickerDialog.show();
             }
         });
 
+        //종료시간 지정
+        icon_etime = dlg.findViewById(R.id.icon_etime);
+        icon_etime.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //openTimePiker();
+                TimePickerDialog timePickerDialog = new TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        //TextView에 선택 시간 찍어주기
+                        tv_etime.setText(hourOfDay+":"+minute+":00");
+                    }
+                }, hour, minute, true);
+                timePickerDialog.show();
+            }
+        });
 
 
         //닫기 버튼
@@ -88,7 +114,7 @@ public class MemLogRegDialog {
     }
 
 
-    /* 운동일 */
+    /* 운동일 확인 버튼 눌렀을 때 */
     private EditText tv_logRegDate;
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
@@ -101,11 +127,10 @@ public class MemLogRegDialog {
         }
     };
 
-    /*tv_logRegDate에 다이얼로그로 설정한 날짜로 바꿔주기*/
+    /*tv_logRegDate에 다이얼로그에서 설정한 날짜로 바꿔주기*/
     private void updateTv_date() {
         String dateFormat = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.KOREA);
         tv_logRegDate.setText(sdf.format(calendar.getTime()));
     }
-
 }
