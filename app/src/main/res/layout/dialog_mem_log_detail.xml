@@ -197,6 +197,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="30dp">
                             <TextView
+                                android:id="@+id/tv_stime"
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
@@ -208,6 +209,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
                                 <ImageButton
+                                    android:id="@+id/icon_stime"
                                     android:src="@drawable/icon_stime"
                                     android:backgroundTint="@android:color/transparent"
                                     android:layout_width="30dp"
@@ -220,6 +222,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="30dp">
                             <TextView
+                                android:id="@+id/tv_etime"
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
@@ -231,6 +234,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
                                 <ImageButton
+                                    android:id="@+id/icon_etime"
                                     android:src="@drawable/icon_etime"
                                     android:backgroundTint="@android:color/transparent"
                                     android:layout_width="30dp"

@@ -12,100 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="60sp">
-
-        <!--======================================카드뷰 시작-->
+        android:padding="30sp">
 
         <!--======================================카드뷰 시작-->
         <androidx.cardview.widget.CardView
             android:id="@+id/tch_class"
             android:layout_width="match_parent"
-            android:layout_height="120sp"
-            android:layout_marginBottom="10sp"
-            android:elevation="100dp"
-            android:onClick="tch_DG_clik"
-            app:cardBackgroundColor="#ffffff">
-
-            <LinearLayout
-                android:id="@+id/tch_class_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="20sp">
-
-                <LinearLayout
-                    android:layout_width="55sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20sp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="55sp"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 수업이름:"
-                        android:textAlignment="textStart"
-                        android:textSize="12sp"
-                        tools:ignore="RtlCompat" />
-
-                    <TextView
-                        android:layout_width="55sp"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 수업기간:"
-                        android:textAlignment="textStart"
-                        android:textSize="12sp"
-                        tools:ignore="RtlCompat" />
-
-                    <TextView
-                        android:layout_width="55sp"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 등록자 수:"
-                        android:textAlignment="textStart"
-                        android:textSize="12sp"
-                        tools:ignore="RtlCompat" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="0sp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" PT"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 목 금 "
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:lines="1"
-                        android:text=" 11명 "
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/tch_class2"
-            android:layout_width="match_parent"
-            android:layout_height="120sp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10sp"
             android:elevation="100dp"
             app:cardBackgroundColor="#ffffff">
@@ -117,42 +30,45 @@
                 android:padding="20sp">
 
                 <LinearLayout
-                    android:layout_marginLeft="20sp"
-                    android:layout_width="55sp"
+                    android:layout_width="70sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="55sp"
+                        android:layout_width="70sp"
                         android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 수업이름:"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat"
+                        android:gravity="left|center"
+                        android:text="수업이름"
                         android:textSize="12sp"/>
 
                     <TextView
-                        android:layout_width="55sp"
+                        android:layout_width="70sp"
                         android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 수업기간:"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat"
-                        android:textSize="12sp" />
-
+                        android:gravity="left|center"
+                        android:text="시작일"
+                        android:textSize="12sp"/>
                     <TextView
-                        android:layout_width="55sp"
+                        android:layout_width="70sp"
                         android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 등록자 수:"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat"
-                        android:textSize="12sp" />
+                        android:gravity="left|center"
+                        android:text="종료일"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="70sp"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:text="수업요일"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="70sp"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:text="수업인원"
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginLeft="0sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -161,23 +77,34 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" PT"
+                        android:gravity="left|center"
+                        android:text="요가"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 목 금 "
+                        android:gravity="left|center"
+                        android:text="2020-07-01"
                         android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:lines="1"
-                        android:text=" 11명 "
+                        android:gravity="left|center"
+                        android:text="2020-07-31 "
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:text="화/목/금 "
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:text="11명 "
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -186,172 +113,8 @@
         </androidx.cardview.widget.CardView>
 
         <!--======================================카드뷰 시작-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/tch_class3"
-            android:layout_width="match_parent"
-            android:layout_height="120sp"
-            android:layout_marginBottom="10sp"
-            android:elevation="100dp"
-            app:cardBackgroundColor="#ffffff">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="20sp">
-
-                <LinearLayout
-                    android:layout_marginLeft="20sp"
-                    android:layout_width="55sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="55sp"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 수업이름:"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:layout_width="55sp"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 수업기간:"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="55sp"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 등록자 수:"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginLeft="0sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" PT"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 목 금 "
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:lines="1"
-                        android:text=" 11명 "
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
 
         <!--======================================카드뷰 시작-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/tch_class4"
-            android:layout_width="match_parent"
-            android:layout_height="120sp"
-            android:layout_marginBottom="10sp"
-            android:elevation="100dp"
-            app:cardBackgroundColor="#ffffff">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="20sp">
-
-                <LinearLayout
-                    android:layout_marginLeft="20sp"
-                    android:layout_width="55sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="55sp"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 수업이름:"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:layout_width="55sp"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 수업기간:"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="55sp"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 등록자 수:"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginLeft="0sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" PT"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:text=" 목 금 "
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="center_vertical"
-                        android:lines="1"
-                        android:text=" 11명 "
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
