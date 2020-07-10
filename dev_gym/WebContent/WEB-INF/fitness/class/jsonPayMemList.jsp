@@ -9,7 +9,12 @@
 		String classes = g.toJson(payMemList);
 		out.print(classes);
 	}
-	else{
-		out.print("null입니다.");
+	else {
+		Map<String, Object> map = new HashMap<>();
+		map.put("MEM_NO", 1);
+		payMemList.add(map);
+		Gson g = new Gson();
+		String classes = g.toJson(payMemList);
+		out.print(classes);
 	}
 %>    

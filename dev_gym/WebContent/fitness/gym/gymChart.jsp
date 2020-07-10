@@ -19,8 +19,8 @@
 		google.charts.setOnLoadCallback(drawChart_c_ex_time_avg);
 		google.charts.setOnLoadCallback(drawChart_c_cnt_mem_extime);
  		google.charts.setOnLoadCallback(drawChart_c_newmem);
-		google.charts.setOnLoadCallback(drawChart_c_gym_salse);
-		google.charts.setOnLoadCallback(drawChart_c_tch_salse);
+		google.charts.setOnLoadCallback(drawChart_c_gym_sales);
+		google.charts.setOnLoadCallback(drawChart_c_tch_sales);
 	}
 
 	function drawChart_c_newmem() {
@@ -92,9 +92,9 @@
 		chart.draw(data, options);
 		window.addEventListener('resize', drawChart_c_cnt_mem_extime, false);
 	}
-	function drawChart_c_tch_salse() {
+	function drawChart_c_tch_sales() {
 		var jsonData = $.ajax({
-			url : "../gym/chart_tch_salse.gym?cho_year="+cho_year,
+			url : "../gym/chart_tch_sales.gym?cho_year="+cho_year,
 		    dataType: "json",
 		    async: false
 		}).responseText;
@@ -106,11 +106,11 @@
 		  legend: { position: 'bottom' }
 		};
 		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.LineChart(document.getElementById('c_tch_salse'));
+		var chart = new google.visualization.LineChart(document.getElementById('c_tch_sales'));
 		chart.draw(data, options);
-		window.addEventListener('resize', drawChart_c_tch_salse, false);
+		window.addEventListener('resize', drawChart_c_tch_sales, false);
 	}
-	function drawChart_c_gym_salse() {
+	function drawChart_c_gym_sales() {
 		var jsonData = $.ajax({
 		    url: "../gym/chart_gym_sales.gym?cho_year="+cho_year,
 		    dataType: "json",
@@ -126,7 +126,7 @@
 		// Instantiate and draw our chart, passing in some options.
 		var chart = new google.visualization.LineChart(document.getElementById('c_gym_sales'));
 		chart.draw(data, options);
-		window.addEventListener('resize', drawChart_c_gym_salse, false);
+		window.addEventListener('resize', drawChart_c_gym_sales, false);
 	}
 </script>
 </head>
@@ -169,7 +169,7 @@
 			<div class="w-100" style="min-height:250px">
 				<div class="w-100">
 					<div>
-						<div id="c_tch_salse"></div>
+						<div id="c_tch_sales"></div>
 					</div>
 				</div>
 			</div>
