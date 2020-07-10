@@ -207,7 +207,7 @@ public class GymController implements Controller {
 					data = setData.dataToJson(chartData, "DATE_YM");
 					selResult = data;
 				}break;
-				case "chart_tch_salse":{ // 강사별 월별 매출
+				case "chart_tch_sales":{ // 강사별 월별 매출
 					chartData = gLogic.get_tchChart(pMap);
 					data = setData.switchCol(chartData, "TCH_NAME");
 					logger.info("*** data : " + data);
