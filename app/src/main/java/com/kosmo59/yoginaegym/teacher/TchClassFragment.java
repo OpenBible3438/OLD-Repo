@@ -23,24 +23,22 @@ public class TchClassFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tch_class, container, false);
+        View view = inflater.inflate(R.layout.fragment_class, container, false);
         context = container.getContext();
-        /*
         tch_class = view.findViewById(R.id.tch_class);
         tch_class.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-                MyreviewRegDialog myreviewRegDialog = new MyreviewRegDialog(context);
+                TchDialog TchDialog = new TchDialog(context);
 
                 // 커스텀 다이얼로그를 호출한다.
-                myreviewRegDialog.openMyReviewReg();
+                TchDialog. onTchDialog();
 
 
             }
         });
 
-         */
         //return inflater.inflate(R.layout.fragment_my_review, container, false);
         return view;
     }
