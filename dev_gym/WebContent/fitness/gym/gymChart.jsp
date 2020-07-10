@@ -19,7 +19,7 @@
 		google.charts.setOnLoadCallback(drawChart_c_ex_time_avg);
 		google.charts.setOnLoadCallback(drawChart_c_cnt_mem_extime);
  		google.charts.setOnLoadCallback(drawChart_c_newmem);
-		google.charts.setOnLoadCallback(drawChart_c_gym_sales); 
+		google.charts.setOnLoadCallback(drawChart_c_gym_sales);
 		google.charts.setOnLoadCallback(drawChart_c_tch_sales);
 	}
 
