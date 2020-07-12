@@ -39,8 +39,6 @@ public class MemLoginActivity extends AppCompatActivity {
         btn_loginMem = findViewById(R.id.btn_loginMem);
         btn_join = findViewById(R.id.btn_join);
 
-
-
         //로그인 버튼 -> 회원 메인 화면 이동
         btn_loginMem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,21 +47,12 @@ public class MemLoginActivity extends AppCompatActivity {
                 Map<String, String> loginMap = new HashMap<>();
                 String id = et_memLoginId.getText().toString();
                 String pw = et_memLoginPw.getText().toString();
-                //loginMap.put("mem_id", id);
-                //loginMap.put("mem_pw", pw);
                 String send = "android/jsonMemberLogin.gym";
                 loginMap.put("mem_id", id);
                 loginMap.put("mem_pw", pw);
 
                 //채팅 변수 담기
                 AppVO vo = (AppVO) getApplicationContext();
-                //vo.setMemberId(id);
-                //이름 만듦
-                //String name = "김회원";
-                //vo.setMemberName(name);
-                //vo.setRoomName1(name);
-                //입력한 pw를 회원번호로
-                //vo.setMemberNum(pw);
 
                 String result = null;
                 JSONObject jsonObject = null;
@@ -71,7 +60,6 @@ public class MemLoginActivity extends AppCompatActivity {
                 try {
                     TomcatSend tomcatSend = new TomcatSend();
                     result = tomcatSend.execute(send, loginMap.toString()).get();
-                    //jsonObject = new JSONObject(result);
                     jsonArray = new JSONArray(result);
                 } catch (Exception e){
                     Log.i(MEMBER_LOGIN, "Exception : "+e.toString());
@@ -96,9 +84,7 @@ public class MemLoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MemLoginActivity.this, "아이디와 비밀번호를 확인해주세요.", Toast.LENGTH_LONG).show();
                 }
-                /*Toast.makeText(MemLoginActivity.this, id+"님 로그인 성공", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MemLoginActivity.this, MemMainActivity.class);
-                startActivity(intent);*/
+
             }
         });
 
