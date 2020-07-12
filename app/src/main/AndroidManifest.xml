@@ -34,12 +34,13 @@
         <activity android:name=".teacher.TchChatListActivity" />
         <activity android:name=".member.MemChatListActivity" />
 
+        <activity android:name=".member.MemContentActivity"/>
 
         <activity android:name=".member.MemclassActivity" />
         <activity android:name=".teacher.TchCalActivity" />
         <activity android:name=".teacher.TchMyProfileActivity" />
         <activity android:name=".member.MemTimeTableActivity" />
-        <activity android:name=".common.ContentActivity" />
+        <activity android:name=".teacher.TchContentActivity" />
         <activity android:name=".teacher.TchManageActivity" />
         <activity android:name=".teacher.TchMainActivity" />
         <activity android:name=".gym.GymProfileActivity" />
