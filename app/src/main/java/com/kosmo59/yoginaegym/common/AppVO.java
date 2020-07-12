@@ -3,11 +3,21 @@ package com.kosmo59.yoginaegym.common;
 import android.app.Application;
 
 public class AppVO extends Application {
-    /* 회원 시점 채팅 변수 */
+    /* 회원 */
     public String memberName = null;
     public String memberId = null;
     public String memberNum = null; //로그인 창에서 입력한 비밀번호를 회원번호로 받기
     public String roomName1 = null;
+    public String memberNickname = null;
+
+
+    public String getMemberNickname() {
+        return memberNickname;
+    }
+
+    public void setMemberNickname(String memberNickname) {
+        this.memberNickname = memberNickname;
+    }
 
 
     public String getMemberNum() {
@@ -42,7 +52,7 @@ public class AppVO extends Application {
         this.roomName1 = roomName1;
     }
 
-    /* 강사 시점 채팅 변수 */
+    /* 강사 */
     public String tchName = null;
     public String tchId = null;
     public String tchNum = null; //로그인 창에서 입력한 비밀번호를 강사번호로 받기
