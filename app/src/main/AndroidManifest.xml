@@ -47,6 +47,7 @@
         <activity android:name=".sample.sample2" />
         <activity android:name=".member.MemProfileActivity" />
         <activity android:name=".member.MemJoinActivity" />
+        <activity android:name=".member.MemAddressActivity" />
         <activity android:name=".member.MemMainActivity" />
         <activity android:name=".teacher.TchLoginActivity" />
         <activity android:name=".member.MemLoginActivity" />
