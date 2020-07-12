@@ -41,8 +41,8 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         gymSearchMap = googleMap;
 
-        //월드메르디앙벤처센터2차/@37.478683,126.876454
-        LatLng kosmo = new LatLng(37.478683, 126.876454);
+        //월드메르디앙벤처센터2차/@37.4785562,126.8785191
+        LatLng kosmo = new LatLng(37.4785562, 126.8785191);
         markerOptions = new MarkerOptions();
         markerOptions.position(kosmo);
         markerOptions.title("여기내짐 가산1호점");

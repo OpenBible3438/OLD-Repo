@@ -2,12 +2,15 @@ package com.kosmo59.yoginaegym.member;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.kosmo59.yoginaegym.R;
 
@@ -19,6 +22,11 @@ public class MemLogDetailDialog {
     private Context context;
     private ImageButton icon_close;
     private ImageButton icon_date;
+    private ImageButton icon_stime;
+    private ImageButton icon_etime;
+    private TextView tv_stime;
+    private TextView tv_etime;
+    int hour = 0, minute = 0;
 
     public MemLogDetailDialog(Context context) {
         this.context = context;
@@ -40,6 +48,12 @@ public class MemLogDetailDialog {
         //운동일 찍힐 EditText id찾기
         tv_logDetailDate = dlg.findViewById(R.id.tv_logDetailDate);
 
+        //시작시간 찍힐 tv_stime id찾기
+        tv_stime = dlg.findViewById(R.id.tv_stime);
+
+        //종료시간 찍힐 tv_stime id찾기
+        tv_etime = dlg.findViewById(R.id.tv_etime);
+
         //운동일 지정
         icon_date = dlg.findViewById(R.id.icon_date);
         icon_date.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +74,42 @@ public class MemLogDetailDialog {
                 dlg.hide();
             }
         });
+
+        //시작시간 지정
+        icon_stime = dlg.findViewById(R.id.icon_stime);
+        icon_stime.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //openTimePiker();
+                TimePickerDialog timePickerDialog = new TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        //TextView에 선택 시간 찍어주기
+                        tv_stime.setText(hourOfDay+":"+minute+":00");
+                    }
+                }, hour, minute, true);
+                timePickerDialog.show();
+            }
+        });
+
+        //종료시간 지정
+        icon_etime = dlg.findViewById(R.id.icon_etime);
+        icon_etime.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //openTimePiker();
+                TimePickerDialog timePickerDialog = new TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        //TextView에 선택 시간 찍어주기
+                        tv_etime.setText(hourOfDay+":"+minute+":00");
+                    }
+                }, hour, minute, true);
+                timePickerDialog.show();
+            }
+        });
+
+
     }
 
     /* 운동일 */

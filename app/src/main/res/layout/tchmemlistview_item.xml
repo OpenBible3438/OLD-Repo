@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30sp">
+
+    <!--==== 카드뷰 시작 ====-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tch_mem_list"
+        android:layout_width="match_parent"
+        android:layout_height="120sp"
+        android:layout_marginBottom="10sp"
+        android:elevation="100dp"
+        app:cardBackgroundColor="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="20sp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="80sp"
+                    android:layout_height="25sp"
+                    android:gravity="center_vertical"
+                    android:text=" 이                름:"
+                    android:textAlignment="textStart"
+                    android:textSize="12sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="80sp"
+                    android:layout_height="25sp"
+                    android:gravity="center_vertical"
+                    android:text=" 생   년   월   일:"
+                    android:textAlignment="textStart"
+                    android:textSize="12sp"
+                    tools:ignore="RtlCompat" />
+
+                <TextView
+                    android:layout_width="80sp"
+                    android:layout_height="25sp"
+                    android:gravity="center_vertical"
+                    android:text=" 남은일수/횟수:"
+                    android:textAlignment="textStart"
+                    android:textSize="12sp"
+                    tools:ignore="RtlCompat" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cls_mem_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="25sp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cls_mem_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="25sp"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/cls_mem_restcnt"
+                    android:layout_width="match_parent"
+                    android:layout_height="25sp"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/btn_tchmemDetail"
+                    android:text="자세히"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent">
+
+                </Button>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
