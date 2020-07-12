@@ -56,8 +56,23 @@
 		                  ,'mem'        ,#{mem_no}) 
 	</insert>
 <!-- ======================= 김혜림 ======================= -->
-
-
+	<!-- 강사별 수업 목록 가져오기(수강생 수 포함) -->
+	<select id="getTchClassList_and" parameterType="map" resultType="map">
+		SELECT c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date
+			 , cls_e_date, c.cls_state, COUNT(p.pay_no)regis_num, COUNT(DISTINCT(p.mem_no)) mem_num
+		  FROM class c, pay p
+		 WHERE c.cls_no = p.cls_no
+		   AND tch_no = #{tch_no}
+	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state
+	</select>
+	<select id="getclsMemList_and" parameterType="map" resultType="map">
+	SELECT m.mem_no, m.mem_name, m.mem_birth, DECODE(MIN(ma.mem_cls_cnt), -1, '해당없음',MIN(ma.mem_cls_cnt)) rcnt, c.cls_cnt cnt
+	  FROM class c, pay p, mem_attend ma, member m
+	 WHERE c.cls_no = p.cls_no
+	   AND p.mem_no = m.mem_no
+	   AND p.cls_no = #{cls_no}
+	GROUP BY m.mem_no, m.mem_name, m.mem_birth, c.cls_cnt
+	</select>
 <!-- ======================= 김승현 ======================= -->
 
 
