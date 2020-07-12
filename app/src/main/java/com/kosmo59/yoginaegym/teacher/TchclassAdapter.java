@@ -20,20 +20,14 @@ import java.util.List;
 import java.util.Map;
 
 
-public class tchclassAdapter extends ArrayAdapter {
+public class TchclassAdapter extends ArrayAdapter {
 
-    public static final String TAG = "tchclassAdapter";
+    public static final String TAG = "TchclassAdapter";
     Context mContext = null;
-    LayoutInflater mLayoutInflater = null;
     List<Map<String, Object>> mList = null;
     int resourceId;
-    /*public tchclassAdapter(Context context, List<Map<String, Object>> data) {
-        mContext = context;
-        this.mList = data;
-        mLayoutInflater = LayoutInflater.from(mContext);
-    }
-*/
-    public tchclassAdapter(Context context, int resource, List<Map<String, Object>> clsList) {
+
+    public TchclassAdapter(Context context, int resource, List<Map<String, Object>> clsList) {
         super(context, resource, clsList);
         this.mContext = context;
         this.mList = clsList;

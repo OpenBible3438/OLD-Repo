@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kosmo59.yoginaegym.R;
-import com.kosmo59.yoginaegym.common.ContentActivity;
-import com.kosmo59.yoginaegym.member.MemChatListActivity;
-import com.kosmo59.yoginaegym.member.MemMainActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -63,7 +60,7 @@ public class TchMainActivity extends AppCompatActivity {
                     case R.id.bot_nav_qr:
                         break;
                     case R.id.bot_nav_cont:
-                        Intent intent_cont = new Intent(TchMainActivity.this, ContentActivity.class);
+                        Intent intent_cont = new Intent(TchMainActivity.this, TchContentActivity.class);
                         startActivity(intent_cont);
                         break;
                     case R.id.bot_nav_msg:

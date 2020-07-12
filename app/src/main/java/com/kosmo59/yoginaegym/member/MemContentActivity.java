@@ -1,16 +1,15 @@
-package com.kosmo59.yoginaegym.common;
+package com.kosmo59.yoginaegym.member;
 
-import androidx.appcompat.app.AppCompatActivity;
-import com.kosmo59.yoginaegym.R;
-
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class ContentActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.kosmo59.yoginaegym.R;
+
+public class MemContentActivity extends AppCompatActivity {
     //1이면 눌려있을 때, 0이면 안 눌려있을 때
     private int check_num = 0;
     //이미지 버튼

@@ -1,6 +1,5 @@
 package com.kosmo59.yoginaegym.teacher;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -12,19 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
-import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.TomcatSend;
 
 import java.lang.reflect.Type;
@@ -61,7 +53,8 @@ public class TchClassFragment extends Fragment {
 
         String nowTch = null;
         Map<String, Object> tchMap = new HashMap<>();
-        tchMap.put("tch_no", 2);
+        tchMap.put("tch_no", 2);/////////////바꿀 코드
+        tchMap.put("gym_no", 1);/////////////바꿀 코드
         nowTch = tchMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         Log.i("테스트", "nowTch : " + nowTch);
@@ -80,8 +73,9 @@ public class TchClassFragment extends Fragment {
         }
         Gson g = new Gson();
         clsList = (List<Map<String, Object>>)g.fromJson(result, listType);
+        ////////////////////////////////////DB 연동 끝////////////////////////////////////
 
-        tchclassAdapter tchclassAdapter = new tchclassAdapter(mContext, R.layout.tchclasslistview_item, clsList);
+        TchclassAdapter tchclassAdapter = new TchclassAdapter(mContext, R.layout.tchclasslistview_item, clsList);
         cls_listView = view.findViewById(R.id.cls_list);
         cls_listView.setAdapter(tchclassAdapter);
 
