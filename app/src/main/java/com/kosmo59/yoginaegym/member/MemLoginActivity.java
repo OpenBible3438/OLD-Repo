@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.common.TomcatSend;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /* 메인 -> 회원버튼 클릭 -> 회원 로그인 화면 */
 public class MemLoginActivity extends AppCompatActivity {
@@ -36,49 +44,47 @@ public class MemLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(MEMBER_LOGIN, "로그인 버튼 클릭");
-                //Map<String, String> loginMap = new HashMap<>();
+                Map<String, String> loginMap = new HashMap<>();
                 String id = et_memLoginId.getText().toString();
                 String pw = et_memLoginPw.getText().toString();
-                //loginMap.put("mem_id", id);
-                //loginMap.put("mem_pw", pw);
                 String send = "android/jsonMemberLogin.gym";
-                String send2 = "{mem_id="+id+"&"+"mem_pw="+pw+"}";
+                loginMap.put("mem_id", id);
+                loginMap.put("mem_pw", pw);
 
                 //채팅 변수 담기
                 AppVO vo = (AppVO) getApplicationContext();
-                vo.setMemberId(id);
-                //이름 만듦
-                String name = "김회원";
-                vo.setMemberName(name);
-                vo.setRoomName1(name);
-                //입력한 pw를 회원번호로
-                vo.setMemberNum(pw);
 
-                //톰캣 서버에서 전송한 문자열을 받을 변수
-                //로그인 주석처리
-                /*
                 String result = null;
+                JSONObject jsonObject = null;
+                JSONArray jsonArray = null;
                 try {
                     TomcatSend tomcatSend = new TomcatSend();
-                    result = tomcatSend.execute(send, send2).get();
+                    result = tomcatSend.execute(send, loginMap.toString()).get();
+                    jsonArray = new JSONArray(result);
                 } catch (Exception e){
                     Log.i(MEMBER_LOGIN, "Exception : "+e.toString());
                 }
                 Log.i(MEMBER_LOGIN, "톰캣서버에서 읽어온 정보"+result);
 
                 if(result != null){
-                    Toast.makeText(MemLoginActivity.this, result+"님 로그인 성공", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MemLoginActivity.this, id+"님 로그인 성공", Toast.LENGTH_SHORT).show();
+                    try {
+                        for (int i=0; i<jsonArray.length(); i++){
+                            jsonObject = jsonArray.getJSONObject(i);
+                            vo.setMemberId(id);
+                            vo.setMemberName(jsonObject.getString("MEM_NAME"));
+                            vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(MemLoginActivity.this, "이름은 "+vo.getMemberName()+"닉네임은 "+vo.getMemberNickname(), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(MemLoginActivity.this, MemMainActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(MemLoginActivity.this, "아이디와 비밀번호를 확인해주세요.", Toast.LENGTH_LONG).show();
                 }
 
-                 */
-
-                Toast.makeText(MemLoginActivity.this, id+"님 로그인 성공", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MemLoginActivity.this, MemMainActivity.class);
-                startActivity(intent);
             }
         });
 
