@@ -40,13 +40,13 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="info_cls_s_date" class="col-sm-3 col-form-label"><b>시작일</b></label> 
+							<label for="info_cls_s_date" class="col-sm-3 col-form-label"><b>판매시작</b></label> 
 							<div class="col-sm-9"> 
 								<input type="date" class="form-control input-sm" id="info_cls_s_date" name="info_cls_s_date" placeholder="연도-월-일" readonly>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="info_cls_e_date" class="col-sm-3 col-form-label"><b>종료일</b></label> 
+							<label for="info_cls_e_date" class="col-sm-3 col-form-label"><b>판매종료</b></label> 
 							<div class="col-sm-9"> 
 								<input type="date" class="form-control input-sm" id="info_cls_e_date" name="info_cls_e_date" placeholder="연도-월-일" readonly>
 							</div>
@@ -70,15 +70,15 @@
 							</div>							
 						</div>						
 						<div class="form-group row">
-							<label for="info_cls_cnt" class="col-sm-3 col-form-label"><b>수업 횟수</b></label> 
-							<div class="col-sm-9"> 
-								<input type="text" class="form-control input-sm" id="info_cls_cnt" name="info_cls_cnt" readonly>
-							</div>
-						</div>
-						<div class="form-group row">
 							<label for="info_cls_days" class="col-sm-3 col-form-label"><b>수업 일수</b></label> 
 							<div class="col-sm-9"> 
 								<input type="text" class="form-control input-sm" id="info_cls_days" name="info_cls_days" readonly>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="info_cls_cnt" class="col-sm-3 col-form-label"><b>수업 횟수</b></label> 
+							<div class="col-sm-9"> 
+								<input type="text" class="form-control input-sm" id="info_cls_cnt" name="info_cls_cnt" readonly>
 							</div>
 						</div>
 						<div class="form-group row">

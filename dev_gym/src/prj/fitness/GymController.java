@@ -168,28 +168,36 @@ public class GymController implements Controller {
 				} break;
 				case "jsonClassMemList":{ // 수강생 조회
 					selResult = gLogic.getClassMemList(pMap);
+					mav.type = "json";
 				} break;
-				case "jsonClassDetail":{ // 수업 자세히 보기
-					selResult = gLogic.getClassDetail(pMap);
-				}break;
+//				case "jsonClassDetail":{ // 수업 자세히 보기
+//					selResult = gLogic.getClassDetail(pMap);
+//					mav.type = "json";
+//				}break;
 				case "jsonClassList":{ // 수업 목록 조회
 					selResult = gLogic.getClassList(pMap);
+					mav.type = "json";
 				}break;
 				case "jsonTypeList":{
 					selResult = gLogic.getTypeNo(pMap);
+					mav.type = "json";
 				}break;
 				case "jsonComboList":{
 					selResult = gLogic.getComboList(pMap);
+					mav.type = "json";
 				}break;
 				case "jsonPayMemList":{
 					selResult = gLogic.getPayMemList(pMap);
+					mav.type = "json";
 				}break;
 				case "jsonGymNoticeList":{ // 공지사항 조회
 					selResult = gLogic.getNoticeList(pMap);
+					mav.type = "json";
 				}break;
+				//////////////////차트 시작/////////////////////
 				case "chart_accum_members":{ // 누적 회원수 조회
 					chartData = gLogic.get_c_accum_members(pMap);
-					data = setData.dataToJson(chartData, "MM");
+					data = setData.dataToJson(chartData, "MONTH");
 					selResult = data;
 				}break;
 				case "chart_ex_time_avg":{ // 회원 평균 운동시간 조회
@@ -207,10 +215,9 @@ public class GymController implements Controller {
 					data = setData.dataToJson(chartData, "DATE_YM");
 					selResult = data;
 				}break;
-				case "chart_tch_salse":{ // 강사별 월별 매출
+				case "chart_tch_sales":{ // 강사별 월별 매출
 					chartData = gLogic.get_tchChart(pMap);
 					data = setData.switchCol(chartData, "TCH_NAME");
-					logger.info("*** data : " + data);
 					selResult = data;
 				}break;
 				case "chart_gym_sales":{ // 매장 월별 매출
@@ -218,8 +225,10 @@ public class GymController implements Controller {
 					data = setData.dataToJson(chartData, "MONTH");
 					selResult = data;
 				}break;
+				//////////////////차트 끝////////////////////
 				case "jsonGymInfoList":{ // 매장 정보 조회
 					selResult = gLogic.getInfoList(pMap);
+					mav.type = "json";
 				}break;
 				case "jsonGymReviewList":{ // 후기 조회
 					selResult = gLogic.getReviewList(pMap);

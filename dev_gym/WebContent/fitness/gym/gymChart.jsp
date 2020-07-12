@@ -19,8 +19,8 @@
 		google.charts.setOnLoadCallback(drawChart_c_ex_time_avg);
 		google.charts.setOnLoadCallback(drawChart_c_cnt_mem_extime);
  		google.charts.setOnLoadCallback(drawChart_c_newmem);
-		google.charts.setOnLoadCallback(drawChart_c_tch_salse);
-		google.charts.setOnLoadCallback(drawChart_c_gym_salse); 
+		google.charts.setOnLoadCallback(drawChart_c_gym_sales);
+		google.charts.setOnLoadCallback(drawChart_c_tch_sales);
 	}
 
 	function drawChart_c_newmem() {
@@ -30,14 +30,11 @@
 		    async: false
 		    }).responseText;
 		    
-		// Create our data table out of JSON data loaded from server.
 		var data = new google.visualization.DataTable(jsonData);
 		var options = {
-		  title: '월별 수강생 증가',
-		  curveType: 'function',
+		  title: '월별 수강생 등록 현황',
 		  legend: { position: 'bottom' }
 		};
-		// Instantiate and draw our chart, passing in some options.
 		var chart = new google.visualization.LineChart(document.getElementById('c_newmem'));
 		chart.draw(data, options);
 		window.addEventListener('resize', drawChart_c_newmem, false);
@@ -53,7 +50,6 @@
 		var data = new google.visualization.DataTable(jsonData);
 		var options = {
 		  title: '누적 회원 수',
-		  curveType: 'function',
 		  legend: { position: 'bottom' }
 		};
 		// Instantiate and draw our chart, passing in some options.
@@ -73,10 +69,8 @@
 		var data = new google.visualization.DataTable(jsonData);
 		var options = {
 		  title: '평균 운동시간',
-		  curveType: 'function',
 		  legend: { position: 'bottom' }
 		};
-		// Instantiate and draw our chart, passing in some options.
 		var chart = new google.visualization.PieChart(document.getElementById('c_ex_time_avg'));
 		chart.draw(data, options);
 		window.addEventListener('resize', drawChart_c_ex_time_avg, false);
@@ -88,21 +82,19 @@
 		    async: false
 		}).responseText;
 		    
-		// Create our data table out of JSON data loaded from server.
 		var data = new google.visualization.DataTable(jsonData);
 		var options = {
 		  title: '시간대별 방문자 수 평균',
 		  curveType: 'function',
 		  legend: { position: 'bottom' }
 		};
-		// Instantiate and draw our chart, passing in some options.
 		var chart = new google.visualization.LineChart(document.getElementById('c_cnt_mem_extime'));
 		chart.draw(data, options);
 		window.addEventListener('resize', drawChart_c_cnt_mem_extime, false);
 	}
-	function drawChart_c_tch_salse() {
+	function drawChart_c_tch_sales() {
 		var jsonData = $.ajax({
-			url : "../gym/chart_tch_salse.gym?cho_year="+cho_year,
+			url : "../gym/chart_tch_sales.gym?cho_year="+cho_year,
 		    dataType: "json",
 		    async: false
 		}).responseText;
@@ -111,15 +103,14 @@
 		var data = new google.visualization.DataTable(jsonData);
 		var options = {
 		  title: '강사별 월별 매출',
-		  curveType: 'function',
 		  legend: { position: 'bottom' }
 		};
 		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.LineChart(document.getElementById('c_tch_salse'));
+		var chart = new google.visualization.LineChart(document.getElementById('c_tch_sales'));
 		chart.draw(data, options);
-		window.addEventListener('resize', drawChart_c_tch_salse, false);
+		window.addEventListener('resize', drawChart_c_tch_sales, false);
 	}
-	function drawChart_c_gym_salse() {
+	function drawChart_c_gym_sales() {
 		var jsonData = $.ajax({
 		    url: "../gym/chart_gym_sales.gym?cho_year="+cho_year,
 		    dataType: "json",
@@ -130,13 +121,12 @@
 		var data = new google.visualization.DataTable(jsonData);
 		var options = {
 		  title: '월별 매출',
-		  curveType: 'function',
 		  legend: { position: 'bottom' }
 		};
 		// Instantiate and draw our chart, passing in some options.
 		var chart = new google.visualization.LineChart(document.getElementById('c_gym_sales'));
 		chart.draw(data, options);
-		window.addEventListener('resize', drawChart_c_gym_salse, false);
+		window.addEventListener('resize', drawChart_c_gym_sales, false);
 	}
 </script>
 </head>
@@ -179,7 +169,7 @@
 			<div class="w-100" style="min-height:250px">
 				<div class="w-100">
 					<div>
-						<div id="c_tch_salse"></div>
+						<div id="c_tch_sales"></div>
 					</div>
 				</div>
 			</div>

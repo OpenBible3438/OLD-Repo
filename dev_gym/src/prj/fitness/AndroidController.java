@@ -37,7 +37,9 @@ public class AndroidController implements Controller{
 					try {
 						switch(reqName) {
 						// 편성경
-						
+							case "memberJoin":{
+								result = aLogic.memberJoin(pMap);
+							}break;
 						// 김혜림
 							
 						// 김승현
@@ -47,7 +49,7 @@ public class AndroidController implements Controller{
 						// 김현빈
 							
 						// 허준호
-						
+							
 						}
 					} catch (Exception e) {
 						logger.info("Exception : "+e.toString());
@@ -117,6 +119,16 @@ public class AndroidController implements Controller{
 					selResult = aLogic.getMemberLogin(pMap);
 				}break;
 			// 김혜림
+				case "jsonTchClassList":{
+					selResult = aLogic.getTchClassList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				case "jsonClsMemList":{
+					selResult = aLogic.getclsMemList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
 				
 			// 김승현
 				

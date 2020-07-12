@@ -298,6 +298,7 @@
 			$("#upd_cls_sTime").val(null);			
 			$("#upd_cls_eTime").val(null);			
 			$("#upd_cls_day").val(null);			
+			$("#upd_cls_days").val(null);			
 			$("#upd_cls_cnt").val(null);			
 			$("#upd_cls_info").val(null);			
 			$("#upd_cls_price").val(null);			
@@ -480,15 +481,25 @@
 				//alert(data);
 				var buf = JSON.stringify(data);
 				var result = JSON.parse(buf);
-				//alert(result[0].MEM_NAME);
-				
-				//$("#ins_tch_name").html("");
-				$("#c_mem_no").val(result[0].MEM_NO);				
-				$("#c_mem_name").val(result[0].MEM_NAME);				
-				$("#c_mem_birth").val(result[0].MEM_BIRTH);				
-				$("#c_mem_tel").val(result[0].MEM_TEL);				
-				$("#c_mem_gender").val(result[0].MEM_GENDER);				
-				$("#c_mem_joindate").val(result[0].MEM_JOINDATE);				
+				var test = result[0].MEM_NO;
+				if(test) {
+					alert("등록된 번호가 없습니다.");
+					$("#c_mem_no").val('');				
+					$("#c_mem_name").val('');				
+					$("#c_mem_birth").val('');				
+					$("#c_mem_tel").val('');				
+					$("#c_mem_gender").val('');				
+					$("#c_mem_joindate").val('');	
+				} else {
+					//alert(result[0].MEM_NAME);
+					//$("#ins_tch_name").html("");
+					$("#c_mem_no").val(result[0].MEM_NO);				
+					$("#c_mem_name").val(result[0].MEM_NAME);				
+					$("#c_mem_birth").val(result[0].MEM_BIRTH);				
+					$("#c_mem_tel").val(result[0].MEM_TEL);				
+					$("#c_mem_gender").val(result[0].MEM_GENDER);				
+					$("#c_mem_joindate").val(result[0].MEM_JOINDATE);				
+				}
 				
 			}////////success end
 		});//////////ajax end

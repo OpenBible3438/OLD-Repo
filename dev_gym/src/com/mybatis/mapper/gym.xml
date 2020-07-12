@@ -8,10 +8,14 @@
 
 	<resultMap id="chart_newmem" type="map"/>
 	
+	<resultMap id="chart_accum_mem" type="map"/>
+	
 	<resultMap id="chart_mem_extime" type="map"/>
 	
 	<resultMap id="chart_tchChart" type="map"/>
 	
+	<resultMap id="chart_ex_time" type="map"/>
+
 	<resultMap id="chart_gym_sale" type="map"/>
 	
 	<resultMap id="gymContMap" type="map">
@@ -98,23 +102,28 @@
 		</if>
 		 ORDER BY notice_no DESC
 	</select>
+	<!-- ==================== 차트 시작 ==================== -->
 	<!-- 누적 회원 수 가져오기 -->
-	<select id="get_c_accum_members" parameterType="map" resultType="map">
-		SELECT to_char(to_date(y_m, 'YYYY/MM'), 'MM')||'월' mm, accum_members as "누적회원" FROM accum_mem
-		<if test="cho_year != null">
-			WHERE y_m LIKE '%'||#{cho_year}||'%'
-		</if>
+	<select id="get_c_accum_members"  parameterType="map"  statementType="CALLABLE">
+		{ call proc_countMem(#{cho_year}, #{gym_no},  #{rfc_accum_mem
+										                               ,jdbcType=CURSOR
+										                               ,mode=OUT
+										                               ,javaType=java.sql.ResultSet
+										                               ,resultMap=chart_accum_mem}
+										                               )}
 	</select>
 	<!-- 회원 평균 운동시간 -->
-	<select id="get_c_ex_time_avg"  parameterType="map" resultType="map">
-		SELECT cnt, rng FROM ex_time_avg
-		<if test="cho_year != null">
-			WHERE y_m LIKE '%'||#{cho_year}||'%'
-		</if>
+	<select id="get_c_ex_time_avg"  parameterType="map"  statementType="CALLABLE">
+		{ call proc_ex_time_avg(#{gym_no}, #{cho_year},  #{rfc_ex_time
+										                               ,jdbcType=CURSOR
+										                               ,mode=OUT
+										                               ,javaType=java.sql.ResultSet
+										                               ,resultMap=chart_ex_time}
+										                               )}
 	</select>
 	<!-- 시간대별 방문자수 평균 -->
 	<select id="get_cnt_mem_extime" parameterType="map"  statementType="CALLABLE">
-		{ call proc_cnt_mem_extime(#{gym_no}, #{cho_year},  #{rfc_cnt_mem
+		{ call proc_chart_cnt_mem_extime(#{gym_no}, #{cho_year},  #{rfc_cnt_mem
 											                               ,jdbcType=CURSOR
 											                               ,mode=OUT
 											                               ,javaType=java.sql.ResultSet
@@ -124,7 +133,7 @@
 	</select>
 	<!-- 강사별 월별 매출 -->
 	<select id="get_tchChart" parameterType="map"  statementType="CALLABLE">
-		{ call proc_tchChart(#{gym_no}, #{cho_year}, #{chart_tchChart
+		{ call proc_chart_tchChart(#{gym_no}, #{cho_year}, #{chart_tchChart
 								                               ,jdbcType=CURSOR
 								                               ,mode=OUT
 								                               ,javaType=java.sql.ResultSet
@@ -133,22 +142,23 @@
 	</select>
 	<!-- 월별 수강생 증가 -->
 	<select id="get_newmem" parameterType="map"  statementType="CALLABLE">
-		{ call proc_get_newmem(#{gym_no}, #{cho_year}, #{chart_newmem
+		{ call proc_chart_get_newmem(#{gym_no}, #{cho_year}, #{chart_newmem
 								                               ,jdbcType=CURSOR
 								                               ,mode=OUT
 								                               ,javaType=java.sql.ResultSet
 								                               ,resultMap=chart_newmem}
 								                               )}
 	</select>
-	<!-- 매장 매출 -->
+	<!-- 매장 월별 매출 -->
 	<select id="get_gym_sale" parameterType="map"  statementType="CALLABLE">
-		{ call proc_gym_sale(#{gym_no}, #{cho_year}, #{chart_gym_sale
+		{ call proc_chart_gym_sale(#{gym_no}, #{cho_year}, #{chart_gym_sale
 								                               ,jdbcType=CURSOR
 								                               ,mode=OUT
 								                               ,javaType=java.sql.ResultSet
 								                               ,resultMap=chart_gym_sale}
 								                               )}
 	</select>
+	<!-- ==================== 차트 끝 ==================== -->
 	
 	<!-- 매장 컨텐츠 전체 조회  -->
 	<select id="getContentList" parameterType="map" statementType="CALLABLE">
@@ -384,7 +394,7 @@
 		                 ,#{ins_cls_name}
 		                 ,#{ins_cls_kind}
 		                 ,#{ins_cls_cnt}
-		                 ,func_ESDate(#{ins_cls_e_date},#{ins_cls_s_date})          
+		                 ,#{ins_cls_days}          
 		                 ,#{ins_cls_s_date}
 		                 ,#{ins_cls_e_date}
 		                 ,#{ins_cls_info}
@@ -475,7 +485,7 @@
 		        ,cls_name = #{upd_cls_name}
 		        ,cls_kind = #{upd_cls_kind}
 		        ,cls_cnt = #{upd_cls_cnt}
-		        ,cls_days = func_ESDate(#{upd_cls_e_date},#{upd_cls_s_date})
+		        ,cls_days = #{upd_cls_days}
 		        ,cls_s_date = #{upd_cls_s_date}
 		        ,cls_e_date = #{upd_cls_e_date}
 		        ,cls_info = #{upd_cls_info}
@@ -522,7 +532,6 @@
 		 WHERE typecode = #{gym_no}
 		   AND type = 'gym'
 	</update>
-	
 	<delete id="classDel" parameterType="map">
 		DELETE FROM class 
 		WHERE cls_no = #{cls_no}

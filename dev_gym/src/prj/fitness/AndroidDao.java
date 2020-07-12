@@ -28,7 +28,42 @@ public class AndroidDao {
 		logger.info("==Member Login result : "+loginResult.size()+"row==");
 		return loginResult;
 	}
+	// 회원가입 회원 번호 채번 
+	public int memberJoinGetNo(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidDao - memberJoinGetNo() 호출");
+		result = sqlSession.selectOne("memberJoinGetNo", pMap);
+		return result;
+	}
+	// 회원가입 회원 정보 insert
+	public int memberJoinInfo(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidDao - memberJoinInfo() 호출");
+		result = sqlSession.insert("memberJoinInfo", pMap);
+		return result;
+	}
+	// 회원가입 회원 이미지 insert
+	public int memberJoinImg(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidDao - memberJoinImg() 호출");
+		result = sqlSession.insert("memberJoinImg", pMap);
+		return result;
+	}
 // 김혜림
+	//강사가 맡은 수업 목록 조회
+	public List<Map<String, Object>> getTchClassList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getTchClassList() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = sqlSession.selectList("getTchClassList_and", pMap);
+		logger.info("classList.size() : " + classList.size());
+		return classList;
+	}
+	//수업별 수강생 조회
+	public List<Map<String, Object>> getclsMemList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getTchClassList() 호출");
+		List<Map<String, Object>> clsMemList = null;
+		clsMemList = sqlSession.selectList("getclsMemList_and", pMap);
+		logger.info("clsMemList.size() : " + clsMemList.size());
+		return clsMemList;
+	}
+	
 	
 // 김승현
 	

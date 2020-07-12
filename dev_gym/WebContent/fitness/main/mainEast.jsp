@@ -37,7 +37,8 @@
 			,url: './logout.jsp'
 			,success: function(data) {
 				alert(data.trim());
-				location.reload();
+				picks('home');
+				//location.reload();
 			}
 		});
 	}
