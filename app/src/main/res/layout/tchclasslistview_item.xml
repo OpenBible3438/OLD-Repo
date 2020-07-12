@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30sp">
+
+        <!--======================================카드뷰 시작-->
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tch_class"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="100dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="20sp">
+
+                <LinearLayout
+                    android:layout_width="70sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="70sp"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:text="수업이름"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:layout_width="70sp"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:text="시작일"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="70sp"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:text="종료일"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="70sp"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:text="수업요일"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:layout_width="70sp"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:text="수업인원"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/cls_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/cls_sdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/cls_edate"
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/cls_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/cls_cnt"
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="left|center"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!--======================================카드뷰 끝-->
+
+    </LinearLayout>

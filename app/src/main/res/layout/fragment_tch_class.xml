@@ -1,123 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EDEDED">
 
     <!-- 스크롤 뷰 안으로 코드추가 -->
-
-    <LinearLayout
+    <ListView
+        android:id="@+id/cls_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="30sp">
+        android:layout_height="match_parent"/>
 
-        <!--======================================카드뷰 시작-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/tch_class"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10sp"
-            android:elevation="100dp"
-            app:cardBackgroundColor="#ffffff">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="20sp">
-
-                <LinearLayout
-                    android:layout_width="70sp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="70sp"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="수업이름"
-                        android:textSize="12sp"/>
-
-                    <TextView
-                        android:layout_width="70sp"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="시작일"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:layout_width="70sp"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="종료일"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:layout_width="70sp"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="수업요일"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:layout_width="70sp"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="수업인원"
-                        android:textSize="12sp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="요가"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="2020-07-01"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="2020-07-31 "
-                        android:textSize="16sp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="화/목/금 "
-                        android:textSize="16sp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="25sp"
-                        android:gravity="left|center"
-                        android:text="11명 "
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!--======================================카드뷰 시작-->
-
-        <!--======================================카드뷰 시작-->
-
-    </LinearLayout>
-
-
-
-</ScrollView>
+</LinearLayout>
