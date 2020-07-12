@@ -28,6 +28,24 @@ public class AndroidDao {
 		logger.info("==Member Login result : "+loginResult.size()+"row==");
 		return loginResult;
 	}
+	// 회원가입 회원 번호 채번 
+	public int memberJoinGetNo(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidDao - memberJoinGetNo() 호출");
+		result = sqlSession.selectOne("memberJoinGetNo", pMap);
+		return result;
+	}
+	// 회원가입 회원 정보 insert
+	public int memberJoinInfo(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidDao - memberJoinInfo() 호출");
+		result = sqlSession.insert("memberJoinInfo", pMap);
+		return result;
+	}
+	// 회원가입 회원 이미지 insert
+	public int memberJoinImg(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidDao - memberJoinImg() 호출");
+		result = sqlSession.insert("memberJoinImg", pMap);
+		return result;
+	}
 // 김혜림
 	
 // 김승현

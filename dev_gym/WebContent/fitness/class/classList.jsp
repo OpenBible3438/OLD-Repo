@@ -298,6 +298,7 @@
 			$("#upd_cls_sTime").val(null);			
 			$("#upd_cls_eTime").val(null);			
 			$("#upd_cls_day").val(null);			
+			$("#upd_cls_days").val(null);			
 			$("#upd_cls_cnt").val(null);			
 			$("#upd_cls_info").val(null);			
 			$("#upd_cls_price").val(null);			

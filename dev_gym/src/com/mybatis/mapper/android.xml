@@ -10,6 +10,51 @@
 		 WHERE mem_id = #{mem_id}
 		   AND mem_pw = #{mem_pw}
 	</select>
+	<!-- 회원 번호 채번 -->
+	<select id="memberJoinGetNo" parameterType="map" resultType="int">
+		SELECT func_memGenNo(#{mem_gender}) as "mem_no" 
+		  FROM dual
+	</select>
+	<!-- 회원 정보 insert -->
+	<insert id="memberJoinInfo" parameterType="map">
+		INSERT INTO 
+			    member(MEM_NO        
+			          ,MEM_ID       
+			          ,MEM_PW       
+			          ,MEM_NAME     
+			          ,MEM_NICKNAME 
+			          ,MEM_TEL      
+			          ,MEM_ADDR     
+			          ,MEM_ADDR_DTL 
+			          ,MEM_ZIPCODE  
+			          ,MEM_GENDER   
+			          ,MEM_JOINDATE 
+			          ,MEM_BIRTH)
+			    VALUES(#{mem_no}
+			          ,#{mem_id}
+			          ,#{mem_pw}
+			          ,#{mem_name}
+			          ,#{mem_nickname}
+			          ,#{mem_tel}
+			          ,#{mem_addr}
+			          ,#{mem_addr_dtl}
+			          ,#{mem_zipcode}
+			          ,#{mem_gender}
+			          ,(SELECT to_char(sysdate, 'yyyy-mm-dd') FROM dual)
+			          ,#{mem_birth} 
+			           )    
+	</insert>
+	<!-- 회원 이미지 insert -->
+	<insert id="memberJoinImg" parameterType="map">
+		INSERT INTO images(file_seq
+		                  ,filename     ,filesize
+		                  ,filedata
+		                  ,type         ,typecode)
+		            VALUES(seq_images.nextval
+		                  ,#{filename}  ,#{filesize}
+		                  ,#{filedata, jdbcType=LONGVARBINARY} 
+		                  ,'mem'        ,#{mem_no}) 
+	</insert>
 <!-- ======================= 김혜림 ======================= -->
 
 

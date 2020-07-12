@@ -394,7 +394,7 @@
 		                 ,#{ins_cls_name}
 		                 ,#{ins_cls_kind}
 		                 ,#{ins_cls_cnt}
-		                 ,func_ESDate(#{ins_cls_e_date},#{ins_cls_s_date})          
+		                 ,#{ins_cls_days}          
 		                 ,#{ins_cls_s_date}
 		                 ,#{ins_cls_e_date}
 		                 ,#{ins_cls_info}
@@ -485,7 +485,7 @@
 		        ,cls_name = #{upd_cls_name}
 		        ,cls_kind = #{upd_cls_kind}
 		        ,cls_cnt = #{upd_cls_cnt}
-		        ,cls_days = func_ESDate(#{upd_cls_e_date},#{upd_cls_s_date})
+		        ,cls_days = #{upd_cls_days}
 		        ,cls_s_date = #{upd_cls_s_date}
 		        ,cls_e_date = #{upd_cls_e_date}
 		        ,cls_info = #{upd_cls_info}

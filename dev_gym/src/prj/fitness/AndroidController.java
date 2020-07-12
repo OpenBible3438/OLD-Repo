@@ -37,7 +37,9 @@ public class AndroidController implements Controller{
 					try {
 						switch(reqName) {
 						// 편성경
-						
+							case "memberJoin":{
+								result = aLogic.memberJoin(pMap);
+							}break;
 						// 김혜림
 							
 						// 김승현
@@ -47,7 +49,7 @@ public class AndroidController implements Controller{
 						// 김현빈
 							
 						// 허준호
-						
+							
 						}
 					} catch (Exception e) {
 						logger.info("Exception : "+e.toString());
