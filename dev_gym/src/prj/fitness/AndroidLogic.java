@@ -61,13 +61,13 @@ public class AndroidLogic {
 	}
 // 김혜림
 	//강사별 수업 조회
-	public Object getTchClassList(Map<String, Object> pMap) {
+	public Object getTchClassList(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidLogic - getTchClassList() 호출 ");
 		List<Map<String, Object>> classList = null;
 		classList = aDao.getTchClassList(pMap);
 		return classList;
 	}
-	public Object getclsMemList(Map<String, Object> pMap) {
+	public Object getclsMemList(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidLogic - getclsMemList() 호출 ");
 		List<Map<String, Object>> clsMemList = null;
 		clsMemList = aDao.getclsMemList(pMap);
@@ -81,7 +81,36 @@ public class AndroidLogic {
 // 김현빈
 		
 // 허준호
-
+	// 매장 기준 콘텐츠 조회
+	public List<Map<String, Object>> getGymContentsList(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getGymContentsList() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getGymContentsList(pMap);
+		return gymList;
+	}
+	// 매장 기준 강사 조회
+	public List<Map<String, Object>> getGymTeacherList(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getGymContentsList() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getGymTeacherList(pMap);
+		return gymList;
+	}
+	// 매장 기중 수업 조회
+	public List<Map<String, Object>> getGymClassList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getGymContentsList() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getGymClassList(pMap);
+		return gymList;
+	}
+	// 매장 기준 후기 조회 
+	public List<Map<String, Object>> getGymReviewList(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getGymContentsList() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getGymReviewList(pMap);
+		return gymList;
+	}
+	
+// setCommit
 	public void setCommit(int result) {
 		logger.info("setCommit() 호출"); 
 		if(result>0) {
@@ -94,5 +123,9 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
+
+
+
+	
 
 }

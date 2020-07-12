@@ -83,6 +83,72 @@
 
 
 <!-- ======================= 허준호 ======================= -->
-
+<!-- 매장기준  콘텐츠 가져오기 -->
+	<select id="getGymContentsList" parameterType="map" resultType="map">
+		SELECT G.GYM_NAME
+		      ,C.GYM_CONT_SEQ
+		      ,C.GYM_CONT_DATE
+		      ,C.GYM_CONT_TIME
+		      ,C.GYM_CONTENTS
+		      ,C.GYM_CONT_LIKE
+		      ,I.FILEDATA
+		  FROM gym g, images i, gym_contents c
+		 WHERE G.GYM_NO = C.GYM_NO
+		   AND I.TYPECODE = C.GYM_CONT_SEQ
+		   AND I.TYPE = 'gymCont'
+		   AND G.GYM_NO = #{gym_no}
+	</select>
+<!-- 매장기준  강사 가져오기 -->	
+	<select id="getGymTeacherList" parameterType="map" resultType="map">
+		SELECT T.TCH_NAME
+		      ,T.TCH_GENDER
+		      ,TI.TCH_INTRO
+		      ,TI.TCH_CAREER
+		      ,TI.TCH_LIKE
+		  FROM teacher t, images i, tch_info ti
+		 WHERE T.TCH_NO = TI.TCH_NO(+)
+		   AND T.GYM_NO = TI.GYM_NO(+)
+		   AND I.TYPE = 'tch'
+		   AND I.TYPECODE = T.GYM_NO||T.TCH_NO
+		   AND T.GYM_NO = #{gym_no}
+	</select>
+<!-- 매장기준  수업 가져오기 -->	
+	<select id="getGymClassList" parameterType="map" resultType="map">
+		SELECT C.CLS_NO
+		      ,C.CLS_NAME
+		      ,C.CLS_INFO
+		      ,C.TYPE_NO
+		      ,C.CLS_STATE
+		      ,C.CLS_DAYS
+		      ,C.CLS_DAY
+		  FROM teacher t, gym g, class c
+		 WHERE T.GYM_NO = G.GYM_NO
+		   AND T.TCH_NO = C.TCH_NO
+		   AND C.CLS_STATE = '진행'
+		   AND G.GYM_NO = #{gym_no}
+	</select>
+<!-- 매장기준  후기 가져오기 -->	
+	<select id="getGymReviewList" parameterType="map" resultType="map">
+		SELECT GYM.GYM_NAME
+		      ,GYM.GYM_NO
+		      ,T.TCH_NAME
+		      ,T.TCH_NO
+		      ,C.CLS_NAME
+		      ,C.CLS_NO
+		      ,R.REV_SEQ
+		      ,R.REV_CONT
+		      ,R.REV_STAR
+		      ,R.REV_UP
+		      ,R.REV_DOWN
+		      ,R.REV_DATE
+		      ,R.REV_TIME
+		      ,R.REV_KIND
+		  FROM review r, gym, pay p, class c, teacher t
+		 WHERE R.PAY_NO = P.PAY_NO
+		   AND P.CLS_NO = C.CLS_NO
+		   AND C.TCH_NO = T.TCH_NO
+		   AND T.GYM_NO = GYM.GYM_NO
+		   AND GYM.GYM_NO = #{gym_no}
+	</select>
 	
 </mapper>

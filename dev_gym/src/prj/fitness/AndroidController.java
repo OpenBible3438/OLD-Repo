@@ -137,7 +137,30 @@ public class AndroidController implements Controller{
 			// 김현빈
 				
 			// 허준호
-				
+				// 매장기준 콘텐츠 조회
+				case "jsonGymContentsList":{
+					selResult = aLogic.getGymContentsList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 매장기준 강사 조회
+				case "jsonGymTeacherList":{
+					selResult = aLogic.getGymTeacherList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 매장기준 수업 조회
+				case "jsonGymClassList":{
+					selResult = aLogic.getGymClassList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 매장기준 후기 조회
+				case "jsonGymReviewList":{
+					selResult = aLogic.getGymReviewList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
 			}
 		} catch(Exception e) {
 			logger.info("Exception : "+e.toString());

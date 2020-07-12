@@ -482,15 +482,7 @@
 				var buf = JSON.stringify(data);
 				var result = JSON.parse(buf);
 				var test = result[0].MEM_NO;
-				if(test) {
-					alert("등록된 번호가 없습니다.");
-					$("#c_mem_no").val('');				
-					$("#c_mem_name").val('');				
-					$("#c_mem_birth").val('');				
-					$("#c_mem_tel").val('');				
-					$("#c_mem_gender").val('');				
-					$("#c_mem_joindate").val('');	
-				} else {
+				if(test > 0) {
 					//alert(result[0].MEM_NAME);
 					//$("#ins_tch_name").html("");
 					$("#c_mem_no").val(result[0].MEM_NO);				
@@ -499,6 +491,14 @@
 					$("#c_mem_tel").val(result[0].MEM_TEL);				
 					$("#c_mem_gender").val(result[0].MEM_GENDER);				
 					$("#c_mem_joindate").val(result[0].MEM_JOINDATE);				
+				} else {
+					alert("등록된 번호가 없습니다.");
+					$("#c_mem_no").val('');				
+					$("#c_mem_name").val('');				
+					$("#c_mem_birth").val('');				
+					$("#c_mem_tel").val('');				
+					$("#c_mem_gender").val('');				
+					$("#c_mem_joindate").val('');	
 				}
 				
 			}////////success end

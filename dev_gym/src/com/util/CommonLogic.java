@@ -61,6 +61,10 @@ public class CommonLogic {
 		if(req.getSession().getAttribute("gym_no")!=null) {
 			gym_no = Integer.parseInt(req.getSession().getAttribute("gym_no").toString());
 			//logger.info("gym_no : " + gym_no);
+		} else {
+			if("android".equals(pMap.get("work").toString())) {
+				gym_no = Integer.parseInt(pMap.get("gym_no").toString());
+			}
 		}
 		logger.info("gym_no : " + gym_no);
 		pMap.put("gym_no", gym_no);
