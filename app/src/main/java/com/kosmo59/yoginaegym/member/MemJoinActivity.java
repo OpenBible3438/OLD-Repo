@@ -5,21 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.kosmo59.yoginaegym.R;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.kosmo59.yoginaegym.common.TomcatSend;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -27,33 +32,41 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class MemJoinActivity extends AppCompatActivity {
 
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
 
-    private EditText et_memId, et_address, et_name, et_nickname, et_memTel, et_addrDtl, et_memPw;
-    private Button btn_nameCheck, btn_join, btn_joinCancel, btn_nicCheck, btn_man, btn_woman, btn_memPickProfile;
+    private EditText et_memId, et_address, et_name, et_nickname, et_memTel, et_addrDtl, et_memPw, et_memPwConf;
+    private Button btn_nameCheck, btn_join, btn_joinCancel, btn_nicCheck, btn_memPickProfile, btn_searchAddr;
+    private TextView tv_joinPwConf;
+    private MaterialButtonToggleGroup toggle_gender;
+    private MaterialButton btn_man, btn_woman;
 
     //프로필 이미지 관련 변수
     private FirebaseStorage storage;
     private StorageReference storageRef;
-    private final String HTTP_LOG_TAG = "HttpUpload";
+    private final String JOIN_LOG = "MemJoinActivity";
     private final int GET_PROFILE_IMAGE = 20000;
     private ImageView iv_joinImage;
-    private String img_path = null;
-    private String serverUrl = "http://192.168.0.27:5000/android/joinProfileImage.jsp";
     private Bitmap bitmap;
     private BitmapDrawable bitmapDrawable = null;
     private SwitchMaterial joinAdmit;
     String gender = "";
+    private byte[] img=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +79,24 @@ public class MemJoinActivity extends AppCompatActivity {
 
         //비밀번호
         et_memPw = findViewById(R.id.et_memPw);
+        et_memPwConf = findViewById(R.id.et_memPwConf);
+        et_memPwConf.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (et_memPw.getText().toString().length() > 0){
+                    if(et_memPw.getText().toString().equals(et_memPwConf.getText().toString())){
+                        tv_joinPwConf = findViewById(R.id.tv_joinPwConf);
+                        tv_joinPwConf.setText("비밀번호가 일치합니다.");
+                        tv_joinPwConf.setTextColor(Color.BLUE);
+                    } else {
+                        tv_joinPwConf = findViewById(R.id.tv_joinPwConf);
+                        tv_joinPwConf.setText("비밀번호가 일치하지 않습니다.");
+                        tv_joinPwConf.setTextColor(Color.RED);
+                    }
+                }
+                return true;
+            }
+        });
 
         //이름
         et_name = findViewById(R.id.et_name);
@@ -82,18 +113,33 @@ public class MemJoinActivity extends AppCompatActivity {
 
         //주소
         et_address = findViewById(R.id.et_address);
+        btn_searchAddr = findViewById(R.id.btn_searchAddr);
+        btn_searchAddr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MemJoinActivity.this, "클릭클릭", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MemJoinActivity.this, MemAddressActivity.class);
+                startActivityForResult(intent, SEARCH_ADDRESS_ACTIVITY);
+            }
+        });
 
         //상세주소
         et_addrDtl = findViewById(R.id.et_addrDtl);
 
         //성별
-        btn_man = findViewById(R.id.btn_man);
-        btn_woman = findViewById(R.id.btn_woman);
-        if (btn_man.isClickable()) {
-            gender = "남자";
-        } else if (btn_woman.isClickable()) {
-            gender = "여자";
-        }
+        toggle_gender = findViewById(R.id.toggle_gender);
+        toggle_gender.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
+            @Override
+            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
+                btn_man = toggle_gender.findViewById(R.id.btn_man);
+                //MaterialButton btn_woman = toggle_gender.findViewById(R.id.btn_man);
+                if(isChecked && btn_man.getText().toString().equals("남자")){
+                    gender = "남성";
+                }else {
+                    gender = "여성";
+                }
+            }
+        });
 
         //생년월일
         et_birth = findViewById(R.id.et_birth);
@@ -154,14 +200,6 @@ public class MemJoinActivity extends AppCompatActivity {
         startActivityForResult(intent, GET_PROFILE_IMAGE);
     }
 
-    public void searchAdd(View view) {
-        /*
-        주소 검색을 클릭하면 WebView 연결.
-         */
-        Intent intent = new Intent(MemJoinActivity.this, MemAddressActivity.class);
-        startActivityForResult(intent, SEARCH_ADDRESS_ACTIVITY);
-    }
-
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
@@ -182,8 +220,12 @@ public class MemJoinActivity extends AppCompatActivity {
                     Uri selectedImageUri = intent.getData();
                     iv_joinImage.setImageURI(selectedImageUri);
                     //이미지뷰의 이미지를 Bitmap으로 저장하기
-                    //bitmapDrawable = (BitmapDrawable) iv_joinImage.getDrawable();
-                    //bitmap = bitmapDrawable.getBitmap();
+                    bitmapDrawable = (BitmapDrawable) iv_joinImage.getDrawable();
+                    bitmap = bitmapDrawable.getBitmap();
+                    //byte[]에 담기
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    img = baos.toByteArray();
                 }
                 break;
         }
@@ -200,41 +242,47 @@ public class MemJoinActivity extends AppCompatActivity {
             final String memName = et_name.getText().toString();
             final String memNickname = et_nickname.getText().toString();
             final String memTel = et_memTel.getText().toString();
-            final String memAdd = et_address.getText().toString();
+            final String[] memAdd = et_address.getText().toString().split(",");
+            //받아온 주소랑 우편번호 나누기
+            String memAddr = memAdd[0];
+            int memZipcode = Integer.parseInt(memAdd[1]);
             final String memAddDtl = et_addrDtl.getText().toString();
             final String memGender = gender;
             final String memBirth = et_birth.getText().toString();
 
-            //사진 전송 firebase storage에 저장
-            storage = FirebaseStorage.getInstance();
-            storageRef = storage.getReference();
-            //경로 설정
-            StorageReference memberRef = storageRef.child("Member_Profile_Image");
-            //ImageView 데이터를 byte[]에 담기
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) iv_joinImage.getDrawable();
-            Bitmap bitmap = bitmapDrawable.getBitmap();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] data = baos.toByteArray();
+            String send = "android/memberJoin.gym?cud=ins";
+            //List<Map<String, String>> joinList = null;
+            Map<String, Object> pMap = new HashMap<>();
+            pMap.put("mem_id", memId);
+            pMap.put("mem_pw", memPw);
+            pMap.put("mem_name", memName);
+            pMap.put("mem_nickname", memNickname);
+            pMap.put("mem_tel", memTel);
+            pMap.put("mem_addr", memAddr);
+            pMap.put("mem_zipcode", memZipcode);
+            pMap.put("mem_addr_dtl", memAddDtl);
+            pMap.put("mem_gender", memGender);
+            pMap.put("mem_birth", memBirth);
+            pMap.put("img", img);
+            pMap.put("filename", memId+"img");
 
-            //입력한 id로 이미지 이름 결정
-            UploadTask uploadTask = memberRef.child(et_memId.getText()+"_proImg").putBytes(data);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    //업로드 실패했을 때
-                    Log.i("ImageUpload","업로드에 실패했습니다.");
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    //업로스 성공했을 때
-                    Log.i("ImageUpload", "업로드 성공~!");
-                }
-            });
+            String result = null;
+            try {
+                TomcatSend tomcatSend = new TomcatSend();
+                result = tomcatSend.execute(send,pMap.toString()).get();
+            } catch (Exception e){
+                Log.i(JOIN_LOG, "Exception : "+e.toString());
+            }
+            Log.i(JOIN_LOG, "톰캣 서버에서 읽어온 정보 : "+result);
 
-            Toast.makeText(MemJoinActivity.this, "회원가입 완료! 로그인해주세요.", Toast.LENGTH_SHORT).show();
-            MemJoinActivity.super.onBackPressed();
+            if(result != null){
+                Toast.makeText(MemJoinActivity.this, "회원가입 성공! 로그인해주세요.", Toast.LENGTH_SHORT).show();
+                MemJoinActivity.super.onBackPressed();
+            } else {
+                Toast.makeText(MemJoinActivity.this, "회원가입 실패", Toast.LENGTH_SHORT).show();
+                MemJoinActivity.super.onBackPressed();
+            }
+
         }
     }
 }

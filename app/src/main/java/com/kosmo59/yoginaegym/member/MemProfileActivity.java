@@ -42,8 +42,6 @@ public class MemProfileActivity extends AppCompatActivity {
                     return new PayListFragment();
                 case 2:
                     return new MyReviewFragment();
-                case 3:
-                    return new BookmarkFragment();
             }
             return null;
         }
@@ -51,7 +49,7 @@ public class MemProfileActivity extends AppCompatActivity {
         @Override
         public int getCount() {/* 페이지 수 지정 */
             /* 인바디, 결제내역, 내 리뷰, 즐겨찾기 => 4장 */
-            return 4;
+            return 3;
         }
         public CharSequence getPageTitle(int position){
             switch (position){
@@ -61,8 +59,6 @@ public class MemProfileActivity extends AppCompatActivity {
                     return "결제내역";
                 case 2:
                     return "내 후기";
-                case 3:
-                    return "즐겨찾기";
             }
             return null;
         }

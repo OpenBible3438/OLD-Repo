@@ -3,6 +3,7 @@ package com.kosmo59.yoginaegym.member;
 import androidx.appcompat.app.AppCompatActivity;
 import com.kosmo59.yoginaegym.R;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.JavascriptInterface;
@@ -31,6 +32,7 @@ public class MemAddressActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

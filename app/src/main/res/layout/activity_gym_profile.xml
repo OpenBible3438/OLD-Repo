@@ -96,6 +96,10 @@
                     android:text="후기글"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+                <com.google.android.material.tabs.TabItem
+                    android:text="공지사항"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
             </com.google.android.material.tabs.TabLayout>
 
