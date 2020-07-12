@@ -5,7 +5,7 @@
 <!-- ======================= 편성경 ======================= -->
 	<!-- 회원 로그인 -->
 	<select id="getMemberLogin" parameterType="map" resultType="map">
-		SELECT mem_name, mem_nickname
+		SELECT mem_name, mem_nickname, mem_no
 		  FROM MEMBER
 		 WHERE mem_id = #{mem_id}
 		   AND mem_pw = #{mem_pw}
@@ -72,6 +72,26 @@
 	   AND p.mem_no = m.mem_no
 	   AND p.cls_no = #{cls_no}
 	GROUP BY m.mem_no, m.mem_name, m.mem_birth, c.cls_cnt
+	</select>
+	<!-- 회원 paylist 구하기 -->
+	<select id="getMemPayList_and" parameterType="map" resultType="map">
+	SELECT g.gym_name, c.cls_name, t.tch_name, c.cls_price, p.pay_date
+	  FROM gym g, class c, teacher t, pay p
+	 WHERE g.gym_no = c.gym_no
+	   AND c.cls_no = p.cls_no
+	   AND t.tch_no = c.tch_no
+	   AND g.gym_no = t.gym_no
+	   AND mem_no = #{mem_no}
+	</select>
+	<!-- map에 사용 될 매장 리스트 구하기 -->
+	<select id="getGymList_and" parameterType="map" resultType="map">
+	SELECT gym_name, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr
+	  FROM gym
+	 WHERE gym_name IS NOT NULL
+	   AND gym_lat IS NOT NULL
+	   AND gym_lng IS NOT NULL
+	   AND gym_addr IS NOT NULL
+	   AND gym_addr_dtl IS NOT NULL
 	</select>
 <!-- ======================= 김승현 ======================= -->
 

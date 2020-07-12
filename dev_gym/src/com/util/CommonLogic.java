@@ -107,7 +107,8 @@ public class CommonLogic {
 			jsonResult = "데이터가 없습니다.";/////////이렇게 해두면 출력할 때 문제가 있을 것 같다...!
 		}
         try {
-        	response.getWriter().print(jsonResult);	
+        	logger.info("jsonResult : " + jsonResult);
+        	response.getWriter().print(jsonResult);
 		} catch (Exception e) {
 			logger.info("printJson 오류");
 			e.printStackTrace();

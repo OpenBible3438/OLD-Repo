@@ -119,16 +119,29 @@ public class AndroidController implements Controller{
 					selResult = aLogic.getMemberLogin(pMap);
 				}break;
 			// 김혜림
+				//강사별 수업 목록 조회
 				case "jsonTchClassList":{
 					selResult = aLogic.getTchClassList(pMap);
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;
+				//수업별 수강생 조회
 				case "jsonClsMemList":{
 					selResult = aLogic.getclsMemList(pMap);
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;
+				//회원별 결제 목록 조회
+				case "jsonMemPayList":{
+					selResult = aLogic.getMemPayList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				case "jsonGymList":{
+					selResult = aLogic.getGymList(pMap);
+					mav.type = "json";
+					logger.info("selResult : " + selResult);
+				}
 				
 			// 김승현
 				
