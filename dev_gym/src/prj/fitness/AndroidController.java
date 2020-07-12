@@ -117,6 +117,16 @@ public class AndroidController implements Controller{
 					selResult = aLogic.getMemberLogin(pMap);
 				}break;
 			// 김혜림
+				case "jsonTchClassList":{
+					selResult = aLogic.getTchClassList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				case "jsonClsMemList":{
+					selResult = aLogic.getclsMemList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
 				
 			// 김승현
 				
