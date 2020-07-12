@@ -1,5 +1,6 @@
 package prj.fitness;
 
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,18 @@ public class AndroidDao {
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getGymContentsList", pMap);
 		logger.info("getGymContentsList.size() : " + gymList.size());
+		try {
+			for(Map<String, Object> map : gymList) {
+				byte[] image = null;
+				Blob blob = (Blob)map.get("FILEDATA");
+				image = blob.getBytes(1, (int)blob.length());
+				logger.info("image " + image.length);
+				map.remove("FILEDATA");
+				map.put("FILEDATA", image);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return gymList;
 	}
 	// 매장 기준 강사 조회
@@ -86,6 +99,14 @@ public class AndroidDao {
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getGymTeacherList", pMap);
 		logger.info("getGymTeacherList.size() : " + gymList.size());
+		for(Map<String, Object> map : gymList) {
+			byte[] image = null;
+			Blob blob = (Blob)map.get("FILEDATA");
+			image = blob.getBytes(1, (int)blob.length());
+			logger.info("image " + image.length);
+			map.remove("FILEDATA");
+			map.put("FILEDATA", image);
+		}
 		return gymList;
 	}
 	// 매장 기준 수업 조회

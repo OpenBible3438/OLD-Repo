@@ -481,8 +481,9 @@
 				//alert(data);
 				var buf = JSON.stringify(data);
 				var result = JSON.parse(buf);
-				var test = result[0].MEM_NO;
-				if(test > 0) {
+				var test = 0;
+				test = result.length;
+				if(test) {
 					//alert(result[0].MEM_NAME);
 					//$("#ins_tch_name").html("");
 					$("#c_mem_no").val(result[0].MEM_NO);				
@@ -500,7 +501,6 @@
 					$("#c_mem_gender").val('');				
 					$("#c_mem_joindate").val('');	
 				}
-				
 			}////////success end
 		});//////////ajax end
 				

@@ -98,7 +98,7 @@ public class CommonLogic {
 	
 	private void printJson(HttpServletResponse response, Object selResult) {
 		response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
+        response.setContentType("application/json; charset=UTF-8");
 		Gson g = new Gson();
 		String jsonResult = null;
 		if(selResult != null) {

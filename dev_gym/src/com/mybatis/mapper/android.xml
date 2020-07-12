@@ -105,6 +105,7 @@
 		      ,TI.TCH_INTRO
 		      ,TI.TCH_CAREER
 		      ,TI.TCH_LIKE
+		      ,I.FILEDATA
 		  FROM teacher t, images i, tch_info ti
 		 WHERE T.TCH_NO = TI.TCH_NO(+)
 		   AND T.GYM_NO = TI.GYM_NO(+)
