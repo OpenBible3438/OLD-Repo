@@ -33,6 +33,19 @@ public class AndroidLogic {
 		return loginResult;
 	}
 // 김혜림
+	//강사별 수업 조회
+	public Object getTchClassList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getTchClassList() 호출 ");
+		List<Map<String, Object>> classList = null;
+		classList = aDao.getTchClassList(pMap);
+		return classList;
+	}
+	public Object getclsMemList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getclsMemList() 호출 ");
+		List<Map<String, Object>> clsMemList = null;
+		clsMemList = aDao.getclsMemList(pMap);
+		return clsMemList;
+	}
 		
 // 김승현
 		

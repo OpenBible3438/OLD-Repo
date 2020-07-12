@@ -29,6 +29,23 @@ public class AndroidDao {
 		return loginResult;
 	}
 // 김혜림
+	//강사가 맡은 수업 목록 조회
+	public List<Map<String, Object>> getTchClassList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getTchClassList() 호출");
+		List<Map<String, Object>> classList = null;
+		classList = sqlSession.selectList("getTchClassList_and", pMap);
+		logger.info("classList.size() : " + classList.size());
+		return classList;
+	}
+	//수업별 수강생 조회
+	public List<Map<String, Object>> getclsMemList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getTchClassList() 호출");
+		List<Map<String, Object>> clsMemList = null;
+		clsMemList = sqlSession.selectList("getclsMemList_and", pMap);
+		logger.info("clsMemList.size() : " + clsMemList.size());
+		return clsMemList;
+	}
+	
 	
 // 김승현
 	
