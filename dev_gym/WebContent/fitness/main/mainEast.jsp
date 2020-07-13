@@ -36,8 +36,12 @@
 			data : 'gym_name='+id
 			,url: './logout.jsp'
 			,success: function(data) {
-				alert(data.trim());
-				location.reload();
+				var result = data.trim();
+				alert(result);
+				if(result == "로그아웃") {
+					picks('home');
+				}
+				//location.reload();
 			}
 		});
 	}

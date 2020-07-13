@@ -9,9 +9,9 @@
 	}
 	
 	if(gym_name != null) {
-		ses.setMaxInactiveInterval(ses.getMaxInactiveInterval()+(5*60)); //10분
+		ses.setMaxInactiveInterval(ses.getMaxInactiveInterval()+(10*60)); //10분
 		int time = ses.getMaxInactiveInterval()/60;
-		out.print("5분 연장 되었습니다. \n설정시간 : "+time+"분");
+		out.print("10분 연장 되었습니다.");
 	}
 	else {
 		ses.invalidate();

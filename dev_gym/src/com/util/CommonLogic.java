@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.google.gson.Gson;
+
 import prj.fitness.ModelAndView;
 
 
@@ -54,15 +56,13 @@ public class CommonLogic {
 		///////세션으로 매장번호 받아와서 pMap에 넣기//////////
 		logger.info("**************************");
 		logger.info(req.getAttribute("gym_no"));
-		req.getSession().getAttribute("gym_no");
-		int gym_no = 0;
 		if(req.getSession().getAttribute("gym_no")!=null) {
+			int gym_no = 0;
 			gym_no = Integer.parseInt(req.getSession().getAttribute("gym_no").toString());
-			//logger.info("gym_no : " + gym_no);
+			pMap.put("gym_no", gym_no);
+			logger.info("gym_no : " + gym_no);
 		}
-		logger.info("gym_no : " + gym_no);
-		pMap.put("gym_no", gym_no);
-//		logger.info("pMap : " + pMap);
+		//logger.info("pMap : " + pMap);
 	}
 	
 	public void moveMapper(Object processResult) {
@@ -74,16 +74,42 @@ public class CommonLogic {
 		}
 		else if(processResult instanceof ModelAndView) {
 			logger.info("processResult instanceof ModelAndView");
-			pageMove = new String[2];
 			ModelAndView mav = (ModelAndView)processResult;
-			pageMove[0] = "forward";
-			pageMove[1] = mav.getViewName();
+			if (mav.type.equals("json")) {
+				logger.info("type : json - printJson");
+				printJson(mav.res, mav.getObject());
+			} else {				
+				pageMove = new String[2];
+				pageMove[0] = "forward";
+				pageMove[1] = mav.getViewName();
+			}
 		}
-		logger.info("pageMove[0]= "+pageMove[0]+", pageMove[1]= "+pageMove[1]);
-		if(pageMove != null)
+		if(pageMove != null) {
+			logger.info("pageMove[0]= "+pageMove[0]+", pageMove[1]= "+pageMove[1]);
 			moveAction();
+		}
 	}
 	
+	private void printJson(HttpServletResponse response, Object selResult) {
+		response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json; charset=UTF-8");
+		Gson g = new Gson();
+		String jsonResult = null;
+		if(selResult != null) {
+			jsonResult = g.toJson(selResult);
+		}else {
+			jsonResult = "데이터가 없습니다.";/////////이렇게 해두면 출력할 때 문제가 있을 것 같다...!
+		}
+        try {
+        	logger.info("jsonResult : " + jsonResult);
+        	response.getWriter().print(jsonResult);
+		} catch (Exception e) {
+			logger.info("printJson 오류");
+			e.printStackTrace();
+		}
+	}
+
+
 	public void moveAction() {
 		logger.info("moveAction() 호출");
 		String path = "";
