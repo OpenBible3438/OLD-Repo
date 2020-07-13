@@ -118,7 +118,7 @@
 			 GROUP BY pcm.pay_no ,sdates ,edates ,clsdates ,cdates ,cls_cnt
 			         ,pcm.MEM_NAME,pcm.MEM_NO,pcm.MEM_BIRTH,pcm.MEM_GENDER,pcm.MEM_TEL,pcm.MEM_ADDR
 	</select>
-	<!-- 회원 paylist 구하기 -->
+	<!-- 회원 paylist 구하기 (회원 어플- 메인창의 결제내역 탭)-->
 	<select id="getMemPayList_and" parameterType="map" resultType="map">
 	SELECT g.gym_name, c.cls_name, t.tch_name, c.cls_price, p.pay_date
 	  FROM gym g, class c, teacher t, pay p
@@ -130,7 +130,7 @@
 	</select>
 	<!-- map에 사용 될 매장 리스트 구하기 -->
 	<select id="getGymList_and" parameterType="map" resultType="map">
-	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq
+	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq, filedata
 	  FROM gym, images
 	 WHERE gym_name IS NOT NULL
 	   AND gym_lat IS NOT NULL

@@ -151,6 +151,7 @@ public class AndroidController implements Controller{
 				case "imageOne":{
 					selResult = aLogic.getImageOne(pMap);
 					logger.info("selResult : " + selResult);
+					mav.type = "json";
 				}break;
 				
 			// 김승현
