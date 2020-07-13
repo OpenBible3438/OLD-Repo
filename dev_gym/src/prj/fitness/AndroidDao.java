@@ -48,6 +48,14 @@ public class AndroidDao {
 		result = sqlSession.insert("memberJoinImg", pMap);
 		return result;
 	}
+	// 매장 공지사항 조회
+	public List<Map<String, Object>> getGymNoticeList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getGymNoticeList() 호출");
+		List<Map<String, Object>> gymNoticeList = null;
+		gymNoticeList = sqlSession.selectList("getNoticeListApp", pMap);
+		logger.info("classList.size() : " + gymNoticeList.size());
+		return gymNoticeList;
+	}
 // 김혜림
 	//강사가 맡은 수업 목록 조회
 	public List<Map<String, Object>> getTchClassList(Map<String, Object> pMap) throws SQLException  {

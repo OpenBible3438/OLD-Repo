@@ -55,6 +55,14 @@
 		                  ,#{filedata, jdbcType=LONGVARBINARY} 
 		                  ,'mem'        ,#{mem_no}) 
 	</insert>
+	
+	<!-- 매장 공지사항 조회 -->
+	<select id="getNoticeListApp" parameterType="map" resultType="map">
+		SELECT not_title, not_cont, not_time, not_date
+		  FROM NOTICE
+		 WHERE gym_no = #{gym_no}
+      ORDER BY not_date DESC
+	</select>
 <!-- ======================= 김혜림 ======================= -->
 	<!-- 강사별 수업 목록 가져오기(수강생 수 포함) -->
 	<select id="getTchClassList_and" parameterType="map" resultType="map">
@@ -148,6 +156,11 @@
 		      ,C.CLS_STATE
 		      ,C.CLS_DAYS
 		      ,C.CLS_DAY
+		      ,C.CLS_S_DATE
+		      ,C.CLS_E_DATE
+		      ,C.CLS_STIME
+		      ,C.CLS_ETIME
+		      ,C.CLS_PRICE
 		  FROM teacher t, gym g, class c
 		 WHERE T.GYM_NO = G.GYM_NO
 		   AND T.TCH_NO = C.TCH_NO
