@@ -59,6 +59,23 @@
                 android:ems="10"
                 android:hint="비밀번호를 입력하세요"
                 android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/et_memPwConf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="비밀번호를 한 번 더 입력하세요"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/tv_joinPwConf"
+                android:text=" "
+                android:textColor="#FF3636"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,9 +178,9 @@
                         android:hint="주소검색버튼을 클릭하세요" />
 
                     <Button
+                        android:id="@+id/btn_searchAddr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="searchAdd"
                         android:text="주소검색" />
                 </LinearLayout>
 

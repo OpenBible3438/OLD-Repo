@@ -1,4 +1,4 @@
-package com.kosmo59.yoginaegym.teacher;
+package com.kosmo59.yoginaegym.gym;
 
 import android.os.Bundle;
 
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import com.kosmo59.yoginaegym.R;
 
-public class TchMemInfoFragment extends Fragment {
+public class GymNoticeFragment extends Fragment {
 
-    public TchMemInfoFragment() {
+    public GymNoticeFragment() {
         // Required empty public constructor
     }
 
@@ -20,6 +20,6 @@ public class TchMemInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tch_mem_info, container, false);
+        return inflater.inflate(R.layout.fragment_gym_notice, container, false);
     }
 }

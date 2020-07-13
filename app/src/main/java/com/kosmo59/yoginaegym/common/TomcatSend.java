@@ -14,7 +14,7 @@ public class TomcatSend extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
 
-        String apiURL = "http://192.168.0.27:7777/dev_gym/fitness/"; // 고정 URL
+        String apiURL = "http://192.168.219.106:7777/dev_gym/fitness/"; // 고정 URL
         String sendUrl = null;
         String sendMsg = null;      //안드로이드 앱에서 입력한 ID와 PW을 담아서 Tomcat Server에 전달
         String receiveMsg = null;   // 톰캣서버를 통해 처리된 결과를 받아서 담을 변수 - 응답.
@@ -22,9 +22,11 @@ public class TomcatSend extends AsyncTask<String, Void, String> {
         if(strings != null && strings.length > 0) {
             sendUrl = strings[0]; // android/memInfoIns.gym
             // {mem_id=hjho, mem_pw=123}
-            String sendMsgBuf = strings[1].replaceAll(", ", "&");;
+            String sendMsgBuf = strings[1].replaceAll(", ", "&");
+            Log.i("테스트", "sendMsgBuf : " + sendMsgBuf);
             // {mem_id=hjho&mem_pw=123}
             sendMsg = sendMsgBuf.substring(1, sendMsgBuf.length()-1);
+            Log.i("테스트", "sendMsg : " + sendMsg);
             // mem_id=hjho&mem_pw=123
             // 안드로이드 바인더 필요
             Log.i("**TomcatSend "," ** Message  :"+sendMsg);

@@ -22,6 +22,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_memLoginId"
             android:textColor="#111111"
+            android:text="testmem1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
