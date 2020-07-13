@@ -56,13 +56,37 @@ public class AndroidDao {
 		logger.info("classList.size() : " + classList.size());
 		return classList;
 	}
-	//수업별 수강생 조회
+	//수업별 수강생 조회  ///고쳐야됨
 	public List<Map<String, Object>> getclsMemList(Map<String, Object> pMap) throws SQLException  {
 		logger.info("AndroidDao - getTchClassList() 호출");
 		List<Map<String, Object>> clsMemList = null;
 		clsMemList = sqlSession.selectList("getclsMemList_and", pMap);
 		logger.info("clsMemList.size() : " + clsMemList.size());
 		return clsMemList;
+	}
+	//회원 paylist 구하기
+	public List<Map<String, Object>> getMemPayList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMemPayList() 호출");
+		List<Map<String, Object>> memPayList = null;
+		memPayList = sqlSession.selectList("getMemPayList_and", pMap);
+		logger.info("memPayList.size() : " + memPayList.size());
+		return memPayList;
+	}
+	//주변 검색에 사용할 gymList 구하기
+	public List<Map<String, Object>> getGymList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getGymList() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getGymList_and", pMap);
+		logger.info("gymList.size() : " + gymList.size());
+		return gymList;
+	}
+	//이미지 한 장 구하기
+	public Map<String, Object> getImageOne(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getGymList() 호출");
+		Map<String, Object> imageData = null;
+		imageData = sqlSession.selectOne("getImageOne_and", pMap);
+		logger.info("imageData : " + imageData);
+		return imageData;
 	}
 	
 	

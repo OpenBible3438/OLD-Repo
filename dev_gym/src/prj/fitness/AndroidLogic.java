@@ -67,11 +67,34 @@ public class AndroidLogic {
 		classList = aDao.getTchClassList(pMap);
 		return classList;
 	}
+	//수업별 수강생 조회 ///고쳐야됨
 	public Object getclsMemList(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidLogic - getclsMemList() 호출 ");
 		List<Map<String, Object>> clsMemList = null;
 		clsMemList = aDao.getclsMemList(pMap);
 		return clsMemList;
+	}
+	//회원 paylist 구하기
+	public List<Map<String, Object>> getMemPayList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getMemPayList() 호출");
+		List<Map<String, Object>> memPayList = null;
+		memPayList = aDao.getMemPayList(pMap);
+		return memPayList;
+	}
+	//주변 검색에 사용할 gymList 구하기
+	public List<Map<String, Object>> getGymList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getGymList() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getGymList(pMap);
+		return gymList;
+	}
+	//이미지 한 장 구하기
+	public Map<String, Object> getImageOne(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getImageOne() 호출");
+		Map<String, Object> imageData = null;
+		imageData = aDao.getImageOne(pMap);
+		
+		return imageData;
 	}
 		
 // 김승현
@@ -123,6 +146,8 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
+
+	
 
 
 
