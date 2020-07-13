@@ -84,6 +84,13 @@ public class MemDao {
 		memList =  (List<Map<String, Object>>)pMap.get("oneMemClsList");
 		return memList;
 	}
+	// 인바디 회원번호 검색
+	public List<Map<String, Object>> getIbdmemNo(Map<String, Object> pMap) {
+		logger.info("MemDao - getIbdmemNo() 호출");
+		List<Map<String, Object>> memDetail = null;
+		memDetail = sqlSession.selectList("getIbdmemNo",pMap);/////여유가 된다면 Map으로 바꾸자
+		return memDetail;
+	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -123,6 +130,8 @@ public class MemDao {
 		
 		return result;
 	}
+
+
 
 
 

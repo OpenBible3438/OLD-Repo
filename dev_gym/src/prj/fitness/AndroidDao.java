@@ -56,7 +56,7 @@ public class AndroidDao {
 		logger.info("classList.size() : " + classList.size());
 		return classList;
 	}
-	//수업별 수강생 조회  ///고쳐야됨
+	//수업별 수강생 조회  ///고쳐야됨 ///고침
 	public List<Map<String, Object>> getclsMemList(Map<String, Object> pMap) throws SQLException  {
 		logger.info("AndroidDao - getTchClassList() 호출");
 		List<Map<String, Object>> clsMemList = null;
@@ -147,6 +147,14 @@ public class AndroidDao {
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getGymReviewList", pMap);
 		logger.info("getGymReviewList.size() : " + gymList.size());
+		return gymList;
+	}
+	// 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) 
+	public List<Map<String, Object>> getTchClsMemIbd(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getTchClsMemIbd() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getTchClsMemIbd", pMap);
+		logger.info("getTchClsMemIbd.size() : " + gymList.size());
 		return gymList;
 	}
 	

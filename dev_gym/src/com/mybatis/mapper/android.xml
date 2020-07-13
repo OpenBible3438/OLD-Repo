@@ -63,15 +63,60 @@
 		  FROM class c, pay p
 		 WHERE c.cls_no = p.cls_no
 		   AND tch_no = #{tch_no}
+		   AND c.gym_no = #{gym_no}
+		   AND C.CLS_STATE = '진행'
 	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state
 	</select>
 	<select id="getclsMemList_and" parameterType="map" resultType="map">
-	SELECT m.mem_no, m.mem_name, m.mem_birth, DECODE(MIN(ma.mem_cls_cnt), -1, '해당없음',MIN(ma.mem_cls_cnt)) rcnt, c.cls_cnt cnt
-	  FROM class c, pay p, mem_attend ma, member m
-	 WHERE c.cls_no = p.cls_no
-	   AND p.mem_no = m.mem_no
-	   AND p.cls_no = #{cls_no}
-	GROUP BY m.mem_no, m.mem_name, m.mem_birth, c.cls_cnt
+		-- 강사> 수업/회원관리 > 수업 리스트 > 수강생 보기(그 수업에 대한)
+			SELECT pcm.pay_no                 -- 결제번호 
+			      ,sdates                     -- 등록날짜
+			      ,edates                     -- 끝 날짜
+			      ,clsdates                   -- 수업일수
+			      ,cdates    as cnt           -- 남은일수
+			      ,nvl(count(pm.mem_atd_seq),0) as mem_cnt  -- 출석횟수
+			      ,cls_cnt                    -- 수업횟수
+			      ,nvl(cls_cnt,0)-nvl(count(pm.mem_atd_seq),0) as rcnt -- 남은횟수
+			      ,pcm.MEM_NAME 
+			      ,pcm.MEM_NO
+			      ,pcm.MEM_BIRTH 
+			      ,pcm.MEM_GENDER
+			      ,pcm.MEM_TEL
+			      ,pcm.MEM_ADDR
+			  FROM (SELECT P.PAY_NO     -- 결제번호
+			              ,p.pay_date as sdates -- 결제날짜
+			              ,C.CLS_DAYS as clsdates  -- 수업일수
+			              ,to_CHAR(to_date(p.pay_date)+cls_days,'yyyy-mm-dd') as edates -- 종료날짜
+			              ,(to_date(p.pay_date)+cls_days)-to_date(sysdate)    as cdates -- 남은일수
+			              ,cls_cnt
+			              ,p.cls_no
+			              ,M.MEM_NAME 
+			              ,M.MEM_NO
+			              ,M.MEM_BIRTH 
+			              ,M.MEM_GENDER
+			              ,M.MEM_TEL
+			              ,M.MEM_ADDR
+			          FROM pay p, class c, member m
+			         WHERE P.CLS_NO = C.CLS_NO
+			           AND P.MEM_NO = M.MEM_NO 
+			        ) pcm,(
+			        SELECT p.pay_no
+			              ,mem_atd_seq
+			              ,P.MEM_NO
+			              ,p.cls_no
+			          FROM pay p, mem_attend ma
+			         WHERE P.PAY_NO = MA.PAY_NO
+			        ) pm
+			 WHERE cdates > 0
+			   AND pcm.pay_no = pm.pay_no 
+			   AND pcm.MEM_NO = pm.mem_no
+			   AND pcm.cls_no = pm.cls_no
+			   AND pcm.CLS_NO = #{cls_no}
+		   <if test="mem_no != null and mem_no > 0">
+		   		AND pcm.mem_no = #{mem_no}
+		   </if>
+			 GROUP BY pcm.pay_no ,sdates ,edates ,clsdates ,cdates ,cls_cnt
+			         ,pcm.MEM_NAME,pcm.MEM_NO,pcm.MEM_BIRTH,pcm.MEM_GENDER,pcm.MEM_TEL,pcm.MEM_ADDR
 	</select>
 	<!-- 회원 paylist 구하기 -->
 	<select id="getMemPayList_and" parameterType="map" resultType="map">
@@ -177,5 +222,14 @@
 		   AND T.GYM_NO = GYM.GYM_NO
 		   AND GYM.GYM_NO = #{gym_no}
 	</select>
-	
+	<select id="getTchClsMemIbd" parameterType="map" resultType="map">
+	-- 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) 
+			SELECT ck_date   -- 측정 날짜 
+			      ,filedata  -- 파일 
+			  FROM inbody ibd, images i
+			 WHERE IBD.INBD_SEQ = I.TYPECODE
+			   AND I.TYPE = 'ibd'
+			   AND IBD.GYM_NO = #{gym_no}
+			   AND IBD.MEM_NO = #{mem_no}
+   </select>
 </mapper>
