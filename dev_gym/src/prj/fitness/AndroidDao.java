@@ -33,7 +33,15 @@ public class AndroidDao {
 // 김승현
 	
 // 박준규
-	
+	// 회원 인바디 테이블에 인바디 정보 등록
+		public int memInbodyIns(Map<String, Object> pMap) throws SQLException {
+			logger.info("MemDao - memInbodyIns() 호출");
+			int inbd_seq = sqlSession.selectOne("getInbodySeq");
+			pMap.put("inbd_seq", inbd_seq);
+			result = sqlSession.insert("memInbodyIns",pMap);
+			
+			return result;
+		}
 // 김현빈
 	
 // 허준호

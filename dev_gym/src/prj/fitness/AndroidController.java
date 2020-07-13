@@ -43,7 +43,7 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-							
+						
 						// 김현빈
 							
 						// 허준호
@@ -65,7 +65,7 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-							
+						
 						// 김현빈
 							
 						// 허준호
@@ -87,7 +87,7 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-							
+						
 						// 김현빈
 							
 						// 허준호

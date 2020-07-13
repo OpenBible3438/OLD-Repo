@@ -1,5 +1,7 @@
 package prj.fitness;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +39,7 @@ public class AndroidLogic {
 // 김승현
 		
 // 박준규
-		
+	
 // 김현빈
 		
 // 허준호
