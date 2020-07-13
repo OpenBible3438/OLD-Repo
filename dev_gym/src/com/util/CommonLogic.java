@@ -56,19 +56,13 @@ public class CommonLogic {
 		///////세션으로 매장번호 받아와서 pMap에 넣기//////////
 		logger.info("**************************");
 		logger.info(req.getAttribute("gym_no"));
-		req.getSession().getAttribute("gym_no");
-		int gym_no = 0;
 		if(req.getSession().getAttribute("gym_no")!=null) {
+			int gym_no = 0;
 			gym_no = Integer.parseInt(req.getSession().getAttribute("gym_no").toString());
-			//logger.info("gym_no : " + gym_no);
-		} else {
-			if("android".equals(pMap.get("work").toString())) {
-				gym_no = Integer.parseInt(pMap.get("gym_no").toString());
-			}
+			pMap.put("gym_no", gym_no);
+			logger.info("gym_no : " + gym_no);
 		}
-		logger.info("gym_no : " + gym_no);
-		pMap.put("gym_no", gym_no);
-//		logger.info("pMap : " + pMap);
+		//logger.info("pMap : " + pMap);
 	}
 	
 	public void moveMapper(Object processResult) {
