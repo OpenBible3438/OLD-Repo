@@ -19,6 +19,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -67,22 +69,45 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
         gymList = (List<Map<String, Object>>)g.fromJson(result, listType);
         ////////////////////////////////////DB 연동 끝////////////////////////////////////
 
-        GymSearchAdapter gymSearchAdapter = new GymSearchAdapter(getApplicationContext(), R.layout.gym_search_list_item, gymList);
+        GymSearchAdapter gymSearchAdapter = new GymSearchAdapter(GymSearchActivity.this, getApplicationContext(), R.layout.gym_search_list_item, gymList);
         s_gymList = findViewById(R.id.s_gymList);
         s_gymList.setAdapter(gymSearchAdapter);
+        Button btn_moveGymProfile = (Button) findViewById(R.id.btn_moveGymProfile);
 
+//        s_gymList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//                Log.i("테스트", "onItemClick() 호출");
+//                // 상세정보 화면으로 이동하기(인텐트 날리기)
+//                // 1. 다음화면을 만든다
+//                // 2. AndroidManifest.xml 에 화면을 등록한다
+//                // 3. Intent 객체를 생성하여 날린다
+//                Intent intent = new Intent(
+//                        getApplicationContext(), // 현재화면의 제어권자
+//                        GymProfileActivity.class); // 다음넘어갈 화면
+//
+//                // intent 객체에 데이터를 실어서 보내기
+//                // 리스트뷰 클릭시 인텐트 (Intent) 생성하고 position 값을 이용하여 인텐트로 넘길값들을 넘긴다
+//                Log.i("테스트", "gym_no : " + gymList.get(position).get("gym_no").toString());
+//                intent.putExtra("title", gymList.get(position).get("gym_no").toString());
+//
+//                startActivity(intent);
+//            }
+//        });
         //xml의 fragment 연결
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
         mapFragment.getMapAsync(GymSearchActivity.this);
 
     }
 
-    /* 매장이동 */
-    public void moveGymSearchActivity(View view) {
-        Intent intent = new Intent(GymSearchActivity.this, GymProfileActivity.class);
-        intent.putExtra("gym_no", choGym_no);
-        startActivity(intent);
-    }
+//    /* 매장이동 */
+//    public void moveGymSearchActivity(View view) {
+//        Log.i("테스트", "moveGymSearchActivity 호출");
+//        Intent intent = new Intent(GymSearchActivity.this, GymProfileActivity.class);
+//        intent.putExtra("gym_no", choGym_no);
+//        startActivity(intent);
+//    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
