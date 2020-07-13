@@ -115,13 +115,17 @@
 		var timer = <%= timer %>;         // 남은 시간
 		var timeOver = <%= timeOver %>;   // 설정 시간 
 		var timeOver2 = <%= timeOver2 %>; // 설정 시간/2  
-		if(time>timeOver2) { // 접속시간 > 설정시간/2 보다 클 때
+		if(timer<(1000*60)) { // 접속시간 > 설정시간/2 보다 클 때
 			if(timer>0) {    // 남은 시간이 0보다 클 때
 				if(confirm("<%= timerStr %>초 뒤에 자동 로그아웃 됩니다.\n\n10분 연장 하시겠습니까?")) {
 					logout('<%= gym_name %>');	
 				}
 			} else {
-				logout('');
+				if(confirm("로그아웃 됩니다.\n\n10분 연장 하시겠습니까?")) {
+					logout('<%= gym_name %>');	
+				} else {
+					logout('');
+				}
 			}
 		}
 	}); 

@@ -56,15 +56,13 @@ public class CommonLogic {
 		///////세션으로 매장번호 받아와서 pMap에 넣기//////////
 		logger.info("**************************");
 		logger.info(req.getAttribute("gym_no"));
-		req.getSession().getAttribute("gym_no");
-		int gym_no = 0;
 		if(req.getSession().getAttribute("gym_no")!=null) {
+			int gym_no = 0;
 			gym_no = Integer.parseInt(req.getSession().getAttribute("gym_no").toString());
-			//logger.info("gym_no : " + gym_no);
+			pMap.put("gym_no", gym_no);
+			logger.info("gym_no : " + gym_no);
 		}
-		logger.info("gym_no : " + gym_no);
-		pMap.put("gym_no", gym_no);
-//		logger.info("pMap : " + pMap);
+		//logger.info("pMap : " + pMap);
 	}
 	
 	public void moveMapper(Object processResult) {
@@ -94,7 +92,7 @@ public class CommonLogic {
 	
 	private void printJson(HttpServletResponse response, Object selResult) {
 		response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
+        response.setContentType("application/json; charset=UTF-8");
 		Gson g = new Gson();
 		String jsonResult = null;
 		if(selResult != null) {
@@ -103,7 +101,8 @@ public class CommonLogic {
 			jsonResult = "데이터가 없습니다.";/////////이렇게 해두면 출력할 때 문제가 있을 것 같다...!
 		}
         try {
-        	response.getWriter().print(jsonResult);	
+        	logger.info("jsonResult : " + jsonResult);
+        	response.getWriter().print(jsonResult);
 		} catch (Exception e) {
 			logger.info("printJson 오류");
 			e.printStackTrace();
