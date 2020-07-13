@@ -65,6 +65,7 @@
 		   AND tch_no = #{tch_no}
 	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state
 	</select>
+	<!-- 수업별 수강생 조회 -->
 	<select id="getclsMemList_and" parameterType="map" resultType="map">
 	SELECT m.mem_no, m.mem_name, m.mem_birth, DECODE(MIN(ma.mem_cls_cnt), -1, '해당없음',MIN(ma.mem_cls_cnt)) rcnt, c.cls_cnt cnt
 	  FROM class c, pay p, mem_attend ma, member m
@@ -73,7 +74,7 @@
 	   AND p.cls_no = #{cls_no}
 	GROUP BY m.mem_no, m.mem_name, m.mem_birth, c.cls_cnt
 	</select>
-	<!-- 회원 paylist 구하기 -->
+	<!-- 회원 paylist 구하기 (회원 어플- 메인창의 결제내역 탭)-->
 	<select id="getMemPayList_and" parameterType="map" resultType="map">
 	SELECT g.gym_name, c.cls_name, t.tch_name, c.cls_price, p.pay_date
 	  FROM gym g, class c, teacher t, pay p
@@ -85,7 +86,7 @@
 	</select>
 	<!-- map에 사용 될 매장 리스트 구하기 -->
 	<select id="getGymList_and" parameterType="map" resultType="map">
-	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq
+	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq, filedata
 	  FROM gym, images
 	 WHERE gym_name IS NOT NULL
 	   AND gym_lat IS NOT NULL
