@@ -141,7 +141,11 @@ public class AndroidController implements Controller{
 					selResult = aLogic.getGymList(pMap);
 					mav.type = "json";
 					logger.info("selResult : " + selResult);
-				}
+				}break;
+				case "imageOne":{
+					selResult = aLogic.getImageOne(pMap);
+					logger.info("selResult : " + selResult);
+				}break;
 				
 			// 김승현
 				

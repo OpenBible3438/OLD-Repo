@@ -25,6 +25,8 @@ public class MyBatisBuilderMgr {
 	
 	private MyBatisBuilderMgr() {} 
 	
+	Logger logger = Logger.getLogger(MyBatisBuilderMgr.class);
+	
 /**********************************************************************************************
  * MyBatisBuilderMgr, Reader, SqlSessionFactory 싱글톤으로 관리하는 메소드
  * @return MyBatisBuilderMgr
@@ -51,6 +53,7 @@ public class MyBatisBuilderMgr {
 		//Commit과 Rollback을 처리하는 애
 //		SqlSession sqlSes = null;
 		try {
+			logger.info("openSession");
 			this.sqlSes = sqlMapper.openSession();
 //			sqlSes = sqlMapper.openSession();
 		} catch (Exception e) {
@@ -67,6 +70,7 @@ public class MyBatisBuilderMgr {
 	public void clossSession(SqlSession sqlSes) {
 		try {
 			if(sqlSes!=null) {
+				logger.info("closeSession");
 				sqlSes.close();
 			}
 		} catch (Exception e) {

@@ -85,13 +85,19 @@
 	</select>
 	<!-- map에 사용 될 매장 리스트 구하기 -->
 	<select id="getGymList_and" parameterType="map" resultType="map">
-	SELECT gym_name, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr
-	  FROM gym
+	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq
+	  FROM gym, images
 	 WHERE gym_name IS NOT NULL
 	   AND gym_lat IS NOT NULL
 	   AND gym_lng IS NOT NULL
 	   AND gym_addr IS NOT NULL
 	   AND gym_addr_dtl IS NOT NULL
+	   AND type = 'gym'
+	   AND typecode = gym_no
+	</select>
+	<select id="getImageOne_and" parameterType="map" resultType="map">
+	SELECT filedata from images
+ 	WHERE file_seq=#{file_seq}
 	</select>
 <!-- ======================= 김승현 ======================= -->
 

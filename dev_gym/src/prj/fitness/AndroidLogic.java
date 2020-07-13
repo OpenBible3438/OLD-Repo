@@ -88,6 +88,14 @@ public class AndroidLogic {
 		gymList = aDao.getGymList(pMap);
 		return gymList;
 	}
+	//이미지 한 장 구하기
+	public Map<String, Object> getImageOne(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getImageOne() 호출");
+		Map<String, Object> imageData = null;
+		imageData = aDao.getImageOne(pMap);
+		
+		return imageData;
+	}
 		
 // 김승현
 		
@@ -138,6 +146,8 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
+
+	
 
 
 
