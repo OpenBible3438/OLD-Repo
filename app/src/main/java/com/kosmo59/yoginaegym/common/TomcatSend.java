@@ -29,8 +29,8 @@ public class TomcatSend extends AsyncTask<String, Void, String> {
             Log.i("테스트", "sendMsg : " + sendMsg);
             // mem_id=hjho&mem_pw=123
             // 안드로이드 바인더 필요
-            Log.i("**TomcatSend "," ** Message  :"+sendMsg);
-            Log.i("**TomcatSend "," ** URL  :"+sendUrl);
+            Log.i("**TomcatSend "," *** Message  :"+sendMsg);
+            Log.i("**TomcatSend "," *** URL  :"+sendUrl);
         } else {
             return "";
         }
