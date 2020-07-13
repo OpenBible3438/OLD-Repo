@@ -1,26 +1,47 @@
 package com.kosmo59.yoginaegym.member;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.gym.GymSearchActivity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MemMainActivity extends AppCompatActivity {
 
     private Button btn_memGymSearch, btn_memInfo, btn_memTimeTable, btn_memClass;
 
+    private AppVO vo = null;
+    ImageView iv_memQr = null;
+    TextView tv_memQrName=null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_main);
+
+        vo = (AppVO) getApplicationContext();
 
         btn_memGymSearch = findViewById(R.id.btn_memGymSearch);
         btn_memInfo = findViewById(R.id.btn_memInfo);
@@ -68,6 +89,30 @@ public class MemMainActivity extends AppCompatActivity {
                     case R.id.bot_nav_home:
                         break;
                     case R.id.bot_nav_qr:
+                        //다이얼로그 초기화
+                        final Dialog dlg = new Dialog(MemMainActivity.this);
+                        dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dlg.setContentView(R.layout.dialog_mem_qr);
+                        WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+                        params.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                        dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+                        //QR 코드 생성
+                        String data = vo.getMemberId(); //mem_id로 QR코드 생성
+                        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+                        try {
+                            BitMatrix bitMatrix = multiFormatWriter.encode(data, BarcodeFormat.QR_CODE, 300,300);
+                            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                            Log.i("QR Make", "생성된 QR Bitmap : "+bitmap.toString());
+                            iv_memQr = dlg.findViewById(R.id.iv_memQr);
+                            tv_memQrName = dlg.findViewById(R.id.tv_memQrName);
+                            iv_memQr.setImageBitmap(bitmap); //만들어진 QR코드 붙이기
+                            tv_memQrName.setText(vo.getMemberName()+" 회원님");
+                        }catch (Exception e){
+                            Log.i("QR Make", e.toString());
+                        }
+                        dlg.show();
                         break;
                     case R.id.bot_nav_cont:
                         Intent intent_cont = new Intent(MemMainActivity.this, MemContentActivity.class);
