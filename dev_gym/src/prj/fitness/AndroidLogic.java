@@ -132,6 +132,13 @@ public class AndroidLogic {
 		gymList = aDao.getGymReviewList(pMap);
 		return gymList;
 	}
+	// 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) 
+	public List<Map<String, Object>> getTchClsMemIbd(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getTchClsMemIbd() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getTchClsMemIbd(pMap);
+		return gymList;
+	}
 	
 // setCommit
 	public void setCommit(int result) {
@@ -146,6 +153,8 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
+
+
 
 	
 

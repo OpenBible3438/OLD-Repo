@@ -179,6 +179,12 @@ public class AndroidController implements Controller{
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;
+				// 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) 
+				case "jsonTchClsMemIbd":{
+					selResult = aLogic.getTchClsMemIbd(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
 			}
 		} catch(Exception e) {
 			logger.info("Exception : "+e.toString());

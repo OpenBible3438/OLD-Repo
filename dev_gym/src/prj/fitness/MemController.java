@@ -101,6 +101,10 @@ public class MemController implements Controller {
 				case "jsonMemList":{ // 회원 조회
 					selResult = mLogic.getMemList(pMap);
 				}break;
+				case "jsonIbdmemNo":{ // 인바디 회원번호 검색
+					selResult = mLogic.getIbdmemNo(pMap);
+					mav.type="json";
+				}break;
 				case "jsonMemListOne":{ // 회원 조건검색 
 					selResult = mLogic.getMemListOne(pMap);
 				}break;
