@@ -157,6 +157,46 @@ public class AndroidDao {
 		logger.info("getTchClsMemIbd.size() : " + gymList.size());
 		return gymList;
 	}
+	// 전체 콘텐츠 가져오기  
+	public List<Map<String, Object>> getContentsList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getContentsList() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getContentsList", pMap);
+		logger.info("getContentsList.size() : " + gymList.size());
+		return gymList;
+	}
+	// 강사 프로필 가져오기   
+	public List<Map<String, Object>> getTeacherProf(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getTeacherProf() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getTeacherProf", pMap);
+		logger.info("getTeacherProf.size() : " + gymList.size());
+		return gymList;
+	}
+	// 회원이 콘텐츠에 좋아요 눌렀을 때1-1
+	public int contLikeINS(Map<String, Object> pMap) {
+		logger.info("AndroidDao - contLikeINS() 호출");
+		result = sqlSession.insert("contLikeINS", pMap);
+		return result;
+	}
+	// 회원이 콘텐츠에 좋아요 눌렀을 때1-2
+	public int contLikeInsUPD(Map<String, Object> pMap) {
+		logger.info("AndroidDao - contLikeInsUPD() 호출");
+		result = sqlSession.update("contLikeInsUPD", pMap);
+		return result;
+	}
+	// 회원이 콘텐츠에 좋아요 뺐을 때1-1
+	public int contLikeDEL(Map<String, Object> pMap) {
+		logger.info("AndroidDao - contLikeDEL() 호출");
+		result = sqlSession.delete("contLikeDEL", pMap);
+		return result;
+	}
+	// 회원이 콘텐츠에 좋아요 뺐을 때1-2
+	public int contLikeDelUPD(Map<String, Object> pMap) {
+		logger.info("AndroidDao - contLikeDelUPD() 호출");
+		result = sqlSession.update("contLikeDelUPD", pMap);
+		return result;
+	}
 	
 	
 }

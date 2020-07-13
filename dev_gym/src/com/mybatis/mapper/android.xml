@@ -67,8 +67,8 @@
 		   AND C.CLS_STATE = '진행'
 	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state
 	</select>
+	<!-- 강사> 수업/회원관리 > 수업 리스트 > 수강생 보기(그 수업에 대한) -->
 	<select id="getclsMemList_and" parameterType="map" resultType="map">
-		-- 강사> 수업/회원관리 > 수업 리스트 > 수강생 보기(그 수업에 대한)
 			SELECT pcm.pay_no                 -- 결제번호 
 			      ,sdates                     -- 등록날짜
 			      ,edates                     -- 끝 날짜
@@ -222,8 +222,8 @@
 		   AND T.GYM_NO = GYM.GYM_NO
 		   AND GYM.GYM_NO = #{gym_no}
 	</select>
+	<!-- 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) -->
 	<select id="getTchClsMemIbd" parameterType="map" resultType="map">
-	-- 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) 
 			SELECT ck_date   -- 측정 날짜 
 			      ,filedata  -- 파일 
 			  FROM inbody ibd, images i
@@ -232,4 +232,73 @@
 			   AND IBD.GYM_NO = #{gym_no}
 			   AND IBD.MEM_NO = #{mem_no}
    </select>
+   
+   <!-- 전체 콘텐츠 가져오기 -->
+	<select id="getContentsList" parameterType="map" resultType="map">
+			SELECT G.GYM_NO
+			      ,G.GYM_NAME
+			      ,GC.GYM_CONT_SEQ
+			      ,GC.GYM_CONTENTS
+			      ,GC.GYM_CONT_DATE
+			      ,GC.GYM_CONT_TIME
+			      ,GC.GYM_CONT_LIKE
+			      ,I.FILEDATA
+			  FROM gym_contents gc, images i, gym g
+			 WHERE GC.GYM_NO = G.GYM_NO
+			   AND I.TYPE = 'gymCont'
+			   AND I.TYPECODE = GC.GYM_CONT_SEQ
+			 ORDER BY GC.GYM_CONT_DATE desc
+   </select>
+   
+   <!-- 강사 프로필  가져오기 -->
+	<select id="getTeacherProf" parameterType="map" resultType="map">
+			SELECT t.tch_no
+			      ,t.tch_id
+			      ,t.tch_name
+			      ,t.tch_tel
+			      ,t.tch_addr
+			      ,t.tch_gender 
+			      ,TI.TCH_INTRO
+			      ,TI.TCH_CAREER
+			      ,TI.TCH_LIKE
+			      ,I.FILEDATE
+			  FROM teacher t, tch_info ti, images i
+			 WHERE T.TCH_NO = TI.TCH_NO(+)
+			   AND T.GYM_NO = TI.GYM_NO
+			   AND I.TYPE = 'tch'
+			   AND I.TYPECODE = T.GYM_NO||T.TCH_NO
+			   AND T.TCH_NO = #{tch_no}
+			   AND T.GYM_NO = #{gym_no}
+   </select>
+   <!-- 회원이 콘텐츠에 좋아요 눌렀을 때1-1   -->
+   <insert id="contLikeINS" parameterType="map">
+   		INSERT INTO 
+		    likes(LIKES_SEQ       
+		         ,MEM_NO           
+		         ,LIKES_TYPE       
+		         ,LIKES_TYPE_CODE 
+		         ,LIKES_DATE) 
+		   VALUES(seq_likes.nextval
+		         ,#{mem_no}
+		         ,'gymCont'
+		         ,#{GYM_CONT_SEQ}
+		         ,TO_CHAR(sysdate,'yyyy-mm-dd'))
+   </insert>
+   <!-- 회원이 콘텐츠에 좋아요 눌렀을 때1-2   -->
+   <update id="contLikeInsUPD" parameterType="map">
+   		UPDATE gym_contents 
+		   SET gym_cont_like = gym_cont_like+1
+		 WHERE gym_cont_seq = #{GYM_CONT_SEQ}
+   </update>
+   <delete id="contLikeDEL" parameterType="map">
+   		DELETE  
+   		  FROM gym_contents
+   		 WHERE gym_cont_seq = #{GYM_CONT_SEQ}
+   </delete>
+   <!-- 회원이 콘텐츠에 좋아요 취소할 때 1-4   -->
+   <update id="contLikeDelUPD" parameterType="map">
+   		UPDATE gym_contents 
+		   SET gym_cont_like = gym_cont_like-1
+		 WHERE gym_cont_seq = #{GYM_CONT_SEQ}
+   </update>
 </mapper>

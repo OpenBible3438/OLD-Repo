@@ -49,7 +49,10 @@ public class AndroidController implements Controller{
 						// 김현빈
 							
 						// 허준호
-							
+							// 회원이 콘텐츠에 좋아요 눌렀을 때 
+							case "contLikeINS":{
+								result = aLogic.contLikeINS(pMap);
+							}break;
 						}
 					} catch (Exception e) {
 						logger.info("Exception : "+e.toString());
@@ -93,7 +96,10 @@ public class AndroidController implements Controller{
 						// 김현빈
 							
 						// 허준호
-
+							// 회원이 콘텐츠에 좋아요 뺐을 때 
+							case "contLikeDEL":{
+								result = aLogic.contLikeDEL(pMap);
+							}break;
 						}
 					} catch (Exception e) {
 						logger.info("Exception : "+e.toString());
@@ -181,6 +187,18 @@ public class AndroidController implements Controller{
 				// 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) 
 				case "jsonTchClsMemIbd":{
 					selResult = aLogic.getTchClsMemIbd(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 전체 콘텐츠 가져오기  
+				case "jsonContentsList":{
+					selResult = aLogic.getContentsList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 강사 프로필 가져오기   
+				case "jsonTeacherProf":{
+					selResult = aLogic.getTeacherProf(pMap);
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;
