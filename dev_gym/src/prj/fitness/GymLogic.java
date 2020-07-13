@@ -85,6 +85,7 @@ public class GymLogic {
 		logger.info("GymLogic - getTypeNo() 호출");
 		List<Map<String, Object>> typeNo = null;
 		typeNo = gDao.getTypeNo(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return typeNo;
 	}
@@ -92,6 +93,7 @@ public class GymLogic {
 		logger.info("GymLogic - getComboList() 호출");
 		List<Map<String, Object>> comboList = null;
 		comboList = gDao.getComboList(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return comboList;
 	}
@@ -182,6 +184,7 @@ public class GymLogic {
 		logger.info("GymLogic - getReviewList() 호출");
 		List<Map<String, Object>> reviewList = null;
 		reviewList = gDao.getReviewList(pMap);
+		mbMgr.clossSession(sqlSession);
 		
 		return reviewList;
 	}
@@ -190,6 +193,7 @@ public class GymLogic {
 		logger.info("GymLogic - getProfImage() 호출");
 		byte[] image = null;
 		image = gDao.gymProfImage(pMap);
+		mbMgr.clossSession(sqlSession);
 		return image;
 	}
 	// 매장 콘텐츠 사진 가져오기
@@ -197,6 +201,7 @@ public class GymLogic {
 		logger.info("GymLogic - gymContImage() 호출");
 		List<Map<String, Object>> contList = null;
 		contList = gDao.gymContImage(pMap);
+		mbMgr.clossSession(sqlSession);
 		return contList;
 	}
 	// 이미지 가져오기
@@ -204,6 +209,7 @@ public class GymLogic {
 		logger.info("GymLogic - getImages() 호출");
 		byte[] image = null;
 		image = gDao.getImages(pMap);
+		mbMgr.clossSession(sqlSession);
 		return image;
 	}
 
