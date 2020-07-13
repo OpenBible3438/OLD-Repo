@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.TomcatSend;
 import com.kosmo59.yoginaegym.teacher.TchclassAdapter;
 
@@ -49,10 +50,10 @@ public class PayListFragment extends Fragment {
         ////////////////////////////////////DB 연동 시작////////////////////////////////////
         String result = null;
         String reqUrl = "android/jsonMemPayList.gym";
-
+        AppVO vo = (AppVO) getActivity().getApplicationContext();
         String nowMem = null;
         Map<String, Object> memMap = new HashMap<>();
-        memMap.put("mem_no", 2);/////////////바꿀 코드
+        memMap.put("mem_no", vo.mem_no);/////////////바꿀 코드
         memMap.put("gym_no", 999);/////////////바꿀 코드
         nowMem = memMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();

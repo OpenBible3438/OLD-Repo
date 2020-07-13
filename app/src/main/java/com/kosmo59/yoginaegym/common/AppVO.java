@@ -3,9 +3,13 @@ package com.kosmo59.yoginaegym.common;
 import android.app.Application;
 
 public class AppVO extends Application {
+    /* 조회할 매장 정보 저장하기*/
+    public int gym_no = 0;//매장 메인 창으로 이동할 때 저장시키기
+
     /* 회원 */
     public String memberName = null;
     public String memberId = null;
+    public int mem_no = 0;
     public String memberNum = null; //로그인 창에서 입력한 비밀번호를 회원번호로 받기
     public String roomName1 = null;
     public String memberNickname = null;
@@ -26,6 +30,9 @@ public class AppVO extends Application {
 
     public void setMemberNum(String memberNum) {
         this.memberNum = memberNum;
+    }
+    public void setMem_no(int mem_no) {
+        this.mem_no = mem_no;
     }
 
     public String getMemberName() {

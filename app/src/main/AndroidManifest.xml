@@ -44,7 +44,8 @@
         <activity android:name=".teacher.TchManageActivity" />
         <activity android:name=".teacher.TchMainActivity" />
         <activity android:name=".gym.GymProfileActivity" />
-        <activity android:name=".gym.GymSearchActivity" />
+        <activity android:name=".gym.GymSearchActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"/>
         <activity android:name=".sample.sample2" />
         <activity android:name=".member.MemProfileActivity" />
         <activity android:name=".member.MemJoinActivity" />

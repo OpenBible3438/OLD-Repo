@@ -50,6 +50,7 @@ public class MemLoginActivity extends AppCompatActivity {
                 String send = "android/jsonMemberLogin.gym";
                 loginMap.put("mem_id", id);
                 loginMap.put("mem_pw", pw);
+                loginMap.put("gym_no", "1");///////바꿀 코드
 
                 //채팅 변수 담기
                 AppVO vo = (AppVO) getApplicationContext();
@@ -74,6 +75,7 @@ public class MemLoginActivity extends AppCompatActivity {
                             vo.setMemberId(id);
                             vo.setMemberName(jsonObject.getString("MEM_NAME"));
                             vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
+                            vo.setMem_no(jsonObject.getInt("MEM_NO"));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
