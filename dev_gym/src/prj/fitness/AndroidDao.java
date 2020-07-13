@@ -32,6 +32,7 @@ public class AndroidDao {
 	public int memberJoinGetNo(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidDao - memberJoinGetNo() 호출");
 		result = sqlSession.selectOne("memberJoinGetNo", pMap);
+		logger.info("회원번호:"+result);
 		return result;
 	}
 	// 회원가입 회원 정보 insert
