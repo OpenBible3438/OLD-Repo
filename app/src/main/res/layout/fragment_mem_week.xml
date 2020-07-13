@@ -44,14 +44,11 @@
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/mon_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:lines="4"
-                        android:text=
-                            "PT
-                        \nFitness
-                        \nSwimming"
                         android:textSize="15dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -87,14 +84,11 @@
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tue_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:lines="4"
-                        android:text=
-                            "PT
-                        \nFitness
-                        \nSwimming"
                         android:textSize="15dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -130,14 +124,11 @@
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/wed_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:lines="4"
-                        android:text=
-                            "PT
-                        \nFitness
-                        \nSwimming"
                         android:textSize="15dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -173,14 +164,11 @@
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/thu_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:lines="4"
-                        android:text=
-                            "PT
-                        \nFitness
-                        \nSwimming"
                         android:textSize="15dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -216,14 +204,11 @@
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/fri_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:lines="4"
-                        android:text=
-                            "PT
-                        \nFitness
-                        \nSwimming"
                         android:textSize="15dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -259,14 +244,11 @@
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/sat_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:lines="4"
-                        android:text=
-                            "PT
-                        \nFitness
-                        \nSwimming"
                         android:textSize="15dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -302,14 +284,11 @@
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/sun_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:lines="4"
-                        android:text=
-                            "PT
-                        \nFitness
-                        \nSwimming"
                         android:textSize="15dp" />
                 </LinearLayout>
             </LinearLayout>
