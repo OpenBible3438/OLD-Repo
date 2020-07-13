@@ -45,6 +45,8 @@ public class GymProfileActivity extends AppCompatActivity{
                     return new ClassFragment();
                 case 3:
                     return new GymReviewFragment();
+                case 4:
+                    return new GymNoticeFragment();
             }
             return null;
         }
@@ -52,7 +54,7 @@ public class GymProfileActivity extends AppCompatActivity{
         @Override
         public int getCount() { /* 페이지 수 지정 */
             /* 홍보, 강사진, 수업, 후기 => 4장 */
-            return 4;
+            return 5;
         }
 
         public CharSequence getPageTitle(int position){
@@ -65,6 +67,8 @@ public class GymProfileActivity extends AppCompatActivity{
                     return "수업";
                 case 3:
                     return "매장후기";
+                case 4:
+                    return "공지사항";
             }
             return null;
         }

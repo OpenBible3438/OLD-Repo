@@ -2,15 +2,20 @@ package com.kosmo59.yoginaegym.member;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.ContentActivity;
 import com.kosmo59.yoginaegym.gym.GymSearchActivity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MemMainActivity extends AppCompatActivity {
@@ -70,7 +75,7 @@ public class MemMainActivity extends AppCompatActivity {
                     case R.id.bot_nav_qr:
                         break;
                     case R.id.bot_nav_cont:
-                        Intent intent_cont = new Intent(MemMainActivity.this, MemContentActivity.class);
+                        Intent intent_cont = new Intent(MemMainActivity.this, ContentActivity.class);
                         startActivity(intent_cont);
                         break;
                     case R.id.bot_nav_msg:
