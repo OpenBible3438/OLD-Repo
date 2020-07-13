@@ -106,6 +106,23 @@ public class AndroidDao {
 		logger.info("imageData : " + imageData);
 		return imageData;
 	}
+	//강사 요일별 수업 구하기
+	public List<Map<String, Object>> getTchWeekCls(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getTchWeekCls() 호출");
+		List<Map<String, Object>> tchClsList = null;
+		tchClsList = sqlSession.selectList("getTchWeekCls_and", pMap);
+		logger.info("tchClsList.size() : " + tchClsList.size());
+		return tchClsList;
+	}
+	//회원 요일별 수업 구하기
+	public List<Map<String, Object>> getMemWeekCls(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMemWeekCls() 호출");
+		List<Map<String, Object>> memClsList = null;
+		memClsList = sqlSession.selectList("getMemWeekCls_and", pMap);
+		logger.info("memClsList.size() : " + memClsList.size());
+		return memClsList;
+	}
+	
 	
 	
 // 김승현

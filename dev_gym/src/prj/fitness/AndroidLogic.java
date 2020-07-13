@@ -103,6 +103,14 @@ public class AndroidLogic {
 		
 		return imageData;
 	}
+	//회원 요일별 수업 구하기
+	public List<Map<String, Object>> getMemWeekCls(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMemWeekCls() 호출");
+		List<Map<String, Object>> memClsList = null;
+		memClsList = aDao.getMemWeekCls(pMap);
+		
+		return memClsList;
+	}
 		
 // 김승현
 		
