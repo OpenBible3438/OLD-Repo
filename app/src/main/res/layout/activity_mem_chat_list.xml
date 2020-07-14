@@ -96,7 +96,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="25sp"
                                 android:gravity="center_vertical"
-                                android:text="나헬스"
+                                android:text="나강사"
                                 android:textSize="16sp" />
 
                             <TextView

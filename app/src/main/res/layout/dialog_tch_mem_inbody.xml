@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 스크롤 뷰 안으로 코드추가 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="250dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:text="인바디 보기"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/icon_close"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@drawable/icon_close_s" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--구분 라인-->
+        <View
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000000" />
+
+        <!--===========================================여기서부터 본문 시작-->
+
+        <!--=======================================이미지 1 시작-->
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
+
+            <TextView
+                android:gravity="left|center"
+                android:text="등록일"
+                android:textSize="12sp"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:gravity="left|center"
+                android:text="2020-07-02"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <ImageView
+            android:gravity="left"
+            android:scaleType="fitStart"
+            android:src="@drawable/inbody_ex1"
+            android:layout_width="match_parent"
+            android:layout_height="410dp"/>
+
+        <!--구분 라인-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_marginBottom="20dp"
+            android:background="#000000" />
+        <!--=======================================이미지 1 끝-->
+        <!--=======================================이미지 1 시작-->
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
+
+            <TextView
+                android:gravity="left|center"
+                android:text="등록일"
+                android:textSize="12sp"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:gravity="left|center"
+                android:text="2020-07-01"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <ImageView
+            android:gravity="left"
+            android:scaleType="fitStart"
+            android:src="@drawable/inbody_ex1"
+            android:layout_width="match_parent"
+            android:layout_height="410dp"/>
+
+        <!--구분 라인-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_marginBottom="20dp"
+            android:background="#000000" />
+        <!--=======================================이미지 1 끝-->
+
+    </LinearLayout>
+</ScrollView>

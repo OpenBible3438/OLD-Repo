@@ -10,6 +10,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.teacher.TchChatAdapter;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -37,7 +39,7 @@ public class Chat extends AppCompatActivity {
     //데이터에 저장
     private Button btn_msgSend;
     private EditText et_msgSend;
-    private String send_name = null, send_number = null;
+    private String send_name = null, send_id = null;
 
     //시간
     private SimpleDateFormat simpleDateFormat = null;
@@ -65,15 +67,15 @@ public class Chat extends AppCompatActivity {
 
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        if(vo.getMemberNum()!=null){
+        if(vo.getMemberId()!=null){
             //회원 번호가 null이 아니면 회원으로 로그인한 것
             send_name = vo.getMemberName();
-            send_number = vo.getMemberNum();
+            send_id = vo.getMemberId();
         }
-        else if(vo.getTchNum()!=null){
+        else if(vo.getTchId()!=null){
             //강사 번호가 null이 아니면 강사로 로그인한 것
             send_name = vo.getTchName();
-            send_number = vo.getTchNum();
+            send_id = vo.getTchId();
         }
 
 
@@ -93,7 +95,7 @@ public class Chat extends AppCompatActivity {
                 String time = simpleDateFormat.format(System.currentTimeMillis());
 
                 objectMap.put("name", send_name);
-                objectMap.put("number", send_number);
+                objectMap.put("id", send_id);
                 objectMap.put("text", et_msgSend.getText().toString());
                 objectMap.put("time", time);
                 updateRef.updateChildren(objectMap);
@@ -133,8 +135,8 @@ public class Chat extends AppCompatActivity {
     private void chatConversation(DataSnapshot dataSnapshot){
         Iterator i = dataSnapshot.getChildren().iterator();
         while (i.hasNext()){
-            chat_user = ((DataSnapshot)i.next()).getValue().toString();
-            chat_number = ((DataSnapshot)i.next()).getValue().toString();
+            chat_number = ((DataSnapshot)i.next()).getValue().toString(); //id임
+            chat_user = ((DataSnapshot)i.next()).getValue().toString();//name
             chat_msg = ((DataSnapshot)i.next()).getValue().toString();
             chat_time = ((DataSnapshot)i.next()).getValue().toString();
             //불러온 것들 중 이름과 text를 ListView에 출력
