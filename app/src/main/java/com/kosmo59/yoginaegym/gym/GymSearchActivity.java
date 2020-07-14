@@ -150,7 +150,7 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
            Log.i("테스트","위치정보 : " + provider + "\n위도 : " + longitude + "\n경도 : " + latitude
                     + "\n고도 : " + altitude + "\n정확도 : " + accuracy);
             myPosition = new LatLng(latitude, longitude);
-            gymSearchMap.moveCamera(CameraUpdateFactory.newLatLng(myPosition)); //처음 보여주는 위치
+            gymSearchMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(latitude, longitude))); //처음 보여주는 위치
             gymSearchMap.animateCamera(CameraUpdateFactory.zoomTo(15)); //숫자가 커질수록 상세하게 보여줌
         }
 

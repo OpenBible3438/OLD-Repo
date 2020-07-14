@@ -58,7 +58,7 @@ public class ClassAdapter extends ArrayAdapter {
         TextView tv_gym_class_endDate = convertView.findViewById(R.id.tv_gym_class_endDate);
         TextView tv_gym_class_time = convertView.findViewById(R.id.tv_gym_class_time);
         TextView tv_gym_class_price = convertView.findViewById(R.id.tv_gym_class_price);
-
+        Log.i("테스트테", "classList.get(position) : " + classList.get(position));
         tv_gym_class_title.setText(classList.get(position).get("CLS_NAME").toString());
         tv_gym_class_startDate.setText(classList.get(position).get("CLS_S_DATE").toString());
         tv_gym_class_endDate.setText(classList.get(position).get("CLS_E_DATE").toString());

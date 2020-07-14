@@ -36,6 +36,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_memLoginPw"
             android:inputType="textPassword"
+            android:text="member123"
             android:textColor="#111111"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
