@@ -33,6 +33,7 @@ public class AndroidDao {
 	public int memberJoinGetNo(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidDao - memberJoinGetNo() 호출");
 		result = sqlSession.selectOne("memberJoinGetNo", pMap);
+		logger.info("회원번호:"+result);
 		return result;
 	}
 	// 회원가입 회원 정보 insert
@@ -46,6 +47,14 @@ public class AndroidDao {
 		logger.info("AndroidDao - memberJoinImg() 호출");
 		result = sqlSession.insert("memberJoinImg", pMap);
 		return result;
+	}
+	// 매장 공지사항 조회
+	public List<Map<String, Object>> getGymNoticeList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getGymNoticeList() 호출");
+		List<Map<String, Object>> gymNoticeList = null;
+		gymNoticeList = sqlSession.selectList("getNoticeListApp", pMap);
+		logger.info("classList.size() : " + gymNoticeList.size());
+		return gymNoticeList;
 	}
 // 김혜림
 	//강사가 맡은 수업 목록 조회
@@ -77,6 +86,15 @@ public class AndroidDao {
 		logger.info("AndroidDao - getGymList() 호출");
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getGymList_and", pMap);
+		for(Map<String, Object> map : gymList) {
+			byte[] image = null;
+			Blob blob = (Blob)map.get("FILEDATA");
+			image = blob.getBytes(1, (int)blob.length());
+			
+			logger.info("image " + image.length);
+			map.remove("FILEDATA");
+			map.put("FILEDATA", image);
+		}
 		logger.info("gymList.size() : " + gymList.size());
 		return gymList;
 	}
@@ -88,6 +106,23 @@ public class AndroidDao {
 		logger.info("imageData : " + imageData);
 		return imageData;
 	}
+	//강사 요일별 수업 구하기
+	public List<Map<String, Object>> getTchWeekCls(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getTchWeekCls() 호출");
+		List<Map<String, Object>> tchClsList = null;
+		tchClsList = sqlSession.selectList("getTchWeekCls_and", pMap);
+		logger.info("tchClsList.size() : " + tchClsList.size());
+		return tchClsList;
+	}
+	//회원 요일별 수업 구하기
+	public List<Map<String, Object>> getMemWeekCls(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMemWeekCls() 호출");
+		List<Map<String, Object>> memClsList = null;
+		memClsList = sqlSession.selectList("getMemWeekCls_and", pMap);
+		logger.info("memClsList.size() : " + memClsList.size());
+		return memClsList;
+	}
+	
 	
 	
 // 김승현
@@ -156,6 +191,46 @@ public class AndroidDao {
 		gymList = sqlSession.selectList("getTchClsMemIbd", pMap);
 		logger.info("getTchClsMemIbd.size() : " + gymList.size());
 		return gymList;
+	}
+	// 전체 콘텐츠 가져오기  
+	public List<Map<String, Object>> getContentsList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getContentsList() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getContentsList", pMap);
+		logger.info("getContentsList.size() : " + gymList.size());
+		return gymList;
+	}
+	// 강사 프로필 가져오기   
+	public List<Map<String, Object>> getTeacherProf(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getTeacherProf() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getTeacherProf", pMap);
+		logger.info("getTeacherProf.size() : " + gymList.size());
+		return gymList;
+	}
+	// 회원이 콘텐츠에 좋아요 눌렀을 때1-1
+	public int contLikeINS(Map<String, Object> pMap) {
+		logger.info("AndroidDao - contLikeINS() 호출");
+		result = sqlSession.insert("contLikeINS", pMap);
+		return result;
+	}
+	// 회원이 콘텐츠에 좋아요 눌렀을 때1-2
+	public int contLikeInsUPD(Map<String, Object> pMap) {
+		logger.info("AndroidDao - contLikeInsUPD() 호출");
+		result = sqlSession.update("contLikeInsUPD", pMap);
+		return result;
+	}
+	// 회원이 콘텐츠에 좋아요 뺐을 때1-1
+	public int contLikeDEL(Map<String, Object> pMap) {
+		logger.info("AndroidDao - contLikeDEL() 호출");
+		result = sqlSession.delete("contLikeDEL", pMap);
+		return result;
+	}
+	// 회원이 콘텐츠에 좋아요 뺐을 때1-2
+	public int contLikeDelUPD(Map<String, Object> pMap) {
+		logger.info("AndroidDao - contLikeDelUPD() 호출");
+		result = sqlSession.update("contLikeDelUPD", pMap);
+		return result;
 	}
 	
 	

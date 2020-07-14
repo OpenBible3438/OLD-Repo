@@ -55,6 +55,14 @@
 		                  ,#{filedata, jdbcType=LONGVARBINARY} 
 		                  ,'mem'        ,#{mem_no}) 
 	</insert>
+	
+	<!-- 매장 공지사항 조회 -->
+	<select id="getNoticeListApp" parameterType="map" resultType="map">
+		SELECT not_title, not_cont, not_time, not_date
+		  FROM NOTICE
+		 WHERE gym_no = #{gym_no}
+      ORDER BY not_date DESC
+	</select>
 <!-- ======================= 김혜림 ======================= -->
 	<!-- 강사별 수업 목록 가져오기(수강생 수 포함) -->
 	<select id="getTchClassList_and" parameterType="map" resultType="map">
@@ -68,8 +76,8 @@
 	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state, cls_stime, cls_etime
 	  
 	</select>
+	<!-- 강사> 수업/회원관리 > 수업 리스트 > 수강생 보기(그 수업에 대한) -->
 	<select id="getclsMemList_and" parameterType="map" resultType="map">
-		-- 강사> 수업/회원관리 > 수업 리스트 > 수강생 보기(그 수업에 대한)
 			SELECT pcm.pay_no                 -- 결제번호 
 			      ,sdates                     -- 등록날짜
 			      ,edates                     -- 끝 날짜
@@ -106,7 +114,7 @@
 			              ,P.MEM_NO
 			              ,p.cls_no
 			          FROM pay p, mem_attend ma
-			         WHERE P.PAY_NO = MA.PAY_NO
+			         WHERE P.PAY_NO = MA.PAY_NO(+)
 			        ) pm
 			 WHERE cdates > 0
 			   AND pcm.pay_no = pm.pay_no 
@@ -119,7 +127,7 @@
 			 GROUP BY pcm.pay_no ,sdates ,edates ,clsdates ,cdates ,cls_cnt
 			         ,pcm.MEM_NAME,pcm.MEM_NO,pcm.MEM_BIRTH,pcm.MEM_GENDER,pcm.MEM_TEL,pcm.MEM_ADDR
 	</select>
-	<!-- 회원 paylist 구하기 -->
+	<!-- 회원 paylist 구하기 (회원 어플- 메인창의 결제내역 탭)-->
 	<select id="getMemPayList_and" parameterType="map" resultType="map">
 	SELECT g.gym_name, c.cls_name, t.tch_name, c.cls_price, p.pay_date
 	  FROM gym g, class c, teacher t, pay p
@@ -131,7 +139,7 @@
 	</select>
 	<!-- map에 사용 될 매장 리스트 구하기 -->
 	<select id="getGymList_and" parameterType="map" resultType="map">
-	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq
+	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq, filedata
 	  FROM gym, images
 	 WHERE gym_name IS NOT NULL
 	   AND gym_lat IS NOT NULL
@@ -141,6 +149,24 @@
 	   AND type = 'gym'
 	   AND typecode = gym_no
 	</select>
+	<!-- 강사 주별 수업 시간표 구하기 -->
+	<select id="getTchWeekCls_and" parameterType="map" resultType="map">
+		SELECT cls_no, cls_name, cls_stime, cls_etime, cls_day
+		  FROM class
+		 WHERE gym_no = #{gym_no}
+		   AND tch_no = #{tch_no}
+		   AND cls_kind = '단체 수업'
+	</select>
+	<!-- 회원 주별 수업 시간표 구하기 -->
+	<select id="getMemWeekCls_and" parameterType="map" resultType="map">
+		SELECT c.cls_no, c.cls_name, c.cls_stime, c.cls_etime, c.cls_day
+		  FROM pay p, class c, member m
+		 WHERE p.cls_no = c.cls_no
+		   AND p.mem_no = m.mem_no
+		   AND m.mem_no = 1
+		   AND cls_kind = '단체 수업'
+	</select>
+	
 	<select id="getImageOne_and" parameterType="map" resultType="map">
 	SELECT filedata from images
  	WHERE file_seq=#{file_seq}
@@ -194,6 +220,11 @@
 		      ,C.CLS_STATE
 		      ,C.CLS_DAYS
 		      ,C.CLS_DAY
+		      ,C.CLS_S_DATE
+		      ,C.CLS_E_DATE
+		      ,C.CLS_STIME
+		      ,C.CLS_ETIME
+		      ,C.CLS_PRICE
 		  FROM teacher t, gym g, class c
 		 WHERE T.GYM_NO = G.GYM_NO
 		   AND T.TCH_NO = C.TCH_NO
@@ -223,8 +254,8 @@
 		   AND T.GYM_NO = GYM.GYM_NO
 		   AND GYM.GYM_NO = #{gym_no}
 	</select>
+	<!-- 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) -->
 	<select id="getTchClsMemIbd" parameterType="map" resultType="map">
-	-- 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) 
 			SELECT ck_date   -- 측정 날짜 
 			      ,filedata  -- 파일 
 			  FROM inbody ibd, images i
@@ -233,4 +264,73 @@
 			   AND IBD.GYM_NO = #{gym_no}
 			   AND IBD.MEM_NO = #{mem_no}
    </select>
+   
+   <!-- 전체 콘텐츠 가져오기 -->
+	<select id="getContentsList" parameterType="map" resultType="map">
+			SELECT G.GYM_NO
+			      ,G.GYM_NAME
+			      ,GC.GYM_CONT_SEQ
+			      ,GC.GYM_CONTENTS
+			      ,GC.GYM_CONT_DATE
+			      ,GC.GYM_CONT_TIME
+			      ,GC.GYM_CONT_LIKE
+			      ,I.FILEDATA
+			  FROM gym_contents gc, images i, gym g
+			 WHERE GC.GYM_NO = G.GYM_NO
+			   AND I.TYPE = 'gymCont'
+			   AND I.TYPECODE = GC.GYM_CONT_SEQ
+			 ORDER BY GC.GYM_CONT_DATE desc
+   </select>
+   
+   <!-- 강사 프로필  가져오기 -->
+	<select id="getTeacherProf" parameterType="map" resultType="map">
+			SELECT t.tch_no
+			      ,t.tch_id
+			      ,t.tch_name
+			      ,t.tch_tel
+			      ,t.tch_addr
+			      ,t.tch_gender 
+			      ,TI.TCH_INTRO
+			      ,TI.TCH_CAREER
+			      ,TI.TCH_LIKE
+			      ,I.FILEDATE
+			  FROM teacher t, tch_info ti, images i
+			 WHERE T.TCH_NO = TI.TCH_NO(+)
+			   AND T.GYM_NO = TI.GYM_NO
+			   AND I.TYPE = 'tch'
+			   AND I.TYPECODE = T.GYM_NO||T.TCH_NO
+			   AND T.TCH_NO = #{tch_no}
+			   AND T.GYM_NO = #{gym_no}
+   </select>
+   <!-- 회원이 콘텐츠에 좋아요 눌렀을 때1-1   -->
+   <insert id="contLikeINS" parameterType="map">
+   		INSERT INTO 
+		    likes(LIKES_SEQ       
+		         ,MEM_NO           
+		         ,LIKES_TYPE       
+		         ,LIKES_TYPE_CODE 
+		         ,LIKES_DATE) 
+		   VALUES(seq_likes.nextval
+		         ,#{mem_no}
+		         ,'gymCont'
+		         ,#{GYM_CONT_SEQ}
+		         ,TO_CHAR(sysdate,'yyyy-mm-dd'))
+   </insert>
+   <!-- 회원이 콘텐츠에 좋아요 눌렀을 때1-2   -->
+   <update id="contLikeInsUPD" parameterType="map">
+   		UPDATE gym_contents 
+		   SET gym_cont_like = gym_cont_like+1
+		 WHERE gym_cont_seq = #{GYM_CONT_SEQ}
+   </update>
+   <delete id="contLikeDEL" parameterType="map">
+   		DELETE  
+   		  FROM gym_contents
+   		 WHERE gym_cont_seq = #{GYM_CONT_SEQ}
+   </delete>
+   <!-- 회원이 콘텐츠에 좋아요 취소할 때 1-4   -->
+   <update id="contLikeDelUPD" parameterType="map">
+   		UPDATE gym_contents 
+		   SET gym_cont_like = gym_cont_like-1
+		 WHERE gym_cont_seq = #{GYM_CONT_SEQ}
+   </update>
 </mapper>

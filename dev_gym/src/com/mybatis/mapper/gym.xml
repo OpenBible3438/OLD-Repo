@@ -268,7 +268,7 @@
            AND i.type = 'gymCont'
            AND i.typecode = c.gym_cont_seq
            AND c.gym_no = #{gym_no}
-         ORDER BY gym_cont_seq
+         ORDER BY gym_cont_seq desc
 	</select><!-- #{gym_no} --><!--  AND typecode = 6 -->
 	
 	<!-- 이미지 가져오기  -->

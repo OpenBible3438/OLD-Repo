@@ -59,6 +59,13 @@ public class AndroidLogic {
 		setCommit(result);
 		return result;
 	}
+	// 매장 공지사항 조회
+	public Object getGymNoticeList(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getgetGymNoticeList() 호출 ");
+		List<Map<String, Object>> gymNoticeList = null;
+		gymNoticeList = aDao.getGymNoticeList(pMap);
+		return gymNoticeList;
+	}
 // 김혜림
 	//강사별 수업 조회
 	public Object getTchClassList(Map<String, Object> pMap) throws SQLException {
@@ -95,6 +102,14 @@ public class AndroidLogic {
 		imageData = aDao.getImageOne(pMap);
 		
 		return imageData;
+	}
+	//회원 요일별 수업 구하기
+	public List<Map<String, Object>> getMemWeekCls(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMemWeekCls() 호출");
+		List<Map<String, Object>> memClsList = null;
+		memClsList = aDao.getMemWeekCls(pMap);
+		
+		return memClsList;
 	}
 		
 // 김승현
@@ -139,6 +154,41 @@ public class AndroidLogic {
 		gymList = aDao.getTchClsMemIbd(pMap);
 		return gymList;
 	}
+	// 전체 콘텐츠 가져오기  
+	public List<Map<String, Object>> getContentsList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getContentsList() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getContentsList(pMap);
+		return gymList;
+	}
+	// 강사 프로필 가져오기   
+	public List<Map<String, Object>> getTeacherProf(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getTeacherProf() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getTeacherProf(pMap);
+		return gymList;
+	}
+	//준호 insert////////////////////////////////
+	// 회원이 콘텐츠에 좋아요 눌렀을 때 
+	public int contLikeINS(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - contLikeINS() 호출 ");
+		result = aDao.contLikeINS(pMap);
+		if(result == 1) {
+			result = aDao.contLikeInsUPD(pMap);
+		}
+		setCommit(result);
+		return result;
+	}
+	// 회원이 콘텐츠에 좋아요 뺐을 때
+	public int contLikeDEL(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - contLikeDEL() 호출 ");
+		result = aDao.contLikeDEL(pMap);
+		if(result == 1) {
+			result = aDao.contLikeDelUPD(pMap);
+		}
+		setCommit(result);
+		return result;
+	}
 	
 // setCommit
 	public void setCommit(int result) {
@@ -153,6 +203,13 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
+
+
+
+
+
+
+
 
 
 
