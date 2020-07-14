@@ -33,7 +33,10 @@ public class GymNoticeFragment extends Fragment {
     public GymNoticeFragment() {
         // Required empty public constructor
     }
-
+    Context gymProfileActivity = null;
+    public GymNoticeFragment(Context gymProfileActivity) {
+        this.gymProfileActivity = gymProfileActivity;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class GymNoticeFragment extends Fragment {
         String reqUrl = "android/jsonGymNoticeList.gym";
         AppVO vo = (AppVO) getActivity().getApplicationContext();
         Map<String, Object> pMap = new HashMap<>();
-        pMap.put("gym_no", 1); //gym_no = 1, 일헬스 매장의 공지사항 부르기
+        pMap.put("gym_no", vo.gym_no);
 
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         try {

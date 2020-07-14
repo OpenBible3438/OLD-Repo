@@ -23,19 +23,22 @@
             android:elevation="10dp"
             app:cardBackgroundColor="#ffffff">
 
+            <Button
+                android:id="@+id/btn_revIns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="등록">
+            </Button>
+
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="50dp">
 
-                <Button
-                    android:id="@+id/btn_revIns"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="등록">
-                </Button>
+
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -84,6 +87,8 @@
                             android:padding="3dp"
                             android:text="등록일" />
 
+
+
                     </TableRow>
 
                     <!-- 데이터가 들어가는 줄 -->
@@ -93,49 +98,46 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="1dp"
                             android:layout_marginBottom="1dp"
-                            android:background="#FFD9EC"
+                            android:background="@drawable/table_border"
                             android:gravity="center"
-                            android:padding="3dp"
                             android:text="개인PT" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="1dp"
                             android:layout_marginBottom="1dp"
-                            android:background="#FFD9EC"
+                            android:background="@drawable/table_border"
                             android:gravity="center"
-                            android:padding="3dp"
                             android:text="편성경" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="1dp"
                             android:layout_marginBottom="1dp"
-                            android:background="#FFD9EC"
+                            android:background="@drawable/table_border"
                             android:gravity="center"
-                            android:padding="3dp"
-                            android:text="2020-07-03" />
+                            android:text="" />
 
                     </TableRow>
 
-                </TableLayout>
 
-                <TextView
-                    android:layout_margin="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginBottom="1dp"
-                    android:background="#FFD9EC"
-                    android:gravity="center"
-                    android:padding="3dp"
-                    android:text="내 후기글 작성하는 곳" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="3dp"
+                        android:gravity="center"
+                        android:padding="13dp"
+                        android:background="@drawable/table_border"
+                        android:text="" />
+                </TableLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

@@ -1,105 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="30sp">
+    android:orientation="vertical">
+
 
     <!--==== 카드뷰 시작 ====-->
     <androidx.cardview.widget.CardView
         android:id="@+id/tch_mem_list"
         android:layout_width="match_parent"
-        android:layout_height="120sp"
-        android:layout_marginBottom="10sp"
-        android:elevation="100dp"
-        app:cardBackgroundColor="#ffffff">
-
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardElevation="0dp">
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="20sp">
+            android:layout_height="wrap_content">
 
             <LinearLayout
+                android:paddingBottom="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="80sp"
-                    android:layout_height="25sp"
-                    android:gravity="center_vertical"
-                    android:text=" 이                름:"
-                    android:textAlignment="textStart"
-                    android:textSize="12sp"
-                    tools:ignore="RtlCompat" />
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="80sp"
-                    android:layout_height="25sp"
-                    android:gravity="center_vertical"
-                    android:text=" 생   년   월   일:"
-                    android:textAlignment="textStart"
-                    android:textSize="12sp"
-                    tools:ignore="RtlCompat" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="이름"
+                        android:textAlignment="textStart"
+                        android:textSize="12sp"
+                        tools:ignore="RtlCompat" />
 
-                <TextView
-                    android:layout_width="80sp"
-                    android:layout_height="25sp"
-                    android:gravity="center_vertical"
-                    android:text=" 남은일수/횟수:"
-                    android:textAlignment="textStart"
-                    android:textSize="12sp"
-                    tools:ignore="RtlCompat" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="생년월일"
+                        android:textAlignment="textStart"
+                        android:textSize="12sp"
+                        tools:ignore="RtlCompat" />
 
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="전화번호"
+                        android:textAlignment="textStart"
+                        android:textSize="12sp"
+                        tools:ignore="RtlCompat" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/cls_mem_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="25sp"
-                    android:gravity="center_vertical"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/cls_mem_birth"
-                    android:layout_width="match_parent"
-                    android:layout_height="25sp"
-                    android:gravity="center_vertical"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/cls_mem_restcnt"
-                    android:layout_width="match_parent"
-                    android:layout_height="25sp"
-                    android:gravity="center_vertical"
-                    android:lines="1"
-                    android:textSize="16sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="right"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <Button
-                    android:id="@+id/btn_tchmemDetail"
-                    android:text="자세히"
+                <LinearLayout
                     android:layout_width="100dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
-                </Button>
+                    <TextView
+                        android:id="@+id/tch_memList_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:text="김회원"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tch_memList_birth"
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:text="1990-01-01 "
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/mem_memList_tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="25sp"
+                        android:gravity="center_vertical"
+                        android:lines="1"
+                        android:text="010-1234-5678"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_tchMemDetail"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="회원 정보" />
+
+                    <Button
+                        android:id="@+id/btn_tchMemInbody"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="인바디 보기" />
+
+                    <Button
+                        android:id="@+id/btn_tchMemMemo"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:text="메모 보기" />
+
+                    <Button
+                        android:id="@+id/btn_tchMemAtt"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#009688"
+                        android:text="출석 체크"
+                        app:iconTint="#FFFFFF" />
+                </LinearLayout>
             </LinearLayout>
+
+            <!--구분 라인-->
+            <View
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_gravity="center"
+                android:background="#000000" />
+
 
         </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
+
+
 </LinearLayout>

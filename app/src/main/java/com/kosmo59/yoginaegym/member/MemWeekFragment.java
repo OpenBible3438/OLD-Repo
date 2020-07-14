@@ -42,8 +42,7 @@ public class MemWeekFragment extends Fragment {
         AppVO vo = (AppVO) getActivity().getApplicationContext();
         String nowMem = null;
         Map<String, Object> memMap = new HashMap<>();
-        memMap.put("mem_no", vo.mem_no);/////////////바꿀 코드?????
-        memMap.put("gym_no", 999);/////////////바꿀 코드
+        memMap.put("mem_no", vo.mem_no);
         nowMem = memMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         Log.i("테스트", "nowMem : " + nowMem);
