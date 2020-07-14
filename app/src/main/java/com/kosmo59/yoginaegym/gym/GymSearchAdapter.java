@@ -116,7 +116,7 @@ public class GymSearchAdapter extends ArrayAdapter {
         });
         ///////////이미지 비트맵으로 바꾸기//////////////
 //        byte[] imageData = mList.get(position).get("FILEDATA").toString().getBytes();
-        byte[] imageData = null;
+       /* byte[] imageData = null;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
             ObjectOutputStream oos = new ObjectOutputStream(bos);
@@ -127,9 +127,9 @@ public class GymSearchAdapter extends ArrayAdapter {
             imageData = bos.toByteArray();
         } catch (IOException ex) {
             Log.i("테스트", ex.toString());
-         }
+         }*/
 
-        Log.i("테스트", "imageData : " + imageData.length );
+//        Log.i("테스트", "imageData : " + imageData.length );
 //        Bitmap bmp = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
 //        Log.i("테스트", "bmp = : " + bmp);
 //        s_gym_img.setImageBitmap(
@@ -140,7 +140,7 @@ public class GymSearchAdapter extends ArrayAdapter {
 //                        , false
 //                )
 //        );
-        YuvImage yuvimage=new YuvImage(imageData, ImageFormat.NV21, 100, 100, null);
+       /* YuvImage yuvimage=new YuvImage(imageData, ImageFormat.NV21, 100, 100, null);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         yuvimage.compressToJpeg(new Rect(0, 0, 100, 100), 80, baos);
         byte[] jdata = baos.toByteArray();
@@ -148,9 +148,6 @@ public class GymSearchAdapter extends ArrayAdapter {
         // Convert to Bitmap
         Bitmap bmp1 = BitmapFactory.decodeByteArray(jdata, 0, jdata.length);
         Log.i("테스트", "bmp1 = : " + bmp1);
-        s_gym_name.setText(mList.get(position).get("GYM_NAME").toString());
-        s_gym_addr.setText(mList.get(position).get("GYM_ADDR").toString());
-        s_gym_tel.setText(mList.get(position).get("GYM_TEL").toString());
         s_gym_img.setImageBitmap(
                 Bitmap.createScaledBitmap(
                         bmp1
@@ -158,13 +155,16 @@ public class GymSearchAdapter extends ArrayAdapter {
                         , 60
                         , false
                 )
-        );
+        );*/
 ////////////////////////////////////
 
 //        byte image[] = mList.get(position).get("FILEDATA").fetchimage(); // gets byte array from the database
 //        BitmapFactory.Options options = new BitmapFactory.Options();
 //        Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length, options);
 
+        s_gym_name.setText(mList.get(position).get("GYM_NAME").toString());
+        s_gym_addr.setText(mList.get(position).get("GYM_ADDR").toString());
+        s_gym_tel.setText(mList.get(position).get("GYM_TEL").toString());
 
         return convertView;
     }
