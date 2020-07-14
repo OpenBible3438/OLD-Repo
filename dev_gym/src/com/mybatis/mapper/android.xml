@@ -105,7 +105,7 @@
 			              ,P.MEM_NO
 			              ,p.cls_no
 			          FROM pay p, mem_attend ma
-			         WHERE P.PAY_NO = MA.PAY_NO
+			         WHERE P.PAY_NO = MA.PAY_NO(+)
 			        ) pm
 			 WHERE cdates > 0
 			   AND pcm.pay_no = pm.pay_no 
