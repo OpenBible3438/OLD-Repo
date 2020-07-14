@@ -1,5 +1,6 @@
 package com.kosmo59.yoginaegym.gym;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -8,23 +9,39 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.TomcatSend;
+import com.kosmo59.yoginaegym.member.MemChatListActivity;
+import com.kosmo59.yoginaegym.member.MemContentActivity;
+import com.kosmo59.yoginaegym.member.MemMainActivity;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -42,14 +59,19 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
     private ListView s_gymList;
     LatLng myPosition = null;
     List<Map<String, Object>> gymList = null;
+
+    //하단바
+    public static Activity gymSearchActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gym_search);
+        gymSearchActivity = GymSearchActivity.this;
         ////////////////////////////////////DB 연동 시작////////////////////////////////////
         String result = null;
         String reqUrl = "android/jsonGymList.gym";
-        AppVO vo = (AppVO) getApplicationContext();
+        final AppVO vo = (AppVO) getApplicationContext();
         String nowMem = null;//여기서는 딱히 필요 없음
         Map<String, Object> memMap = new HashMap<>();//여기서는 딱히 필요 없음
         memMap.put("gym_no", 1);//여기서는 딱히 필요 없음
@@ -81,6 +103,7 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
         //xml의 fragment 연결
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
         mapFragment.getMapAsync(GymSearchActivity.this);
+
 
     }///end of onCreate
 
