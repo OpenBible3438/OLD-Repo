@@ -165,6 +165,11 @@ public class AndroidController implements Controller{
 					logger.info("selResult : " + selResult);
 					mav.type = "json";
 				}break;
+				case "jsonGymProfile":{
+					selResult = aLogic.getGymProfile(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
+				}break;
 				
 			// 김승현
 				

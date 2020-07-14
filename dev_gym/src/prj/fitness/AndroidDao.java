@@ -86,23 +86,23 @@ public class AndroidDao {
 		logger.info("AndroidDao - getGymList() 호출");
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getGymList_and", pMap);
-		for(Map<String, Object> map : gymList) {
-			byte[] image = null;
-			Blob blob = (Blob)map.get("FILEDATA");
-			image = blob.getBytes(1, (int)blob.length());
-			
-			logger.info("image " + image.length);
-			map.remove("FILEDATA");
-			map.put("FILEDATA", image);
-		}
+//		for(Map<String, Object> map : gymList) {
+//			byte[] image = null;
+//			Blob blob = (Blob)map.get("FILEDATA");
+//			image = blob.getBytes(1, (int)blob.length());
+//			
+//			logger.info("image " + image.length);
+//			map.remove("FILEDATA");
+//			map.put("FILEDATA", image);
+//		}
 		logger.info("gymList.size() : " + gymList.size());
 		return gymList;
 	}
 	//이미지 한 장 구하기
-	public Map<String, Object> getImageOne(Map<String, Object> pMap) throws SQLException  {
+	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException  {
 		logger.info("AndroidDao - getGymList() 호출");
-		Map<String, Object> imageData = null;
-		imageData = sqlSession.selectOne("getImageOne_and", pMap);
+		List<Map<String, Object>> imageData = null;
+		imageData = sqlSession.selectList("getImageOne_and", pMap);
 		logger.info("imageData : " + imageData);
 		return imageData;
 	}
@@ -122,7 +122,25 @@ public class AndroidDao {
 		logger.info("memClsList.size() : " + memClsList.size());
 		return memClsList;
 	}
-	
+	//매장 메인화면 - 매장 정보 조회하기
+	public List<Map<String, Object>> getGymProfile(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getGymProfile() 호출");
+		List<Map<String, Object>> gymProfileData = null;
+		gymProfileData = sqlSession.selectList("getGymProfile_and", pMap);
+		logger.info("getGymContentsList.size() : " + gymProfileData.size());
+//		try {
+//			byte[] image = null;
+//			Blob blob = (Blob)gymProfileData.get(0).get("FILEDATA");
+//			image = blob.getBytes(1, (int)blob.length());
+//			logger.info("image " + image.length);
+//			gymProfileData.get(0).remove("FILEDATA");
+//			gymProfileData.get(0).put("FILEDATA", image);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		logger.info("imageData : " + gymProfileData);
+		return gymProfileData;
+	}
 	
 	
 // 김승현
