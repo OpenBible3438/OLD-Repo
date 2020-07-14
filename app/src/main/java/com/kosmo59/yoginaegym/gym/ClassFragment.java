@@ -33,6 +33,11 @@ public class ClassFragment extends Fragment {
     public ClassFragment() {
         // Required empty public constructor
     }
+    Context gymProfileActivity = null;
+
+    public ClassFragment(Context gymProfileActivity) {
+        this.gymProfileActivity = gymProfileActivity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,9 +48,9 @@ public class ClassFragment extends Fragment {
         Log.i(GYM_CLASS_LOG, "호출성공");
         String result = null;
         String reqUrl = "android/jsonGymClassList.gym";
-        AppVO vo = (AppVO) getActivity().getApplicationContext();
         Map<String, Object> pMap = new HashMap<>();
-        pMap.put("gym_no", 1); //gym_no = 1, 일헬스 매장의 수업 리스트 부르기
+        AppVO vo = (AppVO) getActivity().getApplicationContext();
+        pMap.put("gym_no", vo.gym_no);
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         try {
             TomcatSend tomcatSend = new TomcatSend();

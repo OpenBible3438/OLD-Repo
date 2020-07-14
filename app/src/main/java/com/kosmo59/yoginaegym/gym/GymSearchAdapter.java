@@ -41,14 +41,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class GymSearchAdapter extends ArrayAdapter {
 
 
-    Context mContext = null;
     List<Map<String, Object>> mList = null;
     int resourceId;
     Context gymSearchActivity = null;
-    public GymSearchAdapter(Context gymSearchActivity, Context context, int resource, List<Map<String, Object>> gymList) {
-        super(context, resource, gymList);
+    AppVO vo = null;
+
+    public GymSearchAdapter(Context gymSearchActivity, int resource, List<Map<String, Object>> gymList) {
+        super(gymSearchActivity, resource, gymList);
         this.gymSearchActivity = gymSearchActivity;
-        this.mContext = context;
+        this.gymSearchActivity = gymSearchActivity;
         this.mList = gymList;
         this.resourceId = resource;
     }
@@ -100,11 +101,14 @@ public class GymSearchAdapter extends ArrayAdapter {
                         finalConvertView.getContext(), // 현재화면의 제어권자
                         GymProfileActivity.class); // 다음넘어갈 화면
 
+                int cho_gym_no = 0;
+                cho_gym_no = (int)Math.round((double)mList.get(position).get("GYM_NO"));
                 // intent 객체에 데이터를 실어서 보내기
                 // 리스트뷰 클릭시 인텐트 (Intent) 생성하고 position 값을 이용하여 인텐트로 넘길값들을 넘긴다
-//                Log.i("테스트", "gym_no : " + mList.get(position).get("GYM_NO").toString());
-//                intent.putExtra("title", mList.get(position).get("GYM_NO").toString());
-
+                Log.i("테스트", "gym_no : " + cho_gym_no);
+               // intent.putExtra("gym_no", cho_gym_no);
+                vo = (AppVO) gymSearchActivity.getApplicationContext();
+                vo.setGym_no(cho_gym_no);
                 gymSearchActivity.startActivity(intent);
 
 
@@ -144,9 +148,9 @@ public class GymSearchAdapter extends ArrayAdapter {
         // Convert to Bitmap
         Bitmap bmp1 = BitmapFactory.decodeByteArray(jdata, 0, jdata.length);
         Log.i("테스트", "bmp1 = : " + bmp1);
-//        s_gym_name.setText(mList.get(position).get("GYM_NAME").toString());
-//        s_gym_addr.setText(mList.get(position).get("GYM_ADDR").toString());
-//        s_gym_tel.setText(mList.get(position).get("GYM_TEL").toString());
+        s_gym_name.setText(mList.get(position).get("GYM_NAME").toString());
+        s_gym_addr.setText(mList.get(position).get("GYM_ADDR").toString());
+        s_gym_tel.setText(mList.get(position).get("GYM_TEL").toString());
         s_gym_img.setImageBitmap(
                 Bitmap.createScaledBitmap(
                         bmp1

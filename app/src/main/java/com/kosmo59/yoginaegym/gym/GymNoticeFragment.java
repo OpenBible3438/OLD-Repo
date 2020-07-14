@@ -33,7 +33,10 @@ public class GymNoticeFragment extends Fragment {
     public GymNoticeFragment() {
         // Required empty public constructor
     }
-
+    Context gymProfileActivity = null;
+    public GymNoticeFragment(Context gymProfileActivity) {
+        this.gymProfileActivity = gymProfileActivity;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

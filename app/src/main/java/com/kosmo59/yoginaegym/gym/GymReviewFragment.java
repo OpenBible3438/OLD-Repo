@@ -1,5 +1,6 @@
 package com.kosmo59.yoginaegym.gym;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +16,10 @@ public class GymReviewFragment extends Fragment {
     public GymReviewFragment() {
         // Required empty public constructor
     }
-
+    Context gymProfileActivity = null;
+    public GymReviewFragment(Context gymProfileActivity) {
+        this.gymProfileActivity = gymProfileActivity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
