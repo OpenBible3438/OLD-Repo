@@ -18,8 +18,8 @@ public class GymDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.i("테스트", "GymDBHelper onCreate() 호출");
         String cr_mem_log = "CREATE TABLE mem_log (_id INTEGER PRIMARY KEY AUTOINCREMENT"
-                        + ", mem_no INTEGER, reg_date TEXT, ex_date TEXT, cls_name TEXT"
-                        + ", ex_stime TEXT, ex_etime TEXT, log_cont TEXT, mem_weight DOUBLE);";
+                        + ", mem_no INTEGER, reg_date TEXT, ex_date TEXT, log_title TEXT"
+                        + ", ex_stime TEXT, ex_etime TEXT, log_cont TEXT);";
         String cr_tch_memo = "CREATE TABLE tch_memo (_id INTEGER PRIMARY KEY AUTOINCREMENT"
                            + ", tch_no INTEGER, mem_no INTEGER, mem_name TEXT"
                            + ", memo_cont TEXT, req_date TEXT, upd_date TEXT)";
