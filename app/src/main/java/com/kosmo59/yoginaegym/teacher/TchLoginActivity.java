@@ -35,7 +35,7 @@ public class TchLoginActivity extends AppCompatActivity {
                 //채팅
                 tvo.setTchId(tchId);
                 tvo.setTchNum(tchPw);
-                String tchName = "나헬스";
+                String tchName = "나강사";
                 tvo.setTchName(tchName);
                 tvo.setRoomName2(tchName);
 

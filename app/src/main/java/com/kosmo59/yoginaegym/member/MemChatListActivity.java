@@ -29,8 +29,8 @@ public class MemChatListActivity extends AppCompatActivity {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vo.setRoomName2("나헬스");
-                Toast.makeText(MemChatListActivity.this, "나헬스 강사 선택", Toast.LENGTH_SHORT).show();
+                vo.setRoomName2("나강사");
+                Toast.makeText(MemChatListActivity.this, "나강사 강사 선택", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MemChatListActivity.this, Chat.class);
                 startActivity(intent);
             }
