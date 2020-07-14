@@ -41,14 +41,14 @@
         android:layout_height="2px"
         android:background="#000000"/>
 
-    <EditText
+   <!-- <EditText
         android:id="@+id/et_reviewIns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="제목을 입력하세요" />
+        android:hint="제목을 입력하세요" />-->
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="0sp"

@@ -4,10 +4,10 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="#EDEDED">
 
-<!-- 스크롤 뷰 안으로 코드추가 -->
-<ListView
-    android:id="@+id/lv_gym_notice"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    <!-- 스크롤 뷰 안으로 코드추가 -->
+    <ListView
+        android:id="@+id/lv_gym_notice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

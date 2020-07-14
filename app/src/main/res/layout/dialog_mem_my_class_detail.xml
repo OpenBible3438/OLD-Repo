@@ -27,7 +27,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:text="김회원"
+                    android:text="공중부양 핫요가"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -48,7 +48,7 @@
         <!--구분 라인-->
         <View
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="2px"
             android:layout_marginBottom="20dp"
             android:background="#000000" />
 
@@ -87,7 +87,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="#000000" />
-
 
             <LinearLayout
                 android:gravity="center"
@@ -149,31 +148,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="left|center"
-                    android:text="아이디"
+                    android:text="강사명"
                     android:textSize="12sp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="left|center"
-                    android:text="닉네임"
+                    android:text="시작일"
                     android:textSize="12sp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="left|center"
-                    android:text="전화번호"
+                    android:text="종료일"
                     android:textSize="12sp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="left|center"
-                    android:text="생년월일"
+                    android:text="수업요일"
                     android:textSize="12sp"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="left|center"
-                    android:text="등록일"
+                    android:text="시작시간"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="left|center"
+                    android:text="종료시간"
                     android:textSize="12sp"/>
 
             </LinearLayout>
@@ -187,31 +192,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:text="testmem1"
+                    android:text="짐꾼1"
                     android:textSize="16sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:text="김회원닉네임"
+                    android:text="2020-05-01"
                     android:textSize="16sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:text="010-1234-5678"
+                    android:text="2020-08-30"
                     android:textSize="16sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:text="1996-03-31"
+                    android:text="월/수/금"
                     android:textSize="16sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:text="2019-02-10"
+                    android:text="14:00:00"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:text="15:00:00"
                     android:textSize="16sp" />
 
             </LinearLayout>

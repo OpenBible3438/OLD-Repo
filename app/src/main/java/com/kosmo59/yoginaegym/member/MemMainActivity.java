@@ -87,6 +87,8 @@ public class MemMainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.bot_nav_home:
+                        //MainActivity에서는 뒤로 갈 필요 없음 주석처리
+                        //MemMainActivity.super.onBackPressed();
                         break;
                     case R.id.bot_nav_qr:
                         //다이얼로그 초기화
