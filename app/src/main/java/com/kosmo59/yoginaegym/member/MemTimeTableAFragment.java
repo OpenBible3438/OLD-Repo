@@ -51,7 +51,7 @@ public class MemTimeTableAFragment extends Fragment {
 
         materialcalendarview.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
-                .setMinimumDate(CalendarDay.from(2019, 07, 1)) // 달력의 시작
+                .setMinimumDate(CalendarDay.from(2019, 01, 1)) // 달력의 시작
                 .setMaximumDate(CalendarDay.from(2021, 12, 31)) // 달력의 끝
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();

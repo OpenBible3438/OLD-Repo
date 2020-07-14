@@ -1,5 +1,6 @@
 package com.kosmo59.yoginaegym.member;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,7 +28,10 @@ public class MyReviewFragment extends Fragment {
         // Required empty public constructor
 
 
+
     }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

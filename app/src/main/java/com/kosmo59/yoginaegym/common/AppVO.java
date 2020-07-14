@@ -6,6 +6,10 @@ public class AppVO extends Application {
     /* 조회할 매장 정보 저장하기*/
     public int gym_no = 0;//매장 메인 창으로 이동할 때 저장시키기
 
+    public void setGym_no(int gym_no) {
+        this.gym_no = gym_no;
+    }
+
     /* 회원 */
     public String memberName = null;
     public String memberId = null;
