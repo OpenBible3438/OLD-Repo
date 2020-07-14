@@ -130,8 +130,6 @@ public class TchclassAdapter extends ArrayAdapter {
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();
 
-                CardView tch_mem_list = dlg.findViewById(R.id.tch_mem_list);
-
                 icon_close = dlg.findViewById(R.id.icon_close);
                 icon_close.setOnClickListener(new View.OnClickListener(){
 

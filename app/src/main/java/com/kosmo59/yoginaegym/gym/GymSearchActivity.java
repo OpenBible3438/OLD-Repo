@@ -15,15 +15,11 @@ import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.TomcatSend;
 
 import android.content.Context;
-import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -150,8 +146,8 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
            Log.i("테스트","위치정보 : " + provider + "\n위도 : " + longitude + "\n경도 : " + latitude
                     + "\n고도 : " + altitude + "\n정확도 : " + accuracy);
             myPosition = new LatLng(latitude, longitude);
-            gymSearchMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(latitude, longitude))); //처음 보여주는 위치
-            gymSearchMap.animateCamera(CameraUpdateFactory.zoomTo(15)); //숫자가 커질수록 상세하게 보여줌
+            gymSearchMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15)); //처음 보여주는 위치
+//            gymSearchMap.animateCamera(CameraUpdateFactory.zoomTo(15)); //숫자가 커질수록 상세하게 보여줌
         }
 
         public void onProviderDisabled(String provider) {
