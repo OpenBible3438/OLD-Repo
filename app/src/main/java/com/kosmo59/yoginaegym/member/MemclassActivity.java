@@ -39,15 +39,13 @@ public class MemclassActivity extends AppCompatActivity {
                     return new MemWeekFragment();
                 case 1:
                     return new MemMyClassFragment();
-                case 2:
-                    return new MemLogFragment();
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         public CharSequence getPageTitle(int position){
@@ -56,8 +54,6 @@ public class MemclassActivity extends AppCompatActivity {
                     return "수업 시간표";
                 case 1:
                     return "수업정보";
-                case 2:
-                    return "일지";
             }
             return null;
         }
