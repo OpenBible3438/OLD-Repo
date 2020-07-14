@@ -19,7 +19,11 @@ public class GymggunFragment extends Fragment {
     public GymggunFragment() {
         // Required empty public constructor
     }
+    Context gymProfileActivity = null;
 
+    public GymggunFragment(Context gymProfileActivity) {
+        this.gymProfileActivity = gymProfileActivity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

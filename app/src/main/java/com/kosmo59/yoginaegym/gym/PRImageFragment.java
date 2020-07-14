@@ -18,9 +18,13 @@ public class PRImageFragment extends Fragment {
 
     private Context context;
     private GridView gv_prImage;
-
     public PRImageFragment() {
         // Required empty public constructor
+    }
+    Context gymProfileActivity = null;
+
+    public PRImageFragment(Context gymProfileActivity) {
+        this.gymProfileActivity = gymProfileActivity;
     }
 
 
