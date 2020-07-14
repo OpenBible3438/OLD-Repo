@@ -113,7 +113,7 @@ public class MemLogDetailDialog {
     }
 
     /* 운동일 */
-    private EditText tv_logDetailDate;
+    private TextView tv_logDetailDate;
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
         @Override

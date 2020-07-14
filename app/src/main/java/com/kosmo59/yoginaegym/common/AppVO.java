@@ -66,6 +66,7 @@ public class AppVO extends Application {
     /* 강사 */
     public String tchName = null;
     public String tchId = null;
+    public int tch_no = 0;
     public String tchNum = null; //로그인 창에서 입력한 비밀번호를 강사번호로 받기
     public String roomName2 = null;
 
@@ -75,6 +76,10 @@ public class AppVO extends Application {
 
     public void setTchNum(String tchNum) {
         this.tchNum = tchNum;
+    }
+
+    public void setTch_no(int tch_no) {
+        this.tch_no = tch_no;
     }
 
     public String getTchName() {
