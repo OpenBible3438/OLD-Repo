@@ -59,6 +59,13 @@ public class AndroidLogic {
 		setCommit(result);
 		return result;
 	}
+	// 매장 공지사항 조회
+	public Object getGymNoticeList(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getgetGymNoticeList() 호출 ");
+		List<Map<String, Object>> gymNoticeList = null;
+		gymNoticeList = aDao.getGymNoticeList(pMap);
+		return gymNoticeList;
+	}
 // 김혜림
 	//강사별 수업 조회
 	public Object getTchClassList(Map<String, Object> pMap) throws SQLException {
@@ -95,6 +102,14 @@ public class AndroidLogic {
 		imageData = aDao.getImageOne(pMap);
 		
 		return imageData;
+	}
+	//회원 요일별 수업 구하기
+	public List<Map<String, Object>> getMemWeekCls(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMemWeekCls() 호출");
+		List<Map<String, Object>> memClsList = null;
+		memClsList = aDao.getMemWeekCls(pMap);
+		
+		return memClsList;
 	}
 		
 // 김승현

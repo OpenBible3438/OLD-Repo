@@ -74,7 +74,7 @@ var element_layer = document.getElementById('layer');
                 }				
                 
                 //window.Android.processDATA(data.zonecode + ", " + fullRoadAddr); 이건 우편번호 123456, 주소
-                window.Android.processDATA(fullRoadAddr);
+                window.Android.processDATA(fullRoadAddr+","+data.zonecode);
             },
              width : '100%'
             ,height : '100%'
