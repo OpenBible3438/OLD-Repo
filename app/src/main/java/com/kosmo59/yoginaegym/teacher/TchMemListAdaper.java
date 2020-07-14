@@ -80,7 +80,7 @@ public class TchMemListAdaper extends ArrayAdapter {
                 dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
                 // 커스텀 다이얼로그의 레이아웃을 설정한다.
-                dlg.setContentView(R.layout.fragment_tch_mem_list);
+                dlg.setContentView(R.layout.dialog_tch_mem_list);
 
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();
