@@ -59,13 +59,14 @@
 	<!-- 강사별 수업 목록 가져오기(수강생 수 포함) -->
 	<select id="getTchClassList_and" parameterType="map" resultType="map">
 		SELECT c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date
-			 , cls_e_date, c.cls_state, COUNT(p.pay_no)regis_num, COUNT(DISTINCT(p.mem_no)) mem_num
+			 , cls_e_date, c.cls_state, COUNT(p.pay_no)regis_num, COUNT(DISTINCT(p.mem_no)) mem_num, cls_stime, cls_etime
 		  FROM class c, pay p
-		 WHERE c.cls_no = p.cls_no
+		 WHERE c.cls_no = p.cls_no(+)
 		   AND tch_no = #{tch_no}
 		   AND c.gym_no = #{gym_no}
 		   AND C.CLS_STATE = '진행'
-	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state
+	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state, cls_stime, cls_etime
+	  
 	</select>
 	<select id="getclsMemList_and" parameterType="map" resultType="map">
 		-- 강사> 수업/회원관리 > 수업 리스트 > 수강생 보기(그 수업에 대한)
