@@ -57,15 +57,15 @@ public class TchMemListAdaper extends ArrayAdapter {
 
         CardView tch_class = (CardView) convertView.findViewById(R.id.tch_class);
         TextView cls_name = (TextView) convertView.findViewById(R.id.cls_name);
-        TextView cls_sdate = (TextView) convertView.findViewById(R.id.cls_sdate);
-        TextView cls_edate = (TextView) convertView.findViewById(R.id.cls_edate);
+        TextView cls_stime = (TextView) convertView.findViewById(R.id.cls_stime);
+        TextView cls_etime = (TextView) convertView.findViewById(R.id.cls_etime);
         TextView cls_day = (TextView) convertView.findViewById(R.id.cls_day);
         TextView cls_cnt = (TextView) convertView.findViewById(R.id.cls_cnt);
 
 
         cls_name.setText(mList.get(position).get("CLS_NAME").toString());
-        cls_sdate.setText(mList.get(position).get("CLS_S_DATE").toString());
-        cls_edate.setText(mList.get(position).get("CLS_E_DATE").toString());
+        cls_stime.setText(mList.get(position).get("CLS_STIME").toString());
+        cls_etime.setText(mList.get(position).get("CLS_ETIME").toString());
         cls_day.setText(mList.get(position).get("CLS_DAY").toString());
         cls_cnt.setText(""+Integer.valueOf((int)Math.round((double)mList.get(position).get("MEM_NUM"))));
         mList.get(position).get("MEM_NUM");
