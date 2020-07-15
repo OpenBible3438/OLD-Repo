@@ -21,7 +21,6 @@
             android:layout_alignParentTop="true"/>
 
         <ScrollView
-            android:background="#EAEAEA"
             android:layout_marginTop="?attr/actionBarSize"
             android:layout_marginBottom="?attr/actionBarSize"
             android:layout_width="match_parent"
@@ -39,7 +38,8 @@
                     android:id="@+id/cv_content1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp">
+                    android:background="#ffffff"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
 
                         <!-- 프사, 이름(매장 or 강사) -->
                         <LinearLayout
-                            android:layout_marginBottom="3dp"
+                            android:layout_marginBottom="10dp"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -59,10 +59,12 @@
                                 android:layout_height="30dp"/>
 
                             <TextView
+                                android:layout_marginLeft="10dp"
                                 android:id="@+id/tv_contTitle"
                                 android:text="터짐 가산점"
+                                android:textStyle="bold"
                                 android:textSize="18sp"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"/>
 
                         </LinearLayout>
@@ -78,10 +80,11 @@
                         <!-- 글자 들어가는 부분 -->
 
                         <TextView
+                            android:textSize="16sp"
                             android:text="모니터 해상도 너무 좋습니다 ~\n고화질 유튜브 보면서 운동 가능 "
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="16dp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?attr/textAppearanceBody2"/>
 

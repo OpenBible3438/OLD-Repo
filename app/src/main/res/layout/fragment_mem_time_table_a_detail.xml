@@ -54,11 +54,11 @@
             android:background="#000000" />
 
         <EditText
-            android:id="@+id/et_log_cont"
-            android:background="@null"
             android:lines="10"
+            android:background="@null"
             android:textSize="16sp"
             android:gravity="left|top"
+            android:text="본문이 들어올 자리입니다. 열 줄로 제한합니다.본문이 들어올 자리입니다. 본문이 들어올 자리입니다."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -87,11 +87,11 @@
                         android:text="등록일 "
                         android:textSize="12sp" />
                     <TextView
-                        android:id="@+id/tv_reg_date"
                         android:layout_width="75sp"
                         android:layout_height="25sp"
                         android:layout_gravity="center"
                         android:gravity="center_vertical"
+                        android:text="2020-07-02"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -154,117 +154,43 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                        <EditText
-                            android:id="@+id/et_log_title"
+                        <TextView
                             android:background="@null"
                             android:textColor="#009688"
                             android:textSize="16sp"
                             android:gravity="left|center"
+                            android:text="짐꾼1의 PT"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"/>
-                        <LinearLayout
-                            android:orientation="horizontal"
+                        <TextView
+                            android:background="@null"
+                            android:id="@+id/tv_logDetailDate"
+                            android:textColor="#009688"
+                            android:textSize="16sp"
+                            android:gravity="left|center"
+                            android:text="2020-07-09"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp">
-                            <TextView
-                                android:background="@null"
-                                android:id="@+id/tv_logDetailDate"
-                                android:textColor="#009688"
-                                android:textSize="16sp"
-                                android:gravity="left|center"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"/>
-                            <LinearLayout
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <ImageButton
-                                    android:id="@+id/icon_date"
-                                    android:src="@drawable/icon_date"
-                                    android:backgroundTint="@android:color/transparent"
-                                    android:layout_width="30dp"
-                                    android:layout_height="match_parent"/>
-                            </LinearLayout>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
+                            android:layout_height="30dp"/>
+                        <TextView
+                            android:id="@+id/tv_stime"
+                            android:textColor="#009688"
+                            android:textSize="16sp"
+                            android:gravity="left|center"
+                            android:text="12:30:00"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp">
-                            <TextView
-                                android:id="@+id/tv_stime"
-                                android:textColor="#009688"
-                                android:textSize="16sp"
-                                android:gravity="left|center"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"/>
-                            <LinearLayout
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <ImageButton
-                                    android:id="@+id/icon_stime"
-                                    android:src="@drawable/icon_stime"
-                                    android:backgroundTint="@android:color/transparent"
-                                    android:layout_width="30dp"
-                                    android:layout_height="match_parent"/>
-                            </LinearLayout>
-                        </LinearLayout>
+                            android:layout_height="30dp"/>
+                        <TextView
+                            android:id="@+id/tv_etime"
+                            android:textColor="#009688"
+                            android:textSize="16sp"
+                            android:gravity="left|center"
+                            android:text="13:30:00"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"/>
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp">
-                            <TextView
-                                android:id="@+id/tv_etime"
-                                android:textColor="#009688"
-                                android:textSize="16sp"
-                                android:gravity="left|center"
-                                android:layout_width="100dp"
-                                android:layout_height="30dp"/>
-                            <LinearLayout
-                                android:gravity="right"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <ImageButton
-                                    android:id="@+id/icon_etime"
-                                    android:src="@drawable/icon_etime"
-                                    android:backgroundTint="@android:color/transparent"
-                                    android:layout_width="30dp"
-                                    android:layout_height="match_parent"/>
-                            </LinearLayout>
-                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
-
-                <!--구분 라인-->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#000000" />
-
-                <LinearLayout
-                    android:gravity="right|top"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp">
-
-                    <Button
-                        android:id="@+id/btn_logDetail_upd"
-                        android:text="수정"
-                        android:textSize="14sp"
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"/>
-                    <Button
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/btn_logDetail_del"
-                        android:text="삭제"
-                        android:textSize="14sp"
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"/>
-
-                </LinearLayout>
-
 
             </LinearLayout>
         </LinearLayout>

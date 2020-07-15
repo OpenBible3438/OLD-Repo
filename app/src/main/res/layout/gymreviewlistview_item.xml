@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--======================================카드뷰 시작-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/gym_reviewList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:gravity="left|center"
+                    android:text="작성자"
+                    android:textSize="12sp"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:id="@+id/tv_gym_review_memNick"
+                    android:gravity="left|center"
+                    android:text="kimsh0306"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:id="@+id/tv_gym_review_date"
+                    android:gravity="right|center"
+                    android:text="2020-07-07"
+                    android:textSize="12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <!--구분 라인-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:paddingTop="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_gym_review_cont"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:text="후기가 들어오는 곳입니다."/>
+            </LinearLayout>
+
+            <RatingBar
+                android:layout_marginTop="10dp"
+                android:id="@+id/rb_gym_review"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:max="100"
+                android:numStars="5"
+                android:progress="40"
+                android:progressTint="#FF9800"
+                />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
