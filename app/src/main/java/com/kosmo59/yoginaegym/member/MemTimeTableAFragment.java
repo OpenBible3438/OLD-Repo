@@ -1,5 +1,8 @@
 package com.kosmo59.yoginaegym.member;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.common.GymDBHelper;
 import com.kosmo59.yoginaegym.member.calendar.EventDecorator;
 import com.kosmo59.yoginaegym.member.calendar.OneDayDecorator;
 import com.kosmo59.yoginaegym.member.calendar.SaturdayDecorator;
@@ -26,13 +31,20 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 
 public class MemTimeTableAFragment extends Fragment {
 
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
     MaterialCalendarView materialcalendarview;
+
+    private Context context;
+    GymDBHelper gymDBHelper = null;
+    SQLiteDatabase db = null;
+    AppVO vo = null;
 
     public MemTimeTableAFragment() {
         Log.i("테스트", "MemTimeTableAFragment 호출");
@@ -45,6 +57,10 @@ public class MemTimeTableAFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         final View view = inflater.inflate(R.layout.fragment_mem_time_table_a, container, false);
         Log.i("테스트", "onCreateView 호출");
+        context = container.getContext();
+        gymDBHelper = new GymDBHelper(this.context);
+        db = gymDBHelper.getWritableDatabase();
+        vo = (AppVO) this.context.getApplicationContext();
 
         materialcalendarview = (MaterialCalendarView) view.findViewById(R.id.calendarView);
         Log.i("테스트", "materialcalendarview : " + materialcalendarview);
@@ -59,10 +75,25 @@ public class MemTimeTableAFragment extends Fragment {
                 new SundayDecorator(),
                 new SaturdayDecorator(),
                 oneDayDecorator);
+///////////////////////////////SQLite /////////////////////////////////////////////
+        String log_days_sel = "SELECT DISTINCT(ex_date)" +
+                " FROM mem_log" +
+                " WHERE mem_no ="+vo.mem_no +
+                " ORDER BY ex_date desc";
+        Log.i("테스트", "log_days_sel : " + log_days_sel);
+        String[] log_days = null;
+        Cursor cursor = db.rawQuery(log_days_sel, null);
+        if(cursor.getCount()>0){
+            log_days = new String[cursor.getCount()];
+            int cnt = 0;
+            while(cursor.moveToNext()){
+                log_days[cnt++] = cursor.getString(0);
+                Log.i("테스트", "log_days : " + log_days);
+            }
 
-        String[] result = {"2020,03,15", "2020,04,15", "2020,05,15", "2020,06,15", "2020,07,15"};
-
-        new ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor());
+        }
+        ///////////////////////////////SQLite 끝/////////////////////////////////////////////
+        new ApiSimulator(log_days).executeOnExecutor(Executors.newSingleThreadExecutor());
 
         materialcalendarview.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
@@ -79,7 +110,7 @@ public class MemTimeTableAFragment extends Fragment {
 
                 Log.i("shot_Day test", shot_Day + "");
                 //materialCalendarView.clearSelection();
-                Toast.makeText(view.getContext(), shot_Day, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(view.getContext(), shot_Day, Toast.LENGTH_SHORT).show();
             }
         });
         return view;
@@ -115,7 +146,7 @@ public class MemTimeTableAFragment extends Fragment {
             //string 문자열인 Time_Result 을 받아와서 ,를 기준으로짜르고 string을 int 로 변환
             for (int i = 0; i < Time_Result.length; i++) {
                 CalendarDay day = null;
-                String[] time = Time_Result[i].split(",");
+                String[] time = Time_Result[i].split("-");
                 int year = Integer.parseInt(time[0]);
                 int month = Integer.parseInt(time[1]);
                 int dayy = Integer.parseInt(time[2]);
@@ -139,7 +170,7 @@ public class MemTimeTableAFragment extends Fragment {
 //                return;
 //            }
             Log.i("테스트", "onPostExecute 호출");
-            materialcalendarview.addDecorator(new EventDecorator(Color.RED, calendarDays, MemTimeTableAFragment.this));
+            materialcalendarview.addDecorator(new EventDecorator(Color.GREEN, calendarDays, MemTimeTableAFragment.this));
             Log.i("테스트", "addDecorator 다음 코드");
         }
 

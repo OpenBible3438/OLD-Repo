@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PayListFragment extends Fragment {
-    private Context mContext;
+
     /*    private ClsAdapter clsAdapter;*/
 
     private ListView pay_listView;
@@ -35,7 +35,7 @@ public class PayListFragment extends Fragment {
     public PayListFragment() {
         // Required empty public constructor
     }
-
+    private Context mContext;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

@@ -7,6 +7,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,6 +29,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -173,8 +175,14 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
            Log.i("테스트","위치정보 : " + provider + "\n위도 : " + longitude + "\n경도 : " + latitude
                     + "\n고도 : " + altitude + "\n정확도 : " + accuracy);
             myPosition = new LatLng(latitude, longitude);
-            gymSearchMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(latitude, longitude))); //처음 보여주는 위치
-            gymSearchMap.animateCamera(CameraUpdateFactory.zoomTo(15)); //숫자가 커질수록 상세하게 보여줌
+            gymSearchMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15)); //처음 보여주는 위치
+//            gymSearchMap.animateCamera(CameraUpdateFactory.zoomTo(15)); //숫자가 커질수록 상세하게 보여줌
+            CircleOptions circle1KM = new CircleOptions().center(myPosition) //원점
+                    .radius(30)      //반지름 단위 : m
+                    .strokeWidth(0f)  //선너비 0f : 선없음
+                    .fillColor(Color.parseColor("#6C9FFF"));
+
+            gymSearchMap.addCircle(circle1KM);
         }
 
         public void onProviderDisabled(String provider) {

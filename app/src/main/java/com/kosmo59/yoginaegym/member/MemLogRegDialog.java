@@ -4,15 +4,22 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.common.GymDBHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,17 +31,31 @@ public class MemLogRegDialog {
     private ImageButton icon_date;
     private ImageButton icon_stime;
     private ImageButton icon_etime;
+
+    private EditText et_log_cont;
+    private EditText et_log_title;
+    private TextView tv_reg_date;
+    private TextView tv_exDate;
     private TextView tv_stime;
     private TextView tv_etime;
-    int hour = 0, minute = 0;
+    private Button btn_logDetail_ins;
 
+    GymDBHelper gymDBHelper = null;
+    SQLiteDatabase db = null;
+    AppVO vo = null;
+    int hour = 0, minute = 0;
+    Dialog dlg = null;
     public MemLogRegDialog(Context context) {
         this.context = context;
     }
 
     public void openMemLogRegDialog() {
+
         // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
-        final Dialog dlg = new Dialog(context);
+        dlg = new Dialog(context);
+        gymDBHelper = new GymDBHelper(dlg.getContext());
+        db = gymDBHelper.getWritableDatabase();
+        vo = (AppVO) dlg.getContext().getApplicationContext();
 
         // 액티비티의 타이틀바를 숨긴다.
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -45,8 +66,17 @@ public class MemLogRegDialog {
         // 커스텀 다이얼로그를 노출한다.
         dlg.show();
 
-        //운동일 찍힐 EditText id찾기
-        tv_logRegDate = dlg.findViewById(R.id.tv_logRegDate);
+        //내용을 입력할 EditView 찾기
+        et_log_cont = dlg.findViewById(R.id.et_log_cont);
+
+        //일지 제목을 입력할 EditView 찾기
+        et_log_title = dlg.findViewById(R.id.et_log_title);
+
+        //등록일 찍힐 TextView id 찾기
+        tv_reg_date = dlg.findViewById(R.id.tv_reg_date);
+
+        //운동일 찍힐 TextView id찾기
+        tv_exDate = dlg.findViewById(R.id.tv_exDate);
 
         //시작시간 찍힐 tv_stime id찾기
         tv_stime = dlg.findViewById(R.id.tv_stime);
@@ -111,11 +141,18 @@ public class MemLogRegDialog {
             }
         });
 
-    }
+        btn_logDetail_ins = dlg.findViewById(R.id.btn_logDetail_ins);
+        btn_logDetail_ins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                log_insAction();
+            }
+        });
+
+    }//end of openMemLogRegDialog
 
 
     /* 운동일 확인 버튼 눌렀을 때 */
-    private EditText tv_logRegDate;
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -131,6 +168,35 @@ public class MemLogRegDialog {
     private void updateTv_date() {
         String dateFormat = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.KOREA);
-        tv_logRegDate.setText(sdf.format(calendar.getTime()));
+        tv_exDate.setText(sdf.format(calendar.getTime()));
     }
+
+    //등록 버튼 눌렀을 때
+    public void log_insAction(){
+        Log.i("테스트", "lof_insAction() 호출");
+        String log_cont = et_log_cont.getText().toString();
+        String log_title = et_log_title.getText().toString();
+        String ex_date = tv_exDate.getText().toString();
+        String logRegDate = tv_reg_date.getText().toString();
+        String stime = tv_stime.getText().toString();
+        String etime = tv_etime.getText().toString();
+        int mem_no = vo.mem_no;
+
+        String mem_log_ins = "INSERT INTO mem_log (mem_no, reg_date, ex_date, log_title, ex_stime, ex_etime, log_cont)" +
+                "VALUES ("+mem_no+", '"+logRegDate+"', '"+ex_date+"', '"+log_title+"', '"+stime+"', '"+etime+"', '"+log_cont+"')";
+        Log.i("테스트", "mem_log_ins : " + mem_log_ins);
+        db.execSQL(mem_log_ins);
+        Cursor cursor = db.rawQuery("SELECT * FROM mem_log", null);
+        while(cursor.moveToNext()){
+            Log.i("테스트", cursor.getString(0)+ ", " + cursor.getString(1) + ", " + cursor.getString(2)
+                    + ", " + cursor.getString(3)+ ", " + cursor.getString(4)+ ", " + cursor.getString(5)
+                    + ", " + cursor.getString(6)+ ", " + cursor.getString(7));
+            dlg.dismiss();
+            /////***********************등록되었습니다 알림창 띄워주기*******************///////
+            /////***********************일지 목록 새로 고침 처리 해줘야 한다..!*******************///////
+
+
+        }
+    }
+
 }
