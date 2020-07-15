@@ -67,13 +67,14 @@
 	<!-- 강사별 수업 목록 가져오기(수강생 수 포함) -->
 	<select id="getTchClassList_and" parameterType="map" resultType="map">
 		SELECT c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date
-			 , cls_e_date, c.cls_state, COUNT(p.pay_no)regis_num, COUNT(DISTINCT(p.mem_no)) mem_num
+			 , cls_e_date, c.cls_state, COUNT(p.pay_no)regis_num, COUNT(DISTINCT(p.mem_no)) mem_num, cls_stime, cls_etime
 		  FROM class c, pay p
-		 WHERE c.cls_no = p.cls_no
+		 WHERE c.cls_no = p.cls_no(+)
 		   AND tch_no = #{tch_no}
 		   AND c.gym_no = #{gym_no}
 		   AND C.CLS_STATE = '진행'
-	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state
+	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state, cls_stime, cls_etime
+	  
 	</select>
 	<!-- 강사> 수업/회원관리 > 수업 리스트 > 수강생 보기(그 수업에 대한) -->
 	<select id="getclsMemList_and" parameterType="map" resultType="map">
@@ -138,7 +139,7 @@
 	</select>
 	<!-- map에 사용 될 매장 리스트 구하기 -->
 	<select id="getGymList_and" parameterType="map" resultType="map">
-	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq, filedata
+	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr
 	  FROM gym, images
 	 WHERE gym_name IS NOT NULL
 	   AND gym_lat IS NOT NULL
@@ -148,6 +149,17 @@
 	   AND type = 'gym'
 	   AND typecode = gym_no
 	</select>
+<!-- 	<select id="getGymList_and" parameterType="map" resultType="map">
+	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq, filedata
+	  FROM gym, images
+	 WHERE gym_name IS NOT NULL
+	   AND gym_lat IS NOT NULL
+	   AND gym_lng IS NOT NULL
+	   AND gym_addr IS NOT NULL
+	   AND gym_addr_dtl IS NOT NULL
+	   AND type = 'gym'
+	   AND typecode = gym_no
+	</select> -->
 	<!-- 강사 주별 수업 시간표 구하기 -->
 	<select id="getTchWeekCls_and" parameterType="map" resultType="map">
 		SELECT cls_no, cls_name, cls_stime, cls_etime, cls_day
@@ -158,11 +170,11 @@
 	</select>
 	<!-- 회원 주별 수업 시간표 구하기 -->
 	<select id="getMemWeekCls_and" parameterType="map" resultType="map">
-		SELECT c.cls_no, c.cls_name, c.cls_stime, c.cls_etime, c.cls_day
-		  FROM pay p, class c, member m
+		SELECT c.cls_no, c.cls_name, substr(c.cls_stime,1,5) cls_stime, substr(c.cls_etime,1,5) cls_etime, c.cls_day
+          FROM pay p, class c, member m
 		 WHERE p.cls_no = c.cls_no
 		   AND p.mem_no = m.mem_no
-		   AND m.mem_no = 1
+		   AND m.mem_no = #{mem_no}
 		   AND cls_kind = '단체 수업'
 	</select>
 	
@@ -170,6 +182,20 @@
 	SELECT filedata from images
  	WHERE file_seq=#{file_seq}
 	</select>
+	<!-- 매장 메인화면에 쓸 정보 가져오기 -->
+	<select id="getGymProfile_and" parameterType="map" resultType="map">
+		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr
+		  FROM gym
+		 WHERE gym_no = #{gym_no}
+	</select>
+<!-- 	
+	<select id="getGymProfile_and" parameterType="map" resultType="map">
+		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr, filedata
+		  FROM gym, images
+		 WHERE gym_no = #{gym_no}
+		   AND TYPE = 'gym'
+		   AND typecode = #{gym_no}
+	</select> -->
 <!-- ======================= 김승현 ======================= -->
 
 
@@ -246,11 +272,13 @@
 		      ,R.REV_DATE
 		      ,R.REV_TIME
 		      ,R.REV_KIND
-		  FROM review r, gym, pay p, class c, teacher t
+		      ,M.MEM_NICKNAME
+		  FROM review r, gym, pay p, class c, teacher t, member m
 		 WHERE R.PAY_NO = P.PAY_NO
 		   AND P.CLS_NO = C.CLS_NO
 		   AND C.TCH_NO = T.TCH_NO
 		   AND T.GYM_NO = GYM.GYM_NO
+		   AND P.MEM_NO = M.MEM_NO
 		   AND GYM.GYM_NO = #{gym_no}
 	</select>
 	<!-- 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) -->

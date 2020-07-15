@@ -96,9 +96,9 @@ public class AndroidLogic {
 		return gymList;
 	}
 	//이미지 한 장 구하기
-	public Map<String, Object> getImageOne(Map<String, Object> pMap) throws SQLException {
+	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidLogic - getImageOne() 호출");
-		Map<String, Object> imageData = null;
+		List<Map<String, Object>> imageData = null;
 		imageData = aDao.getImageOne(pMap);
 		
 		return imageData;
@@ -110,6 +110,13 @@ public class AndroidLogic {
 		memClsList = aDao.getMemWeekCls(pMap);
 		
 		return memClsList;
+	}
+	//매장 메인화면 - 매장 정보 조회하기
+	public List<Map<String, Object>> getGymProfile(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getGymProfile() 호출");
+		List<Map<String, Object>> gymProfileData = null;
+		gymProfileData = aDao.getGymProfile(pMap);
+		return gymProfileData;
 	}
 		
 // 김승현
