@@ -59,7 +59,7 @@
             android:lines="10"
             android:textSize="16sp"
             android:gravity="left|top"
-            android:text="내용을 입력하세요."
+            android:text="거북목 교정 자세\n골반 교정 자세\n\n산책 1시간"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -93,7 +93,7 @@
                         android:layout_height="25sp"
                         android:layout_gravity="center"
                         android:gravity="center_vertical"
-                        android:text="2020-07-02"
+                        android:text="2020-07-15"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -158,6 +158,7 @@
                             android:id="@+id/et_log_title"
                             android:textColor="#009688"
                             android:textSize="16sp"
+                            android:text="자세교정, 산책한 날"
                             android:gravity="left|center"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"/>
@@ -171,7 +172,7 @@
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="2020-07-09"
+                                android:text="2020-07-15"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -196,7 +197,7 @@
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="12:30:00"
+                                android:text="14:30:00"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -221,7 +222,7 @@
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="13:30:00"
+                                android:text="16:30:00"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
