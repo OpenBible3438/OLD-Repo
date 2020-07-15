@@ -131,11 +131,13 @@ public class MemJoinActivity extends AppCompatActivity {
         toggle_gender.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-                btn_man = toggle_gender.findViewById(R.id.btn_man);
-                //MaterialButton btn_woman = toggle_gender.findViewById(R.id.btn_man);
-                if(isChecked && btn_man.getText().toString().equals("남자")){
+                //btn_man = toggle_gender.findViewById(R.id.btn_man);
+                MaterialButton btn_woman = toggle_gender.findViewById(R.id.btn_woman);
+                MaterialButton btn_man = toggle_gender.findViewById(R.id.btn_man);
+                gender = "";
+                if((checkedId == R.id.btn_man && isChecked) || !btn_woman.isChecked() ){
                     gender = "남성";
-                }else {
+                }else if((checkedId == R.id.btn_woman && isChecked) || !btn_man.isChecked()) {
                     gender = "여성";
                 }
             }

@@ -1,23 +1,19 @@
-package com.kosmo59.yoginaegym.member;
+package com.kosmo59.yoginaegym.teacher;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.kosmo59.yoginaegym.R;
 
-
-public class InbodyDialog {
+public class TchMemInbodyDialog {
 
     private Context context;
-
     private PhotoView photoView;
 
-
-    public InbodyDialog(Context context) {
+    public TchMemInbodyDialog(Context context){
         this.context = context;
     }
 
@@ -30,10 +26,7 @@ public class InbodyDialog {
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         // 커스텀 다이얼로그의 레이아웃을 설정한다.
-        dlg.setContentView(R.layout.dialog_mem_inbody);
-
-        //전체화면
-        //dlg.setStyle( PRDialog.STYLE_NO_TITLE, android.R.style.Theme_NoTitleBar_Fullscreen );
+        dlg.setContentView(R.layout.dialog_tch_mem_inbody_detail);
 
         WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -44,7 +37,7 @@ public class InbodyDialog {
         dlg.show();
 
         //ImageView 확대 축소 기능
-        photoView = dlg.findViewById(R.id.pv_memInbody);
+        photoView = dlg.findViewById(R.id.pv_tchMemInbody);
         photoView.setImageResource(R.drawable.inbody_ex1);
     }
 

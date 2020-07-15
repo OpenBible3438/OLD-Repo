@@ -38,7 +38,7 @@ public class InbodyFragment extends Fragment {
         gv_inbodyImage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(context, position+"번째 사진 클릭", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, position+"번째 사진 클릭", Toast.LENGTH_SHORT).show();
                 switch (position){
                     case 0:
                         // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
