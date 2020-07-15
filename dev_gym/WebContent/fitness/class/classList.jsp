@@ -160,7 +160,7 @@
 	function ins(){
 		//alert("ins호출");
 		//alert(check_val);
-		
+		/* 
 		//----------------------------------input box 비우기
 		$("#ins_cls_name").val("");			
 		$("#ins_tch_name").val("");			
@@ -175,7 +175,7 @@
 		$("#ins_cls_info").val("");			
 		$("#ins_cls_price").val("");			
 		//$("#ins_cls_state").val("");
-
+ */
 		//해당화면에 모든 checkbox들의 체크를해제시킨다.
 		$("input[type=checkbox]").prop("checked",false);
 		

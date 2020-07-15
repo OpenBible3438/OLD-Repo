@@ -90,10 +90,10 @@ public class AndroidDao {
 			byte[] image = null;
 			Blob blob = (Blob)map.get("FILEDATA");
 			image = blob.getBytes(1, (int)blob.length());
-			
 			logger.info("image " + image.length);
 			map.remove("FILEDATA");
-			map.put("FILEDATA", image);
+			map.put("filedata", image);
+			image = null;
 		}
 		logger.info("gymList.size() : " + gymList.size());
 		return gymList;

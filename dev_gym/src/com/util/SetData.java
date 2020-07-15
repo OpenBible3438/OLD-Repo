@@ -22,18 +22,18 @@ public class SetData {
 	public String dataToJson(List<Map<String, Object>> dataList, String std) {
 		String data = null;
 		Map<String, Object> data_map = new HashMap<>();//전체 데이터를 담을 map 선언
-		 logger.info("dataList : " + dataList);
+		logger.info("dataList : " + dataList);
 		//키값들을 배열로 세팅하기
 		Set<String> keys_set = dataList.get(0).keySet();
 		String[] keys = new String[keys_set.size()];
 		int cnt = 0;//cnt는 키의 개수가 된다.
 		for(String key : keys_set){
-			logger.info("key : " + key);
+			//logger.info("key : " + key);
 			keys[cnt++] = key;
 		}
 		
 		//컬럼의 이름이  std라면 x축 기준이 되므로 string 타입, 나머지는 데이터이므로 number 타입으로 처리
-		logger.info("cnt : " + cnt);
+		//logger.info("cnt : " + cnt);
 //		List<String> key_num = new ArrayList<>();//키의 순서 맞춰주기
 		Map<String, Object> colSet = null;//컬럼의 속성을 지정한다.
 		List<Map<String, Object>> cols = new ArrayList<Map<String,Object>>();//속성이 지정된 컬럼들이 담길 List
@@ -57,7 +57,7 @@ public class SetData {
 			}
 			colSet.put("label", keys[i]);//label은 기준이든 아니든 key값으로 설정한다.
 		}
-		logger.info("cols : " + cols);
+		//logger.info("cols : " + cols);
 		
 		Map<String, Object> data_col = null;//각 컬럼에 담길 데이터를 담는 map
 		List<Map<String, Object>> data_oneRow = null;//각 컬럼의 데이터를 가진 map이 담긴다. 한 row이다.
@@ -73,8 +73,8 @@ public class SetData {
 			for(int j=0; j<cnt; j++) {
 				data_col = new HashMap<String, Object>();
 				data_col.put("v", nowMap.get(keys[j]));
-				logger.info("i : " + i + ", j : " + j + ", nowMap.get(keys[j]) : " + nowMap.get(keys[j]));
-				logger.info("keys["+j+"] : " + keys[j]);
+				//logger.info("i : " + i + ", j : " + j + ", nowMap.get(keys[j]) : " + nowMap.get(keys[j]));
+				//logger.info("keys["+j+"] : " + keys[j]);
 				if(keys[j].equals(std)) {
 					data_oneRow.add(0, data_col);
 				}
@@ -83,7 +83,7 @@ public class SetData {
 				}
 			}
 			oneRow.put("c", data_oneRow);
-			logger.info("oneRow : " + oneRow);
+			//logger.info("oneRow : " + oneRow);
 			rows.add(oneRow);
 		}
 		
@@ -123,12 +123,12 @@ public class SetData {
 		for(int i=0; i<keyset.size()-1; i++) {//강사1에 대한 1월부터 12월까지의 정보, 강사 2에 대한 1월부터 ...
 			rowMap = new HashMap<String, Object>();
 			rowMap.put("MONTH", (i+1) + "월");
-			System.out.println(tchList.size() + "......................");
-			System.out.println(dataList.size() + "===================================");
+			//System.out.println(tchList.size() + "......................");
+			//System.out.println(dataList.size() + "===================================");
 			for(int j=0; j<tchList.size(); j++) {
-				System.out.println("tchList.get(i) : " + tchList.get(j));
-				System.out.println("dataList.get(i) : " + dataList.get(j));
-				System.out.println("dataList.get(i).get((j+1)) : " + dataList.get(j).get((i+1)+ "월"));
+				//System.out.println("tchList.get(i) : " + tchList.get(j));
+				//System.out.println("dataList.get(i) : " + dataList.get(j));
+				//System.out.println("dataList.get(i).get((j+1)) : " + dataList.get(j).get((i+1)+ "월"));
 				rowMap.put(tchList.get(j), dataList.get(j).get((i+1) + "월")); 
 			}
 			newDataList.add(rowMap);
@@ -136,11 +136,11 @@ public class SetData {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("--------------------------------");
-		System.out.println(newDataList);
+		//System.out.println("--------------------------------");
+		//System.out.println(newDataList);
 		
 		String data = dataToJson(newDataList, "MONTH");
-		System.out.println(data);
+		//System.out.println(data);
 		return data;
 		
 	}
@@ -161,7 +161,7 @@ public class SetData {
 		   Map<String, Object> tchMap = new HashMap<>();
 		   for(int i=0; i<dataList.size(); i++) {
 		      Map<String, Object> bufMap = dataList.get(i);
-		      logger.info("bufMap : " + bufMap);
+		      //logger.info("bufMap : " + bufMap);
 		      tchMap.put(""+i, bufMap.get("tch_name"));
 		      listTotal2.get(0).add(i+1, Integer.parseInt(bufMap.get("1월").toString()));
 		      listTotal2.get(1).add(i+1, Integer.parseInt(bufMap.get("2월").toString()));
@@ -175,12 +175,12 @@ public class SetData {
 		      listTotal2.get(9).add(i+1, Integer.parseInt(bufMap.get("10월").toString()));
 		      listTotal2.get(10).add(i+1, Integer.parseInt(bufMap.get("11월").toString()));
 		      listTotal2.get(11).add(i+1, Integer.parseInt(bufMap.get("12월").toString()));
-		      logger.info("i : " + i + ", listTotal2 : " + listTotal2);
+		      //logger.info("i : " + i + ", listTotal2 : " + listTotal2);
 		   }
-		   System.out.println(listTotal2);
+		   //System.out.println(listTotal2);
 		   Gson g = new Gson();
 		   String imsi = g.toJson(listTotal2);
-		   System.out.println(listTotal2);
+		   //System.out.println(listTotal2);
 		   Map<String, Object> changeMap = null;
 		   List<Map<String, Object>> changeList = new ArrayList<Map<String,Object>>();
 		   logger.info(tchMap);
@@ -195,16 +195,16 @@ public class SetData {
 				   if(key.equals(j+"")){
 					   changeMap.put(tchMap.get(key)+"", listTotal2.get(i).get(j));
 					   
-					   logger.info("tchMap.get(key) : " + tchMap.get(key));
-					   logger.info("listTotal2.get(i).get(j) : "+ + listTotal2.get(i).get(j));
+					  // logger.info("tchMap.get(key) : " + tchMap.get(key));
+					   //logger.info("listTotal2.get(i).get(j) : "+ + listTotal2.get(i).get(j));
 				   }
 			}
 			   changeList.add(changeMap);
 			   logger.info(changeMap);
-			   logger.info("=========================================================================================");
+			   //logger.info("=========================================================================================");
 		   }
-		   System.out.println(changeList);
-		   System.out.println(changeMap);
+		   //System.out.println(changeList);
+		   //System.out.println(changeMap);
 		   String data = null;
 		   data = dataToJson(changeList, "MON");
 		   return data;

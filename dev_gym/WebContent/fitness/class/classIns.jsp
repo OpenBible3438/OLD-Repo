@@ -19,7 +19,7 @@
 						<div class="form-group row">
 							<label for="ins_cls_name" class="col-sm-3 col-form-label"><b>수업명</b></label> 
 							<div class="col-sm-9">
-								<input type="text" class="form-control input-sm" id="ins_cls_name" name="ins_cls_name" placeholder="수업명을 입력하세요">
+								<input type="text" class="form-control input-sm" id="ins_cls_name" name="ins_cls_name" value="요가기초반 6개월권" placeholder="수업명을 입력하세요">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -51,13 +51,13 @@
 						<div class="form-group row">
 							<label for="ins_cls_s_date" class="col-sm-3 col-form-label"><b>판매시작</b></label> 
 							<div class="col-sm-9">
-								<input type="date" class="form-control input-sm" id="ins_cls_s_date" name="ins_cls_s_date" placeholder="연도-월-일">
+								<input type="date" class="form-control input-sm" id="ins_cls_s_date" name="ins_cls_s_date" value="2020-07-15" placeholder="연도-월-일">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="ins_cls_e_date" class="col-sm-3 col-form-label"><b>판매종료</b></label> 
 							<div class="col-sm-9">
-								<input type="date" class="form-control input-sm" id="ins_cls_e_date" name="ins_cls_e_date" placeholder="연도-월-일">
+								<input type="date" class="form-control input-sm" id="ins_cls_e_date" name="ins_cls_e_date" value="2020-08-15" placeholder="연도-월-일">
 							</div>
 						</div>
 						
@@ -87,17 +87,17 @@
 								<!--  
 								<a href="javascript:ins_sTime()"><font size=2 color=blue> 시간선택 here! </font></a>
 								-->
-								<input type="text" class="form-control input-sm" id="ins_cls_sTime" name="ins_cls_sTime" placeholder="시간을 입력하세요." readonly>
+								<input type="text" class="form-control input-sm" id="ins_cls_sTime" name="ins_cls_sTime" value="15:00:00" placeholder="시간을 입력하세요." readonly>
 							</div>
 							<button type="button" class="btn btn-primary btn-xs col-sm-3" onclick="ins_sTime()">입력</button>							
 						</div>						
 						<div class="form-group row">
-							<label for="ins_cls_eTime" class="col-sm-3 col-form-label"><b>종료 시간&nbsp;&nbsp;</b></label> 
+							<label for="ins_cls_eTime" class="col-sm-3 col-form-label" ><b>종료 시간&nbsp;&nbsp;</b></label> 
 							<div class="col-sm-6"> 
 								<!-- 
 								<a href="javascript:ins_eTime()"><font size=2 color=blue> 시간선택 here! </font></a>
 								-->
-								<input type="text" class="form-control input-sm" id="ins_cls_eTime" name="ins_cls_eTime" placeholder="시간을 입력하세요." readonly>
+								<input type="text" class="form-control input-sm" id="ins_cls_eTime" name="ins_cls_eTime" value="18:00:00" placeholder="시간을 입력하세요." readonly>
 							</div>
 							<button type="button" class="btn btn-primary btn-xs col-sm-3" onclick="ins_eTime()">입력</button>								
 						</div>	
@@ -151,28 +151,27 @@
 
 						
 						<div class="form-group row">
-							<label for="ins_cls_days" class="col-sm-3 col-form-label"><b>수업 일수</b></label> 
+							<label for="ins_cls_days" class="col-sm-3 col-form-label" ><b>수업 일수</b></label> 
 							<div class="col-sm-9">
-								<input type="text" class="form-control input-sm" id="ins_cls_days" name="ins_cls_days" placeholder="숫자만 입력하세요.">
+								<input type="text" class="form-control input-sm" id="ins_cls_days" name="ins_cls_days" value=180 placeholder="숫자만 입력하세요.">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="ins_cls_cnt" class="col-sm-3 col-form-label"><b>수업 횟수</b></label> 
 							<div class="col-sm-9">
-								<input type="text" class="form-control input-sm" id="ins_cls_cnt" name="ins_cls_cnt" placeholder="숫자만 입력하세요.">
+								<input type="text"  class="form-control input-sm" id="ins_cls_cnt" name="ins_cls_cnt" value=30 placeholder="숫자만 입력하세요.">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="ins_cls_info" class="col-sm-3 col-form-label"><b>수업 소개</b></label> 
 							<div class="col-sm-9">
-								<textarea rows="5" class="form-control" id="ins_cls_info" name="ins_cls_info">
-								</textarea>
+								<textarea rows="5" class="form-control" id="ins_cls_info" name="ins_cls_info">나강사가 진행하는 6개월간 진행되는 요가기초반 30회권 반값 할인 중입니다.</textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="ins_cls_price" class="col-sm-3 col-form-label"><b>가격</b></label> 
 							<div class="col-sm-9">
-								<input type="text" class="form-control input-sm" id="ins_cls_price" name="ins_cls_price" placeholder="숫자만 입력하세요.">
+								<input type="text" class="form-control input-sm" id="ins_cls_price" value=100000 name="ins_cls_price" placeholder="숫자만 입력하세요.">
 							</div>
 						</div>
 						<div class="form-group row">
