@@ -1,5 +1,6 @@
 package com.kosmo59.yoginaegym.member;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kosmo59.yoginaegym.R;
@@ -37,6 +40,7 @@ import java.util.Map;
 import java.util.concurrent.Executors;
 
 public class MemTimeTableAFragment extends Fragment {
+    Dialog dlg = null;
 
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
     MaterialCalendarView materialcalendarview;
@@ -92,6 +96,10 @@ public class MemTimeTableAFragment extends Fragment {
             }
 
         }
+        if(log_days == null){
+            log_days = new String[1];
+            log_days[0] = "2020-02-10";
+        }
         ///////////////////////////////SQLite 끝/////////////////////////////////////////////
         new ApiSimulator(log_days).executeOnExecutor(Executors.newSingleThreadExecutor());
 
@@ -111,6 +119,29 @@ public class MemTimeTableAFragment extends Fragment {
                 Log.i("shot_Day test", shot_Day + "");
                 //materialCalendarView.clearSelection();
                // Toast.makeText(view.getContext(), shot_Day, Toast.LENGTH_SHORT).show();
+
+
+                // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
+                dlg = new Dialog(context);
+
+                // 액티비티의 타이틀바를 숨긴다.
+                dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+                // 커스텀 다이얼로그의 레이아웃을 설정한다.
+                dlg.setContentView(R.layout.fragment_mem_time_table_a_detail);
+
+                // 커스텀 다이얼로그를 노출한다.
+                dlg.show();
+
+                //닫기 버튼
+                ImageView icon_close = dlg.findViewById(R.id.icon_close);
+                icon_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dlg.hide();
+                    }
+                });
+
             }
         });
         return view;
