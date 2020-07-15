@@ -135,8 +135,8 @@ public class MemLogRegDialog {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         //TextView에 선택 시간 찍어주기
-                        String hour = "";
-                        String day = "";
+                        String hour = " ";
+                        String day = " ";
                         if(hourOfDay < 10) hour = "0"+hourOfDay;
                         if(hourOfDay < 10) day = "0"+hourOfDay;
                         tv_etime.setText(hour+":"+day+":00");
