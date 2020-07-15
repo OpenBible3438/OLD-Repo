@@ -141,6 +141,14 @@ public class AndroidDao {
 		logger.info("imageData : " + gymProfileData);
 		return gymProfileData;
 	}
+	//회원 요일별 수업 구하기
+	public List<Map<String, Object>> getMyClass(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMyClass() 호출");
+		List<Map<String, Object>> myClassList = null;
+		myClassList = sqlSession.selectList("getMyClassList_and", pMap);
+		logger.info("myClassList.size() : " + myClassList.size());
+		return myClassList;
+	}
 	
 	
 // 김승현

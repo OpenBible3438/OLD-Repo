@@ -188,6 +188,21 @@
 		  FROM gym
 		 WHERE gym_no = #{gym_no}
 	</select>
+	<!-- 회원 - 회원이 듣는 수업, 매장 가져오기 -->
+	<select id="getMyGymList_and" parameterType="map" resultType="map">
+		SELECT distinct(g.gym_name) gym_name
+		  FROM gym g, class c, pay p
+		 WHERE g.gym_no = c.gym_no
+  		   AND c.cls_state = '진행'
+		   AND c.cls_no = p.cls_no
+		   AND p.mem_no = #{mem_no}
+	</select>
+	<!-- 회원 = 수업정보 가져오기 -->
+	<select id="getMyClassList_and" parameterType="map" resultType="map">
+		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr
+		  FROM gym
+		 WHERE gym_no = #{gym_no}
+	</select>
 <!-- 	
 	<select id="getGymProfile_and" parameterType="map" resultType="map">
 		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr, filedata

@@ -118,6 +118,13 @@ public class AndroidLogic {
 		gymProfileData = aDao.getGymProfile(pMap);
 		return gymProfileData;
 	}
+	//회원 - 수업 정보
+	public List<Map<String, Object>> getMyClass(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMyClass() 호출");
+		List<Map<String, Object>> myClassList = null;
+		myClassList = aDao.getMyClass(pMap);
+		return myClassList;
+	}
 		
 // 김승현
 		
