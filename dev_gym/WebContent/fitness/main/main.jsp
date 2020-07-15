@@ -184,8 +184,7 @@
 <%
 	} //로그인이 안됐을 때
 	else {
-%>
-		<script type="text/javascript">
+%>   	<script type="text/javascript">
 			$(document).ready(function() {
 				alert("로그인 후 이용해주세요");
 				location.href = "../start.jsp";
