@@ -86,15 +86,15 @@ public class AndroidDao {
 		logger.info("AndroidDao - getGymList() 호출");
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getGymList_and", pMap);
-//		for(Map<String, Object> map : gymList) {
-//			byte[] image = null;
-//			Blob blob = (Blob)map.get("FILEDATA");
-//			image = blob.getBytes(1, (int)blob.length());
-//			
-//			logger.info("image " + image.length);
-//			map.remove("FILEDATA");
-//			map.put("FILEDATA", image);
-//		}
+		for(Map<String, Object> map : gymList) {
+			byte[] image = null;
+			Blob blob = (Blob)map.get("FILEDATA");
+			image = blob.getBytes(1, (int)blob.length());
+			logger.info("image " + image.length);
+			map.remove("FILEDATA");
+			map.put("filedata", image);
+			image = null;
+		}
 		logger.info("gymList.size() : " + gymList.size());
 		return gymList;
 	}

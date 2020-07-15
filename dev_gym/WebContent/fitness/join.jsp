@@ -52,27 +52,27 @@
 			<label for="gym_username" class="col-sm-2 col-form-label">이름 </label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control"
-					   id="gym_username" name="gym_username" required>
+					   id="gym_username" name="gym_username" value="준규" required>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="gym_usertell" class="col-sm-2 col-form-label">전화번호 </label>
 			<div class="col-sm-5">
 				<input type="tel" class="form-control" required
-					   id="gym_usertell" name="gym_usertell" placeholder="000-0000-0000">
+					   id="gym_usertell" name="gym_usertell" value="010-2020-0715" placeholder="000-0000-0000">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="gym_name" class="col-sm-2 col-form-label">매장이름</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" required
-					   id="gym_name" name="gym_name">
+					   id="gym_name" name="gym_name" value="준규피트니스">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="gym_tel" class="col-sm-2 col-form-label">매장번호</label>
 			<div class="col-sm-5">
-				<input type="tel" class="form-control" id="gym_tel" name="gym_tel" required>
+				<input type="tel" class="form-control" id="gym_tel" name="gym_tel" value="02-893-7777" required>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -90,11 +90,11 @@
 			<label for="gym_addr_dtl" class="col-sm-2 col-form-label">매장상세주소</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" required
-					   id="gym_addr_dtl" name="gym_addr_dtl">
+					   id="gym_addr_dtl" name="gym_addr_dtl" value="7층 준규피트니스">
 			</div>
 			<div class="col-sm-2" >
 				<input type="text" class="form-control" readonly
-					   id="gym_zipcode" name="gym_zipcode"
+					   id="gym_zipcode" name="gym_zipcode" 
 					   placeholder="우편번호">
 			</div>
 		</div>
@@ -102,7 +102,7 @@
 			<label for="gym_number" class="col-sm-2 col-form-label">사업자번호</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" required
-					   id="gym_number" name="gym_number" placeholder="000-00000-00">
+					   id="gym_number" name="gym_number" value="110-54847-55" placeholder="000-00000-00">
 			</div>
 		</div>
 		<div class="form-group row">
@@ -120,7 +120,7 @@
 		<div class="form-group row">
 			<label for="gym_info" class="col-sm-2 col-form-label">매장소개</label>
 			<div class="col-sm-8">
-				<textarea class="form-control" id="gym_info" name="gym_info" required></textarea>
+				<textarea class="form-control" id="gym_info" name="gym_info" required>새로 개업한 준규피트니스 입니다.</textarea>
 			</div>
 		</div>
 		<div class="form-group row">
