@@ -88,11 +88,11 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
         }
         Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
 
-        if(result != null){
-          //  Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "문제 발생.", Toast.LENGTH_LONG).show();
-        }
+//        if(result != null){
+//          //  Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(getApplicationContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
         Gson g = new Gson();
         gymList = (List<Map<String, Object>>)g.fromJson(result, listType);
         ////////////////////////////////////DB 연동 끝////////////////////////////////////
