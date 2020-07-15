@@ -7,7 +7,7 @@
 
     <!-- 이미지 확대기능 있음 -->
     <com.github.chrisbanes.photoview.PhotoView
-        android:id="@+id/pv_memInbody"
+        android:id="@+id/pv_tchMemInbody"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

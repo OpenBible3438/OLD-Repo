@@ -94,7 +94,10 @@ public class MemTimeTableAFragment extends Fragment {
                 log_days[cnt++] = cursor.getString(0);
                 Log.i("테스트", "log_days : " + log_days);
             }
-
+        }
+        if(log_days == null){
+            log_days = new String[1];
+            log_days[0] = "2020-02-10";
         }
         if(log_days == null){
             log_days = new String[1];

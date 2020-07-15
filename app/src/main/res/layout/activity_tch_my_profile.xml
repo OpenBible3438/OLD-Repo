@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="편성경 강사"
+                    android:text="나강사 강사"
                     android:textSize="18sp" />
                 <TextView
                     android:layout_width="match_parent"
@@ -56,8 +56,8 @@
 
         <ImageView
             android:layout_marginBottom="10dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/tch_profile_sample"
+            android:scaleType="fitCenter"
+            android:src="@drawable/people_sample2"
             android:layout_width="match_parent"
             android:layout_height="300dp"/>
         
@@ -69,7 +69,9 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:text="여기내짐 가산점에서는 개인 PT, 터짐 독산점에서는 보디빌더 대회준비반을 수업하고 있습니다.\n ☆ 문의 환영 ★"
+            android:text="안녕하세요
+                        \n나강사 강사입니다.
+                        \n☆ 문의 환영 ★"
             android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -229,6 +231,38 @@
                     android:layout_gravity="center"
                     android:padding="3dp"
                     android:text="보디빌더 대회준비"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    android:text="상시모집"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    android:text="요가원"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_gravity="center"
+                    android:padding="3dp"
+                    android:text="공중부양 핫요가"/>
 
                 <TextView
                     android:layout_width="wrap_content"

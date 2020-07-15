@@ -106,8 +106,8 @@ public class MemLogRegDialog {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    //TextView에 선택 시간 찍어주기
-                    tv_stime.setText(hourOfDay+":"+minute+":00");
+                        //TextView에 선택 시간 찍어주기
+                        tv_stime.setText(hourOfDay+":"+minute+":00");
                     }
                 }, hour, minute, true);
                 timePickerDialog.show();
