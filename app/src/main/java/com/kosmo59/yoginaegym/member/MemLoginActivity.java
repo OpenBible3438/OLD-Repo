@@ -80,7 +80,7 @@ public class MemLoginActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(MemLoginActivity.this, vo.getMemberId()+"님 로그인 성공", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MemLoginActivity.this, vo.getMemberName()+"님 로그인 성공", Toast.LENGTH_SHORT).show();
                     //Toast.makeText(MemLoginActivity.this, "이름은 "+vo.getMemberName()+"닉네임은 "+vo.getMemberNickname(), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(MemLoginActivity.this, MemMainActivity.class);
                     startActivity(intent);
