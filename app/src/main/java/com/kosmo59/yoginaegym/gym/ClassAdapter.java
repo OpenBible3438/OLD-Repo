@@ -58,22 +58,22 @@ public class ClassAdapter extends ArrayAdapter {
         TextView tv_gym_class_endDate = convertView.findViewById(R.id.tv_gym_class_endDate);
         TextView tv_gym_class_time = convertView.findViewById(R.id.tv_gym_class_time);
         TextView tv_gym_class_price = convertView.findViewById(R.id.tv_gym_class_price);
-        Log.i("테스트테", "classList.get(position) : " + classList.get(position));
+        Log.i("테스트", "classList.get(position) : " + classList.get(position));
         tv_gym_class_title.setText(classList.get(position).get("CLS_NAME").toString());
         tv_gym_class_startDate.setText(classList.get(position).get("CLS_S_DATE").toString());
         tv_gym_class_endDate.setText(classList.get(position).get("CLS_E_DATE").toString());
         String stime = classList.get(position).get("CLS_STIME").toString();
         String etime = classList.get(position).get("CLS_ETIME").toString();
         tv_gym_class_time.setText(stime+" - "+etime);
-        tv_gym_class_price.setText(classList.get(position).get("CLS_PRICE").toString());
-
+        tv_gym_class_price.setText((classList.get(position).get("CLS_PRICE").toString()).split("\\.")[0]);
+        final int cho_cls = Integer.parseInt((classList.get(position).get("CLS_NO").toString()).split("\\.")[0]);
         //자세히보기 이미지 버튼 리스너
         btn_class_detail = convertView.findViewById(R.id.btn_class_detail);
         btn_class_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-                ClassDetailDialog classDetailDialog = new ClassDetailDialog(context);
+                ClassDetailDialog classDetailDialog = new ClassDetailDialog(context, cho_cls);
                 // 커스텀 다이얼로그를 호출한다.
                 classDetailDialog.openClassDetailDialog();
             }
