@@ -7,7 +7,7 @@
     android:background="#EDEDED"
     android:padding="30sp">
 
-<!--일지 등록-->
+<!--  일지 등록  -->
 <!--======================================카드뷰 시작-->
     <androidx.cardview.widget.CardView
         android:id="@+id/dailyRecord_reg"

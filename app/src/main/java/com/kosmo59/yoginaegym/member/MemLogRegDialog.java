@@ -207,9 +207,9 @@ public class MemLogRegDialog {
                     + ", " + cursor.getString(3)+ ", " + cursor.getString(4)+ ", " + cursor.getString(5)
                     + ", " + cursor.getString(6)+ ", " + cursor.getString(7));
             dlg.dismiss();
-            (memlog).onResume();
             /////***********************등록되었습니다 알림창 띄워주기*******************///////
             /////***********************일지 목록 새로 고침 처리 해줘야 한다..!*******************///////
+            (memlog).onResume();
         }
     }
 }

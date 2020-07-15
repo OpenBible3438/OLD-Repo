@@ -48,12 +48,12 @@
 
                     <TextView
                         android:id="@+id/tv_memProName"
-                        android:text="편성경 회원님"
+                        android:text="나회원 회원님"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#FFFFFF"/>
+                    android:textColor="#FFFFFF"/>
                     <TextView
                         android:id="@+id/tv_memProTel"
                         android:text="010-1234-5678"
@@ -71,11 +71,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="#FFFFFF"/>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/buttonColor"
-                        android:text="프로필 변경" />
                 </LinearLayout>
 
             </LinearLayout>
