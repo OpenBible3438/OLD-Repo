@@ -49,7 +49,6 @@ public class GymSearchAdapter extends ArrayAdapter {
     public GymSearchAdapter(Context gymSearchActivity, int resource, List<Map<String, Object>> gymList) {
         super(gymSearchActivity, resource, gymList);
         this.gymSearchActivity = gymSearchActivity;
-        this.gymSearchActivity = gymSearchActivity;
         this.mList = gymList;
         this.resourceId = resource;
     }
