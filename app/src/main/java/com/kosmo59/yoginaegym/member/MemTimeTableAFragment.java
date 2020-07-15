@@ -204,7 +204,7 @@ public class MemTimeTableAFragment extends Fragment {
 //                return;
 //            }
             Log.i("테스트", "onPostExecute 호출");
-            materialcalendarview.addDecorator(new EventDecorator(Color.GREEN, calendarDays, MemTimeTableAFragment.this));
+            materialcalendarview.addDecorator(new EventDecorator(Color.BLUE, calendarDays, MemTimeTableAFragment.this));
             Log.i("테스트", "addDecorator 다음 코드");
         }
 

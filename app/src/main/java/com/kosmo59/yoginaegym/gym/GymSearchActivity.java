@@ -88,11 +88,11 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
         }
         Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
 
-        if(result != null){
-          //  Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "문제 발생.", Toast.LENGTH_LONG).show();
-        }
+//        if(result != null){
+//          //  Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(getApplicationContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
         Gson g = new Gson();
         gymList = (List<Map<String, Object>>)g.fromJson(result, listType);
         ////////////////////////////////////DB 연동 끝////////////////////////////////////
@@ -184,7 +184,155 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
             gymSearchMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15)); //처음 보여주는 위치
 //            gymSearchMap.animateCamera(CameraUpdateFactory.zoomTo(15)); //숫자가 커질수록 상세하게 보여줌
             CircleOptions circle1KM = new CircleOptions().center(myPosition) //원점
-                    .radius(30)      //반지름 단위 : m
+                    .radius(30
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    )      //반지름 단위 : m
                     .strokeWidth(0f)  //선너비 0f : 선없음
                     .fillColor(Color.parseColor("#6C9FFF"));
 

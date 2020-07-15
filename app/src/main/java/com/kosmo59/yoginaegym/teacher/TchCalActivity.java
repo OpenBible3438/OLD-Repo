@@ -86,7 +86,7 @@ public class TchCalActivity extends AppCompatActivity {
 
                 Log.i("shot_Day test", shot_Day + "");
                 //materialCalendarView.clearSelection();
-                Toast.makeText(getApplicationContext(), shot_Day, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), shot_Day, Toast.LENGTH_SHORT).show();
             }
         });
 

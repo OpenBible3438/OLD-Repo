@@ -52,7 +52,7 @@ public class GymProfileActivity extends AppCompatActivity{
 
         vo = (AppVO) getApplicationContext();
         gym_no = vo.gym_no;
-        Toast.makeText(getApplicationContext(), gym_no+"번 매장 클릭", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), gym_no+"번 매장 클릭", Toast.LENGTH_SHORT).show();
 
         ////////////////////////////////////DB 연동 시작////////////////////////////////////
         String result = null;
@@ -70,11 +70,11 @@ public class GymProfileActivity extends AppCompatActivity{
         }
         Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
 
-        if(result != null){
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "문제 발생.", Toast.LENGTH_LONG).show();
-        }
+//        if(result != null){
+//            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(getApplicationContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
         Gson g = new Gson();
         gymProf = (List<Map<String, Object>>)g.fromJson(result, listType);
         ////////////////////////////////////DB 연동 끝////////////////////////////////////

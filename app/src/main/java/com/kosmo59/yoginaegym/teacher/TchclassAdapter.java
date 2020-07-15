@@ -148,11 +148,11 @@ public class TchclassAdapter extends ArrayAdapter {
                     Log.i("테스트", "Exception : " + e.toString());
                 }
                 Log.i("테스트", "톰캣서버에서 읽어온 정보 : " + result);
-                if (result != null) {
-                    Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(mContext, "문제 발생.", Toast.LENGTH_LONG).show();
-                }
+//                if (result != null) {
+//                    Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(mContext, "문제 발생.", Toast.LENGTH_LONG).show();
+//                }
                 Gson g = new Gson();
                 List<Map<String, Object>> memList = (List<Map<String, Object>>) g.fromJson(result, listType);
                 Log.i("테스트", "memList.size() : " + memList.size());

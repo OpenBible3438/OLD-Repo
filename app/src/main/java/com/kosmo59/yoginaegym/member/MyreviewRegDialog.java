@@ -122,7 +122,7 @@ public class MyreviewRegDialog {
 
     void show() {
         Log.i("테스트", "show()");
-        Toast.makeText(context.getApplicationContext(),"show()", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context.getApplicationContext(),"show()", Toast.LENGTH_SHORT).show();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("등록하시겠습니까?");
         builder.setPositiveButton("예",
