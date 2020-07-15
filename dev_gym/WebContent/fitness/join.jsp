@@ -52,7 +52,7 @@
 			<label for="gym_username" class="col-sm-2 col-form-label">이름 </label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control"
-					   id="gym_username" name="gym_username" value="준호" required>
+					   id="gym_username" name="gym_username" value="준규" required>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -66,7 +66,7 @@
 			<label for="gym_name" class="col-sm-2 col-form-label">매장이름</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" required
-					   id="gym_name" name="gym_name" value="준호피트니스">
+					   id="gym_name" name="gym_name" value="준규피트니스">
 			</div>
 		</div>
 		<div class="form-group row">
@@ -90,11 +90,11 @@
 			<label for="gym_addr_dtl" class="col-sm-2 col-form-label">매장상세주소</label>
 			<div class="col-sm-5">
 				<input type="text" class="form-control" required
-					   id="gym_addr_dtl" name="gym_addr_dtl">
+					   id="gym_addr_dtl" name="gym_addr_dtl" value="7층 준규피트니스">
 			</div>
 			<div class="col-sm-2" >
 				<input type="text" class="form-control" readonly
-					   id="gym_zipcode" name="gym_zipcode" value="7층 준호피트니스"
+					   id="gym_zipcode" name="gym_zipcode" 
 					   placeholder="우편번호">
 			</div>
 		</div>
@@ -120,7 +120,7 @@
 		<div class="form-group row">
 			<label for="gym_info" class="col-sm-2 col-form-label">매장소개</label>
 			<div class="col-sm-8">
-				<textarea class="form-control" id="gym_info" name="gym_info" required>새로 개업한 준호피트니스 입니다.</textarea>
+				<textarea class="form-control" id="gym_info" name="gym_info" required>새로 개업한 준규피트니스 입니다.</textarea>
 			</div>
 		</div>
 		<div class="form-group row">

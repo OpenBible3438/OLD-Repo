@@ -20,7 +20,7 @@
 	        	<input type="file" id="contentInputImgs" name="img" class="form-control-file border" accept=".gif, .jpg, .png">
 	        	<div class="form-group">
   					<label for="cont_contents">컨텐츠 내용:</label>
-  					<textarea class="form-control" rows="5" id="cont_contents" name="cont_contents">신장개업 이벤트! 스타강사 나강사가 진행하는 요가기초반       6개월 권 반 값 할인 이벤트 중입니다! 많은 부탁드립니다.</textarea>
+  					<textarea class="form-control" rows="5" id="cont_contents" name="cont_contents">신장개업 이벤트! 스타강사 나강사가 진행하는 요가기초반       6개월 권 반 값 할인 이벤트 중입니다!</textarea>
 				</div>
 			</form>
 	        </div>
