@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,17 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.common.TomcatSend;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MemMyClassFragment extends Fragment {
     Button btn_memMyClass;
@@ -44,6 +53,35 @@ public class MemMyClassFragment extends Fragment {
         arrayList.add("여기 내짐");
         arrayList.add("터짐");
         arrayList.add("마음가짐");
+
+        ////////////////////////////////////DB 연동 시작////////////////////////////////////
+//        String result = null;
+//        String reqUrl = "android/myClassList.gym";
+//        AppVO vo = (AppVO) getActivity().getApplicationContext();
+//        String nowMem = null;
+//        Map<String, Object> memMap = new HashMap<>();
+//        memMap.put("mem_no", vo.mem_no);/////////////바꿀 코드
+//        memMap.put("gym_no", 999);/////////////바꿀 코드
+//        nowMem = memMap.toString();
+//        Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
+//        Log.i("테스트", "nowMem : " + nowMem);
+//        try {
+//            TomcatSend tomcatSend = new TomcatSend();
+//            result = tomcatSend.execute(reqUrl, nowMem).get();
+//        } catch (Exception e){
+//            Log.i("테스트", "Exception : "+e.toString());
+//        }
+//        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
+//
+//        if(result != null){
+//            Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
+//        Gson g = new Gson();
+//        memPayList = (List<Map<String, Object>>)g.fromJson(result, listType);
+        ////////////////////////////////////DB 연동 끝////////////////////////////////////
+
 
         arrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, arrayList);
 

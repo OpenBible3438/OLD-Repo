@@ -17,12 +17,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.GymDBHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class MemLogRegDialog {
@@ -39,14 +42,15 @@ public class MemLogRegDialog {
     private TextView tv_stime;
     private TextView tv_etime;
     private Button btn_logDetail_ins;
-
+    Fragment memlog;
     GymDBHelper gymDBHelper = null;
     SQLiteDatabase db = null;
     AppVO vo = null;
     int hour = 0, minute = 0;
     Dialog dlg = null;
-    public MemLogRegDialog(Context context) {
+    public MemLogRegDialog(Context context, Fragment memlog) {
         this.context = context;
+        this.memlog = memlog;
     }
 
     public void openMemLogRegDialog() {
@@ -72,8 +76,6 @@ public class MemLogRegDialog {
         //일지 제목을 입력할 EditView 찾기
         et_log_title = dlg.findViewById(R.id.et_log_title);
 
-        //등록일 찍힐 TextView id 찾기
-        tv_reg_date = dlg.findViewById(R.id.tv_reg_date);
 
         //운동일 찍힐 TextView id찾기
         tv_exDate = dlg.findViewById(R.id.tv_exDate);
@@ -83,6 +85,15 @@ public class MemLogRegDialog {
 
         //종료시간 찍힐 tv_stime id찾기
         tv_etime = dlg.findViewById(R.id.tv_etime);
+
+        //등록일 지정
+        //등록일 찍힐 TextView id 찾기
+        tv_reg_date = dlg.findViewById(R.id.tv_reg_date);
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        String getTime = simpleDate.format(mDate);
+        tv_reg_date.setText(getTime);
 
         //운동일 지정
         icon_date = dlg.findViewById(R.id.icon_date);
@@ -124,7 +135,11 @@ public class MemLogRegDialog {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         //TextView에 선택 시간 찍어주기
-                        tv_etime.setText(hourOfDay+":"+minute+":00");
+                        String hour = "";
+                        String day = "";
+                        if(hourOfDay < 10) hour = "0"+hourOfDay;
+                        if(hourOfDay < 10) day = "0"+hourOfDay;
+                        tv_etime.setText(hour+":"+day+":00");
                     }
                 }, hour, minute, true);
                 timePickerDialog.show();
@@ -192,11 +207,9 @@ public class MemLogRegDialog {
                     + ", " + cursor.getString(3)+ ", " + cursor.getString(4)+ ", " + cursor.getString(5)
                     + ", " + cursor.getString(6)+ ", " + cursor.getString(7));
             dlg.dismiss();
+            (memlog).onResume();
             /////***********************등록되었습니다 알림창 띄워주기*******************///////
             /////***********************일지 목록 새로 고침 처리 해줘야 한다..!*******************///////
-
-
         }
     }
-
 }
