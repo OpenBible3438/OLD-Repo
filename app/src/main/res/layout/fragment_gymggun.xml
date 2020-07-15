@@ -33,7 +33,7 @@
                     android:layout_width="80sp"
                     android:layout_height="80sp"
                     android:layout_gravity="center"
-                    android:src="@drawable/img_pr_test" />
+                    android:src="@drawable/people_sample1_256px" />
 
                 <LinearLayout
                     android:layout_marginLeft="20sp"
@@ -81,7 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="25sp"
                         android:gravity="center_vertical"
-                        android:text="홍길동 원장"
+                        android:text="김요가"
                         android:textSize="16sp" />
 
                     <TextView
@@ -96,7 +96,7 @@
                         android:layout_height="25sp"
                         android:gravity="center_vertical"
                         android:lines="1"
-                        android:text="한 줄로 제한합니다. "
+                        android:text="유연한 삶"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -124,7 +124,7 @@
                     android:layout_width="80sp"
                     android:layout_height="80sp"
                     android:layout_gravity="center"
-                    android:src="@drawable/img_pr_test" />
+                    android:src="@drawable/people_sample2" />
 
                 <LinearLayout
                     android:layout_marginLeft="20sp"
@@ -172,7 +172,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="25sp"
                         android:gravity="center_vertical"
-                        android:text="김유신 부원장"
+                        android:text="나강사"
                         android:textSize="16sp" />
 
                     <TextView
@@ -187,7 +187,7 @@
                         android:layout_height="25sp"
                         android:gravity="center_vertical"
                         android:lines="1"
-                        android:text="한 줄로 제한합니다. "
+                        android:text="자신있습니다"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -215,7 +215,7 @@
                     android:layout_width="80sp"
                     android:layout_height="80sp"
                     android:layout_gravity="center"
-                    android:src="@drawable/img_gymggun" />
+                    android:src="@drawable/people_sample3" />
 
                 <LinearLayout
                     android:layout_marginLeft="20sp"
@@ -278,7 +278,7 @@
                         android:layout_height="25sp"
                         android:gravity="center_vertical"
                         android:lines="1"
-                        android:text="한 줄로 제한합니다. "
+                        android:text="건강한 몸짱"
                         android:textSize="16sp" />
                 </LinearLayout>
 

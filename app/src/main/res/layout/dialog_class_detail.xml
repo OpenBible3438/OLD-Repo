@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:textStyle="bold"
                 android:gravity="left"
-                android:text="공중부양 핫요가"
+                android:text="3개월권"
                 android:textSize="18sp" />
             <LinearLayout
                 android:gravity="right"
@@ -168,25 +168,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="2020-01-01"
+                        android:text="2020-06-01"
                         android:textSize="16sp" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="2020-12-31"
+                        android:text="2020-08-30"
                         android:textSize="16sp" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="14:00:00"
+                        android:text="00:00:00"
                         android:textSize="16sp" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="15:00:00"
+                        android:text="00:00:00"
                         android:textSize="16sp" />
                     <TextView
                         android:layout_width="match_parent"
@@ -213,9 +213,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="start"
                         android:lines="5"
-                        android:text="헬스 짐꾼1의 요가입니다. 헬스 짐꾼1의 요가입니다. 헬스 짐꾼1의 요가입니다.
-                                      \n헬스 짐꾼1의 요가입니다. 헬스 짐꾼1의 요가입니다. 헬스 짐꾼1의 요가입니다.
-                                      \n다섯 줄로 제한합니다."
+                        android:text="요가원 짐꾼2의 요가입니다.\n단체수업입니다.
+                                      \n3개월 동안 월 수 금 원하는 시간대 수업에 참여하시면 됩니다."
                         android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -254,7 +253,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="300000"
+                        android:text="90000"
                         android:textSize="16sp" />
                     <TextView
                         android:layout_width="match_parent"
