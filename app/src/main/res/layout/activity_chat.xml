@@ -7,6 +7,7 @@
     tools:context=".common.Chat">
 
     <ListView
+        android:divider="#ffffff"
         android:id="@+id/lv_chatList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
