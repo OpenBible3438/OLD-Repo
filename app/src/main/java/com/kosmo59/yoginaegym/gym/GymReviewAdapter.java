@@ -62,8 +62,16 @@ public class GymReviewAdapter extends ArrayAdapter {
 
         tv_gym_review_memNick.setText(rewiewList.get(position).get("MEM_NICKNAME").toString());
         tv_gym_review_cont.setText(rewiewList.get(position).get("REV_CONT").toString());
-        tv_gym_review_date.setText(rewiewList.get(position).get("REV_TIME").toString());
-        rb_gym_review.setProgress(Integer.parseInt(rewiewList.get(position).get("REV_STAR").toString()));
+        tv_gym_review_date.setText(rewiewList.get(position).get("REV_DATE").toString());
+
+        String star = rewiewList.get(position).get("REV_STAR").toString();
+
+        final String starResult = star.substring(0, star.length()-2);
+        int starResultToInt = Integer.parseInt(starResult);
+
+        Log.i("레이팅바", "레이팅바 : " + starResultToInt);
+
+        rb_gym_review.setProgress(starResultToInt);
         //String etime = rewiewList.get(position).get("CLS_ETIME").toString();
 
         return convertView;
