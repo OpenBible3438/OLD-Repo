@@ -190,12 +190,10 @@
                     android:layout_height="wrap_content"
                     android:hint="상세주소 입력" />
             </LinearLayout>
-
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/toggle_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:checkedButton="@+id/btn_man"
                 app:singleSelection="true">
 
                 <com.google.android.material.button.MaterialButton
