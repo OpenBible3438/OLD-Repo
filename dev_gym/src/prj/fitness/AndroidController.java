@@ -175,6 +175,16 @@ public class AndroidController implements Controller{
 					logger.info("selResult : " + selResult);
 					mav.type = "json";
 				}break;
+				case "jsonTchList":{//매장 - 강사진
+					selResult = aLogic.getTchList(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
+				}break;
+				case "jsonClsDtl":{//매장 - 수업 - 자세히보기
+					selResult = aLogic.getClsDetail(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
+				}break;
 				
 			// 김승현
 				

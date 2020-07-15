@@ -188,6 +188,14 @@
 		  FROM gym
 		 WHERE gym_no = #{gym_no}
 	</select>
+	<!-- 매장 - 강사진 리스트 가져오기 -->
+	<select id="getTchList_and" parameterType="map" resultType="map">
+		   SELECT t.tch_no, t.tch_name, ti.tch_intro
+		     FROM gym g, teacher t, tch_info ti
+		    WHERE g.gym_no = t.gym_no
+		      AND t.tch_no = ti.tch_no
+		      AND t.gym_no = #{gym_no}
+	</select>
 	<!-- 회원 - 회원이 듣는 수업, 매장 가져오기 -->
 	<select id="getMyGymList_and" parameterType="map" resultType="map">
 		SELECT distinct(g.gym_name) gym_name
@@ -197,11 +205,15 @@
 		   AND c.cls_no = p.cls_no
 		   AND p.mem_no = #{mem_no}
 	</select>
-	<!-- 회원 = 수업정보 가져오기 -->
+	<!-- 회원 = 수업정보 가져오기 --><!-- 자세히보기까지 재사용 -->
 	<select id="getMyClassList_and" parameterType="map" resultType="map">
-		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr
-		  FROM gym
-		 WHERE gym_no = #{gym_no}
+		   SELECT c.cls_name, c.cls_stime, c.cls_etime, c.cls_day, c.cls_cnt, v.cls_cnt
+		   		, v.rcnt, v.clsdates, v.cnt
+		     FROM class c, pay p, view_mng_atd v
+		    WHERE c.cls_no = p.cls_no
+		      AND p.pay_no = v.pay_no
+		      AND p.mem_no = #{mem_no}
+		      AND c.cls_state = '진행'
 	</select>
 <!-- 	
 	<select id="getGymProfile_and" parameterType="map" resultType="map">
@@ -211,6 +223,16 @@
 		   AND TYPE = 'gym'
 		   AND typecode = #{gym_no}
 	</select> -->
+	<!-- 매장 - 수업 - 자세히 보기 -->
+	<select id="getClsDetail_and" parameterType="map" resultType="map">
+		SELECT c.cls_name, t.tch_name, tp.type_name, c.cls_kind, c.cls_s_date, c.cls_e_date
+		     , c.cls_stime, c.cls_etime, c.cls_day, c.cls_cnt, c.cls_days, c.cls_info
+		     , c.cls_price, c.cls_state
+		  FROM teacher t, type tp, class c
+		 WHERE c.type_no = tp.type_no
+		   AND t.tch_no = c.tch_no
+		   AND cls_no = #{cls_no}
+	</select>
 <!-- ======================= 김승현 ======================= -->
 
 

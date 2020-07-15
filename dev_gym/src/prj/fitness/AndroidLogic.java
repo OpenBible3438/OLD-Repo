@@ -105,7 +105,7 @@ public class AndroidLogic {
 	}
 	//회원 요일별 수업 구하기
 	public List<Map<String, Object>> getMemWeekCls(Map<String, Object> pMap) throws SQLException  {
-		logger.info("AndroidDao - getMemWeekCls() 호출");
+		logger.info("AndroidLogic - getMemWeekCls() 호출");
 		List<Map<String, Object>> memClsList = null;
 		memClsList = aDao.getMemWeekCls(pMap);
 		
@@ -113,17 +113,31 @@ public class AndroidLogic {
 	}
 	//매장 메인화면 - 매장 정보 조회하기
 	public List<Map<String, Object>> getGymProfile(Map<String, Object> pMap) throws SQLException  {
-		logger.info("AndroidDao - getGymProfile() 호출");
+		logger.info("AndroidLogic - getGymProfile() 호출");
 		List<Map<String, Object>> gymProfileData = null;
 		gymProfileData = aDao.getGymProfile(pMap);
 		return gymProfileData;
 	}
+	//매장 - 강사진 리스트 가져오기 
+	public List<Map<String, Object>> getTchList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getTchList() 호출");
+		List<Map<String, Object>> tchList = null;
+		tchList = aDao.getTchList(pMap);
+		return tchList;
+	}
 	//회원 - 수업 정보
 	public List<Map<String, Object>> getMyClass(Map<String, Object> pMap) throws SQLException  {
-		logger.info("AndroidDao - getMyClass() 호출");
+		logger.info("AndroidLogic - getMyClass() 호출");
 		List<Map<String, Object>> myClassList = null;
 		myClassList = aDao.getMyClass(pMap);
 		return myClassList;
+	}
+	//매장 - 수업 - 자세히 보기 
+	public List<Map<String, Object>> getClsDetail(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getClsDetail() 호출");
+		List<Map<String, Object>> dtlList = null;
+		dtlList = aDao.getClsDetail(pMap);
+		return dtlList;
 	}
 		
 // 김승현
@@ -156,7 +170,7 @@ public class AndroidLogic {
 	}
 	// 매장 기준 후기 조회 
 	public List<Map<String, Object>> getGymReviewList(Map<String, Object> pMap) throws SQLException {
-		logger.info("AndroidLogic - getGymContentsList() 호출 ");
+		logger.info("AndroidLogic - getGymReviewList() 호출 ");
 		List<Map<String, Object>> gymList = null;
 		gymList = aDao.getGymReviewList(pMap);
 		return gymList;
