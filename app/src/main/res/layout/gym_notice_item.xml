@@ -3,25 +3,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDEDED"
-    android:padding="30sp">
+    android:background="#EDEDED">
 
     <androidx.cardview.widget.CardView
+
+        android:background="#ffffff"
         android:id="@+id/cv_gymNotice"
         android:layout_width="match_parent"
-        android:layout_height="165dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10sp"
         android:elevation="10dp">
 
         <LinearLayout
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="15dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#FFFFFF"/>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -35,29 +36,35 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:background="#EDEDED"
+                        android:layout_marginBottom="7dp"
                         android:gravity="center"
-                        android:padding="3dp"
-                        android:text="제목" />
+                        android:text="제목"
+                        android:textColor="#009688"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#EDEDED"
                         android:gravity="center"
-                        android:padding="3dp"
+                        android:textStyle="bold"
+                        android:textColor="#009688"
                         android:text="날짜" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#EDEDED"
                         android:gravity="center"
-                        android:padding="3dp"
+                        android:textColor="#009688"
+                        android:textStyle="bold"
                         android:text="시간" />
 
                 </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#AEAEAE"/>
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -66,40 +73,46 @@
                         android:id="@+id/tv_gym_not_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:background="#EDEDED"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginTop="7dp"
                         android:gravity="center"
-                        android:padding="3dp"
                         android:text="첫 번째 공지사항" />
 
                     <TextView
                         android:id="@+id/tv_gym_not_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#EDEDED"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginTop="7dp"
                         android:gravity="center"
-                        android:padding="3dp"
                         android:text="2020-07-13" />
 
                     <TextView
                         android:id="@+id/tv_gym_not_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#EDEDED"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginTop="7dp"
                         android:gravity="center"
-                        android:padding="3dp"
                         android:text="12:01:33" />
 
                 </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#AEAEAE" />
+
             </TableLayout>
 
             <!-- 공지사항 내용 들어가는 부분 -->
 
             <TextView
+                android:textSize="16sp"
                 android:id="@+id/tv_gym_not_conts"
-                android:padding="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
                 android:text="안녕하세요. 첫 번째 공지사항 입니다.\n감기 조심하세요."/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
