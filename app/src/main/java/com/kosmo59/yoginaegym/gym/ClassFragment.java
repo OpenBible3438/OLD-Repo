@@ -60,11 +60,11 @@ public class ClassFragment extends Fragment {
         }
         Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
 
-        if(result != null){
-            Toast.makeText(container.getContext(), "수업리스트 호출 성공", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
-        }
+//        if(result != null){
+//            Toast.makeText(container.getContext(), "수업리스트 호출 성공", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
         Gson g = new Gson();
         gymClassList = (List<Map<String, Object>>)g.fromJson(result, listType);
         ClassAdapter classAdapter = new ClassAdapter(context, R.layout.gym_class_item, gymClassList);
