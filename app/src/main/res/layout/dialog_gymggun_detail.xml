@@ -22,20 +22,22 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent">
+
                 <TextView
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="6dp"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:text="강사"
+                    android:textColor="#009688"
                     android:textSize="14sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:text="이순신"
-                    android:textSize="18sp" />
+                    android:text="나강사"
+                    android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
                 android:gravity="right"
@@ -46,7 +48,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:backgroundTint="#00FFFFFF"
-                    app:srcCompat="@drawable/icon_close" />
+                    app:srcCompat="@drawable/icon_close_s" />
             </LinearLayout>
 
         </LinearLayout>
@@ -62,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="340sp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_gymggun"
+            android:src="@drawable/img_tch_nagangsa"
             />
 
 
@@ -144,25 +146,49 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="wrap_content">
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="60dp"
                     android:layout_height="match_parent">
                     <TextView
                         android:textSize="12sp"
+                        android:textColor="#009688"
                         android:text="담당수업"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
+                        android:textColor="#009688"
+                        android:text="아이디"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="12sp"
+                        android:textColor="#009688"
+                        android:text="성별"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="12sp"
+                        android:textColor="#009688"
+                        android:text="전화번호"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="12sp"
+                        android:textColor="#009688"
                         android:text="강사경력"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
+                        android:textColor="#009688"
                         android:text="자기소개"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
@@ -174,25 +200,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="짐꾼1의 PT"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:gravity="left|center"
-                        android:text="5년"
+                        android:text="tch100"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="남성"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="010-2222-2222"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="강사 3년차"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:layout_marginTop="4dp"
-                        android:lines="5"
-                        android:textSize="16sp"
+                        android:lines="3"
+                        android:textSize="20sp"
                         android:gravity="left|top"
-                        android:text="자기소개 5줄로 제한합니다.자기소개 5줄로 제한합니다.자기소개 5줄로 제한합니다.
-                                      \n자기소개 5줄로 제한합니다.자기소개 5줄로 제한합니다.자기소개 5줄로 제한합니다.
-                                      \n자기소개 5줄로 제한합니다."
+                        android:text="안녕하세요. 나강사입니다."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 

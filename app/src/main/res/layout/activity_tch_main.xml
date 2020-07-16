@@ -18,48 +18,55 @@
             android:layout_alignParentTop="true"/>
         <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기 위로 건들면 죽음 ☆★☆★☆★☆★☆★☆★☆★-->
         <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
-
         <LinearLayout
-            android:orientation="vertical"
+            android:padding="30dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:layout_marginBottom="?attr/actionBarSize">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:src="@drawable/app_logo"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"/>
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_marginBottom="?attr/actionBarSize">
 
-            <Button
-                android:id="@+id/btn_moveTchProfile"
-                android:text="내 프로필"
-                android:textStyle="bold"
-                android:layout_marginBottom="3dp"
-                android:background="@color/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-            <Button
-                android:id="@+id/btn_moveTchCal"
-                android:text="일정보기"
-                android:textStyle="bold"
-                android:layout_marginBottom="3dp"
-                android:background="@color/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-            <Button
-                android:id="@+id/btn_moveTchManage"
-                android:text="수업/회원 관리"
-                android:textStyle="bold"
-                android:layout_marginBottom="3dp"
-                android:background="@color/colorPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
+                <ImageView
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/app_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"/>
 
+                <Button
+                    android:id="@+id/btn_moveTchProfile"
+                    android:text="내 프로필"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="3dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:textSize="24sp"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btn_moveTchCal"
+                    android:text="일정보기"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="3dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:textSize="24sp"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btn_moveTchManage"
+                    android:text="수업/회원 관리"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="3dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:textSize="24sp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
         </LinearLayout>
+
 
 
         <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->

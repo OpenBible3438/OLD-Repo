@@ -46,7 +46,7 @@
 
         </LinearLayout>
 
-        <!--구분 라인-->
+        <!--  구분 라인  -->
         <View
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"

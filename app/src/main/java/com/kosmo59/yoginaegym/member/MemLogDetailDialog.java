@@ -84,13 +84,55 @@ public class MemLogDetailDialog {
 
         //시작시간 찍힐 tv_stime id찾기
         tv_stime = dlg.findViewById(R.id.tv_stime);
+        icon_stime.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //openTimePiker();
+                TimePickerDialog timePickerDialog = new TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        //TextView에 선택 시간 찍어주기
+                        tv_stime.setText(hourOfDay+":"+minute+":00");
+                    }
+                }, hour, minute, true);
+                timePickerDialog.show();
+            }
+        });
 
         //종료시간 찍힐 tv_stime id찾기
         tv_etime = dlg.findViewById(R.id.tv_etime);
+        icon_etime.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //openTimePiker();
+                TimePickerDialog timePickerDialog = new TimePickerDialog(context, android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        //TextView에 선택 시간 찍어주기
+                        String hour = " ";
+                        String day = " ";
+                        if(hourOfDay < 10) hour = "0"+hourOfDay;
+                        if(hourOfDay < 10) day = "0"+hourOfDay;
+                        tv_etime.setText(hour+":"+day+":00");
+                    }
+                }, hour, minute, true);
+                timePickerDialog.show();
+            }
+        });
 
         //운동일 지정
         icon_date = dlg.findViewById(R.id.icon_date);
-
+        icon_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //다이얼로그 떴을 때 현재 날짜로 띄우기
+                new DatePickerDialog(context, android.R.style.Theme_DeviceDefault_Light_Dialog, datePicker
+                        , calendar.get(Calendar.YEAR)
+                        , calendar.get(Calendar.MONTH)
+                        , calendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+        
         //수정버튼
         btn_logDetail_upd = dlg.findViewById(R.id.btn_logDetail_upd);
         btn_logDetail_upd.setOnClickListener(new View.OnClickListener() {
