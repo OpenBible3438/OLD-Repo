@@ -139,7 +139,7 @@
 	</select>
 	<!-- map에 사용 될 매장 리스트 구하기 -->
 	<select id="getGymList_and" parameterType="map" resultType="map">
-	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr
+	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq
 	  FROM gym, images
 	 WHERE gym_name IS NOT NULL
 	   AND gym_lat IS NOT NULL
@@ -149,17 +149,6 @@
 	   AND type = 'gym'
 	   AND typecode = gym_no
 	</select>
-<!-- 	<select id="getGymList_and" parameterType="map" resultType="map">
-	SELECT gym_no, gym_name, gym_tel, gym_lat, gym_lng, gym_addr||' '||gym_addr_dtl gym_addr, file_seq, filedata
-	  FROM gym, images
-	 WHERE gym_name IS NOT NULL
-	   AND gym_lat IS NOT NULL
-	   AND gym_lng IS NOT NULL
-	   AND gym_addr IS NOT NULL
-	   AND gym_addr_dtl IS NOT NULL
-	   AND type = 'gym'
-	   AND typecode = gym_no
-	</select> -->
 	<!-- 강사 주별 수업 시간표 구하기 -->
 	<select id="getTchWeekCls_and" parameterType="map" resultType="map">
 		SELECT cls_no, cls_name, cls_stime, cls_etime, cls_day
@@ -180,15 +169,15 @@
 	</select>
 	
 	<select id="getImageOne_and" parameterType="map" resultType="map">
-	SELECT filedata from images
- 	WHERE file_seq=#{file_seq}
+		SELECT filedata from images
+	 	WHERE file_seq=#{file_seq}
 	</select>
 	<!-- 매장 메인화면에 쓸 정보 가져오기 -->
-	<select id="getGymProfile_and" parameterType="map" resultType="map">
+<!--	<select id="getGymProfile_and" parameterType="map" resultType="map">
 		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr
 		  FROM gym
 		 WHERE gym_no = #{gym_no}
-	</select>
+	</select>-->
 	<!-- 매장 - 강사진 리스트 가져오기 -->
 	<select id="getTchList_and" parameterType="map" resultType="map">
 		   SELECT t.tch_no, t.tch_name, ti.tch_intro
@@ -220,7 +209,7 @@
 	</select>
 <!-- 	
 	<select id="getGymProfile_and" parameterType="map" resultType="map">
-		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr, filedata
+		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr, file_seq
 		  FROM gym, images
 		 WHERE gym_no = #{gym_no}
 		   AND TYPE = 'gym'
@@ -254,7 +243,7 @@
 		      ,C.GYM_CONT_TIME
 		      ,C.GYM_CONTENTS
 		      ,C.GYM_CONT_LIKE
-		      ,I.FILEDATA
+		      ,I.FILE_SEQ
 		  FROM gym g, images i, gym_contents c
 		 WHERE G.GYM_NO = C.GYM_NO
 		   AND I.TYPECODE = C.GYM_CONT_SEQ
@@ -268,7 +257,7 @@
 		      ,TI.TCH_INTRO
 		      ,TI.TCH_CAREER
 		      ,TI.TCH_LIKE
-		      ,I.FILEDATA
+		      ,I.FILE_SEQ
 		  FROM teacher t, images i, tch_info ti
 		 WHERE T.TCH_NO = TI.TCH_NO(+)
 		   AND T.GYM_NO = TI.GYM_NO(+)
@@ -324,7 +313,7 @@
 	<!-- 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) -->
 	<select id="getTchClsMemIbd" parameterType="map" resultType="map">
 			SELECT ck_date   -- 측정 날짜 
-			      ,filedata  -- 파일 
+			      ,file_seq  -- 파일 
 			  FROM inbody ibd, images i
 			 WHERE IBD.INBD_SEQ = I.TYPECODE
 			   AND I.TYPE = 'ibd'
@@ -341,7 +330,7 @@
 			      ,GC.GYM_CONT_DATE
 			      ,GC.GYM_CONT_TIME
 			      ,GC.GYM_CONT_LIKE
-			      ,I.FILEDATA
+			      ,I.FILE_SEQ
 			  FROM gym_contents gc, images i, gym g
 			 WHERE GC.GYM_NO = G.GYM_NO
 			   AND I.TYPE = 'gymCont'
@@ -360,7 +349,7 @@
 			      ,TI.TCH_INTRO
 			      ,TI.TCH_CAREER
 			      ,TI.TCH_LIKE
-			      ,I.FILEDATE
+			      ,I.FILE_SEQ
 			  FROM teacher t, tch_info ti, images i
 			 WHERE T.TCH_NO = TI.TCH_NO(+)
 			   AND T.GYM_NO = TI.GYM_NO
