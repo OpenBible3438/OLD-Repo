@@ -23,11 +23,11 @@
 
             <!--수업명-->
             <TextView
+                android:id="@+id/cls_name"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:textStyle="bold"
                 android:gravity="left"
-                android:text="3개월권"
                 android:textSize="18sp" />
             <LinearLayout
                 android:gravity="right"
@@ -147,74 +147,72 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tch_name"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="짐꾼2"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_type"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="요가"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_kind"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="단체수업"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_s_date"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="2020-06-01"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_e_date"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="2020-08-30"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_s_time"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="00:00:00"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_e_time"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="00:00:00"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_day"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="월/수/금"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_cnt"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="15"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_days"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="365"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_info"
                         android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start"
-                        android:lines="5"
-                        android:text="요가원 짐꾼2의 요가입니다.\n단체수업입니다.
-                                      \n3개월 동안 월 수 금 원하는 시간대 수업에 참여하시면 됩니다."
                         android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -250,16 +248,16 @@
                     android:layout_width="170dp"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/cls_price"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="90000"
                         android:textSize="16sp" />
                     <TextView
+                        android:id="@+id/cls_state"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="start|center"
-                        android:text="진행"
                         android:textSize="16sp" />
 
                 </LinearLayout>

@@ -72,8 +72,10 @@ public class MemLoginActivity extends AppCompatActivity {
                         for (int i=0; i<jsonArray.length(); i++){
                             jsonObject = jsonArray.getJSONObject(i);
                             vo.setMemberId(id);
+                            vo.setMsgSendId(id);
                             vo.setMemberName(jsonObject.getString("MEM_NAME"));
                             vo.setRoomName1(jsonObject.getString("MEM_NAME"));
+                            vo.setMsgSendName(jsonObject.getString("MEM_NAME"));
                             vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
                             vo.setMem_no(jsonObject.getInt("MEM_NO"));
                         }

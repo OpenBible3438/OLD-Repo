@@ -15,6 +15,7 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.gym.GymNoticeFragment;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -112,9 +113,7 @@ public class TchManageActivity extends AppCompatActivity {
                 case 0:
                     return new TchClassFragment();
                 case 1:
-                    return new TchInbodyFragment();
-                case 2:
-                    return new MemoFragment();
+                    return new GymNoticeFragment();
             }
             return null;
         }
@@ -122,16 +121,15 @@ public class TchManageActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             /* 페이지 수. 수업, 인바디, 메모 => 3장 */
-            return 3;
+            return 2;
         }
         public CharSequence getPageTitle(int position){
             switch (position){
                 case 0:
-                    return "내 수업";
+                    return "수업 & 수강생 관리";
                 case 1:
-                    return "인바디";
-                case 2:
-                    return "메모";
+                    return "공지사항";
+
             }
             return null;
         }
