@@ -48,7 +48,7 @@ public class GymNoticeFragment extends Fragment {
         String reqUrl = "android/jsonGymNoticeList.gym";
         AppVO vo = (AppVO) getActivity().getApplicationContext();
         Map<String, Object> pMap = new HashMap<>();
-        pMap.put("gym_no", 1); //gym_no = 1, 일헬스 매장의 공지사항 부르기
+        pMap.put("gym_no", vo.gym_no);
 
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         try {
@@ -58,12 +58,12 @@ public class GymNoticeFragment extends Fragment {
             Log.i("테스트", "Exception : "+e.toString());
         }
         Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
-
-        if(result != null){
-            //Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
-        }
+//
+//        if(result != null){
+//            //Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
         Gson g = new Gson();
         gymNoticeList = (List<Map<String, Object>>)g.fromJson(result, listType);
         GymNoticeAdapter gymNoticeAdapter = new GymNoticeAdapter(context, R.layout.gym_notice_item, gymNoticeList);

@@ -32,23 +32,24 @@
 
                 <ImageView
                     android:id="@+id/iv_memProImg"
-                    android:src="@drawable/default_profile"
+                    android:src="@drawable/people_sample2"
                     android:layout_width="100dp"
                     android:layout_height="100dp"/>
 
                 <!-- 그냥 공백 주는 텍스트 -->
-                <TextView
+                <View
                     android:layout_width="10dp"
                     android:layout_height="match_parent"/>
 
                 <LinearLayout
                     android:orientation="vertical"
+                    android:gravity="left|center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/tv_tchManageName"
-                        android:text="짐꾼1"
+                        android:text="나강사 강사"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
@@ -56,7 +57,7 @@
                         android:textColor="#FFFFFF"/>
                     <TextView
                         android:id="@+id/tv_tchManageTel"
-                        android:text="02-1234-5678"
+                        android:text="010-1234-5678"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"

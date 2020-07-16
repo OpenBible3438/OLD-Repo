@@ -17,6 +17,25 @@ public class AppVO extends Application {
     public String memberNum = null; //로그인 창에서 입력한 비밀번호를 회원번호로 받기
     public String roomName1 = null;
     public String memberNickname = null;
+    public String msgSendName = null; //메세지 발신자 정하기.
+    public String msgSendId = null;
+
+
+    public String getMsgSendId() {
+        return msgSendId;
+    }
+
+    public void setMsgSendId(String msgSendId) {
+        this.msgSendId = msgSendId;
+    }
+
+    public String getMsgSendName() {
+        return msgSendName;
+    }
+
+    public void setMsgSendName(String msgSendName) {
+        this.msgSendName = msgSendName;
+    }
 
 
     public String getMemberNickname() {
@@ -66,6 +85,7 @@ public class AppVO extends Application {
     /* 강사 */
     public String tchName = null;
     public String tchId = null;
+    public int tch_no = 0;
     public String tchNum = null; //로그인 창에서 입력한 비밀번호를 강사번호로 받기
     public String roomName2 = null;
 
@@ -75,6 +95,10 @@ public class AppVO extends Application {
 
     public void setTchNum(String tchNum) {
         this.tchNum = tchNum;
+    }
+
+    public void setTch_no(int tch_no) {
+        this.tch_no = tch_no;
     }
 
     public String getTchName() {

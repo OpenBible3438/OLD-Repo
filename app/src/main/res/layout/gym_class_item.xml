@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
     android:background="#EDEDED">
 
     <androidx.cardview.widget.CardView
@@ -50,7 +49,9 @@
 
             <!--구분 라인-->
             <View
-                android:layout_width="310dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:paddingLeft="20dp"
                 android:layout_gravity="center"

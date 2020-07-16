@@ -42,8 +42,7 @@ public class MemWeekFragment extends Fragment {
         AppVO vo = (AppVO) getActivity().getApplicationContext();
         String nowMem = null;
         Map<String, Object> memMap = new HashMap<>();
-        memMap.put("mem_no", vo.mem_no);/////////////바꿀 코드?????
-        memMap.put("gym_no", 999);/////////////바꿀 코드
+        memMap.put("mem_no", vo.mem_no);
         nowMem = memMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         Log.i("테스트", "nowMem : " + nowMem);
@@ -55,11 +54,11 @@ public class MemWeekFragment extends Fragment {
         }
         Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
 
-        if(result != null){
-            Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
-        }
+//        if(result != null){
+//            Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
         Gson g = new Gson();
         memWeekClsList = (List<Map<String, Object>>)g.fromJson(result, listType);
         Log.i("테스트", "memWeekClsList : " + memWeekClsList);

@@ -29,9 +29,12 @@ public class Chat extends AppCompatActivity {
 
     private DatabaseReference databaseReference = null;
     private ListView lv_chatList;
-    private ArrayList<String> chatList = new ArrayList<>();
-    private ArrayAdapter<String> arrayAdapter;
     private String roomName = null;
+
+    //변경된 Adapter
+    ChatAdapter chatAdapter;
+    private ArrayAdapter<MessageData> arrayAdapter;
+    private ArrayList<MessageData> chatList = new ArrayList<>();
 
     //list view에 출력
     private String chat_msg=null, chat_user=null, chat_number = null, chat_time=null;
@@ -56,8 +59,8 @@ public class Chat extends AppCompatActivity {
         et_msgSend = findViewById(R.id.et_msgSend);
         vo = (AppVO)getApplicationContext();
 
-        arrayAdapter = new ArrayAdapter<String>(Chat.this, android.R.layout.simple_list_item_1, chatList);
-        lv_chatList.setAdapter(arrayAdapter);
+        chatAdapter = new ChatAdapter(this, chatList, vo.getMsgSendName());
+        lv_chatList.setAdapter(chatAdapter);
 
         //채팅방 이름 설정
         roomName = vo.getRoomName1()+vo.getRoomName2();
@@ -65,8 +68,12 @@ public class Chat extends AppCompatActivity {
         //Firebase Database에 roomName으로 참조
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Chat").child(roomName);
 
-        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        simpleDateFormat = new SimpleDateFormat("HH:mm");
 
+        send_name = vo.getMsgSendName();
+        send_id = vo.getMsgSendName();
+
+        /*
         if(vo.getMemberId()!=null){
             //회원 번호가 null이 아니면 회원으로 로그인한 것
             send_name = vo.getMemberName();
@@ -78,6 +85,7 @@ public class Chat extends AppCompatActivity {
             send_id = vo.getTchId();
         }
 
+         */
 
         btn_msgSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,8 +103,8 @@ public class Chat extends AppCompatActivity {
                 String time = simpleDateFormat.format(System.currentTimeMillis());
 
                 objectMap.put("name", send_name);
-                objectMap.put("id", send_id);
                 objectMap.put("text", et_msgSend.getText().toString());
+                //objectMap.put("id", send_id);
                 objectMap.put("time", time);
                 updateRef.updateChildren(objectMap);
 
@@ -135,13 +143,18 @@ public class Chat extends AppCompatActivity {
     private void chatConversation(DataSnapshot dataSnapshot){
         Iterator i = dataSnapshot.getChildren().iterator();
         while (i.hasNext()){
-            chat_number = ((DataSnapshot)i.next()).getValue().toString(); //id임
+            MessageData data = new MessageData();
+            data.NAME = (String) ((DataSnapshot) i.next()).getValue();
+            data.MSG = chat_msg = (String)((DataSnapshot) i.next()).getValue();
+            data.TIME = (String) ((DataSnapshot) i.next()).getValue();
+            chatList.add(data);
+            /*chat_number = ((DataSnapshot)i.next()).getValue().toString(); //id임
             chat_user = ((DataSnapshot)i.next()).getValue().toString();//name
             chat_msg = ((DataSnapshot)i.next()).getValue().toString();
             chat_time = ((DataSnapshot)i.next()).getValue().toString();
             //불러온 것들 중 이름과 text를 ListView에 출력
-            arrayAdapter.add("["+chat_user+"] : "+chat_msg);
+            chatList.add("["+chat_user+"] : "+chat_msg);*/
         }
-        arrayAdapter.notifyDataSetChanged();
+        chatAdapter.notifyDataSetChanged();
     }
 }

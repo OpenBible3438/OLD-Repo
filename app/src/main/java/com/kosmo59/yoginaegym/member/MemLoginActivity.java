@@ -72,15 +72,17 @@ public class MemLoginActivity extends AppCompatActivity {
                         for (int i=0; i<jsonArray.length(); i++){
                             jsonObject = jsonArray.getJSONObject(i);
                             vo.setMemberId(id);
+                            vo.setMsgSendId(id);
                             vo.setMemberName(jsonObject.getString("MEM_NAME"));
                             vo.setRoomName1(jsonObject.getString("MEM_NAME"));
+                            vo.setMsgSendName(jsonObject.getString("MEM_NAME"));
                             vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
                             vo.setMem_no(jsonObject.getInt("MEM_NO"));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(MemLoginActivity.this, vo.getMemberId()+"님 로그인 성공", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MemLoginActivity.this, vo.getMemberName()+"님 로그인 성공", Toast.LENGTH_SHORT).show();
                     //Toast.makeText(MemLoginActivity.this, "이름은 "+vo.getMemberName()+"닉네임은 "+vo.getMemberNickname(), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(MemLoginActivity.this, MemMainActivity.class);
                     startActivity(intent);

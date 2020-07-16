@@ -3,6 +3,7 @@ package com.kosmo59.yoginaegym.member;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.github.chrisbanes.photoview.PhotoView;
@@ -33,6 +34,11 @@ public class InbodyDialog {
 
         //전체화면
         //dlg.setStyle( PRDialog.STYLE_NO_TITLE, android.R.style.Theme_NoTitleBar_Fullscreen );
+
+        WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
 
         // 커스텀 다이얼로그를 노출한다.
         dlg.show();

@@ -87,6 +87,8 @@ public class MemMainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.bot_nav_home:
+                        //MainActivity에서는 뒤로 갈 필요 없음 주석처리
+                        //MemMainActivity.super.onBackPressed();
                         break;
                     case R.id.bot_nav_qr:
                         //다이얼로그 초기화
@@ -98,7 +100,8 @@ public class MemMainActivity extends AppCompatActivity {
                         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
                         dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
                         //QR 코드 생성
-                        String data = vo.getMemberId(); //mem_id로 QR코드 생성
+                        //String data = vo.getMemberId(); //mem_id로 QR코드 생성
+                        String data = "701 "; // 701로 상수 넣기
                         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                         try {
                             BitMatrix bitMatrix = multiFormatWriter.encode(data, BarcodeFormat.QR_CODE, 300,300);
