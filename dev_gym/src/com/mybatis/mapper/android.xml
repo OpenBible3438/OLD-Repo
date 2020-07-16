@@ -176,6 +176,7 @@
 		   AND p.mem_no = m.mem_no
 		   AND m.mem_no = #{mem_no}
 		   AND cls_kind = '단체 수업'
+		   AND cls_state = '진행'
 	</select>
 	
 	<select id="getImageOne_and" parameterType="map" resultType="map">
@@ -207,13 +208,15 @@
 	</select>
 	<!-- 회원 = 수업정보 가져오기 --><!-- 자세히보기까지 재사용 -->
 	<select id="getMyClassList_and" parameterType="map" resultType="map">
-		   SELECT c.cls_name, c.cls_stime, c.cls_etime, c.cls_day, c.cls_cnt, v.cls_cnt
-		   		, v.rcnt, v.clsdates, v.cnt
-		     FROM class c, pay p, view_mng_atd v
-		    WHERE c.cls_no = p.cls_no
-		      AND p.pay_no = v.pay_no
-		      AND p.mem_no = #{mem_no}
-		      AND c.cls_state = '진행'
+		    SELECT c.cls_name, c.cls_stime, c.cls_etime, c.cls_day, c.cls_cnt, t.tch_name, c.cls_s_date, c.cls_e_date
+                   , v.rcnt, v.clsdates, v.cnt, c.cls_info
+             FROM class c, pay p, view_mng_atd v, teacher t
+            WHERE c.cls_no = p.cls_no
+              AND p.pay_no = v.pay_no
+              AND p.mem_no = 100
+              AND c.tch_no = t.tch_no
+              AND c.gym_no = t.gym_no
+              AND c.cls_state = '진행'
 	</select>
 <!-- 	
 	<select id="getGymProfile_and" parameterType="map" resultType="map">
