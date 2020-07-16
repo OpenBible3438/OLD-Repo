@@ -96,8 +96,8 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
         Gson g = new Gson();
         gymList = (List<Map<String, Object>>)g.fromJson(result, listType);
         ////////////////////////////////////DB 연동 끝////////////////////////////////////
-
-        GymSearchAdapter gymSearchAdapter = new GymSearchAdapter(GymSearchActivity.this, R.layout.gym_search_list_item, gymList);
+        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+gymList.toString());
+        GymSearchAdapter gymSearchAdapter = new GymSearchAdapter(GymSearchActivity.this, R.layout.gym_search_list_item, gymList, result);
         s_gymList = findViewById(R.id.s_gymList);
         s_gymList.setAdapter(gymSearchAdapter);
         //////////////////////////////////////어댑터 연결 끝///////////////////////////////
