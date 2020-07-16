@@ -23,7 +23,8 @@ public class TchMyProfileActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"activity_tch_main으로 이동해주세요.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"activity_tch_main으로 이동해주세요.", Toast.LENGTH_LONG).show();
+                TchMyProfileActivity.super.onBackPressed();
             }
         });
     }

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10sp"
-        android:elevation="100dp"
+        android:elevation="0dp"
         app:cardBackgroundColor="#ffffff">
 
         <LinearLayout
@@ -28,7 +28,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="60dp">
 
                 <!--수업명-->
                 <TextView
@@ -40,7 +40,7 @@
                     android:textStyle="bold"
                     android:text="공중부양 핫요가"
                     android:textAlignment="textStart"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     tools:ignore="RtlCompat" />
             </LinearLayout>
 
@@ -58,35 +58,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:padding="20sp">
+                android:padding="20dp">
 
                 <LinearLayout
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="시작시간"
                         android:textSize="12sp"/>
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="종료시간"
                         android:textSize="12sp"/>
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
+                        android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="수업요일"
                         android:textSize="12sp"/>
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="25sp"
+                        android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="수강생수"
                         android:textSize="12sp"/>
@@ -102,32 +102,32 @@
                     <TextView
                         android:id="@+id/cls_stime"
                         android:layout_width="match_parent"
-                        android:layout_height="25sp"
+                        android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="14:00:00"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/cls_etime"
                         android:layout_width="match_parent"
-                        android:layout_height="25sp"
+                        android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="15:00:00"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
                     <TextView
                         android:id="@+id/cls_day"
                         android:layout_width="match_parent"
-                        android:layout_height="25sp"
+                        android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="화/목/금"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
                     <TextView
                         android:id="@+id/cls_cnt"
                         android:layout_width="match_parent"
-                        android:layout_height="25sp"
+                        android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="11회"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_weight="1"
