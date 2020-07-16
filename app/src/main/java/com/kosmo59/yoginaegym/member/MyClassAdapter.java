@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kosmo59.yoginaegym.R;
@@ -49,7 +50,7 @@ public class MyClassAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(this.resourceId, parent, false);
 
@@ -76,7 +77,46 @@ public class MyClassAdapter extends ArrayAdapter {
 
                 // 커스텀 다이얼로그의 레이아웃을 설정한다.
                 dlg.setContentView(R.layout.dialog_mem_my_class_detail);
+                /////////////////////다이얼로그에 값 넣기/////////////////////
+                TextView cls_rcnt = dlg.findViewById(R.id.cls_rcnt);
+                TextView cls_rdays = dlg.findViewById(R.id.cls_rdays);
 
+                int rcnt = Integer.parseInt(((mList.get(position).get("RCNT")).toString()).split("\\.")[0]);
+                int cls_cnt = Integer.parseInt(((mList.get(position).get("CLS_CNT")).toString()).split("\\.")[0]);
+                int cnt = Integer.parseInt(((mList.get(position).get("CNT")).toString()).split("\\.")[0]);//남은 일 수
+                int clsdates = Integer.parseInt(((mList.get(position).get("CLSDATES")).toString()).split("\\.")[0]);
+                cls_rcnt.setText(rcnt+" / " + cls_cnt);
+                cls_rdays.setText(cnt+" / " + clsdates);
+
+                ProgressBar pgb_cnt = dlg.findViewById(R.id.pgb_cnt);
+                ProgressBar pgb_days = dlg.findViewById(R.id.pgb_days);
+                pgb_cnt.setMax(cls_cnt);
+                pgb_cnt.setProgress(cls_cnt - rcnt);
+                pgb_days.setMax(clsdates);
+                pgb_days.setProgress(clsdates - cnt);
+//                Log.i("테스트", ((mList.get(position).get("RCNT")).toString()).split("\\.")[0]+" \\/ " + ((mList.get(position).get("CLS_CNT")).toString()).split("\\.")[0]);
+//                Log.i("테스트", ((mList.get(position).get("CNT")).toString()).split("\\.")[0]+" \\/ " + ((mList.get(position).get("CLSDATES")).toString()).split("\\.")[0]);
+
+                TextView tch_name = dlg.findViewById(R.id.tch_name);
+                TextView cls_name = dlg.findViewById(R.id.cls_name);
+                TextView cls_s_date = dlg.findViewById(R.id.cls_s_date);
+                TextView cls_e_date = dlg.findViewById(R.id.cls_e_date);
+                TextView cls_day = dlg.findViewById(R.id.cls_day);
+                TextView cls_s_time = dlg.findViewById(R.id.cls_s_time);
+                TextView cls_e_time = dlg.findViewById(R.id.cls_e_time);
+                TextView cls_info = dlg.findViewById(R.id.cls_info);
+                Log.i("테스트", "mList.get(position) : " + mList.get(position));
+                tch_name.setText(mList.get(position).get("TCH_NAME").toString());
+                cls_name.setText(mList.get(position).get("CLS_NAME").toString());
+                cls_s_date.setText(mList.get(position).get("CLS_S_DATE").toString());
+                cls_e_date.setText(mList.get(position).get("CLS_E_DATE").toString());
+                cls_day.setText(mList.get(position).get("CLS_DAY").toString());
+                cls_s_time.setText(mList.get(position).get("CLS_STIME").toString());
+                cls_e_time.setText(mList.get(position).get("CLS_ETIME").toString());
+                cls_info.setText(mList.get(position).get("CLS_INFO").toString());
+
+
+                /////////////////////다이얼로그에 값 넣기 끝/////////////////////
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();
 

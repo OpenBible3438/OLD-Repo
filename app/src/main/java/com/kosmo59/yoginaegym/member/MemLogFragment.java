@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -92,13 +94,15 @@ public class MemLogFragment extends Fragment {
         memLogList = view.findViewById(R.id.mem_log_list);
         memLogList.setAdapter(memLogAdapter);
         ////////////////////////////Adapter 연결 끝///////////////////////////////////////////
+
+
         return view;
     }
 
-    @Override
-    public void onResume() {
-        Log.e("테스트", "onResume of LoginFragment");
-        super.onResume();
+    public void refresh() {
+        Log.e("테스트", "refresh");
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
     }
 
 }
