@@ -1,38 +1,25 @@
 package com.kosmo59.yoginaegym.gym;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ImageFormat;
-import android.graphics.Rect;
-import android.graphics.YuvImage;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.common.TomcatImg;
 import com.kosmo59.yoginaegym.common.TomcatSend;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -45,13 +32,15 @@ public class GymSearchAdapter extends ArrayAdapter {
     int resourceId;
     Context gymSearchActivity = null;
     AppVO vo = null;
+    String result = null;
+    CircleImageView s_gym_img = null;
 
-    public GymSearchAdapter(Context gymSearchActivity, int resource, List<Map<String, Object>> gymList) {
+    public GymSearchAdapter(Context gymSearchActivity, int resource, List<Map<String, Object>> gymList, String result) {
         super(gymSearchActivity, resource, gymList);
-        this.gymSearchActivity = gymSearchActivity;
         this.gymSearchActivity = gymSearchActivity;
         this.mList = gymList;
         this.resourceId = resource;
+        this.result = result;
     }
 
     @Override
@@ -75,7 +64,7 @@ public class GymSearchAdapter extends ArrayAdapter {
         convertView = inflater.inflate(this.resourceId, parent, false);
         Log.i("테스트", "■■■■■■■■ position : " + position);
      //   Log.i("테스트", "mList.get(position) : " + mList.get(position));
-        CircleImageView s_gym_img = (CircleImageView) convertView.findViewById(R.id.s_gym_img);
+        s_gym_img = (CircleImageView) convertView.findViewById(R.id.s_gym_img);
         TextView s_gym_name = (TextView) convertView.findViewById(R.id.s_gym_name);
         TextView s_gym_addr = (TextView) convertView.findViewById(R.id.s_gym_addr);
         TextView s_gym_tel = (TextView) convertView.findViewById(R.id.s_gym_tel);
@@ -110,64 +99,24 @@ public class GymSearchAdapter extends ArrayAdapter {
                 vo = (AppVO) gymSearchActivity.getApplicationContext();
                 vo.setGym_no(cho_gym_no);
                 gymSearchActivity.startActivity(intent);
-
-
             }
         });
-        ///////////이미지 비트맵으로 바꾸기//////////////
-//        byte[] imageData = mList.get(position).get("FILEDATA").toString().getBytes();
-        byte[] imageData = null;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(bos);
-            oos.writeObject(mList.get(position).get("FILEDATA"));
-            oos.flush();
-            oos.close();
-            bos.close();
-            imageData = bos.toByteArray();
-        } catch (IOException ex) {
-            Log.i("테스트", ex.toString());
-         }
+            JSONArray jsonArray = new JSONArray(result);
+            JSONObject jsonObject = jsonArray.getJSONObject(position);
+            String file_seq = jsonObject.getString("FILE_SEQ");
+            TomcatImg tomcatImg = new TomcatImg();
+            String bitImg = tomcatImg.execute(file_seq).get();
+            Bitmap bitmap = tomcatImg.getBitMap(bitImg);
+            s_gym_img.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            Log.i("테스트", "비트맵 이미지 처리 실패");
+            e.printStackTrace();
+        }
 
-        Log.i("테스트", "imageData : " + imageData.length );
-//        Bitmap bmp = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-//        Log.i("테스트", "bmp = : " + bmp);
-//        s_gym_img.setImageBitmap(
-//                Bitmap.createScaledBitmap(
-//                        bmp
-//                        , s_gym_img.getWidth()
-//                        , s_gym_img.getHeight()
-//                        , false
-//                )
-//        );
-        YuvImage yuvimage=new YuvImage(imageData, ImageFormat.NV21, 100, 100, null);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        yuvimage.compressToJpeg(new Rect(0, 0, 100, 100), 80, baos);
-        byte[] jdata = baos.toByteArray();
-
-        // Convert to Bitmap
-        Bitmap bmp1 = BitmapFactory.decodeByteArray(jdata, 0, jdata.length);
-        Log.i("테스트", "bmp1 = : " + bmp1);
         s_gym_name.setText(mList.get(position).get("GYM_NAME").toString());
         s_gym_addr.setText(mList.get(position).get("GYM_ADDR").toString());
         s_gym_tel.setText(mList.get(position).get("GYM_TEL").toString());
-        s_gym_img.setImageBitmap(
-                Bitmap.createScaledBitmap(
-                        bmp1
-                        , 60
-                        , 60
-                        , false
-                )
-        );
-////////////////////////////////////
-
-//        byte image[] = mList.get(position).get("FILEDATA").fetchimage(); // gets byte array from the database
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length, options);
-
-
         return convertView;
     }
-
-
 }
