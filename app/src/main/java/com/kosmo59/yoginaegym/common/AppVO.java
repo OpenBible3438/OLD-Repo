@@ -13,16 +13,21 @@ public class AppVO extends Application {
     /* 회원 */
     public String memberName = null;
     public String memberId = null;
+
     public int mem_no = 0;
+
     public String memberNum = null; //로그인 창에서 입력한 비밀번호를 회원번호로 받기
     public String roomName1 = null;
     public String memberNickname = null;
     public String msgSendName = null; //메세지 발신자 정하기.
     public String msgSendId = null;
 
-
     public String getMsgSendId() {
         return msgSendId;
+    }
+
+    public int getMem_no() {
+        return mem_no;
     }
 
     public void setMsgSendId(String msgSendId) {
