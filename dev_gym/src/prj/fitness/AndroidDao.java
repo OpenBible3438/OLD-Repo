@@ -141,6 +141,30 @@ public class AndroidDao {
 		logger.info("imageData : " + gymProfileData);
 		return gymProfileData;
 	}
+	//회원 요일별 수업 구하기
+	public List<Map<String, Object>> getMyClass(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMyClass() 호출");
+		List<Map<String, Object>> myClassList = null;
+		myClassList = sqlSession.selectList("getMyClassList_and", pMap);
+		logger.info("myClassList.size() : " + myClassList.size());
+		return myClassList;
+	}
+	//매장 - 강사진 리스트 가져오기 
+	public List<Map<String, Object>> getTchList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getTchList() 호출");
+		List<Map<String, Object>> tchList = null;
+		tchList = sqlSession.selectList("getTchList_and", pMap);
+		logger.info("tchList.size() : " + tchList.size());
+		return tchList;
+	}
+	//매장 - 수업 - 자세히 보기 
+	public List<Map<String, Object>> getClsDetail(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getClsDetail() 호출");
+		List<Map<String, Object>> dtlList = null;
+		dtlList = sqlSession.selectList("getClsDetail_and", pMap);
+		logger.info("dtlList.size() : " + dtlList.size());
+		return dtlList;
+	}
 	
 	
 // 김승현
@@ -176,14 +200,14 @@ public class AndroidDao {
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getGymTeacherList", pMap);
 		logger.info("getGymTeacherList.size() : " + gymList.size());
-		for(Map<String, Object> map : gymList) {
-			byte[] image = null;
-			Blob blob = (Blob)map.get("FILEDATA");
-			image = blob.getBytes(1, (int)blob.length());
-			logger.info("image " + image.length);
-			map.remove("FILEDATA");
-			map.put("FILEDATA", image);
-		}
+//		for(Map<String, Object> map : gymList) {
+//			byte[] image = null;
+//			Blob blob = (Blob)map.get("FILEDATA");
+//			image = blob.getBytes(1, (int)blob.length());
+//			logger.info("image " + image.length);
+//			map.remove("FILEDATA");
+//			map.put("FILEDATA", image);
+//		}
 		return gymList;
 	}
 	// 매장 기준 수업 조회
