@@ -27,7 +27,7 @@
                     android:layout_height="match_parent"
                     android:textStyle="bold"
                     android:text="수강생 보기"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <LinearLayout

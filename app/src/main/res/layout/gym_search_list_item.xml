@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 검색된 매장 리스트 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="5dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/s_gym_card"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="0dp"
         app:cardBackgroundColor="#ffffff">
 
         <LinearLayout
+            android:padding="20dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -28,39 +28,66 @@
                 android:layout_height="70dp"/>
 
             <View
-                android:layout_width="15dp"
+                android:layout_width="17dp"
                 android:layout_height="0dp"/>
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
+                android:gravity="left|center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginBottom="12dp"
+                    android:text="테스트"
+                    android:textStyle="bold"
+                    android:textSize="24dp"
                     android:id="@+id/s_gym_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/s_gym_addr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/s_gym_tel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_search_addr"
+                        android:tint="#00BCD4" />
+                    <TextView
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="7dp"
+                        android:text="테스트"
+                        android:textSize="16dp"
+                        android:id="@+id/s_gym_addr"
+                        android:gravity="center|left"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:src="@drawable/icon_search_tell"
+                        android:tint="#00BCD4" />
+                    <TextView
+                        android:layout_marginLeft="7dp"
+                        android:text="테스트"
+                        android:textSize="16dp"
+                        android:id="@+id/s_gym_tel"
+                        android:gravity="center|left"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"/>
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
-
-
 </LinearLayout>

@@ -112,8 +112,6 @@ public class TchManageActivity extends AppCompatActivity {
             switch (position){
                 case 0:
                     return new TchClassFragment();
-                case 1:
-                    return new GymNoticeFragment();
             }
             return null;
         }
@@ -121,14 +119,12 @@ public class TchManageActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             /* 페이지 수. 수업, 인바디, 메모 => 3장 */
-            return 2;
+            return 1;
         }
         public CharSequence getPageTitle(int position){
             switch (position){
                 case 0:
                     return "수업 & 수강생 관리";
-                case 1:
-                    return "공지사항";
 
             }
             return null;

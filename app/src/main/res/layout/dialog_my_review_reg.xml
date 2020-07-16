@@ -30,7 +30,7 @@
                     android:layout_height="match_parent"
                     android:textStyle="bold"
                     android:text="후기 등록"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
                 android:gravity="right"
@@ -53,10 +53,33 @@
             android:layout_height="2px"
             android:background="#000000" />
 
+        <LinearLayout
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <!--======================================스피너-->
+            <Spinner
+                android:id="@+id/spn_tchClass"
+                android:background="@color/quantum_indigo100"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:src="@drawable/icon_arrow"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+
+
         <EditText
             android:layout_marginBottom="5dp"
             android:background="@null"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:gravity="left|top"
             android:text="여기내짐 어플 통해서 프로모션 중인 요가원의 명상수업 등록했습니다~ 꾸준히 이용하려구요!"
             android:layout_width="match_parent"
@@ -95,7 +118,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2px"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:background="#000000" />
 
