@@ -280,6 +280,13 @@
 		 WHERE file_seq = #{file_seq}
 		   AND rownum = 1
 	</select><!-- #{file_seq} -->
+	<!-- getImg -->
+	<select id="getImg" parameterType="map" resultMap="getImage">
+		SELECT filedata
+		  FROM images
+		 WHERE file_seq = #{file_seq}
+		   AND rownum = 1
+	</select><!-- #{file_seq} -->
 	
 	<!-- 매장 회원가입시 매장 번호 채번  -->
 	<select id="getGymNo" parameterType="map" resultType="int">

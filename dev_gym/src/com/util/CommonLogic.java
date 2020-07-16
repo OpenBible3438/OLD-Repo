@@ -1,5 +1,7 @@
 package com.util;
 
+import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +12,7 @@ import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 
+import oracle.sql.BLOB;
 import prj.fitness.ModelAndView;
 
 
@@ -78,7 +81,10 @@ public class CommonLogic {
 			if (mav.type.equals("json")) {
 				logger.info("type : json - printJson");
 				printJson(mav.res, mav.getObject());
-			} else {				
+			} else if(mav.type.equals("img")) {
+				logger.info("type : img - printImg");
+				printImg(mav.res, mav.getObject());			
+			} else {
 				pageMove = new String[2];
 				pageMove[0] = "forward";
 				pageMove[1] = mav.getViewName();
@@ -105,6 +111,29 @@ public class CommonLogic {
         	response.getWriter().print(jsonResult);
 		} catch (Exception e) {
 			logger.info("printJson 오류");
+			e.printStackTrace();
+		}
+	}
+	private void printImg(HttpServletResponse response, Object selResult) {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("image/png; charset=UTF-8");
+		BLOB blob = null;
+		try {
+			if(selResult != null) {
+				logger.info("호출 : printImg, selResult != null");
+				List<Map<String, Object>> list = (List<Map<String, Object>>)selResult;
+				blob = (BLOB)list.get(0).get("img");
+				byte[] image = blob.getBytes(1, (int)blob.length());
+				OutputStream o = response.getOutputStream();
+				o.write(image);
+				o.flush();
+				o.close();
+			}else {
+				logger.info("호출 : printImg, selResult == null");
+				response.getWriter().print("데이터가 없습니다.");
+			}
+		} catch (Exception e) {
+			logger.info("printImg 오류");
 			e.printStackTrace();
 		}
 	}

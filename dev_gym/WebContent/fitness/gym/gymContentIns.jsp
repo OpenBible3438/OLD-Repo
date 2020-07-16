@@ -10,7 +10,7 @@
 	         	<button type="button" class="close" data-dismiss="modal">&times;</button>
 	        </div> 
 	        
-	        <!-- Modal body -->
+	        <!-- Modal body -->  
 	        <div class="modal-body">
 			<form id="f_ins" enctype="multipart/form-data" method="post">
 			<input type="hidden" name="cud" value="ins">
