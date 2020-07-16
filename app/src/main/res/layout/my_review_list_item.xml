@@ -9,7 +9,7 @@
 
     <!--======================================카드뷰 시작-->
     <androidx.cardview.widget.CardView
-        android:id="@+id/gym_reviewList"
+        android:id="@+id/gym_myReviewList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10sp"
@@ -36,7 +36,7 @@
                     android:layout_width="40dp"
                     android:layout_height="match_parent"/>
                 <TextView
-                    android:id="@+id/tv_gym_review_memNick"
+                    android:id="@+id/tv_myReview_memNick"
                     android:gravity="left|center"
                     android:text="kimsh0306"
                     android:textStyle="bold"
@@ -44,7 +44,7 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"/>
                 <TextView
-                    android:id="@+id/tv_gym_review_date"
+                    android:id="@+id/tv_myReview_date"
                     android:gravity="right|center"
                     android:text="2020-07-07"
                     android:textSize="12sp"
@@ -65,16 +65,16 @@
                 android:paddingTop="10dp"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/tv_gym_review_cont"
+                    android:id="@+id/tv_myReview_cont"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:text="후기가 들어오는 곳입니다."/>
             </LinearLayout>
 
             <RatingBar
                 android:layout_marginTop="10dp"
-                android:id="@+id/rb_gym_review"
+                android:id="@+id/rb_myReview"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
