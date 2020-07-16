@@ -1,283 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".teacher.TchMyProfileActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 스크롤 뷰 안으로 코드추가 -->
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:padding="30sp"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarStyle="outsideInset">
 
         <LinearLayout
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="40sp"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="나강사 강사"
-                    android:textSize="18sp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="010-1234-5678"
-                    android:textSize="18sp" />
+                    android:textColor="#009688"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:text="나강사"
+                    android:textSize="24sp" />
             </LinearLayout>
-
-            <View
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"/>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:src="@drawable/edit_48px" />
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/icon_close"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@drawable/icon_close_s" />
+            </LinearLayout>
 
         </LinearLayout>
 
+        <!--구분 라인-->
         <View
-            android:layout_marginBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="#000000"/>
-
-        <ImageView
-            android:layout_marginBottom="10dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/people_sample2"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"/>
-        
-        <TextView
-            android:text="소개"
-            android:textSize="20sp"
-            android:layout_marginBottom="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="안녕하세요
-                        \n나강사 강사입니다.
-                        \n☆ 문의 환영 ★"
-            android:layout_marginLeft="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"/>
-
-        <TextView
-            android:text="경력사항"
-            android:textSize="20sp"
-            android:layout_marginBottom="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="제1회 금천구 보디빌더 대회 1등\n고등학교 장기자랑 1등\nJAVA코딩대회 1등"
-            android:layout_marginLeft="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"/>
-
-        <TextView
-            android:text="수업정보"
-            android:textSize="20sp"
-            android:layout_marginBottom="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <!--======================= 수업정보 테이블 여기부터 시작 =======================-->
-
-        <TableLayout
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="*">
+            android:layout_height="2px"
+            android:background="#000000" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
+        <ImageView
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="340sp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_tch_nagangsa"/>
 
-            <!-- 상단 -->
-            <TableRow
-                android:background="#EAEAEA"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="매장"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="수업"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="기간"/>
-
-            </TableRow>
-
-            <!-- 데이터 들어가는 곳 -->
-            <TableRow
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="26dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginBottom="1dp"
-                    android:padding="3dp"
-                    android:text="여기내짐 가산점" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="left|center"
+                        android:text="아이디"
+                        android:textColor="#009688"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="성별"
+                        android:textColor="#009688"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="전화번호"
+                        android:textColor="#009688"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="강사경력"
+                        android:textColor="#009688"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="자기소개"
+                        android:textColor="#009688"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="개인PT 5회"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="상시모집"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="tch100"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="남성"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:textSize="18sp"
+                        android:gravity="left|center"
+                        android:text="010-2222-2222"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="강사 3년차"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:layout_marginTop="2dp"
+                        android:textSize="20sp"
+                        android:gravity="left|top"
+                        android:text="안녕하세요. 나강사입니다."
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
 
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            </LinearLayout>
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="여기내짐 가산점"/>
+        <!--구분 라인-->
+        <View
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000000" />
+        <LinearLayout
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_tchMyProfile_upd"
+                android:text="수정"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="개인PT 10회"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="상시모집"/>
-
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="터짐 독산점"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="보디빌더 대회준비"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="상시모집"/>
-
-            </TableRow>
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="요가원"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="공중부양 핫요가"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:text="상시모집"/>
-
-            </TableRow>
-
-        </TableLayout>
-        <!--======================= 수업정보 테이블 여기까지 =======================-->
-
-
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

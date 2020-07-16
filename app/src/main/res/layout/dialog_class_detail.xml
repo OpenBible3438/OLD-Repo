@@ -38,7 +38,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:backgroundTint="#00FFFFFF"
-                    app:srcCompat="@drawable/icon_close" />
+                    app:srcCompat="@drawable/icon_close_s" />
             </LinearLayout>
         </LinearLayout>
 
