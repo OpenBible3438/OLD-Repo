@@ -135,7 +135,7 @@ public class AndroidController implements Controller{
 					selResult = aLogic.getGymNoticeList(pMap);
 					mav.type = "json";
 					logger.info("selResult : " + selResult);
-				}
+				}break;
 			// 김혜림
 				//강사별 수업 목록 조회
 				case "jsonTchClassList":{

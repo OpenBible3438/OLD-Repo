@@ -64,7 +64,7 @@ public class AndroidDao {
 		logger.info("AndroidDao - getGymNoticeList() 호출");
 		List<Map<String, Object>> gymNoticeList = null;
 		gymNoticeList = sqlSession.selectList("getNoticeListApp", pMap);
-		logger.info("classList.size() : " + gymNoticeList.size());
+		logger.info("gymNoticeList.size() : " + gymNoticeList.size());
 		return gymNoticeList;
 	}
 // 김혜림

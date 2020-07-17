@@ -259,11 +259,23 @@
 	</select>
    <!-- 전체 콘텐츠 가져오기 -->
 	<select id="getContentsList_and" parameterType="map" resultType="map">
-			SELECT c.cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name) who, cont_like, cont_date, cont_time
-			  FROM contents c, gym g, teacher t, member m
-			 WHERE c.cont_typecode = DECODE(cont_type, 'gym', g.gym_no, 'tch', t.tch_no, 'mem', m.mem_no)
-			   AND g.gym_no = t.gym_no
-			GROUP BY cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name), cont_like, cont_date, cont_time
+		SELECT c.cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name) who, cont_like, cont_date, cont_time, i.file_seq
+		  FROM contents c, gym g, teacher t, member m, images i
+		 WHERE c.cont_typecode = DECODE(cont_type, 'gym', g.gym_no, 'tch', t.tch_no, 'mem', m.mem_no)
+		   AND c.cont_seq = i.typecode
+		   AND i.type = 'cont'
+		   AND g.gym_no = t.gym_no
+		   <if test="gym_no != null">
+				AND g.gym_no = #{gym_no}
+		   </if>
+		   <if test="tch_no != null">
+				AND g.tch_no = #{tch_no}
+		   </if>
+		   <if test="mem_no != null">
+				AND g.mem_no = #{mem_no}
+		   </if>
+		GROUP BY cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name), cont_like, cont_date, cont_time, i.file_seq
+		ORDER BY cont_date desc
    </select>
 <!-- ======================= 김승현 ======================= -->
 
