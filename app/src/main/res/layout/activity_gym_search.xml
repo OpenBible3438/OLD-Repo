@@ -16,13 +16,13 @@
 
         <Button
             android:id="@+id/tbtn_gps"
-            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:text="내 위치"
             android:textColor="#ffffff"
             android:textSize="18dp"
-            android:text="내 위치" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -52,6 +52,7 @@
         android:layout_height="0dp">
 
         <ListView
+            android:divider="#ffffff"
             android:padding="20dp"
             android:id="@+id/s_gymList"
             android:layout_width="match_parent"

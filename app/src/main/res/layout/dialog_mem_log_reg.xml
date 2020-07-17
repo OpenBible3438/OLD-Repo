@@ -26,6 +26,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
@@ -124,24 +125,24 @@
                             android:layout_height="30dp"
                             android:gravity="left|center"
                             android:text="일지 제목"
-                            android:textColor="#009688"
+                            android:textColor="#00BCD4"
                             android:textSize="12sp" />
                         <TextView
-                            android:textColor="#009688"
+                            android:textColor="#00BCD4"
                             android:textSize="12sp"
                             android:text="운동일"
                             android:gravity="left|center"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"/>
                         <TextView
-                            android:textColor="#009688"
+                            android:textColor="#00BCD4"
                             android:textSize="12sp"
                             android:text="시작시간"
                             android:gravity="left|center"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"/>
                         <TextView
-                            android:textColor="#009688"
+                            android:textColor="#00BCD4"
                             android:textSize="12sp"
                             android:text="종료시간"
                             android:gravity="left|center"
@@ -155,7 +156,7 @@
                         android:layout_height="match_parent">
                         <EditText
                             android:id="@+id/et_log_title"
-                            android:textColor="#009688"
+                            android:textColor="#00BCD4"
                             android:textSize="16sp"
                             android:text="자세교정, 산책한 날"
                             android:gravity="left|center"
@@ -168,7 +169,7 @@
                             <TextView
                                 android:background="@null"
                                 android:id="@+id/tv_exDate"
-                                android:textColor="#009688"
+                                android:textColor="#00BCD4"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
                                 android:text="2020-07-15"
@@ -193,7 +194,7 @@
                             android:layout_height="30dp">
                             <TextView
                                 android:id="@+id/tv_stime"
-                                android:textColor="#009688"
+                                android:textColor="#00BCD4"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
                                 android:text="14:30:00"
@@ -218,7 +219,7 @@
                             android:layout_height="30dp">
                             <TextView
                                 android:id="@+id/tv_etime"
-                                android:textColor="#009688"
+                                android:textColor="#00BCD4"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
                                 android:text="16:30:00"

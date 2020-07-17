@@ -48,11 +48,12 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/tv_tchManageName"
-                        android:text="나강사 강사"
-                        android:textSize="16sp"
+                        android:text="나강사"
+                        android:textSize="25sp"
                         android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="0dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#FFFFFF"/>

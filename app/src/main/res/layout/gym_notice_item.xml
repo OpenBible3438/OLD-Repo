@@ -25,6 +25,8 @@
                 android:layout_height="60dp">
                 <!--매장명-->
                 <TextView
+                    android:paddingTop="15dp"
+                    android:fontFamily="@font/font"
                     android:id="@+id/tv_gym_not_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -51,25 +53,24 @@
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:paddingBottom="15dp"
+                android:paddingBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="40dp"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content">\
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="25dp"
                         android:background="#FFFFFF"
                         android:src="@drawable/icon_date"
                         android:tint="#00BCD4" />
-
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="25dp"
                         android:src="@drawable/icon_time"
                         android:tint="#00BCD4" />
                 </LinearLayout>
@@ -79,25 +80,25 @@
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tv_gym_not_date"
-                        android:textSize="20sp"
+                        android:textSize="14sp"
                         android:gravity="center|left"
                         android:text="날짜 내용"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
+                        android:layout_height="25dp"/>
                     <TextView
                         android:id="@+id/tv_gym_not_time"
-                        android:textSize="20sp"
+                        android:textSize="14sp"
                         android:gravity="center|left"
                         android:text="시간 내용"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
+                        android:layout_height="25dp"/>
                 </LinearLayout>
 
             </LinearLayout>
 
             <TextView
                 android:paddingBottom="20dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="50dp"
                 android:paddingRight="20dp"
                 android:textSize="20sp"
                 android:id="@+id/tv_gym_not_conts"

@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tch_mem_info"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -10,6 +9,7 @@
     <!-- 스크롤 뷰 안으로 코드추가 -->
 
     <LinearLayout
+        android:id="@+id/tch_mem_info"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="30dp"
@@ -24,11 +24,12 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/cls_name"
+                    android:id="@+id/tch_mem_info_name"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:textSize="18sp" />
+                    android:text="김회원"
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -48,7 +49,7 @@
         <!--구분 라인-->
         <View
             android:layout_width="match_parent"
-            android:layout_height="2px"
+            android:layout_height="1px"
             android:layout_marginBottom="20dp"
             android:background="#000000" />
 
@@ -63,7 +64,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:fontFamily="@font/font"
                     android:textSize="18sp"
                     android:gravity="center|top"
                     android:text="남은 횟수"
@@ -71,20 +71,23 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/cls_rcnt"
+                    android:id="@+id/tch_mem_info_cdates"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="top"
+                    android:text="7/10"
                     android:textColor="#656565"
                     android:textSize="30sp" />
                 <ProgressBar
-                    android:id="@+id/pgb_cnt"
+                    android:id="@+id/tch_mem_info_pb_cont"
                     style="@android:style/Widget.ProgressBar.Horizontal"
                     android:progressTint="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:gravity="bottom"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:progress="7"
+                    android:max="10" />
 
             </LinearLayout>
 
@@ -97,13 +100,13 @@
                 android:layout_marginBottom="20dp"
                 android:background="#000000" />
 
+
             <LinearLayout
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:fontFamily="@font/font"
                     android:textSize="18sp"
                     android:gravity="center|top"
                     android:text="남은 일수"
@@ -111,11 +114,12 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/cls_rdays"
+                    android:id="@+id/tch_mem_info_mem_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:gravity="top"
+                    android:text="70/100"
                     android:textColor="#656565"
                     android:textSize="30sp" />
 
@@ -123,13 +127,15 @@
 
 
             <ProgressBar
-                android:id="@+id/pgb_days"
+                android:id="@+id/tch_mem_info_pb_cont_day"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:progressTint="@color/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:gravity="bottom"
-                android:inputType="number" />
+                android:inputType="number"
+                android:progress="50"
+                android:max="365" />
 
         </LinearLayout>
 
@@ -153,53 +159,34 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:textColor="#00BCD4"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="left|center"
-                    android:text="강사명"
+                    android:text="성별"
                     android:textSize="12sp"/>
                 <TextView
-                    android:textColor="#00BCD4"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="left|center"
-                    android:text="시작일"
+                    android:text="전화번호"
                     android:textSize="12sp"/>
                 <TextView
-                    android:textColor="#00BCD4"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="left|center"
+                    android:text="생년월일"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="left|center"
+                    android:text="등록일"
+                    android:textSize="12sp"/>
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="left|center"
                     android:text="종료일"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:textColor="#00BCD4"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:gravity="left|center"
-                    android:text="수업요일"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:textColor="#00BCD4"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:gravity="left|center"
-                    android:text="시작시간"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:textColor="#00BCD4"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:gravity="left|center"
-                    android:text="종료시간"
-                    android:textSize="12sp"/>
-                <TextView
-                    android:textColor="#00BCD4"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:gravity="left|center"
-                    android:text="수업소개"
                     android:textSize="12sp"/>
 
             </LinearLayout>
@@ -210,46 +197,39 @@
                 android:gravity="left"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/tch_name"
+                    android:id="@+id/tch_mem_info_gender"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
+                    android:text="남성"
                     android:textSize="20sp" />
                 <TextView
-                    android:id="@+id/cls_s_date"
+                    android:id="@+id/tch_mem_info_tel"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
+                    android:text="010-1234-5678"
                     android:textSize="20sp" />
                 <TextView
-                    android:id="@+id/cls_e_date"
+                    android:id="@+id/tch_mem_info_birth"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
+                    android:text="1996-03-31"
                     android:textSize="20sp" />
                 <TextView
-                    android:id="@+id/cls_day"
+                    android:id="@+id/tch_mem_info_sdates"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
+                    android:text="2019-02-10"
                     android:textSize="20sp" />
                 <TextView
-                    android:id="@+id/cls_s_time"
+                    android:id="@+id/tch_mem_info_edates"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:textSize="20sp" />
-                <TextView
-                    android:id="@+id/cls_e_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:gravity="center_vertical"
-                    android:textSize="20sp" />
-                <TextView
-                    android:id="@+id/cls_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:gravity="center_vertical"
+                    android:text="2019-02-10"
                     android:textSize="20sp" />
 
             </LinearLayout>

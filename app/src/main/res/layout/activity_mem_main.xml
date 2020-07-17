@@ -42,36 +42,40 @@
                     <Button
                         android:id="@+id/btn_memGymSearch"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/quantum_indigo500"
+                        android:layout_height="50dp"
+                        android:backgroundTint="#00BCD4"
                         android:text="주변검색"
-                        android:textSize="24sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <Button
+                        android:layout_marginTop="-5dp"
                         android:id="@+id/btn_memInfo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/quantum_indigo300"
+                        android:layout_height="50dp"
+                        android:backgroundTint="#00BCD4"
                         android:text="내 정보"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-                    <Button
-                        android:id="@+id/btn_memClass"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/quantum_indigo300"
-                        android:text="내 수업"
-                        android:textSize="24sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <Button
+                        android:layout_marginTop="-5dp"
+                        android:id="@+id/btn_memClass"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:backgroundTint="#00BCD4"
+                        android:text="내 수업"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_marginTop="-5dp"
                         android:id="@+id/btn_memTimeTable"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/quantum_indigo300"
+                        android:layout_height="50dp"
+                        android:backgroundTint="#00BCD4"
                         android:text="내 일정"
-                        android:textSize="24sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
 

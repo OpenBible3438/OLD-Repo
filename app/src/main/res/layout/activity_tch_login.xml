@@ -44,6 +44,7 @@
 
     <Button
         android:id="@+id/btn_loginTch"
+        android:textSize="20sp"
         android:text="로그인"
         android:layout_marginRight="1dp"
         android:background="@color/colorPrimary"

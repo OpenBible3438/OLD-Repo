@@ -45,9 +45,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:paddingTop="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp">
 
                     <TextView
+                        android:fontFamily="@font/font"
+                        android:text="테스트"
                         android:id="@+id/tv_memProName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -57,6 +61,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:text="테스트"
                         android:id="@+id/tv_memProTel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -64,6 +69,7 @@
                         android:textSize="13sp" />
 
                     <TextView
+                        android:text="테스트"
                         android:id="@+id/tv_memProAddr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
