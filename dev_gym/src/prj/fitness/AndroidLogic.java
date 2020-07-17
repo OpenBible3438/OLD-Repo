@@ -139,7 +139,14 @@ public class AndroidLogic {
 		dtlList = aDao.getClsDetail(pMap);
 		return dtlList;
 	}
-		
+	//회원이 듣는 수업들의 강사 구하기(메시지에 사용)
+	public List<Map<String, Object>> getMemTchList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getMemTchList() 호출");
+		List<Map<String, Object>> memTchList = null;
+		memTchList = aDao.getMemTchList(pMap);
+		logger.info("memTchList.size() : " + memTchList.size());
+		return memTchList;
+	}	
 // 김승현
 		
 // 박준규

@@ -207,14 +207,13 @@
               AND c.gym_no = t.gym_no
               AND c.cls_state = '진행'
 	</select>
-<!-- 	
 	<select id="getGymProfile_and" parameterType="map" resultType="map">
 		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr, file_seq
 		  FROM gym, images
 		 WHERE gym_no = #{gym_no}
 		   AND TYPE = 'gym'
 		   AND typecode = #{gym_no}
-	</select> -->
+	</select>
 	<!-- 매장 - 수업 - 자세히 보기 -->
 	<select id="getClsDetail_and" parameterType="map" resultType="map">
 		SELECT c.cls_name, t.tch_name, tp.type_name, c.cls_kind, c.cls_s_date, c.cls_e_date
@@ -224,6 +223,15 @@
 		 WHERE c.type_no = tp.type_no
 		   AND t.tch_no = c.tch_no
 		   AND cls_no = #{cls_no}
+	</select>
+	<!-- 회원이 듣는 수업들의 강사 구하기(메시지에 사용) -->
+	<select id="getMemTchList_and" parameterType="map" resultType="map">
+		SELECT t.tch_no, t.tch_name, t.tch_gender, t.tch_tel
+		  FROM teacher t, class c, pay p
+		 WHERE t.tch_no = c.tch_no
+		   AND c.cls_no = p.cls_no
+		   AND p.mem_no = #{mem_no}
+		GROUP BY t.tch_no, t.tch_name, t.tch_gender, t.tch_tel
 	</select>
 <!-- ======================= 김승현 ======================= -->
 
@@ -279,9 +287,12 @@
 		      ,C.CLS_STIME
 		      ,C.CLS_ETIME
 		      ,C.CLS_PRICE
-		  FROM teacher t, gym g, class c
+	          ,TYPE.type_name
+	          ,TYPE.type_no
+		  FROM teacher t, gym g, class c, type type
 		 WHERE T.GYM_NO = G.GYM_NO
 		   AND T.TCH_NO = C.TCH_NO
+           AND c.type_no = TYPE.type_no
 		   AND C.CLS_STATE = '진행'
 		   AND G.GYM_NO = #{gym_no}
 	</select>

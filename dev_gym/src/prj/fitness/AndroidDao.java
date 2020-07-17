@@ -165,6 +165,14 @@ public class AndroidDao {
 		logger.info("dtlList.size() : " + dtlList.size());
 		return dtlList;
 	}
+	//회원이 듣는 수업들의 강사 구하기(메시지에 사용)
+	public List<Map<String, Object>> getMemTchList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getMemTchList() 호출");
+		List<Map<String, Object>> memTchList = null;
+		memTchList = sqlSession.selectList("getMemTchList_and", pMap);
+		logger.info("memTchList.size() : " + memTchList.size());
+		return memTchList;
+	}
 	
 	
 // 김승현

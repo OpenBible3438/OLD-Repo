@@ -185,6 +185,11 @@ public class AndroidController implements Controller{
 					logger.info("selResult : " + selResult);
 					mav.type = "json";
 				}break;
+				case "jsonMemTchList":{//회원이 듣는 수업들의 강사 구하기(메시지에 사용)
+					selResult = aLogic.getMemTchList(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
+				}break;
 				
 			// 김승현
 				
