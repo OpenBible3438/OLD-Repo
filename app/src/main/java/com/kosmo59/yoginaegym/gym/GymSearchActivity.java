@@ -88,16 +88,16 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
         }
         Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
 
-        if(result != null){
-          //  Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "문제 발생.", Toast.LENGTH_LONG).show();
-        }
+//        if(result != null){
+//          //  Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(getApplicationContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
         Gson g = new Gson();
         gymList = (List<Map<String, Object>>)g.fromJson(result, listType);
         ////////////////////////////////////DB 연동 끝////////////////////////////////////
-
-        GymSearchAdapter gymSearchAdapter = new GymSearchAdapter(GymSearchActivity.this, R.layout.gym_search_list_item, gymList);
+        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+gymList.toString());
+        GymSearchAdapter gymSearchAdapter = new GymSearchAdapter(GymSearchActivity.this, R.layout.gym_search_list_item, gymList, result);
         s_gymList = findViewById(R.id.s_gymList);
         s_gymList.setAdapter(gymSearchAdapter);
         //////////////////////////////////////어댑터 연결 끝///////////////////////////////
@@ -107,15 +107,22 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
         mapFragment.getMapAsync(GymSearchActivity.this);
 
 
+        Button tbtn_gps = (Button) findViewById(R.id.tbtn_gps);
+        tbtn_gps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gymSearchMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15));
+            }
+        });
+
     }///end of onCreate
 
     public void getLocation(){
-        ToggleButton tb = (ToggleButton) findViewById(R.id.tbtn_gps);
+
         // LocationManager 객체를 얻어온다
         final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        tb.setChecked(true);
         try {
-            if (tb.isChecked()) {
+//            if (tb.isChecked()) {
                 Log.i("테스트", "tb.isChecked() 호출");
                 // GPS 제공자의 정보가 바뀌면 콜백하도록 리스너 등록하기~!!!
                 lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, // 등록할 위치제공자
@@ -128,9 +135,9 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
                         mLocationListener);
                 Log.i("테스트", "latitude : " + latitude + "longitude : " + longitude);
 
-            } else {
-                lm.removeUpdates(mLocationListener);  //  미수신할때는 반드시 자원해체를 해주어야 한다.
-            }
+//            } else {
+//                lm.removeUpdates(mLocationListener);  //  미수신할때는 반드시 자원해체를 해주어야 한다.
+//            }
         } catch (SecurityException ex) {
         }
     }
@@ -156,7 +163,6 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
     double latitude = 0.0;   //위도
     double altitude = 0.0;   //고도
     float accuracy = 0.0f;    //정확도
-    String provider = null;   //위치제공자
 
     private final LocationListener mLocationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
@@ -178,7 +184,155 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
             gymSearchMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15)); //처음 보여주는 위치
 //            gymSearchMap.animateCamera(CameraUpdateFactory.zoomTo(15)); //숫자가 커질수록 상세하게 보여줌
             CircleOptions circle1KM = new CircleOptions().center(myPosition) //원점
-                    .radius(30)      //반지름 단위 : m
+                    .radius(30
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    )      //반지름 단위 : m
                     .strokeWidth(0f)  //선너비 0f : 선없음
                     .fillColor(Color.parseColor("#6C9FFF"));
 

@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:padding="30dp"
     tools:context=".member.MemLoginActivity">
 
     <ImageView
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="242dp"
         android:src="@drawable/app_logo" />
@@ -22,7 +24,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_memLoginId"
             android:textColor="#111111"
-            android:text="testmem1"
+            android:text="mem100"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -36,7 +38,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_memLoginPw"
             android:inputType="textPassword"
-            android:text="member123"
+            android:text="mem100"
             android:textColor="#111111"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

@@ -18,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40sp"
+            android:layout_height="50sp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -30,7 +30,7 @@
                     android:layout_height="match_parent"
                     android:textStyle="bold"
                     android:text="수업일지 등록"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
                 android:gravity="right"
@@ -46,7 +46,7 @@
 
         </LinearLayout>
 
-        <!--구분 라인-->
+        <!--  구분 라인  -->
         <View
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
@@ -56,10 +56,9 @@
         <EditText
             android:id="@+id/et_log_cont"
             android:background="@null"
-            android:lines="10"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:gravity="left|top"
-            android:text="내용을 입력하세요."
+            android:text="거북목 교정 자세\n골반 교정 자세\n\n산책 1시간"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -93,7 +92,7 @@
                         android:layout_height="25sp"
                         android:layout_gravity="center"
                         android:gravity="center_vertical"
-                        android:text="2020-07-02"
+                        android:text="2020-07-15"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -158,9 +157,10 @@
                             android:id="@+id/et_log_title"
                             android:textColor="#009688"
                             android:textSize="16sp"
+                            android:text="자세교정, 산책한 날"
                             android:gravity="left|center"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp"/>
+                            android:layout_height="40dp"/>
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
@@ -171,7 +171,7 @@
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="2020-07-09"
+                                android:text="2020-07-15"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -196,7 +196,7 @@
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="12:30:00"
+                                android:text="14:30:00"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -221,7 +221,7 @@
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="13:30:00"
+                                android:text="16:30:00"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout

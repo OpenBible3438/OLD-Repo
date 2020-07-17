@@ -100,10 +100,11 @@ public class MemMainActivity extends AppCompatActivity {
                         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
                         dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
                         //QR 코드 생성
-                        String data = vo.getMemberId(); //mem_id로 QR코드 생성
+                        //String data = vo.getMemberId(); //mem_id로 QR코드 생성
+                        int data = vo.getMem_no();
                         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                         try {
-                            BitMatrix bitMatrix = multiFormatWriter.encode(data, BarcodeFormat.QR_CODE, 300,300);
+                            BitMatrix bitMatrix = multiFormatWriter.encode(Integer.toString(data), BarcodeFormat.QR_CODE, 300,300);
                             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
                             Log.i("QR Make", "생성된 QR Bitmap : "+bitmap.toString());

@@ -10,13 +10,48 @@ public class AppVO extends Application {
         this.gym_no = gym_no;
     }
 
+    /* 강사에서 회원정보 볼 때 cls_no 저장하기 */
+    public String cls_no = null;
+
+    public String getCls_no() {
+        return cls_no;
+    }
+
+    public void setCls_no(String cls_no) {
+        this.cls_no = cls_no;
+    }
+
     /* 회원 */
     public String memberName = null;
     public String memberId = null;
+
     public int mem_no = 0;
+
     public String memberNum = null; //로그인 창에서 입력한 비밀번호를 회원번호로 받기
     public String roomName1 = null;
     public String memberNickname = null;
+    public String msgSendName = null; //메세지 발신자 정하기.
+    public String msgSendId = null;
+
+    public String getMsgSendId() {
+        return msgSendId;
+    }
+
+    public int getMem_no() {
+        return mem_no;
+    }
+
+    public void setMsgSendId(String msgSendId) {
+        this.msgSendId = msgSendId;
+    }
+
+    public String getMsgSendName() {
+        return msgSendName;
+    }
+
+    public void setMsgSendName(String msgSendName) {
+        this.msgSendName = msgSendName;
+    }
 
 
     public String getMemberNickname() {

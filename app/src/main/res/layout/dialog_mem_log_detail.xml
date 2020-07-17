@@ -54,16 +54,11 @@
             android:background="#000000" />
 
         <EditText
+            android:id="@+id/et_log_cont"
             android:background="@null"
             android:lines="10"
             android:textSize="16sp"
             android:gravity="left|top"
-            android:text="본문이 들어올 자리입니다. 열 줄로 제한합니다.본문이 들어올 자리입니다. 열 줄로 제한합니다.
-                        \n본문이 들어올 자리입니다. 열 줄로 제한합니다.본문이 들어올 자리입니다. 열 줄로 제한합니다.
-                        \n본문이 들어올 자리입니다. 열 줄로 제한합니다.본문이 들어올 자리입니다. 열 줄로 제한합니다.
-                        \n본문이 들어올 자리입니다. 열 줄로 제한합니다.본문이 들어올 자리입니다. 열 줄로 제한합니다.
-                        \n본문이 들어올 자리입니다. 열 줄로 제한합니다.본문이 들어올 자리입니다. 열 줄로 제한합니다.
-                        "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -92,11 +87,11 @@
                         android:text="등록일 "
                         android:textSize="12sp" />
                     <TextView
+                        android:id="@+id/tv_reg_date"
                         android:layout_width="75sp"
                         android:layout_height="25sp"
                         android:layout_gravity="center"
                         android:gravity="center_vertical"
-                        android:text="2020-07-02"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -160,11 +155,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <EditText
+                            android:id="@+id/et_log_title"
                             android:background="@null"
                             android:textColor="#009688"
                             android:textSize="16sp"
                             android:gravity="left|center"
-                            android:text="짐꾼1의 PT"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"/>
                         <LinearLayout
@@ -177,7 +172,6 @@
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="2020-07-09"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -201,7 +195,6 @@
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="12:30:00"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -226,7 +219,6 @@
                                 android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="13:30:00"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -244,7 +236,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!--구분 라인-->
+                <!--  구분 라인  -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2px"

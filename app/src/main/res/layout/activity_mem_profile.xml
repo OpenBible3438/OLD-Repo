@@ -26,7 +26,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:background="@color/colorPrimary"
+                android:background="#6F99EC"
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
 
@@ -42,40 +42,36 @@
                     android:layout_height="match_parent"/>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                     <TextView
+                        android:layout_marginBottom="5dp"
                         android:id="@+id/tv_memProName"
-                        android:text="편성경 회원님"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#FFFFFF"/>
+                        android:text="나회원"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
                     <TextView
                         android:id="@+id/tv_memProTel"
                         android:text="010-1234-5678"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
+                        android:layout_marginBottom="3dp"
+                        android:textSize="13sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#FFFFFF"/>
                     <TextView
                         android:id="@+id/tv_memProAddr"
                         android:text="서울시 금천구 가산동 월드메르디앙2차"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
+                        android:textSize="13sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#FFFFFF"/>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/buttonColor"
-                        android:text="프로필 변경" />
                 </LinearLayout>
 
             </LinearLayout>

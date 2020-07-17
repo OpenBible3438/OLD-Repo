@@ -3,13 +3,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
     android:background="#EDEDED">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_gymClass"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10sp"
         android:elevation="10dp">
 
@@ -23,7 +22,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="60dp">
 
                 <!--수업명-->
                 <TextView
@@ -35,12 +34,13 @@
                     android:gravity="center_vertical"
                     android:textStyle="bold"
                     android:text="공중부양 핫요가"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
                 <ImageButton
                     android:id="@+id/btn_class_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:background="#FFFFFF"
                     android:src="@drawable/detail_24px" />
@@ -50,7 +50,9 @@
 
             <!--구분 라인-->
             <View
-                android:layout_width="310dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:paddingLeft="20dp"
                 android:layout_gravity="center"
@@ -61,24 +63,25 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="0dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 >
 
                 <LinearLayout
                     android:layout_marginLeft="0sp"
-                    android:layout_width="45sp"
-                    android:layout_height="match_parent"
+                    android:layout_width="55sp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <!--label 시작-->
                     <TextView
                         android:layout_width="45sp"
-                        android:layout_height="25sp"
+                        android:layout_height="30sp"
                         android:gravity="start|center"
                         android:text="시작일"
                         android:textSize="12sp"
@@ -86,21 +89,21 @@
 
                     <TextView
                         android:layout_width="45sp"
-                        android:layout_height="25sp"
+                        android:layout_height="30sp"
                         android:gravity="start|center"
                         android:text="종료일"
                         android:textSize="12sp"/>
 
                     <TextView
                         android:layout_width="45sp"
-                        android:layout_height="25sp"
+                        android:layout_height="30sp"
                         android:gravity="start|center"
                         android:text="시    간"
                         android:textSize="12sp"/>
 
                     <TextView
                         android:layout_width="45sp"
-                        android:layout_height="25sp"
+                        android:layout_height="30sp"
                         android:gravity="start|center"
                         android:text="가    격"
                         android:textSize="12sp"/>
@@ -109,7 +112,7 @@
                 <!--value 시작-->
                 <LinearLayout
                     android:layout_width="170dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_marginLeft="0sp"
                     android:orientation="vertical">
@@ -117,34 +120,34 @@
                     <TextView
                         android:id="@+id/tv_gym_class_startDate"
                         android:layout_width="170dp"
-                        android:layout_height="25sp"
+                        android:layout_height="30sp"
                         android:gravity="start|center"
                         android:text="2020-07-01"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/tv_gym_class_endDate"
                         android:layout_width="170dp"
-                        android:layout_height="25sp"
+                        android:layout_height="30sp"
                         android:gravity="start|center"
                         android:text="2020-12-30"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/tv_gym_class_time"
                         android:layout_width="170dp"
-                        android:layout_height="25sp"
+                        android:layout_height="30sp"
                         android:gravity="start|center"
                         android:text="21:00:00-22:00:00"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/tv_gym_class_price"
                         android:layout_width="170dp"
-                        android:layout_height="25sp"
+                        android:layout_height="30sp"
                         android:gravity="start|center"
                         android:text="300000원"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 

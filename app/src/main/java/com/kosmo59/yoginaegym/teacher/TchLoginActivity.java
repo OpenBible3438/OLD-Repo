@@ -38,6 +38,8 @@ public class TchLoginActivity extends AppCompatActivity {
                 String tchName = "나강사";
                 tvo.setTchName(tchName);
                 tvo.setRoomName2(tchName);
+                tvo.setMsgSendName(tchName);
+                tvo.setMsgSendId(tchId);
                 Intent intent = new Intent(TchLoginActivity.this, TchMainActivity.class);
                 startActivity(intent);
             }

@@ -31,7 +31,7 @@
                     android:layout_height="match_parent"
                     android:textStyle="bold"
                     android:text="메모 등록"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
                 android:gravity="right"
@@ -56,8 +56,7 @@
 
         <EditText
             android:background="@null"
-            android:lines="10"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:gravity="left|top"
             android:text="내용을 입력하세요."
             android:layout_width="match_parent"

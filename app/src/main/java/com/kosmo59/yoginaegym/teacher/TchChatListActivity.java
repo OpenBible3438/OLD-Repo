@@ -63,11 +63,11 @@ public class TchChatListActivity extends AppCompatActivity {
         }
         Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
 
-        if(result != null){
-            Toast.makeText(TchChatListActivity.this, result, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(TchChatListActivity.this, "문제 발생.", Toast.LENGTH_LONG).show();
-        }
+//        if(result != null){
+//            Toast.makeText(TchChatListActivity.this, result, Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(TchChatListActivity.this, "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
         Gson g = new Gson();
         chatMemList = (List<Map<String, Object>>)g.fromJson(result, listType);
         TchChatAdapter tchChatAdapter = new TchChatAdapter(TchChatListActivity.this, R.layout.tch_chat_list_item, chatMemList);
