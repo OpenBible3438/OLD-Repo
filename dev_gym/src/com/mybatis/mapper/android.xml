@@ -401,7 +401,7 @@
 			   AND T.GYM_NO = #{gym_no}
    </select>
    	<!-- getImg -->
-	<select id="getImg" parameterType="map" resultType="map">
+	<select id="getImg" parameterType="map" resultMap="getAndImage">
 		SELECT filedata
 		  FROM images
 		 WHERE file_seq = #{file_seq}
