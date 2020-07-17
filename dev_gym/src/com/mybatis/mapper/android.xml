@@ -252,13 +252,16 @@
 		   AND cls_no = #{cls_no}
 	</select>
 	<!-- 회원이 듣는 수업들의 강사 구하기(메시지에 사용) -->
+	<!-- 강사 사진 불러오기 성경추가 -->
 	<select id="getMemTchList_and" parameterType="map" resultType="map">
-		SELECT t.tch_no, t.tch_name, t.tch_gender, t.tch_tel
-		  FROM teacher t, class c, pay p
+		SELECT t.tch_no, t.tch_name, t.tch_gender, t.tch_tel, i.file_seq
+		  FROM teacher t, class c, pay p, images i
 		 WHERE t.tch_no = c.tch_no
 		   AND c.cls_no = p.cls_no
 		   AND p.mem_no = #{mem_no}
-		GROUP BY t.tch_no, t.tch_name, t.tch_gender, t.tch_tel
+		   AND i.type = 'tch'
+           AND i.TYPECODE = T.GYM_NO||T.TCH_NO
+		GROUP BY t.tch_no, t.tch_name, t.tch_gender, t.tch_tel, i.file_seq
 	</select>
    <!-- 전체 콘텐츠 가져오기 -->
 	<select id="getContentsList_and" parameterType="map" resultType="map">
@@ -401,7 +404,7 @@
 			   AND T.GYM_NO = #{gym_no}
    </select>
    	<!-- getImg -->
-	<select id="getImg" parameterType="map" resultType="map">
+	<select id="getImg" parameterType="map" resultMap="getAndImage">
 		SELECT filedata
 		  FROM images
 		 WHERE file_seq = #{file_seq}
