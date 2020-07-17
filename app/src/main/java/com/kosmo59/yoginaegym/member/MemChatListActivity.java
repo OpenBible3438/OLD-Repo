@@ -59,20 +59,20 @@ public class MemChatListActivity extends AppCompatActivity {
         ////////////////////////////////////DB 연동 시작////////////////////////////////////
         String result = null;
         String reqUrl = "android/jsonMemTchList.gym";
-        final AppVO vo = (AppVO) getApplicationContext();
+        //final AppVO vo = (AppVO) getApplicationContext();
         String nowMem = null;
         Map<String, Object> memMap = new HashMap<>();
-        memMap.put("mem_no", vo.mem_no);
+        memMap.put("mem_no", vo.getMem_no());
         nowMem = memMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
-        Log.i("테스트", "nowMem : " + nowMem);
+        Log.i("MemChatListActivity", "nowMem : " + nowMem);
         try {
             TomcatSend tomcatSend = new TomcatSend();
             result = tomcatSend.execute(reqUrl, nowMem).get();
         } catch (Exception e){
-            Log.i("테스트", "Exception : "+e.toString());
+            Log.i("MemChatListActivity", "Exception : "+e.toString());
         }
-        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
+        Log.i("MemChatListActivity", "톰캣서버에서 읽어온 정보 : "+result);
 //
 //        if(result != null){
 //            Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
