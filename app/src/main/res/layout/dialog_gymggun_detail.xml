@@ -26,6 +26,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/tch_name_dtl"
                     android:layout_marginTop="6dp"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
@@ -105,6 +106,12 @@
                         android:text="0"
                         android:textSize="16sp" />
 
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp">
                     <TextView
                         android:layout_width="45sp"
                         android:layout_height="25sp"
@@ -115,26 +122,13 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:layout_width="75sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="25sp"
                         android:layout_gravity="center"
                         android:gravity="center_vertical"
                         android:text="2020-07-02"
-                        android:textSize="14sp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:gravity="right"
-                    android:layout_width="match_parent"
-                    android:layout_height="50sp">
+                        android:textSize="16sp" />
 
-                    <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="25sp"
-                        android:layout_gravity="center"
-                        android:adjustViewBounds="true"
-                        android:gravity="center"
-                        android:scaleType="fitEnd"
-                        app:srcCompat="@drawable/icon_share" />
                 </LinearLayout>
             </LinearLayout>
             <!--구분 라인-->
@@ -152,13 +146,6 @@
                     android:orientation="vertical"
                     android:layout_width="60dp"
                     android:layout_height="match_parent">
-                    <TextView
-                        android:textSize="12sp"
-                        android:textColor="#00BCD4"
-                        android:text="담당수업"
-                        android:gravity="left|center"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
                         android:textColor="#00BCD4"
@@ -201,36 +188,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
-                        android:textSize="20sp"
-                        android:gravity="left|center"
-                        android:text="짐꾼1의 PT"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
-                    <TextView
+                        android:id="@+id/tch_id_dtl"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="tch100"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
+                        android:id="@+id/tch_gender_dtl"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="남성"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
+                        android:id="@+id/tch_tel_dtl"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="010-2222-2222"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
+                        android:id="@+id/tch_career_dtl"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="강사 3년차"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
+                        android:id="@+id/tch_intro_dtl"
                         android:layout_marginTop="4dp"
                         android:lines="3"
                         android:textSize="20sp"
