@@ -18,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40sp"
+            android:layout_height="50sp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -30,7 +30,7 @@
                     android:layout_height="match_parent"
                     android:textStyle="bold"
                     android:text="수업일지 등록"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
                 android:gravity="right"
@@ -56,8 +56,7 @@
         <EditText
             android:id="@+id/et_log_cont"
             android:background="@null"
-            android:lines="10"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:gravity="left|top"
             android:text="거북목 교정 자세\n골반 교정 자세\n\n산책 1시간"
             android:layout_width="match_parent"
