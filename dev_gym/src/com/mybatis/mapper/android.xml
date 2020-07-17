@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.androidMapper">
-
+	<resultMap id="memLogin" type="map"/>
+	<resultMap id="tchLogin" type="map"/>
 <!-- ======================= 편성경 ======================= -->
 	<!-- 회원 로그인 -->
 	<select id="getMemberLogin" parameterType="map" resultType="map">
@@ -9,6 +10,22 @@
 		  FROM MEMBER
 		 WHERE mem_id = #{mem_id}
 		   AND mem_pw = #{mem_pw}
+	</select>
+	<!-- 회원 로그인  프로시저 -->
+	<select id="getProcMemLogin"  parameterType="map" statementType="CALLABLE">
+		{ call proc_mem_login(#{mem_id},#{mem_pw},#{memLogin
+						                           ,jdbcType=CURSOR
+						                           ,mode=OUT
+						                           ,javaType=java.sql.ResultSet
+						                           ,resultMap=memLogin})}
+	</select>
+	<!-- 강사 로그인  프로시저 -->
+	<select id="getProcTchLogin"  parameterType="map" statementType="CALLABLE">
+		{ call proc_tch_login(#{tch_id},#{tch_pw},#{tchLogin
+						                           ,jdbcType=CURSOR
+						                           ,mode=OUT
+						                           ,javaType=java.sql.ResultSet
+						                           ,resultMap=tchLogin})}
 	</select>
 	<!-- 회원 번호 채번 -->
 	<select id="memberJoinGetNo" parameterType="map" resultType="int">

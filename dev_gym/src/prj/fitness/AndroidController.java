@@ -124,6 +124,9 @@ public class AndroidController implements Controller{
 				case "jsonMemberLogin":{
 					selResult = aLogic.getMemberLogin(pMap);
 				}break;
+				case "jsonTeacherLogin":{
+					selResult = aLogic.getTeacherLogin(pMap);
+				}break;
 				
 				//매장 공지사항 조회
 				case "jsonGymNoticeList":{
