@@ -23,6 +23,7 @@ import androidx.cardview.widget.CardView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.TomcatSend;
 
 import java.lang.reflect.Type;
@@ -43,9 +44,14 @@ public class TchclassAdapter extends ArrayAdapter {
     private ImageButton icon_close;
     private Button btn_tchMemList;
 
+    //cls_no 담기
+    public String get_cls_no = null;
+
     //수강생 보기 버튼 => 수강생 리스트 다이얼로그
     private ListView mem_listView;
     List<Map<String, Object>> mem_list = null;
+
+    AppVO vo = null;
 
 
     public TchclassAdapter(Context context, int resource, List<Map<String, Object>> clsList) {
@@ -74,6 +80,9 @@ public class TchclassAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(this.resourceId, parent, false);
+
+        vo = (AppVO) mContext.getApplicationContext();
+
         /*final View view = mLayoutInflater.inflate(R.layout.tchclasslistview_item, null);*/
         Log.i(TAG, "■■■■■■■■ position : " + position);
 
@@ -86,6 +95,7 @@ public class TchclassAdapter extends ArrayAdapter {
 
         String cls_no = mList.get(position).get("CLS_NO").toString();
         final String cls_no_result = cls_no.substring(0, cls_no.length()-2);
+        vo.setCls_no(cls_no_result);
 
         cls_name.setText(mList.get(position).get("CLS_NAME").toString());
         cls_stime.setText(mList.get(position).get("CLS_STIME").toString());
