@@ -28,7 +28,7 @@
                     android:layout_height="match_parent"
                     android:textStyle="bold"
                     android:text="김회원"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -188,31 +188,31 @@
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
                     android:text="testmem1"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
                     android:text="김회원닉네임"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
                     android:text="010-1234-5678"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
                     android:text="1996-03-31"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
                     android:text="2019-02-10"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
         </LinearLayout>

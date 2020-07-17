@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class MainImageAdapter extends PagerAdapter {
-    private int[] images = {R.drawable.main1,R.drawable.main2,R.drawable.main3,R.drawable.main4};
+    private int[] images = {R.drawable.img_main1,R.drawable.img_main2,R.drawable.img_main3,R.drawable.img_main4};
     private LayoutInflater inflater;
     private Context context;
 
@@ -33,6 +33,7 @@ public class MainImageAdapter extends PagerAdapter {
         View v = inflater.inflate(R.layout.main_image_slider, container, false);
         ImageView imageView = (ImageView)v.findViewById(R.id.iv_mainSlider);
         imageView.setImageResource(images[position]);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         container.addView(v);
         return v;
     }

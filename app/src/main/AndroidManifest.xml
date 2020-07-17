@@ -54,7 +54,6 @@
         <activity android:name=".teacher.TchLoginActivity" />
         <activity android:name=".member.MemLoginActivity" />
         <activity android:name=".sample.sample1" />
-        <activity android:name=".ChatTestActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

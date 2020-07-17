@@ -29,27 +29,30 @@
                 android:orientation="horizontal"
                 android:padding="20sp" >
 
+
                 <TextView
-                    android:layout_width="55sp"
-                    android:layout_height="25sp"
-                    android:layout_gravity="center"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/quantum_googgreen300"
                     android:gravity="center"
-                    android:text="월요일"
-                    android:textSize="15sp"/>
+                    android:text="월"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_marginLeft="40sp"
+                    android:layout_marginLeft="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:gravity="left|center"
+                        android:lines="4"
                         android:id="@+id/mon_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
-                        android:lines="4"
-                        android:textSize="15dp" />
+                        android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -70,26 +73,28 @@
                 android:padding="20sp">
 
                 <TextView
-                    android:layout_width="55sp"
-                    android:layout_height="25sp"
-                    android:layout_gravity="center"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/quantum_teal400"
                     android:gravity="center"
-                    android:text="화요일"
-                    android:textSize="15sp"/>
+                    android:text="화"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_marginLeft="40sp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:gravity="left|center"
+                        android:lines="4"
                         android:id="@+id/tue_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
-                        android:lines="4"
-                        android:textSize="15dp" />
+                        android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -110,26 +115,29 @@
                 android:padding="20sp">
 
                 <TextView
-                    android:layout_width="55sp"
-                    android:layout_height="25sp"
-                    android:layout_gravity="center"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/quantum_indigo400"
                     android:gravity="center"
-                    android:text="수요일"
-                    android:textSize="15sp"/>
+                    android:text="수"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_marginLeft="40sp"
+                    android:layout_marginLeft="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:gravity="left|center"
                         android:id="@+id/wed_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:lines="4"
-                        android:textSize="15dp" />
+                        android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -150,26 +158,28 @@
                 android:padding="20sp">
 
                 <TextView
-                    android:layout_width="55sp"
-                    android:layout_height="25sp"
-                    android:layout_gravity="center"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/quantum_deeppurple400"
                     android:gravity="center"
-                    android:text="목요일"
-                    android:textSize="15sp"/>
+                    android:text="목"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_marginLeft="40sp"
+                    android:layout_marginLeft="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:gravity="left|center"
                         android:id="@+id/thu_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
                         android:lines="4"
-                        android:textSize="15dp" />
+                        android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -190,26 +200,28 @@
                 android:padding="20sp">
 
                 <TextView
-                    android:layout_width="55sp"
-                    android:layout_height="25sp"
-                    android:layout_gravity="center"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/quantum_purple300"
                     android:gravity="center"
-                    android:text="금요일"
-                    android:textSize="15sp"/>
+                    android:text="금"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_marginLeft="40sp"
+                    android:layout_marginLeft="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:gravity="left|center"
                         android:id="@+id/fri_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
                         android:lines="4"
-                        android:textSize="15dp" />
+                        android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -230,26 +242,28 @@
                 android:padding="20sp">
 
                 <TextView
-                    android:layout_width="55sp"
-                    android:layout_height="25sp"
-                    android:layout_gravity="center"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/quantum_pinkA100"
                     android:gravity="center"
-                    android:text="토요일"
-                    android:textSize="15sp"/>
+                    android:text="토"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_marginLeft="40sp"
+                    android:layout_marginLeft="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:gravity="left|center"
                         android:id="@+id/sat_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
                         android:lines="4"
-                        android:textSize="15dp" />
+                        android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -270,26 +284,28 @@
                 android:padding="20sp">
 
                 <TextView
-                    android:layout_width="55sp"
-                    android:layout_height="25sp"
-                    android:layout_gravity="center"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/quantum_vanillaredA100"
                     android:gravity="center"
-                    android:text="일요일"
-                    android:textSize="15sp"/>
+                    android:text="일"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_marginLeft="40sp"
+                    android:layout_marginLeft="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical">
                     <TextView
+                        android:gravity="left|center"
                         android:id="@+id/sun_clsList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
                         android:lines="4"
-                        android:textSize="15dp" />
+                        android:textSize="20dp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

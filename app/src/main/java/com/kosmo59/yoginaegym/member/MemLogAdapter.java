@@ -46,7 +46,7 @@ public class MemLogAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(this.resourceId, parent, false);
         Log.i("테스트", "mList.get(position) : " + mList.get(position));
@@ -58,7 +58,6 @@ public class MemLogAdapter extends ArrayAdapter {
         mem_log_title.setText(mList.get(position).get("log_title").toString());
         mem_log_exDate.setText(mList.get(position).get("ex_date").toString());
         mem_log_regDate.setText(mList.get(position).get("reg_date").toString());
-
         //버튼 id를 찾은 후 setOnclickListener()메소드를 사용한다.
         dailyRecord_1 = convertView.findViewById(R.id.dailyRecord_1);
         Log.i("테스트", "dailyRecord_1 : " + dailyRecord_1);
@@ -68,7 +67,7 @@ public class MemLogAdapter extends ArrayAdapter {
             public void onClick(View v) {
                 Log.i("테스트", "dailyRecord onClick 호출");
                 // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-                MemLogDetailDialog memLogDetailDialog = new MemLogDetailDialog(v.getContext());
+                MemLogDetailDialog memLogDetailDialog = new MemLogDetailDialog(v.getContext(), Integer.parseInt(mList.get(position).get("_id").toString()));
 
                 // 커스텀 다이얼로그를 호출한다.
                 memLogDetailDialog.openMemLogDetailDialog();
