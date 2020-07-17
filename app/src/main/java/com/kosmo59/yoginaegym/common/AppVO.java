@@ -10,6 +10,17 @@ public class AppVO extends Application {
         this.gym_no = gym_no;
     }
 
+    /* 강사에서 회원정보 볼 때 cls_no 저장하기 */
+    public String cls_no = null;
+
+    public String getCls_no() {
+        return cls_no;
+    }
+
+    public void setCls_no(String cls_no) {
+        this.cls_no = cls_no;
+    }
+
     /* 회원 */
     public String memberName = null;
     public String memberId = null;
