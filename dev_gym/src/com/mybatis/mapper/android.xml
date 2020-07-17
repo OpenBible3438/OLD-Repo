@@ -200,10 +200,13 @@
 	</select>-->
 	<!-- 매장 - 강사진 리스트 가져오기 -->
 	<select id="getTchList_and" parameterType="map" resultType="map">
-		   SELECT t.tch_no, t.tch_name, ti.tch_intro
-		     FROM gym g, teacher t, tch_info ti
+		   SELECT t.tch_no, t.tch_name, t.tch_tel, ti.tch_intro, i.file_seq
+		     FROM gym g, teacher t, tch_info ti, images i
 		    WHERE g.gym_no = t.gym_no
+		      AND i.type(+) = 'tch'
+		      AND i.typecode(+) = #{gym_no}||t.tch_no
 		      AND t.tch_no = ti.tch_no
+		      AND t.tch_no != 9999 
 		      AND t.gym_no = #{gym_no}
 	</select>
 	<!-- 회원 - 회원이 듣는 수업, 매장 가져오기 -->
@@ -227,13 +230,15 @@
               AND c.gym_no = t.gym_no
               AND c.cls_state = '진행'
 	</select>
+
 	<select id="getGymProfile_and" parameterType="map" resultType="map">
 		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr, file_seq
 		  FROM gym, images
 		 WHERE gym_no = #{gym_no}
 		   AND TYPE = 'gym'
 		   AND typecode = #{gym_no}
-	</select>
+	</select> 
+	
 	<!-- 매장 - 수업 - 자세히 보기 -->
 	<select id="getClsDetail_and" parameterType="map" resultType="map">
 		SELECT c.cls_name, t.tch_name, tp.type_name, c.cls_kind, c.cls_s_date, c.cls_e_date
