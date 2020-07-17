@@ -205,43 +205,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:id="@+id/cls_s_date"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:id="@+id/cls_e_date"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:id="@+id/cls_day"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:id="@+id/cls_s_time"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:id="@+id/cls_e_time"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
                 <TextView
                     android:id="@+id/cls_info"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:gravity="center_vertical"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
         </LinearLayout>
