@@ -13,6 +13,7 @@ import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.teacher.TchChatAdapter;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -144,6 +145,8 @@ public class Chat extends AppCompatActivity {
         Iterator i = dataSnapshot.getChildren().iterator();
         while (i.hasNext()){
             MessageData data = new MessageData();
+            Log.i("테스트", "MessageData : " + data);
+            Log.i("테스트", "i.next()).getValue() : " + ((DataSnapshot) i.next()).getValue());
             data.NAME = (String) ((DataSnapshot) i.next()).getValue();
             data.MSG = chat_msg = (String)((DataSnapshot) i.next()).getValue();
             data.TIME = (String) ((DataSnapshot) i.next()).getValue();
