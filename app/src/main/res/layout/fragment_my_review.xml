@@ -14,31 +14,31 @@
         android:orientation="vertical"
         android:padding="10dp" >
 
+        <Button
+            android:id="@+id/btn_revIns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="등록">
+        </Button>
+
         <!--==================카드뷰 시작===================-->
         <androidx.cardview.widget.CardView
-            android:id="@+id/myreview"
+            android:id="@+id/mr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10sp"
             android:elevation="10dp"
             app:cardBackgroundColor="#ffffff">
 
-            <Button
-                android:id="@+id/btn_revIns"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="등록">
-            </Button>
+
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="50dp">
-
-
+                android:layout_marginTop="5dp">
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -87,8 +87,6 @@
                             android:padding="3dp"
                             android:text="등록일" />
 
-
-
                     </TableRow>
 
                     <!-- 데이터가 들어가는 줄 -->
@@ -122,25 +120,271 @@
                             android:layout_marginBottom="1dp"
                             android:background="@drawable/table_border"
                             android:gravity="center"
-                            android:text="" />
+                            android:text="2020-07-14" />
 
                     </TableRow>
-
-
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="1dp"
                         android:layout_marginBottom="3dp"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:padding="13dp"
                         android:background="@drawable/table_border"
-                        android:text="" />
+                        android:text=
+                       "안녕하세요. 저는 김자연입니다.
+                        \n지인의 추천으로 여기내gym을 알게되어
+                        \n같이 다니게 되었는데
+                        \n현재는 센타 분위기와 운동시설이 너무 만족스러워
+                        \n오랜 기간 운동을 하고 있습니다."
+                        android:textSize="16sp"/>
                 </TableLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+        <!--===============================카드뷰 끝=================================-->
+        <!--==============================카드뷰 시작================================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mr1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:stretchColumns="*">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp" />
+
+                    <!-- 첫 줄 -->
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="#D5D5D5"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:text="수업이름" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="#D5D5D5"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:text="강사" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="#D5D5D5"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:text="등록일" />
+
+                    </TableRow>
+
+                    <!-- 데이터가 들어가는 줄 -->
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/table_border"
+                            android:gravity="center"
+                            android:text="개인PT" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/table_border"
+                            android:gravity="center"
+                            android:text="김승현" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/table_border"
+                            android:gravity="center"
+                            android:text="2020-07-12" />
+
+                    </TableRow>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="3dp"
+                        android:gravity="left"
+                        android:padding="13dp"
+                        android:background="@drawable/table_border"
+                        android:text=
+                       "안녕하세요.
+                        \n운동을 좋아해서 난 여기내gym을 알게되어
+                        \n열심히 다니고 있습니다.
+                        \n모든것이 마음에 들어 계속 다닐것 같아요."
+                        android:textSize="16sp"/>
+                </TableLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--===============================카드뷰 끝=================================-->
+        <!--==============================카드뷰 시작================================-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mr2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="#ffffff">
+
+
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:stretchColumns="*">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp" />
+
+                    <!-- 첫 줄 -->
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="#D5D5D5"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:text="수업이름" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="#D5D5D5"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:text="강사" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="#D5D5D5"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:text="등록일" />
+
+                    </TableRow>
+
+                    <!-- 데이터가 들어가는 줄 -->
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/table_border"
+                            android:gravity="center"
+                            android:text="개인PT" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/table_border"
+                            android:gravity="center"
+                            android:text="이찬승" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:background="@drawable/table_border"
+                            android:gravity="center"
+                            android:text="2020-07-08" />
+
+                    </TableRow>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginBottom="3dp"
+                        android:gravity="left"
+                        android:padding="13dp"
+                        android:background="@drawable/table_border"
+                        android:text=
+                       "체중을 줄이기 위해 다니고 있는데
+                        \n아직은 잘 모르겠지만 열심히 해 보고자 합니다.
+                        \n응원해 주세요.."
+                        android:textSize="16sp"/>
+                </TableLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <!--===============================카드뷰 끝=================================-->
     </LinearLayout>
-    <!--===============================카드뷰 끝=================================-->
+
 </ScrollView>

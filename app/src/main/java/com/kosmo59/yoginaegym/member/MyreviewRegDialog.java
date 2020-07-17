@@ -121,69 +121,63 @@ public class MyreviewRegDialog {
     }
 
     void show() {
-        Log.i("테스트", "show()");
+        //Log.i("테스트", "show()");
         Toast.makeText(context.getApplicationContext(),"show()", Toast.LENGTH_SHORT).show();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("등록하시겠습니까?");
-        builder.setPositiveButton("예",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context.getApplicationContext(),"등록되었습니다.",Toast.LENGTH_LONG).show();
-                    }
-                });
-        builder.setNegativeButton("아니오",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context.getApplicationContext(),"취소되었습니다.",Toast.LENGTH_LONG).show();
-                    }
-                });
-        builder.show();
 
-//                        final String rev_kind = et_revkind.getText().toString();
-//                        final String rev_cont = et_revcont.getText().toString();
-//                        final String rev_star = et_revstar.getText().toString();
-//
-//                        /*map 만들기*/
-//                        Map<String, Object> pMap = new HashMap<>();
-//                        pMap.put("rev_kind", rev_kind);
-//                        pMap.put("rev_cont", rev_cont);
-//                        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//                        String date = simpleDateFormat.format(System.currentTimeMillis());
-//                        pMap.put("rev_date", date);
-//                        simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-//                        String time = simpleDateFormat.format(System.currentTimeMillis());
-//                        pMap.put("rev_time", time);
-//                        pMap.put("rev_star", rev_star);
-//
-//
-//                        String send = "android/getGymReviewIns.gym?cud=ins";
-//                        String result = null;
-//                        try {
-//                            TomcatSend tomcatSend = new TomcatSend();
-//                            result = tomcatSend.execute(send, pMap.toString()).get();
-//                        } catch (Exception e) {
-//                            Log.i("Review Log", "Exception : " + e.toString());
-//                        }
-//                        Log.i("Review Log", "톰캣 서버에서 읽어온 정보 : " + result);
-//
-//                        /*if(result != null){
-//                            Toast.makeText(MyreviewRegDialog.this, "등록되었습니다.", Toast.LENGTH_SHORT).show();
-//                            MyreviewRegDialog.super.onBackPressed();
-//                        } else {
-//                            Toast.makeText(MyreviewRegDialog.this, "취소되었습니다.", Toast.LENGTH_SHORT).show();
-//                            MyreviewRegDialog.super.onBackPressed();
-//                        }*/
-//                        /* */
-//                        if (result != null) {
-//                            Toast.makeText(context, "등록되었습니다.", Toast.LENGTH_SHORT).show();
-//                            ((Activity) context).onBackPressed();
-//                        } else {
-//                            Toast.makeText(context, "취소되었습니다", Toast.LENGTH_SHORT).show();
-//                            ((Activity) context).onBackPressed();
-//                        }
 
-//                    }
-//                });
+
+                    final String revkind = et_revkind.getText().toString();
+                    final String revcont = et_revcont.getText().toString();
+                    final String revstar = et_revstar.getText().toString();
+
+                    /*map 만들기*/
+                    Map<String, Object> pMap = new HashMap<>();
+                    pMap.put("rev_kind", revkind);
+                    pMap.put("rev_cont", revcont);
+                    simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String date = simpleDateFormat.format(System.currentTimeMillis());
+                    pMap.put("rev_date", date);
+                    simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+                    String time = simpleDateFormat.format(System.currentTimeMillis());
+                    pMap.put("rev_time", time);
+                    pMap.put("rev_star", revstar);
+
+
+                    String send = "android/getGymReviewIns.gym?cud=ins";
+                    String result = null;
+                    try {
+                        TomcatSend tomcatSend = new TomcatSend();
+                        result = tomcatSend.execute(send, pMap.toString()).get();
+                    } catch (Exception e) {
+                        Log.i("Review Log", "Exception : " + e.toString());
+                    }
+                    Log.i("Review Log", "톰캣 서버에서 읽어온 정보 : " + result);
+
+                    builder.setMessage("등록하시겠습니까?");
+                /* builder.setPositiveButton("예",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(context.getApplicationContext(),"등록되었습니다.",Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    builder.setNegativeButton("아니오",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(context.getApplicationContext(),"취소되었습니다.",Toast.LENGTH_LONG).show();
+                                }
+                            });
+                    builder.show();*/
+
+
+                          /* */
+                          if (result != null) {
+                              Toast.makeText(context, "등록되었습니다.", Toast.LENGTH_SHORT).show();
+                              ((Activity) context).onBackPressed();
+                          } else {
+                              Toast.makeText(context, "취소되었습니다", Toast.LENGTH_SHORT).show();
+                              ((Activity) context).onBackPressed();
+                          }
 
     }
 }

@@ -58,11 +58,7 @@
         android:minWidth="10.0dip"
         android:scrollHorizontally="true"
         android:text=
-            "안녕하세요. 저는 OOO입니다.
-                        \n지인의 추천으로 여기내gym을 알게되어
-                        \n같이 다니게 되었는데
-                        \n현재는 센타 분위기와 운동시설이 너무 만족스러워
-                        \n오랜 기간 운동을 하고 있습니다."
+            ""
         android:textSize="16sp" />
 
     <RatingBar
