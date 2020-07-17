@@ -65,28 +65,17 @@ public class Chat extends AppCompatActivity {
 
         //채팅방 이름 설정
         roomName = vo.getRoomName1()+vo.getRoomName2();
+        Log.i("Chat.java", "방이름 : "+roomName);
+
 
         //Firebase Database에 roomName으로 참조
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Chat").child(roomName).child(new SimpleDateFormat("YYYY-MM-dd").format(System.currentTimeMillis()));
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Chat").child(roomName);
 
         simpleDateFormat = new SimpleDateFormat("HH:mm");
 
         send_name = vo.getMsgSendName();
+        Log.i("Chat.java", "발신자 : "+send_name);
         send_id = vo.getMsgSendName();
-
-        /*
-        if(vo.getMemberId()!=null){
-            //회원 번호가 null이 아니면 회원으로 로그인한 것
-            send_name = vo.getMemberName();
-            send_id = vo.getMemberId();
-        }
-        else if(vo.getTchId()!=null){
-            //강사 번호가 null이 아니면 강사로 로그인한 것
-            send_name = vo.getTchName();
-            send_id = vo.getTchId();
-        }
-
-         */
 
         btn_msgSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,8 +134,8 @@ public class Chat extends AppCompatActivity {
         Iterator i = dataSnapshot.getChildren().iterator();
         while (i.hasNext()){
             MessageData data = new MessageData();
-            Log.i("테스트", "MessageData : " + data);
-            Log.i("테스트", "i.next()).getValue() : " + ((DataSnapshot) i.next()).getValue());
+            //Log.i("테스트", "MessageData : " + data);
+            //Log.i("테스트", "i.next()).getValue() : " + ((DataSnapshot) i.next()).getValue());
             data.NAME = (String) ((DataSnapshot) i.next()).getValue();
             data.MSG = chat_msg = (String)((DataSnapshot) i.next()).getValue();
             data.TIME = (String) ((DataSnapshot) i.next()).getValue();

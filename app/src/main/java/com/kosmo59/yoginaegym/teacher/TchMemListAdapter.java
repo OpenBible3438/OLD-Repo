@@ -9,9 +9,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.TomcatSend;
@@ -22,6 +26,7 @@ import androidx.cardview.widget.CardView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,8 +37,6 @@ public class TchMemListAdapter extends ArrayAdapter {
     int resourceId;
 
     AppVO vo = null;
-
-    int mem_no = 0;
 
     public TchMemListAdapter(@NonNull Context context, int resource, @NonNull List mList) {
         super(context, resource, mList);
@@ -78,12 +81,7 @@ public class TchMemListAdapter extends ArrayAdapter {
         //mem_no 아무도 모르게 박아놓기
         final TextView hidden_mem_no = convertView.findViewById(R.id.hidden_mem_no);
         hidden_mem_no.setText(mList.get(position).get("MEM_NO").toString());
-        String strMem_no = hidden_mem_no.getText().toString();
-        String subMem_no = strMem_no.substring(0, strMem_no.length()-2);
-        mem_no = Integer.parseInt(subMem_no);
 
-        final TextView hidden_cls_no = convertView.findViewById(R.id.hidden_cls_no);
-        //hidden_cls_no.setText(mList.get(position));
 
         //띄워지는 다이얼로그의 객체 id 설정
         CardView cv_memListDetail = convertView.findViewById(R.id.cv_memListDetail);
@@ -92,14 +90,14 @@ public class TchMemListAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(context, tch_memList_name.getText().toString()+"회원의 정보보기 클릭", Toast.LENGTH_SHORT).show();
-                //Toast.makeText(context, "mem_no TEST : "+hidden_mem_no.getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "mem_no TEST : "+hidden_mem_no.getText().toString(), Toast.LENGTH_SHORT).show();
                 final Dialog dlg = new Dialog(context);
 
                 // 액티비티의 타이틀바를 숨긴다.
                 dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
                 // 커스텀 다이얼로그의 레이아웃을 설정한다.
-                dlg.setContentView(R.layout.dialog_tch_mem_list);
+                dlg.setContentView(R.layout.dialog_tch_mem_info);
 
                 /* 여기에 값 넣어주는 코드 넣기 */
                 Log.i("tch_mem_info", "회원정보 DB연동 시작");
@@ -109,26 +107,37 @@ public class TchMemListAdapter extends ArrayAdapter {
                 JSONObject jsonObject = null;
                 JSONArray jsonArray = null;
 
-                //int cls_no = Integer.parseInt(vo.getCls_no());
-                //Toast.makeText(context, "cls_no = "+cls_no, Toast.LENGTH_SHORT).show();
+                int cls_no = vo.getCls_no();
+                Log.i("TchMemListAdapter", "cls_no : "+cls_no);
                 Map<String, Object> pMap = new HashMap<>();
-                //pMap.put("cls_no", cls_no);
+                pMap.put("cls_no", cls_no);
+
+                String strMem_no = hidden_mem_no.getText().toString();
+                String subMem_no = strMem_no.substring(0, strMem_no.length()-2);
+                int mem_no = Integer.parseInt(subMem_no);
                 pMap.put("mem_no", mem_no);
+
+                Log.i("TchMemListAdapter", "mem_no : "+mem_no);
+                Type listType = new TypeToken<List<Map<String, Object>>>() {}.getType();
                 try{
                     TomcatSend tomcatSend = new TomcatSend();
                     result = tomcatSend.execute(reqUrl, pMap.toString()).get();
                     jsonArray = new JSONArray(result);
                 }catch (Exception e){
-                    Log.i("tch_mem_info", e.toString());
+                    Log.i("TchMemListAdapter", e.toString());
                 }
-                Log.i("tch_mem_info", "톰캣서버에서 읽어온 정보"+result);
-
-                if(result != null){
+                Log.i("TchMemListAdapter", "톰캣서버에서 읽어온 정보"+result);
+                /*if(result != null){
                     Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-                }
-
+                }*/
+                Gson g = new Gson();
+                List<Map<String, Object>> memInfoList = (List<Map<String, Object>>) g.fromJson(result, listType);
+                Log.i("TchMemListAdapter", "memInfoList.size() : " + memInfoList.size());
+                TchMemInfoAdapter tchMemInfoAdapter = new TchMemInfoAdapter(context, R.layout.tch_mem_info_item, memInfoList);
+                ListView lv_tch_mem_info = dlg.findViewById(R.id.lv_tch_mem_info);
+                lv_tch_mem_info.setAdapter(tchMemInfoAdapter);
                 // 커스텀 다이얼로그를 노출한다.
-                //dlg.show();
+                dlg.show();
             }
         });
 

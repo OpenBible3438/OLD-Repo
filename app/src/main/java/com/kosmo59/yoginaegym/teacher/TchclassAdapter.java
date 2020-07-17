@@ -114,7 +114,6 @@ public class TchclassAdapter extends ArrayAdapter {
 
             // 커스텀 다이얼로그의 레이아웃을 설정한다.
             dlg.setContentView(R.layout.dialog_tch_mem_list);
-            vo.setCls_no(cls_no_result);
             // 커스텀 다이얼로그를 노출한다.
             dlg.show();
             }
@@ -145,7 +144,8 @@ public class TchclassAdapter extends ArrayAdapter {
                 String reqUrl = "android/jsonClsMemList.gym";
 
                 Map<String, Object> pMap = new HashMap<>();
-                pMap.put("cls_no", cls_no_result);
+                pMap.put("cls_no", Integer.parseInt(cls_no_result));
+                vo.setCls_no(Integer.parseInt(cls_no_result));
                 Type listType = new TypeToken<List<Map<String, Object>>>() {
                 }.getType();
                 Log.i("테스트", "받아온 cls_no : " + cls_no_result);

@@ -37,15 +37,7 @@
                     <TextView
                         android:id="@+id/hidden_mem_no"
                         android:visibility="gone"
-                        android:textSize="0sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <!-- cls_no 받아올 거임 -->
-                    <TextView
-                        android:id="@+id/hidden_cls_no"
-                        android:visibility="gone"
-                        android:textSize="0sp"
+                        android:text="000000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
