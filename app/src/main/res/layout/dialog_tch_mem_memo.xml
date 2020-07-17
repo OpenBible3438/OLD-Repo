@@ -27,7 +27,7 @@
                     android:layout_height="match_parent"
                     android:textStyle="bold"
                     android:text="메모 보기"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -90,9 +90,8 @@
                 android:padding="20sp">
 
                 <TextView
-                    android:lines="4"
+                    android:textSize="20sp"
                     android:text="본문이 들어올 자리입니다. 네 줄로 제한합니다. 본문이 들어올 자리입니다. 네 줄로 제한합니다.
-                                 \n본문이 들어올 자리입니다. 네 줄로 제한합니다. 본문이 들어올 자리입니다. 네 줄로 제한합니다.
                                   \n본문이 들어올 자리입니다. 네 줄로 제한합니다. 본문이 들어올 자리입니다. 네 줄로 제한합니다.  "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>

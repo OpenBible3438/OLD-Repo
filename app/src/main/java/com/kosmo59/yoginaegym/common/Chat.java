@@ -67,7 +67,7 @@ public class Chat extends AppCompatActivity {
         roomName = vo.getRoomName1()+vo.getRoomName2();
 
         //Firebase Database에 roomName으로 참조
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Chat").child(roomName);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Chat").child(roomName).child(new SimpleDateFormat("YYYY-MM-dd").format(System.currentTimeMillis()));
 
         simpleDateFormat = new SimpleDateFormat("HH:mm");
 
