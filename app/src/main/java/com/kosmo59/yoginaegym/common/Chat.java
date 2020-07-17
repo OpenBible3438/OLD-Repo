@@ -13,6 +13,7 @@ import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.teacher.TchChatAdapter;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -66,7 +67,7 @@ public class Chat extends AppCompatActivity {
         roomName = vo.getRoomName1()+vo.getRoomName2();
 
         //Firebase Database에 roomName으로 참조
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Chat").child(roomName);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Chat").child(roomName).child(new SimpleDateFormat("YYYY-MM-dd").format(System.currentTimeMillis()));
 
         simpleDateFormat = new SimpleDateFormat("HH:mm");
 
@@ -144,6 +145,8 @@ public class Chat extends AppCompatActivity {
         Iterator i = dataSnapshot.getChildren().iterator();
         while (i.hasNext()){
             MessageData data = new MessageData();
+            Log.i("테스트", "MessageData : " + data);
+            Log.i("테스트", "i.next()).getValue() : " + ((DataSnapshot) i.next()).getValue());
             data.NAME = (String) ((DataSnapshot) i.next()).getValue();
             data.MSG = chat_msg = (String)((DataSnapshot) i.next()).getValue();
             data.TIME = (String) ((DataSnapshot) i.next()).getValue();

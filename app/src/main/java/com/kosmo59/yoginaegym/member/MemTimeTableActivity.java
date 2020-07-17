@@ -28,6 +28,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MemTimeTableActivity extends AppCompatActivity {
     private AppVO vo = null;
@@ -131,5 +132,14 @@ public class MemTimeTableActivity extends AppCompatActivity {
             }
             return null;
         }
+
+        @Override
+
+        public int getItemPosition(Object object) {
+
+            return POSITION_NONE;
+
+        }
+
     }
 }

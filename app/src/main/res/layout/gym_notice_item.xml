@@ -6,114 +6,105 @@
     android:background="#EDEDED">
 
     <androidx.cardview.widget.CardView
-
         android:background="#ffffff"
         android:id="@+id/cv_gymNotice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10sp"
-        android:elevation="10dp">
+        android:elevation="0dp">
 
         <LinearLayout
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
-            android:paddingBottom="20dp"
-            android:paddingTop="15dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
-
-            <TableLayout
+            <LinearLayout
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="*">
-
-                <TableRow
+                android:layout_height="60dp">
+                <!--매장명-->
+                <TextView
+                    android:id="@+id/tv_gym_not_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:text="공지사항 제목"
+                    android:textSize="24sp"/>
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:gravity="center"
-                        android:text="제목"
-                        android:textColor="#009688"
-                        android:textStyle="bold" />
+            <!--구분 라인-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:background="#000000" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:textColor="#009688"
-                        android:text="날짜" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textColor="#009688"
-                        android:textStyle="bold"
-                        android:text="시간" />
-
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#AEAEAE"/>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tv_gym_not_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:layout_marginTop="7dp"
-                        android:gravity="center"
-                        android:text="첫 번째 공지사항" />
-
-                    <TextView
-                        android:id="@+id/tv_gym_not_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:layout_marginTop="7dp"
-                        android:gravity="center"
-                        android:text="2020-07-13" />
-
-                    <TextView
-                        android:id="@+id/tv_gym_not_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="7dp"
-                        android:layout_marginTop="7dp"
-                        android:gravity="center"
-                        android:text="12:01:33" />
-
-                </TableRow>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#AEAEAE" />
-
-            </TableLayout>
 
             <!-- 공지사항 내용 들어가는 부분 -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content">\
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="#FFFFFF"
+                        android:src="@drawable/icon_date"
+                        android:tint="#00BCD4" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:src="@drawable/icon_time"
+                        android:tint="#00BCD4" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_gym_not_date"
+                        android:textSize="20sp"
+                        android:gravity="center|left"
+                        android:text="날짜 내용"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:id="@+id/tv_gym_not_time"
+                        android:textSize="20sp"
+                        android:gravity="center|left"
+                        android:text="시간 내용"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
-                android:textSize="16sp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textSize="20sp"
                 android:id="@+id/tv_gym_not_conts"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
                 android:text="안녕하세요. 첫 번째 공지사항 입니다.\n감기 조심하세요."/>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

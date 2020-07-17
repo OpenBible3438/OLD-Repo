@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
@@ -12,8 +14,10 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.Chat;
+import com.kosmo59.yoginaegym.common.TomcatSend;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -23,17 +27,27 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /* 회원이 채팅할 강사 리스트 출력 */
 public class MemChatListActivity extends AppCompatActivity {
 
-    private CardView cardView;
     static AppVO vo = null;
+
+    private ListView memTch_listView;
+    private List<Map<String, Object>> memTchList;
 
     ImageView iv_memQr = null;
     TextView tv_memQrName=null;
+    private Context mContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +56,40 @@ public class MemChatListActivity extends AppCompatActivity {
 
         vo = (AppVO)getApplicationContext();
 
-        cardView = findViewById(R.id.chat_tch1);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vo.setRoomName2("나강사");
-                Toast.makeText(MemChatListActivity.this, "나강사 강사 선택", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MemChatListActivity.this, Chat.class);
-                startActivity(intent);
-            }
-        });
+        ////////////////////////////////////DB 연동 시작////////////////////////////////////
+        String result = null;
+        String reqUrl = "android/jsonMemTchList.gym";
+        final AppVO vo = (AppVO) getApplicationContext();
+        String nowMem = null;
+        Map<String, Object> memMap = new HashMap<>();
+        memMap.put("mem_no", vo.mem_no);
+        nowMem = memMap.toString();
+        Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
+        Log.i("테스트", "nowMem : " + nowMem);
+        try {
+            TomcatSend tomcatSend = new TomcatSend();
+            result = tomcatSend.execute(reqUrl, nowMem).get();
+        } catch (Exception e){
+            Log.i("테스트", "Exception : "+e.toString());
+        }
+        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
+//
+//        if(result != null){
+//            Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+//        }
+        Gson g = new Gson();
+        memTchList = (List<Map<String, Object>>)g.fromJson(result, listType);
+        ////////////////////////////////////DB 연동 끝////////////////////////////////////
+        MemChatTchListAdapter memChatTchListAdapter = new MemChatTchListAdapter(MemChatListActivity.this, R.layout.mem_chat_item, memTchList);
+        memTch_listView = findViewById(R.id.memTch_list);
+        memTch_listView.setAdapter(memChatTchListAdapter);
+
+
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////
 
         /* 하단바 추가 */
         BottomNavigationView bottom = findViewById(R.id.bottom_nav);

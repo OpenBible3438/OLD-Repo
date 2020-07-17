@@ -21,6 +21,7 @@
 
             <LinearLayout
                 android:padding="30dp"
+                android:gravity="center"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -31,7 +32,7 @@
                     android:layout_marginBottom="20dp"
                     android:src="@drawable/app_logo"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
+                    android:layout_height="250dp"/>
 
                 <LinearLayout
                     android:orientation="vertical"

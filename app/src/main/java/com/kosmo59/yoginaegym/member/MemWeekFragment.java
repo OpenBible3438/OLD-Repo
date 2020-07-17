@@ -75,52 +75,52 @@ public class MemWeekFragment extends Fragment {
         for (int i=0; i<memWeekClsList.size(); i++){
             String cls_day = memWeekClsList.get(i).get("CLS_DAY").toString();
             if(cls_day.contains("월")){
-                if(i>0) mon.append("\n");
+                if(mon.length()>0) mon.append("\n");
                 mon.append(memWeekClsList.get(i).get("CLS_STIME").toString()
-                    + " ~ " + memWeekClsList.get(i).get("CLS_ETIME").toString()
-                    + " : " + memWeekClsList.get(i).get("CLS_NAME").toString()
+                    + "~" + memWeekClsList.get(i).get("CLS_ETIME").toString()
+                    + "  " + memWeekClsList.get(i).get("CLS_NAME").toString()
                 );
             }
             if(cls_day.contains("화")){
-                if(i>0) tue.append("\n");
+                if(tue.length()>0) tue.append("\n");
                 tue.append(memWeekClsList.get(i).get("CLS_STIME").toString()
-                    + " ~ " + memWeekClsList.get(i).get("CLS_ETIME").toString()
-                    + " : " + memWeekClsList.get(i).get("CLS_NAME").toString()
+                    + "~" + memWeekClsList.get(i).get("CLS_ETIME").toString()
+                    + "  " + memWeekClsList.get(i).get("CLS_NAME").toString()
                 );
             }
             if(cls_day.contains("수")){
-                if(i>0) wed.append("\n");
+                if(wed.length()>0) wed.append("\n");
                 wed.append(memWeekClsList.get(i).get("CLS_STIME").toString()
-                    + " ~ " + memWeekClsList.get(i).get("CLS_ETIME").toString()
-                    + " : " + memWeekClsList.get(i).get("CLS_NAME").toString()
+                    + "~" + memWeekClsList.get(i).get("CLS_ETIME").toString()
+                    + "  " + memWeekClsList.get(i).get("CLS_NAME").toString()
                 );
             }
             if(cls_day.contains("목")){
-                if(i>0) thu.append("\n");
+                if(thu.length()>0) thu.append("\n");
                 thu.append(memWeekClsList.get(i).get("CLS_STIME").toString()
-                    + " ~ " + memWeekClsList.get(i).get("CLS_ETIME").toString()
-                    + " : " + memWeekClsList.get(i).get("CLS_NAME").toString()
+                    + "~" + memWeekClsList.get(i).get("CLS_ETIME").toString()
+                    + "  " + memWeekClsList.get(i).get("CLS_NAME").toString()
                 );
             }
             if(cls_day.contains("금")){
-                if(i>0) fri.append("\n");
+                if(fri.length()>0) fri.append("\n");
                 fri.append(memWeekClsList.get(i).get("CLS_STIME").toString()
-                    + " ~ " + memWeekClsList.get(i).get("CLS_ETIME").toString()
-                    + " : " + memWeekClsList.get(i).get("CLS_NAME").toString()
+                    + "~" + memWeekClsList.get(i).get("CLS_ETIME").toString()
+                    + "  " + memWeekClsList.get(i).get("CLS_NAME").toString()
                 );
             }
             if(cls_day.contains("토")){
-                if(i>0) sat.append("\n");
+                if(sat.length()>0) sat.append("\n");
                 sat.append(memWeekClsList.get(i).get("CLS_STIME").toString()
-                    + " ~ " + memWeekClsList.get(i).get("CLS_ETIME").toString()
-                    + " : " + memWeekClsList.get(i).get("CLS_NAME").toString()
+                    + "~" + memWeekClsList.get(i).get("CLS_ETIME").toString()
+                    + "  " + memWeekClsList.get(i).get("CLS_NAME").toString()
                 );
             }
             if(cls_day.contains("일")){
-                if(i>0) sun.append("\n");
+                if(sun.length()>0) sun.append("\n");
                 sun.append(memWeekClsList.get(i).get("CLS_STIME").toString()
-                    + " ~ " + memWeekClsList.get(i).get("CLS_ETIME").toString()
-                    + " : " + memWeekClsList.get(i).get("CLS_NAME").toString()
+                    + "~" + memWeekClsList.get(i).get("CLS_ETIME").toString()
+                    + "  " + memWeekClsList.get(i).get("CLS_NAME").toString()
                 );
             }
         }

@@ -1,80 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:scrollbarAlwaysDrawHorizontalTrack="false"
-    android:scrollbarAlwaysDrawVerticalTrack="true"
-    android:scrollbarStyle="outsideInset">
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 스크롤 뷰 안으로 코드추가 -->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30sp"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarStyle="outsideInset">
 
-        <Spinner
-            android:id="@+id/reviewInsSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:dropDownWidth="200dp"
-            android:spinnerMode="dropdown">
-        </Spinner>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:text="후기 등록"
+                    android:textSize="24sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/icon_close"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@drawable/icon_close_s" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--구분 라인-->
         <View
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
-        <Button
-            android:id="@+id/btn_revIns1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-            android:text="등록">
-        </Button>
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <!--======================================스피너-->
+            <Spinner
+                android:id="@+id/spn_tchClass"
+                android:background="@color/quantum_indigo100"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:src="@drawable/icon_arrow"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+
+
+        <EditText
+            android:layout_marginBottom="5dp"
+            android:background="@null"
+            android:textSize="20sp"
+            android:gravity="left|top"
+            android:text="여기내짐 어플 통해서 프로모션 중인 요가원의 명상수업 등록했습니다~ 꾸준히 이용하려구요!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:gravity="left|center"
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:gravity="left|center"
+                    android:text="등록일 "
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/my_review_reg_date"
+                    android:layout_width="75sp"
+                    android:layout_height="20sp"
+                    android:gravity="left|center"
+                    android:text="2020-07-02"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+
+            <!--구분 라인-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:gravity="right|top"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <Button
+                    android:id="@+id/btn_myReviewReg_ins"
+                    android:text="등록"
+                    android:textSize="14sp"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="#000000"/>
-
-   <!-- <EditText
-        android:id="@+id/et_reviewIns"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="제목을 입력하세요" />-->
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="0sp"
-        android:inputType="textMultiLine"
-        android:lines="7"
-        android:maxWidth="5.0dip"
-        android:minWidth="10.0dip"
-        android:scrollHorizontally="true"
-        android:text=
-            "안녕하세요. 저는 OOO입니다.
-                        \n지인의 추천으로 여기내gym을 알게되어
-                        \n같이 다니게 되었는데
-                        \n현재는 센타 분위기와 운동시설이 너무 만족스러워
-                        \n오랜 기간 운동을 하고 있습니다."
-        android:textSize="16sp" />
-
-    <RatingBar
-        android:id="@+id/rb_reviewStar"
-        android:layout_gravity="bottom"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:numStars="5"
-        android:progress="70"
-        android:progressTint="#FF9800"
-        android:stepSize="0.5" />
-
-</LinearLayout>
+</ScrollView>
