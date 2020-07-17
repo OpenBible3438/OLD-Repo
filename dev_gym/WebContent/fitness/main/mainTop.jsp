@@ -65,7 +65,14 @@
 					<a class="dropdown-item" href="javascript:picks('cls')">전체수업관리</a> 
 				</div>
 			</li>
-		<!--  -->
+				<!-- 매장관리 부분 -->
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown">출석조회</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="javascript:picks('memAtd')">회원출석</a> 
+					<a class="dropdown-item" href="javascript:picks('tchAtd')">강사출석</a> 
+				</div> 
+			</li>  
 		</ul>
 	</div>
 

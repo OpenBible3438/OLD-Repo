@@ -166,11 +166,6 @@ public class GymController implements Controller {
 				case "getImages":{ // 이미지 한장 가져오기 
 					selResult = gLogic.getImages(pMap);
 				} break;
-				case "getImg":{ // 이미지 한장 가져오기 
-					selResult = gLogic.getImg(pMap);
-					logger.info("selResult :"+selResult.toString());
-					mav.type = "img";
-				} break;
 				case "jsonClassMemList":{ // 수강생 조회
 					selResult = gLogic.getClassMemList(pMap);
 					mav.type = "json";

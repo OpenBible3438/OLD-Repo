@@ -166,6 +166,10 @@
 					} break;
 			case "cls"    : { %> <%@ include file="../class/classList.jsp" %> <%
 					} break;
+			case "memAtd"    : { %> <%@ include file="../android/memAttend.jsp" %> <%
+					} break;
+			case "tchAtd"    : { %> <%@ include file="../android/tchAttend.jsp" %> <%
+					} break;
 			default       : { %> <%@ include file="../gym/gymChart.jsp" %> <%
 			        } break;
 				
