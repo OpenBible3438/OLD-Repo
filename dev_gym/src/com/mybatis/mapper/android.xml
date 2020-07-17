@@ -70,7 +70,9 @@
 			 , cls_e_date, c.cls_state, COUNT(p.pay_no)regis_num, COUNT(DISTINCT(p.mem_no)) mem_num, cls_stime, cls_etime
 		  FROM class c, pay p
 		 WHERE c.cls_no = p.cls_no(+)
+		 <if test="tch_no != null">
 		   AND tch_no = #{tch_no}
+		 </if>
 		   AND c.gym_no = #{gym_no}
 		   AND C.CLS_STATE = '진행'
 	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state, cls_stime, cls_etime
@@ -202,7 +204,7 @@
              FROM class c, pay p, view_mng_atd v, teacher t
             WHERE c.cls_no = p.cls_no
               AND p.pay_no = v.pay_no
-              AND p.mem_no = 100
+              AND p.mem_no = #{mem_no}
               AND c.tch_no = t.tch_no
               AND c.gym_no = t.gym_no
               AND c.cls_state = '진행'
@@ -233,6 +235,14 @@
 		   AND p.mem_no = #{mem_no}
 		GROUP BY t.tch_no, t.tch_name, t.tch_gender, t.tch_tel
 	</select>
+   <!-- 전체 콘텐츠 가져오기 -->
+	<select id="getContentsList_and" parameterType="map" resultType="map">
+			SELECT c.cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name) who, cont_like, cont_date, cont_time
+			  FROM contents c, gym g, teacher t, member m
+			 WHERE c.cont_typecode = DECODE(cont_type, 'gym', g.gym_no, 'tch', t.tch_no, 'mem', m.mem_no)
+			   AND g.gym_no = t.gym_no
+			GROUP BY cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name), cont_like, cont_date, cont_time
+   </select>
 <!-- ======================= 김승현 ======================= -->
 
 
@@ -332,22 +342,6 @@
 			   AND IBD.MEM_NO = #{mem_no}
    </select>
    
-   <!-- 전체 콘텐츠 가져오기 -->
-	<select id="getContentsList" parameterType="map" resultType="map">
-			SELECT G.GYM_NO
-			      ,G.GYM_NAME
-			      ,GC.GYM_CONT_SEQ
-			      ,GC.GYM_CONTENTS
-			      ,GC.GYM_CONT_DATE
-			      ,GC.GYM_CONT_TIME
-			      ,GC.GYM_CONT_LIKE
-			      ,I.FILE_SEQ
-			  FROM gym_contents gc, images i, gym g
-			 WHERE GC.GYM_NO = G.GYM_NO
-			   AND I.TYPE = 'gymCont'
-			   AND I.TYPECODE = GC.GYM_CONT_SEQ
-			 ORDER BY GC.GYM_CONT_DATE desc
-   </select>
    
    <!-- 강사 프로필  가져오기 -->
 	<select id="getTeacherProf" parameterType="map" resultType="map">

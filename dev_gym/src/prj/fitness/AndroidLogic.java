@@ -61,7 +61,7 @@ public class AndroidLogic {
 	}
 	// 매장 공지사항 조회
 	public Object getGymNoticeList(Map<String, Object> pMap) throws SQLException {
-		logger.info("AndroidLogic - getgetGymNoticeList() 호출 ");
+		logger.info("AndroidLogic - getGymNoticeList() 호출 ");
 		List<Map<String, Object>> gymNoticeList = null;
 		gymNoticeList = aDao.getGymNoticeList(pMap);
 		return gymNoticeList;

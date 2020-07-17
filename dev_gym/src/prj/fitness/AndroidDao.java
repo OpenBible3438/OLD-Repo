@@ -173,7 +173,14 @@ public class AndroidDao {
 		logger.info("memTchList.size() : " + memTchList.size());
 		return memTchList;
 	}
-	
+	// 전체 콘텐츠 가져오기  
+		public List<Map<String, Object>> getContentsList(Map<String, Object> pMap) {
+			logger.info("AndroidDao - getContentsList() 호출");
+			List<Map<String, Object>> gymList = null;
+			gymList = sqlSession.selectList("getContentsList_and", pMap);
+			logger.info("getContentsList.size() : " + gymList.size());
+			return gymList;
+		}
 	
 // 김승현
 	
@@ -240,14 +247,6 @@ public class AndroidDao {
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getTchClsMemIbd", pMap);
 		logger.info("getTchClsMemIbd.size() : " + gymList.size());
-		return gymList;
-	}
-	// 전체 콘텐츠 가져오기  
-	public List<Map<String, Object>> getContentsList(Map<String, Object> pMap) {
-		logger.info("AndroidDao - getContentsList() 호출");
-		List<Map<String, Object>> gymList = null;
-		gymList = sqlSession.selectList("getContentsList", pMap);
-		logger.info("getContentsList.size() : " + gymList.size());
 		return gymList;
 	}
 	// 강사 프로필 가져오기   
