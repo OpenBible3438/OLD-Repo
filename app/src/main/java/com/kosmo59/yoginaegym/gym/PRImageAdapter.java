@@ -55,7 +55,7 @@ public class PRImageAdapter extends BaseAdapter {
 
         if(convertView == null){
             imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(300,300));
+            imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT,450));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(3,3,3,3 );
         }

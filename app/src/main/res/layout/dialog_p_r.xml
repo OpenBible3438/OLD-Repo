@@ -31,21 +31,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <TextView
-                    android:paddingBottom="2sp"
+                    android:fontFamily="@font/font"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="20sp"
-                    android:gravity="bottom"
-                    android:text="매장명"
-                    android:textSize="14sp" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="35sp"
-                    android:layout_marginLeft="20sp"
-                    android:gravity="left"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15sp"
+                    android:gravity="left|center"
                     android:textStyle="bold"
-                    android:text="여기내짐피트니스"
+                    android:text="요가원"
                     android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout

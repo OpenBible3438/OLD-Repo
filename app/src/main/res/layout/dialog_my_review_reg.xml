@@ -26,6 +26,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
@@ -63,14 +64,15 @@
             <!--======================================스피너-->
             <Spinner
                 android:id="@+id/spn_tchClass"
-                android:background="@color/quantum_indigo100"
                 android:layout_width="320dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:background="#CEF1F6" />
 
             <ImageView
-                android:src="@drawable/icon_arrow"
                 android:layout_width="30dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:src="@drawable/icon_arrow" />
 
         </LinearLayout>
 
