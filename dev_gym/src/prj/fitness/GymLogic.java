@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 
 import com.util.MyBatisBuilderMgr;
 
+import oracle.sql.BLOB;
+
 public class GymLogic {
 
 	Logger logger = Logger.getLogger(GymLogic.class);
@@ -211,6 +213,13 @@ public class GymLogic {
 		image = gDao.getImages(pMap);
 		mbMgr.clossSession(sqlSession);
 		return image;
+	}
+	public BLOB getImg(Map<String, Object> pMap) {
+		logger.info("GymLogic - getImg() 호출");
+		BLOB blob = null;
+		blob = gDao.getImg(pMap);
+		mbMgr.clossSession(sqlSession);
+		return blob;
 	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

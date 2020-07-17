@@ -87,7 +87,13 @@ public class MemLogic {
 		memList = mDao.getMemListOne(pMap);
 		return memList;
 	}
-	
+	// 인바디 회원번호 검색
+	public List<Map<String, Object>> getIbdmemNo(Map<String, Object> pMap) {
+		logger.info("MemLogic - getIbdmemNo() 호출");
+		List<Map<String, Object>> memList = null;
+		memList = mDao.getIbdmemNo(pMap);
+		return memList;
+	}
 	///////////////////////////////////////////////////////////////
 	
 	public int memInbodyIns(Map<String, Object> pMap) throws SQLException {
@@ -137,6 +143,7 @@ public class MemLogic {
 			sqlSession.rollback();
 		}
 	}
+
 	
 	
 }

@@ -59,6 +59,13 @@ public class AndroidLogic {
 		setCommit(result);
 		return result;
 	}
+	// 매장 공지사항 조회
+	public Object getGymNoticeList(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getgetGymNoticeList() 호출 ");
+		List<Map<String, Object>> gymNoticeList = null;
+		gymNoticeList = aDao.getGymNoticeList(pMap);
+		return gymNoticeList;
+	}
 // 김혜림
 	//강사별 수업 조회
 	public Object getTchClassList(Map<String, Object> pMap) throws SQLException {
@@ -89,14 +96,57 @@ public class AndroidLogic {
 		return gymList;
 	}
 	//이미지 한 장 구하기
-	public Map<String, Object> getImageOne(Map<String, Object> pMap) throws SQLException {
+	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidLogic - getImageOne() 호출");
-		Map<String, Object> imageData = null;
+		List<Map<String, Object>> imageData = null;
 		imageData = aDao.getImageOne(pMap);
 		
 		return imageData;
 	}
+	//회원 요일별 수업 구하기
+	public List<Map<String, Object>> getMemWeekCls(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getMemWeekCls() 호출");
+		List<Map<String, Object>> memClsList = null;
+		memClsList = aDao.getMemWeekCls(pMap);
 		
+		return memClsList;
+	}
+	//매장 메인화면 - 매장 정보 조회하기
+	public List<Map<String, Object>> getGymProfile(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getGymProfile() 호출");
+		List<Map<String, Object>> gymProfileData = null;
+		gymProfileData = aDao.getGymProfile(pMap);
+		return gymProfileData;
+	}
+	//매장 - 강사진 리스트 가져오기 
+	public List<Map<String, Object>> getTchList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getTchList() 호출");
+		List<Map<String, Object>> tchList = null;
+		tchList = aDao.getTchList(pMap);
+		return tchList;
+	}
+	//회원 - 수업 정보
+	public List<Map<String, Object>> getMyClass(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getMyClass() 호출");
+		List<Map<String, Object>> myClassList = null;
+		myClassList = aDao.getMyClass(pMap);
+		return myClassList;
+	}
+	//매장 - 수업 - 자세히 보기 
+	public List<Map<String, Object>> getClsDetail(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getClsDetail() 호출");
+		List<Map<String, Object>> dtlList = null;
+		dtlList = aDao.getClsDetail(pMap);
+		return dtlList;
+	}
+	//회원이 듣는 수업들의 강사 구하기(메시지에 사용)
+	public List<Map<String, Object>> getMemTchList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidLogic - getMemTchList() 호출");
+		List<Map<String, Object>> memTchList = null;
+		memTchList = aDao.getMemTchList(pMap);
+		logger.info("memTchList.size() : " + memTchList.size());
+		return memTchList;
+	}	
 // 김승현
 		
 // 박준규
@@ -127,10 +177,52 @@ public class AndroidLogic {
 	}
 	// 매장 기준 후기 조회 
 	public List<Map<String, Object>> getGymReviewList(Map<String, Object> pMap) throws SQLException {
-		logger.info("AndroidLogic - getGymContentsList() 호출 ");
+		logger.info("AndroidLogic - getGymReviewList() 호출 ");
 		List<Map<String, Object>> gymList = null;
 		gymList = aDao.getGymReviewList(pMap);
 		return gymList;
+	}
+	// 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) 
+	public List<Map<String, Object>> getTchClsMemIbd(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getTchClsMemIbd() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getTchClsMemIbd(pMap);
+		return gymList;
+	}
+	// 전체 콘텐츠 가져오기  
+	public List<Map<String, Object>> getContentsList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getContentsList() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getContentsList(pMap);
+		return gymList;
+	}
+	// 강사 프로필 가져오기   
+	public List<Map<String, Object>> getTeacherProf(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getTeacherProf() 호출 ");
+		List<Map<String, Object>> gymList = null;
+		gymList = aDao.getTeacherProf(pMap);
+		return gymList;
+	}
+	//준호 insert////////////////////////////////
+	// 회원이 콘텐츠에 좋아요 눌렀을 때 
+	public int contLikeINS(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - contLikeINS() 호출 ");
+		result = aDao.contLikeINS(pMap);
+		if(result == 1) {
+			result = aDao.contLikeInsUPD(pMap);
+		}
+		setCommit(result);
+		return result;
+	}
+	// 회원이 콘텐츠에 좋아요 뺐을 때
+	public int contLikeDEL(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - contLikeDEL() 호출 ");
+		result = aDao.contLikeDEL(pMap);
+		if(result == 1) {
+			result = aDao.contLikeDelUPD(pMap);
+		}
+		setCommit(result);
+		return result;
 	}
 	
 // setCommit
@@ -146,6 +238,15 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
+
+
+
+
+
+
+
+
+
 
 	
 

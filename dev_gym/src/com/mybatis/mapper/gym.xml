@@ -54,6 +54,7 @@
 		  FROM class cls, teacher tch, type type
 		 WHERE cls.tch_no = tch.tch_no
 		   AND cls.type_no = type.type_no
+		   AND cls.gym_no = tch.gym_no
 		   AND tch.gym_no = #{gym_no}
 	<if test="progress!=null and progress.length > 0 ">
 	 	   AND cls.cls_state = #{progress}
@@ -208,8 +209,9 @@
 			  FROM review r, pay p, teacher t, class c, gym g
 			 WHERE R.PAY_NO = P.PAY_NO
 			   AND P.CLS_NO = C.CLS_NO
-			   AND C.TCH_NO = T.TCH_NO
 			   AND T.GYM_NO = G.GYM_NO
+			   AND C.TCH_NO = T.TCH_NO
+			   AND C.GYM_NO = T.GYM_NO
 			   AND G.GYM_NO = #{gym_no}
 			  <if test="rev_kind != null and rev_kind.length > 0">
 			  	  AND R.REV_KIND = #{rev_kind}
@@ -268,11 +270,18 @@
            AND i.type = 'gymCont'
            AND i.typecode = c.gym_cont_seq
            AND c.gym_no = #{gym_no}
-         ORDER BY gym_cont_seq
+         ORDER BY gym_cont_seq desc
 	</select><!-- #{gym_no} --><!--  AND typecode = 6 -->
 	
 	<!-- 이미지 가져오기  -->
 	<select id="getImages" parameterType="map" resultMap="getImage">
+		SELECT filedata
+		  FROM images
+		 WHERE file_seq = #{file_seq}
+		   AND rownum = 1
+	</select><!-- #{file_seq} -->
+	<!-- getImg -->
+	<select id="getImg" parameterType="map" resultMap="getImage">
 		SELECT filedata
 		  FROM images
 		 WHERE file_seq = #{file_seq}

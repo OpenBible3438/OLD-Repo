@@ -20,6 +20,7 @@
 	function memno_search(){
 		//alert("회원번호 찾기 호출 성공");
 		var mem_no = $("#inbody_find_no").val().trim();
+		alert(mem_no);
 		if(mem_no == "") {
 			alert("회원 번호를 입력 해주세요");
 		} else {
@@ -28,7 +29,7 @@
 				method: 'get'
 				,data : 'mem_no='+mem_no
 				,dataType: 'json'
-				,url: '../member/jsonMemList.gym'
+				,url: '../member/jsonIbdmemNo.gym'
 			   	,success : function(result) { // 회원번호, 회원이름
 			   		//alert(result);
 			   		var data = JSON.stringify(result);
@@ -36,8 +37,8 @@
 					if(infoList != "") {
 						var r_mem_no = infoList[0].MEM_NO;
 						var r_mem_name = infoList[0].MEM_NAME;
-						//alert(r_mem_no);
-						//alert(r_mem_name);
+						alert(r_mem_no);
+						alert(r_mem_name);
 						$("#mem_no").val(r_mem_no);
 						$("#mem_name").val(r_mem_name);
 						$('#InbodyfindNo').modal('hide');

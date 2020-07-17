@@ -78,6 +78,13 @@
 						                       ,javaType=java.sql.ResultSet
 						                       ,resultMap=inbodyImgMap}) }
 	</select>
+	<!-- 인바디 등록할 때 회원 번호 채번  -->
+	<select id="getIbdmemNo" parameterType="map" resultType="map">
+		SELECT mem_no, mem_name
+ 		  FROM member
+ 		 WHERE mem_no = #{mem_no}
+	</select>
+	
 	<!-- 인바디 등록할 때 인바디 번호 채번  -->
 	<select id="getInbodySeq" parameterType="map" resultType="int">
 		SELECT nvl(max(inbd_seq)+1,0) as "inbd_seq" 

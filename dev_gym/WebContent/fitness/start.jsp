@@ -172,7 +172,7 @@
 				check = 0;
 			} else {
 				//사용불가 문자 
-				check = 1;
+				return 1;
 			}
 		}
 		return check;
@@ -229,11 +229,11 @@
 	<div class="row" style="padding-top:50px;">
 	    <div class="col-sm-2"></div>
 	    <div class="col-sm-5">
-	    	<h1>대충 환영한다는 문구</h1>
+	    	<h2>준규와아이들 <br><br>여기내짐 프로젝트</h2>
 	    </div>
 	    <div class="col-sm-3">
 			<div class="form-group row">
-				<label for="gym_id" class="col-sm-4 col-form-label ">아이디</label>
+				<label for="gym_id" class="col-sm-4 col-form-label">아이디</label>
 				<div class="col-sm-8">
 					<input type="text" id="gym_id" class="form-control">
 				</div>

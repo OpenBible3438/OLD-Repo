@@ -232,7 +232,11 @@ public class GymDao {
 		}
 		return image;
 	}
-
+	public BLOB getImg(Map<String, Object> pMap) {
+		logger.info("GymDao - getImg() 호출");
+		BLOB blob = sqlSession.selectOne("getImg", pMap);
+		return blob;
+	}
 	//////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////
 	
@@ -430,6 +434,9 @@ public class GymDao {
 		logger.info("result : " + result);
 		return result;
 	}
+
+
+
 
 
 
