@@ -21,12 +21,23 @@ public class AndroidDao {
 		this.sqlSession = sqlSession;
 	}
 // 편성경
-	//안드로이드 회원 로그인 테스트
+	//안드로이드 회원 로그인
 	public List<Map<String, Object>> getMemberLogin(Map<String, Object> pMap) throws SQLException{
 		logger.info("AndroidDao - getMemberLogin() 호출");
 		List<Map<String, Object>> loginResult = null;
-		loginResult = sqlSession.selectList("getMemberLogin", pMap);
+		//loginResult = sqlSession.selectList("getMemberLogin", pMap);
+		sqlSession.selectOne("getProcMemLogin",pMap);
+		loginResult = (List<Map<String, Object>>)pMap.get("memLogin");
 		logger.info("==Member Login result : "+loginResult.size()+"row==");
+		return loginResult;
+	}
+	//안드로이드 강사 로그인
+	public List<Map<String, Object>> getTeacherLogin(Map<String, Object> pMap) throws SQLException{
+		logger.info("AndroidDao - getTeacherLogin() 호출");
+		List<Map<String, Object>> loginResult = null;
+		sqlSession.selectOne("getProcTchLogin",pMap);
+		loginResult = (List<Map<String, Object>>)pMap.get("tchLogin");
+		logger.info("==Teacher Login result : "+loginResult.size()+"row==");
 		return loginResult;
 	}
 	// 회원가입 회원 번호 채번 

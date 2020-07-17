@@ -26,12 +26,20 @@ public class AndroidLogic {
 	
 // 편성경
 	//회원 로그인
-	public Object getMemberLogin(Map<String, Object> pMap) throws SQLException {
+	public List<Map<String, Object>> getMemberLogin(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidLogic - getMemberLogin() 호출 ");
 		List<Map<String, Object>> loginResult = null;
 		loginResult = aDao.getMemberLogin(pMap);
 		mbMgr.clossSession(sqlSession);
 		
+		return loginResult;
+	}
+	//강사 로그인
+	public List<Map<String, Object>> getTeacherLogin(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getTeacherLogin() 호출 ");
+		List<Map<String, Object>> loginResult = null;
+		loginResult = aDao.getTeacherLogin(pMap);
+		mbMgr.clossSession(sqlSession);
 		return loginResult;
 	}
 	// 회원 회원가입	
