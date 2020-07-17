@@ -31,6 +31,7 @@
 
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:background="@color/quantum_googgreen300"
@@ -73,6 +74,7 @@
                 android:padding="20sp">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:background="@color/quantum_teal400"
@@ -115,6 +117,7 @@
                 android:padding="20sp">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:background="@color/quantum_indigo400"
@@ -158,6 +161,7 @@
                 android:padding="20sp">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:background="@color/quantum_deeppurple400"
@@ -200,6 +204,7 @@
                 android:padding="20sp">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:background="@color/quantum_purple300"
@@ -242,6 +247,7 @@
                 android:padding="20sp">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:background="@color/quantum_pinkA100"
@@ -284,6 +290,7 @@
                 android:padding="20sp">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:background="@color/quantum_vanillaredA100"

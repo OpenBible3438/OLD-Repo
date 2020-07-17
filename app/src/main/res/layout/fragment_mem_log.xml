@@ -30,6 +30,7 @@
     </androidx.cardview.widget.CardView>
 
     <ListView
+        android:divider="#ffffff"
         android:id="@+id/mem_log_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

@@ -26,6 +26,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
@@ -54,11 +55,53 @@
             android:background="#000000" />
 
         <ImageView
-            android:layout_marginBottom="15dp"
             android:layout_width="match_parent"
             android:layout_height="340sp"
             android:scaleType="centerCrop"
             android:src="@drawable/img_tch_nagangsa"/>
+
+
+        <LinearLayout
+            android:weightSum="10"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                android:layout_weight="8"
+                android:layout_width="0dp"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:gravity="left|center"
+                    android:text="사진변경"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:background="#EAEAEA"
+                    android:layout_gravity="center"
+                    android:gravity="left|center"
+                    android:text="선택된 파일 없음"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_tchMyProfile_img"
+                android:text="파일"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,39 +122,40 @@
                         android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="아이디"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:textSize="12sp" />
                     <TextView
                         android:textSize="12sp"
                         android:text="성별"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
                         android:text="전화번호"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
                         android:text="강사경력"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
                         android:text="자기소개"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="10dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
