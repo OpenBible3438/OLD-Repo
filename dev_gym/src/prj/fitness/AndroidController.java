@@ -45,7 +45,11 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-						
+							// 인바디 등록
+							case "memInbodyIns":{ 
+								result = aLogic.memInbodyIns(pMap);
+							}break;
+								
 						// 김현빈
 							
 						// 허준호
@@ -67,7 +71,10 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-						
+						//인바디 수정
+						case "memInbodyUpd":{
+							result = aLogic.memInbodyUpd(pMap);
+						}break;
 						// 김현빈
 							
 						// 허준호
@@ -89,7 +96,10 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-						
+						// 인바디 삭제
+						case "memInbodyDel":{ 
+							result = aLogic.memInbodyDel(pMap);
+						}break;
 						// 김현빈
 							
 						// 허준호
@@ -106,7 +116,6 @@ public class AndroidController implements Controller{
 		logger.info("path : " + path);
 		return path;
 	}
-
 	@Override
 	public ModelAndView process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		logger.info("AndroidController - mav 타입 process 호출");
@@ -150,7 +159,34 @@ public class AndroidController implements Controller{
 			// 김승현
 				
 			// 박준규
-				
+				// 회원 자세히 보기
+				case "jsonMemDetail":{ // 회원 자세히 보기
+					selResult = aLogic.getMemDetail(pMap);
+				// 인바디 목록 조회
+				}break;
+				case "jsonMemInbody":{ 
+					selResult = aLogic.getMemInbody(pMap);
+				// 인바디 조건 검색 조회
+				}break;
+				case "jsonMemInbodyOne":{ 
+					selResult = aLogic.getMemInbodyOne(pMap);
+				// 회원 조회	
+				}break;
+				case "jsonMemList":{ 
+					selResult = aLogic.getMemList(pMap);
+				// 회원 조건검색 
+				}break;
+				case "jsonMemListOne":{ 
+					selResult = aLogic.getMemListOne(pMap);
+				// 한 회원에 대한 인바디 사진 조회
+				}break;
+				case "getInbodyImg":{ 
+					selResult = aLogic.getInbodyImg(pMap);
+				// 한 회원에 대한 등록한 수업 조회
+				}break;
+				case "jsonOneMemClsList":{ 
+					selResult = aLogic.getOneMemClsList(pMap);
+				}break;
 			// 김현빈
 				
 			// 허준호

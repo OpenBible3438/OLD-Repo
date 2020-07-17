@@ -103,7 +103,33 @@
 
 
 <!-- ======================= 박준규 ======================= -->
-
+<!-- MyReview 등록하기 -->
+	<insert id="getGymReviewIns" parameterType="map" >
+		INSERT INTO  review(REV_KIND
+			   			   ,PAY_NO
+			   			   ,REV_CONT
+			   			   ,REV_DATE
+			   			   ,REV_TIME
+			   			   ,REV_STAR
+			   			   ,REV_UP
+			   			   ,REV_DOWN)
+			   	     VALUES(
+			   	     		#{rev_kind}
+			   	     	   ,#{pay_no}
+			   	     	   ,#{rev_cont}
+			   	     	   ,(SELECT to_char(sysdate, 'yyyy-mm-dd') FROM dual)
+			   	     	   ,(SELECT to_char(systime, 'HH:mm:ss') FROM dual)
+			   	     	   ,#{rev_star}
+			   	     	   ,#{rev_up}
+			   	     	   ,#{rev_down}
+			   	     	   )
+	  select 1,p.PAY_NO
+		from pay p, member m
+		where p.mem_no=m.mem_no
+		and m.mem_no=1
+		and p.pay_no=8
+		   
+	</insert>
 
 <!-- ======================= 김현빈 ======================= -->
 

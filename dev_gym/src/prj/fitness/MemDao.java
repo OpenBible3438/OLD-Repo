@@ -22,7 +22,7 @@ public class MemDao {
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	
+	// 개인회원 자세히 보기
 	public List<Map<String, Object>> getMemDetail(Map<String, Object> pMap) throws SQLException {//회원 자세히보기
 		logger.info("MemDao - getMemDetail() 호출");
 		List<Map<String, Object>> memDetail = null;
