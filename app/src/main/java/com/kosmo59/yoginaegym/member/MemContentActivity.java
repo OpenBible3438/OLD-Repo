@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +51,7 @@ public class MemContentActivity extends AppCompatActivity {
     private int check_num = 0;
     //이미지 버튼
     private ImageButton ib_emptyHeart;
-
+    private ListView lv_mem_cont;
     //좋아요 수
     private int like=0;
     private TextView tv_contLike;
@@ -67,28 +69,38 @@ public class MemContentActivity extends AppCompatActivity {
         String result = null;
         JSONObject jsonObject = null;
         JSONArray jsonArray = null;
-//        try {
-//            TomcatSend tomcatSend = new TomcatSend();
-//            result = tomcatSend.execute(reqUrl, pMap.toString()).get();
-//            jsonArray = new JSONArray(result);
-//        } catch (Exception e) {
-//            Log.i(MEM_CONT_LOG, "Exception : " + e.toString());
-//        }
-//        Log.i(MEM_CONT_LOG, "톰캣서버에서 읽어온 정보" + result);
-
+        try {
+            TomcatSend tomcatSend = new TomcatSend();
+            result = tomcatSend.execute(reqUrl, pMap.toString()).get();
+            jsonArray = new JSONArray(result);
+        } catch (Exception e) {
+            Log.i(MEM_CONT_LOG, "Exception : " + e.toString());
+        }
+        Log.i(MEM_CONT_LOG, "톰캣서버에서 읽어온 정보" + result);
+        List<Map<String, Object>> contList = new ArrayList<>();
+        Map<String, Object> contMap = null;
         if (result != null) {
             try {
                 for (int i = 0; i < jsonArray.length(); i++) {
+                    contMap = new HashMap<>();
                     jsonObject = jsonArray.getJSONObject(i);
-//                    vo.setMemberName(jsonObject.getString("MEM_NAME"));
-//                    vo.setRoomName1(jsonObject.getString("MEM_NAME"));
-//                    vo.setMsgSendName(jsonObject.getString("MEM_NAME"));
-//                    vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
-//                    vo.setMem_no(jsonObject.getInt("MEM_NO"));
+                    contMap.put("cont_cont", jsonObject.getString("CONT_CONT"));
+                    contMap.put("CONT_SEQ", jsonObject.getString("CONT_SEQ"));
+                    contMap.put("CONT_LIKE", jsonObject.getString("CONT_LIKE"));
+                    contMap.put("CONT_DATE", jsonObject.getString("CONT_DATE"));
+                    contMap.put("FILE_SEQ", jsonObject.getString("FILE_SEQ"));
+                    contMap.put("WHO", jsonObject.getString("WHO"));
+                    contMap.put("CONT_TIME", jsonObject.getString("CONT_TIME"));
+                    contList.add(contMap);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            MemContentAdapter memContentAdapter = new MemContentAdapter(getApplicationContext(), R.layout.mem_content_item, contList);
+            lv_mem_cont = findViewById(R.id.lv_mem_cont);
+            lv_mem_cont.setAdapter(memContentAdapter);
+
 
 
             //////////////////////////////////////////////////////////////////////////////////////
@@ -97,6 +109,7 @@ public class MemContentActivity extends AppCompatActivity {
             //////////////////////////////////////////////////////////////////////////////////////
             /* 하단바 추가 */
             BottomNavigationView bottom = findViewById(R.id.bottom_nav);
+            Log.i("MemContentActivity", findViewById(R.id.bottom_nav) + "");
             bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
