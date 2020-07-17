@@ -95,8 +95,6 @@ public class TchclassAdapter extends ArrayAdapter {
 
         String cls_no = mList.get(position).get("CLS_NO").toString();
         final String cls_no_result = cls_no.substring(0, cls_no.length()-2);
-        vo.setCls_no(cls_no_result);
-
         cls_name.setText(mList.get(position).get("CLS_NAME").toString());
         cls_stime.setText(mList.get(position).get("CLS_STIME").toString());
         cls_etime.setText(mList.get(position).get("CLS_ETIME").toString());
@@ -116,7 +114,7 @@ public class TchclassAdapter extends ArrayAdapter {
 
             // 커스텀 다이얼로그의 레이아웃을 설정한다.
             dlg.setContentView(R.layout.dialog_tch_mem_list);
-
+            vo.setCls_no(cls_no_result);
             // 커스텀 다이얼로그를 노출한다.
             dlg.show();
             }

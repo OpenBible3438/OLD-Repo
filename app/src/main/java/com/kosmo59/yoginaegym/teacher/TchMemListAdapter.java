@@ -82,6 +82,9 @@ public class TchMemListAdapter extends ArrayAdapter {
         String subMem_no = strMem_no.substring(0, strMem_no.length()-2);
         mem_no = Integer.parseInt(subMem_no);
 
+        final TextView hidden_cls_no = convertView.findViewById(R.id.hidden_cls_no);
+        //hidden_cls_no.setText(mList.get(position));
+
         //띄워지는 다이얼로그의 객체 id 설정
         CardView cv_memListDetail = convertView.findViewById(R.id.cv_memListDetail);
         CardView cv_memListMeno = convertView.findViewById(R.id.cv_memListMeno);
@@ -106,10 +109,10 @@ public class TchMemListAdapter extends ArrayAdapter {
                 JSONObject jsonObject = null;
                 JSONArray jsonArray = null;
 
-                int cls_no = Integer.parseInt(vo.getCls_no());
+                //int cls_no = Integer.parseInt(vo.getCls_no());
                 //Toast.makeText(context, "cls_no = "+cls_no, Toast.LENGTH_SHORT).show();
                 Map<String, Object> pMap = new HashMap<>();
-                pMap.put("cls_no", cls_no);
+                //pMap.put("cls_no", cls_no);
                 pMap.put("mem_no", mem_no);
                 try{
                     TomcatSend tomcatSend = new TomcatSend();
