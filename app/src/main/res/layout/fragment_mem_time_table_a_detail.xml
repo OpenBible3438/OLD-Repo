@@ -26,11 +26,12 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
                     android:text="수업일지"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
                 android:gravity="right"
@@ -54,9 +55,9 @@
             android:background="#000000" />
 
         <EditText
-            android:lines="10"
+            android:lines="7"
             android:background="@null"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:gravity="left|top"
             android:text="본문이 들어올 자리입니다. 열 줄로 제한합니다.본문이 들어올 자리입니다. 본문이 들어올 자리입니다."
             android:layout_width="match_parent"
