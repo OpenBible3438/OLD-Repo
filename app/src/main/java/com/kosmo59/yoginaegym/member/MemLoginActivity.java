@@ -78,6 +78,7 @@ public class MemLoginActivity extends AppCompatActivity {
                             vo.setMsgSendName(jsonObject.getString("MEM_NAME"));
                             vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
                             vo.setMem_no(jsonObject.getInt("MEM_NO"));
+                            Log.i("memLoginActivity", vo.getMem_no()+"");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
