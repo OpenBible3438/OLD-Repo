@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import com.util.MyBatisBuilderMgr;
 
+import oracle.sql.BLOB;
+
 public class AndroidLogic {
 	
 	Logger logger = Logger.getLogger(AndroidLogic.class);
@@ -211,6 +213,20 @@ public class AndroidLogic {
 		gymList = aDao.getTeacherProf(pMap);
 		return gymList;
 	}
+	//강사 출결 
+	public List<Map<String, Object>> getTeacherAttend(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getTeacherAttend() 호출 ");
+		List<Map<String, Object>> atdList = null;
+		atdList = aDao.getTeacherAttend(pMap);
+		return atdList;
+	}
+	//회원 출결 
+	public List<Map<String, Object>> getMemberAttend(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getMemberAttend() 호출 ");
+		List<Map<String, Object>> atdList = null;
+		atdList = aDao.getMemberAttend(pMap);
+		return atdList;
+	}
 	//준호 insert////////////////////////////////
 	// 회원이 콘텐츠에 좋아요 눌렀을 때 
 	public int contLikeINS(Map<String, Object> pMap) {
@@ -233,6 +249,15 @@ public class AndroidLogic {
 		return result;
 	}
 	
+	public BLOB getImg(Map<String, Object> pMap) {
+		logger.info("GymLogic - getImg() 호출");
+		BLOB blob = null;
+		blob = aDao.getImg(pMap);
+		mbMgr.clossSession(sqlSession);
+		return blob;
+	}
+
+	
 // setCommit
 	public void setCommit(int result) {
 		logger.info("setCommit() 호출"); 
@@ -246,6 +271,7 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
+
 
 
 

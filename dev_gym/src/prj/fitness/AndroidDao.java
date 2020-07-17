@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 
 import com.util.MyBatisBuilderMgr;
 
+import oracle.sql.BLOB;
+
 public class AndroidDao {
 	Logger logger = Logger.getLogger(AndroidDao.class);
 	int result = 0;
@@ -268,6 +270,23 @@ public class AndroidDao {
 		logger.info("getTeacherProf.size() : " + gymList.size());
 		return gymList;
 	}
+	// 강사 출석 조회
+	public List<Map<String, Object>> getTeacherAttend(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getTeacherAttend() 호출");
+		List<Map<String, Object>> atdList = null;
+		atdList = sqlSession.selectList("getTeacherAttend", pMap);
+		logger.info("getTeacherAttend.size() : " + atdList.size());
+		return atdList;
+	}
+	// 회원 출석 조회
+	public List<Map<String, Object>> getMemberAttend(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getMemberAttend() 호출");
+		List<Map<String, Object>> atdList = null;
+		atdList = sqlSession.selectList("getMemberAttend", pMap);
+		logger.info("getMemberAttend.size() : " + atdList.size());
+		return atdList;
+	}
+	
 	// 회원이 콘텐츠에 좋아요 눌렀을 때1-1
 	public int contLikeINS(Map<String, Object> pMap) {
 		logger.info("AndroidDao - contLikeINS() 호출");
@@ -292,6 +311,9 @@ public class AndroidDao {
 		result = sqlSession.update("contLikeDelUPD", pMap);
 		return result;
 	}
-	
-	
+	public BLOB getImg(Map<String, Object> pMap) {
+		logger.info("GymDao - getImg() 호출");
+		BLOB blob = sqlSession.selectOne("getImg", pMap);
+		return blob;
+	}
 }

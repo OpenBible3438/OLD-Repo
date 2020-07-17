@@ -3,6 +3,9 @@
 <mapper namespace="com.mybatis.mapper.androidMapper">
 	<resultMap id="memLogin" type="map"/>
 	<resultMap id="tchLogin" type="map"/>
+	<resultMap id="getAndImage" type="Object">
+		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
+	</resultMap>
 <!-- ======================= 편성경 ======================= -->
 	<!-- 회원 로그인 -->
 	<select id="getMemberLogin" parameterType="map" resultType="map">
@@ -397,6 +400,52 @@
 			   AND T.TCH_NO = #{tch_no}
 			   AND T.GYM_NO = #{gym_no}
    </select>
+   	<!-- getImg -->
+	<select id="getImg" parameterType="map" resultType="map">
+		SELECT filedata
+		  FROM images
+		 WHERE file_seq = #{file_seq}
+		   AND rownum = 1
+	</select><!-- #{file_seq} -->
+	
+   	<!-- 강사 출석 조회 -->
+	<select id="getTeacherAttend" parameterType="map" resultType="map">
+		SELECT ta.tch_atd_seq
+		      ,ta.gym_no
+		      ,ta.tch_no
+		      ,T.TCH_NAME   
+		      ,ta.tch_atd_date
+		      ,ta.tch_atd_in
+		      ,ta.tch_atd_out
+		  FROM tch_attend ta, teacher t
+		 WHERE TA.GYM_NO = T.GYM_NO
+		   AND TA.TCH_NO = T.TCH_NO
+		   AND TA.GYM_NO = #{gym_no} 
+	   <if test="msg != null and msg.length > 0">
+		   AND ((t.tch_no LIKE '%'||#{msg}||'%')
+               OR (t.tch_name LIKE '%'||#{msg}||'%'))
+	   </if>
+	</select>
+   	<!-- 회원 출석 조회 -->
+	<select id="getMemberAttend" parameterType="map" resultType="map">
+		SELECT ta.tch_atd_seq
+		      ,ta.gym_no
+		      ,ta.tch_no
+		      ,T.TCH_NAME   
+		      ,ta.tch_atd_date
+		      ,ta.tch_atd_in
+		      ,ta.tch_atd_out
+		  FROM tch_attend ta, teacher t
+		 WHERE TA.GYM_NO = T.GYM_NO
+		   AND TA.TCH_NO = T.TCH_NO
+		   AND TA.GYM_NO = #{gym_no} 
+	   <if test="msg != null and msg.length > 0">
+		   AND ((t.tch_no LIKE '%'||#{msg}||'%')
+               OR (t.tch_name LIKE '%'||#{msg}||'%'))
+	   </if>
+	</select>
+	
+	
    <!-- 회원이 콘텐츠에 좋아요 눌렀을 때1-1   -->
    <insert id="contLikeINS" parameterType="map">
    		INSERT INTO 

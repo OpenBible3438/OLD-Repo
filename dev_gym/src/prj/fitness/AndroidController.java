@@ -245,6 +245,25 @@ public class AndroidController implements Controller{
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;
+				// 강사 출석   
+				case "jsonTeacherAttend":{
+					selResult = aLogic.getTeacherAttend(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 회원 출석   
+				case "jsonMemberAttend":{
+					selResult = aLogic.getMemberAttend(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				 // 이미지 한장 가져오기 
+				case "getImg":{
+					selResult = aLogic.getImg(pMap);
+					logger.info("selResult :"+selResult.toString());
+					mav.type = "img";
+				} break;
+				
 			}
 		} catch(Exception e) {
 			logger.info("Exception : "+e.toString());
