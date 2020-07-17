@@ -61,7 +61,7 @@ public class MemContentActivity extends AppCompatActivity {
         vo = (AppVO) getApplicationContext();
 
         Log.i(MEM_CONT_LOG, "호출 성공");
-        String reqUrl = "android/jsonGymNoticeList.gym";
+        String reqUrl = "android/jsonGymContentsList.gym";
         Map<String, Object> pMap = new HashMap<>();
         //pMap.put("gym_no", vo.gym_no);
         String result = null;

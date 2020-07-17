@@ -12,7 +12,7 @@ import com.kosmo59.yoginaegym.R;
 public class PRImageAdapter extends BaseAdapter {
     Context context;
     //PR Images 배열
-    public Integer[] prImages = {
+    Integer[] prImages = {
             R.drawable.pr_sample1,
             R.drawable.pr_sample2,
             R.drawable.pr_sample3,
