@@ -24,13 +24,13 @@ public class TomcatImg extends AsyncTask<String, Void, String> {
         InputStream is = null;
         String strBitImg = null;
         HttpURLConnection con = null;
-
+        final String TAG = "TomcatImg";
         if (strings != null && strings.length > 0) {
             sendMsg = strings[0]; // android/memInfoIns.gym
-            Log.i("테스트", " ** FILE_SEQ  :" + sendMsg);
-            Log.i("테스트", " ** URL  :" + apiURL+sendMsg);
+            Log.i(TAG, " ** FILE_SEQ  :" + sendMsg);
+            Log.i(TAG, " ** URL  :" + apiURL+sendMsg);
         } else {
-            Log.i("테스트", " ** FILE_SEQ 가 없습니다.   :" + sendMsg);
+            Log.i(TAG, " ** FILE_SEQ 가 없습니다.   :" + sendMsg);
             return "";
         }
         try {

@@ -61,40 +61,47 @@ public class MemContentActivity extends AppCompatActivity {
         vo = (AppVO) getApplicationContext();
 
         Log.i(MEM_CONT_LOG, "호출 성공");
-        String reqUrl = "android/jsonGymNoticeList.gym";
+        String reqUrl = "android/jsonContentsList.gym";
         Map<String, Object> pMap = new HashMap<>();
         //pMap.put("gym_no", vo.gym_no);
         String result = null;
         JSONObject jsonObject = null;
         JSONArray jsonArray = null;
-        try {
-            TomcatSend tomcatSend = new TomcatSend();
-            result = tomcatSend.execute(reqUrl, pMap.toString()).get();
-            jsonArray = new JSONArray(result);
-        } catch (Exception e) {
-            Log.i(MEM_CONT_LOG, "Exception : " + e.toString());
-        }
-        Log.i(MEM_CONT_LOG, "톰캣서버에서 읽어온 정보" + result);
+//        try {
+//            TomcatSend tomcatSend = new TomcatSend();
+//            result = tomcatSend.execute(reqUrl, pMap.toString()).get();
+//            jsonArray = new JSONArray(result);
+//        } catch (Exception e) {
+//            Log.i(MEM_CONT_LOG, "Exception : " + e.toString());
+//        }
+//        Log.i(MEM_CONT_LOG, "톰캣서버에서 읽어온 정보" + result);
 
         if (result != null) {
             try {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     jsonObject = jsonArray.getJSONObject(i);
-                    vo.setMemberName(jsonObject.getString("MEM_NAME"));
-                    vo.setRoomName1(jsonObject.getString("MEM_NAME"));
-                    vo.setMsgSendName(jsonObject.getString("MEM_NAME"));
-                    vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
-                    vo.setMem_no(jsonObject.getInt("MEM_NO"));
+//                    vo.setMemberName(jsonObject.getString("MEM_NAME"));
+//                    vo.setRoomName1(jsonObject.getString("MEM_NAME"));
+//                    vo.setMsgSendName(jsonObject.getString("MEM_NAME"));
+//                    vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
+//                    vo.setMem_no(jsonObject.getInt("MEM_NO"));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////
             /* 하단바 추가 */
             BottomNavigationView bottom = findViewById(R.id.bottom_nav);
             bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                    Log.i("MemContentAcitivity", "bottom : " + item);
                     switch (item.getItemId()) {
                         case R.id.bot_nav_home:
                             MemContentActivity.super.onBackPressed();

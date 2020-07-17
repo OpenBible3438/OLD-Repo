@@ -29,7 +29,7 @@ public class GymNoticeFragment extends Fragment {
     private Context context;
     private ListView lv_gym_notice;
     List<Map<String, Object>> gymNoticeList = null;
-
+    final String TAG = "GymNoticeFragment";
     public GymNoticeFragment() {
         // Required empty public constructor
     }
@@ -55,9 +55,9 @@ public class GymNoticeFragment extends Fragment {
             TomcatSend tomcatSend = new TomcatSend();
             result = tomcatSend.execute(reqUrl, pMap.toString()).get();
         } catch (Exception e){
-            Log.i("테스트", "Exception : "+e.toString());
+            Log.i(TAG, "Exception : "+e.toString());
         }
-        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
+        Log.i(TAG, "톰캣서버에서 읽어온 정보 : "+result);
 //
 //        if(result != null){
 //            //Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
@@ -67,6 +67,7 @@ public class GymNoticeFragment extends Fragment {
         Gson g = new Gson();
         gymNoticeList = (List<Map<String, Object>>)g.fromJson(result, listType);
         GymNoticeAdapter gymNoticeAdapter = new GymNoticeAdapter(context, R.layout.gym_notice_item, gymNoticeList);
+        Log.i(TAG, "gymNoticeList : " + gymNoticeList);
         lv_gym_notice = view.findViewById(R.id.lv_gym_notice);
         lv_gym_notice.setAdapter(gymNoticeAdapter);
 
