@@ -1,6 +1,7 @@
 package com.kosmo59.yoginaegym.gym;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,12 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.TomcatImg;
 
 import java.util.List;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GymggunListAdapter extends ArrayAdapter {
 
@@ -50,10 +54,19 @@ public class GymggunListAdapter extends ArrayAdapter {
         convertView = inflater.inflate(this.resourceId, parent, false);
 
         TextView tch_name = convertView.findViewById(R.id.tch_name);
-        TextView tch_info = convertView.findViewById(R.id.tch_info);
+        TextView tch_tel = convertView.findViewById(R.id.tch_tel);
+        CircleImageView tch_img = convertView.findViewById(R.id.tch_img);
 
         tch_name.setText(mList.get(position).get("TCH_NAME").toString());
-        tch_info.setText(mList.get(position).get("TCH_INTRO").toString());
+        tch_tel.setText(mList.get(position).get("TCH_TEL").toString());
+        try {
+            TomcatImg tomcatImg = new TomcatImg();
+            String bitImg = tomcatImg.execute(mList.get(position).get("FILE_SEQ").toString()).get();
+            Bitmap bitmap = tomcatImg.getBitMap(bitImg);
+            tch_img.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //버튼 id를 찾은 후 setOnclickListener()메소드를 사용한다.
         cho_teacher = convertView.findViewById(R.id.teacher);

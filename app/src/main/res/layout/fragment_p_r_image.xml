@@ -2,15 +2,15 @@
 <!-- 그리드뷰는 스크롤 뷰 필요 없음 -->
 <GridView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="top|center"
     android:id="@+id/gv_prImage"
-    android:columnWidth="100dp"
-    android:stretchMode="columnWidth"
-    android:verticalSpacing="10dp"
-    android:horizontalSpacing="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:padding="30dp"
-    android:numColumns="3">
+    android:numColumns="3"
+    android:verticalSpacing="5dp"
+    android:horizontalSpacing="5dp"
+    android:padding="10dp"
+    android:paddingBottom="10dp"
+    >
 
 </GridView>

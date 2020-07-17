@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class MainImageAdapter extends PagerAdapter {
-    private int[] images = {R.drawable.img_main1,R.drawable.img_main2,R.drawable.img_main3,R.drawable.img_main4};
+    private int[] images = {R.drawable.img_main1,R.drawable.img_main2,R.drawable.img_main3_c,R.drawable.img_main4};
     private LayoutInflater inflater;
     private Context context;
 

@@ -16,7 +16,7 @@ public class sample1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample1);
-
+/*
         //툴바 & 햄버거
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -28,5 +28,6 @@ public class sample1 extends AppCompatActivity {
                 layout_sample.openDrawer(GravityCompat.START);
             }
         });
+ */
     }
 }

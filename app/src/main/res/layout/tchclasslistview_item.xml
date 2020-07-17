@@ -32,6 +32,8 @@
 
                 <!--수업명-->
                 <TextView
+                    android:paddingTop="15dp"
+                    android:fontFamily="@font/font"
                     android:id="@+id/cls_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -67,24 +69,28 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:textColor="#00BCD4"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="시작시간"
                         android:textSize="12sp"/>
                     <TextView
+                        android:textColor="#00BCD4"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="종료시간"
                         android:textSize="12sp"/>
                     <TextView
+                        android:textColor="#00BCD4"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="left|center"
                         android:text="수업요일"
                         android:textSize="12sp"/>
                     <TextView
+                        android:textColor="#00BCD4"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="left|center"
