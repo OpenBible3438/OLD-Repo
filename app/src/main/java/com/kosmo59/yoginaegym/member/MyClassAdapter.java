@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -77,6 +78,15 @@ public class MyClassAdapter extends ArrayAdapter {
 
                 // 커스텀 다이얼로그의 레이아웃을 설정한다.
                 dlg.setContentView(R.layout.dialog_mem_my_class_detail);
+
+                //---다이얼로그 화면 사이즈 조정 시작
+                WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+                //---다이얼로그 화면 사이즈 조정 끝
+
+
                 /////////////////////다이얼로그에 값 넣기/////////////////////
                 TextView cls_rcnt = dlg.findViewById(R.id.cls_rcnt);
                 TextView cls_rdays = dlg.findViewById(R.id.cls_rdays);

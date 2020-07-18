@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,9 +39,11 @@ public class TchMemListAdapter extends ArrayAdapter {
     List<Map<String, Object>> mList = null;
     int resourceId;
 
+    ImageButton icon_close_info;
+
     AppVO vo = null;
 
-    private ImageButton icon_close;
+    //private ImageButton icon_close;
     private Button btn_tchMemMemo_ins;
 
     public TchMemListAdapter(@NonNull Context context, int resource, @NonNull List mList) {
@@ -103,6 +107,14 @@ public class TchMemListAdapter extends ArrayAdapter {
                 // 커스텀 다이얼로그의 레이아웃을 설정한다.
                 dlg.setContentView(R.layout.dialog_tch_mem_info);
 
+                //---다이얼로그 화면 사이즈 조정 시작
+                WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+                //---다이얼로그 화면 사이즈 조정 끝
+
+
                 /* 여기에 값 넣어주는 코드 넣기 */
                 Log.i("tch_mem_info", "회원정보 DB연동 시작");
 
@@ -142,6 +154,9 @@ public class TchMemListAdapter extends ArrayAdapter {
                 lv_tch_mem_info.setAdapter(tchMemInfoAdapter);
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();
+
+
+
             }
         });
 
@@ -157,6 +172,13 @@ public class TchMemListAdapter extends ArrayAdapter {
                 // 커스텀 다이얼로그의 레이아웃을 설정한다.
                 dlg.setContentView(R.layout.dialog_tch_mem_memo_reg);
 
+                //---다이얼로그 화면 사이즈 조정 시작
+                WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+                //---다이얼로그 화면 사이즈 조정 끝
+
                 /* 여기에 값 넣어주는 코드 넣기 */
 
                 // 커스텀 다이얼로그를 노출한다.
@@ -165,7 +187,7 @@ public class TchMemListAdapter extends ArrayAdapter {
 
 
                 //메모 닫기 버튼
-                icon_close = dlg.findViewById(R.id.icon_close);
+                ImageButton icon_close = dlg.findViewById(R.id.icon_close);
                 icon_close.setOnClickListener(new View.OnClickListener() {
 
                     @Override
