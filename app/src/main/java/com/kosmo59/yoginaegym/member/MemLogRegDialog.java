@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -66,6 +67,13 @@ public class MemLogRegDialog {
 
         // 커스텀 다이얼로그의 레이아웃을 설정한다.
         dlg.setContentView(R.layout.dialog_mem_log_reg);
+
+        //---다이얼로그 화면 사이즈 조정 시작
+        WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+        //---다이얼로그 화면 사이즈 조정 끝
 
         // 커스텀 다이얼로그를 노출한다.
         dlg.show();

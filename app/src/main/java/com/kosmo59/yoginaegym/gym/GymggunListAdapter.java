@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -125,6 +126,14 @@ public class GymggunListAdapter extends ArrayAdapter {
         tch_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //---다이얼로그 화면 사이즈 조정 시작
+                WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+                //---다이얼로그 화면 사이즈 조정 끝
+
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();
                 tv_prHeartNum = dlg.findViewById(R.id.tv_prHeartNum);
