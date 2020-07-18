@@ -469,17 +469,15 @@
 	
    	<!-- 회원 > 내정보 > COMBO BOX(수업리스트 )  -->
 	<select id="getRevClsList_and" parameterType="map" resultType="map">
-		SELECT (SELECT max(pay_no) FROM pay WHERE cls_no = c.cls_no) as pay_no
-		      ,C.CLS_NO
-		      ,C.CLS_NAME
+		SELECT p.cls_no, max(p.pay_no) as pay_no
+		      ,c.cls_name
 		      ,GYM.GYM_NAME
-		  FROM pay p, class c, member m, gym
-		 WHERE P.CLS_NO = C.CLS_NO
-		   AND P.MEM_NO = M.MEM_NO
-		   AND GYM.GYM_NO = C.GYM_NO
-		   AND M.MEM_NO = #{mem_no}
-		 GROUP BY c.cls_no, c.cls_name, GYM.GYM_NAME
-		 ORDER BY pay_no asc
+		  FROM pay p, member m, class c, gym
+		 WHERE P.MEM_NO = M.MEM_NO
+		   AND P.CLS_NO = C.CLS_NO
+		   AND C.GYM_NO = GYM.GYM_NO
+		   AND M.MEM_NO = 10014
+		 GROUP BY p.cls_no,c.cls_name,GYM.GYM_NAME
 	</select>
 	
    	<!-- 강사 출석 조회 -->
