@@ -1,41 +1,52 @@
 package com.kosmo59.yoginaegym.member;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.github.chrisbanes.photoview.PhotoView;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.TomcatImg;
 
-public class InbodyImageAdapter extends BaseAdapter {
+import java.util.List;
+import java.util.Map;
+
+public class InbodyImageAdapter extends ArrayAdapter {
     Context context;
-    //PR Images 배열
-    public Integer[] inbodyImages = {
-            R.drawable.inbody_ex1,
-            R.drawable.inbody_ex2,
-            R.drawable.inbody_ex3,
-            R.drawable.inbody_ex4,
-            R.drawable.inbody_ex5,
-            R.drawable.inbody_ex6,
-            R.drawable.inbody_ex7,
-            R.drawable.inbody_ex8,
-    };
+    List<Map<String, Object>> inbodyList = null;
+    int resourceId;
 
-    public InbodyImageAdapter(Context context){
+    ArrayAdapter<Bitmap> arrayList;
+
+    public InbodyImageAdapter(@NonNull Context context, int resource, List inbodyList){
+        super(context, resource, inbodyList);
         this.context = context;
+        this.resourceId = resource;
+        this.inbodyList = inbodyList;
     }
 
     @Override
     public int getCount() {
-        //이미지 총 몇개야
-        return inbodyImages.length;
+        return inbodyList.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return position;
+    public Map<String, Object> getItem(int position) {
+        return inbodyList.get(position);
     }
 
     @Override
@@ -44,24 +55,44 @@ public class InbodyImageAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        /*
-        반드시 구현해야되는 곳
-        Adapter에 추가된 이미지를 표시함
-        convertView가 null 일 때 새로운 이미지 객체를 생성해서 화면에 표시
-         */
-        ImageView imageView;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflater.inflate(this.resourceId, parent, false);
+        Log.i("PRImageAdapter", "호출 성공");
+        Log.i("PRImageAdapter", "prImageList.size() : "+inbodyList.size());
 
-        if(convertView == null){
-            imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(300,300));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(1,1,1,1 );
+
+        final ImageView imageView;
+        imageView = new ImageView(context);
+        imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT,350));
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setPadding(3,3,3,3 );
+
+        try{
+            TomcatImg tomcatImg = new TomcatImg();
+            String imsi = inbodyList.get(position).get("FILE_SEQ").toString().substring(0, inbodyList.get(position).get("FILE_SEQ").toString().length()-2);
+            String bitImg = tomcatImg.execute(imsi).get();
+            Bitmap bitmap = tomcatImg.getBitMap(bitImg);
+            imageView.setImageBitmap(bitmap);
+        }catch (Exception e){
+            Log.i("PRImageAdapter", "Exception : "+e.toString());
         }
-        else{
-            imageView = (ImageView) convertView;
-        }
-        imageView.setImageResource(inbodyImages[position]);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dlg = new Dialog(context);
+                dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dlg.setContentView(R.layout.dialog_mem_inbody);
+                WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.MATCH_PARENT;
+                dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+                dlg.show();
+                PhotoView photoView = dlg.findViewById(R.id.pv_memInbody);
+                photoView.setImageBitmap(((BitmapDrawable)imageView.getDrawable()).getBitmap());
+            }
+        });
+
         return imageView;
     }
 }

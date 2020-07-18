@@ -2,6 +2,9 @@ package com.kosmo59.yoginaegym.teacher;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.BarcodeFormat;
@@ -10,6 +13,8 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.member.MemLogFragment;
+import com.kosmo59.yoginaegym.member.MemTimeTableAFragment;
 import com.kosmo59.yoginaegym.member.calendar.EventDecorator;
 import com.kosmo59.yoginaegym.member.calendar.OneDayDecorator;
 import com.kosmo59.yoginaegym.member.calendar.SaturdayDecorator;
@@ -50,6 +55,8 @@ public class TchCalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tch_cal);
+
+        TchCalPagerAdapter tchCalPagerAdapter = new TchCalPagerAdapter(getSupportFragmentManager());
 
         vo = (AppVO) getApplicationContext();
 
@@ -198,6 +205,49 @@ public class TchCalActivity extends AppCompatActivity {
             materialCalendarView.addDecorator(new EventDecorator(Color.RED, calendarDays, TchCalActivity.this));
         }
 
+
+    }
+
+    private class TchCalPagerAdapter extends FragmentPagerAdapter {
+
+        public TchCalPagerAdapter(FragmentManager supportFragmentManager) {
+            super(supportFragmentManager);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            switch (position){
+                case 0:
+                    return new TchCalFragment();
+                case 1:
+                    return new TchLogFragment();
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        public CharSequence getPageTitle(int position){
+            switch (position){
+                case 0:
+                    return "월별보기";
+                case 1:
+                    return "일지";
+            }
+            return null;
+        }
+
+        @Override
+
+        public int getItemPosition(Object object) {
+
+            return POSITION_NONE;
+
+        }
 
     }
 }
