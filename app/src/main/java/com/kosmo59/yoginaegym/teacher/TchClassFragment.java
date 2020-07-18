@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.TomcatSend;
 
 import java.lang.reflect.Type;
@@ -39,8 +40,11 @@ public class TchClassFragment extends Fragment {
     private Button btn_tchMemList;
 
     private Spinner spn_tchClass;
-    ArrayList<String> arrayList;
+    ArrayList<String> gymNameList;
+    ArrayList<String> gymNoList;
     ArrayAdapter<String> arrayAdapter;
+
+    AppVO vo = (AppVO) context.getApplicationContext();
 
     private ListView cls_listView;
     List<Map<String, Object>> clsList = null;
@@ -61,15 +65,52 @@ public class TchClassFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tch_class, container, false);
         context = container.getContext();
+        cls_listView = view.findViewById(R.id.cls_list);
 
+
+        /*스피너*/
+        gymNameList = new ArrayList<>();
+        gymNoList = new ArrayList<>();
+        //////////////////////////////// 스피너 DB 연동 /////////////////////////////////////
+        for (int i=0; i<clsList.size(); i++){
+            gymNameList.add(clsList.get(i).get("CLS_NAME").toString());
+            gymNoList.add(clsList.get(i).get("CLS_NO").toString());
+        }
+
+        //////////////////////////////// 스피너 DB 연동 /////////////////////////////////////
+        arrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, gymNameList);
+
+        spn_tchClass = view.findViewById(R.id.spn_tchClass);
+        spn_tchClass.setAdapter(arrayAdapter);
+        spn_tchClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long id) {
+                Toast.makeText(context,gymNameList.get(i)+" 매장입니다", Toast.LENGTH_SHORT).show();
+                vo.setTch_cho_gym_no(Integer.parseInt(gymNoList.get(i)));
+                getTchClsList();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+        return view;
+    }
+
+    public void getTchClsList(){
         ////////////////////////////////////DB 연동 시작////////////////////////////////////
         String result = null;
         String reqUrl = "android/jsonTchClassList.gym";
 
         String nowTch = null;
         Map<String, Object> tchMap = new HashMap<>();
-        tchMap.put("tch_no", 1005);/////////////바꿀 코드
-        tchMap.put("gym_no", 200903);/////////////바꿀 코드
+        tchMap.put("tch_no", vo.getTchNum());
+        tchMap.put("gym_no", vo.getTch_cho_gym_no());
         nowTch = tchMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         Log.i("테스트", "nowTch : " + nowTch);
@@ -92,37 +133,7 @@ public class TchClassFragment extends Fragment {
         ////////////////////////////////////DB 연동 끝////////////////////////////////////
 
         TchclassAdapter tchclassAdapter = new TchclassAdapter(mContext, R.layout.tchclasslistview_item, clsList);
-        cls_listView = view.findViewById(R.id.cls_list);
         cls_listView.setAdapter(tchclassAdapter);
-        
-
-        /*스피너*/
-        arrayList = new ArrayList<>();
-        arrayList.add("요가원");
-        arrayList.add("여기내짐");
-        arrayList.add("터짐");
-        arrayList.add("마음가짐");
-
-        arrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, arrayList);
-
-        spn_tchClass = view.findViewById(R.id.spn_tchClass);
-        spn_tchClass.setAdapter(arrayAdapter);
-        spn_tchClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long id) {
-                Toast.makeText(context,arrayList.get(i)+" 매장입니다", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
-
-        return view;
     }
 
 }

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kosmo59.yoginaegym.R;
@@ -116,14 +117,25 @@ public class MemTimeTableAFragment extends Fragment {
                 Log.i("Year test", Year + "");
                 Log.i("Month test", Month + "");
                 Log.i("Day test", Day + "");
-
-                String shot_Day = Year + "," + Month + "," + Day;
+                String cho_month = null;
+                if(Month<10){
+                    cho_month = "0"+Month;
+                }
+                else {
+                    cho_month = "" + Month;
+                }
+                String cho_day = null;
+                if(Day<10){
+                    cho_day = "0"+Day;
+                }
+                else {
+                    cho_day = "" + Day;
+                }
+                String shot_Day = Year + "-" + cho_month + "-" + cho_day;
 
                 Log.i("shot_Day test", shot_Day + "");
                 //materialCalendarView.clearSelection();
                // Toast.makeText(view.getContext(), shot_Day, Toast.LENGTH_SHORT).show();
-
-
                 // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
                 dlg = new Dialog(context);
 
@@ -133,8 +145,34 @@ public class MemTimeTableAFragment extends Fragment {
                 // 커스텀 다이얼로그의 레이아웃을 설정한다.
                 dlg.setContentView(R.layout.fragment_mem_time_table_a_detail);
 
-                // 커스텀 다이얼로그를 노출한다.
-                dlg.show();
+                ///////////////////////////////////SQLite DB연동/////////////////////////////////
+                TextView tv_log_title = dlg.findViewById(R.id.tv_log_title);
+                TextView tv_log_cont = dlg.findViewById(R.id.tv_log_cont);
+                TextView tv_regDate = dlg.findViewById(R.id.tv_log_regDate);
+                TextView tv_exDate = dlg.findViewById(R.id.tv_exDate);
+                TextView tv_stime = dlg.findViewById(R.id.tv_stime);
+                TextView tv_etime = dlg.findViewById(R.id.tv_etime);
+                String log_sel = "SELECT log_title, log_cont, reg_date, ex_date, ex_stime, ex_etime"
+                        + " FROM mem_log"
+                        + " WHERE mem_no = "+vo.mem_no
+                        + " AND ex_date = '" + shot_Day + "'";
+                Log.i("MemTimeTableAFragment", "log_sel : " + log_sel);
+                Cursor cursor = db.rawQuery(log_sel, null);
+                Log.i("MemTimeTableAFragment", "cursor.getCount() : " + cursor.getCount());
+                if(cursor.getCount()>0){
+                    while(cursor.moveToNext()){
+                        int cnt = 0;
+                        Log.i("MemTimeTableAFragment", "cursor.getString(cnt++) : " + cursor.getString(cnt));
+                        tv_log_title.setText(cursor.getString(cnt++));
+                        tv_log_cont.setText(cursor.getString(cnt++));
+                        tv_regDate.setText(cursor.getString(cnt++));
+                        tv_exDate.setText(cursor.getString(cnt++));
+                        tv_stime.setText(cursor.getString(cnt++));
+                        tv_etime.setText(cursor.getString(cnt++));
+                    }
+                    // 커스텀 다이얼로그를 노출한다.
+                    dlg.show();
+                }
 
                 //닫기 버튼
                 ImageView icon_close = dlg.findViewById(R.id.icon_close);

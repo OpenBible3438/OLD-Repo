@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
@@ -38,6 +39,8 @@ public class TchMemListAdapter extends ArrayAdapter {
     Context context;
     List<Map<String, Object>> mList = null;
     int resourceId;
+    List<Map<String, Object>> memList;
+    Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
 
     ImageButton icon_close_info;
 
@@ -139,6 +142,7 @@ public class TchMemListAdapter extends ArrayAdapter {
                     TomcatSend tomcatSend = new TomcatSend();
                     result = tomcatSend.execute(reqUrl, pMap.toString()).get();
                     jsonArray = new JSONArray(result);
+
                 }catch (Exception e){
                     Log.i("TchMemListAdapter", e.toString());
                 }
@@ -177,9 +181,9 @@ public class TchMemListAdapter extends ArrayAdapter {
                 dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
                 //---다이얼로그 화면 사이즈 조정 끝
 
+
                 /* 여기에 값 넣어주는 코드 넣기 */
 //                vo.setTch_cho_mem_no();
-
 
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();

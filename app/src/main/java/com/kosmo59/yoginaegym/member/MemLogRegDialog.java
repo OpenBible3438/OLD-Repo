@@ -187,7 +187,7 @@ public class MemLogRegDialog {
             }
         });
 
-    }//end of openMemLogRegDialog
+    }//end of open"MemLogRegDialog"
 
 
     /* 운동일 확인 버튼 눌렀을 때 */
@@ -211,7 +211,7 @@ public class MemLogRegDialog {
 
     //등록 버튼 눌렀을 때
     public void log_insAction(){
-        Log.i("테스트", "lof_insAction() 호출");
+        Log.i("MemLogRegDialog", "lof_insAction() 호출");
         String log_cont = et_log_cont.getText().toString();
         String log_title = et_log_title.getText().toString();
         String ex_date = tv_exDate.getText().toString();
@@ -222,11 +222,11 @@ public class MemLogRegDialog {
 
         String mem_log_ins = "INSERT INTO mem_log (mem_no, reg_date, ex_date, log_title, ex_stime, ex_etime, log_cont)" +
                 "VALUES ("+mem_no+", '"+logRegDate+"', '"+ex_date+"', '"+log_title+"', '"+stime+"', '"+etime+"', '"+log_cont+"')";
-        Log.i("테스트", "mem_log_ins : " + mem_log_ins);
+        Log.i("MemLogRegDialog", "mem_log_ins : " + mem_log_ins);
         db.execSQL(mem_log_ins);
         Cursor cursor = db.rawQuery("SELECT * FROM mem_log", null);
         while(cursor.moveToNext()){
-            Log.i("테스트", cursor.getString(0)+ ", " + cursor.getString(1) + ", " + cursor.getString(2)
+            Log.i("MemLogRegDialog", cursor.getString(0)+ ", " + cursor.getString(1) + ", " + cursor.getString(2)
                     + ", " + cursor.getString(3)+ ", " + cursor.getString(4)+ ", " + cursor.getString(5)
                     + ", " + cursor.getString(6)+ ", " + cursor.getString(7));
             dlg.dismiss();

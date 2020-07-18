@@ -32,6 +32,15 @@ public class AppVO extends Application {
         this.tch_cho_mem_no = tch_cho_mem_no;
     }
 
+    /* 강사에서 수업 조회할 때 스피너 선택하면 gym_no 저장하기 */
+    public int tch_cho_gym_no = 0;
+    public int getTch_cho_gym_no() {
+        return tch_cho_gym_no;
+    }
+    public void setTch_cho_gym_no(int tch_cho_gym_no) {
+        this.tch_cho_gym_no = tch_cho_gym_no;
+    }
+
 
 
     /* 회원 */

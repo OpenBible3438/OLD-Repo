@@ -179,14 +179,15 @@ public class MemLogDetailDialog {
         btn_logDetail_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update_log(dlg);
+                ///////////////////////////////SQLite /////////////////////////////////////////////
+                String log_del = "DELETE FROM mem_log WHERE _id = " + _id;
+                Log.i("MemLogDetailDialog", "log_sel : " + log_del);
+                db.execSQL(log_del);
+                dlg.dismiss();
+                ///////////////////////////////SQLite 끝/////////////////////////////////////////////
+                memLogFragment.refresh();
             }
         });
-        ///////////////////////////////SQLite /////////////////////////////////////////////
-        String log_del = "DELETE FROM mem_log WHERE _id = " + _id;
-        Log.i("MemLogDetailDialog", "log_sel : " + log_del);
-        db.execSQL(log_del);
-        ///////////////////////////////SQLite 끝/////////////////////////////////////////////
         icon_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
