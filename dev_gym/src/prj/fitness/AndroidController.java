@@ -206,30 +206,44 @@ public class AndroidController implements Controller{
 				// 회원 자세히 보기
 				case "jsonMemDetail":{ // 회원 자세히 보기
 					selResult = aLogic.getMemDetail(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
 				// 인바디 목록 조회
 				}break;
 				case "jsonMemInbody":{ 
 					selResult = aLogic.getMemInbody(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
 				// 인바디 조건 검색 조회
 				}break;
 				case "jsonMemInbodyOne":{ 
 					selResult = aLogic.getMemInbodyOne(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
 				// 회원 조회	
 				}break;
 				case "jsonMemList":{ 
 					selResult = aLogic.getMemList(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
 				// 회원 조건검색 
 				}break;
 				case "jsonMemListOne":{ 
 					selResult = aLogic.getMemListOne(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
 				// 한 회원에 대한 인바디 사진 조회
 				}break;
 				case "getInbodyImg":{ 
 					selResult = aLogic.getInbodyImg(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
 				// 한 회원에 대한 등록한 수업 조회
 				}break;
 				case "jsonOneMemClsList":{ 
 					selResult = aLogic.getOneMemClsList(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
 				}break;
 			// 김현빈
 				
