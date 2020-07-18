@@ -1,47 +1,58 @@
 package com.kosmo59.yoginaegym.gym;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.TomcatImg;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /* PRImageFragment에 연결되는 Adapter */
-public class PRImageAdapter extends BaseAdapter {
+public class PRImageAdapter extends ArrayAdapter {
     Context context;
-    //PR Images 배열
-    Integer[] prImages = {
-            R.drawable.pr_sample1,
-            R.drawable.pr_sample2,
-            R.drawable.pr_sample3,
-            R.drawable.pr_sample4,
-            R.drawable.pr_sample5,
-            R.drawable.pr_sample6,
-    };
+    List<Map<String, Object>> prImageList = null;
+    int resourceId;
 
-    //생성자
-    public PRImageAdapter(Context context){
+    ArrayAdapter<Bitmap> arrayList;
+
+
+    public PRImageAdapter(@NonNull Context context, int resource, List prImageList) {
+        super(context, resource, prImageList);
         this.context = context;
-    }
-
-    @Override
-    public int getCount() {
-        //이미지 몇개?
-        return prImages.length;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        //지정된 인덱스에 있는 실제 객체를 반환
-        return position;
+        this.resourceId = resource;
+        this.prImageList = prImageList;
     }
 
     @Override
     public long getItemId(int position) {
-        //항목의 행 ID 반환
         return position;
+    }
+
+    @Override
+    public int getCount() {
+        return prImageList.size();
+    }
+
+    @Override
+    public Map<String, Object> getItem(int position) {
+        return prImageList.get(position);
     }
 
     @Override
@@ -51,18 +62,27 @@ public class PRImageAdapter extends BaseAdapter {
         Adapter에 추가된 이미지를 표시함
         convertView가 null 일 때 새로운 이미지 객체를 생성해서 화면에 표시
          */
-        ImageView imageView;
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflater.inflate(this.resourceId, parent, false);
+        Log.i("PRImageAdapter", "호출 성공");
+        Log.i("PRImageAdapter", "prImageList.size() : "+prImageList.size());
 
-        if(convertView == null){
-            imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT,350));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(3,3,3,3 );
+        ImageView imageView;
+        imageView = new ImageView(context);
+        imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT,350));
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setPadding(3,3,3,3 );
+
+        try{
+            TomcatImg tomcatImg = new TomcatImg();
+            String imsi = prImageList.get(position).get("FILE_SEQ").toString().substring(0, prImageList.get(position).get("FILE_SEQ").toString().length()-2);
+            String bitImg = tomcatImg.execute(imsi).get();
+            Bitmap bitmap = tomcatImg.getBitMap(bitImg);
+            imageView.setImageBitmap(bitmap);
+        }catch (Exception e){
+            Log.i("PRImageAdapter", "Exception : "+e.toString());
         }
-        else{
-            imageView = (ImageView) convertView;
-        }
-        imageView.setImageResource(prImages[position]);
+
         return imageView;
     }
 }
