@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class GymggunListAdapter extends ArrayAdapter {
     TextView tch_tel_dtl = null;
     TextView tch_career_dtl = null;
     TextView tch_intro_dtl = null;
+    ImageView tch_img_dtl = null;
 
     //1이면 눌려있을 때, 0이면 안 눌려있을 때
     private int check_num = 0;
@@ -45,8 +47,6 @@ public class GymggunListAdapter extends ArrayAdapter {
     //하트 수
     private TextView tv_prHeartNum;
     private int prHeartNum=0;
-
-
 
     public GymggunListAdapter(Context context, int resource, List<Map<String, Object>> clsList) {
         super(context, resource, clsList);
@@ -81,23 +81,27 @@ public class GymggunListAdapter extends ArrayAdapter {
 
         tch_name.setText(mList.get(position).get("TCH_NAME").toString());
         tch_tel.setText(mList.get(position).get("TCH_TEL").toString());
-        try {
-            TomcatImg tomcatImg = new TomcatImg();
-            String bitImg = tomcatImg.execute(mList.get(position).get("FILE_SEQ").toString()).get();
-            Bitmap bitmap = tomcatImg.getBitMap(bitImg);
-            tch_img.setImageBitmap(bitmap);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
+        final Dialog dlg = new Dialog(mContext);
+        // 액티비티의 타이틀바를 숨긴다.
+        dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // 커스텀 다이얼로그의 레이아웃을 설정한다.
+        dlg.setContentView(R.layout.dialog_gymggun_detail);
 
         //강사 디테일에서 사용할 컬럼
-        tch_name_dtl = convertView.findViewById(R.id.tch_name_dtl);
-        tch_id_dtl = convertView.findViewById(R.id.tch_id_dtl);
-        tch_gender_dtl = convertView.findViewById(R.id.tch_gender_dtl);
-        tch_tel_dtl = convertView.findViewById(R.id.tch_tel_dtl);
-        tch_career_dtl = convertView.findViewById(R.id.tch_career_dtl);
-        tch_intro_dtl = convertView.findViewById(R.id.tch_intro_dtl);
+        tch_name_dtl = dlg.findViewById(R.id.tch_name_dtl);
+        tch_id_dtl = dlg.findViewById(R.id.tch_id_dtl);
+        tch_gender_dtl = dlg.findViewById(R.id.tch_gender_dtl);
+        tch_tel_dtl = dlg.findViewById(R.id.tch_tel_dtl);
+        tch_career_dtl = dlg.findViewById(R.id.tch_career_dtl);
+        tch_intro_dtl = dlg.findViewById(R.id.tch_intro_dtl);
+        tch_img_dtl = dlg.findViewById(R.id.tch_img_dtl);
+        Log.i("GymggunListAdapter","tch_name_dtl : "+tch_name_dtl);
+        Log.i("GymggunListAdapter","tch_id_dtl : "+tch_id_dtl);
+        Log.i("GymggunListAdapter","tch_gender_dtl : "+tch_gender_dtl);
+        Log.i("GymggunListAdapter","tch_tel_dtl : "+tch_tel_dtl);
+        Log.i("GymggunListAdapter","tch_career_dtl : "+tch_career_dtl);
+        Log.i("GymggunListAdapter","tch_intro_dtl : "+tch_intro_dtl);
 
         tch_name_dtl.setText(mList.get(position).get("TCH_NAME").toString());
         tch_id_dtl.setText(mList.get(position).get("TCH_ID").toString());
@@ -105,36 +109,24 @@ public class GymggunListAdapter extends ArrayAdapter {
         tch_tel_dtl.setText(mList.get(position).get("TCH_TEL").toString());
         tch_career_dtl.setText(mList.get(position).get("TCH_CAREER").toString());
         tch_intro_dtl.setText(mList.get(position).get("TCH_INTRO").toString());
-
-
-
+        //
+        try {
+            TomcatImg tomcatImg = new TomcatImg();
+            String bitImg = tomcatImg.execute(mList.get(position).get("FILE_SEQ").toString()).get();
+            Bitmap bitmap = tomcatImg.getBitMap(bitImg);
+            tch_img.setImageBitmap(bitmap);
+            tch_img_dtl.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //
         //버튼 id를 찾은 후 setOnclickListener()메소드를 사용한다.
         tch_detail = convertView.findViewById(R.id.tch_detail);
         tch_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-                GymggunDetailDialog gymggunDetailDialog = new GymggunDetailDialog(mContext);
-
-                // 커스텀 다이얼로그를 호출한다.
-                gymggunDetailDialog.openGymggunDetailDialog();
-
-                */
-
-
-                // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
-                final Dialog dlg = new Dialog(mContext);
-
-                // 액티비티의 타이틀바를 숨긴다.
-                dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-                // 커스텀 다이얼로그의 레이아웃을 설정한다.
-                dlg.setContentView(R.layout.dialog_gymggun_detail);
-
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();
-
                 tv_prHeartNum = dlg.findViewById(R.id.tv_prHeartNum);
                 tv_prHeartNum.setText(Integer.toString(prHeartNum));
 

@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:layout_marginBottom="10dp"
         android:id="@+id/cv_chat_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,71 +24,72 @@
                 android:layout_gravity="center"
                 android:src="@drawable/people_sample2" />
 
+
             <LinearLayout
                 android:layout_marginLeft="15sp"
-                android:layout_width="45sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:textColor="#00BCD4"
-                    android:layout_width="45sp"
-                    android:layout_height="30sp"
-                    android:gravity="center_vertical"
-                    android:text="회원명"
-                    android:textSize="12sp"/>
-
-                <TextView
-                    android:textColor="#00BCD4"
-                    android:layout_width="45sp"
-                    android:layout_height="30sp"
-                    android:gravity="center_vertical"
-                    android:text="매    장"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:textColor="#00BCD4"
-                    android:layout_width="45sp"
-                    android:layout_height="30sp"
-                    android:gravity="center_vertical"
-                    android:text="수    업"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginLeft="0sp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <TextView
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/font"
                     android:id="@+id/tv_tch_chat_memName"
                     android:layout_width="match_parent"
                     android:layout_height="30sp"
                     android:gravity="center_vertical"
                     android:text="김회원"
-                    android:textSize="20sp" />
+                    android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/tv_tch_chat_gymName"
-                    android:layout_width="match_parent"
-                    android:layout_height="30sp"
-                    android:gravity="center_vertical"
-                    android:text="여기내짐 가산점"
-                    android:textSize="20sp" />
+            <LinearLayout
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/tv_tch_chat_clsName"
+                <LinearLayout
+                    android:layout_width="45sp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:textColor="#00BCD4"
+                        android:layout_width="45sp"
+                        android:layout_height="30sp"
+                        android:gravity="center_vertical"
+                        android:text="성       별"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:textColor="#00BCD4"
+                        android:layout_width="45sp"
+                        android:layout_height="30sp"
+                        android:gravity="center_vertical"
+                        android:text="주소"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="10sp"
                     android:layout_width="match_parent"
-                    android:layout_height="30sp"
-                    android:gravity="center_vertical"
-                    android:lines="1"
-                    android:text="개인 PT"
-                    android:textSize="20sp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_tch_chat_gymName"
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:gravity="center_vertical"
+                        android:text="성별"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/tv_tch_chat_clsName"
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:gravity="center_vertical"
+                        android:text="주소"
+                        android:textSize="16sp" />
+                </LinearLayout>
             </LinearLayout>
 
+        </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

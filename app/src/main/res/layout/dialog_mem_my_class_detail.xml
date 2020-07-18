@@ -24,11 +24,13 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:text="테스트"
+                    android:fontFamily="@font/font"
                     android:id="@+id/cls_name"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <LinearLayout
