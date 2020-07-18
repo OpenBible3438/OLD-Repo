@@ -213,6 +213,20 @@ public class AndroidLogic {
 		gymList = aDao.getTeacherProf(pMap);
 		return gymList;
 	}
+	// 회원 > 내정보 > 후기 리스트  
+	public List<Map<String, Object>> getRevMemList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getRevMemList() 호출 ");
+		List<Map<String, Object>> revList = null;
+		revList = aDao.getRevMemList(pMap);
+		return revList;
+	}
+	// 회원 > 내정보 > 후기 리스트 > 등록 수업리스트    
+	public List<Map<String, Object>> getRevClsList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getRevClsList() 호출 ");
+		List<Map<String, Object>> revList = null;
+		revList = aDao.getRevClsList(pMap);
+		return revList;
+	}
 	//강사 출결 
 	public List<Map<String, Object>> getTeacherAttend(Map<String, Object> pMap) {
 		logger.info("AndroidLogic - getTeacherAttend() 호출 ");
@@ -271,6 +285,8 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
+
+
 
 
 

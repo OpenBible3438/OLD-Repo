@@ -270,6 +270,22 @@ public class AndroidDao {
 		logger.info("getTeacherProf.size() : " + gymList.size());
 		return gymList;
 	}
+	// 회원 > 내정보 > 후기 리스트  
+	public List<Map<String, Object>> getRevMemList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getRevMemList() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getRevMemList_and", pMap);
+		logger.info("getRevMemList.size() : " + gymList.size());
+		return gymList;
+	}
+	// 회원 > 내정보 > 후기 리스트 > 등록 수업리스트   
+	public List<Map<String, Object>> getRevClsList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getRevClsList() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getRevClsList_and", pMap);
+		logger.info("getRevClsList.size() : " + gymList.size());
+		return gymList;
+	}
 	// 강사 출석 조회
 	public List<Map<String, Object>> getTeacherAttend(Map<String, Object> pMap) {
 		logger.info("AndroidDao - getTeacherAttend() 호출");
@@ -316,4 +332,5 @@ public class AndroidDao {
 		BLOB blob = sqlSession.selectOne("getImg", pMap);
 		return blob;
 	}
+
 }

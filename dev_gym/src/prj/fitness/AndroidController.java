@@ -245,6 +245,18 @@ public class AndroidController implements Controller{
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;
+				// 회원 > 내정보 > 후기 리스트   
+				case "jsonRevMemList":{
+					selResult = aLogic.getRevMemList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 회원 > 내정보 > 후기 리스트 > 등록 수업리스트    
+				case "jsonRevClsList":{
+					selResult = aLogic.getRevClsList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
 				// 강사 출석   
 				case "jsonTeacherAttend":{
 					selResult = aLogic.getTeacherAttend(pMap);
