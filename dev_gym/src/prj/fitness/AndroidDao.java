@@ -186,6 +186,14 @@ public class AndroidDao {
 		logger.info("memTchList.size() : " + memTchList.size());
 		return memTchList;
 	}
+	//강사의 전체 회원 리스트(메시지에 사용) 성경추가
+	public List<Map<String, Object>> getTchChatMemList(Map<String, Object> pMap) throws SQLException  {
+		logger.info("AndroidDao - getTchChatMemList() 호출");
+		List<Map<String, Object>> tchMemList = null;
+		tchMemList = sqlSession.selectList("getTchChatMemList", pMap);
+		logger.info("memTchList.size() : " + tchMemList.size());
+		return tchMemList;
+	}
 	// 전체 콘텐츠 가져오기  
 		public List<Map<String, Object>> getContentsList(Map<String, Object> pMap) {
 			logger.info("AndroidDao - getContentsList() 호출");

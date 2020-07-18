@@ -263,6 +263,20 @@
            AND i.TYPECODE = T.GYM_NO||T.TCH_NO
 		GROUP BY t.tch_no, t.tch_name, t.tch_gender, t.tch_tel, i.file_seq
 	</select>
+	
+	<!-- 강사의 전체 수강생들 (메시지 사용) - 성경추가 -->
+	<select id="getTchChatMemList" parameterType="map" resultType="map">
+		SELECT m.mem_no, m.mem_name, m.mem_gender, m.mem_tel,i.file_seq
+          FROM pay p, class c, member m, images i
+         WHERE P.CLS_NO = C.CLS_NO
+           AND P.MEM_NO = M.MEM_NO
+           AND I.TYPE = 'mem'
+           AND I.TYPECODE = M.MEM_NO
+           AND C.TCH_NO = #{tch_no}
+      GROUP BY m.mem_no, mem_name, file_seq, m.mem_gender, m.mem_tel
+      ORDER By m.mem_name	
+	</select>
+	
    <!-- 전체 콘텐츠 가져오기 -->
 	<select id="getContentsList_and" parameterType="map" resultType="map">
 		SELECT c.cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name) who, cont_like, cont_date, cont_time, i.file_seq
@@ -378,7 +392,6 @@
 			  FROM inbody ibd, images i
 			 WHERE IBD.INBD_SEQ = I.TYPECODE
 			   AND I.TYPE = 'ibd'
-			   AND IBD.GYM_NO = #{gym_no}
 			   AND IBD.MEM_NO = #{mem_no}
    </select>
    
