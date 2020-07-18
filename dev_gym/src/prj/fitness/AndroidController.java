@@ -45,11 +45,10 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-							// 인바디 등록
-							case "memInbodyIns":{ 
-								result = aLogic.memInbodyIns(pMap);
+							// 회원 리뷰 등록
+							case "memReviewIns":{ 
+								result = aLogic.memReviewIns(pMap);
 							}break;
-								
 						// 김현빈
 							
 						// 허준호
@@ -62,7 +61,7 @@ public class AndroidController implements Controller{
 						logger.info("Exception : "+e.toString());
 						result = 0;
 					}
-					path = "redirect:../insertResult" + ":" + result;
+					path = "redirect:../insertResult_and" + ":" + result;
 				}break;
 				case "upd":{
 					try {
@@ -74,10 +73,6 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-						//인바디 수정
-						case "memInbodyUpd":{
-							result = aLogic.memInbodyUpd(pMap);
-						}break;
 						// 김현빈
 							
 						// 허준호
@@ -99,10 +94,7 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-						// 인바디 삭제
-						case "memInbodyDel":{ 
-							result = aLogic.memInbodyDel(pMap);
-						}break;
+						
 						// 김현빈
 							
 						// 허준호
@@ -208,54 +200,18 @@ public class AndroidController implements Controller{
 			// 김승현
 				
 			// 박준규
-				// 회원 자세히 보기
-				case "jsonMemDetail":{ // 회원 자세히 보기
-					selResult = aLogic.getMemDetail(pMap);
-					logger.info("selResult : " + selResult);
-					mav.type = "json";
-				// 인바디 목록 조회
-				}break;
-				case "jsonMemInbody":{ 
-					selResult = aLogic.getMemInbody(pMap);
-					logger.info("selResult : " + selResult);
-					mav.type = "json";
-				// 인바디 조건 검색 조회
-				}break;
-				case "jsonMemInbodyOne":{ 
-					selResult = aLogic.getMemInbodyOne(pMap);
-					logger.info("selResult : " + selResult);
-					mav.type = "json";
-				// 회원 조회	
-				}break;
-				case "jsonMemList":{ 
-					selResult = aLogic.getMemList(pMap);
-					logger.info("selResult : " + selResult);
-					mav.type = "json";
-				// 회원 조건검색 
-				}break;
-				case "jsonMemListOne":{ 
-					selResult = aLogic.getMemListOne(pMap);
-					logger.info("selResult : " + selResult);
-					mav.type = "json";
-				// 한 회원에 대한 인바디 사진 조회
-				}break;
-				case "getInbodyImg":{ 
-					selResult = aLogic.getInbodyImg(pMap);
-					logger.info("selResult : " + selResult);
-					mav.type = "json";
-				// 한 회원에 대한 등록한 수업 조회
-				}break;
-				case "jsonOneMemClsList":{ 
-					selResult = aLogic.getOneMemClsList(pMap);
-					logger.info("selResult : " + selResult);
-					mav.type = "json";
-				}break;
-			// 김현빈
-				
-			// 허준호
 				// 매장기준 콘텐츠 조회
 				case "jsonGymContentsList":{
 					selResult = aLogic.getGymContentsList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;				
+			// 김현빈
+				
+			// 허준호
+				// 회원 기준 후기 조회
+				case "jsonMemReview":{
+					selResult = aLogic.getMemReview(pMap);
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;

@@ -291,7 +291,7 @@
 
 <!-- ======================= 박준규 ======================= -->
 <!-- MyReview 등록하기 -->
-	<insert id="getGymReviewIns" parameterType="map" >
+	<insert id="memReviewIns" parameterType="map" >
 		INSERT INTO  review(REV_SEQ
 						   ,REV_KIND
 			   			   ,PAY_NO
@@ -305,14 +305,17 @@
 			   	     	   ,#{rev_kind}
 			   	     	   ,#{pay_no}
 			   	     	   ,#{rev_cont}
-			   	     	   ,#{rev_date}
-			   	     	   ,#{rev_time}
+			   	     	   ,TO_CHAR(sysdate,'yyyy-mm-dd')
+			   	     	   ,to_char(sysdate,'hh24:mi:ss')
 			   	     	   ,#{rev_star}
-			   	     	   ,'0'
-			   	     	   ,'0'
+			   	     	   ,0
+			   	     	   ,0
 			   	     	   )
 		   
 	</insert>
+	<select id="getMemReview" parameterType="map" resultType="map">
+	
+	</select>
 	<!-- 	  select 1,p.PAY_NO
 		from pay p, member m
 		where p.mem_no=m.mem_no

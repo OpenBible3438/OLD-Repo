@@ -160,90 +160,21 @@ public class AndroidLogic {
 // 김승현
 		
 // 박준규
-	// 회원 자세히 보기 
-	public List<Map<String, Object>> getMemDetail(Map<String, Object> pMap) throws SQLException {//여유가 되면 Map으로 바꾸자
-		logger.info("MemLogic - getMemDetail() 호출"+pMap.get("mem_no"));
-		List<Map<String, Object>> memDetail = null;
-		memDetail = aDao.getMemDetail(pMap);
-		return memDetail;
-	}
-	// 인바디 전체 조회 
-	public List<Map<String, Object>> getMemInbody(Map<String, Object> pMap) throws SQLException {
-		logger.info("MemLogic - getMemInbody() 호출");
-		List<Map<String, Object>> memInbodyList = null;
-		memInbodyList = aDao.getMemInbody(pMap);
-		return memInbodyList;
-	}
-	// 인바디 조건 검색 
-	public Object getMemInbodyOne(Map<String, Object> pMap) throws SQLException {
-		logger.info("MemLogic - getMemInbodyOne() 호출");
-		List<Map<String, Object>> memInbodyList = null;
-		memInbodyList = aDao.getMemInbodyOne(pMap);
-		return memInbodyList;
-	}
-	// 한 회원에 대한 인바디 이미지 불러오기 
-	public List<Map<String, Object>> getInbodyImg(Map<String, Object> pMap) throws SQLException {
-		logger.info("MemLogic - getMemInbody() 호출");
-		List<Map<String, Object>> inbodyList = null;
-		inbodyList = aDao.getInbodyImg(pMap);
-		mbMgr.clossSession(sqlSession);
-		return inbodyList;
-	}
-	// 한 회원에 대한 등록한 수업 조회 
-	public List<Map<String, Object>> getOneMemClsList(Map<String, Object> pMap) throws SQLException {
-		logger.info("MemLogic - getMemInbody() 호출");
-		List<Map<String, Object>> classList = null;
-		classList = aDao.getOneMemClsList(pMap);
-		mbMgr.clossSession(sqlSession);
-		return classList;
-	}
-	//회원 조회
-	public List<Map<String, Object>> getMemList(Map<String, Object> pMap) throws SQLException {
-		logger.info("MemLogic - getMemList() 호출");
-		List<Map<String, Object>> memList = null;
-		memList = aDao.getMemList(pMap);
-		return memList;
-	}
-	// 회원 조건 검색 
-	public List<Map<String, Object>> getMemListOne(Map<String, Object> pMap) throws SQLException {
-		logger.info("MemLogic - getMemListOne() 호출");
-		List<Map<String, Object>> memList = null;
-		memList = aDao.getMemListOne(pMap);
-		return memList;
-	}
-	//회원 인바디 등록
-	public int memInbodyIns(Map<String, Object> pMap) throws SQLException {
-		logger.info("MemLogic - memInbodyIns() 호출");
-		result = aDao.memInbodyIns(pMap);
-		if(result == 1 && pMap.get("filename")!=null) {
-			result = aDao.memInbodyImgIns(pMap);
-			try {
-				((FileInputStream)pMap.get("filedata")).close();
-				if(((File)pMap.get("file")).delete()) {
-					logger.info("파일삭제 성공");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+	// 회원 리뷰 등록 
+	public int memReviewIns(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - memReviewIns() 호출");
+		result = aDao.memReviewIns(pMap);
 		setCommit(result);
 		return result;
 	}
-	public int memInbodyUpd(Map<String, Object> pMap) throws SQLException {
-		logger.info("MemLogic - memInbodyUpd() 호출");
-		result = aDao.memInbodyUpd(pMap);
-		setCommit(result);
-		return result;
+	// 회원에서 리뷰 조회
+	public List<Map<String, Object>> getMemReview(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getMemReview() 호출 ");
+		List<Map<String, Object>> revList = null;
+		revList = aDao.getMemReview(pMap);
+		return revList;
 	}
-	public int memInbodyDel(Map<String, Object> pMap) throws SQLException {
-		logger.info("MemLogic - memInbodyDel() 호출");
-		result = aDao.memInbodyDel(pMap);
-		if(result == 1) {		
-			result = aDao.memInbodyImgDel(pMap);
-		}
-		setCommit(result);
-		return result;
-	}
+
 // 김현빈
 		
 // 허준호
@@ -324,7 +255,7 @@ public class AndroidLogic {
 		atdList = aDao.getMemberAttend(pMap);
 		return atdList;
 	}
-	//준호 insert////////////////////////////////
+//준호 insert////////////////////////////////
 	// 회원이 콘텐츠에 좋아요 눌렀을 때 
 	public int contLikeINS(Map<String, Object> pMap) {
 		logger.info("AndroidLogic - contLikeINS() 호출 ");
@@ -368,16 +299,6 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
-
-
-
-
-
-
-
-
-
-
 
 
 
