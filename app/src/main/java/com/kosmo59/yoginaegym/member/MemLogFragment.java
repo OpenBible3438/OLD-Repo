@@ -90,7 +90,7 @@ public class MemLogFragment extends Fragment {
         }
         ///////////////////////////////SQLite 끝/////////////////////////////////////////////
         ////////////////////////////Adapter 연결///////////////////////////////////////////
-        MemLogAdapter memLogAdapter = new MemLogAdapter(mContext, R.layout.mem_log_item, rows);
+        MemLogAdapter memLogAdapter = new MemLogAdapter(mContext, R.layout.mem_log_item, rows, MemLogFragment.this);
         memLogList = view.findViewById(R.id.mem_log_list);
         memLogList.setAdapter(memLogAdapter);
         ////////////////////////////Adapter 연결 끝///////////////////////////////////////////

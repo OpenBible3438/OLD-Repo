@@ -102,7 +102,7 @@ public class MemLogRegDialog {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         String getTime = simpleDate.format(mDate);
         tv_reg_date.setText(getTime);
-
+        tv_exDate.setText(getTime);
         //운동일 지정
         icon_date = dlg.findViewById(R.id.icon_date);
         icon_date.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +113,7 @@ public class MemLogRegDialog {
                         , calendar.get(Calendar.YEAR)
                         , calendar.get(Calendar.MONTH)
                         , calendar.get(Calendar.DAY_OF_MONTH)).show();
+
             }
         });
 
@@ -126,8 +127,22 @@ public class MemLogRegDialog {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     //TextView에 선택 시간 찍어주기
-                    tv_stime.setText(hourOfDay+":"+minute+":00");
-                    }
+                        String cho_hour = null;
+                        String cho_minute = null;
+                        if (hourOfDay < 10) {
+                            cho_hour = "0"+ hourOfDay;
+                        }
+                        else {
+                            cho_hour = Integer.toString(minute);
+                        }
+                        if (minute < 10) {
+                            cho_minute = "0"+ minute;
+                        }
+                        else {
+                            cho_minute = Integer.toString(minute);
+                        }
+                        tv_stime.setText(cho_hour+":"+cho_minute+":00");
+                        }
                 }, hour, minute, true);
                 timePickerDialog.show();
             }

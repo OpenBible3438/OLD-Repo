@@ -155,8 +155,6 @@ public class TchMemListAdapter extends ArrayAdapter {
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();
 
-
-
             }
         });
 
@@ -180,6 +178,8 @@ public class TchMemListAdapter extends ArrayAdapter {
                 //---다이얼로그 화면 사이즈 조정 끝
 
                 /* 여기에 값 넣어주는 코드 넣기 */
+//                vo.setTch_cho_mem_no();
+
 
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();
@@ -201,7 +201,11 @@ public class TchMemListAdapter extends ArrayAdapter {
                 btn_tchMemMemo_ins.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context,"등록 DB연동해 주세요.",Toast.LENGTH_LONG).show();
+                        TextView tch_memo_cont = dlg.findViewById(R.id.tch_memo_cont);
+                        TextView tch_memo_regDate = dlg.findViewById(R.id.tch_memo_regDate);
+                        String memo_cont = tch_memo_cont.getText().toString();
+                        String memo_regDate = tch_memo_regDate.getText().toString();
+                        Log.i("TchMemListAdapter", "memo_cont : " + memo_cont + ", memo_regDate : " + memo_regDate);
                     }
                 });
 

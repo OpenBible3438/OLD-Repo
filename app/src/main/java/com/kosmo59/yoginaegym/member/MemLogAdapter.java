@@ -20,14 +20,15 @@ public class MemLogAdapter extends ArrayAdapter {
     Context mContext = null;
     List<Map<String, Object>> mList = null;
     int resourceId;
-
+    MemLogFragment memLogFragment;
     private CardView dailyRecord_1;
 
-    public MemLogAdapter(Context context, int resource, List<Map<String, Object>> clsList) {
+    public MemLogAdapter(Context context, int resource, List<Map<String, Object>> clsList, MemLogFragment memLogFragment) {
         super(context, resource, clsList);
         this.mContext = context;
         this.mList = clsList;
         this.resourceId = resource;
+        this.memLogFragment = memLogFragment;
     }
 
     @Override
@@ -67,7 +68,7 @@ public class MemLogAdapter extends ArrayAdapter {
             public void onClick(View v) {
                 Log.i("테스트", "dailyRecord onClick 호출");
                 // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-                MemLogDetailDialog memLogDetailDialog = new MemLogDetailDialog(v.getContext(), Integer.parseInt(mList.get(position).get("_id").toString()));
+                MemLogDetailDialog memLogDetailDialog = new MemLogDetailDialog(v.getContext(), Integer.parseInt(mList.get(position).get("_id").toString()), memLogFragment);
 
                 // 커스텀 다이얼로그를 호출한다.
                 memLogDetailDialog.openMemLogDetailDialog();

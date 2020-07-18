@@ -41,14 +41,17 @@ public class MemLogDetailDialog {
     private TextView tv_stime;
     private TextView tv_etime;
     private Button btn_logDetail_upd;
+    private Button btn_logDetail_del;
     int hour = 0, minute = 0;
     int _id = 0;
+    MemLogFragment memLogFragment;
     GymDBHelper gymDBHelper = null;
     SQLiteDatabase db = null;
     AppVO vo = null;
-    public MemLogDetailDialog(Context context, int _id) {
+    public MemLogDetailDialog(Context context, int _id, MemLogFragment memLogFragment) {
         this.context = context;
         this._id = _id;
+        this.memLogFragment = memLogFragment;
     }
 
     public void openMemLogDetailDialog() {
@@ -93,6 +96,7 @@ public class MemLogDetailDialog {
 
         //시작시간 찍힐 tv_stime id찾기
         tv_stime = dlg.findViewById(R.id.tv_stime);
+        icon_stime = dlg.findViewById(R.id.icon_stime);
         icon_stime.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -110,6 +114,7 @@ public class MemLogDetailDialog {
 
         //종료시간 찍힐 tv_stime id찾기
         tv_etime = dlg.findViewById(R.id.tv_etime);
+        icon_etime = dlg.findViewById(R.id.icon_etime);
         icon_etime.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -141,7 +146,7 @@ public class MemLogDetailDialog {
                         , calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-        
+
         //수정버튼
         btn_logDetail_upd = dlg.findViewById(R.id.btn_logDetail_upd);
         btn_logDetail_upd.setOnClickListener(new View.OnClickListener() {
@@ -151,12 +156,12 @@ public class MemLogDetailDialog {
             }
         });
         ///////////////////////////////SQLite /////////////////////////////////////////////
-        String log_sel = "SELECT _id, reg_date, ex_date, log_title, ex_stime, ex_etime, log_cont" +
+        String log_upd = "SELECT _id, reg_date, ex_date, log_title, ex_stime, ex_etime, log_cont" +
                 " FROM mem_log" +
                 " WHERE _id ="+ _id +
                 " ORDER BY ex_date desc";
-        Log.i("테스트", "log_sel : " + log_sel);
-        Cursor cursor = db.rawQuery(log_sel, null);
+        Log.i("테스트", "log_upd : " + log_upd);
+        Cursor cursor = db.rawQuery(log_upd, null);
         if (cursor.moveToNext()){
             int cnt=1;
             Log.i("테스트", "tv_reg_date : " + tv_reg_date);
@@ -167,6 +172,20 @@ public class MemLogDetailDialog {
             tv_etime.setText(cursor.getString(cnt++));
             et_log_cont.setText(cursor.getString(cnt++));
         }
+        ///////////////////////////////SQLite 끝/////////////////////////////////////////////
+
+        //삭제버튼
+        btn_logDetail_del = dlg.findViewById(R.id.btn_logDetail_del);
+        btn_logDetail_del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update_log(dlg);
+            }
+        });
+        ///////////////////////////////SQLite /////////////////////////////////////////////
+        String log_del = "DELETE FROM mem_log WHERE _id = " + _id;
+        Log.i("MemLogDetailDialog", "log_sel : " + log_del);
+        db.execSQL(log_del);
         ///////////////////////////////SQLite 끝/////////////////////////////////////////////
         icon_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,6 +231,7 @@ public class MemLogDetailDialog {
         Log.i("테스트", "log_upd : " + log_upd);
         db.execSQL(log_upd);
         dlg.dismiss();
+        memLogFragment.refresh();
     }
 
     //운동일을 선택한 날짜로 표시하기

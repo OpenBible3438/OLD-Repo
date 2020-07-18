@@ -56,6 +56,7 @@
             android:background="#000000" />
 
         <EditText
+            android:id="@+id/tch_memo_cont"
             android:background="@null"
             android:textSize="20sp"
             android:gravity="left|top"
@@ -85,9 +86,25 @@
                         android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:gravity="center_vertical"
-                        android:text="등록일 "
+                        android:text="등록일"
                         android:textSize="12sp" />
                     <TextView
+                        android:id="@+id/tch_memo_updDate"
+                        android:layout_width="75sp"
+                        android:layout_height="25sp"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"
+                        android:text="2020-07-02"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"
+                        android:text="최종 수정일"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/tch_memo_regDate"
                         android:layout_width="75sp"
                         android:layout_height="25sp"
                         android:layout_gravity="center"
