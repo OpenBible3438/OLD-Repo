@@ -111,14 +111,14 @@ public class AndroidDao {
 		logger.info("gymList.size() : " + gymList.size());
 		return gymList;
 	}
-	//이미지 한 장 구하기
-	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException  {
-		logger.info("AndroidDao - getGymList() 호출");
-		List<Map<String, Object>> imageData = null;
-		imageData = sqlSession.selectList("getImageOne_and", pMap);
-		logger.info("imageData : " + imageData);
-		return imageData;
-	}
+//	//이미지 한 장 구하기
+//	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException  {
+//		logger.info("AndroidDao - getGymList() 호출");
+//		List<Map<String, Object>> imageData = null;
+//		imageData = sqlSession.selectList("getImageOne_and", pMap);
+//		logger.info("imageData : " + imageData);
+//		return imageData;
+//	}
 	//강사 요일별 수업 구하기
 	public List<Map<String, Object>> getTchWeekCls(Map<String, Object> pMap) throws SQLException  {
 		logger.info("AndroidDao - getTchWeekCls() 호출");

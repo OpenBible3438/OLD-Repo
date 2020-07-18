@@ -105,14 +105,14 @@ public class AndroidLogic {
 		gymList = aDao.getGymList(pMap);
 		return gymList;
 	}
-	//이미지 한 장 구하기
-	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException {
-		logger.info("AndroidLogic - getImageOne() 호출");
-		List<Map<String, Object>> imageData = null;
-		imageData = aDao.getImageOne(pMap);
-		
-		return imageData;
-	}
+//	//이미지 한 장 구하기
+//	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException {
+//		logger.info("AndroidLogic - getImageOne() 호출");
+//		List<Map<String, Object>> imageData = null;
+//		imageData = aDao.getImageOne(pMap);
+//		
+//		return imageData;
+//	}
 	//회원 요일별 수업 구하기
 	public List<Map<String, Object>> getMemWeekCls(Map<String, Object> pMap) throws SQLException  {
 		logger.info("AndroidLogic - getMemWeekCls() 호출");

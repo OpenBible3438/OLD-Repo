@@ -160,11 +160,11 @@ public class AndroidController implements Controller{
 					mav.type = "json";
 					logger.info("selResult : " + selResult);
 				}break;
-				case "imageOne":{
-					selResult = aLogic.getImageOne(pMap);
-					logger.info("selResult : " + selResult);
-					mav.type = "json";
-				}break;
+//				case "imageOne":{
+//					selResult = aLogic.getImageOne(pMap);
+//					logger.info("selResult : " + selResult);
+//					mav.type = "json";
+//				}break;
 				case "jsonMemClsList":{
 					selResult = aLogic.getMemWeekCls(pMap);
 					logger.info("selResult : " + selResult);
