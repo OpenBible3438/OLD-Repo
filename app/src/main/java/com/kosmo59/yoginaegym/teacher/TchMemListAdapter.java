@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,6 +38,9 @@ public class TchMemListAdapter extends ArrayAdapter {
     int resourceId;
 
     AppVO vo = null;
+
+    private ImageButton icon_close;
+    private Button btn_tchMemMemo_ins;
 
     public TchMemListAdapter(@NonNull Context context, int resource, @NonNull List mList) {
         super(context, resource, mList);
@@ -158,6 +162,29 @@ public class TchMemListAdapter extends ArrayAdapter {
                 // 커스텀 다이얼로그를 노출한다.
                 dlg.show();
                 Log.i("tch_mem_memo", "메모관리 다이얼 로그 show() 성공");
+
+
+                //메모 닫기 버튼
+                icon_close = dlg.findViewById(R.id.icon_close);
+                icon_close.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        dlg.hide();
+                    }
+                });
+
+                //메모 등록 버튼
+                btn_tchMemMemo_ins = dlg.findViewById(R.id.btn_tchMemMemo_ins);
+                btn_tchMemMemo_ins.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context,"등록 DB연동해 주세요.",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+
             }
         });
 
