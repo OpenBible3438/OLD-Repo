@@ -70,7 +70,7 @@ public class GymReviewAdapter extends ArrayAdapter {
         int starResultToInt = Integer.parseInt(starResult);
 
         Log.i("레이팅바", "레이팅바 : " + starResultToInt);
-
+        rb_gym_review.setMax(100);
         rb_gym_review.setProgress(starResultToInt);
         //String etime = rewiewList.get(position).get("CLS_ETIME").toString();
 
