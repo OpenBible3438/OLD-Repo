@@ -50,7 +50,7 @@ public class MemLoginActivity extends AppCompatActivity {
                 String send = "android/jsonMemberLogin.gym";
                 loginMap.put("mem_id", id);
                 loginMap.put("mem_pw", pw);
-                loginMap.put("gym_no", "1");///////바꿀 코드
+                //loginMap.put("gym_no", "1");///////바꿀 코드
 
                 //채팅 변수 담기
                 AppVO vo = (AppVO) getApplicationContext();
@@ -71,21 +71,34 @@ public class MemLoginActivity extends AppCompatActivity {
                     try {
                         for (int i=0; i<jsonArray.length(); i++){
                             jsonObject = jsonArray.getJSONObject(i);
-                            vo.setMemberId(id);
-                            vo.setMsgSendId(id);
-                            vo.setMemberName(jsonObject.getString("MEM_NAME"));
-                            vo.setRoomName1(jsonObject.getString("MEM_NAME"));
-                            vo.setMsgSendName(jsonObject.getString("MEM_NAME"));
-                            vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
-                            vo.setMem_no(jsonObject.getInt("MEM_NO"));
+                            //if(jsonObject.getString("confirm") != null) {
+                            if(!(jsonObject.isNull("confirm"))) {
+                                if("아이디".equals(jsonObject.getString("confirm"))) {
+                                    Toast.makeText(MemLoginActivity.this, "아이디가 존재하지 않습니다.", Toast.LENGTH_LONG).show();
+                                    break;
+                                } else if("비밀번호".equals(jsonObject.getString("confirm"))) {
+                                    Toast.makeText(MemLoginActivity.this, "비밀번호를 확인해주세요.", Toast.LENGTH_LONG).show();
+                                    break;
+                                }
+                            } else {
+                                Toast.makeText(MemLoginActivity.this, "로그인", Toast.LENGTH_LONG).show();
+                                vo.setMemberId(id);
+                                vo.setMsgSendId(id);
+                                vo.setMemberName(jsonObject.getString("MEM_NAME"));
+                                vo.setRoomName1(jsonObject.getString("MEM_NAME"));
+                                vo.setMsgSendName(jsonObject.getString("MEM_NAME"));
+                                vo.setMemberNickname(jsonObject.getString("MEM_NICKNAME"));
+                                vo.setMem_no(jsonObject.getInt("MEM_NO"));
+                                Toast.makeText(MemLoginActivity.this, vo.getMemberName()+"님 로그인 성공", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(MemLoginActivity.this, "이름은 "+vo.getMemberName()+"닉네임은 "+vo.getMemberNickname(), Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(MemLoginActivity.this, MemMainActivity.class);
+                                startActivity(intent);
+                                break;
+                            }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(MemLoginActivity.this, vo.getMemberName()+"님 로그인 성공", Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(MemLoginActivity.this, "이름은 "+vo.getMemberName()+"닉네임은 "+vo.getMemberNickname(), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(MemLoginActivity.this, MemMainActivity.class);
-                    startActivity(intent);
                 } else {
                     Toast.makeText(MemLoginActivity.this, "아이디와 비밀번호를 확인해주세요.", Toast.LENGTH_LONG).show();
                 }

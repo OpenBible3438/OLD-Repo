@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.TomcatSend;
 import com.kosmo59.yoginaegym.teacher.TchclassAdapter;
 
@@ -29,6 +30,7 @@ public class GymReviewFragment extends Fragment {
 
     private ListView gym_reviewList;
     List<Map<String, Object>> reviewList = null;
+    final String Tag = "GymReviewFragment";
 
     public GymReviewFragment() {
         // Required empty public constructor
@@ -53,11 +55,12 @@ public class GymReviewFragment extends Fragment {
         ////////////////////////////////////DB 연동 시작////////////////////////////////////
         String result = null;
         String reqUrl = "android/jsonGymReviewList.gym";
-
+        AppVO vo = (AppVO)mContext.getApplicationContext();
         String nowTch = null;
         Map<String, Object> tchMap = new HashMap<>();
         //tchMap.put("tch_no", 1005);/////////////바꿀 코드
-        tchMap.put("gym_no", 200903);/////////////바꿀 코드
+        tchMap.put("gym_no", vo.getGym_no());/////////////바꿀 코드
+        Log.i(Tag, "vo.gym_no : " + vo.getGym_no());
         nowTch = tchMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         Log.i("테스트", "nowTch : " + nowTch);

@@ -34,7 +34,7 @@ public class GymSearchAdapter extends ArrayAdapter {
     AppVO vo = null;
     String result = null;
     CircleImageView s_gym_img = null;
-
+    final String Tag = "GymSearchAdapter";
     public GymSearchAdapter(Context gymSearchActivity, int resource, List<Map<String, Object>> gymList, String result) {
         super(gymSearchActivity, resource, gymList);
         this.gymSearchActivity = gymSearchActivity;
@@ -62,8 +62,8 @@ public class GymSearchAdapter extends ArrayAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(this.resourceId, parent, false);
-        Log.i("테스트", "■■■■■■■■ position : " + position);
-     //   Log.i("테스트", "mList.get(position) : " + mList.get(position));
+        Log.i(Tag, "■■■■■■■■ position : " + position);
+     //   Log.i(Tag, "mList.get(position) : " + mList.get(position));
         s_gym_img = (CircleImageView) convertView.findViewById(R.id.s_gym_img);
         TextView s_gym_name = (TextView) convertView.findViewById(R.id.s_gym_name);
         TextView s_gym_addr = (TextView) convertView.findViewById(R.id.s_gym_addr);
@@ -72,19 +72,19 @@ public class GymSearchAdapter extends ArrayAdapter {
         CardView s_gym_card =(CardView)convertView.findViewById(R.id.s_gym_card);
 
 
-        Log.i("테스트", "convertView : " + convertView);
+        Log.i(Tag, "convertView : " + convertView);
         final View finalConvertView = convertView;
 
         s_gym_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
-                Log.i("테스트", "클릭");
+                Log.i(Tag, "클릭");
 
-//                Log.i("테스트", "onItemClick() 호출");
-//                Log.i("테스트", "mList : " + mList);
-//                Log.i("테스트", "position : " + position);
-//                Log.i("테스트", "gym_no : " + mList.get(position).get("GYM_NO").toString());
+//                Log.i(Tag, "onItemClick() 호출");
+//                Log.i(Tag, "mList : " + mList);
+//                Log.i(Tag, "position : " + position);
+//                Log.i(Tag, "gym_no : " + mList.get(position).get("GYM_NO").toString());
 
                 Intent intent = new Intent(
                         finalConvertView.getContext(), // 현재화면의 제어권자
@@ -94,7 +94,7 @@ public class GymSearchAdapter extends ArrayAdapter {
                 cho_gym_no = (int)Math.round((double)mList.get(position).get("GYM_NO"));
                 // intent 객체에 데이터를 실어서 보내기
                 // 리스트뷰 클릭시 인텐트 (Intent) 생성하고 position 값을 이용하여 인텐트로 넘길값들을 넘긴다
-                Log.i("테스트", "gym_no : " + cho_gym_no);
+                Log.i(Tag, "gym_no : " + cho_gym_no);
                // intent.putExtra("gym_no", cho_gym_no);
                 vo = (AppVO) gymSearchActivity.getApplicationContext();
                 vo.setGym_no(cho_gym_no);
@@ -110,7 +110,7 @@ public class GymSearchAdapter extends ArrayAdapter {
             Bitmap bitmap = tomcatImg.getBitMap(bitImg);
             s_gym_img.setImageBitmap(bitmap);
         } catch (Exception e) {
-            Log.i("테스트", "비트맵 이미지 처리 실패");
+            Log.i(Tag, "비트맵 이미지 처리 실패");
             e.printStackTrace();
         }
 

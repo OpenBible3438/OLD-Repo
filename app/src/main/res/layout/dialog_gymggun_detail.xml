@@ -30,13 +30,15 @@
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
                     android:text="강사"
-                    android:textColor="#009688"
+                    android:textColor="#00BCD4"
                     android:textSize="14sp" />
                 <TextView
+                    android:id="@+id/tch_name_dtl"
+                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:text="나강사"
+                    android:text="테스트"
                     android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
@@ -61,6 +63,7 @@
             android:background="#000000" />
 
         <ImageView
+            android:id="@+id/tch_img_dtl"
             android:layout_width="match_parent"
             android:layout_height="340sp"
             android:scaleType="centerCrop"
@@ -104,37 +107,9 @@
                         android:text="0"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:layout_width="45sp"
-                        android:layout_height="25sp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10sp"
-                        android:gravity="center_vertical"
-                        android:text="등록일: "
-                        android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="75sp"
-                        android:layout_height="25sp"
-                        android:layout_gravity="center"
-                        android:gravity="center_vertical"
-                        android:text="2020-07-02"
-                        android:textSize="14sp" />
                 </LinearLayout>
-                <LinearLayout
-                    android:gravity="right"
-                    android:layout_width="match_parent"
-                    android:layout_height="50sp">
 
-                    <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="25sp"
-                        android:layout_gravity="center"
-                        android:adjustViewBounds="true"
-                        android:gravity="center"
-                        android:scaleType="fitEnd"
-                        app:srcCompat="@drawable/icon_share" />
-                </LinearLayout>
             </LinearLayout>
             <!--구분 라인-->
             <View
@@ -153,42 +128,35 @@
                     android:layout_height="match_parent">
                     <TextView
                         android:textSize="12sp"
-                        android:textColor="#009688"
-                        android:text="담당수업"
-                        android:gravity="left|center"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
-                    <TextView
-                        android:textSize="12sp"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:text="아이디"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:text="성별"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:text="전화번호"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:text="강사경력"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
                         android:textSize="12sp"
-                        android:textColor="#009688"
+                        android:textColor="#00BCD4"
                         android:text="자기소개"
                         android:gravity="left|center"
                         android:layout_width="match_parent"
@@ -200,36 +168,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
+                        android:id="@+id/tch_id_dtl"
                         android:textSize="20sp"
                         android:gravity="left|center"
-                        android:text="짐꾼1의 PT"
+                        android:text="테스트"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
-                        android:textSize="20sp"
-                        android:gravity="left|center"
-                        android:text="tch100"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"/>
-                    <TextView
+                        android:id="@+id/tch_gender_dtl"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="남성"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
+                        android:id="@+id/tch_tel_dtl"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="010-2222-2222"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
+                        android:id="@+id/tch_career_dtl"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="강사 3년차"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
                     <TextView
+                        android:id="@+id/tch_intro_dtl"
                         android:layout_marginTop="4dp"
                         android:lines="3"
                         android:textSize="20sp"

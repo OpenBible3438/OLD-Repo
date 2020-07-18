@@ -10,7 +10,6 @@
     tools:context=".member.MemLoginActivity">
 
     <ImageView
-        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="242dp"
         android:src="@drawable/app_logo" />
@@ -24,7 +23,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_memLoginId"
             android:textColor="#111111"
-            android:text="mem100"
+            android:text="yomem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -38,34 +37,35 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_memLoginPw"
             android:inputType="textPassword"
-            android:text="mem100"
             android:textColor="#111111"
+            android:text="yomem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/btn_loginMem"
             android:text="로그인"
+            android:textSize="20sp"
             android:layout_marginRight="1dp"
             android:background="@color/colorPrimary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <Button
+            android:layout_marginTop="-6dp"
             android:id="@+id/btn_join"
             android:text="회원가입"
+            android:textSize="20sp"
             android:layout_marginLeft="1dp"
             android:background="@color/colorPrimary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

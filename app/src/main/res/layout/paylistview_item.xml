@@ -28,6 +28,8 @@
                 android:layout_height="60dp">
                 <!--매장명-->
                 <TextView
+                    android:paddingTop="15dp"
+                    android:fontFamily="@font/font"
                     android:id="@+id/p_gym_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -62,6 +64,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:textColor="#00BCD4"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="left|center"
@@ -69,6 +72,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:textColor="#00BCD4"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="left|center"
@@ -76,6 +80,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:textColor="#00BCD4"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="left|center"
@@ -83,6 +88,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:textColor="#00BCD4"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="left|center"
@@ -117,9 +123,7 @@
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
                         android:text="테스트"
-                        android:textColor="#009688"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textSize="20sp"/>
                     <TextView
                         android:text="테스트"
                         android:id="@+id/p_pay_date"

@@ -3,6 +3,10 @@ package com.kosmo59.yoginaegym.common;
 import android.app.Application;
 
 public class AppVO extends Application {
+    public int getGym_no() {
+        return gym_no;
+    }
+
     /* 조회할 매장 정보 저장하기*/
     public int gym_no = 0;//매장 메인 창으로 이동할 때 저장시키기
 
@@ -11,13 +15,11 @@ public class AppVO extends Application {
     }
 
     /* 강사에서 회원정보 볼 때 cls_no 저장하기 */
-    public String cls_no = null;
-
-    public String getCls_no() {
+    public int cls_no = 0;
+    public int getCls_no() {
         return cls_no;
     }
-
-    public void setCls_no(String cls_no) {
+    public void setCls_no(int cls_no) {
         this.cls_no = cls_no;
     }
 
