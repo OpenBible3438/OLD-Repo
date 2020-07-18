@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.androidMapper">
-
+	<resultMap id="memLogin" type="map"/>
+	<resultMap id="tchLogin" type="map"/>
+	<resultMap id="getAndImage" type="Object">
+		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
+	</resultMap>
 <!-- ======================= 편성경 ======================= -->
 	<!-- 회원 로그인 -->
 	<select id="getMemberLogin" parameterType="map" resultType="map">
@@ -9,6 +13,22 @@
 		  FROM MEMBER
 		 WHERE mem_id = #{mem_id}
 		   AND mem_pw = #{mem_pw}
+	</select>
+	<!-- 회원 로그인  프로시저 -->
+	<select id="getProcMemLogin"  parameterType="map" statementType="CALLABLE">
+		{ call proc_mem_login(#{mem_id},#{mem_pw},#{memLogin
+						                           ,jdbcType=CURSOR
+						                           ,mode=OUT
+						                           ,javaType=java.sql.ResultSet
+						                           ,resultMap=memLogin})}
+	</select>
+	<!-- 강사 로그인  프로시저 -->
+	<select id="getProcTchLogin"  parameterType="map" statementType="CALLABLE">
+		{ call proc_tch_login(#{tch_id},#{tch_pw},#{tchLogin
+						                           ,jdbcType=CURSOR
+						                           ,mode=OUT
+						                           ,javaType=java.sql.ResultSet
+						                           ,resultMap=tchLogin})}
 	</select>
 	<!-- 회원 번호 채번 -->
 	<select id="memberJoinGetNo" parameterType="map" resultType="int">
@@ -70,7 +90,9 @@
 			 , cls_e_date, c.cls_state, COUNT(p.pay_no)regis_num, COUNT(DISTINCT(p.mem_no)) mem_num, cls_stime, cls_etime
 		  FROM class c, pay p
 		 WHERE c.cls_no = p.cls_no(+)
+		 <if test="tch_no != null">
 		   AND tch_no = #{tch_no}
+		 </if>
 		   AND c.gym_no = #{gym_no}
 		   AND C.CLS_STATE = '진행'
 	  GROUP BY c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date, cls_e_date, c.cls_state, cls_stime, cls_etime
@@ -180,10 +202,13 @@
 	</select>-->
 	<!-- 매장 - 강사진 리스트 가져오기 -->
 	<select id="getTchList_and" parameterType="map" resultType="map">
-		   SELECT t.tch_no, t.tch_name, ti.tch_intro
-		     FROM gym g, teacher t, tch_info ti
+		   SELECT t.tch_no, t.tch_id,t.tch_gender,ti.TCH_CAREER,t.tch_name, t.tch_tel, ti.tch_intro, i.file_seq
+		     FROM gym g, teacher t, tch_info ti, images i
 		    WHERE g.gym_no = t.gym_no
+		      AND i.type(+) = 'tch'
+		      AND i.typecode(+) = #{gym_no}||t.tch_no
 		      AND t.tch_no = ti.tch_no
+		      AND t.tch_no != 9999 
 		      AND t.gym_no = #{gym_no}
 	</select>
 	<!-- 회원 - 회원이 듣는 수업, 매장 가져오기 -->
@@ -202,18 +227,20 @@
              FROM class c, pay p, view_mng_atd v, teacher t
             WHERE c.cls_no = p.cls_no
               AND p.pay_no = v.pay_no
-              AND p.mem_no = 100
+              AND p.mem_no = #{mem_no}
               AND c.tch_no = t.tch_no
               AND c.gym_no = t.gym_no
               AND c.cls_state = '진행'
 	</select>
+
 	<select id="getGymProfile_and" parameterType="map" resultType="map">
 		SELECT gym_name, gym_tel, gym_addr||' '||gym_addr_dtl gym_addr, file_seq
 		  FROM gym, images
 		 WHERE gym_no = #{gym_no}
 		   AND TYPE = 'gym'
 		   AND typecode = #{gym_no}
-	</select>
+	</select> 
+	
 	<!-- 매장 - 수업 - 자세히 보기 -->
 	<select id="getClsDetail_and" parameterType="map" resultType="map">
 		SELECT c.cls_name, t.tch_name, tp.type_name, c.cls_kind, c.cls_s_date, c.cls_e_date
@@ -225,14 +252,37 @@
 		   AND cls_no = #{cls_no}
 	</select>
 	<!-- 회원이 듣는 수업들의 강사 구하기(메시지에 사용) -->
+	<!-- 강사 사진 불러오기 성경추가 -->
 	<select id="getMemTchList_and" parameterType="map" resultType="map">
-		SELECT t.tch_no, t.tch_name, t.tch_gender, t.tch_tel
-		  FROM teacher t, class c, pay p
+		SELECT t.tch_no, t.tch_name, t.tch_gender, t.tch_tel, i.file_seq
+		  FROM teacher t, class c, pay p, images i
 		 WHERE t.tch_no = c.tch_no
 		   AND c.cls_no = p.cls_no
 		   AND p.mem_no = #{mem_no}
-		GROUP BY t.tch_no, t.tch_name, t.tch_gender, t.tch_tel
+		   AND i.type = 'tch'
+           AND i.TYPECODE = T.GYM_NO||T.TCH_NO
+		GROUP BY t.tch_no, t.tch_name, t.tch_gender, t.tch_tel, i.file_seq
 	</select>
+   <!-- 전체 콘텐츠 가져오기 -->
+	<select id="getContentsList_and" parameterType="map" resultType="map">
+		SELECT c.cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name) who, cont_like, cont_date, cont_time, i.file_seq
+		  FROM contents c, gym g, teacher t, member m, images i
+		 WHERE c.cont_typecode = DECODE(cont_type, 'gym', g.gym_no, 'tch', t.tch_no, 'mem', m.mem_no)
+		   AND c.cont_seq = i.typecode
+		   AND i.type = 'cont'
+		   AND g.gym_no = t.gym_no
+		   <if test="gym_no != null">
+				AND g.gym_no = #{gym_no}
+		   </if>
+		   <if test="tch_no != null">
+				AND g.tch_no = #{tch_no}
+		   </if>
+		   <if test="mem_no != null">
+				AND g.mem_no = #{mem_no}
+		   </if>
+		GROUP BY cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name), cont_like, cont_date, cont_time, i.file_seq
+		ORDER BY cont_date desc
+   </select>
 <!-- ======================= 김승현 ======================= -->
 
 
@@ -331,6 +381,7 @@
 		      ,T.TCH_NO
 		      ,C.CLS_NAME
 		      ,C.CLS_NO
+		      ,P.PAY_NO
 		      ,R.REV_SEQ
 		      ,R.REV_CONT
 		      ,R.REV_STAR
@@ -359,22 +410,6 @@
 			   AND IBD.MEM_NO = #{mem_no}
    </select>
    
-   <!-- 전체 콘텐츠 가져오기 -->
-	<select id="getContentsList" parameterType="map" resultType="map">
-			SELECT G.GYM_NO
-			      ,G.GYM_NAME
-			      ,GC.GYM_CONT_SEQ
-			      ,GC.GYM_CONTENTS
-			      ,GC.GYM_CONT_DATE
-			      ,GC.GYM_CONT_TIME
-			      ,GC.GYM_CONT_LIKE
-			      ,I.FILE_SEQ
-			  FROM gym_contents gc, images i, gym g
-			 WHERE GC.GYM_NO = G.GYM_NO
-			   AND I.TYPE = 'gymCont'
-			   AND I.TYPECODE = GC.GYM_CONT_SEQ
-			 ORDER BY GC.GYM_CONT_DATE desc
-   </select>
    
    <!-- 강사 프로필  가져오기 -->
 	<select id="getTeacherProf" parameterType="map" resultType="map">
@@ -396,6 +431,92 @@
 			   AND T.TCH_NO = #{tch_no}
 			   AND T.GYM_NO = #{gym_no}
    </select>
+   	<!-- getImg -->
+	<select id="getImg" parameterType="map" resultMap="getAndImage">
+		SELECT filedata
+		  FROM images
+		 WHERE file_seq = #{file_seq}
+		   AND rownum = 1
+	</select><!-- #{file_seq} -->
+	
+   	<!-- 회원 > 내정보 > 리뷰리스트  -->
+	<select id="getRevMemList_and" parameterType="map" resultType="map">
+        SELECT GYM.GYM_NAME
+              ,GYM.GYM_NO
+              ,C.CLS_NAME
+              ,C.CLS_NO
+              ,P.PAY_NO
+              ,R.REV_SEQ
+              ,R.REV_CONT
+              ,R.REV_STAR
+              ,R.REV_UP
+              ,R.REV_DOWN
+              ,R.REV_DATE
+              ,R.REV_TIME
+              ,R.REV_KIND
+              ,M.MEM_NO
+              ,M.MEM_NICKNAME
+          FROM review r, gym, pay p, class c, member m
+         WHERE R.PAY_NO = P.PAY_NO
+           AND P.CLS_NO = C.CLS_NO
+           AND C.GYM_NO = GYM.GYM_NO
+           AND P.MEM_NO = M.MEM_NO
+           AND M.MEM_NO = #{mem_no}
+	</select>
+	
+   	<!-- 회원 > 내정보 > COMBO BOX(수업리스트 )  -->
+	<select id="getRevClsList_and" parameterType="map" resultType="map">
+		SELECT (SELECT max(pay_no) FROM pay WHERE cls_no = c.cls_no) as pay_no
+		      ,C.CLS_NO
+		      ,C.CLS_NAME
+		      ,GYM.GYM_NAME
+		  FROM pay p, class c, member m, gym
+		 WHERE P.CLS_NO = C.CLS_NO
+		   AND P.MEM_NO = M.MEM_NO
+		   AND GYM.GYM_NO = C.GYM_NO
+		   AND M.MEM_NO = #{mem_no}
+		 GROUP BY c.cls_no, c.cls_name, GYM.GYM_NAME
+		 ORDER BY pay_no asc
+	</select>
+	
+   	<!-- 강사 출석 조회 -->
+	<select id="getTeacherAttend" parameterType="map" resultType="map">
+		SELECT ta.tch_atd_seq
+		      ,ta.gym_no
+		      ,ta.tch_no
+		      ,T.TCH_NAME   
+		      ,ta.tch_atd_date
+		      ,ta.tch_atd_in
+		      ,ta.tch_atd_out
+		  FROM tch_attend ta, teacher t
+		 WHERE TA.GYM_NO = T.GYM_NO
+		   AND TA.TCH_NO = T.TCH_NO
+		   AND TA.GYM_NO = #{gym_no} 
+	   <if test="msg != null and msg.length > 0">
+		   AND ((t.tch_no LIKE '%'||#{msg}||'%')
+               OR (t.tch_name LIKE '%'||#{msg}||'%'))
+	   </if>
+	</select>
+   	<!-- 회원 출석 조회 -->
+	<select id="getMemberAttend" parameterType="map" resultType="map">
+		SELECT ta.tch_atd_seq
+		      ,ta.gym_no
+		      ,ta.tch_no
+		      ,T.TCH_NAME   
+		      ,ta.tch_atd_date
+		      ,ta.tch_atd_in
+		      ,ta.tch_atd_out
+		  FROM tch_attend ta, teacher t
+		 WHERE TA.GYM_NO = T.GYM_NO
+		   AND TA.TCH_NO = T.TCH_NO
+		   AND TA.GYM_NO = #{gym_no} 
+	   <if test="msg != null and msg.length > 0">
+		   AND ((t.tch_no LIKE '%'||#{msg}||'%')
+               OR (t.tch_name LIKE '%'||#{msg}||'%'))
+	   </if>
+	</select>
+	
+	
    <!-- 회원이 콘텐츠에 좋아요 눌렀을 때1-1   -->
    <insert id="contLikeINS" parameterType="map">
    		INSERT INTO 

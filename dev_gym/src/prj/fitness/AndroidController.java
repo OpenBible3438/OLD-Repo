@@ -132,6 +132,11 @@ public class AndroidController implements Controller{
 			// 편성경
 				case "jsonMemberLogin":{
 					selResult = aLogic.getMemberLogin(pMap);
+					mav.type="json";
+				}break;
+				case "jsonTeacherLogin":{
+					selResult = aLogic.getTeacherLogin(pMap);
+					mav.type="json";
 				}break;
 				
 				//매장 공지사항 조회
@@ -139,7 +144,7 @@ public class AndroidController implements Controller{
 					selResult = aLogic.getGymNoticeList(pMap);
 					mav.type = "json";
 					logger.info("selResult : " + selResult);
-				}
+				}break;
 			// 김혜림
 				//강사별 수업 목록 조회
 				case "jsonTchClassList":{
@@ -290,6 +295,37 @@ public class AndroidController implements Controller{
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;
+				// 회원 > 내정보 > 후기 리스트   
+				case "jsonRevMemList":{
+					selResult = aLogic.getRevMemList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 회원 > 내정보 > 후기 리스트 > 등록 수업리스트    
+				case "jsonRevClsList":{
+					selResult = aLogic.getRevClsList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 강사 출석   
+				case "jsonTeacherAttend":{
+					selResult = aLogic.getTeacherAttend(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 회원 출석   
+				case "jsonMemberAttend":{
+					selResult = aLogic.getMemberAttend(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				 // 이미지 한장 가져오기 
+				case "getImg":{
+					selResult = aLogic.getImg(pMap);
+					logger.info("selResult :"+selResult.toString());
+					mav.type = "img";
+				} break;
+				
 			}
 		} catch(Exception e) {
 			logger.info("Exception : "+e.toString());

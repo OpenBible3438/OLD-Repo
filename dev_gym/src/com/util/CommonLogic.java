@@ -79,6 +79,7 @@ public class CommonLogic {
 			logger.info("processResult instanceof ModelAndView");
 			ModelAndView mav = (ModelAndView)processResult;
 			if (mav.type.equals("json")) {
+				
 				logger.info("type : json - printJson");
 				printJson(mav.res, mav.getObject());
 			} else if(mav.type.equals("img")) {

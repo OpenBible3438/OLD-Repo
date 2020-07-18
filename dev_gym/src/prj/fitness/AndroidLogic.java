@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import com.util.MyBatisBuilderMgr;
 
+import oracle.sql.BLOB;
+
 public class AndroidLogic {
 	
 	Logger logger = Logger.getLogger(AndroidLogic.class);
@@ -26,12 +28,20 @@ public class AndroidLogic {
 	
 // 편성경
 	//회원 로그인
-	public Object getMemberLogin(Map<String, Object> pMap) throws SQLException {
+	public List<Map<String, Object>> getMemberLogin(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidLogic - getMemberLogin() 호출 ");
 		List<Map<String, Object>> loginResult = null;
 		loginResult = aDao.getMemberLogin(pMap);
 		mbMgr.clossSession(sqlSession);
 		
+		return loginResult;
+	}
+	//강사 로그인
+	public List<Map<String, Object>> getTeacherLogin(Map<String, Object> pMap) throws SQLException {
+		logger.info("AndroidLogic - getTeacherLogin() 호출 ");
+		List<Map<String, Object>> loginResult = null;
+		loginResult = aDao.getTeacherLogin(pMap);
+		mbMgr.clossSession(sqlSession);
 		return loginResult;
 	}
 	// 회원 회원가입	
@@ -61,7 +71,7 @@ public class AndroidLogic {
 	}
 	// 매장 공지사항 조회
 	public Object getGymNoticeList(Map<String, Object> pMap) throws SQLException {
-		logger.info("AndroidLogic - getgetGymNoticeList() 호출 ");
+		logger.info("AndroidLogic - getGymNoticeList() 호출 ");
 		List<Map<String, Object>> gymNoticeList = null;
 		gymNoticeList = aDao.getGymNoticeList(pMap);
 		return gymNoticeList;
@@ -286,6 +296,34 @@ public class AndroidLogic {
 		gymList = aDao.getTeacherProf(pMap);
 		return gymList;
 	}
+	// 회원 > 내정보 > 후기 리스트  
+	public List<Map<String, Object>> getRevMemList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getRevMemList() 호출 ");
+		List<Map<String, Object>> revList = null;
+		revList = aDao.getRevMemList(pMap);
+		return revList;
+	}
+	// 회원 > 내정보 > 후기 리스트 > 등록 수업리스트    
+	public List<Map<String, Object>> getRevClsList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getRevClsList() 호출 ");
+		List<Map<String, Object>> revList = null;
+		revList = aDao.getRevClsList(pMap);
+		return revList;
+	}
+	//강사 출결 
+	public List<Map<String, Object>> getTeacherAttend(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getTeacherAttend() 호출 ");
+		List<Map<String, Object>> atdList = null;
+		atdList = aDao.getTeacherAttend(pMap);
+		return atdList;
+	}
+	//회원 출결 
+	public List<Map<String, Object>> getMemberAttend(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getMemberAttend() 호출 ");
+		List<Map<String, Object>> atdList = null;
+		atdList = aDao.getMemberAttend(pMap);
+		return atdList;
+	}
 	//준호 insert////////////////////////////////
 	// 회원이 콘텐츠에 좋아요 눌렀을 때 
 	public int contLikeINS(Map<String, Object> pMap) {
@@ -308,6 +346,15 @@ public class AndroidLogic {
 		return result;
 	}
 	
+	public BLOB getImg(Map<String, Object> pMap) {
+		logger.info("GymLogic - getImg() 호출");
+		BLOB blob = null;
+		blob = aDao.getImg(pMap);
+		mbMgr.clossSession(sqlSession);
+		return blob;
+	}
+
+	
 // setCommit
 	public void setCommit(int result) {
 		logger.info("setCommit() 호출"); 
@@ -321,6 +368,9 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
+
+
+
 
 
 

@@ -22,8 +22,6 @@
 		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
 	</resultMap>
 	
-		
-	
 	<resultMap id="getImage" type="Object">
 		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
 	</resultMap>
@@ -263,25 +261,19 @@
 	
 	<!-- 매장 콘텐츠 정보 가져오기  -->
 	<select id="gymContImage" parameterType="map" resultMap="getCont">
-		SELECT 
+        SELECT 
                i.filedata
-          FROM gym_contents c, gym g, images i
-         WHERE c.gym_no = g.gym_no
-           AND i.type = 'gymCont'
-           AND i.typecode = c.gym_cont_seq
-           AND c.gym_no = #{gym_no}
-         ORDER BY gym_cont_seq desc
+          FROM contents c, gym g, images i
+         WHERE c.cont_typecode = G.GYM_NO
+           AND C.CONT_TYPE = 'gym'
+           AND i.type = 'cont'
+           AND i.typecode = c.cont_seq
+           AND G.GYM_NO = #{gym_no}
+         ORDER BY cont_seq desc
 	</select><!-- #{gym_no} --><!--  AND typecode = 6 -->
 	
 	<!-- 이미지 가져오기  -->
 	<select id="getImages" parameterType="map" resultMap="getImage">
-		SELECT filedata
-		  FROM images
-		 WHERE file_seq = #{file_seq}
-		   AND rownum = 1
-	</select><!-- #{file_seq} -->
-	<!-- getImg -->
-	<select id="getImg" parameterType="map" resultMap="getImage">
 		SELECT filedata
 		  FROM images
 		 WHERE file_seq = #{file_seq}
@@ -444,18 +436,20 @@
 	<insert id="contentIns" parameterType="map">
 		<!-- ==========편성경여기========== -->
 		<!--  -->
-		INSERT into GYM_CONTENTS(gym_cont_seq
-		                        ,gym_no
-		                        ,gym_contents
-		                        ,gym_cont_like
-		                        ,gym_cont_date
-		                        ,gym_cont_time) 
-		                  values(#{gym_cont_seq}
-		                        ,#{gym_no}
-		                        ,#{cont_contents}
-		                        ,0
-		                        ,to_char(sysdate,'YYYY-MM-DD')
-		                        ,to_char(sysdate, 'HH24:MI:SS'))
+		INSERT into CONTENTS(cont_seq
+	                        ,cont_type
+	                        ,cont_typecode
+	                        ,cont_cont
+	                        ,cont_like
+	                        ,cont_date 
+	                        ,cont_time) 
+	                  values(#{gym_cont_seq}
+	                        ,'gym'
+	                        ,#{gym_no}
+	                        ,#{cont_contents}
+	                        ,0
+	                        ,to_char(sysdate,'YYYY-MM-DD')
+	                        ,to_char(sysdate, 'HH24:MI:SS'))
 	</insert>
 	<insert id="contentImgIns" parameterType="map">
 		<!-- ==========편성경여기========== -->
@@ -466,14 +460,14 @@
                         VALUES(seq_images.nextval
                               ,#{filename}  ,#{filesize}
                               ,#{filedata   ,jdbcType=LONGVARBINARY} 
-                              ,'gymCont'    ,#{gym_cont_seq} )
+                              ,'cont'    ,#{gym_cont_seq} )
 	</insert>
 	
 	<!-- 매장 콘텐츠 수정  -->
 	<update id="contentUpd" parameterType="map">
 		<!-- ==========편성경여기========== -->
-		UPDATE GYM_CONTENTS set gym_contents = #{contents_upd} 
-		 WHERE gym_cont_seq = #{contUpd_seq}
+		UPDATE CONTENTS set cont_cont = #{contents_upd} 
+		 WHERE cont_seq = #{contUpd_seq}
 	</update>
 	
 	<!-- 매장 콘텐츠 이미지 수정  -->
@@ -484,7 +478,7 @@
 		      ,filename = #{filename}
 		      ,filesize = #{filesize}
 		 WHERE typecode = #{contUpd_seq}
-		   AND type = 'gymCont'
+		   AND type = 'cont'
 	</update>
 	
 	<update id="classUpd" parameterType="map">
@@ -554,14 +548,14 @@
 	
 	<delete id="contentDel" parameterType="map">
 		<!-- ==========편성경여기========== -->
-		DELETE GYM_CONTENTS 
-		 WHERE gym_cont_seq = #{contDel_seq}
+		DELETE CONTENTS
+		 WHERE cont_seq = #{contDel_seq}
 	</delete>
 	<delete id="contentImgDel" parameterType="map">
 		<!-- ==========편성경여기========== -->
 		DELETE images 
 		 WHERE typecode = #{contDel_seq}
-		   AND type = 'gymCont'
+		   AND type = 'cont'
 	</delete>
 	
 </mapper>
