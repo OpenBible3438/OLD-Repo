@@ -19,18 +19,18 @@ public class TomcatImg extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
 
-        String apiURL = "http://192.168.0.191:7777/dev_gym/fitness/main/getImg.gym?file_seq="; // 고정 URL
+        String apiURL = "http://192.168.0.26:7777/dev_gym/fitness/android/getImg.gym?file_seq="; // 고정 URL
         String sendMsg = null;      //안드로이드 앱에서 입력한 ID와 PW을 담아서 Tomcat Server에 전달
         InputStream is = null;
         String strBitImg = null;
         HttpURLConnection con = null;
-
+        final String TAG = "TomcatImg";
         if (strings != null && strings.length > 0) {
             sendMsg = strings[0]; // android/memInfoIns.gym
-            Log.i("테스트", " ** FILE_SEQ  :" + sendMsg);
-            Log.i("테스트", " ** URL  :" + apiURL+sendMsg);
+            Log.i(TAG, " ** FILE_SEQ  :" + sendMsg);
+            Log.i(TAG, " ** URL  :" + apiURL+sendMsg);
         } else {
-            Log.i("테스트", " ** FILE_SEQ 가 없습니다.   :" + sendMsg);
+            Log.i(TAG, " ** FILE_SEQ 가 없습니다.   :" + sendMsg);
             return "";
         }
         try {

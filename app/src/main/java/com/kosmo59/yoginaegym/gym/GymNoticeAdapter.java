@@ -48,7 +48,7 @@ public class GymNoticeAdapter extends ArrayAdapter {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(this.resourceId, parent, false);
         Log.i(NOTICE_LOG, "■■■■■■■■ position : " + position);
-        Log.i(NOTICE_LOG, "contList.get(position) : " + noticeList.get(position));
+        Log.i(NOTICE_LOG, "noticeList.get(position) : " + noticeList.get(position));
         //id 연결하기
         TextView tv_gym_not_title = convertView.findViewById(R.id.tv_gym_not_title);
         TextView tv_gym_not_date = convertView.findViewById(R.id.tv_gym_not_date);
