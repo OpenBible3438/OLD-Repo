@@ -62,16 +62,29 @@
 
             <!--======================================스피너-->
             <Spinner
+                android:id="@+id/spn_tchClassSpinner"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:dropDownWidth="200dp"
+                android:spinnerMode="dropdown">
+            </Spinner>
+            <View
+                android:id="@+id/listView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"/>
+
+            <!--<Spinner
                 android:id="@+id/spn_tchClass"
                 android:background="@color/quantum_indigo100"
-                android:layout_width="320dp"
-                android:layout_height="match_parent"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
 
             <ImageView
                 android:src="@drawable/icon_arrow"
                 android:layout_width="30dp"
                 android:layout_height="match_parent"/>
-
+-->
         </LinearLayout>
 
 
