@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+            android:padding="30dp"
             android:background="#EAEAEA"
             android:orientation="vertical"
             android:layout_marginTop="?attr/actionBarSize"
@@ -25,6 +26,7 @@
             <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
 
           <ListView
+              android:divider="#ffffff"
               android:id="@+id/memTch_list"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
