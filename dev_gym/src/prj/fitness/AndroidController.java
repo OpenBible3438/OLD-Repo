@@ -45,7 +45,10 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-							
+							// 회원 리뷰 등록
+							case "memReviewIns":{ 
+								result = aLogic.memReviewIns(pMap);
+							}break;
 						// 김현빈
 							
 						// 허준호
@@ -58,7 +61,7 @@ public class AndroidController implements Controller{
 						logger.info("Exception : "+e.toString());
 						result = 0;
 					}
-					path = "redirect:../insertResult" + ":" + result;
+					path = "redirect:../insertResult_and" + ":" + result;
 				}break;
 				case "upd":{
 					try {
@@ -70,7 +73,6 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-							
 						// 김현빈
 							
 						// 허준호
@@ -92,7 +94,7 @@ public class AndroidController implements Controller{
 						// 김승현
 							
 						// 박준규
-							
+						
 						// 김현빈
 							
 						// 허준호
@@ -112,7 +114,6 @@ public class AndroidController implements Controller{
 		logger.info("path : " + path);
 		return path;
 	}
-
 	@Override
 	public ModelAndView process(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		logger.info("AndroidController - mav 타입 process 호출");
@@ -160,11 +161,11 @@ public class AndroidController implements Controller{
 					mav.type = "json";
 					logger.info("selResult : " + selResult);
 				}break;
-				case "imageOne":{
-					selResult = aLogic.getImageOne(pMap);
-					logger.info("selResult : " + selResult);
-					mav.type = "json";
-				}break;
+//				case "imageOne":{
+//					selResult = aLogic.getImageOne(pMap);
+//					logger.info("selResult : " + selResult);
+//					mav.type = "json";
+//				}break;
 				case "jsonMemClsList":{
 					selResult = aLogic.getMemWeekCls(pMap);
 					logger.info("selResult : " + selResult);
@@ -204,13 +205,18 @@ public class AndroidController implements Controller{
 			// 김승현
 				
 			// 박준규
-				
-			// 김현빈
-				
-			// 허준호
 				// 매장기준 콘텐츠 조회
 				case "jsonGymContentsList":{
 					selResult = aLogic.getGymContentsList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;				
+			// 김현빈
+				
+			// 허준호
+				// 회원 기준 후기 조회
+				case "jsonMemReview":{
+					selResult = aLogic.getMemReview(pMap);
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;
@@ -247,6 +253,18 @@ public class AndroidController implements Controller{
 				// 강사 프로필 가져오기   
 				case "jsonTeacherProf":{
 					selResult = aLogic.getTeacherProf(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 회원 > 내정보 > 후기 리스트   
+				case "jsonRevMemList":{
+					selResult = aLogic.getRevMemList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;
+				// 회원 > 내정보 > 후기 리스트 > 등록 수업리스트    
+				case "jsonRevClsList":{
+					selResult = aLogic.getRevClsList(pMap);
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;

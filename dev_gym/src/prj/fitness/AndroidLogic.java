@@ -105,14 +105,14 @@ public class AndroidLogic {
 		gymList = aDao.getGymList(pMap);
 		return gymList;
 	}
-	//이미지 한 장 구하기
-	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException {
-		logger.info("AndroidLogic - getImageOne() 호출");
-		List<Map<String, Object>> imageData = null;
-		imageData = aDao.getImageOne(pMap);
-		
-		return imageData;
-	}
+//	//이미지 한 장 구하기
+//	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException {
+//		logger.info("AndroidLogic - getImageOne() 호출");
+//		List<Map<String, Object>> imageData = null;
+//		imageData = aDao.getImageOne(pMap);
+//		
+//		return imageData;
+//	}
 	//회원 요일별 수업 구하기
 	public List<Map<String, Object>> getMemWeekCls(Map<String, Object> pMap) throws SQLException  {
 		logger.info("AndroidLogic - getMemWeekCls() 호출");
@@ -168,7 +168,21 @@ public class AndroidLogic {
 // 김승현
 		
 // 박준규
-		
+	// 회원 리뷰 등록 
+	public int memReviewIns(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - memReviewIns() 호출");
+		result = aDao.memReviewIns(pMap);
+		setCommit(result);
+		return result;
+	}
+	// 회원에서 리뷰 조회
+	public List<Map<String, Object>> getMemReview(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getMemReview() 호출 ");
+		List<Map<String, Object>> revList = null;
+		revList = aDao.getMemReview(pMap);
+		return revList;
+	}
+
 // 김현빈
 		
 // 허준호
@@ -221,6 +235,20 @@ public class AndroidLogic {
 		gymList = aDao.getTeacherProf(pMap);
 		return gymList;
 	}
+	// 회원 > 내정보 > 후기 리스트  
+	public List<Map<String, Object>> getRevMemList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getRevMemList() 호출 ");
+		List<Map<String, Object>> revList = null;
+		revList = aDao.getRevMemList(pMap);
+		return revList;
+	}
+	// 회원 > 내정보 > 후기 리스트 > 등록 수업리스트    
+	public List<Map<String, Object>> getRevClsList(Map<String, Object> pMap) {
+		logger.info("AndroidLogic - getRevClsList() 호출 ");
+		List<Map<String, Object>> revList = null;
+		revList = aDao.getRevClsList(pMap);
+		return revList;
+	}
 	//강사 출결 
 	public List<Map<String, Object>> getTeacherAttend(Map<String, Object> pMap) {
 		logger.info("AndroidLogic - getTeacherAttend() 호출 ");
@@ -235,7 +263,7 @@ public class AndroidLogic {
 		atdList = aDao.getMemberAttend(pMap);
 		return atdList;
 	}
-	//준호 insert////////////////////////////////
+//준호 insert////////////////////////////////
 	// 회원이 콘텐츠에 좋아요 눌렀을 때 
 	public int contLikeINS(Map<String, Object> pMap) {
 		logger.info("AndroidLogic - contLikeINS() 호출 ");
@@ -279,14 +307,6 @@ public class AndroidLogic {
 		}
 		mbMgr.clossSession(sqlSession);
 	}
-
-
-
-
-
-
-
-
 
 
 

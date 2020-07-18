@@ -111,14 +111,14 @@ public class AndroidDao {
 		logger.info("gymList.size() : " + gymList.size());
 		return gymList;
 	}
-	//이미지 한 장 구하기
-	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException  {
-		logger.info("AndroidDao - getGymList() 호출");
-		List<Map<String, Object>> imageData = null;
-		imageData = sqlSession.selectList("getImageOne_and", pMap);
-		logger.info("imageData : " + imageData);
-		return imageData;
-	}
+//	//이미지 한 장 구하기
+//	public List<Map<String, Object>> getImageOne(Map<String, Object> pMap) throws SQLException  {
+//		logger.info("AndroidDao - getGymList() 호출");
+//		List<Map<String, Object>> imageData = null;
+//		imageData = sqlSession.selectList("getImageOne_and", pMap);
+//		logger.info("imageData : " + imageData);
+//		return imageData;
+//	}
 	//강사 요일별 수업 구하기
 	public List<Map<String, Object>> getTchWeekCls(Map<String, Object> pMap) throws SQLException  {
 		logger.info("AndroidDao - getTchWeekCls() 호출");
@@ -206,7 +206,20 @@ public class AndroidDao {
 // 김승현
 	
 // 박준규
-	
+	// 회원 리뷰 등록
+	public int memReviewIns(Map<String, Object> pMap) {
+		logger.info("AndroidDao - memReviewIns() 호출");
+		result = sqlSession.insert("memReviewIns",pMap);
+		return result;
+	}
+	public List<Map<String, Object>> getMemReview(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getMemReview() 호출");
+		List<Map<String, Object>> revList = null;
+		revList = sqlSession.selectList("getMemReview", pMap);
+		logger.info("getMemReview.size() : " + revList.size());
+		return revList;
+	}
+
 // 김현빈
 	
 // 허준호
@@ -216,18 +229,6 @@ public class AndroidDao {
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getGymContentsList", pMap);
 		logger.info("getGymContentsList.size() : " + gymList.size());
-		try {
-			for(Map<String, Object> map : gymList) {
-				byte[] image = null;
-				Blob blob = (Blob)map.get("FILEDATA");
-				image = blob.getBytes(1, (int)blob.length());
-				logger.info("image " + image.length);
-				map.remove("FILEDATA");
-				map.put("FILEDATA", image);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return gymList;
 	}
 	// 매장 기준 강사 조회
@@ -236,14 +237,6 @@ public class AndroidDao {
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getGymTeacherList", pMap);
 		logger.info("getGymTeacherList.size() : " + gymList.size());
-//		for(Map<String, Object> map : gymList) {
-//			byte[] image = null;
-//			Blob blob = (Blob)map.get("FILEDATA");
-//			image = blob.getBytes(1, (int)blob.length());
-//			logger.info("image " + image.length);
-//			map.remove("FILEDATA");
-//			map.put("FILEDATA", image);
-//		}
 		return gymList;
 	}
 	// 매장 기준 수업 조회
@@ -276,6 +269,22 @@ public class AndroidDao {
 		List<Map<String, Object>> gymList = null;
 		gymList = sqlSession.selectList("getTeacherProf", pMap);
 		logger.info("getTeacherProf.size() : " + gymList.size());
+		return gymList;
+	}
+	// 회원 > 내정보 > 후기 리스트  
+	public List<Map<String, Object>> getRevMemList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getRevMemList() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getRevMemList_and", pMap);
+		logger.info("getRevMemList.size() : " + gymList.size());
+		return gymList;
+	}
+	// 회원 > 내정보 > 후기 리스트 > 등록 수업리스트   
+	public List<Map<String, Object>> getRevClsList(Map<String, Object> pMap) {
+		logger.info("AndroidDao - getRevClsList() 호출");
+		List<Map<String, Object>> gymList = null;
+		gymList = sqlSession.selectList("getRevClsList_and", pMap);
+		logger.info("getRevClsList.size() : " + gymList.size());
 		return gymList;
 	}
 	// 강사 출석 조회

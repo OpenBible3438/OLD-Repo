@@ -210,6 +210,9 @@
 		      AND t.tch_no = ti.tch_no
 		      AND t.tch_no != 9999 
 		      AND t.gym_no = #{gym_no}
+		<if test="tch_no != null and tch_no.length >0 ">
+		 	  AND t.tch_no = #{tch_no}
+		</if>
 	</select>
 	<!-- 회원 - 회원이 듣는 수업, 매장 가져오기 -->
 	<select id="getMyGymList_and" parameterType="map" resultType="map">
@@ -301,7 +304,37 @@
 
 
 <!-- ======================= 박준규 ======================= -->
-
+<!-- MyReview 등록하기 -->
+	<insert id="memReviewIns" parameterType="map" >
+		INSERT INTO  review(REV_SEQ
+						   ,REV_KIND
+			   			   ,PAY_NO
+			   			   ,REV_CONT
+			   			   ,REV_DATE
+			   			   ,REV_TIME
+			   			   ,REV_STAR
+			   			   ,REV_UP
+			   			   ,REV_DOWN)
+			   	     VALUES(seq_rev.nextval
+			   	     	   ,#{rev_kind}
+			   	     	   ,#{pay_no}
+			   	     	   ,#{rev_cont}
+			   	     	   ,TO_CHAR(sysdate,'yyyy-mm-dd')
+			   	     	   ,to_char(sysdate,'hh24:mi:ss')
+			   	     	   ,#{rev_star}
+			   	     	   ,0
+			   	     	   ,0
+			   	     	   )
+		   
+	</insert>
+	<select id="getMemReview" parameterType="map" resultType="map">
+	
+	</select>
+	<!-- 	  select 1,p.PAY_NO
+		from pay p, member m
+		where p.mem_no=m.mem_no
+		and m.mem_no=1
+		and p.pay_no=8 -->
 
 <!-- ======================= 김현빈 ======================= -->
 
@@ -362,28 +395,29 @@
 	</select>
 <!-- 매장기준  후기 가져오기 -->	
 	<select id="getGymReviewList" parameterType="map" resultType="map">
-		SELECT GYM.GYM_NAME
-		      ,GYM.GYM_NO
-		      ,T.TCH_NAME
-		      ,T.TCH_NO
-		      ,C.CLS_NAME
-		      ,C.CLS_NO
-		      ,R.REV_SEQ
-		      ,R.REV_CONT
-		      ,R.REV_STAR
-		      ,R.REV_UP
-		      ,R.REV_DOWN
-		      ,R.REV_DATE
-		      ,R.REV_TIME
-		      ,R.REV_KIND
-		      ,M.MEM_NICKNAME
-		  FROM review r, gym, pay p, class c, teacher t, member m
-		 WHERE R.PAY_NO = P.PAY_NO
-		   AND P.CLS_NO = C.CLS_NO
-		   AND C.TCH_NO = T.TCH_NO
-		   AND T.GYM_NO = GYM.GYM_NO
-		   AND P.MEM_NO = M.MEM_NO
-		   AND GYM.GYM_NO = #{gym_no}
+		SELECT G.GYM_NAME
+              ,G.GYM_NO
+              ,T.TCH_NAME
+              ,T.TCH_NO
+              ,C.CLS_NAME
+              ,C.CLS_NO
+              ,R.REV_SEQ
+              ,R.REV_CONT
+              ,R.REV_STAR
+              ,R.REV_UP
+              ,R.REV_DOWN
+              ,R.REV_DATE
+              ,R.REV_TIME
+              ,R.REV_KIND
+              ,M.MEM_NICKNAME
+          FROM review r, gym g, pay p, class c, teacher t, member m
+         WHERE R.PAY_NO = P.PAY_NO
+           AND P.CLS_NO = C.CLS_NO
+           AND C.TCH_NO = T.TCH_NO
+           AND T.GYM_NO = G.GYM_NO
+           AND G.GYM_NO = C.GYM_NO
+           AND P.MEM_NO = M.MEM_NO
+           AND C.GYM_NO = #{gym_no}
 	</select>
 	<!-- 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) -->
 	<select id="getTchClsMemIbd" parameterType="map" resultType="map">
@@ -423,6 +457,44 @@
 		 WHERE file_seq = #{file_seq}
 		   AND rownum = 1
 	</select><!-- #{file_seq} -->
+	
+   	<!-- 회원 > 내정보 > 리뷰리스트  -->
+	<select id="getRevMemList_and" parameterType="map" resultType="map">
+        SELECT GYM.GYM_NAME
+              ,GYM.GYM_NO
+              ,C.CLS_NAME
+              ,C.CLS_NO
+              ,P.PAY_NO
+              ,R.REV_SEQ
+              ,R.REV_CONT
+              ,R.REV_STAR
+              ,R.REV_UP
+              ,R.REV_DOWN
+              ,R.REV_DATE
+              ,R.REV_TIME
+              ,R.REV_KIND
+              ,M.MEM_NO
+              ,M.MEM_NICKNAME
+          FROM review r, gym, pay p, class c, member m
+         WHERE R.PAY_NO = P.PAY_NO
+           AND P.CLS_NO = C.CLS_NO
+           AND C.GYM_NO = GYM.GYM_NO
+           AND P.MEM_NO = M.MEM_NO
+           AND M.MEM_NO = #{mem_no}
+	</select>
+	
+   	<!-- 회원 > 내정보 > COMBO BOX(수업리스트 )  -->
+	<select id="getRevClsList_and" parameterType="map" resultType="map">
+		SELECT p.cls_no, max(p.pay_no) as pay_no
+		      ,c.cls_name
+		      ,GYM.GYM_NAME
+		  FROM pay p, member m, class c, gym
+		 WHERE P.MEM_NO = M.MEM_NO
+		   AND P.CLS_NO = C.CLS_NO
+		   AND C.GYM_NO = GYM.GYM_NO
+		   AND M.MEM_NO = 10014
+		 GROUP BY p.cls_no,c.cls_name,GYM.GYM_NAME
+	</select>
 	
    	<!-- 강사 출석 조회 -->
 	<select id="getTeacherAttend" parameterType="map" resultType="map">
