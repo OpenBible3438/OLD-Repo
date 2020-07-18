@@ -41,7 +41,6 @@
             android:id="@+id/btn_mainMem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="1dp"
             android:backgroundTint="@color/colorPrimary"
             android:text="회원"
             android:textSize="20sp" />
@@ -51,7 +50,6 @@
             android:id="@+id/btn_mainTch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="1dp"
             android:backgroundTint="@color/colorPrimary"
             android:text="강사"
             android:textSize="20sp" />
