@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -67,6 +68,13 @@ public class MemLogRegDialog {
         // 커스텀 다이얼로그의 레이아웃을 설정한다.
         dlg.setContentView(R.layout.dialog_mem_log_reg);
 
+        //---다이얼로그 화면 사이즈 조정 시작
+        WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+        //---다이얼로그 화면 사이즈 조정 끝
+
         // 커스텀 다이얼로그를 노출한다.
         dlg.show();
 
@@ -94,7 +102,7 @@ public class MemLogRegDialog {
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
         String getTime = simpleDate.format(mDate);
         tv_reg_date.setText(getTime);
-
+        tv_exDate.setText(getTime);
         //운동일 지정
         icon_date = dlg.findViewById(R.id.icon_date);
         icon_date.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +113,7 @@ public class MemLogRegDialog {
                         , calendar.get(Calendar.YEAR)
                         , calendar.get(Calendar.MONTH)
                         , calendar.get(Calendar.DAY_OF_MONTH)).show();
+
             }
         });
 
@@ -118,8 +127,22 @@ public class MemLogRegDialog {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     //TextView에 선택 시간 찍어주기
-                    tv_stime.setText(hourOfDay+":"+minute+":00");
-                    }
+                        String cho_hour = null;
+                        String cho_minute = null;
+                        if (hourOfDay < 10) {
+                            cho_hour = "0"+ hourOfDay;
+                        }
+                        else {
+                            cho_hour = Integer.toString(minute);
+                        }
+                        if (minute < 10) {
+                            cho_minute = "0"+ minute;
+                        }
+                        else {
+                            cho_minute = Integer.toString(minute);
+                        }
+                        tv_stime.setText(cho_hour+":"+cho_minute+":00");
+                        }
                 }, hour, minute, true);
                 timePickerDialog.show();
             }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -102,27 +103,9 @@ public class TchclassAdapter extends ArrayAdapter {
         cls_cnt.setText(""+Integer.valueOf((int)Math.round((double)mList.get(position).get("MEM_NUM"))));
         mList.get(position).get("MEM_NUM");
         final View finalConvertView = convertView;
-        tch_class.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
-
-            final Dialog dlg = new Dialog(finalConvertView.getContext());
-
-            // 액티비티의 타이틀바를 숨긴다.
-            dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-            // 커스텀 다이얼로그의 레이아웃을 설정한다.
-            dlg.setContentView(R.layout.dialog_tch_mem_list);
-            // 커스텀 다이얼로그를 노출한다.
-            dlg.show();
-            }
-        });
 
 
         //----------------------------------------------------------------- 수강생 보기 버튼
-
-
         btn_tchMemList = convertView.findViewById(R.id.btn_tchMemList);
         btn_tchMemList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +119,13 @@ public class TchclassAdapter extends ArrayAdapter {
 
                 // 커스텀 다이얼로그의 레이아웃을 설정한다.
                 dlg.setContentView(R.layout.dialog_tch_mem_list);
+
+                //---다이얼로그 화면 사이즈 조정 시작
+                WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+                //---다이얼로그 화면 사이즈 조정 끝
 
                 //자세히보기
                 ListView tch_mem_list = null;

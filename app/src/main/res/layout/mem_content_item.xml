@@ -1,132 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    android:id="@+id/layout_sample"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- ☆★☆★☆★☆★☆★☆★☆★유일하게 건드려야되는 곳☆★☆★☆★☆★☆★☆★☆★ -->
-    <!-- tools:context=".폴더이름.엑티비티이름" -->
-
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_content1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            layout="@layout/common_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentTop="true"/>
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        >
 
-        <ScrollView
-            android:layout_marginTop="?attr/actionBarSize"
-            android:layout_marginBottom="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기 위로 건들면 죽음 ☆★☆★☆★☆★☆★☆★☆★-->
-            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
-
-            <!-- 컨텐츠 카드뷰 -->
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cv_content1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#ffffff"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_mem_conts_title"
-                            android:text="터짐 가산점"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
-
-                        <!-- 사진부분 -->
-                        <ImageView
-                            android:id="@+id/iv_mem_conts_img"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/content_sample1" />
-
-                        <!-- 글자 들어가는 부분 -->
-
-                        <TextView
-                            android:id="@+id/tv_mem_conts_text"
-                            android:textSize="16sp"
-                            android:text="모니터 해상도 너무 좋습니다 ~\n고화질 유튜브 보면서 운동 가능 "
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearanceBody2"/>
-
-                        <!-- 좋아요, 날짜 -->
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <ImageButton
-                                android:id="@+id/ib_emptyHeart1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="#00FFFFFF"
-                                android:src="@drawable/cont_heart_empty"
-                                android:onClick="cont_clickHeart"/>
-                            <TextView
-                                android:id="@+id/tv_mem_conts_like_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"/>
-
-                            <TextView
-                                android:id="@+id/tv_mem_conts_date"
-                                android:text="2020-07-02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-                <!--====================================================-->
-
-
-
-            </LinearLayout>
-            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
-            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기 아래로 건들면 죽음 ☆★☆★☆★☆★☆★☆★☆★-->
-        </ScrollView>
-
-        <include
-            layout="@layout/common_bottom_bar"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom" />
+            android:orientation="vertical">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_mem_conts_title"
+                android:text="터짐 가산점"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/sample_navigationView"
-        app:headerLayout="@layout/common_hamburger"
-        app:menu="@menu/hamburger_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start">
-    </com.google.android.material.navigation.NavigationView>
+            <!-- 사진부분 -->
+            <ImageView
+                android:id="@+id/iv_mem_conts_img"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/content_sample1" />
 
-</androidx.drawerlayout.widget.DrawerLayout>
+            <!-- 글자 들어가는 부분 -->
+
+            <TextView
+                android:id="@+id/tv_mem_conts_text"
+                android:textSize="16sp"
+                android:text="모니터 해상도 너무 좋습니다 ~\n고화질 유튜브 보면서 운동 가능 "
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBody2"/>
+
+            <!-- 좋아요, 날짜 -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/ib_emptyHeart1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:src="@drawable/cont_heart_empty"/>
+                <TextView
+                    android:id="@+id/tv_mem_conts_like_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tv_mem_conts_date"
+                    android:text="2020-07-02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

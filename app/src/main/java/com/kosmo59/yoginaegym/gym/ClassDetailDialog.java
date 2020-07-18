@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -39,6 +40,13 @@ public class ClassDetailDialog {
 
         // 커스텀 다이얼로그의 레이아웃을 설정한다.
         dlg.setContentView(R.layout.dialog_class_detail);
+
+        //---다이얼로그 화면 사이즈 조정 시작
+        WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+        //---다이얼로그 화면 사이즈 조정 끝
 
         ////////////////////////////////////DB 연동 시작////////////////////////////////////
         String result = null;

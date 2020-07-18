@@ -59,12 +59,12 @@ public class TchChatAdapter extends ArrayAdapter {
         //id 연결하기
         final TextView tv_tch_chat_memName = convertView.findViewById(R.id.tv_tch_chat_memName);
         final TextView tv_tch_chat_gymName = convertView.findViewById(R.id.tv_tch_chat_gymName);
-        final TextView tv_tch_chat_clsName = convertView.findViewById(R.id.tv_tch_chat_clsName);
+        final TextView tv_tch_chat_memTel = convertView.findViewById(R.id.tv_tch_chat_memTel);
         final CardView cv_chat_list = convertView.findViewById(R.id.cv_chat_list);
 
         tv_tch_chat_memName.setText(chatMemList.get(position).get("MEM_NAME").toString());
         tv_tch_chat_gymName.setText(chatMemList.get(position).get("MEM_GENDER").toString());
-        tv_tch_chat_clsName.setText(chatMemList.get(position).get("MEM_ADDR").toString());
+        tv_tch_chat_memTel.setText(chatMemList.get(position).get("MEM_TEL").toString());
 
         vo = (AppVO)context.getApplicationContext();
         cv_chat_list.setOnClickListener(new View.OnClickListener() {

@@ -23,6 +23,17 @@ public class AppVO extends Application {
         this.cls_no = cls_no;
     }
 
+    /* 강사에서 수강생 볼 때 mem_no 저장하기 */
+    public int tch_cho_mem_no = 0;
+    public int getTch_cho_mem_no() {
+        return tch_cho_mem_no;
+    }
+    public void setTch_cho_mem_no(int tch_cho_mem_no) {
+        this.tch_cho_mem_no = tch_cho_mem_no;
+    }
+
+
+
     /* 회원 */
     public String memberName = null;
     public String memberId = null;

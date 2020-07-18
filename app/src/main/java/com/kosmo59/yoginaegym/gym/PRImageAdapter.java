@@ -12,7 +12,7 @@ import com.kosmo59.yoginaegym.R;
 public class PRImageAdapter extends BaseAdapter {
     Context context;
     //PR Images 배열
-    public Integer[] prImages = {
+    Integer[] prImages = {
             R.drawable.pr_sample1,
             R.drawable.pr_sample2,
             R.drawable.pr_sample3,
@@ -55,7 +55,7 @@ public class PRImageAdapter extends BaseAdapter {
 
         if(convertView == null){
             imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT,450));
+            imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT,350));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(3,3,3,3 );
         }
