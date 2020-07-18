@@ -63,14 +63,14 @@ public class GymReviewFragment extends Fragment {
         Log.i(Tag, "vo.gym_no : " + vo.getGym_no());
         nowTch = tchMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
-        Log.i("테스트", "nowTch : " + nowTch);
+        Log.i(Tag, "nowTch : " + nowTch);
         try {
             TomcatSend tomcatSend = new TomcatSend();
             result = tomcatSend.execute(reqUrl, nowTch).get();
         } catch (Exception e){
-            Log.i("테스트", "Exception : "+e.toString());
+            Log.i(Tag, "Exception : "+e.toString());
         }
-        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
+        Log.i(Tag, "톰캣서버에서 읽어온 정보 : "+result);
 
 //        if(result != null){
 //            Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
@@ -79,7 +79,7 @@ public class GymReviewFragment extends Fragment {
 //        }
         Gson g = new Gson();
         reviewList = (List<Map<String, Object>>)g.fromJson(result, listType);
-        Log.i("테스트", "clsList.size() : " + reviewList.size());
+        Log.i(Tag, "clsList.size() : " + reviewList.size());
         ////////////////////////////////////DB 연동 끝////////////////////////////////////
 
         GymReviewAdapter gymReviewAdapter = new GymReviewAdapter(mContext, R.layout.gymreviewlistview_item, reviewList);
