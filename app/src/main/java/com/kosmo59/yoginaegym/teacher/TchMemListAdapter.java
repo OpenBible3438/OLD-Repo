@@ -108,8 +108,6 @@ public class TchMemListAdapter extends ArrayAdapter {
 
                 String result = null;
                 String reqUrl = "android/jsonClsMemList.gym";
-                JSONObject jsonObject = null;
-                JSONArray jsonArray = null;
 
                 int cls_no = vo.getCls_no();
                 Log.i("TchMemListAdapter", "cls_no : "+cls_no);
@@ -126,7 +124,7 @@ public class TchMemListAdapter extends ArrayAdapter {
                 try{
                     TomcatSend tomcatSend = new TomcatSend();
                     result = tomcatSend.execute(reqUrl, pMap.toString()).get();
-                    jsonArray = new JSONArray(result);
+
                 }catch (Exception e){
                     Log.i("TchMemListAdapter", e.toString());
                 }

@@ -1,25 +1,34 @@
 package com.kosmo59.yoginaegym.gym;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.TomcatImg;
+import com.kosmo59.yoginaegym.common.TomcatSend;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -30,14 +39,14 @@ public class PRImageAdapter extends ArrayAdapter {
     List<Map<String, Object>> prImageList = null;
     int resourceId;
 
-    ArrayAdapter<Bitmap> arrayList;
-
+    int[] arrayFile_seq = null;
 
     public PRImageAdapter(@NonNull Context context, int resource, List prImageList) {
         super(context, resource, prImageList);
         this.context = context;
         this.resourceId = resource;
         this.prImageList = prImageList;
+        this.arrayFile_seq = new int[prImageList.size()];
     }
 
     @Override
@@ -56,7 +65,7 @@ public class PRImageAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         /*
         반드시 구현해야되는 곳
         Adapter에 추가된 이미지를 표시함
@@ -76,12 +85,52 @@ public class PRImageAdapter extends ArrayAdapter {
         try{
             TomcatImg tomcatImg = new TomcatImg();
             String imsi = prImageList.get(position).get("FILE_SEQ").toString().substring(0, prImageList.get(position).get("FILE_SEQ").toString().length()-2);
+            arrayFile_seq[position] = Integer.parseInt(prImageList.get(position).get("FILE_SEQ").toString().substring(0, prImageList.get(position).get("FILE_SEQ").toString().length()-2));
             String bitImg = tomcatImg.execute(imsi).get();
             Bitmap bitmap = tomcatImg.getBitMap(bitImg);
             imageView.setImageBitmap(bitmap);
         }catch (Exception e){
             Log.i("PRImageAdapter", "Exception : "+e.toString());
         }
+
+        //컨텐츠 자세히보기 추가
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dlg = new Dialog(context);
+                dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dlg.setContentView(R.layout.dialog_p_r);
+                WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.MATCH_PARENT;
+                dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+
+                //DB 연동
+                Log.i("PRDetail", "DB 연동 시작");
+                String result = null;
+                String reqUrl = "android/jsonContentsList.gym";
+                //Toast.makeText(context, "file_seq = "+arrayFile_seq[position], Toast.LENGTH_SHORT).show();
+                //사진 번호 넘겨주기
+                Map<String, Object> pMap = null;
+                pMap.put("file_seq", arrayFile_seq[position]);
+                Log.i("PRDetail", "file_seq : "+arrayFile_seq[position]);
+                Type listType = new TypeToken<List<Map<String, Object>>>() {}.getType();
+                try {
+                    TomcatSend tomcatSend = new TomcatSend();
+                    result = tomcatSend.execute(reqUrl, pMap.toString()).get();
+                }catch (Exception e){
+                    Log.i("PRDetail", "Exception : "+e.toString());
+                }
+                Log.i("PRDetail", "톰캣서버에서 읽어온 정보"+result);
+                Gson g = new Gson();
+                List<Map<String, Object>> contDetailList = (List<Map<String, Object>>) g.fromJson(result, listType);
+                Log.i("PRDetail", "contDetailList.size() : " + contDetailList.size());
+
+
+                //다이얼로그 열기
+                //dlg.show();
+            }
+        });
 
         return imageView;
     }
