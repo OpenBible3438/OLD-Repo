@@ -77,7 +77,6 @@ public class GymSearchActivity extends AppCompatActivity implements OnMapReadyCa
         final AppVO vo = (AppVO) getApplicationContext();
         String nowMem = null;//여기서는 딱히 필요 없음
         Map<String, Object> memMap = new HashMap<>();//여기서는 딱히 필요 없음
-        memMap.put("gym_no", 1);//여기서는 딱히 필요 없음
         nowMem = memMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         Log.i(Tag, "nowMem : " + nowMem);

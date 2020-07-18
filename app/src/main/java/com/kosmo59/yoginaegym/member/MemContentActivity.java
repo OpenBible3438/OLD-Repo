@@ -109,12 +109,10 @@ public class MemContentActivity extends AppCompatActivity {
             //////////////////////////////////////////////////////////////////////////////////////
             /* 하단바 추가 */
             BottomNavigationView bottom = findViewById(R.id.bottom_nav);
-            Log.i("MemContentActivity", findViewById(R.id.bottom_nav) + "");
             bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                    Log.i("MemContentAcitivity", "bottom : " + item);
                     switch (item.getItemId()) {
                         case R.id.bot_nav_home:
                             MemContentActivity.super.onBackPressed();
