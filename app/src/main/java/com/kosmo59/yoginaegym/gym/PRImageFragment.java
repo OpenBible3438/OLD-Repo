@@ -30,11 +30,8 @@ import java.util.Map;
 public class PRImageFragment extends Fragment {
 
     private Context context;
-    private GridView gv_prImage;
     private GridView prImage;
     List<Map<String, Object>> prImgLsit = null;
-    JSONObject jsonObject = null;
-    JSONArray jsonArray = null;
     AppVO vo;
 
     public PRImageFragment() {
@@ -66,7 +63,6 @@ public class PRImageFragment extends Fragment {
         }catch (Exception e){
             Log.i("PRImageFragment", "Exception : "+e.toString());
         }
-        Log.i("PRImageFragment", "톰캣서버에서 읽어온 정보 : "+jsonArray);
         Gson g = new Gson();
         prImgLsit = (List<Map<String, Object>>)g.fromJson(result, listType);
         PRImageAdapter prImageAdapter = new PRImageAdapter(context, R.layout.fragment_p_r_image,prImgLsit);
