@@ -1,11 +1,15 @@
 package com.kosmo59.yoginaegym.member;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -14,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.TomcatImg;
 
@@ -56,7 +61,8 @@ public class InbodyImageAdapter extends ArrayAdapter {
         Log.i("PRImageAdapter", "호출 성공");
         Log.i("PRImageAdapter", "prImageList.size() : "+inbodyList.size());
 
-        ImageView imageView;
+
+        final ImageView imageView;
         imageView = new ImageView(context);
         imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT,350));
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -74,8 +80,16 @@ public class InbodyImageAdapter extends ArrayAdapter {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(context, position+"번째 인바디 사진 클릭", Toast.LENGTH_SHORT).show();
-                
+                final Dialog dlg = new Dialog(context);
+                dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dlg.setContentView(R.layout.dialog_mem_inbody);
+                WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
+                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.MATCH_PARENT;
+                dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+                dlg.show();
+                PhotoView photoView = dlg.findViewById(R.id.pv_memInbody);
+                photoView.setImageBitmap(((BitmapDrawable)imageView.getDrawable()).getBitmap());
             }
         });
 
