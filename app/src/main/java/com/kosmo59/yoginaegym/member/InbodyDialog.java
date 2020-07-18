@@ -2,6 +2,7 @@ package com.kosmo59.yoginaegym.member;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -22,7 +23,7 @@ public class InbodyDialog {
     }
 
     // 호출할 다이얼로그 함수를 정의한다.
-    public void callFunction() {
+    public void callFunction(Bitmap bitmap) {
         // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
         final Dialog dlg = new Dialog(context);
 
@@ -45,7 +46,7 @@ public class InbodyDialog {
 
         //ImageView 확대 축소 기능
         photoView = dlg.findViewById(R.id.pv_memInbody);
-        photoView.setImageResource(R.drawable.inbody_ex1);
+        photoView.setImageBitmap(bitmap);
     }
 
 }

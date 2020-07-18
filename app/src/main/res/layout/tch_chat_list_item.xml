@@ -19,6 +19,7 @@
             android:padding="20sp">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_tch_chat_mem_img"
                 android:layout_width="80sp"
                 android:layout_height="80sp"
                 android:layout_gravity="center"

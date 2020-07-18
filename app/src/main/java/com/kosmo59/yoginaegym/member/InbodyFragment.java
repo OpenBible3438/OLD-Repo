@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,25 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.common.TomcatSend;
 import com.kosmo59.yoginaegym.gym.PRDialog;
 import com.kosmo59.yoginaegym.gym.PRImageAdapter;
 
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class InbodyFragment extends Fragment {
-
     private Context context;
-    private GridView gv_inbodyImage;
+    private GridView gv_memInbody;
+    List<Map<String, Object>> inbodyList = null;
+    AppVO vo;
 
     public InbodyFragment() {
         // Required empty public constructor
@@ -31,9 +42,32 @@ public class InbodyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inbody, container, false);
-
         context = container.getContext();
-        gv_inbodyImage = view.findViewById(R.id.gv_memInbody);
+
+        vo = (AppVO) context.getApplicationContext();
+        //Image DB 연동
+        String result = null;
+        String reqUrl = "android/jsonTchClsMemIbd.gym";
+        //gym_no 넘겨주기
+        Map<String, Object> pMap = new HashMap<>();
+        pMap.put("mem_no", vo.getMem_no());
+        Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
+        Log.i("PRImageFragment", "DB 연동 시작");
+        try {
+            TomcatSend tomcatSend = new TomcatSend();
+            result = tomcatSend.execute(reqUrl, pMap.toString()).get();
+        }catch (Exception e){
+            Log.i("PRImageFragment", "Exception : "+e.toString());
+        }
+        Gson g = new Gson();
+        inbodyList = (List<Map<String, Object>>)g.fromJson(result, listType);
+        InbodyImageAdapter inbodyImageAdapter = new InbodyImageAdapter(context, R.layout.fragment_inbody,inbodyList);
+        gv_memInbody = view.findViewById(R.id.gv_memInbody);
+        gv_memInbody.setAdapter(inbodyImageAdapter);
+
+
+
+        /*gv_inbodyImage = view.findViewById(R.id.gv_memInbody);
         gv_inbodyImage.setAdapter(new InbodyImageAdapter(context));
         gv_inbodyImage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -50,7 +84,7 @@ public class InbodyFragment extends Fragment {
                         break;
                 }
             }
-        });
+        });*/
         return view;
     }
 }
