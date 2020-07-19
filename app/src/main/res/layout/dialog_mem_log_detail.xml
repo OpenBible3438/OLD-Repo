@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
-                    android:text="수업일지"
+                    android:text="수업일지 수정"
                     android:textSize="24sp" />
             </LinearLayout>
             <LinearLayout
@@ -129,6 +129,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/tv_day"
                             android:textColor="#00BCD4"
                             android:textSize="12sp"
                             android:text="운동일"

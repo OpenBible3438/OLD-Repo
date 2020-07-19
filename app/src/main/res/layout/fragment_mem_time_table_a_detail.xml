@@ -26,6 +26,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/tv_log"
                     android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -123,6 +124,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:id="@+id/log_title"
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:gravity="left|center"
@@ -131,6 +133,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/log_day"
                             android:textColor="#009688"
                             android:textSize="12sp"
                             android:text="운동일"
