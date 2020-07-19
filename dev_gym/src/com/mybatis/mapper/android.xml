@@ -516,21 +516,26 @@
 	</select>
    	<!-- 회원 출석 조회 -->
 	<select id="getMemberAttend" parameterType="map" resultType="map">
-		SELECT ta.tch_atd_seq
-		      ,ta.gym_no
-		      ,ta.tch_no
-		      ,T.TCH_NAME   
-		      ,ta.tch_atd_date
-		      ,ta.tch_atd_in
-		      ,ta.tch_atd_out
-		  FROM tch_attend ta, teacher t
-		 WHERE TA.GYM_NO = T.GYM_NO
-		   AND TA.TCH_NO = T.TCH_NO
-		   AND TA.GYM_NO = #{gym_no} 
-	   <if test="msg != null and msg.length > 0">
-		   AND ((t.tch_no LIKE '%'||#{msg}||'%')
-               OR (t.tch_name LIKE '%'||#{msg}||'%'))
-	   </if>
+			SELECT P.PAY_NO
+			      ,C.CLS_NO, C.CLS_NAME
+			      ,T.TCH_NO, T.TCH_NAME
+			      ,GYM.GYM_NO, GYM.GYM_NAME
+			      ,M.MEM_NO, M.MEM_NAME
+			      ,MA.MEM_ATD_SEQ, MA.MEM_ATD_DATE, MA.MEM_ATD_IN
+			      ,MA.MEM_ATD_OUT, MA.MEM_CLS_DAYS, MA.MEM_CLS_CNT 
+			  FROM mem_attend ma, pay p, class c, teacher t, gym, member m
+			 WHERE MA.PAY_NO = P.PAY_NO
+			   AND P.CLS_NO = C.CLS_NO
+			   AND C.TCH_NO = T.TCH_NO
+			   AND C.GYM_NO = T.GYM_NO
+			   AND T.GYM_NO = GYM.GYM_NO
+			   AND P.MEM_NO = M.MEM_NO
+			   AND GYM.GYM_NO = #{gym_no}
+			<if test="msg != null and msg.length > 0">
+			   AND ((M.MEM_NO LIKE '%'||#{msg}||'%')
+	               OR (M.MEM_NAME LIKE '%'||#{msg}||'%'))
+		   	</if>
+			 ORDER BY MA.MEM_ATD_DATE desc
 	</select>
 	
 	

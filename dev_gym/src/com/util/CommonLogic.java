@@ -34,10 +34,9 @@ public class CommonLogic {
 		// url : 
 		// [0] : 첫 폴더		// fitness
 		// [1] : work		// gym
-		// [2] : reqName		// jsonClassMemList
+		// [2] : reqName	// jsonClassMemList
 		logger.info("getCommands() 호출 ");
 		String[] commands = null;
-		//	dev_fitness/fitness/gym/gymMain.gym?cud=sel&mode=gym
 		String contextPath = req.getContextPath();
 		String requestURI = req.getRequestURI();
 		logger.info("requestURI : "+requestURI);
@@ -48,10 +47,6 @@ public class CommonLogic {
 		for(String str : commands) {
 			logger.info("str : " + str);
 		}
-		/*if(commands.length == 2) {
-			pMap.put("work", "main");
-			pMap.put("reqName", commands[1]);//login이 들어감
-		}*/
 		if(commands.length == 3) {
 			pMap.put("work", commands[1]);
 			pMap.put("reqName", commands[2]);
@@ -65,7 +60,6 @@ public class CommonLogic {
 			pMap.put("gym_no", gym_no);
 			logger.info("gym_no : " + gym_no);
 		}
-		//logger.info("pMap : " + pMap);
 	}
 	
 	public void moveMapper(Object processResult) {

@@ -383,7 +383,7 @@ public class GymLogic {
 		setCommit(result);
 		return result;
 	}
-
+	// Set Commit
 	public void setCommit(int result) {
 		logger.info("setCommit() 호출"); 
 		if(result>0) {
