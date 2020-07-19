@@ -88,7 +88,7 @@ public class TchMainActivity extends AppCompatActivity {
                         dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
                         //QR 코드 생성
                         //String data = vo.getTchId(); //mem_id로 QR코드 생성
-                        String data = "702"; //mem_id로 QR코드 생성
+                        String data = vo.getTchNum(); //mem_id로 QR코드 생성
                         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                         try {
                             BitMatrix bitMatrix = multiFormatWriter.encode(data, BarcodeFormat.QR_CODE, 300,300);
