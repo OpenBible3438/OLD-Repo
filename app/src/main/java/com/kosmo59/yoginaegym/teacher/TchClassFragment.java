@@ -41,10 +41,11 @@ public class TchClassFragment extends Fragment {
 
     private Spinner spn_tchClass;
     ArrayList<String> gymNameList;
-    ArrayList<String> gymNoList;
+    ArrayList<Integer> gymNoList;
     ArrayAdapter<String> arrayAdapter;
-
-    AppVO vo = (AppVO) context.getApplicationContext();
+    final String Tag = "TchClassFragment";
+    Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
+    AppVO vo = null;
 
     private ListView cls_listView;
     List<Map<String, Object>> clsList = null;
@@ -66,18 +67,34 @@ public class TchClassFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tch_class, container, false);
         context = container.getContext();
         cls_listView = view.findViewById(R.id.cls_list);
-
-
+        vo =(AppVO) context.getApplicationContext();
+        Gson g = new Gson();
         /*스피너*/
         gymNameList = new ArrayList<>();
         gymNoList = new ArrayList<>();
         //////////////////////////////// 스피너 DB 연동 /////////////////////////////////////
-        for (int i=0; i<clsList.size(); i++){
-            gymNameList.add(clsList.get(i).get("CLS_NAME").toString());
-            gymNoList.add(clsList.get(i).get("CLS_NO").toString());
+        List<Map<String, Object>> gymList = null;
+        String gymResult = null;
+        String reqUrl = "android/jsonTchGymList.gym";
+        String nowTch = null;
+        Map<String, Object> tchMap = new HashMap<>();
+        tchMap.put("tch_no", vo.getTchNum());
+        nowTch = tchMap.toString();
+        try {
+            TomcatSend tomcatSend = new TomcatSend();
+            gymResult = tomcatSend.execute(reqUrl, nowTch).get();
+        } catch (Exception e){
+            Log.i(Tag, "Exception : "+e.toString());
+        }
+        Log.i(Tag, "톰캣서버에서 읽어온 정보 : "+gymResult);
+        gymList = g.fromJson(gymResult, listType);
+        Log.i(Tag, "gymList.size() : " + gymList.size());
+        for (int i=0; i<gymList.size(); i++){
+            gymNameList.add(gymList.get(i).get("GYM_NAME").toString());
+            gymNoList.add(Integer.parseInt((gymList.get(i).get("GYM_NO").toString()).split("\\.")[0]));
         }
 
-        //////////////////////////////// 스피너 DB 연동 /////////////////////////////////////
+        //////////////////////////////// 스피너 DB 연동 끝/////////////////////////////////////
         arrayAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, gymNameList);
 
         spn_tchClass = view.findViewById(R.id.spn_tchClass);
@@ -87,8 +104,8 @@ public class TchClassFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long id) {
                 Toast.makeText(context,gymNameList.get(i)+" 매장입니다", Toast.LENGTH_SHORT).show();
-                vo.setTch_cho_gym_no(Integer.parseInt(gymNoList.get(i)));
-                getTchClsList();
+//                vo.setTch_cho_gym_no(Integer.parseInt(gymNoList.get(i)));
+                getTchClsList(gymNoList.get(i));
             }
 
             @Override
@@ -102,7 +119,7 @@ public class TchClassFragment extends Fragment {
         return view;
     }
 
-    public void getTchClsList(){
+    public void getTchClsList(int choGymNo){
         ////////////////////////////////////DB 연동 시작////////////////////////////////////
         String result = null;
         String reqUrl = "android/jsonTchClassList.gym";
@@ -110,17 +127,17 @@ public class TchClassFragment extends Fragment {
         String nowTch = null;
         Map<String, Object> tchMap = new HashMap<>();
         tchMap.put("tch_no", vo.getTchNum());
-        tchMap.put("gym_no", vo.getTch_cho_gym_no());
+        //tchMap.put("gym_no", vo.getTch_cho_gym_no());
+        tchMap.put("gym_no", choGymNo);
         nowTch = tchMap.toString();
-        Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
-        Log.i("테스트", "nowTch : " + nowTch);
+        Log.i(Tag, "nowTch : " + nowTch);
         try {
             TomcatSend tomcatSend = new TomcatSend();
             result = tomcatSend.execute(reqUrl, nowTch).get();
         } catch (Exception e){
-            Log.i("테스트", "Exception : "+e.toString());
+            Log.i(Tag, "Exception : "+e.toString());
         }
-        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
+        Log.i(Tag, "톰캣서버에서 읽어온 정보 : "+result);
 
 //        if(result != null){
 //            Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
@@ -129,7 +146,7 @@ public class TchClassFragment extends Fragment {
 //        }
         Gson g = new Gson();
         clsList = (List<Map<String, Object>>)g.fromJson(result, listType);
-        Log.i("테스트", "clsList.size() : " + clsList.size());
+        Log.i(Tag, "clsList.size() : " + clsList.size());
         ////////////////////////////////////DB 연동 끝////////////////////////////////////
 
         TchclassAdapter tchclassAdapter = new TchclassAdapter(mContext, R.layout.tchclasslistview_item, clsList);

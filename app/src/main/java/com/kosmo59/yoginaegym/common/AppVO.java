@@ -138,6 +138,9 @@ public class AppVO extends Application {
     public void setTch_no(int tch_no) {
         this.tch_no = tch_no;
     }
+    public int getTch_no(int tch_no) {
+        return this.tch_no;
+    }
 
     public String getTchName() {
         return tchName;

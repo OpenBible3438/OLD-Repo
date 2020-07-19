@@ -24,6 +24,8 @@
 
             <!-- 컨텐츠 카드뷰 -->
             <LinearLayout
+                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_marginBottom="?attr/actionBarSize"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

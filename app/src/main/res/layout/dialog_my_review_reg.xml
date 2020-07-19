@@ -26,7 +26,6 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textStyle="bold"
@@ -60,25 +59,79 @@
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수업이름"
+                android:textSize="15dp"/>
 
             <!--======================================스피너-->
             <Spinner
-                android:id="@+id/spn_tchClass"
-                android:layout_width="320dp"
+                android:id="@+id/spn_tchClassSpinner"
+                android:layout_marginLeft="15dp"
+                android:layout_width="250dp"
                 android:layout_height="match_parent"
-                android:background="#CEF1F6" />
+                android:dropDownWidth="200dp"
+                android:spinnerMode="dropdown">
+            </Spinner>
+            <View
+                android:id="@+id/listView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"/>
+
+            <!--<Spinner
+                android:id="@+id/spn_tchClass"
+                android:background="@color/quantum_indigo100"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
 
             <ImageView
+                android:src="@drawable/icon_arrow"
                 android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:background="#FFFFFF"
-                android:src="@drawable/icon_arrow" />
+                android:layout_height="match_parent"/>
+-->
+        </LinearLayout>
+        <LinearLayout
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="후기종류"
+                android:textSize="15dp"/>
 
+            <!--======================================스피너-->
+            <Spinner
+                android:id="@+id/spn_reviewkind"
+                android:layout_marginLeft="15dp"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:dropDownWidth="200dp"
+                android:spinnerMode="dropdown">
+            </Spinner>
+            <View
+                android:id="@+id/kindView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"/>
+            <!--<Spinner
+                android:id="@+id/spn_tchClass"
+                android:background="@color/quantum_indigo100"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+            <ImageView
+                android:src="@drawable/icon_arrow"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"/>
+-->
         </LinearLayout>
 
-
-
         <EditText
+            android:id="@+id/review_reg"
             android:layout_marginBottom="5dp"
             android:background="@null"
             android:textSize="20sp"
@@ -87,35 +140,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:gravity="left|center"
                 android:layout_width="match_parent"
-                android:layout_height="25dp">
-
+                android:layout_height="26dp">
                 <TextView
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="점수"/>
+                <EditText
+                    android:id="@+id/rev_star"
+                    android:text="0"
                     android:layout_width="40dp"
-                    android:layout_height="20dp"
-                    android:gravity="left|center"
-                    android:text="등록일 "
-                    android:textSize="12sp" />
+                    android:layout_height="50dp"/>
                 <TextView
-                    android:id="@+id/my_review_reg_date"
-                    android:layout_width="75sp"
-                    android:layout_height="20sp"
-                    android:gravity="left|center"
-                    android:text="2020-07-02"
-                    android:textSize="14sp" />
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="/100"/>
             </LinearLayout>
-
-
-
             <!--구분 라인-->
             <View
                 android:layout_width="match_parent"
@@ -123,21 +174,18 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:background="#000000" />
-
             <LinearLayout
                 android:gravity="right|top"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
-
                 <Button
                     android:id="@+id/btn_myReviewReg_ins"
                     android:text="등록"
                     android:textSize="14sp"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"/>
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>
