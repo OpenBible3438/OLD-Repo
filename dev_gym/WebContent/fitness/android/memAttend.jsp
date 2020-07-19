@@ -25,11 +25,19 @@
                data-pagination="true">
 			<thead>
 				<tr align="center">
-					<th data-field="MEM_ATD_SEQ">출석번호</th>
-					<th data-field="PAY_NO">결제번호</th>
+					<th class="d-none" data-field="PAY_NO">결제번호</th>
+					<th class="d-none" data-field="CLS_NO">수업번호</th>
+					<th data-field="CLS_NAME">수업이름</th>
+					<th class="d-none" data-field="TCH_NO">강사번호</th>
+					<th class="d-none" data-field="TCH_NAME">강사이름</th>
+					<th class="d-none" data-field="GYM_NO">매장번호</th>
+					<th class="d-none" data-field="GYM_NAME">매장이름</th>
+					<th data-field="MEM_NO">회원번호</th>
+					<th data-field="MEM_NAME">회원이름</th>
+					<th class="d-none" data-field="MEM_ATD_SEQ">출석번호</th>
+					<th data-field="MEM_ATD_DATE">출석 날짜</th>
 					<th data-field="MEM_ATD_IN">입실시간</th>
 					<th data-field="MEM_ATD_OUT">퇴실시간</th>
-					<th data-field="MEM_ATD_DATE">날짜</th>
 					<th class="d-none" data-field="MEM_CLS_DAYS">남은일수</th>
 					<th class="d-none" data-field="MEM_CLS_CNT">남은횟수</th>
 				</tr>
