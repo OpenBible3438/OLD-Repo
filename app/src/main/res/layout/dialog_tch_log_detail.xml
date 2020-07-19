@@ -26,12 +26,12 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textStyle="bold"
-                    android:text="내 일정 등록"
-                    android:textSize="24sp" />
+                    android:fontFamily="@font/font"
+                    android:text="내 일정 수정"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
             <LinearLayout
                 android:gravity="right"
@@ -47,7 +47,7 @@
 
         </LinearLayout>
 
-        <!--  구분 라인  -->
+        <!--구분 라인-->
         <View
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
@@ -57,9 +57,9 @@
         <EditText
             android:id="@+id/et_log_cont"
             android:background="@null"
-            android:textSize="20sp"
+            android:lines="10"
+            android:textSize="16sp"
             android:gravity="left|top"
-            android:text="코스모 헬스장 면접"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -93,7 +93,6 @@
                         android:layout_height="25sp"
                         android:layout_gravity="center"
                         android:gravity="center_vertical"
-                        android:text="2020-07-15"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -120,20 +119,23 @@
                         android:orientation="vertical"
                         android:layout_width="60dp"
                         android:layout_height="match_parent">
+
                         <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
+                            android:layout_height="30dp"
                             android:gravity="left|center"
                             android:text="일정 이름"
                             android:textColor="#00BCD4"
                             android:textSize="12sp" />
+
                         <TextView
-                            android:textColor="#00BCD4"
-                            android:textSize="12sp"
-                            android:text="내 일정"
-                            android:gravity="left|center"
+                            android:id="@+id/tv_day"
                             android:layout_width="match_parent"
-                            android:layout_height="30dp"/>
+                            android:layout_height="30dp"
+                            android:gravity="left|center"
+                            android:text="내 일정"
+                            android:textColor="#00BCD4"
+                            android:textSize="12sp" />
                         <TextView
                             android:textColor="#00BCD4"
                             android:textSize="12sp"
@@ -156,23 +158,22 @@
                         android:layout_height="match_parent">
                         <EditText
                             android:id="@+id/et_log_title"
-                            android:textColor="#00BCD4"
+                            android:background="@null"
+                            android:textColor="#009688"
                             android:textSize="16sp"
-                            android:text="면접"
                             android:gravity="left|center"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"/>
+                            android:layout_height="30dp"/>
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="30dp">
                             <TextView
                                 android:background="@null"
-                                android:id="@+id/tv_exDate"
-                                android:textColor="#00BCD4"
+                                android:id="@+id/tv_logDetailDate"
+                                android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="2020-07-21"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -187,17 +188,15 @@
                                     android:layout_height="match_parent"/>
                             </LinearLayout>
                         </LinearLayout>
-
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="30dp">
                             <TextView
                                 android:id="@+id/tv_stime"
-                                android:textColor="#00BCD4"
+                                android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="12:00:00"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -219,10 +218,9 @@
                             android:layout_height="30dp">
                             <TextView
                                 android:id="@+id/tv_etime"
-                                android:textColor="#00BCD4"
+                                android:textColor="#009688"
                                 android:textSize="16sp"
                                 android:gravity="left|center"
-                                android:text="13:00:00"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"/>
                             <LinearLayout
@@ -240,7 +238,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!--구분 라인-->
+                <!--  구분 라인  -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2px"
@@ -254,8 +252,15 @@
                     android:layout_height="50dp">
 
                     <Button
-                        android:id="@+id/btn_logDetail_ins"
-                        android:text="등록"
+                        android:id="@+id/btn_logDetail_upd"
+                        android:text="수정"
+                        android:textSize="14sp"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"/>
+                    <Button
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/btn_logDetail_del"
+                        android:text="삭제"
                         android:textSize="14sp"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"/>
