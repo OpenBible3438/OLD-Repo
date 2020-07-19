@@ -100,7 +100,14 @@ public class TchclassAdapter extends ArrayAdapter {
         cls_stime.setText(mList.get(position).get("CLS_STIME").toString());
         cls_etime.setText(mList.get(position).get("CLS_ETIME").toString());
         cls_day.setText(mList.get(position).get("CLS_DAY").toString());
-        cls_cnt.setText(""+Integer.valueOf((int)Math.round((double)mList.get(position).get("MEM_NUM"))));
+        String mem_num = null;//수강생 수 0명일 때 null 방지
+        if((mList.get(position).get("MEM_NUM").toString()).split("\\.")[0].length()>0){
+            mem_num = (mList.get(position).get("MEM_NUM").toString()).split("\\.")[0];
+        }
+        else {
+            mem_num = "0";
+        }
+        cls_cnt.setText(mem_num);
         mList.get(position).get("MEM_NUM");
         final View finalConvertView = convertView;
 

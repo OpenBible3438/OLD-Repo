@@ -100,10 +100,6 @@ public class MemTimeTableAFragment extends Fragment {
             log_days = new String[1];
             log_days[0] = "2020-02-10";
         }
-        if(log_days == null){
-            log_days = new String[1];
-            log_days[0] = "2020-02-10";
-        }
         ///////////////////////////////SQLite 끝/////////////////////////////////////////////
         new ApiSimulator(log_days).executeOnExecutor(Executors.newSingleThreadExecutor());
 

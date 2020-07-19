@@ -15,8 +15,6 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
-import com.kosmo59.yoginaegym.gym.GymProfileActivity;
-import com.kosmo59.yoginaegym.gym.GymSearchActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
