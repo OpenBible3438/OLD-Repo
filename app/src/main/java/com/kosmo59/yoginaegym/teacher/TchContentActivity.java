@@ -24,6 +24,8 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
 
+import java.io.UnsupportedEncodingException;
+
 public class TchContentActivity extends AppCompatActivity {
     AppVO vo = null;
     ImageView iv_memQr = null;
@@ -69,7 +71,12 @@ public class TchContentActivity extends AppCompatActivity {
                         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
                         dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
                         //QR 코드 생성
-                        String data = vo.getTchId(); //mem_id로 QR코드 생성
+                        String data = vo.getTchNum()+","+vo.getTchName(); //QR코드 data
+                        try {
+                            data = new String(data.getBytes("UTF-8"), "ISO-8859-1");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
                         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                         try {
                             BitMatrix bitMatrix = multiFormatWriter.encode(data, BarcodeFormat.QR_CODE, 300,300);
