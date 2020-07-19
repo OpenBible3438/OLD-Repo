@@ -25,6 +25,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.UnsupportedEncodingException;
+
 public class TchMainActivity extends AppCompatActivity {
 
     private Button btn_moveTchProfile, btn_moveTchCal, btn_moveTchManage;
@@ -88,7 +90,12 @@ public class TchMainActivity extends AppCompatActivity {
                         dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
                         //QR 코드 생성
                         //String data = vo.getTchId(); //mem_id로 QR코드 생성
-                        String data = vo.getTchNum(); //mem_id로 QR코드 생성
+                        String data = vo.getTchNum()+","+vo.getTchName(); //QR코드 data
+                        try {
+                            data = new String(data.getBytes("UTF-8"), "ISO-8859-1");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
                         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                         try {
                             BitMatrix bitMatrix = multiFormatWriter.encode(data, BarcodeFormat.QR_CODE, 300,300);
