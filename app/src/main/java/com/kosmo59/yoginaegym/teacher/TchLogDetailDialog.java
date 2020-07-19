@@ -1,4 +1,4 @@
-package com.kosmo59.yoginaegym.member;
+package com.kosmo59.yoginaegym.teacher;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -22,14 +22,10 @@ import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.GymDBHelper;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-public class MemLogDetailDialog {
+public class TchLogDetailDialog {
     private Context context;
     private ImageButton icon_close;
     private ImageButton icon_date;
@@ -44,17 +40,17 @@ public class MemLogDetailDialog {
     private Button btn_logDetail_del;
     int hour = 0, minute = 0;
     int _id = 0;
-    MemLogFragment memLogFragment;
+    TchLogFragment tchLogFragment;
     GymDBHelper gymDBHelper = null;
     SQLiteDatabase db = null;
     AppVO vo = null;
-    public MemLogDetailDialog(Context context, int _id, MemLogFragment memLogFragment) {
+    public TchLogDetailDialog(Context context, int _id, TchLogFragment tchLogFragment) {
         this.context = context;
         this._id = _id;
-        this.memLogFragment = memLogFragment;
+        this.tchLogFragment = tchLogFragment;
     }
 
-    public void openMemLogDetailDialog() {
+    public void openTchLogDetailDialog() {
 
         gymDBHelper = new GymDBHelper(this.context);
         db = gymDBHelper.getWritableDatabase();
@@ -74,7 +70,7 @@ public class MemLogDetailDialog {
         WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+        dlg.getWindow().setAttributes((WindowManager.LayoutParams)params);
         //---다이얼로그 화면 사이즈 조정 끝
 
 
@@ -157,10 +153,10 @@ public class MemLogDetailDialog {
         });
         ///////////////////////////////SQLite /////////////////////////////////////////////
         String log_upd = "SELECT _id, reg_date, ex_date, log_title, ex_stime, ex_etime, log_cont" +
-                " FROM mem_log" +
+                " FROM tch_log" +
                 " WHERE _id ="+ _id +
                 " ORDER BY ex_date desc";
-        Log.i("테스트", "log_upd : " + log_upd);
+        Log.i("TchLogDetailDialog", "log_upd : " + log_upd);
         Cursor cursor = db.rawQuery(log_upd, null);
         if (cursor.moveToNext()){
             int cnt=1;
@@ -180,12 +176,12 @@ public class MemLogDetailDialog {
             @Override
             public void onClick(View v) {
                 ///////////////////////////////SQLite /////////////////////////////////////////////
-                String log_del = "DELETE FROM mem_log WHERE _id = " + _id;
-                Log.i("MemLogDetailDialog", "log_sel : " + log_del);
+                String log_del = "DELETE FROM tch_log WHERE _id = " + _id;
+                Log.i("TchLogDetailDialog", "log_sel : " + log_del);
                 db.execSQL(log_del);
                 dlg.dismiss();
                 ///////////////////////////////SQLite 끝/////////////////////////////////////////////
-                memLogFragment.refresh();
+                tchLogFragment.refresh();
             }
         });
         icon_date.setOnClickListener(new View.OnClickListener() {
@@ -223,16 +219,16 @@ public class MemLogDetailDialog {
     };
 
     private void update_log(Dialog dlg) {
-        String log_upd = "UPDATE mem_log SET ex_date='" + tv_logDetailDate.getText().toString()
+        String log_upd = "UPDATE tch_log SET ex_date='" + tv_logDetailDate.getText().toString()
                        + "', log_title = '" + et_log_title.getText().toString()
                        + "', ex_stime = '" + tv_stime.getText().toString()
                        + "', ex_etime = '" + tv_etime.getText().toString()
                        + "', log_cont = '" + et_log_cont.getText().toString() + "'"
                        + " WHERE _id = " + _id;
-        Log.i("테스트", "log_upd : " + log_upd);
+        Log.i("TchLogDetailDialog", "log_upd : " + log_upd);
         db.execSQL(log_upd);
         dlg.dismiss();
-        memLogFragment.refresh();
+        tchLogFragment.refresh();
     }
 
     //운동일을 선택한 날짜로 표시하기

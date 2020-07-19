@@ -38,7 +38,7 @@ public class MemMyClassFragment extends Fragment {
     public MemMyClassFragment() {
         // Required empty public constructor
     }
-
+    final String Tag = "MemMyClassFragment";
     List<Map<String, Object>> myClassList;
     ListView myClass_listView;
     @Override
@@ -55,14 +55,14 @@ public class MemMyClassFragment extends Fragment {
         memMap.put("mem_no", vo.mem_no);
         nowMem = memMap.toString();
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
-        Log.i("테스트", "nowMem : " + nowMem);
+        Log.i(Tag, "nowMem : " + nowMem);
         try {
             TomcatSend tomcatSend = new TomcatSend();
             result = tomcatSend.execute(reqUrl, nowMem).get();
         } catch (Exception e){
-            Log.i("테스트", "Exception : "+e.toString());
+            Log.i(Tag, "Exception : "+e.toString());
         }
-        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
+        Log.i(Tag, "톰캣서버에서 읽어온 정보 : "+result);
 
         if(result != null){
             Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
@@ -71,7 +71,7 @@ public class MemMyClassFragment extends Fragment {
         }
         Gson g = new Gson();
         myClassList = (List<Map<String, Object>>)g.fromJson(result, listType);
-        Log.i("테스트", "myClassList : " + myClassList);
+        Log.i(Tag, "myClassList : " + myClassList);
         ////////////////////////////////////DB 연동 끝////////////////////////////////////
 
         MyClassAdapter myClassAdapter = new MyClassAdapter(context, R.layout.myclass_list_item, myClassList);

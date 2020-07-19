@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="30sp"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:scrollbarStyle="outsideInset"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_cont_detail_title"
+                android:fontFamily="@font/font"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textStyle="bold"
+                android:text="요가원"
+                android:textSize="24sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/icon_close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:backgroundTint="#00FFFFFF"
+                app:srcCompat="@drawable/icon_close_s" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_cont_detail_img"
+        android:layout_width="match_parent"
+        android:layout_height="340sp"
+        android:layout_marginTop="20sp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_pr_test" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50sp">
+
+
+            <LinearLayout
+                android:layout_width="200sp"
+                android:layout_height="50sp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/ib_prHeart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/cont_heart_empty" />
+
+                <TextView
+                    android:id="@+id/tv_cont_detail_likeNum"
+                    android:layout_marginLeft="3sp"
+                    android:layout_width="30sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:text="0"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="45sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10sp"
+                    android:gravity="center_vertical"
+                    android:text="등록일: "
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_cont_detail_cont_date"
+                    android:layout_marginLeft="0sp"
+                    android:layout_width="75sp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:text="2020-07-02"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="50sp">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="25sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0sp"
+                    android:adjustViewBounds="true"
+                    android:gravity="center"
+                    android:scaleType="fitEnd"
+                    app:srcCompat="@drawable/icon_share" />
+            </LinearLayout>
+        </LinearLayout>
+        <!--구분 라인-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_marginTop="0sp"
+            android:layout_marginBottom="0sp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/tv_cont_detail_conts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20sp"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:maxWidth="5.0dip"
+            android:minWidth="10.0dip"
+            android:scrollHorizontally="false"
+            android:text="텍스트가 들어올 곳입니다.
+                        \n텍스트가 들어올 곳입니다.
+
+                          "
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

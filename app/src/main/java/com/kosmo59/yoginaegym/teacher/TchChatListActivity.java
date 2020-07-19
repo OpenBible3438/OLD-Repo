@@ -50,18 +50,17 @@ public class TchChatListActivity extends AppCompatActivity {
 
         Log.i(TCH_CHAT_LOG, "호출 성공");
         String result = null;
-        String reqUrl = "android/jsonClsMemList.gym"; //수업별 수강생 조회
+        String reqUrl = "android/jsonTchChatMemList.gym"; //전체 회원 조회
         Map<String, Object> pMap = new HashMap<>();
-        //강사 번호를 넘겨줘야됨. 나강사 번호
-        pMap.put("cls_no",2007401);
+        pMap.put("tch_no",Integer.parseInt(vo.getTchNum()));
         Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
         try {
             TomcatSend tomcatSend = new TomcatSend();
             result = tomcatSend.execute(reqUrl, pMap.toString()).get();
         } catch (Exception e){
-            Log.i("테스트", "Exception : "+e.toString());
+            Log.i("TchChatListActivity", "Exception : "+e.toString());
         }
-        Log.i("테스트", "톰캣서버에서 읽어온 정보 : "+result);
+        Log.i("TchChatListActivity", "톰캣서버에서 읽어온 정보 : "+result);
 
 //        if(result != null){
 //            Toast.makeText(TchChatListActivity.this, result, Toast.LENGTH_SHORT).show();

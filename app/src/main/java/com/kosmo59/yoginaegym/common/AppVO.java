@@ -23,6 +23,26 @@ public class AppVO extends Application {
         this.cls_no = cls_no;
     }
 
+    /* 강사에서 수강생 볼 때 mem_no 저장하기 */
+    public int tch_cho_mem_no = 0;
+    public int getTch_cho_mem_no() {
+        return tch_cho_mem_no;
+    }
+    public void setTch_cho_mem_no(int tch_cho_mem_no) {
+        this.tch_cho_mem_no = tch_cho_mem_no;
+    }
+
+    /* 강사에서 수업 조회할 때 스피너 선택하면 gym_no 저장하기 */
+    public int tch_cho_gym_no = 0;
+    public int getTch_cho_gym_no() {
+        return tch_cho_gym_no;
+    }
+    public void setTch_cho_gym_no(int tch_cho_gym_no) {
+        this.tch_cho_gym_no = tch_cho_gym_no;
+    }
+
+
+
     /* 회원 */
     public String memberName = null;
     public String memberId = null;
@@ -117,6 +137,9 @@ public class AppVO extends Application {
 
     public void setTch_no(int tch_no) {
         this.tch_no = tch_no;
+    }
+    public int getTch_no(int tch_no) {
+        return this.tch_no;
     }
 
     public String getTchName() {

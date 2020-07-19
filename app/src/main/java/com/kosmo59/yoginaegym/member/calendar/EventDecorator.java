@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.kosmo59.yoginaegym.member.MemTimeTableAFragment;
 import com.kosmo59.yoginaegym.teacher.TchCalActivity;
+import com.kosmo59.yoginaegym.teacher.TchCalFragment;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -31,6 +32,12 @@ public class EventDecorator implements DayViewDecorator {
 
     public EventDecorator(int color, Collection<CalendarDay> dates, TchCalActivity context) {
       // drawable = context.getResources().getDrawable(R.layout.more);
+        this.color = color;
+        this.dates = new HashSet<>(dates);
+        Log.i("테스트", "dates : " + dates);
+    }
+
+    public EventDecorator(int color, Collection<CalendarDay> dates, TchCalFragment context) {
         this.color = color;
         this.dates = new HashSet<>(dates);
         Log.i("테스트", "dates : " + dates);

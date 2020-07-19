@@ -1,4 +1,4 @@
-package com.kosmo59.yoginaegym.member;
+package com.kosmo59.yoginaegym.teacher;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
@@ -40,7 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
-public class MemTimeTableAFragment extends Fragment {
+public class TchCalFragment extends Fragment {
     Dialog dlg = null;
 
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
@@ -51,8 +50,8 @@ public class MemTimeTableAFragment extends Fragment {
     SQLiteDatabase db = null;
     AppVO vo = null;
 
-    public MemTimeTableAFragment() {
-        Log.i("테스트", "MemTimeTableAFragment 호출");
+    public TchCalFragment() {
+        Log.i("TchCalFragment", "TchCalFragment 호출");
 
         // Required empty public constructor
     }
@@ -60,15 +59,15 @@ public class MemTimeTableAFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        final View view = inflater.inflate(R.layout.fragment_mem_time_table_a, container, false);
-        Log.i("테스트", "onCreateView 호출");
+        final View view = inflater.inflate(R.layout.fragment_tch_cal, container, false);
+        Log.i("TchCalFragment", "onCreateView 호출");
         context = container.getContext();
         gymDBHelper = new GymDBHelper(this.context);
         db = gymDBHelper.getWritableDatabase();
         vo = (AppVO) this.context.getApplicationContext();
 
-        materialcalendarview = (MaterialCalendarView) view.findViewById(R.id.calendarView);
-        Log.i("테스트", "materialcalendarview : " + materialcalendarview);
+        materialcalendarview = (MaterialCalendarView) view.findViewById(R.id.calendarView_tch);
+        Log.i("TchCalFragment", "materialcalendarview : " + materialcalendarview);
 
         materialcalendarview.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
@@ -82,8 +81,8 @@ public class MemTimeTableAFragment extends Fragment {
                 oneDayDecorator);
 ///////////////////////////////SQLite /////////////////////////////////////////////
         String log_days_sel = "SELECT DISTINCT(ex_date)" +
-                " FROM mem_log" +
-                " WHERE mem_no ="+vo.mem_no +
+                " FROM tch_log" +
+                " WHERE tch_no ="+vo.getTchNum() +
                 " ORDER BY ex_date desc";
         Log.i("테스트", "log_days_sel : " + log_days_sel);
         String[] log_days = null;
@@ -93,12 +92,12 @@ public class MemTimeTableAFragment extends Fragment {
             int cnt = 0;
             while(cursor.moveToNext()){
                 log_days[cnt++] = cursor.getString(0);
-                Log.i("테스트", "log_days : " + log_days);
+                Log.i("TchCalFragment", "log_days : " + log_days);
             }
         }
         if(log_days == null){
             log_days = new String[1];
-            log_days[0] = "2020-02-10";
+            log_days[0] = "2000-02-10";
         }
         ///////////////////////////////SQLite 끝/////////////////////////////////////////////
         new ApiSimulator(log_days).executeOnExecutor(Executors.newSingleThreadExecutor());
@@ -131,7 +130,7 @@ public class MemTimeTableAFragment extends Fragment {
 
                 Log.i("shot_Day test", shot_Day + "");
                 //materialCalendarView.clearSelection();
-               // Toast.makeText(view.getContext(), shot_Day, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(view.getContext(), shot_Day, Toast.LENGTH_SHORT).show();
                 // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
                 dlg = new Dialog(context);
 
@@ -149,16 +148,16 @@ public class MemTimeTableAFragment extends Fragment {
                 TextView tv_stime = dlg.findViewById(R.id.tv_stime);
                 TextView tv_etime = dlg.findViewById(R.id.tv_etime);
                 String log_sel = "SELECT log_title, log_cont, reg_date, ex_date, ex_stime, ex_etime"
-                        + " FROM mem_log"
-                        + " WHERE mem_no = "+vo.mem_no
+                        + " FROM tch_log"
+                        + " WHERE tch_no = "+vo.getTchNum()
                         + " AND ex_date = '" + shot_Day + "'";
-                Log.i("MemTimeTableAFragment", "log_sel : " + log_sel);
+                Log.i("TchCalFragment", "log_sel : " + log_sel);
                 Cursor cursor = db.rawQuery(log_sel, null);
-                Log.i("MemTimeTableAFragment", "cursor.getCount() : " + cursor.getCount());
+                Log.i("TchCalFragment", "cursor.getCount() : " + cursor.getCount());
                 if(cursor.getCount()>0){
                     while(cursor.moveToNext()){
                         int cnt = 0;
-                        Log.i("MemTimeTableAFragment", "cursor.getString(cnt++) : " + cursor.getString(cnt));
+                        Log.i("TchCalFragment", "cursor.getString(cnt++) : " + cursor.getString(cnt));
                         tv_log_title.setText(cursor.getString(cnt++));
                         tv_log_cont.setText(cursor.getString(cnt++));
                         tv_regDate.setText(cursor.getString(cnt++));
@@ -238,7 +237,7 @@ public class MemTimeTableAFragment extends Fragment {
 //                return;
 //            }
             Log.i("테스트", "onPostExecute 호출");
-            materialcalendarview.addDecorator(new EventDecorator(Color.BLUE, calendarDays, MemTimeTableAFragment.this));
+            materialcalendarview.addDecorator(new EventDecorator(Color.BLUE, calendarDays, TchCalFragment.this));
             Log.i("테스트", "addDecorator 다음 코드");
         }
 

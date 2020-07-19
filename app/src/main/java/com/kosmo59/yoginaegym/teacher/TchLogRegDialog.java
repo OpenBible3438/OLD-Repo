@@ -1,4 +1,4 @@
-package com.kosmo59.yoginaegym.member;
+package com.kosmo59.yoginaegym.teacher;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -16,20 +16,18 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
-
-import androidx.fragment.app.Fragment;
 
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.common.GymDBHelper;
+import com.kosmo59.yoginaegym.teacher.TchLogFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class MemLogRegDialog {
+public class TchLogRegDialog {
     private Context context;
     private ImageButton icon_close;
     private ImageButton icon_date;
@@ -43,18 +41,18 @@ public class MemLogRegDialog {
     private TextView tv_stime;
     private TextView tv_etime;
     private Button btn_logDetail_ins;
-    MemLogFragment memlog;
+    TchLogFragment tchlog;
     GymDBHelper gymDBHelper = null;
     SQLiteDatabase db = null;
     AppVO vo = null;
     int hour = 0, minute = 0;
     Dialog dlg = null;
-    public MemLogRegDialog(Context context, MemLogFragment memlog) {
+    public TchLogRegDialog(Context context, TchLogFragment tchlog) {
         this.context = context;
-        this.memlog = memlog;
+        this.tchlog = tchlog;
     }
 
-    public void openMemLogRegDialog() {
+    public void openTchLogRegDialog() {
 
         // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
         dlg = new Dialog(context);
@@ -66,13 +64,13 @@ public class MemLogRegDialog {
         dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         // 커스텀 다이얼로그의 레이아웃을 설정한다.
-        dlg.setContentView(R.layout.dialog_mem_log_reg);
+        dlg.setContentView(R.layout.dialog_tch_log_reg);
 
         //---다이얼로그 화면 사이즈 조정 시작
         WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
+        dlg.getWindow().setAttributes((WindowManager.LayoutParams)params);
         //---다이얼로그 화면 사이즈 조정 끝
 
         // 커스텀 다이얼로그를 노출한다.
@@ -211,28 +209,28 @@ public class MemLogRegDialog {
 
     //등록 버튼 눌렀을 때
     public void log_insAction(){
-        Log.i("MemLogRegDialog", "lof_insAction() 호출");
+        Log.i("TchLogRegDialog", "log_insAction() 호출");
         String log_cont = et_log_cont.getText().toString();
         String log_title = et_log_title.getText().toString();
         String ex_date = tv_exDate.getText().toString();
         String logRegDate = tv_reg_date.getText().toString();
         String stime = tv_stime.getText().toString();
         String etime = tv_etime.getText().toString();
-        int mem_no = vo.mem_no;
+        int tch_no = Integer.parseInt(vo.getTchNum());
 
-        String mem_log_ins = "INSERT INTO mem_log (mem_no, reg_date, ex_date, log_title, ex_stime, ex_etime, log_cont)" +
-                "VALUES ("+mem_no+", '"+logRegDate+"', '"+ex_date+"', '"+log_title+"', '"+stime+"', '"+etime+"', '"+log_cont+"')";
-        Log.i("MemLogRegDialog", "mem_log_ins : " + mem_log_ins);
-        db.execSQL(mem_log_ins);
-        Cursor cursor = db.rawQuery("SELECT * FROM mem_log", null);
+        String tch_log_ins = "INSERT INTO tch_log (tch_no, reg_date, ex_date, log_title, ex_stime, ex_etime, log_cont)" +
+                "VALUES ("+tch_no+", '"+logRegDate+"', '"+ex_date+"', '"+log_title+"', '"+stime+"', '"+etime+"', '"+log_cont+"')";
+        Log.i("TchLogRegDialog", "tch_log_ins : " + tch_log_ins);
+        db.execSQL(tch_log_ins);
+        Cursor cursor = db.rawQuery("SELECT * FROM tch_log", null);
         while(cursor.moveToNext()){
-            Log.i("MemLogRegDialog", cursor.getString(0)+ ", " + cursor.getString(1) + ", " + cursor.getString(2)
+            Log.i("TchLogRegDialog", cursor.getString(0)+ ", " + cursor.getString(1) + ", " + cursor.getString(2)
                     + ", " + cursor.getString(3)+ ", " + cursor.getString(4)+ ", " + cursor.getString(5)
                     + ", " + cursor.getString(6)+ ", " + cursor.getString(7));
             dlg.dismiss();
             /////***********************등록되었습니다 알림창 띄워주기*******************///////
             /////***********************일지 목록 새로 고침 처리 해줘야 한다..!*******************///////
-            memlog.refresh();
+            tchlog.refresh();
         }
     }
 }
