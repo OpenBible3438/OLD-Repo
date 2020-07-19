@@ -3,6 +3,7 @@ package com.kosmo59.yoginaegym.gym;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,9 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +33,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -76,7 +80,7 @@ public class PRImageAdapter extends ArrayAdapter {
         Log.i("PRImageAdapter", "호출 성공");
         Log.i("PRImageAdapter", "prImageList.size() : "+prImageList.size());
 
-        ImageView imageView;
+        final ImageView imageView;
         imageView = new ImageView(context);
         imageView.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT,350));
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -100,6 +104,7 @@ public class PRImageAdapter extends ArrayAdapter {
                 final Dialog dlg = new Dialog(context);
                 dlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dlg.setContentView(R.layout.dialog_p_r);
+
                 WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
                 params.width = WindowManager.LayoutParams.MATCH_PARENT;
                 params.height = WindowManager.LayoutParams.MATCH_PARENT;
@@ -111,8 +116,9 @@ public class PRImageAdapter extends ArrayAdapter {
                 String reqUrl = "android/jsonContentsList.gym";
                 //Toast.makeText(context, "file_seq = "+arrayFile_seq[position], Toast.LENGTH_SHORT).show();
                 //사진 번호 넘겨주기
-                Map<String, Object> pMap = null;
-                pMap.put("file_seq", arrayFile_seq[position]);
+                int file_seq = arrayFile_seq[position];
+                Map<String, Object> pMap = new HashMap<>();
+                pMap.put("file_seq", file_seq);
                 Log.i("PRDetail", "file_seq : "+arrayFile_seq[position]);
                 Type listType = new TypeToken<List<Map<String, Object>>>() {}.getType();
                 try {
@@ -125,10 +131,15 @@ public class PRImageAdapter extends ArrayAdapter {
                 Gson g = new Gson();
                 List<Map<String, Object>> contDetailList = (List<Map<String, Object>>) g.fromJson(result, listType);
                 Log.i("PRDetail", "contDetailList.size() : " + contDetailList.size());
-
-
+                PRDialog prDialog = new PRDialog(context, R.layout.pr_detail_item, contDetailList);
+                ListView lv_gym_cont_detail = dlg.findViewById(R.id.lv_gym_cont_detail);
+                lv_gym_cont_detail.setAdapter(prDialog);
+                //클릭할 때 이미지 그대로 set
+                //ImageView iv_cont_detail_img = dlg.findViewById(R.id.iv_cont_detail_img);
+                //iv_cont_detail_img.setImageBitmap(((BitmapDrawable)imageView.getDrawable()).getBitmap());
                 //다이얼로그 열기
-                //dlg.show();
+                dlg.show();
+
             }
         });
 
