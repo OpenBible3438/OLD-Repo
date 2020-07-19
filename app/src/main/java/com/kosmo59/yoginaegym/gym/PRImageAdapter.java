@@ -128,6 +128,7 @@ public class PRImageAdapter extends ArrayAdapter {
                     Log.i("PRDetail", "Exception : "+e.toString());
                 }
                 Log.i("PRDetail", "톰캣서버에서 읽어온 정보"+result);
+                Log.i("PRDetail", "톰캣서버에서 읽어온 정보"+result);
                 Gson g = new Gson();
                 List<Map<String, Object>> contDetailList = (List<Map<String, Object>>) g.fromJson(result, listType);
                 Log.i("PRDetail", "contDetailList.size() : " + contDetailList.size());
