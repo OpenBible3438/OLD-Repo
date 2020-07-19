@@ -139,7 +139,9 @@ public class TchCalFragment extends Fragment {
 
                 // 커스텀 다이얼로그의 레이아웃을 설정한다.
                 dlg.setContentView(R.layout.fragment_mem_time_table_a_detail);
-
+                ((TextView)dlg.findViewById(R.id.tv_log)).setText("내 일정");
+                ((TextView)dlg.findViewById(R.id.log_title)).setText("일정 이름");
+                ((TextView)dlg.findViewById(R.id.log_day)).setText("내 일정");
                 ///////////////////////////////////SQLite DB연동/////////////////////////////////
                 TextView tv_log_title = dlg.findViewById(R.id.tv_log_title);
                 TextView tv_log_cont = dlg.findViewById(R.id.tv_log_cont);
