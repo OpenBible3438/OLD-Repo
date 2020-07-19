@@ -157,6 +157,14 @@ public class AndroidLogic {
 		logger.info("memTchList.size() : " + memTchList.size());
 		return memTchList;
 	}	
+	//강사가 수업하고 있는 매장 구하기
+		public List<Map<String, Object>> getTchGymList(Map<String, Object> pMap) throws SQLException  {
+			logger.info("AndroidLogic - getTchGymList() 호출");
+			List<Map<String, Object>> tchGymList = null;
+			tchGymList = aDao.getTchGymList(pMap);
+			logger.info("tchGymList.size() : " + tchGymList.size());
+			return tchGymList;
+		}	
 	//강사의 전체 회원 리스트(메시지에 사용) 성경추가
 	public List<Map<String, Object>> getTchChatMemList(Map<String, Object> pMap) throws SQLException  {
 		logger.info("AndroidLogic - getTchChatMemList() 호출");

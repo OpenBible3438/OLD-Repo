@@ -202,6 +202,14 @@ public class AndroidDao {
 			logger.info("getContentsList.size() : " + gymList.size());
 			return gymList;
 		}
+		//강사가 수업하고 있는 매장 구하기
+		public List<Map<String, Object>> getTchGymList(Map<String, Object> pMap) throws SQLException  {
+			logger.info("AndroidDao - getTchGymList() 호출");
+			List<Map<String, Object>> tchGymList = null;
+			tchGymList = sqlSession.selectList("getTchGymList_and", pMap);
+			logger.info("tchGymList.size() : " + tchGymList.size());
+			return tchGymList;
+		}	
 	
 // 김승현
 	

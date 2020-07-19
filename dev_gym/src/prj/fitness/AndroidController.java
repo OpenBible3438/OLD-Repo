@@ -196,6 +196,11 @@ public class AndroidController implements Controller{
 					logger.info("selResult : " + selResult);
 					mav.type = "json";
 				}break;
+				case "jsonTchGymList":{//강사가 수업하고 있는 매장 구하기
+					selResult = aLogic.getTchGymList(pMap);
+					logger.info("selResult : " + selResult);
+					mav.type = "json";
+				}break;
 				case "jsonTchChatMemList":{//강사의 전체 회원 리스트(메시지에 사용) 성경추가
 					selResult = aLogic.getTchChatMemList(pMap);
 					logger.info("selResult : " + selResult);

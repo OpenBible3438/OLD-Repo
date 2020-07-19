@@ -87,7 +87,7 @@
 	<!-- 강사별 수업 목록 가져오기(수강생 수 포함) -->
 	<select id="getTchClassList_and" parameterType="map" resultType="map">
 		SELECT c.cls_no, c.cls_name, c.cls_info, c.cls_kind, c.cls_cnt, c.cls_days, c.cls_day, cls_s_date
-			 , cls_e_date, c.cls_state, COUNT(p.pay_no)regis_num, COUNT(DISTINCT(p.mem_no)) mem_num, cls_stime, cls_etime
+			 , cls_e_date, c.cls_state, COUNT(p.pay_no)regis_num, NVL(COUNT(DISTINCT(p.mem_no)),0) mem_num, cls_stime, cls_etime
 		  FROM class c, pay p
 		 WHERE c.cls_no = p.cls_no(+)
 		 <if test="tch_no != null">
@@ -213,6 +213,15 @@
 		<if test="tch_no != null and tch_no.length >0 ">
 		 	  AND t.tch_no = #{tch_no}
 		</if>
+	</select>
+	<!-- 강사 - 수업하고 있는 매장 리스트 가져오기 -->
+	<select id="getTchGymList_and" parameterType="map" resultType="map">
+		SELECT g.gym_no, g.gym_name
+		  FROM gym g, class c
+		 WHERE g.gym_no = c.gym_no
+		   AND c.tch_no = #{tch_no}
+		   AND c.cls_state = '진행'
+		GROUP BY g.gym_no, g.gym_name
 	</select>
 	<!-- 회원 - 회원이 듣는 수업, 매장 가져오기 -->
 	<select id="getMyGymList_and" parameterType="map" resultType="map">
