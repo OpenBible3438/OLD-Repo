@@ -306,6 +306,9 @@
 		   <if test="mem_no != null">
 				AND g.mem_no = #{mem_no}
 		   </if>
+		   <if test="file_seq != null">
+		   		AND i.file_seq = #{file_seq} 
+		   	</if>
 		GROUP BY cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name), cont_like, cont_date, cont_time, i.file_seq
 		ORDER BY cont_date desc
    </select>
