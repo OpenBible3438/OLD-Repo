@@ -20,11 +20,15 @@ public class GymDBHelper extends SQLiteOpenHelper {
         String cr_mem_log = "CREATE TABLE mem_log (_id INTEGER PRIMARY KEY AUTOINCREMENT"
                         + ", mem_no INTEGER, reg_date TEXT, ex_date TEXT, log_title TEXT"
                         + ", ex_stime TEXT, ex_etime TEXT, log_cont TEXT);";
+        String cr_tch_log = "CREATE TABLE tch_log (_id INTEGER PRIMARY KEY AUTOINCREMENT"
+                        + ", tch_no INTEGER, reg_date TEXT, ex_date TEXT, log_title TEXT"
+                        + ", ex_stime TEXT, ex_etime TEXT, log_cont TEXT);";
         String cr_tch_memo = "CREATE TABLE tch_memo (_id INTEGER PRIMARY KEY AUTOINCREMENT"
-                           + ", tch_no INTEGER, mem_no INTEGER, mem_name TEXT"
+                           + ", tch_no INTEGER, mem_no INTEGER"
                            + ", memo_cont TEXT, req_date TEXT, upd_date TEXT)";
 
         db.execSQL(cr_mem_log);
+        db.execSQL(cr_tch_log);
         db.execSQL(cr_tch_memo);
     }
 

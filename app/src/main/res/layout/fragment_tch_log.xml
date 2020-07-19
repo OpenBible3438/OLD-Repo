@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".teacher.TchLogFragment">
+    android:orientation="vertical"
+    android:background="#EDEDED"
+    android:padding="30sp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--  일지 등록  -->
+    <!--======================================카드뷰 시작-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/dailyRecord_reg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="#ffffff">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20sp">
+            <TextView
+                android:lines="1"
+                android:text="여기를 눌러 새 일지를 작성하세요."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ListView
+        android:divider="#ffffff"
+        android:id="@+id/tch_log_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -19,30 +19,43 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentTop="true"/>
 
-        <ScrollView
-            android:layout_marginTop="?attr/actionBarSize"
-            android:layout_marginBottom="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
             <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기 위로 건들면 죽음 ☆★☆★☆★☆★☆★☆★☆★-->
             <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
 
             <LinearLayout
+                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_marginBottom="?attr/actionBarSize"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-                    android:id="@+id/calendarView_tch"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tl_tchTimeTableTab"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:mcv_selectionColor="#B2EBF4"
-                    app:mcv_showOtherDates="defaults" />
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="월별보기" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="일정" />
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/vp_tchTimeTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+                </androidx.viewpager.widget.ViewPager>
+
 
             </LinearLayout>
             <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
             <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기 아래로 건들면 죽음 ☆★☆★☆★☆★☆★☆★☆★-->
-        </ScrollView>
 
         <include
             layout="@layout/common_bottom_bar"
