@@ -1,14 +1,29 @@
 package com.kosmo59.yoginaegym.gym;
 
 import com.kosmo59.yoginaegym.R;
+import com.kosmo59.yoginaegym.common.TomcatImg;
+
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-public class PRDialog {
+import androidx.annotation.NonNull;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
+import java.util.Map;
+
+public class PRDialog extends ArrayAdapter {
     //1이면 눌려있을 때, 0이면 안 눌려있을 때
     private int check_num = 0;
     //이미지 버튼
@@ -20,9 +35,55 @@ public class PRDialog {
     private int prHeartNum=0;
 
     private Context context;
+    List<Map<String, Object>> contDetailList = null;
+    int resourceId;
 
-    public PRDialog(Context context) {
+    public PRDialog(@NonNull Context context, int resource, List contDetailList) {
+        super(context, resource, contDetailList);
         this.context = context;
+        this.resourceId = resource;
+        this.contDetailList = contDetailList;
+    }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+    @Override
+    public int getCount() {
+        return contDetailList.size();
+    }
+    @Override
+    public Map<String, Object> getItem(int position) {
+        return contDetailList.get(position);
+    }
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent){
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflater.inflate(this.resourceId, parent, false);
+
+        Log.i("PRDialog", "호출 성공");
+        TextView tv_cont_detail_title = convertView.findViewById(R.id.tv_cont_detail_title);
+        ImageView iv_cont_detail_img = convertView.findViewById(R.id.iv_cont_detail_img);
+        TextView tv_cont_detail_likeNum = convertView.findViewById(R.id.tv_cont_detail_likeNum);
+        TextView tv_cont_detail_cont_date = convertView.findViewById(R.id.tv_cont_detail_cont_date);
+        TextView tv_cont_detail_conts = convertView.findViewById(R.id.tv_cont_detail_conts);
+
+        tv_cont_detail_title.setText(contDetailList.get(position).get("WHO").toString());
+        tv_cont_detail_likeNum.setText(contDetailList.get(position).get("CONT_LIKE").toString().substring(0, contDetailList.get(position).get("CONT_LIKE").toString().length()-2));
+        tv_cont_detail_cont_date.setText(contDetailList.get(position).get("CONT_DATE").toString());
+        tv_cont_detail_conts.setText(contDetailList.get(position).get("CONT_CONT").toString());
+
+        try{
+            TomcatImg tomcatImg = new TomcatImg();
+            String imsi = contDetailList.get(position).get("FILE_SEQ").toString().substring(0, contDetailList.get(position).get("FILE_SEQ").toString().length()-2);
+            String bitImg = tomcatImg.execute(imsi).get();
+            Bitmap bitmap = tomcatImg.getBitMap(bitImg);
+            iv_cont_detail_img.setImageBitmap(bitmap);
+        }catch (Exception e){
+            Log.i("PRDialog", "Image Exception : "+e.toString());
+        }
+
+        return convertView;
     }
 
     // 호출할 다이얼로그 함수를 정의한다.

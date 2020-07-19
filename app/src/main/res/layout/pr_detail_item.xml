@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_cont_detail_title"
                 android:fontFamily="@font/font"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -45,13 +46,12 @@
 
 
     <ImageView
+        android:id="@+id/iv_cont_detail_img"
         android:layout_width="match_parent"
         android:layout_height="340sp"
         android:layout_marginTop="20sp"
         android:scaleType="centerCrop"
-
-        android:src="@drawable/img_pr_test"
-        />
+        android:src="@drawable/img_pr_test" />
 
 
     <LinearLayout
@@ -82,7 +82,7 @@
                     app:srcCompat="@drawable/cont_heart_empty" />
 
                 <TextView
-                    android:id="@+id/tv_prHeartNum"
+                    android:id="@+id/tv_cont_detail_likeNum"
                     android:layout_marginLeft="3sp"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
@@ -101,6 +101,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/tv_cont_detail_cont_date"
                     android:layout_marginLeft="0sp"
                     android:layout_width="75sp"
                     android:layout_height="25sp"
@@ -134,6 +135,7 @@
             android:background="#000000" />
 
         <TextView
+            android:id="@+id/tv_cont_detail_conts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20sp"
