@@ -158,6 +158,7 @@
 	   AND t.tch_no = c.tch_no
 	   AND g.gym_no = t.gym_no
 	   AND mem_no = #{mem_no}
+  ORDER BY pay_date DESC
 	</select>
 	<!-- map에 사용 될 매장 리스트 구하기 -->
 	<select id="getGymList_and" parameterType="map" resultType="map">
@@ -431,6 +432,7 @@
            AND G.GYM_NO = C.GYM_NO
            AND P.MEM_NO = M.MEM_NO
            AND C.GYM_NO = #{gym_no}
+      ORDER BY r.rev_date DESC 
 	</select>
 	<!-- 강사> 수업/회원관리 > 수업리스트 > 수강생 보기> 인바디(그 회원에 대한) -->
 	<select id="getTchClsMemIbd" parameterType="map" resultType="map">
@@ -494,6 +496,7 @@
            AND C.GYM_NO = GYM.GYM_NO
            AND P.MEM_NO = M.MEM_NO
            AND M.MEM_NO = #{mem_no}
+       ORDER BY r.rev_date DESC
 	</select>
 	
    	<!-- 회원 > 내정보 > COMBO BOX(수업리스트 )  -->
