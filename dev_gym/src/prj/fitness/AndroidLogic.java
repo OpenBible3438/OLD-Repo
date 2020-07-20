@@ -27,6 +27,14 @@ public class AndroidLogic {
 	}
 	
 // 편성경
+	//회원 내 프로필
+	public List<Map<String, Object>> getMemberProfile (Map<String, Object> pMap) throws SQLException{
+		logger.info("AndroidLogic - getMemberProfile() 호출 ");
+		List<Map<String, Object>> memProfList = null;
+		memProfList = aDao.getMemberProfile(pMap);
+		mbMgr.clossSession(sqlSession);
+		return memProfList;
+	}
 	//회원 로그인
 	public List<Map<String, Object>> getMemberLogin(Map<String, Object> pMap) throws SQLException {
 		logger.info("AndroidLogic - getMemberLogin() 호출 ");

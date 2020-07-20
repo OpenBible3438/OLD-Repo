@@ -7,6 +7,14 @@
 		<result property="filedata" column="FILEDATA" jdbcType="BLOB"/>
 	</resultMap>
 <!-- ======================= 편성경 ======================= -->
+	<!-- 회원 내 정보 -->
+	<select id="getMemberProfile" parameterType="map" resultType="map">
+		select m.mem_name, m.mem_tel, m.mem_addr,i.file_seq
+    	  from member m, images i
+         where m.mem_no = i.typecode
+           and i.type = 'mem'
+           and m.mem_no = #{mem_no}
+	</select>
 	<!-- 회원 로그인 -->
 	<select id="getMemberLogin" parameterType="map" resultType="map">
 		SELECT mem_name, mem_nickname, mem_no
@@ -310,7 +318,7 @@
 		   </if>
 		   <if test="file_seq != null">
 		   		AND i.file_seq = #{file_seq} 
-		   	</if>
+		   </if>
 		GROUP BY cont_seq, c.cont_cont, DECODE(cont_type, 'gym', gym_name, 'tch', t.tch_name, 'mem', m.mem_name), cont_like, cont_date, cont_time, i.file_seq
 		ORDER BY cont_date desc
    </select>
