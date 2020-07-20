@@ -107,7 +107,7 @@ public class PRImageAdapter extends ArrayAdapter {
 
                 WindowManager.LayoutParams params = dlg.getWindow().getAttributes();
                 params.width = WindowManager.LayoutParams.MATCH_PARENT;
-                params.height = WindowManager.LayoutParams.MATCH_PARENT;
+                params.height = WindowManager.LayoutParams.WRAP_CONTENT;
                 dlg.getWindow().setAttributes((android.view.WindowManager.LayoutParams)params);
 
                 //DB 연동
