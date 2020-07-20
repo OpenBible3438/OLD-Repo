@@ -36,6 +36,7 @@ public class MemMainActivity extends AppCompatActivity {
     ImageView iv_memQr = null;
     TextView tv_memQrName=null;
     TextView tv_memNumberText=null;
+    TextView tv_memQrNumber = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,8 @@ public class MemMainActivity extends AppCompatActivity {
                             tv_memQrName.setText(vo.getMemberName()+" 회원님");
                             tv_memNumberText= dlg.findViewById(R.id.tv_memNumberText);
                             tv_memNumberText.setText("회원번호");
+                            tv_memQrNumber = dlg.findViewById(R.id.tv_memQrNumber);
+                            tv_memQrNumber.setText(vo.getMem_no()+"");
                         }catch (Exception e){
                             Log.i("QR Make", e.toString());
                         }

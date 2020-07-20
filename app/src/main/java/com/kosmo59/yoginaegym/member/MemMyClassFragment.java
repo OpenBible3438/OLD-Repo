@@ -65,9 +65,9 @@ public class MemMyClassFragment extends Fragment {
         Log.i(Tag, "톰캣서버에서 읽어온 정보 : "+result);
 
         if(result != null){
-            Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(container.getContext(), result, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
+            //Toast.makeText(container.getContext(), "문제 발생.", Toast.LENGTH_LONG).show();
         }
         Gson g = new Gson();
         myClassList = (List<Map<String, Object>>)g.fromJson(result, listType);
