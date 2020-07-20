@@ -11,6 +11,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
 import com.kosmo59.yoginaegym.gym.GymProfileActivity;
+import com.kosmo59.yoginaegym.member.MemContentActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -115,7 +116,7 @@ public class TchMainActivity extends AppCompatActivity {
                         dlg.show();
                         break;
                     case R.id.bot_nav_cont:
-                        Intent intent_cont = new Intent(TchMainActivity.this, TchContentActivity.class);
+                        Intent intent_cont = new Intent(TchMainActivity.this, MemContentActivity.class);
                         startActivity(intent_cont);
                         break;
                     case R.id.bot_nav_msg:
