@@ -42,7 +42,7 @@ public class PRImageAdapter extends ArrayAdapter {
     Context context;
     List<Map<String, Object>> prImageList = null;
     int resourceId;
-
+    ImageView icon_share = null;
     int[] arrayFile_seq = null;
 
     public PRImageAdapter(@NonNull Context context, int resource, List prImageList) {
@@ -135,6 +135,7 @@ public class PRImageAdapter extends ArrayAdapter {
                 PRDialog prDialog = new PRDialog(context, R.layout.pr_detail_item, contDetailList);
                 ListView lv_gym_cont_detail = dlg.findViewById(R.id.lv_gym_cont_detail);
                 lv_gym_cont_detail.setAdapter(prDialog);
+
                 //클릭할 때 이미지 그대로 set
                 //ImageView iv_cont_detail_img = dlg.findViewById(R.id.iv_cont_detail_img);
                 //iv_cont_detail_img.setImageBitmap(((BitmapDrawable)imageView.getDrawable()).getBitmap());

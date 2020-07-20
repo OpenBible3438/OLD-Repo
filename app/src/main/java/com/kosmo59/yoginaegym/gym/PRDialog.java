@@ -29,7 +29,7 @@ public class PRDialog extends ArrayAdapter {
     //이미지 버튼
     private ImageButton ib_prHeart;
     private ImageButton icon_close;
-
+    ImageView icon_share;
     //하트 수
     private TextView tv_prHeartNum;
     private int prHeartNum=0;
@@ -67,7 +67,7 @@ public class PRDialog extends ArrayAdapter {
         TextView tv_cont_detail_likeNum = convertView.findViewById(R.id.tv_cont_detail_likeNum);
         TextView tv_cont_detail_cont_date = convertView.findViewById(R.id.tv_cont_detail_cont_date);
         TextView tv_cont_detail_conts = convertView.findViewById(R.id.tv_cont_detail_conts);
-
+        icon_share = convertView.findViewById(R.id.icon_share);
         tv_cont_detail_title.setText(contDetailList.get(position).get("WHO").toString());
         tv_cont_detail_likeNum.setText(contDetailList.get(position).get("CONT_LIKE").toString().substring(0, contDetailList.get(position).get("CONT_LIKE").toString().length()-2));
         tv_cont_detail_cont_date.setText(contDetailList.get(position).get("CONT_DATE").toString());
@@ -82,9 +82,21 @@ public class PRDialog extends ArrayAdapter {
         }catch (Exception e){
             Log.i("PRDialog", "Image Exception : "+e.toString());
         }
-
+        icon_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("PRDialog", "공유버튼 누름");
+            }
+        });
         return convertView;
     }
+
+    //카카오링크 호출
+    
+
+
+
+
 
     // 호출할 다이얼로그 함수를 정의한다.
     public void callFunction() {
@@ -127,13 +139,8 @@ public class PRDialog extends ArrayAdapter {
                 }
             }
         });
-        icon_close = dlg.findViewById(R.id.icon_close);
-        icon_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dlg.hide();
-            }
-        });
+
+
 
 
     }

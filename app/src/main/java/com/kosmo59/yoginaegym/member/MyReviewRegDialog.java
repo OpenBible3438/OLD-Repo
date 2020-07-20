@@ -47,9 +47,10 @@ public class MyReviewRegDialog {
     ArrayList<Integer> payNo;
     private long pay_no = 0;
     private List<Map<String, Object>> sclassList = null;
-
-    public MyReviewRegDialog(Context context) {
+    MyReviewFragment myReviewFragment = null;
+    public MyReviewRegDialog(Context context, MyReviewFragment myReviewFragment) {
         this.context = context;
+        this.myReviewFragment = myReviewFragment;
     }
 
     public void openMyReviewReg() {
@@ -201,6 +202,7 @@ public class MyReviewRegDialog {
                 } else if("0".equals(result)) {
                     Toast.makeText(context, "등록 실패.", Toast.LENGTH_LONG).show();
                 }
+                myReviewFragment.refresh();
             }
         });
     }

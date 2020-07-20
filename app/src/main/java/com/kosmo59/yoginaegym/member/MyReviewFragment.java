@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -80,12 +81,17 @@ public class MyReviewFragment extends Fragment {
         my_review_reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyReviewRegDialog myReviewRegDialog = new MyReviewRegDialog(context);
+                MyReviewRegDialog myReviewRegDialog = new MyReviewRegDialog(context, MyReviewFragment.this  );
                 myReviewRegDialog.openMyReviewReg();
             }
         });
         return view;
 
+    }
+    public void refresh() {
+        Log.e("테스트", "refresh");
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
     }
 
 }

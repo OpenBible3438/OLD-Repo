@@ -100,7 +100,7 @@ public class MemLogFragment extends Fragment {
     }
 
     public void refresh() {
-        Log.e("테스트", "refresh");
+        Log.e("MemLogFragment", "refresh");
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.detach(this).attach(this).commit();
     }

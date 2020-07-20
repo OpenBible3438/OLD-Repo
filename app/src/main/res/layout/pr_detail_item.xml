@@ -133,8 +133,9 @@
                 android:layout_height="50sp">
 
                 <ImageView
-                    android:layout_width="27dp"
-                    android:layout_height="25sp"
+                    android:id="@+id/icon_share"
+                    android:layout_width="19dp"
+                    android:layout_height="13dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="0sp"
                     android:adjustViewBounds="true"
