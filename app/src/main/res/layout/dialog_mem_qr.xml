@@ -9,7 +9,7 @@
         android:fontFamily="@font/font"
         android:layout_marginBottom="10dp"
         android:id="@+id/tv_memQrName"
-        android:text="테스트 회원님"
+        android:text="테스트"
         android:layout_marginTop="30dp"
         android:textSize="30sp"
         android:layout_gravity="center"

@@ -41,7 +41,7 @@
                 <ImageButton
                     android:id="@+id/icon_close_info"
                     android:layout_width="18dp"
-                    android:layout_height="13dp"
+                    android:layout_height="18dp"
                     android:backgroundTint="#00FFFFFF"
                     app:srcCompat="@drawable/icon_close_s" />
             </LinearLayout>
