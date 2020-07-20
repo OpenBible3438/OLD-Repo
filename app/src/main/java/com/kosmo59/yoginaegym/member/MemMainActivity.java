@@ -35,6 +35,7 @@ public class MemMainActivity extends AppCompatActivity {
     private AppVO vo = null;
     ImageView iv_memQr = null;
     TextView tv_memQrName=null;
+    TextView tv_memQrNumber=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +113,8 @@ public class MemMainActivity extends AppCompatActivity {
                             tv_memQrName = dlg.findViewById(R.id.tv_memQrName);
                             iv_memQr.setImageBitmap(bitmap); //만들어진 QR코드 붙이기
                             tv_memQrName.setText(vo.getMemberName()+" 회원님");
+                            tv_memQrNumber = dlg.findViewById(R.id.tv_memQrNumber);
+                            tv_memQrNumber.setText(vo.getMem_no()+"");
                         }catch (Exception e){
                             Log.i("QR Make", e.toString());
                         }
