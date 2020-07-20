@@ -26,6 +26,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/tch_name"
                     android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -55,6 +56,7 @@
             android:background="#000000" />
 
         <ImageView
+            android:id="@+id/tch_image"
             android:layout_width="match_parent"
             android:layout_height="340sp"
             android:scaleType="centerCrop"
@@ -159,35 +161,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/tch_id"
                         android:background="@android:color/transparent"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="테스트"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
-                    <EditText
+                    <TextView
+                        android:id="@+id/tch_gender"
                         android:background="@android:color/transparent"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="테스트"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
-                    <EditText
+                    <TextView
+                        android:id="@+id/tch_tel"
                         android:background="@android:color/transparent"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="010-2222-2222"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
-                    <EditText
+                    <TextView
+                        android:id="@+id/tch_career"
                         android:background="@android:color/transparent"
                         android:textSize="20sp"
                         android:gravity="left|center"
                         android:text="강사 3년차"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
-                    <EditText
+                    <TextView
+                        android:id="@+id/tch_intro"
                         android:background="@android:color/transparent"
                         android:layout_marginTop="2dp"
                         android:textSize="20sp"
