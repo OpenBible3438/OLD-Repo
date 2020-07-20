@@ -169,7 +169,6 @@
 		  , success : function(result){
 	          var data = JSON.stringify(result);
 	          var infoList = JSON.parse(data);
-			  
 			  gym_id= infoList[0].GYM_ID;
 			  gym_username= infoList[0].GYM_USERNAME;
 			  gym_usertell = infoList[0].GYM_USERTELL;   
