@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="30sp"
@@ -11,23 +12,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70sp"
+        android:layout_height="40dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_cont_detail_title"
                 android:fontFamily="@font/font"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="left|center"
+                android:layout_height="40dp"
+                android:gravity="left|top"
                 android:textStyle="bold"
                 android:text="요가원"
                 android:textSize="24sp" />
+
         </LinearLayout>
         <LinearLayout
             android:gravity="right"
@@ -41,8 +43,12 @@
                 app:srcCompat="@drawable/icon_close_s" />
         </LinearLayout>
 
-
     </LinearLayout>
+    <!--구분 라인-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000" />
 
 
     <ImageView
@@ -56,7 +62,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -137,16 +143,12 @@
         <TextView
             android:id="@+id/tv_cont_detail_conts"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
             android:gravity="top|left"
             android:inputType="textMultiLine"
-            android:maxWidth="5.0dip"
-            android:minWidth="10.0dip"
-            android:scrollHorizontally="false"
             android:text="텍스트가 들어올 곳입니다.
                         \n텍스트가 들어올 곳입니다.
-
                           "
             android:textSize="20sp" />
 
