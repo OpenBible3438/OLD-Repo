@@ -8,7 +8,6 @@
     <!-- 스크롤 뷰 안으로 코드추가 -->
 
     <LinearLayout
-        android:background="#0C009688"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
