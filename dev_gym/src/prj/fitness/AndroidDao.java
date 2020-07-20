@@ -23,6 +23,14 @@ public class AndroidDao {
 		this.sqlSession = sqlSession;
 	}
 // 편성경
+	//회원 프로필
+	public List<Map<String, Object>> getMemberProfile(Map<String, Object> pMap) throws SQLException{
+		logger.info("AndroidDao - getMemberProfile() 호출");
+		List<Map<String, Object>> memProfList = null;
+		memProfList = sqlSession.selectList("getMemberProfile",pMap);
+		logger.info("memProfList.size() : "+memProfList.size());
+		return memProfList;
+	}
 	//안드로이드 회원 로그인
 	public List<Map<String, Object>> getMemberLogin(Map<String, Object> pMap) throws SQLException{
 		logger.info("AndroidDao - getMemberLogin() 호출");
