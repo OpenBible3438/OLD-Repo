@@ -461,7 +461,9 @@
 			   AND I.TYPE = 'tch'
 			   AND I.TYPECODE = T.GYM_NO||T.TCH_NO
 			   AND T.TCH_NO = #{tch_no}
+		<if test="gym_no != null">
 			   AND T.GYM_NO = #{gym_no}
+		</if>
    </select>
    	<!-- getImg -->
 	<select id="getImg" parameterType="map" resultMap="getAndImage">
