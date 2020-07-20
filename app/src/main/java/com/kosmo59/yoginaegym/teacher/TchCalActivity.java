@@ -15,6 +15,7 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.member.MemContentActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -33,6 +34,7 @@ public class TchCalActivity extends AppCompatActivity {
     AppVO vo = null;
     ImageView iv_memQr = null;
     TextView tv_memQrName=null;
+    TextView tv_memQrNumber=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +82,15 @@ public class TchCalActivity extends AppCompatActivity {
                             tv_memQrName = dlg.findViewById(R.id.tv_memQrName);
                             iv_memQr.setImageBitmap(bitmap); //만들어진 QR코드 붙이기
                             tv_memQrName.setText(vo.getTchName()+" 강사님");
+                            tv_memQrNumber = dlg.findViewById(R.id.tv_memQrNumber);
+                            tv_memQrNumber.setText(vo.getTchNum()+"");
                         }catch (Exception e){
                             Log.i("QR Make", e.toString());
                         }
                         dlg.show();
                         break;
                     case R.id.bot_nav_cont:
-                        Intent intent_cont = new Intent(TchCalActivity.this, TchContentActivity.class);
+                        Intent intent_cont = new Intent(TchCalActivity.this, MemContentActivity.class);
                         startActivity(intent_cont);
                         TchCalActivity.this.finish();
                         break;
