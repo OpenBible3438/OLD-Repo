@@ -96,7 +96,7 @@ public class TchMyProfileActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+/*
         btn_tchMyProfile_upd = findViewById(R.id.btn_tchMyProfile_upd);
         btn_tchMyProfile_upd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,5 +113,6 @@ public class TchMyProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"이미지 찾기 해주세요.", Toast.LENGTH_LONG).show();
             }
         });
+ */
     }
 }
