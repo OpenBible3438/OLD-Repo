@@ -60,6 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp">
             <TextView
+
+                android:textColor="#00BCD4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="수업이름"
@@ -99,6 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp">
             <TextView
+                android:textColor="#00BCD4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="후기종류"
@@ -132,7 +135,7 @@
 
         <EditText
             android:id="@+id/review_reg"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="20dp"
             android:background="@null"
             android:textSize="20sp"
             android:gravity="left|top"
@@ -150,13 +153,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="26dp">
                 <TextView
-                    android:layout_gravity="left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="22sp"
+                    android:textColor="#00BCD4"
+                    android:gravity="left|center"
+                    android:layout_width="40dp"
+                    android:paddingTop="2dp"
+                    android:layout_height="match_parent"
+                    android:textSize="15sp"
                     android:text="점수"/>
                 <EditText
                     android:id="@+id/rev_star"
+                    android:layout_marginTop="2dp"
+                    android:textSize="22sp"
                     android:text="0"
                     android:layout_width="40dp"
                     android:layout_height="50dp"/>
