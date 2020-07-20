@@ -273,6 +273,7 @@
 		   AND p.mem_no = #{mem_no}
 		   AND i.type = 'tch'
            AND i.TYPECODE = T.GYM_NO||T.TCH_NO
+           AND C.GYM_NO = T.GYM_NO
 		GROUP BY t.tch_no, t.tch_name, t.tch_gender, t.tch_tel, i.file_seq
 	</select>
 	

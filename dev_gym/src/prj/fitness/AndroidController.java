@@ -210,21 +210,21 @@ public class AndroidController implements Controller{
 			// 김승현
 				
 			// 박준규
-				// 매장기준 콘텐츠 조회
-				case "jsonGymContentsList":{
-					selResult = aLogic.getGymContentsList(pMap);
-					mav.type="json";
-					logger.info("selResult : " + selResult);
-				}break;				
-			// 김현빈
-				
-			// 허준호
 				// 회원 기준 후기 조회
 				case "jsonMemReview":{
 					selResult = aLogic.getMemReview(pMap);
 					mav.type="json";
 					logger.info("selResult : " + selResult);
 				}break;
+			// 김현빈
+				
+			// 허준호
+				// 매장기준 콘텐츠 조회
+				case "jsonGymContentsList":{
+					selResult = aLogic.getGymContentsList(pMap);
+					mav.type="json";
+					logger.info("selResult : " + selResult);
+				}break;				
 				// 매장기준 강사 조회
 				case "jsonGymTeacherList":{
 					selResult = aLogic.getGymTeacherList(pMap);

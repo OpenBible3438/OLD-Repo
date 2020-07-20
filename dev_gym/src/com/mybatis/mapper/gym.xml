@@ -518,7 +518,7 @@
 	<!-- 매장 수정하기  -->
 	<update id="gymInfoUpd" parameterType="map">
 		UPDATE gym 
-		   set gym_pw = #{gym_pw}, gym_username = #{gym_username}
+		   set gym_pw = #{gym_pw}, gym_username = #{gym_username}, gym_name = #{gym_name}
 			 , gym_usertell = #{gym_usertell}, gym_tel = #{gym_tel}
 			 , gym_addr = #{gym_addr}, gym_addr_dtl = #{gym_addr_dtl}
 			 , gym_number = #{gym_number}, gym_info = #{gym_info}
