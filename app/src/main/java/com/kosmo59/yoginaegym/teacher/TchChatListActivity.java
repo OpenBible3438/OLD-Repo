@@ -35,6 +35,7 @@ import java.util.Map;
 public class TchChatListActivity extends AppCompatActivity {
     ImageView iv_memQr = null;
     TextView tv_memQrName=null;
+    TextView tv_memQrNumber=null;
 
     static AppVO vo = null;
     private ListView lv_tch_chat;
@@ -103,6 +104,8 @@ public class TchChatListActivity extends AppCompatActivity {
                             tv_memQrName = dlg.findViewById(R.id.tv_memQrName);
                             iv_memQr.setImageBitmap(bitmap); //만들어진 QR코드 붙이기
                             tv_memQrName.setText(vo.getTchName()+" 강사님");
+                            tv_memQrNumber = dlg.findViewById(R.id.tv_memQrNumber);
+                            tv_memQrNumber.setText(vo.getTchNum()+"");
                         }catch (Exception e){
                             Log.i("QR Make", e.toString());
                         }
