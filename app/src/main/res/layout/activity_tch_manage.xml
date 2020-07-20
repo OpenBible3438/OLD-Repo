@@ -31,15 +31,12 @@
                 android:layout_height="100dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:id="@+id/iv_memProImg"
-                    android:src="@drawable/people_sample2"
-                    android:layout_width="100dp"
+                    android:src="@drawable/default_profile"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"/>
-
-                <!-- 그냥 공백 주는 텍스트 -->
-                <View
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"/>
 
                 <LinearLayout
                     android:orientation="vertical"

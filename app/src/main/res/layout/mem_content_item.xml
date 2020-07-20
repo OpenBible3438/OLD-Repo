@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:paddingTop="20dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:elevation="0dp"
         android:id="@+id/cv_content1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,27 +21,43 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_mem_conts_title"
-                android:text="터짐 가산점"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:tint="#00BCD4"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/icon_gymname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                </ImageView>
+
+                <TextView
+                    android:fontFamily="@font/font"
+                    android:id="@+id/tv_mem_conts_title"
+                    android:text="터짐 가산점"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:paddingTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
 
             <!-- 사진부분 -->
             <ImageView
                 android:id="@+id/iv_mem_conts_img"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
+                android:layout_height="350dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/content_sample1" />
 
             <!-- 글자 들어가는 부분 -->
 
             <TextView
                 android:id="@+id/tv_mem_conts_text"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:text="모니터 해상도 너무 좋습니다 ~\n고화질 유튜브 보면서 운동 가능 "
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
@@ -74,4 +94,10 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+    <!--구분 라인-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="20dp"
+        android:background="#000000" />
 </LinearLayout>

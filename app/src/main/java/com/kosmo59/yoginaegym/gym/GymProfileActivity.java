@@ -17,6 +17,7 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.common.TomcatImg;
 import com.kosmo59.yoginaegym.common.TomcatSend;
 import com.kosmo59.yoginaegym.member.MemChatListActivity;
 import com.kosmo59.yoginaegym.member.MemContentActivity;
@@ -84,7 +85,15 @@ public class GymProfileActivity extends AppCompatActivity{
         TextView tv_memProName = (TextView) findViewById(R.id.tv_memProName);
         TextView tv_memProTel = (TextView) findViewById(R.id.tv_memProTel);
         TextView tv_memProAddr = (TextView) findViewById(R.id.tv_memProAddr);
-
+        ImageView tv_memProImg = (ImageView) findViewById(R.id.iv_memProImg);
+        try {
+            TomcatImg tomcatImg = new TomcatImg();
+            String resultImg = tomcatImg.execute(gymProf.get(0).get("FILE_SEQ").toString()).get();
+            Bitmap bitmap = tomcatImg.getBitMap(resultImg);
+            tv_memProImg.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         tv_memProName.setText(gymProf.get(0).get("GYM_NAME").toString());
         tv_memProTel.setText(gymProf.get(0).get("GYM_TEL").toString());
         tv_memProAddr.setText(gymProf.get(0).get("GYM_ADDR").toString());

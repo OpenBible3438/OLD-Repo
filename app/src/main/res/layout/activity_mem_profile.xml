@@ -31,21 +31,19 @@
                 android:layout_height="100dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:id="@+id/iv_memProImg"
                     android:src="@drawable/default_profile"
-                    android:layout_width="100dp"
+                    android:layout_width="80dp"
                     android:layout_height="100dp"/>
-
-                <!-- 그냥 공백 주는 텍스트 -->
-                <TextView
-                    android:layout_width="10dp"
-                    android:layout_height="match_parent"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:paddingTop="15dp"
+                    android:paddingRight="15dp">
 
                     <TextView
                         android:layout_marginBottom="5dp"
@@ -55,7 +53,7 @@
                         android:text="나회원"
                         android:fontFamily="@font/font"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                     <TextView
                         android:id="@+id/tv_memProTel"
@@ -65,14 +63,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#FFFFFF"/>
-
                     <TextView
                         android:id="@+id/tv_memProAddr"
+                        android:text="서울시 금천구 가산동 월드메르디앙2차"
+                        android:textSize="13sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="서울시 금천구 가산동 월드메르디앙2차"
-                        android:textColor="#FFFFFF"
-                        android:textSize="13sp" />
+                        android:textColor="#FFFFFF"/>
 
                 </LinearLayout>
 
