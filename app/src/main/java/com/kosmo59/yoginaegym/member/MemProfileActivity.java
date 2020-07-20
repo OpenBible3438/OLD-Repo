@@ -9,12 +9,16 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.common.TomcatImg;
+import com.kosmo59.yoginaegym.common.TomcatSend;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -27,19 +31,62 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MemProfileActivity extends AppCompatActivity {
 
     private AppVO vo = null;
     ImageView iv_memQr = null;
     TextView tv_memQrName=null;
     TextView tv_memQrNumber=null;
-
+    List<Map<String, Object>> memProfList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mem_profile);
         vo = (AppVO) getApplicationContext();
+
+        //DB 연동 시작
+        Log.i("MemProfActivity", "호출 성공 DB 시작");
+        String result = null;
+        String reqUrl = "android/jsonMemberProfile.gym";
+        Map<String, Object> pMap = new HashMap<>();
+        pMap.put("mem_no", vo.getMem_no());
+        Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
+        try{
+            TomcatSend tomcatSend = new TomcatSend();
+            result = tomcatSend.execute(reqUrl, pMap.toString()).get();
+        }catch (Exception e){
+            Log.i("MemProfActivity", "Exception : "+e.toString());
+        }
+        Log.i("MemProfActivity", "톰캣서버에서 읽어온 정보 : "+result);
+        Gson g = new Gson();
+        memProfList = (List<Map<String, Object>>)g.fromJson(result, listType);
+
+        CircleImageView iv_memProImg = findViewById(R.id.iv_memProImg);
+        TextView tv_memProName = findViewById(R.id.tv_memProName);
+        TextView tv_memProTel = findViewById(R.id.tv_memProTel);
+        TextView tv_memProAddr = findViewById(R.id.tv_memProAddr);
+        tv_memProName.setText(memProfList.get(0).get("MEM_NAME").toString());
+        tv_memProTel.setText(memProfList.get(0).get("MEM_TEL").toString());
+        tv_memProAddr.setText(memProfList.get(0).get("MEM_ADDR").toString());
+        try {
+            TomcatImg tomcatImg = new TomcatImg();
+            String imsi = memProfList.get(0).get("FILE_SEQ").toString().substring(0, memProfList.get(0).get("FILE_SEQ").toString().length()-2);
+            String bitImg = tomcatImg.execute(imsi).get();
+            Bitmap bitmap = tomcatImg.getBitMap(bitImg);
+            iv_memProImg.setImageBitmap(bitmap);
+        }catch (Exception e){
+            Log.i("MemProfActivity", "Exception : "+e.toString());
+        }
 
         //프래그먼트와 ViewPager 연결하기
         MemberPagerAdapter memberPagerAdapter = new MemberPagerAdapter(getSupportFragmentManager());

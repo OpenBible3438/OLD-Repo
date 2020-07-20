@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_memProImg"
                     android:src="@drawable/default_profile"
                     android:layout_width="100dp"
@@ -65,13 +65,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#FFFFFF"/>
+
                     <TextView
                         android:id="@+id/tv_memProAddr"
-                        android:text="서울시 금천구 가산동 월드메르디앙2차"
-                        android:textSize="13sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#FFFFFF"/>
+                        android:text="서울시 금천구 가산동 월드메르디앙2차"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 

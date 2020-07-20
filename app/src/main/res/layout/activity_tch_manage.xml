@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_memProImg"
                     android:src="@drawable/people_sample2"
                     android:layout_width="100dp"

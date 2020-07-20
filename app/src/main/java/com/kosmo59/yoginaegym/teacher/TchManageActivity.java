@@ -9,12 +9,16 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.AppVO;
+import com.kosmo59.yoginaegym.common.TomcatImg;
+import com.kosmo59.yoginaegym.common.TomcatSend;
 import com.kosmo59.yoginaegym.gym.GymNoticeFragment;
 import com.kosmo59.yoginaegym.member.MemContentActivity;
 
@@ -30,12 +34,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TchManageActivity extends AppCompatActivity {
 
     ImageView iv_memQr = null;
     TextView tv_memQrName=null;
     TextView tv_memQrNumber=null;
+    List<Map<String, Object>> tchProfList=null;
     AppVO vo = null;
 
     @Override
@@ -44,6 +55,39 @@ public class TchManageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tch_manage);
 
         vo = (AppVO) getApplicationContext();
+
+        //프로필 부분 DB 연동
+        Log.i("TchManageActivity", "호출 성공 DB 시작");
+        String result = null;
+        String reqUrl = "android/jsonTeacherProf.gym";
+        Map<String, Object> pMap = new HashMap<>();
+        pMap.put("tch_no", Integer.parseInt(vo.getTchNum()));
+        Type listType = new TypeToken<List<Map<String, Object>>>(){}.getType();
+        try {
+            TomcatSend tomcatSend = new TomcatSend();
+            result = tomcatSend.execute(reqUrl, pMap.toString()).get();
+        }catch (Exception e){
+            Log.i("TchManageActivity", "Exception : "+e.toString());
+        }
+        Log.i("TchManageActivity", "톰캣서버에서 읽어온 정보 : "+result);
+        Gson g = new Gson();
+        tchProfList = (List<Map<String, Object>>)g.fromJson(result, listType);
+
+        CircleImageView iv_memProImg = findViewById(R.id.iv_memProImg);
+        TextView tv_tchManageName = findViewById(R.id.tv_tchManageName);
+        TextView tv_tchManageTel = findViewById(R.id.tv_tchManageTel);
+
+        tv_tchManageName.setText(tchProfList.get(0).get("TCH_NAME").toString());
+        tv_tchManageTel.setText(tchProfList.get(0).get("TCH_TEL").toString());
+        try {
+            TomcatImg tomcatImg = new TomcatImg();
+            String imsi = tchProfList.get(0).get("FILE_SEQ").toString().substring(0, tchProfList.get(0).get("FILE_SEQ").toString().length()-2);
+            String bitImg = tomcatImg.execute(imsi).get();
+            Bitmap bitmap = tomcatImg.getBitMap(bitImg);
+            iv_memProImg.setImageBitmap(bitmap);
+        }catch (Exception e){
+            Log.i("TchManageActivity", "Exception : "+e.toString());
+        }
 
         //프래그먼트와 ViewPager 연결하기
         TchManagePagerAdapter tchManagePagerAdapter = new TchManagePagerAdapter(getSupportFragmentManager());
