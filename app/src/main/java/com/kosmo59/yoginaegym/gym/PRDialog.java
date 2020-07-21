@@ -1,5 +1,14 @@
 package com.kosmo59.yoginaegym.gym;
 
+import com.kakao.kakaolink.v2.KakaoLinkResponse;
+import com.kakao.kakaolink.v2.KakaoLinkService;
+import com.kakao.message.template.ButtonObject;
+import com.kakao.message.template.ContentObject;
+import com.kakao.message.template.FeedTemplate;
+import com.kakao.message.template.LinkObject;
+import com.kakao.message.template.SocialObject;
+import com.kakao.network.ErrorResult;
+import com.kakao.network.callback.ResponseCallback;
 import com.kosmo59.yoginaegym.R;
 import com.kosmo59.yoginaegym.common.TomcatImg;
 
@@ -20,6 +29,7 @@ import androidx.annotation.NonNull;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +43,9 @@ public class PRDialog extends ArrayAdapter {
     //하트 수
     private TextView tv_prHeartNum;
     private int prHeartNum=0;
-
+    String cont_cont = null;
+    String cont_who = null;
+    String file_seq = null;
     private Context context;
     List<Map<String, Object>> contDetailList = null;
     int resourceId;
@@ -72,9 +84,11 @@ public class PRDialog extends ArrayAdapter {
         tv_cont_detail_likeNum.setText(contDetailList.get(position).get("CONT_LIKE").toString().substring(0, contDetailList.get(position).get("CONT_LIKE").toString().length()-2));
         tv_cont_detail_cont_date.setText(contDetailList.get(position).get("CONT_DATE").toString());
         tv_cont_detail_conts.setText(contDetailList.get(position).get("CONT_CONT").toString());
-
+        cont_cont = contDetailList.get(position).get("CONT_CONT").toString();
+        cont_who = contDetailList.get(position).get("WHO").toString();
         try{
             TomcatImg tomcatImg = new TomcatImg();
+            file_seq = (contDetailList.get(position).get("FILE_SEQ").toString()).split("\\.")[0];
             String imsi = contDetailList.get(position).get("FILE_SEQ").toString().substring(0, contDetailList.get(position).get("FILE_SEQ").toString().length()-2);
             String bitImg = tomcatImg.execute(imsi).get();
             Bitmap bitmap = tomcatImg.getBitMap(bitImg);
@@ -86,13 +100,35 @@ public class PRDialog extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 Log.i("PRDialog", "공유버튼 누름");
+                sendKaKao();
             }
         });
         return convertView;
     }
 
     //카카오링크 호출
-    
+    public void sendKaKao(){
+        String templateId = "32918";
+
+        Map<String, String> templateArgs = new HashMap<String, String>();
+        String ImgUrl = "http://192.168.1.2:7776/fitness/main/getImage.gym?file_seq="+file_seq;
+        templateArgs.put("cont_img", ImgUrl);
+        templateArgs.put("cont_cont", cont_cont);
+        templateArgs.put("cont_title", cont_who);
+
+        KakaoLinkService.getInstance().sendCustom(context, templateId, templateArgs, new ResponseCallback<KakaoLinkResponse>() {
+            @Override
+            public void onFailure(ErrorResult errorResult) {
+                Log.i("PRDialog", "onFailure - " + errorResult.toString());
+            }
+
+            @Override
+            public void onSuccess(KakaoLinkResponse result) {
+// 템플릿 밸리데이션과 쿼터 체크가 성공적으로 끝남. 톡에서 정상적으로 보내졌는지 보장은 할 수 없다.
+            }
+        });
+
+    }
 
 
 

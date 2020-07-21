@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*
+
         //카카오 해시키값 받아오는 코드
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e) {
 
         }
-        */
+
 
     }
 

@@ -4,5 +4,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="kakaoNativeAppkey">3145f63f57d9d47a1d300a2b19154812</string>
+    <string name="kakao_app_key">6d720b05d278171d48b88a8c60915fe1</string>
+    <string name="kakao_scheme">kakao6d720b05d278171d48b88a8c60915fe1</string>
+    <string name="kakaolink_host">kakaolink</string>
     <string name="googleAppKey">AIzaSyCQKrwU5eHiIQzG0LY57G-8lfV-l9niiZU</string>
 </resources>
