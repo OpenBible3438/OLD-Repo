@@ -1,1 +1,1 @@
-# PyunSungKyong
+# 2019-2 안드로이드 수업 
