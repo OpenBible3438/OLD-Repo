@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 스크롤 뷰 안으로 코드추가 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30sp"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarStyle="outsideInset">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tch_name"
+                    android:fontFamily="@font/font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:text="나강사"
+                    android:textSize="24sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/icon_close"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@drawable/icon_close_s" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--구분 라인-->
+        <View
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000000" />
+
+        <ImageView
+            android:layout_marginBottom="10dp"
+            android:id="@+id/tch_image"
+            android:layout_width="match_parent"
+            android:layout_height="340sp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_tch_nagangsa"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="left|center"
+                        android:text="아이디"
+                        android:textColor="#00BCD4"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="성별"
+                        android:textColor="#00BCD4"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="전화번호"
+                        android:textColor="#00BCD4"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="강사경력"
+                        android:textColor="#00BCD4"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="자기소개"
+                        android:textColor="#00BCD4"
+                        android:gravity="left|center"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tch_id"
+                        android:background="@android:color/transparent"
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="테스트"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:id="@+id/tch_gender"
+                        android:background="@android:color/transparent"
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="테스트"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:id="@+id/tch_tel"
+                        android:background="@android:color/transparent"
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="010-2222-2222"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:id="@+id/tch_career"
+                        android:background="@android:color/transparent"
+                        android:textSize="20sp"
+                        android:gravity="left|center"
+                        android:text="강사 3년차"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:id="@+id/tch_intro"
+                        android:background="@android:color/transparent"
+                        android:layout_marginTop="2dp"
+                        android:textSize="20sp"
+                        android:gravity="left|top"
+                        android:text="안녕하세요. 나강사입니다."
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

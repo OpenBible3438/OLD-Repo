@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!-- 스크롤 뷰 안으로 코드추가 -->
+
+    <LinearLayout
+        android:id="@+id/tch_mem_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:fontFamily="@font/font"
+                    android:id="@+id/tch_mem_info_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:text="김회원"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/icon_close_info"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@drawable/icon_close_s" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--구분 라인-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="20dp"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:fontFamily="@font/font"
+                    android:textSize="18sp"
+                    android:gravity="center|top"
+                    android:text="남은 횟수"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tch_mem_info_cdates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:text="7/10"
+                    android:textColor="#656565"
+                    android:textSize="30sp" />
+                <ProgressBar
+                    android:id="@+id/tch_mem_info_pb_cont"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:progressTint="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="bottom"
+                    android:inputType="number"
+                    android:progress="7"
+                    android:max="10" />
+
+            </LinearLayout>
+
+            <!--구분 라인-->
+            <View
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="#000000" />
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:fontFamily="@font/font"
+                    android:textSize="18sp"
+                    android:gravity="center|top"
+                    android:text="남은 일수"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tch_mem_info_mem_cnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="top"
+                    android:text="70/100"
+                    android:textColor="#656565"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+
+            <ProgressBar
+                android:id="@+id/tch_mem_info_pb_cont_day"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progressTint="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="bottom"
+                android:inputType="number"
+                android:progress="50"
+                android:max="365" />
+
+        </LinearLayout>
+
+        <!--구분 라인-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="#00BCD4"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="left|center"
+                    android:text="성별"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:textColor="#00BCD4"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="left|center"
+                    android:text="전화번호"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:textColor="#00BCD4"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="left|center"
+                    android:text="생년월일"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:textColor="#00BCD4"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="left|center"
+                    android:text="등록일"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:textColor="#00BCD4"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="left|center"
+                    android:text="종료일"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tch_mem_info_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:text="남성"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tch_mem_info_tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:text="010-1234-5678"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tch_mem_info_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:text="1996-03-31"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tch_mem_info_sdates"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:text="2019-02-10"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tch_mem_info_edates"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:text="2019-02-10"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

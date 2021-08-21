@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/layout_sample"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- ☆★☆★☆★☆★☆★☆★☆★유일하게 건드려야되는 곳☆★☆★☆★☆★☆★☆★☆★ -->
+    <!-- tools:context=".폴더이름.엑티비티이름" -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            layout="@layout/common_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"/>
+
+            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기 위로 건들면 죽음 ☆★☆★☆★☆★☆★☆★☆★-->
+            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
+
+            <!-- 컨텐츠 카드뷰 -->
+            <LinearLayout
+                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:divider="#ffffff"
+                    android:id="@+id/lv_mem_cont"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기에 코드 추가 ☆★☆★☆★☆★☆★☆★☆★-->
+            <!-- ☆★☆★☆★☆★☆★☆★☆★ 여기 아래로 건들면 죽음 ☆★☆★☆★☆★☆★☆★☆★-->
+
+        <include
+            layout="@layout/common_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/sample_navigationView"
+        app:headerLayout="@layout/common_hamburger"
+        app:menu="@menu/hamburger_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start">
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

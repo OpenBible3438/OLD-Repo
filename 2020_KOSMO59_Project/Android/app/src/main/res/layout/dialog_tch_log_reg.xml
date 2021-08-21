@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 스크롤 뷰 안으로 코드추가 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30sp"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarStyle="outsideInset">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:fontFamily="@font/font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:text="내 일정 등록"
+                    android:textSize="24sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageButton
+                    android:id="@+id/icon_close"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:backgroundTint="#00FFFFFF"
+                    app:srcCompat="@drawable/icon_close_s" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--  구분 라인  -->
+        <View
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000000" />
+
+        <EditText
+            android:id="@+id/et_log_cont"
+            android:background="@null"
+            android:textSize="20sp"
+            android:gravity="left|top"
+            android:text="코스모 헬스장 면접"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50sp">
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"
+                        android:text="등록일 "
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/tv_reg_date"
+                        android:layout_width="75sp"
+                        android:layout_height="25sp"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"
+                        android:text="2020-07-15"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--구분 라인-->
+            <View
+                android:layout_marginBottom="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="#000000" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:gravity="left|center"
+                            android:text="일정 이름"
+                            android:textColor="#00BCD4"
+                            android:textSize="12sp" />
+                        <TextView
+                            android:textColor="#00BCD4"
+                            android:textSize="12sp"
+                            android:text="내 일정"
+                            android:gravity="left|center"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"/>
+                        <TextView
+                            android:textColor="#00BCD4"
+                            android:textSize="12sp"
+                            android:text="시작시간"
+                            android:gravity="left|center"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"/>
+                        <TextView
+                            android:textColor="#00BCD4"
+                            android:textSize="12sp"
+                            android:text="종료시간"
+                            android:gravity="left|center"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <EditText
+                            android:id="@+id/et_log_title"
+                            android:textColor="#00BCD4"
+                            android:textSize="16sp"
+                            android:text="면접"
+                            android:gravity="left|center"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp">
+                            <TextView
+                                android:background="@null"
+                                android:id="@+id/tv_exDate"
+                                android:textColor="#00BCD4"
+                                android:textSize="16sp"
+                                android:gravity="left|center"
+                                android:text="2020-07-21"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"/>
+                            <LinearLayout
+                                android:gravity="right"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <ImageButton
+                                    android:id="@+id/icon_date"
+                                    android:src="@drawable/icon_date"
+                                    android:backgroundTint="@android:color/transparent"
+                                    android:layout_width="30dp"
+                                    android:layout_height="match_parent"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp">
+                            <TextView
+                                android:id="@+id/tv_stime"
+                                android:textColor="#00BCD4"
+                                android:textSize="16sp"
+                                android:gravity="left|center"
+                                android:text="12:00:00"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"/>
+                            <LinearLayout
+                                android:gravity="right"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <ImageButton
+                                    android:id="@+id/icon_stime"
+                                    android:src="@drawable/icon_stime"
+                                    android:backgroundTint="@android:color/transparent"
+                                    android:layout_width="30dp"
+                                    android:layout_height="match_parent"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp">
+                            <TextView
+                                android:id="@+id/tv_etime"
+                                android:textColor="#00BCD4"
+                                android:textSize="16sp"
+                                android:gravity="left|center"
+                                android:text="13:00:00"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"/>
+                            <LinearLayout
+                                android:gravity="right"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <ImageButton
+                                    android:id="@+id/icon_etime"
+                                    android:src="@drawable/icon_etime"
+                                    android:backgroundTint="@android:color/transparent"
+                                    android:layout_width="30dp"
+                                    android:layout_height="match_parent"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--구분 라인-->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#000000" />
+
+                <LinearLayout
+                    android:gravity="right|top"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <Button
+                        android:id="@+id/btn_logDetail_ins"
+                        android:text="등록"
+                        android:textSize="14sp"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

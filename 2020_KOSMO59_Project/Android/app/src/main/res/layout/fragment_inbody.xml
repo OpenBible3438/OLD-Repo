@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 그리드뷰는 스크롤 뷰 필요 없음 -->
+<GridView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gv_memInbody"
+    android:columnWidth="100dp"
+    android:stretchMode="columnWidth"
+    android:verticalSpacing="10dp"
+    android:horizontalSpacing="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:numColumns="3">
+
+</GridView>
