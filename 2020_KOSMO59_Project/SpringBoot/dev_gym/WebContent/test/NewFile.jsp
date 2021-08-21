@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+{
+	"rows":[
+				{
+					"c":[{"v":"1월"},{"v":"10"},{"v":"20"},{"v":"30"}]
+				},{
+			   		"c":[{"v":"2월"},{"v":"20"},{"v":"20"},{"v":"30"}]
+			   	},{
+			   		"c":[{"v":"3월"},{"v":"30"},{"v":"20"},{"v":"30"}]
+			   	},{
+			   		"c":[{"v":"4월"},{"v":"40"},{"v":"20"},{"v":"30"}]
+			   	},{
+			   		"c":[{"v":"5월"},{"v":"50"},{"v":"20"},{"v":"30"}]
+			   	}
+		   	]
+	,"cols":
+			[
+				{"label":"day","type":"string"}
+			   ,{"label":"first","type":"number"}
+			   ,{"label":"second","type":"number"}
+			   ,{"label":"third","type":"number"}
+			]
+	}

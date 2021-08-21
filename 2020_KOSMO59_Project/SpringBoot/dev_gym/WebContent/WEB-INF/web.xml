@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>dev_fitness</display-name>
+	<servlet>
+		<servlet-name>Fitness</servlet-name>
+		<servlet-class>prj.fitness.ActionFitness</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Fitness</servlet-name>
+		<url-pattern>*.gym</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jsonChart</servlet-name>
+		<servlet-class>hjho.test.JsonTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jsonChart</servlet-name>
+		<url-pattern>*.jsn</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jsonChartMap</servlet-name>
+		<servlet-class>hjho.test.JsonTestMap</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jsonChartMap</servlet-name>
+		<url-pattern>*.jsn2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>jsonSetChart</servlet-name>
+		<servlet-class>hjho.test.JsonTest_SetChart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jsonSetChart</servlet-name>
+		<url-pattern>*.jsn3</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<!-- DB [Pooling] 연동 처리 -->
+	<!-- jdbc:apache:commons:dbcp:jdbcPool -->
+<!-- 	<servlet>
+		<servlet-name>DBCPInit</servlet-name>
+		<servlet-class>jsp.ch17.DBCPInitVer2</servlet-class>
+		
+		<init-param>
+			<param-name>jdbcDriver</param-name>
+			<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jdbcUrl</param-name>
+			<param-value>jdbc:oracle:thin:@127.0.0.1:1521:orcl11</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jdbcId</param-name>
+			<param-value>scott</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jdbcPw</param-name>
+			<param-value>tiger</param-value>
+		</init-param>
+		<init-param>
+			<param-name>poolName</param-name>
+			<param-value>jdbcPool</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet> -->
+	
+	<!-- 서버가 기동이 된후 계속 유지가 되어야한다. 로그 or DB연동 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/log4.properties</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>poolDriver</param-name>
+		<param-value>jdbc:apache:commons:dbcp:jdbcPool</param-value>
+	</context-param>
+	
+</web-app>
